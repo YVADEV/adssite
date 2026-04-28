@@ -40,12 +40,12 @@ const teamCards = [
     href: "/echipa/radu-nichimis/",
   },
   {
-    name: "Sarah Johnson",
+    name: "Dr. Laura Grigorean",
     role: "Creative Director",
     image: lauraImage.src,
   },
   {
-    name: "Christopher Miller",
+    name: "Dr. Valentina Nichimiș",
     role: "UX/UI Designer",
     image: valentinaImage.src,
   },

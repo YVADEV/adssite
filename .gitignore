@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large local-only media
+public/cori-angel.mp4
+src/assets/cazuri/Clipuri cazuri/Cori Angel Aligners de postat .mp4

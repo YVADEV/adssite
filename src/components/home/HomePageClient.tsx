@@ -1348,37 +1348,37 @@ export default function HomePageClient() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="fixed bottom-3 right-3 z-[70] flex items-center gap-1.5 rounded-[12px] border border-white/10 bg-black/95 p-1.5 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[8px] md:bottom-5 md:right-5 md:gap-2 md:rounded-[14px] md:p-2"
+        className="fixed bottom-3 right-3 z-[70] flex items-center gap-2 rounded-[18px] border border-white/12 bg-black/92 p-2.5 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[10px] md:bottom-5 md:right-5 md:gap-3 md:rounded-[20px] md:p-3"
       >
-        <div className="h-[34px] w-[30px] overflow-hidden rounded-[8px] border border-white/10 md:h-[42px] md:w-[36px] md:rounded-[10px]">
+        <div className="h-[44px] w-[40px] overflow-hidden rounded-[10px] border border-white/12 md:h-[56px] md:w-[50px] md:rounded-[12px]">
           <img src={heroCardThumb.src} alt="Alverna contact" className="h-full w-full object-cover object-center" />
         </div>
-        <div className="flex min-w-[112px] flex-col gap-1 md:min-w-[140px]">
+        <div className="flex min-w-[180px] flex-col gap-1.5 md:min-w-[220px]">
           <div className="flex items-center justify-between">
-            <p className="truncate text-[10px] font-semibold text-white md:text-[11px]">Alverna</p>
-            <span className="text-[9px] font-semibold text-[#8fa77a] md:text-[10px]">4.8★</span>
+            <p className="truncate text-[16px] font-semibold leading-none text-white md:text-[18px]">Alverna Dental</p>
+            <span className="rounded-full border border-[#8fa77a]/30 bg-[#8fa77a]/10 px-2 py-1 text-[12px] font-semibold leading-none text-[#b4c79f] md:text-[13px]">4.8★</span>
           </div>
-          <div className="grid grid-cols-3 gap-1">
+          <div className="grid grid-cols-3 gap-2">
             <a
               href="https://wa.me/40748085933"
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="ads-btn-primary inline-flex h-[24px] items-center justify-center rounded-[8px] text-[9px] font-semibold md:h-[26px] md:text-[10px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[11px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[12px]"
             >
               WA
             </a>
             <a
               href="tel:+40748085933"
               aria-label="Sună"
-              className="ads-btn-primary inline-flex h-[24px] items-center justify-center rounded-[8px] text-[9px] font-semibold md:h-[26px] md:text-[10px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[11px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[12px]"
             >
               TEL
             </a>
             <a
               href="mailto:contact@alvernadental.com"
               aria-label="Mail"
-              className="ads-btn-primary inline-flex h-[24px] items-center justify-center rounded-[8px] text-[9px] font-semibold md:h-[26px] md:text-[10px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[11px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[12px]"
             >
               MAIL
             </a>

@@ -568,7 +568,7 @@ export default function HomePageClient() {
               invalidateOnRefresh: true,
               onRefresh: (self) => {
                 const spacer = self.pin?.parentElement;
-                if (spacer) spacer.style.background = "#f5f5f5";
+                if (spacer) spacer.style.background = "#000000";
               },
             },
           });

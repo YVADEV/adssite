@@ -74,10 +74,10 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
   }, [menuOpen, menuVisible]);
 
   return (
-    <div className="overflow-x-hidden bg-black text-white [scroll-behavior:smooth]">
+    <div className="overflow-x-hidden bg-[#090d18] text-white [scroll-behavior:smooth]">
       <div
         ref={menuOverlayRef}
-        className={`fixed inset-0 z-[8888] bg-black ${menuVisible ? "" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-[8888] bg-[#0c1220] ${menuVisible ? "" : "pointer-events-none"}`}
       >
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
@@ -177,7 +177,7 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
         </div>
       </div>
       <div ref={pageContentRef}>
-        <header className="sticky top-0 z-30 h-[68px] w-full bg-black text-white sm:h-[72px]">
+        <header className="sticky top-0 z-30 h-[68px] w-full bg-[#090d18] text-white sm:h-[72px]">
           <div className="mx-auto flex h-full w-full max-w-[1920px] items-center justify-between px-3 text-[15px] font-medium sm:px-4 md:px-6 lg:px-8 2xl:px-12">
             <div className="flex min-w-0 items-center gap-2 sm:gap-4">
               <span className="truncate text-[13px] font-bold tracking-[-0.02em] text-[#6fa964] sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]">Programeaza-te acum</span>

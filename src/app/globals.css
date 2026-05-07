@@ -2,9 +2,9 @@
 
 :root {
   /* ADS Design Tokens */
-  --ads-bg: #0f1115;
-  --ads-surface: #1a1d22;
-  --ads-primary: #8fa77a;
+  --ads-bg: #090d18;
+  --ads-surface: #141b2b;
+  --ads-primary: #9bb186;
   --ads-secondary: #a3b18a;
   --ads-text-primary: #ffffff;
   --ads-text-secondary: #a0a4ab;
@@ -44,7 +44,7 @@
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top, #0d1322 0%, var(--background) 36%);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
@@ -102,9 +102,13 @@ body {
 [class*="bg-[#ececec]"],
 [class*="bg-[#ECECEC]"],
 [class*="bg-[#f5f5f5]"],
-[class*="bg-[#F5F5F5]"],
+[class*="bg-[#F5F5F5]"] {
+  background-color: var(--ads-bg) !important;
+  background-image: none !important;
+}
+
 [class*="bg-white"] {
-  background-color: #000 !important;
+  background-color: var(--ads-surface) !important;
   background-image: none !important;
 }
 

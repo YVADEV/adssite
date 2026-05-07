@@ -1364,23 +1364,23 @@ export default function HomePageClient() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[11px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[12px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
             >
-              WA
+              💬
             </a>
             <a
               href="tel:+40748085933"
               aria-label="Sună"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[11px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[12px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
             >
-              TEL
+              📞
             </a>
             <a
               href="mailto:contact@alvernadental.com"
               aria-label="Mail"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[11px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[12px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
             >
-              MAIL
+              ✉️
             </a>
           </div>
         </div>

@@ -705,11 +705,11 @@ export default function HomePageClient() {
             <nav className="flex flex-1 flex-col justify-center">
               <div className="pl-[6vw] md:pl-[10vw]">
             {[
-              { href: "/turism-dentar", label: "Turism dentar" },
-              { href: "/echipa", label: "Echipa" },
+              { href: "/", label: "Acasă" },
+              { href: "/cazuri", label: "Cazuri" },
               { href: "/tarife", label: "Tarife" },
-              { href: "/", label: "Blog" },
-              { href: "/testimoniale", label: "Testimoniale" },
+              { href: "/echipa", label: "Echipa" },
+              { href: "/contact", label: "Contact" },
             ].map((item) => (
               <a
                 key={item.label}
@@ -834,26 +834,6 @@ export default function HomePageClient() {
               <p className="mt-[12px]">Aparat dentar</p>
             </div>
 
-            <motion.article
-              data-intro="hero-card"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="absolute bottom-[78px] right-[10px] flex h-[136px] w-[360px]"
-            >
-              <div className="h-[136px] w-[119px] rounded-[24px] bg-white p-[8px] shadow-[0_8px_20px_rgba(17,17,17,0.12)]">
-                <img src={heroCardThumb.src} alt="" className="h-[120px] w-[103px] rounded-[14px] object-cover object-center" />
-              </div>
-              <div className="ml-0 flex h-[136px] w-[241px] flex-col justify-center rounded-[24px] bg-white p-[20px] shadow-[0_8px_20px_rgba(17,17,17,0.12)]">
-                <p className="text-[12px] font-medium leading-[1.2] text-[#0A0A0A]">Alverna Dental Studio</p>
-                <p className="mt-1 text-[12px] font-normal leading-[1.2] text-[#909090]">Orar 09-20</p>
-                <h3 className="mt-[2px] text-[22px] font-semibold leading-[1.1] text-[#0A0A0A]">Te asteptam</h3>
-                <a href="mailto:contact@alvernadental.com" className="mt-[6px] inline-flex h-[42px] w-[190px] items-center justify-center gap-[6px] rounded-full bg-black px-3 text-[13px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
-                  <span>Solicita o programare</span>
-                  <span className="h-[6px] w-[6px] rounded-[999px] bg-[#22c55e]" />
-                </a>
-              </div>
-            </motion.article>
           </div>
         </div>
 
@@ -1362,6 +1342,49 @@ export default function HomePageClient() {
       <footer ref={footerSectionRef}>
         <SiteFooter />
       </footer>
+
+      <motion.aside
+        data-intro="hero-card"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.55, ease: "easeOut" }}
+        className="fixed bottom-3 right-3 z-[70] flex items-center gap-2 rounded-[14px] border border-white/10 bg-black/95 p-2 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[8px] md:bottom-5 md:right-5 md:rounded-[16px]"
+      >
+        <div className="h-[46px] w-[42px] overflow-hidden rounded-[10px] border border-white/10 md:h-[52px] md:w-[46px]">
+          <img src={heroCardThumb.src} alt="Alverna contact" className="h-full w-full object-cover object-center" />
+        </div>
+        <div className="flex min-w-[138px] flex-col gap-1.5 md:min-w-[170px]">
+          <div className="flex items-center justify-between">
+            <p className="truncate text-[11px] font-semibold text-white md:text-[12px]">Alverna Dental</p>
+            <span className="text-[10px] font-semibold text-[#8fa77a] md:text-[11px]">4.8 ★</span>
+          </div>
+          <div className="grid grid-cols-3 gap-1.5">
+            <a
+              href="https://wa.me/40748085933"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp"
+              className="ads-btn-primary inline-flex h-[28px] items-center justify-center rounded-[10px] text-[10px] font-semibold md:h-[30px] md:text-[11px]"
+            >
+              WA
+            </a>
+            <a
+              href="tel:+40748085933"
+              aria-label="Sună"
+              className="ads-btn-primary inline-flex h-[28px] items-center justify-center rounded-[10px] text-[10px] font-semibold md:h-[30px] md:text-[11px]"
+            >
+              TEL
+            </a>
+            <a
+              href="mailto:contact@alvernadental.com"
+              aria-label="Mail"
+              className="ads-btn-primary inline-flex h-[28px] items-center justify-center rounded-[10px] text-[10px] font-semibold md:h-[30px] md:text-[11px]"
+            >
+              MAIL
+            </a>
+          </div>
+        </div>
+      </motion.aside>
       </div>
     </div>
   );

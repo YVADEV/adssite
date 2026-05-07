@@ -90,11 +90,11 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
           <nav className="flex flex-1 flex-col justify-center">
             <div className="pl-[6vw] md:pl-[10vw]">
               {[
-                { href: "/turism-dentar", label: "Turism dentar" },
-                { href: "/echipa", label: "Echipa" },
+                { href: "/", label: "Acasă" },
+                { href: "/cazuri", label: "Cazuri" },
                 { href: "/tarife", label: "Tarife" },
-                { href: "/", label: "Blog" },
-                { href: "/testimoniale", label: "Testimoniale" },
+                { href: "/echipa", label: "Echipa" },
+                { href: "/contact", label: "Contact" },
               ].map((item) => (
                 <Link
                   key={item.label}

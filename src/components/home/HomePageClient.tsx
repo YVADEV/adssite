@@ -692,7 +692,7 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div ref={rootRef} className="overflow-x-hidden bg-white text-[#0a0a0a] [scroll-behavior:smooth]">
+    <div ref={rootRef} className="overflow-x-hidden bg-black text-white [scroll-behavior:smooth]">
       <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
             <div className="flex items-center justify-between">
@@ -781,13 +781,13 @@ export default function HomePageClient() {
         </div>
 
       <div ref={pageContentRef}>
-      <header data-intro="nav" className="sticky top-0 z-50 mx-auto flex h-[72px] w-full max-w-[1920px] items-center justify-between bg-white px-4 text-[15px] font-medium text-[#0A0A0A] md:px-6 lg:px-8">
+      <header data-intro="nav" className="sticky top-0 z-50 mx-auto flex h-[72px] w-full max-w-[1920px] items-center justify-between bg-black px-4 text-[15px] font-medium text-white md:px-6 lg:px-8">
         <span className="text-[22px] font-bold tracking-[-0.88px] text-[#4E7044]">Programeaza-te acum</span>
         <nav className="hidden w-[min(100%,980px)] justify-center gap-14 tracking-[-0.01em] lg:flex">
           <a href="/cazuri">Cazuri</a>
           <a href="/tarife">Tarife</a>
           <a href="/echipa">Echipa</a>
-          <ServicesDropdown />
+          <ServicesDropdown isDark />
           <a href="/contact">Contact</a>
         </nav>
         <button
@@ -796,9 +796,9 @@ export default function HomePageClient() {
           onClick={() => setMenuOpen((prev) => !prev)}
           className="flex h-12 w-12 flex-col justify-center gap-[6px]"
         >
-          <span ref={menuTopLineRef} className="h-[2px] w-full bg-black" />
-          <span ref={menuMidLineRef} className="h-[2px] w-full bg-black" />
-          <span ref={menuBottomLineRef} className="h-[2px] w-full bg-black" />
+          <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
+          <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
+          <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
         </button>
       </header>
 

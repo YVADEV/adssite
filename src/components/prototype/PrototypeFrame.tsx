@@ -74,14 +74,17 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
   }, [menuOpen, menuVisible]);
 
   return (
-    <div className="overflow-x-hidden bg-[#ececec] text-[#0a0a0a] [scroll-behavior:smooth]">
-      <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
+    <div className="overflow-x-hidden bg-black text-white [scroll-behavior:smooth]">
+      <div
+        ref={menuOverlayRef}
+        className={`fixed inset-0 z-[8888] bg-black ${menuVisible ? "" : "pointer-events-none"}`}
+      >
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
-            <span className="text-[22px] font-bold tracking-[-0.03em] text-[#0A0A0A]">alverna®</span>
+            <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
             <button type="button" aria-label="Close menu" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#0A0A0A]" />
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#0A0A0A]" />
+              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white" />
+              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-white" />
             </button>
           </div>
           <nav className="flex flex-1 flex-col justify-center">
@@ -98,7 +101,7 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
                   href={item.href}
                   data-menu-item
                   onClick={() => setMenuOpen(false)}
-                  className="block text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
+                  className="block text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
                 >
                   {item.label}
                 </Link>
@@ -109,7 +112,7 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
                 aria-label="Deschide lista de servicii"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="mt-2 flex w-full items-center justify-between rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A]"
+                className="mt-2 flex w-full items-center justify-between rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
               >
                 <span>Servicii</span>
                 <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
@@ -125,7 +128,7 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
                           aria-label={`Deschide submeniul ${service.title}`}
                           aria-expanded={mobileAparatOpen}
                           onClick={() => setMobileAparatOpen((prev) => !prev)}
-                          className="flex min-h-[48px] w-full items-center justify-between rounded-[10px] px-2 text-[18px] font-semibold text-[#0A0A0A]"
+                          className="flex min-h-[48px] w-full items-center justify-between rounded-[10px] px-2 text-[18px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
                           <span>{mobileAparatOpen ? "−" : "+"}</span>
@@ -136,7 +139,7 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
                               key={child.slug}
                               href={child.href}
                               onClick={() => setMenuOpen(false)}
-                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-[15px] text-[#1f1f1f]"
+                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-[15px] text-white/85"
                             >
                               {child.title}
                             </Link>
@@ -144,7 +147,12 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
                         </div>
                       </div>
                     ) : (
-                      <Link key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-[17px] font-medium text-[#0A0A0A]">
+                      <Link
+                        key={service.slug}
+                        href={service.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-[17px] font-medium text-white"
+                      >
                         {service.title}
                       </Link>
                     ),
@@ -153,7 +161,7 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
               </div>
             </div>
           </nav>
-          <div className="flex flex-col gap-4 pt-6 text-[#0A0A0A] sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
             <div className="text-[13px] leading-[1.5]">
               <a href="tel:+40748085933">+40 748 085 933</a>
               <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
@@ -169,14 +177,14 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
         </div>
       </div>
       <div ref={pageContentRef}>
-        <header className={`sticky top-0 z-30 h-[68px] w-full sm:h-[72px] ${darkHeader ? "bg-black text-white" : "bg-[#ececec] text-[#0a0a0a]"}`}>
+        <header className="sticky top-0 z-30 h-[68px] w-full bg-black text-white sm:h-[72px]">
           <div className="mx-auto flex h-full w-full max-w-[1920px] items-center justify-between px-3 text-[15px] font-medium sm:px-4 md:px-6 lg:px-8 2xl:px-12">
             <div className="flex min-w-0 items-center gap-2 sm:gap-4">
               <span className="truncate text-[13px] font-bold tracking-[-0.02em] text-[#6fa964] sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]">Programeaza-te acum</span>
               <Link
                 href="/"
                 className={`inline-flex h-[30px] shrink-0 items-center rounded-full px-3 text-[12px] font-semibold transition duration-300 hover:scale-[1.02] sm:h-[34px] sm:px-4 sm:text-[13px] ${
-                  darkHeader ? "bg-white text-[#0A0A0A]" : "bg-[#0A0A0A] text-white"
+                  "bg-white text-[#0A0A0A]"
                 }`}
               >
                 Acasă
@@ -187,13 +195,13 @@ export default function PrototypeFrame({ children, darkHeader = false }: Prototy
               <Link href="/cazuri">Cazuri</Link>
               <Link href="/tarife">Tarife</Link>
               <Link href="/echipa">Echipa</Link>
-              <ServicesDropdown isDark={darkHeader} />
+              <ServicesDropdown isDark />
               <Link href="/contact">Contact</Link>
             </nav>
             <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
-              <span ref={menuTopLineRef} className={`h-[2px] w-full ${darkHeader ? "bg-white" : "bg-[#0a0a0a]"}`} />
-              <span ref={menuMidLineRef} className={`h-[2px] w-full ${darkHeader ? "bg-white" : "bg-[#0a0a0a]"}`} />
-              <span ref={menuBottomLineRef} className={`h-[2px] w-full ${darkHeader ? "bg-white" : "bg-[#0a0a0a]"}`} />
+              <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
+              <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
+              <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
             </button>
           </div>
         </header>

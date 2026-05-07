@@ -35,13 +35,13 @@ const reviews = [
 export default function ContactPage() {
   return (
     <PrototypeFrame>
-      <main className="bg-[#ececec] pb-24 pt-16 text-[#0A0A0A] md:pt-20 lg:pt-[130px]">
+      <main className="bg-black pb-24 pt-16 text-white md:pt-20 lg:pt-[130px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <p className="text-[12px] uppercase tracking-[0.14em] text-[#5a5a5a]">Contact</p>
+          <p className="text-[12px] uppercase tracking-[0.14em] text-white/65">Contact</p>
           <h1 className="mt-4 text-[48px] font-extrabold leading-[0.9] tracking-[-0.05em] md:text-[78px] lg:text-[116px]">
             Contact
           </h1>
-          <p className="mt-6 max-w-[1050px] text-[18px] leading-[1.65] text-[#2f2f2f]">
+          <p className="mt-6 max-w-[1050px] text-[18px] leading-[1.65] text-white/80">
             Promisiunea noastră față de dumneavoastră este aceea că echipa Alverna Dental Studio își va folosi experiența
             și pasiunea pentru a face diferența între „câteva plombe” și zâmbetul perfect!
           </p>
@@ -74,11 +74,11 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="bg-[#ececec] pb-[110px] pt-[100px]">
+        <section className="bg-black pb-[110px] pt-[100px]">
           <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#5f5f5f]">✚ Testimoniale</p>
-            <h3 className="mt-2 text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-[#0A0A0A] md:text-[62px]">Recenzii</h3>
-            <p className="mt-3 text-[16px] font-semibold text-[#0A0A0A]">Scor mediu: 4.8 ⭐</p>
+            <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/60">✚ Testimoniale</p>
+            <h3 className="mt-2 text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">Recenzii</h3>
+            <p className="mt-3 text-[16px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
           </div>
           <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
             <article className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[26px]">

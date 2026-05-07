@@ -692,7 +692,7 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div ref={rootRef} className="overflow-x-hidden bg-black text-white [scroll-behavior:smooth]">
+    <div ref={rootRef} className="ads-page overflow-x-hidden bg-black text-white [scroll-behavior:smooth]">
       <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
             <div className="flex items-center justify-between">
@@ -867,7 +867,7 @@ export default function HomePageClient() {
               <div
                 key={review.name}
                 data-anim="card"
-                className="flex h-[124px] min-w-[0] flex-col justify-between rounded-[18px] border border-[#f1f1f1] bg-white p-4 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[132px] lg:h-[126px]"
+                className="ads-card flex h-[124px] min-w-[0] flex-col justify-between rounded-[18px] border border-[#f1f1f1] bg-white p-4 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[132px] lg:h-[126px]"
               >
                 <div className="flex items-center justify-between">
                   <p className="truncate pr-2 text-[11px] font-semibold text-[#0A0A0A]">{review.name}</p>
@@ -905,7 +905,7 @@ export default function HomePageClient() {
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-[1fr_1fr]">
             <p className="text-sm">✚ Cabinet stomatologic Cluj</p>
-            <h2 className="text-[64px] font-semibold leading-[0.95] tracking-[-2.4px] text-[#5b8b55]">Ce ne recomandă?</h2>
+            <h2 className="ads-section-title text-[64px] font-semibold leading-[0.95] tracking-[-2.4px] text-[#5b8b55]">Ce ne recomandă?</h2>
           </div>
           <div className="mt-[40px] grid grid-cols-1 gap-6 md:mt-[56px] md:grid-cols-[1fr_1fr] lg:mt-[74px]">
             <img src={vdScaun.src} alt="" data-anim="image" className="h-[630px] w-[385px] rounded-[12px] object-cover" />
@@ -986,7 +986,7 @@ export default function HomePageClient() {
                 <span key={`services-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeServicesDot === idx ? "bg-white" : "bg-white/50"}`} />
               ))}
             </div>
-            <a href="mailto:contact@alvernadental.com" className="inline-flex h-[56px] w-[220px] items-center justify-center rounded-full bg-white text-[16px] font-semibold text-[#4F7F47]">Solicita o programare</a>
+            <a href="mailto:contact@alvernadental.com" className="ads-btn-primary inline-flex h-[56px] w-[220px] items-center justify-center rounded-full bg-white text-[16px] font-semibold text-[#4F7F47]">Solicita o programare</a>
           </div>
         </div>
       </section>
@@ -1336,11 +1336,11 @@ export default function HomePageClient() {
             <h3 className="mt-2 text-[48px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
             <p className="mt-3 text-[14px] leading-[1.45] text-[#555555]">Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.</p>
             <form className="mt-7 grid gap-3">
-              <input className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Nume" />
-              <input className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Telefon" />
-              <input className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Serviciu dorit" />
-              <textarea className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Mesaj opțional" />
-              <a href="mailto:contact@alvernadental.com" className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-[0_10px_24px_rgba(0,0,0,0.25)]">Solicită programare</a>
+              <input className="ads-input h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Nume" />
+              <input className="ads-input h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Telefon" />
+              <input className="ads-input h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Serviciu dorit" />
+              <textarea className="ads-input min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Mesaj opțional" />
+              <a href="mailto:contact@alvernadental.com" className="ads-btn-primary mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-[0_10px_24px_rgba(0,0,0,0.25)]">Solicită programare</a>
               <p className="mt-2 text-center text-[11px] text-[#7a7a7a]">Nu trimitem spam. Te contactăm doar pentru confirmarea programării.</p>
             </form>
           </div>

@@ -1,8 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  /* ADS Design Tokens */
+  --ads-bg: #0f1115;
+  --ads-surface: #1a1d22;
+  --ads-primary: #8fa77a;
+  --ads-secondary: #a3b18a;
+  --ads-text-primary: #ffffff;
+  --ads-text-secondary: #a0a4ab;
+  --ads-divider: rgba(255, 255, 255, 0.08);
+  --ads-error: #ff3b30;
+  --ads-warning: #ff9500;
+
+  --ads-space-xs: 4px;
+  --ads-space-s: 8px;
+  --ads-space-m: 16px;
+  --ads-space-l: 24px;
+  --ads-space-xl: 32px;
+  --ads-space-2xl: 40px;
+
+  --ads-radius-sm: 12px;
+  --ads-radius-md: 16px;
+  --ads-radius-lg: 18px;
+  --ads-radius-xl: 24px;
+
+  --ads-font-size-caption: 13px;
+  --ads-font-size-body: 16px;
+  --ads-font-size-section: 18px;
+  --ads-font-size-title: 24px;
+  --ads-font-size-large-title: 32px;
+
+  --ads-shadow-card: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+  --background: var(--ads-bg);
+  --foreground: var(--ads-text-primary);
 }
 
 @theme inline {
@@ -16,6 +47,55 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.ads-page {
+  background: var(--ads-bg);
+  color: var(--ads-text-primary);
+}
+
+.ads-card {
+  background: var(--ads-surface);
+  border-radius: var(--ads-radius-xl);
+  box-shadow: var(--ads-shadow-card);
+  border: 1px solid var(--ads-divider);
+}
+
+.ads-section-title {
+  font-size: var(--ads-font-size-section);
+  font-weight: 500;
+  color: var(--ads-text-primary);
+}
+
+.ads-btn-primary {
+  height: 50px;
+  border: 0;
+  border-radius: var(--ads-radius-lg);
+  background: var(--ads-primary);
+  color: var(--ads-bg);
+  font-size: var(--ads-font-size-body);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ads-btn-primary:active {
+  transform: scale(0.97);
+  opacity: 0.92;
+  transition: 0.14s ease-out;
+}
+
+.ads-input {
+  height: 50px;
+  border-radius: 14px;
+  border: 1px solid var(--ads-divider);
+  background: rgba(26, 29, 34, 0.85);
+  color: var(--ads-text-primary);
+  padding: 0 16px;
+  font-size: 16px;
+}
+
+.ads-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
 }
 
 /* Global dark unification layer: enforce black surfaces and light text */

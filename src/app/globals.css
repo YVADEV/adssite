@@ -2,9 +2,9 @@
 
 :root {
   /* ADS Design Tokens */
-  --ads-bg: #090d18;
-  --ads-surface: #141b2b;
-  --ads-primary: #9bb186;
+  --ads-bg: #0f1115;
+  --ads-surface: #1e2024;
+  --ads-primary: #88a875;
   --ads-secondary: #a3b18a;
   --ads-text-primary: #ffffff;
   --ads-text-secondary: #a0a4ab;
@@ -44,7 +44,7 @@
 }
 
 body {
-  background: radial-gradient(circle at top, #0d1322 0%, var(--background) 36%);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

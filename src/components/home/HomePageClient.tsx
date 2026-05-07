@@ -692,7 +692,7 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div ref={rootRef} className="ads-page overflow-x-hidden bg-[#090d18] text-white [scroll-behavior:smooth]">
+    <div ref={rootRef} className="ads-page overflow-x-hidden bg-[#0f1115] text-white [scroll-behavior:smooth]">
       <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
             <div className="flex items-center justify-between">
@@ -781,7 +781,7 @@ export default function HomePageClient() {
         </div>
 
       <div ref={pageContentRef}>
-      <header data-intro="nav" className="sticky top-0 z-50 mx-auto flex h-[72px] w-full max-w-[1920px] items-center justify-between bg-[#090d18] px-4 text-[15px] font-medium text-white md:px-6 lg:px-8">
+      <header data-intro="nav" className="sticky top-0 z-50 mx-auto flex h-[72px] w-full max-w-[1920px] items-center justify-between bg-[#0f1115] px-4 text-[15px] font-medium text-white md:px-6 lg:px-8">
         <span className="text-[22px] font-bold tracking-[-0.88px] text-[#4E7044]">Programeaza-te acum</span>
         <nav className="hidden w-[min(100%,980px)] justify-center gap-14 tracking-[-0.01em] lg:flex">
           <a href="/cazuri">Cazuri</a>
@@ -1348,7 +1348,7 @@ export default function HomePageClient() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="fixed bottom-3 right-3 z-[70] flex items-center gap-2 rounded-[18px] border border-white/12 bg-[#141b2b]/95 p-2.5 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[10px] md:bottom-5 md:right-5 md:gap-3 md:rounded-[20px] md:p-3"
+        className="fixed bottom-3 right-3 z-[70] flex items-center gap-2 rounded-[18px] border border-white/12 bg-[#1e2024]/95 p-2.5 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[10px] md:bottom-5 md:right-5 md:gap-3 md:rounded-[20px] md:p-3"
       >
         <div className="h-[44px] w-[40px] overflow-hidden rounded-[10px] border border-white/12 md:h-[56px] md:w-[50px] md:rounded-[12px]">
           <img src={heroCardThumb.src} alt="Alverna contact" className="h-full w-full object-cover object-center" />
@@ -1356,7 +1356,7 @@ export default function HomePageClient() {
         <div className="flex min-w-[180px] flex-col gap-1.5 md:min-w-[220px]">
           <div className="flex items-center justify-between">
             <p className="truncate text-[16px] font-semibold leading-none text-white md:text-[18px]">Alverna Dental</p>
-            <span className="rounded-full border border-[#8fa77a]/30 bg-[#8fa77a]/10 px-2 py-1 text-[12px] font-semibold leading-none text-[#b4c79f] md:text-[13px]">4.8★</span>
+            <span className="rounded-full border border-[#88a875]/30 bg-[#88a875]/10 px-2 py-1 text-[12px] font-semibold leading-none text-[#b4c79f] md:text-[13px]">4.8★</span>
           </div>
           <div className="grid grid-cols-3 gap-2">
             <a
@@ -1364,21 +1364,21 @@ export default function HomePageClient() {
               target="_blank"
               rel="noreferrer"
               aria-label="WhatsApp"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#88a875]/45 bg-[#88a875] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
             >
               💬
             </a>
             <a
               href="tel:+40748085933"
               aria-label="Sună"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#88a875]/45 bg-[#88a875] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
             >
               📞
             </a>
             <a
               href="mailto:contact@alvernadental.com"
               aria-label="Mail"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#8fa77a]/45 bg-[#8fa77a] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
+              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#88a875]/45 bg-[#88a875] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
             >
               ✉️
             </a>

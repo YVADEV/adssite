@@ -109,9 +109,31 @@ body {
 }
 
 [class*="text-[#0A0A0A]"],
+[class*="text-[#0a0a0a]"],
+[class*="text-[#0f1115]"],
 [class*="text-[#111111]"],
+[class*="text-[#121111]"],
+[class*="text-[#1f1f1f]"],
+[class*="text-[#2f2f2f]"],
+[class*="text-[#303030]"],
+[class*="text-[#373737]"],
 [class*="text-[#2f2f2f]"],
 [class*="text-[#4a4a4a]"],
+[class*="text-[#4b4b4b]"],
+[class*="text-[#555]"],
+[class*="text-[#555555]"],
+[class*="text-[#5c5c5c]"],
+[class*="text-[#666]"],
+[class*="text-[#666666]"],
+[class*="text-[#6f7f6b]"],
+[class*="text-[#777777]"],
+[class*="text-[#7a7a7a]"],
+[class*="text-[#7e8d78]"],
+[class*="text-[#888888]"],
+[class*="text-[#909090]"],
+[class*="text-[#cfcfcf]"],
+[class*="text-[#d6d6d6]"],
+[class*="text-[#d7d7d7]"],
 [class*="text-black"] {
   color: #fff !important;
 }

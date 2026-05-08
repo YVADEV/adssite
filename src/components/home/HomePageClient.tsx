@@ -390,13 +390,12 @@ export default function HomePageClient() {
   const menuTopLineRef = useRef<HTMLSpanElement>(null);
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
-  const tarifeSectionRef = useRef<HTMLElement>(null);
-  const tarifeTrackRef = useRef<HTMLDivElement>(null);
   const contactSectionRef = useRef<HTMLElement>(null);
   const contactSpotlightRef = useRef<HTMLDivElement>(null);
   const footerSectionRef = useRef<HTMLElement>(null);
   const footerSpotlightRef = useRef<HTMLDivElement>(null);
   const [activeServicesDot, setActiveServicesDot] = useState(0);
+  const [activeTarifeIndex, setActiveTarifeIndex] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
@@ -521,31 +520,6 @@ export default function HomePageClient() {
         );
       });
 
-      ScrollTrigger.matchMedia({
-        "(min-width: 768px)": () => {
-          if (!tarifeSectionRef.current || !tarifeTrackRef.current) return;
-          const section = tarifeSectionRef.current;
-          const container = tarifeTrackRef.current;
-
-          gsap.to(container, {
-            x: () => -Math.max(0, container.scrollWidth - window.innerWidth),
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: "top top",
-              end: () => `+=${container.scrollWidth}`,
-              scrub: true,
-              pin: true,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-              onRefresh: (self) => {
-                const spacer = self.pin?.parentElement;
-                if (spacer) spacer.style.background = "#000000";
-              },
-            },
-          });
-        },
-      });
     }, rootRef);
 
     return () => ctx.revert();
@@ -557,6 +531,14 @@ export default function HomePageClient() {
   };
   const goNextServicePage = () => {
     setActiveServicesDot((prev) => (prev + 1) % totalServicePages);
+  };
+
+  const totalTarifePages = pricingData.length;
+  const goPrevTarife = () => {
+    setActiveTarifeIndex((prev) => (prev - 1 + totalTarifePages) % totalTarifePages);
+  };
+  const goNextTarife = () => {
+    setActiveTarifeIndex((prev) => (prev + 1) % totalTarifePages);
   };
 
   useEffect(() => {
@@ -1152,11 +1134,37 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="tarife" ref={tarifeSectionRef} className="relative w-full overflow-hidden bg-[#f5f5f5] pb-14 md:pb-20 lg:pb-[120px]">
+      <section id="tarife" className="relative w-full overflow-hidden bg-[#f5f5f5] pb-14 md:pb-20 lg:pb-[120px]">
         <div className="mx-auto w-full max-w-[1680px] bg-[#f5f5f5] px-5 py-12 md:px-10 md:py-16 lg:px-[96px] lg:py-[96px]">
           <div className="w-full">
             <p className="text-[16px] leading-[1.25] text-[#0A0A0A]">+ Tarife</p>
-            <h2 className="mt-2 text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-[#0A0A0A] md:text-[72px] lg:text-[96px]">Tarife</h2>
+            <div className="mt-2 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-[#0A0A0A] md:text-[72px] lg:text-[96px]">Tarife</h2>
+              <div className="flex items-center gap-2 md:gap-3">
+                <button
+                  type="button"
+                  onClick={goPrevTarife}
+                  aria-label="Tarife anterioare"
+                  className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
+                >
+                  <span className="text-[20px] leading-none">←</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={goNextTarife}
+                  aria-label="Tarife următoare"
+                  className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
+                >
+                  <span className="text-[20px] leading-none">→</span>
+                </button>
+                <a
+                  href="mailto:contact@alvernadental.com"
+                  className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[13px] font-semibold"
+                >
+                  Programează-te
+                </a>
+              </div>
+            </div>
             <div className="mt-5 flex flex-wrap gap-2 text-[12px] text-[#4F7F47]">
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Preturi transparente</span>
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Fara costuri ascunse</span>
@@ -1164,9 +1172,12 @@ export default function HomePageClient() {
             </div>
 
             <div className="mt-8 w-full overflow-hidden">
-              <div ref={tarifeTrackRef} className="flex w-full flex-col gap-4 md:w-max md:flex-row md:gap-6 md:pr-4">
+              <div
+                className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                style={{ transform: `translateX(-${activeTarifeIndex * 100}%)` }}
+              >
                 {pricingData.map((category) => (
-                  <article key={category.category} className="h-[620px] w-full shrink-0 rounded-[20px] border border-[rgba(10,10,10,0.08)] bg-white p-6 md:min-w-[520px] md:max-w-[640px]">
+                  <article key={category.category} className="h-[620px] w-full shrink-0 rounded-[20px] border border-[rgba(10,10,10,0.08)] bg-white p-6 md:p-7 lg:p-8">
                     <h3 className="text-[24px] font-semibold leading-[1.1] text-[#0A0A0A]">{category.category}</h3>
                     <div className="mt-5 space-y-0">
                       {category.items.slice(0, 7).map((entry, idx) => (
@@ -1190,6 +1201,12 @@ export default function HomePageClient() {
                   </article>
                 ))}
               </div>
+            </div>
+
+            <div className="mt-6 flex items-center justify-center gap-4">
+              {pricingData.map((_, idx) => (
+                <span key={`tarife-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeTarifeIndex === idx ? "bg-[#88A875]" : "bg-white/30"}`} />
+              ))}
             </div>
           </div>
         </div>

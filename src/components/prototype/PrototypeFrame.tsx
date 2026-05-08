@@ -88,7 +88,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             </button>
           </div>
           <nav className="flex flex-1 flex-col justify-center">
-            <div className="pl-[6vw] md:pl-[10vw]">
+            <div className="pl-[6vw] text-right md:pl-[10vw]">
               {[
                 { href: "/", label: "Acasă" },
                 { href: "/cazuri", label: "Cazuri" },
@@ -101,7 +101,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                   href={item.href}
                   data-menu-item
                   onClick={() => setMenuOpen(false)}
-                  className="block text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+                  className="block text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
                 >
                   {item.label}
                 </Link>
@@ -112,7 +112,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                 aria-label="Deschide lista de servicii"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="mt-2 flex w-full items-center justify-between rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
+                className="mt-2 flex w-full items-center justify-end gap-3 rounded-[12px] px-3 py-2 text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
               >
                 <span>Servicii</span>
                 <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
@@ -128,7 +128,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                           aria-label={`Deschide submeniul ${service.title}`}
                           aria-expanded={mobileAparatOpen}
                           onClick={() => setMobileAparatOpen((prev) => !prev)}
-                          className="flex min-h-[48px] w-full items-center justify-between rounded-[10px] px-2 text-[18px] font-semibold text-white"
+                          className="flex min-h-[48px] w-full items-center justify-end gap-2 rounded-[10px] px-2 text-right text-[18px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
                           <span>{mobileAparatOpen ? "−" : "+"}</span>
@@ -139,7 +139,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                               key={child.slug}
                               href={child.href}
                               onClick={() => setMenuOpen(false)}
-                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-[15px] text-white/85"
+                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-white/85"
                             >
                               {child.title}
                             </Link>
@@ -151,7 +151,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                         key={service.slug}
                         href={service.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-[17px] font-medium text-white"
+                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-white"
                       >
                         {service.title}
                       </Link>

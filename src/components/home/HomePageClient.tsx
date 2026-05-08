@@ -665,7 +665,7 @@ export default function HomePageClient() {
               </button>
             </div>
             <nav className="flex flex-1 flex-col justify-center">
-              <div className="pl-[6vw] md:pl-[10vw]">
+              <div className="pl-[6vw] text-right md:pl-[10vw]">
             {[
               { href: "/", label: "Acasă" },
               { href: "/cazuri", label: "Cazuri" },
@@ -678,7 +678,7 @@ export default function HomePageClient() {
                 href={item.href}
                 data-menu-item
                 onClick={() => setMenuOpen(false)}
-                className="block text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
+                className="block text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
               >
                 {item.label}
               </a>
@@ -688,7 +688,7 @@ export default function HomePageClient() {
                 aria-label="Deschide lista de servicii"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="mt-2 flex w-full items-center justify-between rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A]"
+                className="mt-2 flex w-full items-center justify-end gap-3 rounded-[12px] px-3 py-2 text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A]"
               >
                 <span>Servicii</span>
                 <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
@@ -703,21 +703,21 @@ export default function HomePageClient() {
                           aria-label={`Deschide submeniul ${service.title}`}
                           aria-expanded={mobileAparatOpen}
                           onClick={() => setMobileAparatOpen((prev) => !prev)}
-                          className="flex min-h-[48px] w-full items-center justify-between rounded-[10px] px-2 text-[18px] font-semibold text-[#0A0A0A]"
+                          className="flex min-h-[48px] w-full items-center justify-end gap-2 rounded-[10px] px-2 text-right text-[18px] font-semibold text-[#0A0A0A]"
                         >
                           <span>{service.title}</span>
                           <span>{mobileAparatOpen ? "−" : "+"}</span>
                         </button>
                         <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAparatOpen ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
-                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-[15px] text-[#1f1f1f]">
+                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-[#1f1f1f]">
                               {child.title}
                             </a>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-[17px] font-medium text-[#0A0A0A]">
+                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-[#0A0A0A]">
                         {service.title}
                       </a>
                     ),
@@ -840,7 +840,12 @@ export default function HomePageClient() {
           <p className="text-[13px] text-[#4b4b4b]">Before / After · Implant + coroană – 3 luni</p>
           <div className="flex items-center gap-3">
             <button className="h-[42px] rounded-full border border-black/15 px-4 text-[13px] font-medium text-[#0A0A0A] transition duration-300 hover:scale-[1.02]">Vezi toate cazurile</button>
-            <button className="h-[42px] rounded-full bg-black px-4 text-[13px] font-semibold text-white transition duration-300 hover:scale-[1.02]">Programeaza-te</button>
+            <a
+              href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+              className="inline-flex h-[42px] items-center rounded-full bg-black px-4 text-[13px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+            >
+              Programeaza-te
+            </a>
           </div>
         </div>
         <div className="mx-auto mt-[64px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
@@ -926,7 +931,7 @@ export default function HomePageClient() {
                     <span className="text-[20px] leading-none">→</span>
                   </button>
                   <a
-                    href="mailto:contact@alvernadental.com"
+                    href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
                     className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[13px] font-semibold"
                   >
                     Programează-te
@@ -982,7 +987,7 @@ export default function HomePageClient() {
               <article
                 key={`mission-card-${idx}`}
                 className="flex h-[126px] w-[313px] items-center gap-3 rounded-[32px] bg-[#F5F5F5] p-4"
-                style={{ boxShadow: "-12px -12px 24px #ffffff, 12px 12px 24px rgba(0,0,0,0.08)" }}
+                style={{ boxShadow: "-4px -4px 10px rgba(255,255,255,0.55), 8px 10px 16px rgba(0,0,0,0.08)" }}
               >
                 <div className="relative h-8 w-8 overflow-hidden rounded-[8px] bg-black">
                   <video autoPlay muted loop playsInline className="h-full w-full object-cover">
@@ -1014,7 +1019,10 @@ export default function HomePageClient() {
           <p className="text-[16px] font-semibold text-[#0A0A0A]">Scor mediu: 4.8 ⭐</p>
         </div>
         <div className="mx-auto mt-10 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
-          <article className="flex min-h-[320px] flex-col rounded-[18px] bg-[#f5f5f5] p-[30px]">
+          <article
+            className="flex min-h-[320px] flex-col rounded-[18px] bg-[#f5f5f5] p-[30px]"
+            style={{ boxShadow: "-2px -2px 6px rgba(255,255,255,0.38), 6px 8px 14px rgba(0,0,0,0.07)" }}
+          >
             <div className="flex items-end gap-2">
               <strong className="text-[56px] font-semibold leading-none tracking-[-3.36px]">4,8</strong>
               <span className="mb-2 text-base opacity-60">/5</span>
@@ -1030,7 +1038,15 @@ export default function HomePageClient() {
           </article>
 
           {reviews.map((r, i) => (
-            <motion.article key={r.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }} className="flex h-full min-h-[320px] flex-col rounded-[18px] bg-[#f5f5f5] p-[24px]">
+            <motion.article
+              key={r.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }}
+              className="flex h-full min-h-[320px] flex-col rounded-[18px] bg-[#f5f5f5] p-[24px]"
+              style={{ boxShadow: "-2px -2px 6px rgba(255,255,255,0.38), 6px 8px 14px rgba(0,0,0,0.07)" }}
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-[32px] font-semibold leading-[1.05]">{r.name}</p>
@@ -1165,7 +1181,7 @@ export default function HomePageClient() {
                   <span className="text-[20px] leading-none">→</span>
                 </button>
                 <a
-                  href="mailto:contact@alvernadental.com"
+                  href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
                   className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[13px] font-semibold"
                 >
                   Programează-te
@@ -1203,7 +1219,7 @@ export default function HomePageClient() {
                     <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.2)] bg-[rgba(79,127,71,0.04)] p-4">
                       <p className="text-[18px] font-semibold text-[#0A0A0A]">Programeaza-te acum</p>
                       <p className="mt-1 text-[13px] text-[#555555]">Primeste o evaluare personalizata</p>
-                      <a href="mailto:contact@alvernadental.com" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[14px] font-semibold text-white">Solicita programare</a>
+                      <a href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[14px] font-semibold text-white">Solicita programare</a>
                     </div>
                   </article>
                 ))}
@@ -1350,7 +1366,7 @@ export default function HomePageClient() {
               <input className="ads-input h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Telefon" />
               <input className="ads-input h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Serviciu dorit" />
               <textarea className="ads-input min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Mesaj opțional" />
-              <a href="mailto:contact@alvernadental.com" className="ads-btn-primary mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-[0_10px_24px_rgba(0,0,0,0.25)]">Solicită programare</a>
+              <a href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare" className="ads-btn-primary mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-[0_10px_24px_rgba(0,0,0,0.25)]">Solicită programare</a>
               <p className="mt-2 text-center text-[11px] text-[#7a7a7a]">Nu trimitem spam. Te contactăm doar pentru confirmarea programării.</p>
             </form>
           </div>
@@ -1373,37 +1389,6 @@ export default function HomePageClient() {
         <SiteFooter />
       </footer>
 
-      <motion.aside
-        data-intro="hero-card"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
-        className="fixed bottom-3 right-3 z-[70] flex flex-col gap-3 md:bottom-5 md:right-5"
-      >
-        <a
-          href="https://wa.me/40748085933"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="WhatsApp"
-          className="inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-[#88a875]/45 bg-[#88a875] text-[24px] font-semibold text-[#0f1115] shadow-[0_12px_24px_rgba(0,0,0,0.35)] transition duration-200 hover:brightness-110"
-        >
-          💬
-        </a>
-        <a
-          href="tel:+40748085933"
-          aria-label="Sună"
-          className="inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-[#88a875]/45 bg-[#88a875] text-[24px] font-semibold text-[#0f1115] shadow-[0_12px_24px_rgba(0,0,0,0.35)] transition duration-200 hover:brightness-110"
-        >
-          📞
-        </a>
-        <a
-          href="mailto:contact@alvernadental.com"
-          aria-label="Mail"
-          className="inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-[#88a875]/45 bg-[#88a875] text-[24px] font-semibold text-[#0f1115] shadow-[0_12px_24px_rgba(0,0,0,0.35)] transition duration-200 hover:brightness-110"
-        >
-          ✉️
-        </a>
-      </motion.aside>
       </div>
     </div>
   );

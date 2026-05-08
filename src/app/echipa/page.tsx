@@ -162,7 +162,7 @@ export default function EchipaPage() {
             </button>
           </div>
           <nav className="flex flex-1 flex-col justify-center">
-            <div className="pl-[6vw] md:pl-[10vw]">
+            <div className="pl-[6vw] text-right md:pl-[10vw]">
               {[
                 { href: "/turism-dentar", label: "Turism dentar" },
                 { href: "/echipa", label: "Echipa" },
@@ -175,7 +175,7 @@ export default function EchipaPage() {
                   href={item.href}
                   data-menu-item
                   onClick={() => setMenuOpen(false)}
-                  className="block text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
+                  className="block text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
                 >
                   {item.label}
                 </a>
@@ -185,7 +185,7 @@ export default function EchipaPage() {
                 aria-label="Deschide lista de servicii"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="mt-2 flex w-full items-center justify-between rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A]"
+                className="mt-2 flex w-full items-center justify-end gap-3 rounded-[12px] px-3 py-2 text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A]"
               >
                 <span>Servicii</span>
                 <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
@@ -200,21 +200,21 @@ export default function EchipaPage() {
                           aria-label={`Deschide submeniul ${service.title}`}
                           aria-expanded={mobileAparatOpen}
                           onClick={() => setMobileAparatOpen((prev) => !prev)}
-                          className="flex min-h-[48px] w-full items-center justify-between rounded-[10px] px-2 text-[18px] font-semibold text-[#0A0A0A]"
+                          className="flex min-h-[48px] w-full items-center justify-end gap-2 rounded-[10px] px-2 text-right text-[18px] font-semibold text-[#0A0A0A]"
                         >
                           <span>{service.title}</span>
                           <span>{mobileAparatOpen ? "−" : "+"}</span>
                         </button>
                         <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAparatOpen ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
-                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-[15px] text-[#1f1f1f]">
+                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-[#1f1f1f]">
                               {child.title}
                             </a>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-[17px] font-medium text-[#0A0A0A]">
+                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-[#0A0A0A]">
                         {service.title}
                       </a>
                     ),

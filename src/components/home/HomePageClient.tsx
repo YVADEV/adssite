@@ -1070,7 +1070,7 @@ export default function HomePageClient() {
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
             </div>
-            <div className="relative z-[40] text-[14px] text-[#4E7044]">
+            <div className="relative z-[40] text-[14px] text-white/70">
               <p>Echipa</p>
               <p className="mt-1">Faceti cunostinta cu echipa</p>
             </div>
@@ -1087,29 +1087,29 @@ export default function HomePageClient() {
               <br />
               cabinet stomatologic
             </p>
-            <p className="absolute bottom-[24px] left-[40px] z-[40] text-[14px] text-[#4E7044]">echipa noastra ↗</p>
-            <p className="absolute bottom-[24px] right-[40px] z-[40] text-[14px] text-[#cfcfcf]">We do it all.</p>
+            <p className="absolute bottom-[24px] left-[40px] z-[40] text-[14px] text-white/70">echipa noastra ↗</p>
+            <p className="absolute bottom-[24px] right-[40px] z-[40] text-[14px] text-white/70">We do it all.</p>
           </article>
 
           <article className="relative z-10 h-[560px] rounded-[16px] bg-white p-[44px]">
             <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.09),transparent_55%)]" />
             <div className="relative z-10 flex h-full flex-col">
-              <p className="text-[14px] text-[#8FA98A]">Clinica dentara cluj</p>
-              <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-[#4E7044]">
+              <p className="text-[14px] text-white/70">Clinica dentara cluj</p>
+              <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
                 {"Puterea zambetului\ncare inspira incredere"}
               </h3>
               <div className="mt-8">
-                <p className="text-[13px] text-[#6f7f6b]">Cabinet stomatologic cluj</p>
-                <p className="mt-1 text-[40px] font-semibold text-[#4E7044]">
+                <p className="text-[13px] text-white/70">Cabinet stomatologic cluj</p>
+                <p className="mt-1 text-[40px] font-semibold text-white">
                   4.8 <span className="text-[22px] text-[#f5a623]">★★★★★</span>
                 </p>
               </div>
               <div className="mt-auto rounded-[12px] bg-[#f7f7f7] p-4">
                 <p className="text-[16px] leading-[1.3] text-[#f5a623]">★★★★★</p>
-                <p className="mt-2 text-[14px] text-[#4E7044]">ALOLOOO ce bine lucra doctori</p>
+                <p className="mt-2 text-[14px] text-white/85">ALOLOOO ce bine lucra doctori</p>
                 <div className="mt-3 flex items-center gap-2">
                   <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
-                  <span className="text-[12px] text-[#0A0A0A]">Ion Ionut</span>
+                  <span className="text-[12px] text-white/80">Ion Ionut</span>
                 </div>
               </div>
             </div>
@@ -1120,13 +1120,13 @@ export default function HomePageClient() {
               <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
                 <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-white text-[32px] font-semibold text-[#4E7044]">100</div>
               </div>
-              <p className="mt-4 text-[16px] font-semibold text-[#4E7044]">Scanare 3D</p>
-              <p className="mt-1 text-[12px] text-[#7e8d78]">We prioritize performance without sacrificing visual appeal or functionality.</p>
+              <p className="mt-4 text-[16px] font-semibold text-white">Scanare 3D</p>
+              <p className="mt-1 text-[12px] text-white/65">We prioritize performance without sacrificing visual appeal or functionality.</p>
             </article>
 
             <article className="h-[275px] rounded-[16px] bg-white p-6">
-              <h3 className="text-[56px] font-bold leading-none text-[#0A0A0A]">9000</h3>
-              <p className="mt-2 text-[14px] text-[#555555]">Pacienti multumiti</p>
+              <h3 className="text-[56px] font-bold leading-none text-white">9000</h3>
+              <p className="mt-2 text-[14px] text-white/70">Pacienti multumiti</p>
               <p className="mt-2 text-[16px] text-[#f5a623]">★★★★★</p>
               <img src={cazA7407760.src} alt="" className="mt-4 h-[110px] w-full rounded-[10px] object-cover" />
             </article>

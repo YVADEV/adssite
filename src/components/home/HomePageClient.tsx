@@ -746,9 +746,10 @@ export default function HomePageClient() {
       <header data-intro="nav" className="sticky top-0 z-50 mx-auto flex h-[72px] w-full max-w-[1920px] items-center justify-between bg-[#0f1115] px-4 text-[15px] font-medium text-white md:px-6 lg:px-8">
         <a
           href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-          className="text-[22px] font-bold tracking-[-0.88px] text-white transition duration-200 hover:opacity-80"
+          className="inline-flex items-center gap-2 text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]"
         >
-          Programeaza-te acum
+          <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
+          <span>Programeaza-te acum</span>
         </a>
         <nav className="hidden w-[min(100%,980px)] justify-center gap-14 tracking-[-0.01em] lg:flex">
           <a href="/">Acasă</a>

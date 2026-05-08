@@ -179,17 +179,13 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
       <div ref={pageContentRef}>
         <header className="sticky top-0 z-30 h-[68px] w-full bg-[#0f1115] text-white sm:h-[72px]">
           <div className="mx-auto flex h-full w-full max-w-[1920px] items-center justify-between px-3 text-[15px] font-medium sm:px-4 md:px-6 lg:px-8 2xl:px-12">
-            <div className="flex min-w-0 items-center gap-2 sm:gap-4">
-              <span className="truncate text-[13px] font-bold tracking-[-0.02em] text-[#6fa964] sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]">Programeaza-te acum</span>
-              <Link
-                href="/"
-                className={`inline-flex h-[30px] shrink-0 items-center rounded-full px-3 text-[12px] font-semibold transition duration-300 hover:scale-[1.02] sm:h-[34px] sm:px-4 sm:text-[13px] ${
-                  "bg-white text-[#0A0A0A]"
-                }`}
-              >
-                Acasă
-              </Link>
-            </div>
+            <a
+              href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+              className="inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]"
+            >
+              <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
+              <span className="truncate">Programeaza-te acum</span>
+            </a>
             <nav className="hidden w-[min(100%,980px)] justify-center gap-8 tracking-[-0.01em] lg:flex xl:gap-14 2xl:gap-20">
               <Link href="/">Acasă</Link>
               <Link href="/cazuri">Cazuri</Link>

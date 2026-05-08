@@ -390,8 +390,6 @@ export default function HomePageClient() {
   const menuTopLineRef = useRef<HTMLSpanElement>(null);
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
-  const servicesSectionRef = useRef<HTMLElement>(null);
-  const servicesTrackRef = useRef<HTMLDivElement>(null);
   const tarifeSectionRef = useRef<HTMLElement>(null);
   const tarifeTrackRef = useRef<HTMLDivElement>(null);
   const contactSectionRef = useRef<HTMLElement>(null);
@@ -523,32 +521,6 @@ export default function HomePageClient() {
         );
       });
 
-      if (servicesSectionRef.current && servicesTrackRef.current) {
-        const section = servicesSectionRef.current;
-        const track = servicesTrackRef.current;
-
-        gsap.to(track, {
-          x: () => -Math.max(0, track.scrollWidth - window.innerWidth),
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: () => `+=${track.scrollWidth}`,
-            scrub: true,
-            pin: true,
-            invalidateOnRefresh: true,
-            onRefresh: (self) => {
-              const spacer = self.pin?.parentElement;
-              if (spacer) spacer.style.background = "#121212";
-            },
-            onUpdate: (self) => {
-              const pageIndex = Math.round(self.progress * (servicePages.length - 1));
-              setActiveServicesDot(pageIndex);
-            },
-          },
-        });
-      }
-
       ScrollTrigger.matchMedia({
         "(min-width: 768px)": () => {
           if (!tarifeSectionRef.current || !tarifeTrackRef.current) return;
@@ -578,6 +550,14 @@ export default function HomePageClient() {
 
     return () => ctx.revert();
   }, []);
+
+  const totalServicePages = servicePages.length;
+  const goPrevServicePage = () => {
+    setActiveServicesDot((prev) => (prev - 1 + totalServicePages) % totalServicePages);
+  };
+  const goNextServicePage = () => {
+    setActiveServicesDot((prev) => (prev + 1) % totalServicePages);
+  };
 
   useEffect(() => {
     const section = footerSectionRef.current;
@@ -932,16 +912,19 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="servicii" ref={servicesSectionRef} className="overflow-hidden bg-[#121212] pb-0">
+      <section id="servicii" className="overflow-hidden bg-[#121212] pb-0">
         <div className="mx-auto w-full max-w-[1680px] overflow-x-hidden rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-16">
             <p className="w-[120px] text-[16px] leading-[1.25] text-white">+ Cabinet stomatologic cluj</p>
             <div className="min-w-0">
               <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii ••(4)</h2>
               <div className="mt-8 w-full max-w-full overflow-hidden">
-                <div ref={servicesTrackRef} className="flex w-max gap-12">
+                <div
+                  className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                  style={{ transform: `translateX(-${activeServicesDot * 100}%)` }}
+                >
                   {servicePages.map((page, pageIdx) => (
-                    <div key={`services-page-${pageIdx}`} className="w-[min(1200px,calc(100vw-180px))] shrink-0">
+                    <div key={`services-page-${pageIdx}`} className="w-full shrink-0 pr-0 lg:pr-0">
                       {page.map((service) => (
                         <motion.a
                           key={service.slug}
@@ -960,13 +943,36 @@ export default function HomePageClient() {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex flex-col items-center gap-8 lg:mt-14 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-10 flex flex-col items-center gap-6 lg:mt-14 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-center justify-center gap-4">
               {servicePages.map((_, idx) => (
                 <span key={`services-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeServicesDot === idx ? "bg-white" : "bg-white/50"}`} />
               ))}
             </div>
-            <a href="mailto:contact@alvernadental.com" className="ads-btn-primary inline-flex h-[56px] w-[220px] items-center justify-center rounded-full bg-white text-[16px] font-semibold text-[#4F7F47]">Solicita o programare</a>
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={goPrevServicePage}
+                aria-label="Servicii anterioare"
+                className="ads-btn-primary inline-flex h-[46px] w-[46px] items-center justify-center rounded-full"
+              >
+                <span className="text-[20px] leading-none">←</span>
+              </button>
+              <button
+                type="button"
+                onClick={goNextServicePage}
+                aria-label="Servicii următoare"
+                className="ads-btn-primary inline-flex h-[46px] w-[46px] items-center justify-center rounded-full"
+              >
+                <span className="text-[20px] leading-none">→</span>
+              </button>
+              <a
+                href="mailto:contact@alvernadental.com"
+                className="ads-btn-primary inline-flex h-[50px] items-center justify-center rounded-full px-6 text-[14px] font-semibold"
+              >
+                Solicita o programare
+              </a>
+            </div>
           </div>
         </div>
       </section>

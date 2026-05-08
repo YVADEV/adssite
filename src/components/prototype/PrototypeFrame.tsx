@@ -10,10 +10,9 @@ import SiteFooter from "@/components/layout/SiteFooter";
 
 type PrototypeFrameProps = {
   children: ReactNode;
-  darkHeader?: boolean;
 };
 
-export default function PrototypeFrame({ children, darkHeader = false }: PrototypeFrameProps) {
+export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   const pageContentRef = useRef<HTMLDivElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const menuTopLineRef = useRef<HTMLSpanElement>(null);

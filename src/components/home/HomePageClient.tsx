@@ -917,7 +917,33 @@ export default function HomePageClient() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-16">
             <p className="w-[120px] text-[16px] leading-[1.25] text-white">+ Cabinet stomatologic cluj</p>
             <div className="min-w-0">
-              <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii ••(4)</h2>
+              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii ••(4)</h2>
+                <div className="flex items-center gap-2 md:gap-3">
+                  <button
+                    type="button"
+                    onClick={goPrevServicePage}
+                    aria-label="Servicii anterioare"
+                    className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
+                  >
+                    <span className="text-[20px] leading-none">←</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goNextServicePage}
+                    aria-label="Servicii următoare"
+                    className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
+                  >
+                    <span className="text-[20px] leading-none">→</span>
+                  </button>
+                  <a
+                    href="mailto:contact@alvernadental.com"
+                    className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[13px] font-semibold"
+                  >
+                    Programează-te
+                  </a>
+                </div>
+              </div>
               <div className="mt-8 w-full max-w-full overflow-hidden">
                 <div
                   className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
@@ -943,36 +969,10 @@ export default function HomePageClient() {
               </div>
             </div>
           </div>
-          <div className="mt-10 flex flex-col items-center gap-6 lg:mt-14 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex items-center justify-center gap-4">
-              {servicePages.map((_, idx) => (
-                <span key={`services-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeServicesDot === idx ? "bg-white" : "bg-white/50"}`} />
-              ))}
-            </div>
-            <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={goPrevServicePage}
-                aria-label="Servicii anterioare"
-                className="ads-btn-primary inline-flex h-[46px] w-[46px] items-center justify-center rounded-full"
-              >
-                <span className="text-[20px] leading-none">←</span>
-              </button>
-              <button
-                type="button"
-                onClick={goNextServicePage}
-                aria-label="Servicii următoare"
-                className="ads-btn-primary inline-flex h-[46px] w-[46px] items-center justify-center rounded-full"
-              >
-                <span className="text-[20px] leading-none">→</span>
-              </button>
-              <a
-                href="mailto:contact@alvernadental.com"
-                className="ads-btn-primary inline-flex h-[50px] items-center justify-center rounded-full px-6 text-[14px] font-semibold"
-              >
-                Solicita o programare
-              </a>
-            </div>
+          <div className="mt-8 flex items-center justify-center gap-4">
+            {servicePages.map((_, idx) => (
+              <span key={`services-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeServicesDot === idx ? "bg-white" : "bg-white/50"}`} />
+            ))}
           </div>
         </div>
       </section>

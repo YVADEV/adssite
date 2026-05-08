@@ -10,6 +10,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 
 type PrototypeFrameProps = {
   children: ReactNode;
+  darkHeader?: boolean;
 };
 
 export default function PrototypeFrame({ children }: PrototypeFrameProps) {

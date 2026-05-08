@@ -1378,41 +1378,36 @@ export default function HomePageClient() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="fixed bottom-3 right-3 z-[70] flex items-center gap-2 rounded-[18px] border border-white/12 bg-[#1e2024]/95 p-2.5 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[10px] md:bottom-5 md:right-5 md:gap-3 md:rounded-[20px] md:p-3"
+        className="fixed bottom-3 right-3 z-[70] flex flex-col gap-2 rounded-[22px] border border-white/12 bg-[#1e2024]/95 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.45)] backdrop-blur-[10px] md:bottom-5 md:right-5 md:rounded-[24px]"
       >
-        <div className="h-[44px] w-[40px] overflow-hidden rounded-[10px] border border-white/12 md:h-[56px] md:w-[50px] md:rounded-[12px]">
-          <img src={heroCardThumb.src} alt="Alverna contact" className="h-full w-full object-cover object-center" />
+        <div className="flex min-w-[168px] items-center justify-between gap-3 md:min-w-[190px]">
+          <p className="truncate text-[18px] font-semibold leading-none text-white md:text-[20px]">Alverna Dental</p>
+          <span className="rounded-full border border-[#88a875]/30 bg-[#88a875]/10 px-2 py-1 text-[12px] font-semibold leading-none text-[#b4c79f] md:text-[13px]">4.8★</span>
         </div>
-        <div className="flex min-w-[180px] flex-col gap-1.5 md:min-w-[220px]">
-          <div className="flex items-center justify-between">
-            <p className="truncate text-[16px] font-semibold leading-none text-white md:text-[18px]">Alverna Dental</p>
-            <span className="rounded-full border border-[#88a875]/30 bg-[#88a875]/10 px-2 py-1 text-[12px] font-semibold leading-none text-[#b4c79f] md:text-[13px]">4.8★</span>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <a
-              href="https://wa.me/40748085933"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#88a875]/45 bg-[#88a875] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
-            >
-              💬
-            </a>
-            <a
-              href="tel:+40748085933"
-              aria-label="Sună"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#88a875]/45 bg-[#88a875] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
-            >
-              📞
-            </a>
-            <a
-              href="mailto:contact@alvernadental.com"
-              aria-label="Mail"
-              className="inline-flex h-[36px] items-center justify-center rounded-[14px] border border-[#88a875]/45 bg-[#88a875] text-[15px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110 md:h-[40px] md:text-[16px]"
-            >
-              ✉️
-            </a>
-          </div>
+        <div className="flex flex-col items-center gap-2">
+          <a
+            href="https://wa.me/40748085933"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="WhatsApp"
+            className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#88a875]/45 bg-[#88a875] text-[18px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110"
+          >
+            💬
+          </a>
+          <a
+            href="tel:+40748085933"
+            aria-label="Sună"
+            className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#88a875]/45 bg-[#88a875] text-[18px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110"
+          >
+            📞
+          </a>
+          <a
+            href="mailto:contact@alvernadental.com"
+            aria-label="Mail"
+            className="inline-flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#88a875]/45 bg-[#88a875] text-[18px] font-semibold text-[#0f1115] transition duration-200 hover:brightness-110"
+          >
+            ✉️
+          </a>
         </div>
       </motion.aside>
       </div>

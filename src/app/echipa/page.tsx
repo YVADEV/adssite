@@ -240,14 +240,16 @@ export default function EchipaPage() {
       </div>
 
       <div ref={pageContentRef}>
-        <header className="flex h-[68px] w-full items-center justify-between bg-black px-3 sm:h-[90px] sm:px-6 md:px-12 xl:px-[120px]">
-          <div className="flex min-w-0 items-center gap-2 sm:gap-4">
-            <span className="truncate text-[13px] font-semibold text-[#2f8f2f] sm:text-[16px]">Programeaza-te acum</span>
-            <a href="/" className="inline-flex h-[30px] shrink-0 items-center rounded-full bg-white px-3 text-[12px] font-semibold text-[#0A0A0A] transition duration-300 hover:scale-[1.02] sm:h-[34px] sm:px-4 sm:text-[13px]">
-              Acasă
-            </a>
-          </div>
-          <nav className="hidden items-center gap-8 text-[14px] text-white/75 lg:flex xl:gap-[80px]">
+        <header className="flex h-[68px] w-full items-center justify-between bg-[#0f1115] px-3 text-[15px] font-medium text-white sm:h-[72px] sm:px-4 md:px-6 lg:px-8">
+          <a
+            href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+            className="inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]"
+          >
+            <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
+            <span className="truncate">Programeaza-te acum</span>
+          </a>
+          <nav className="hidden items-center gap-8 text-[14px] text-white lg:flex xl:gap-[80px]">
+            <a href="/">Acasă</a>
             <a href="/cazuri">Cazuri</a>
             <a href="/tarife">Tarife</a>
             <a href="/echipa" className="text-white">
@@ -256,10 +258,10 @@ export default function EchipaPage() {
             <ServicesDropdown isDark />
             <a href="/contact">Contact</a>
           </nav>
-          <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-9 w-[46px] shrink-0 flex-col justify-center gap-[5px] sm:h-10 sm:w-[55px] sm:gap-[6px]">
-            <span ref={menuTopLineRef} className="h-[1px] w-full bg-white/65" />
-            <span ref={menuMidLineRef} className="h-[1px] w-full bg-white/65" />
-            <span ref={menuBottomLineRef} className="h-[1px] w-full bg-white/65" />
+          <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
+            <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
+            <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
+            <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
           </button>
         </header>
 

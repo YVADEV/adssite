@@ -146,6 +146,42 @@ body {
   border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
+.home-banner-light-cards [class*="bg-white"] {
+  background-color: #ffffff !important;
+}
+
+.home-banner-light-cards [class*="text-[#0A0A0A]"],
+.home-banner-light-cards [class*="text-[#4b4b4b]"],
+.home-banner-light-cards [class*="text-black"] {
+  color: #0a0a0a !important;
+}
+
+.home-echipa-highlight-card {
+  background-color: #ffffff !important;
+}
+
+.home-echipa-highlight-card,
+.home-echipa-highlight-card p,
+.home-echipa-highlight-card h3,
+.home-echipa-highlight-card span {
+  color: #0a0a0a !important;
+}
+
+.services-force-white-text,
+.services-force-white-text h1,
+.services-force-white-text h2,
+.services-force-white-text h3,
+.services-force-white-text h4,
+.services-force-white-text p,
+.services-force-white-text span,
+.services-force-white-text li,
+.services-force-white-text strong,
+.services-force-white-text small,
+.services-force-white-text label,
+.services-force-white-text a {
+  color: #ffffff !important;
+}
+
 html,
 body {
   overflow-x: hidden;

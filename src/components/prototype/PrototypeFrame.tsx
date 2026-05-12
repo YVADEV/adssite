@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { services } from "@/config/services";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
@@ -14,6 +15,8 @@ type PrototypeFrameProps = {
 };
 
 export default function PrototypeFrame({ children }: PrototypeFrameProps) {
+  const pathname = usePathname();
+  const isServicesRoute = pathname.startsWith("/servicii");
   const pageContentRef = useRef<HTMLDivElement>(null);
   const menuOverlayRef = useRef<HTMLDivElement>(null);
   const menuTopLineRef = useRef<HTMLSpanElement>(null);
@@ -176,7 +179,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           </div>
         </div>
       </div>
-      <div ref={pageContentRef}>
+      <div ref={pageContentRef} className={isServicesRoute ? "services-force-white-text" : undefined}>
         <header className="sticky top-0 z-30 h-[68px] w-full bg-[#0f1115] text-white sm:h-[72px]">
           <div className="mx-auto flex h-full w-full max-w-[1920px] items-center justify-between px-3 text-[15px] font-medium sm:px-4 md:px-6 lg:px-8 2xl:px-12">
             <a

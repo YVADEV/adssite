@@ -1018,10 +1018,10 @@ export default function HomePageClient() {
         <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[16px] font-semibold text-[#0A0A0A]">Scor mediu: 4.8 ⭐</p>
         </div>
-        <div className="mx-auto mt-10 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
+        <div className="mx-auto mt-10 grid w-full max-w-[1680px] grid-cols-1 gap-[20px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-12">
           <article
-            className="flex min-h-[320px] flex-col rounded-[18px] bg-[#f5f5f5] p-[30px]"
-            style={{ boxShadow: "-2px -2px 6px rgba(255,255,255,0.38), 6px 8px 14px rgba(0,0,0,0.07)" }}
+            className="flex min-h-[313px] flex-col rounded-[18px] bg-[#f5f5f5] p-[30px]"
+            style={{ boxShadow: "-4px -4px 10px rgba(255,255,255,0.5), 8px 10px 16px rgba(0,0,0,0.08)" }}
           >
             <div className="flex items-end gap-2">
               <strong className="text-[56px] font-semibold leading-none tracking-[-3.36px]">4,8</strong>
@@ -1044,8 +1044,8 @@ export default function HomePageClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }}
-              className="flex h-full min-h-[320px] flex-col rounded-[18px] bg-[#f5f5f5] p-[24px]"
-              style={{ boxShadow: "-2px -2px 6px rgba(255,255,255,0.38), 6px 8px 14px rgba(0,0,0,0.07)" }}
+              className="flex h-full min-h-[313px] flex-col rounded-[18px] bg-[#f5f5f5] p-[24px]"
+              style={{ boxShadow: "-4px -4px 10px rgba(255,255,255,0.5), 8px 10px 16px rgba(0,0,0,0.08)" }}
             >
               <div className="flex items-center justify-between">
                 <div>
@@ -1087,7 +1087,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section data-anim="section" className="bg-[#F5F5F5]">
+      <section data-anim="section" className="home-banner-light-cards bg-[#F5F5F5]">
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-[120px] md:grid-cols-2 md:px-10 lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
           <article className="relative isolate z-20 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] p-[40px]">
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
@@ -1117,22 +1117,21 @@ export default function HomePageClient() {
           <article className="relative z-10 h-[560px] rounded-[16px] bg-white p-[44px]">
             <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.09),transparent_55%)]" />
             <div className="relative z-10 flex h-full flex-col">
-              <p className="text-[14px] text-white/70">Clinica dentara cluj</p>
-              <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
+              <p className="text-[14px] text-[#4b4b4b]">Clinica dentara cluj</p>
+              <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-[#0A0A0A]">
                 {"Puterea zambetului\ncare inspira incredere"}
               </h3>
               <div className="mt-8">
-                <p className="text-[13px] text-white/70">Cabinet stomatologic cluj</p>
-                <p className="mt-1 text-[40px] font-semibold text-white">
+                <p className="text-[13px] text-[#4b4b4b]">Cabinet stomatologic cluj</p>
+                <p className="mt-1 text-[40px] font-semibold text-[#0A0A0A]">
                   4.8 <span className="text-[22px] text-[#f5a623]">★★★★★</span>
                 </p>
               </div>
               <div className="mt-auto rounded-[12px] bg-[#f7f7f7] p-4">
                 <p className="text-[16px] leading-[1.3] text-[#f5a623]">★★★★★</p>
-                <p className="mt-2 text-[14px] text-white/85">ALOLOOO ce bine lucra doctori</p>
                 <div className="mt-3 flex items-center gap-2">
                   <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
-                  <span className="text-[12px] text-white/80">Ion Ionut</span>
+                  <span className="text-[12px] text-[#4b4b4b]">Ion Ionut</span>
                 </div>
               </div>
             </div>
@@ -1143,13 +1142,13 @@ export default function HomePageClient() {
               <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
                 <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-white text-[32px] font-semibold text-[#4E7044]">100</div>
               </div>
-              <p className="mt-4 text-[16px] font-semibold text-white">Scanare 3D</p>
-              <p className="mt-1 text-[12px] text-white/65">We prioritize performance without sacrificing visual appeal or functionality.</p>
+              <p className="mt-4 text-[16px] font-semibold text-[#0A0A0A]">Scanare 3D</p>
+              <p className="mt-1 text-[12px] text-[#4b4b4b]">We prioritize performance without sacrificing visual appeal or functionality.</p>
             </article>
 
             <article className="h-[275px] rounded-[16px] bg-white p-6">
-              <h3 className="text-[56px] font-bold leading-none text-white">9000</h3>
-              <p className="mt-2 text-[14px] text-white/70">Pacienti multumiti</p>
+              <h3 className="text-[56px] font-bold leading-none text-[#0A0A0A]">9000</h3>
+              <p className="mt-2 text-[14px] text-[#4b4b4b]">Pacienti multumiti</p>
               <p className="mt-2 text-[16px] text-[#f5a623]">★★★★★</p>
               <img src={cazA7407760.src} alt="" className="mt-4 h-[110px] w-full rounded-[10px] object-cover" />
             </article>
@@ -1205,14 +1204,14 @@ export default function HomePageClient() {
                     <div className="mt-5 space-y-0">
                       {category.items.slice(0, 7).map((entry, idx) => (
                         <div key={`${category.category}-${entry.name}`} className="group flex items-end gap-3 py-[8px] transition-colors duration-200 hover:bg-[rgba(79,127,71,0.05)]">
-                          <p className="text-[14px] text-[#303030]">
+                          <p className="text-[18px] font-bold leading-none text-[#303030] md:text-[20px]">
                             {entry.name}
                             {idx === 0 ? <span className="ml-2 text-[11px] text-[#4F7F47]">de la</span> : null}
                             {idx === 1 ? <span className="ml-2 text-[11px] text-[#4F7F47]">cel mai popular</span> : null}
                             {idx === 2 ? <span className="ml-2 text-[11px] text-[#4F7F47]">rapid / fara durere</span> : null}
                           </p>
                           <span className="mb-[6px] flex-1 border-b border-dotted border-[rgba(10,10,10,0.18)]" />
-                          <p className="text-right text-[14px] font-semibold text-[#0A0A0A]">{entry.price}</p>
+                          <p className="pl-8 text-right text-[18px] font-bold leading-none text-[#0A0A0A] md:pl-10 md:text-[20px]">{entry.price}</p>
                         </div>
                       ))}
                     </div>
@@ -1237,14 +1236,14 @@ export default function HomePageClient() {
 
       <section id="echipa" data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_1fr_440px] md:px-8 lg:px-[96px]">
-          <article className="relative h-[560px] rounded-[16px] bg-white p-[32px]">
-            <p className="text-[12px] text-[#8FA98A]">@alvernaofficial</p>
-            <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-[#4E7044]">Puterea zambetului care inspira incredere</h3>
-            <p className="mt-4 text-[14px] text-[#888888]">Conversion Rate Improvement:</p>
-            <p className="mt-1 text-[40px] font-semibold leading-none text-[#4E7044]">4.2% &gt; 5.9%</p>
+          <article className="home-echipa-highlight-card relative h-[560px] rounded-[16px] bg-white p-[32px] text-[#0A0A0A]">
+            <p className="text-[12px] text-[#0A0A0A]">@alvernaofficial</p>
+            <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-[#0A0A0A]">Puterea zambetului care inspira incredere</h3>
+            <p className="mt-4 text-[14px] text-[#0A0A0A]">Conversion Rate Improvement:</p>
+            <p className="mt-1 text-[40px] font-semibold leading-none text-[#0A0A0A]">4.2% &gt; 5.9%</p>
             <div className="mt-auto rounded-[12px] bg-[#f7f7f7] p-4">
-              <p className="text-[16px] leading-[1.3] text-[#f5a623]">★★★★★</p>
-              <p className="mt-2 text-[13px] text-[#666666]">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
+              <p className="text-[16px] leading-[1.3] text-[#0A0A0A]">★★★★★</p>
+              <p className="mt-2 text-[13px] text-[#0A0A0A]">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
               <div className="mt-3 flex items-center gap-2">
                 <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
                 <span className="text-[12px] text-[#0A0A0A]">Agata Sril</span>

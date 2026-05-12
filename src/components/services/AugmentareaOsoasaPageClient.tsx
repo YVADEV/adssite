@@ -126,33 +126,41 @@ export default function AugmentareaOsoasaPageClient() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <main className="bg-[#ececec] pb-24 pt-14 md:pt-20 lg:pt-[130px]">
-      <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-        <motion.div {...reveal} className="max-w-[1180px]">
-          <p className="text-[12px] font-medium uppercase tracking-[0.13em] text-[#5c5c5c]">Chirurgie orală</p>
-          <h1 className="mt-5 max-w-[980px] text-[48px] font-extrabold leading-[0.9] tracking-[-0.05em] text-[#0A0A0A] md:text-[78px] lg:text-[118px]">
-            Augmentarea osoasă
-          </h1>
-          <p className="mt-7 max-w-[980px] text-[16px] leading-[1.75] text-[#373737] md:text-[17px]">
-            Augmentarea osoasă reprezintă procedura de refacere sau regenerare a osului maxilar, astfel încât acesta să poată susține implanturi dentare, punți sau proteze. Insuficiența osoasă nu produce de obicei durere, dar devine o problemă majoră în momentul în care este necesară restaurarea dentară.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a href="/#contact" className="inline-flex h-[44px] items-center rounded-full bg-[#0A0A0A] px-6 text-[14px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
-              Solicită o evaluare
-            </a>
-            <a href="/tarife/" className="inline-flex h-[44px] items-center rounded-full border border-black/15 px-6 text-[14px] font-semibold text-[#0A0A0A] transition duration-300 hover:translate-x-[2px]">
-              Vezi tarife
-            </a>
+    <main className="bg-[#0A0A0A] pb-24">
+      <section className="relative w-full overflow-hidden bg-black">
+        <div className="relative h-[78vh] min-h-[600px] max-h-[900px] w-full">
+          <img
+            src="/services/implant-model-1.png"
+            alt="Augmentare osoasă și regenerare maxilară"
+            className="absolute inset-0 h-full w-full object-cover saturate-[0.92] brightness-[0.72]"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-black" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black to-transparent" />
+          <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
+            <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
+            Adiție de os Cluj
           </div>
-        </motion.div>
-      </section>
-
-      <section className="mx-auto mt-7 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-        <motion.div {...reveal} className="relative overflow-hidden rounded-[28px]">
-          <img src="/spark-hero.png" alt="Augmentare osoasă și regenerare maxilară" className="h-[56vw] max-h-[700px] min-h-[320px] w-full object-cover saturate-[0.82] brightness-[0.82] transition duration-700 hover:scale-[1.02]" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/44 via-black/18 to-black/10" />
-          <p className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/30 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.12em] text-white">Adiție de os Cluj</p>
-        </motion.div>
+          <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
+            <motion.div {...reveal} className="max-w-[1180px]">
+              <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-[#9fc48f]">Chirurgie orală</p>
+              <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[112px]">
+                Augmentarea osoasă
+              </h1>
+              <p className="mt-6 max-w-[820px] text-[16px] leading-[1.75] text-white/80 md:text-[17px]">
+                Augmentarea osoasă reprezintă procedura de refacere sau regenerare a osului maxilar, astfel încât acesta să poată susține implanturi dentare, punți sau proteze. Insuficiența osoasă nu produce de obicei durere, dar devine o problemă majoră în momentul în care este necesară restaurarea dentară.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[14px] font-semibold text-[#0A0A0A] transition duration-300 hover:scale-[1.02]">
+                  Solicită o evaluare
+                </a>
+                <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[14px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+                  Vezi tarife
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       <section className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">

@@ -74,6 +74,85 @@ export default function ContactPage() {
           </div>
         </section>
 
+        <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">✚ Locație</p>
+              <h2 className="mt-2 text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[56px]">
+                Vino la noi în clinică
+              </h2>
+            </div>
+            <p className="max-w-[420px] text-[15px] leading-[1.55] text-white/65">
+              Suntem ușor de găsit în Cluj-Napoca, pe Strada Alverna 33. Parcare disponibilă în apropiere.
+            </p>
+          </div>
+
+          <div className="mt-8 grid grid-cols-1 gap-4 overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] lg:grid-cols-[380px_1fr]">
+            <div className="flex flex-col gap-6 p-6 md:p-8">
+              <div>
+                <p className="text-[12px] uppercase tracking-[0.14em] text-[#9fc48f]">Adresă</p>
+                <p className="mt-2 text-[18px] font-semibold leading-[1.35] text-white">
+                  Alverna Dental Studio
+                </p>
+                <p className="mt-1 text-[15px] leading-[1.55] text-white/70">
+                  Str. Alverna 33, 400469
+                  <br />
+                  Cluj-Napoca, România
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[12px] uppercase tracking-[0.14em] text-[#9fc48f]">Program</p>
+                <p className="mt-2 text-[15px] leading-[1.55] text-white/80">
+                  Luni – Vineri: 09:00 – 21:00
+                  <br />
+                  Sâmbătă: 09:00 – 14:00
+                </p>
+              </div>
+
+              <div>
+                <p className="text-[12px] uppercase tracking-[0.14em] text-[#9fc48f]">Telefon</p>
+                <a
+                  href="tel:+40748085933"
+                  className="mt-2 inline-block text-[16px] font-semibold text-white underline decoration-white/30 underline-offset-4 transition hover:decoration-white"
+                >
+                  +40 748 085 933
+                </a>
+              </div>
+
+              <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=46.758115,23.6122138&destination_place_id=ChIJz_1ICEoMSUcR70_NRTusDCQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-[44px] items-center rounded-full bg-white px-5 text-[13px] font-semibold text-[#0A0A0A] transition duration-300 hover:scale-[1.02]"
+                >
+                  Deschide ruta
+                </a>
+                <a
+                  href="https://www.google.com/maps/place/Alverna+Dental+Studio/@46.758115,23.6122138,17z/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-[44px] items-center rounded-full border border-white/35 bg-white/5 px-5 text-[13px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10"
+                >
+                  Vezi pe Google Maps
+                </a>
+              </div>
+            </div>
+
+            <div className="relative min-h-[360px] w-full overflow-hidden lg:min-h-[520px]">
+              <iframe
+                title="Locația Alverna Dental Studio pe Google Maps"
+                src="https://www.google.com/maps?q=Alverna+Dental+Studio,+Strada+Alverna+33,+Cluj-Napoca&ll=46.758115,23.6122138&z=16&hl=ro&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full border-0 grayscale-[0.15] contrast-[1.05]"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="bg-black pb-[110px] pt-[100px]">
           <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
             <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/60">✚ Testimoniale</p>

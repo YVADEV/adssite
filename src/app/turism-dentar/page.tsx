@@ -1,6 +1,7 @@
 "use client";
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { LazyVideo } from "@/components/media/LazyVideo";
 
 export default function TurismDentarPage() {
   return (
@@ -96,19 +97,13 @@ export default function TurismDentarPage() {
             </div>
             <div className="mt-7 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_1fr]">
               <article className="relative h-[460px] bg-black md:h-[520px]">
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src="/cazuri-1.mp4" type="video/mp4" />
-                </video>
+                <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat" />
               </article>
               <article className="relative h-[460px] bg-black md:h-[520px]">
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src="/cori-angel.mp4" type="video/mp4" />
-                </video>
+                <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat" />
               </article>
               <article className="relative h-[460px] bg-black md:h-[520px]">
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src="/cazuri-2.mp4" type="video/mp4" />
-                </video>
+                <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat" />
               </article>
             </div>
           </div>

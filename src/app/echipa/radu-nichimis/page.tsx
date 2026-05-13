@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
+import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 
 export const metadata: Metadata = {
   title: "Ast.Univ Radu Nichimiș | Chirurgie maxilo-facială | Alverna Dental Studio",
@@ -76,23 +77,7 @@ export default function RaduNichimisPage() {
                 Vezi toate
               </a>
             </div>
-            <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-              <article className="relative h-[520px] rounded-l-[18px] bg-black">
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src="/cazuri-1.mp4" type="video/mp4" />
-                </video>
-              </article>
-              <article className="relative h-[520px] bg-black">
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src="/cori-angel.mp4" type="video/mp4" />
-                </video>
-              </article>
-              <article className="relative h-[520px] rounded-r-[18px] bg-black">
-                <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                  <source src="/cazuri-2.mp4" type="video/mp4" />
-                </video>
-              </article>
-            </div>
+            <CazuriVideoStrip />
           </div>
         </section>
 

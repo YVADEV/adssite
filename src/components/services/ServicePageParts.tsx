@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { useState, type ReactNode } from "react";
 
 import alvernaLogo from "@/assets/alverna-logo.png";
+import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 
 export const reveal = {
   initial: { opacity: 0, y: 28, scale: 0.99 },
@@ -315,23 +316,7 @@ export function ServiceCasesGrid() {
             Vezi toate
           </a>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-          <article className="relative h-[520px] rounded-l-[18px] bg-black">
-            <video autoPlay muted loop playsInline preload="metadata" poster="/services/exam-male.png" className="h-full w-full object-cover">
-              <source src="/cazuri-1.mp4" type="video/mp4" />
-            </video>
-          </article>
-          <article className="relative h-[520px] bg-black">
-            <video autoPlay muted loop playsInline preload="metadata" poster="/services/smile-mirror.png" className="h-full w-full object-cover">
-              <source src="/cori-angel.mp4" type="video/mp4" />
-            </video>
-          </article>
-          <article className="relative h-[520px] rounded-r-[18px] bg-black">
-            <video autoPlay muted loop playsInline preload="metadata" poster="/services/whitening-2.png" className="h-full w-full object-cover">
-              <source src="/cazuri-2.mp4" type="video/mp4" />
-            </video>
-          </article>
-        </div>
+        <CazuriVideoStrip />
       </div>
     </section>
   );

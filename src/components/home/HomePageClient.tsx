@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
 import SiteFooter from "@/components/layout/SiteFooter";
+import { LazyVideo } from "@/components/media/LazyVideo";
 import { services } from "@/config/services";
 import heroCardThumb from "@/assets/vladuta lupau.png";
 import vdScaun from "@/assets/VDscaun.png";
@@ -811,6 +812,8 @@ export default function HomePageClient() {
               loop
               playsInline
               preload="auto"
+              poster="/services/dental-chair.png"
+              aria-label="Alverna Dental Studio — clinică modernă din Cluj"
               data-anim="image"
               className="absolute inset-0 h-full w-full object-cover"
             >
@@ -909,9 +912,12 @@ export default function HomePageClient() {
                   className="relative mt-2 h-[396px] w-[267px] overflow-hidden rounded-[24px] bg-black"
                   style={{ boxShadow: "-12px -12px 24px #ffffff, 12px 12px 24px rgba(0,0,0,0.08)" }}
                 >
-                  <video autoPlay muted loop playsInline className="absolute inset-0 h-full w-full scale-[1.05] object-cover">
-                    <source src={recommendationClips[idx]} type="video/mp4" />
-                  </video>
+                  <LazyVideo
+                    src={recommendationClips[idx]}
+                    poster="/services/smile-mirror.png"
+                    className="absolute inset-0 h-full w-full scale-[1.05]"
+                    ariaLabel={`Clip ${recommendationClipMeta[idx].title}`}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.68)]" />
                   <motion.button
                     type="button"
@@ -1018,9 +1024,11 @@ export default function HomePageClient() {
                 style={{ boxShadow: "-4px -4px 10px rgba(255,255,255,0.55), 8px 10px 16px rgba(0,0,0,0.08)" }}
               >
                 <div className="relative h-8 w-8 overflow-hidden rounded-[8px] bg-black">
-                  <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                    <source src={recommendationClips[idx % recommendationClips.length]} type="video/mp4" />
-                  </video>
+                  <LazyVideo
+                    src={recommendationClips[idx % recommendationClips.length]}
+                    poster="/services/smile-mirror.png"
+                    ariaLabel="Clip prezentare"
+                  />
                   <div className="absolute inset-0 bg-black/35" />
                   <span className="absolute left-1/2 top-1/2 inline-block h-0 w-0 -translate-x-1/2 -translate-y-1/2 border-b-[4px] border-l-[6px] border-t-[4px] border-b-transparent border-l-white border-t-transparent" />
                 </div>
@@ -1349,19 +1357,13 @@ export default function HomePageClient() {
           </div>
           <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
             <article className="relative h-[587px] rounded-l-[18px] bg-black">
-              <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                <source src="/cazuri-1.mp4" type="video/mp4" />
-              </video>
+              <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat — vedere generală" />
             </article>
             <article className="relative h-[587px] bg-black">
-              <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                <source src="/cori-angel.mp4" type="video/mp4" />
-              </video>
+              <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat — restaurare completă" />
             </article>
             <article className="relative h-[587px] rounded-r-[18px] bg-black">
-              <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                <source src="/cazuri-2.mp4" type="video/mp4" />
-              </video>
+              <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat — albire și aliniere" />
             </article>
           </div>
         </div>

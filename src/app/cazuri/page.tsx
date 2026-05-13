@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import cazA7407853 from "@/assets/cazuri/A7407853 2.png";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
@@ -125,23 +126,7 @@ export default function CazuriPage() {
               Vezi toate
             </a>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-            <article className="relative h-[520px] rounded-l-[18px] bg-black">
-              <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                <source src="/cazuri-1.mp4" type="video/mp4" />
-              </video>
-            </article>
-            <article className="relative h-[520px] bg-black">
-              <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                <source src="/cori-angel.mp4" type="video/mp4" />
-              </video>
-            </article>
-            <article className="relative h-[520px] rounded-r-[18px] bg-black">
-              <video autoPlay muted loop playsInline className="h-full w-full object-cover">
-                <source src="/cazuri-2.mp4" type="video/mp4" />
-              </video>
-            </article>
-          </div>
+          <CazuriVideoStrip />
         </section>
       </main>
     </PrototypeFrame>

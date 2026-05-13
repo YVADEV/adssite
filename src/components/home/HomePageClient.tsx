@@ -772,30 +772,30 @@ export default function HomePageClient() {
         data-intro="nav"
         className={`sticky top-0 z-50 h-[72px] w-full bg-[#0f1115]/95 text-white shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur transition-transform duration-300 ease-out ${headerHidden ? "-translate-y-full" : "translate-y-0"}`}
       >
-        <div className="mx-auto grid h-full w-full max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 text-[17px] font-semibold md:px-6 lg:px-8">
+        <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-semibold sm:px-4 md:px-6 lg:px-8">
           <a
             href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-            className="inline-flex items-center gap-2 text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"
+            className="relative z-10 inline-flex items-center gap-2 text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"
           >
             <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
             <span>Programeaza-te acum</span>
           </a>
           <nav
-            className="hidden items-center justify-center tracking-[-0.01em] lg:flex"
-            style={{ columnGap: "clamp(48px, 8vw, 160px)" }}
+            className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
+            style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
           >
-            <a className="transition-opacity duration-200 hover:opacity-75" href="/">Acasă</a>
-            <a className="transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</a>
-            <a className="transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</a>
-            <a className="transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</a>
-            <ServicesDropdown isDark />
-            <a className="transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</a>
+            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/">Acasă</a>
+            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</a>
+            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</a>
+            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</a>
+            <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
+            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</a>
           </nav>
           <button
             type="button"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex h-12 w-12 flex-col justify-center gap-[6px] justify-self-end"
+            className="relative z-10 flex h-12 w-12 flex-col justify-center gap-[6px]"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />

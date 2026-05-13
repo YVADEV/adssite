@@ -208,26 +208,26 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         <header
           className={`sticky top-0 z-40 h-[68px] w-full bg-[#0f1115]/95 text-white shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur transition-transform duration-300 ease-out sm:h-[72px] ${headerHidden ? "-translate-y-full" : "translate-y-0"}`}
         >
-          <div className="mx-auto grid h-full w-full max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 text-[17px] font-semibold md:px-6 lg:px-8">
+          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-semibold sm:px-4 md:px-6 lg:px-8">
             <a
               href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-              className="inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"
+              className="relative z-10 inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"
             >
               <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
               <span className="truncate">Programeaza-te acum</span>
             </a>
             <nav
-              className="hidden items-center justify-center tracking-[-0.01em] lg:flex"
-              style={{ columnGap: "clamp(48px, 8vw, 160px)" }}
+              className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
+              style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
             >
-              <Link className="transition-opacity duration-200 hover:opacity-75" href="/">Acasă</Link>
-              <Link className="transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</Link>
-              <Link className="transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</Link>
-              <Link className="transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</Link>
-              <ServicesDropdown isDark />
-              <Link className="transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</Link>
+              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/">Acasă</Link>
+              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</Link>
+              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</Link>
+              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</Link>
+              <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
+              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</Link>
             </nav>
-            <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] justify-self-end sm:h-12 sm:w-12 sm:gap-[6px]">
+            <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
               <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />

@@ -102,7 +102,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   }, [menuOpen, menuVisible]);
 
   return (
-    <div className="overflow-x-hidden bg-[#0f1115] text-white [scroll-behavior:smooth]">
+    <div className="overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
       <div
         ref={menuOverlayRef}
         className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "" : "pointer-events-none"}`}
@@ -111,8 +111,8 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           <div className="flex items-center justify-between">
             <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
             <button type="button" aria-label="Close menu" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-white" />
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-white" />
+              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
+              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
             </button>
           </div>
           <nav className="flex flex-1 flex-col justify-center">
@@ -228,9 +228,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</Link>
             </nav>
             <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
-              <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
-              <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
-              <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
+              <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
+              <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
+              <span ref={menuBottomLineRef} className="h-[2px] w-full bg-[#ffffff]" />
             </button>
           </div>
         </header>

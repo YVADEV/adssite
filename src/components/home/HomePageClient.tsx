@@ -679,7 +679,7 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div ref={rootRef} className="ads-page overflow-x-hidden bg-[#0f1115] text-white [scroll-behavior:smooth]">
+    <div ref={rootRef} className="ads-page overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
       <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
             <div className="flex items-center justify-between">
@@ -797,9 +797,9 @@ export default function HomePageClient() {
             onClick={() => setMenuOpen((prev) => !prev)}
             className="relative z-10 flex h-12 w-12 flex-col justify-center gap-[6px]"
           >
-            <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
-            <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
-            <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
+            <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
+            <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
+            <span ref={menuBottomLineRef} className="h-[2px] w-full bg-[#ffffff]" />
           </button>
         </div>
       </header>

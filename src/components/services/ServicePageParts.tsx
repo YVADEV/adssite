@@ -386,32 +386,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
-        <div
-          data-theme="light"
-          className="rounded-[24px] bg-white p-8 text-[#0A0A0A] shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
-        >
-          <p className="text-[14px] text-[#4F7F47]">@alvernadentalstudio</p>
-          <h3 className="mt-2 text-[44px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
-          <p className="mt-3 text-[14px] leading-[1.45] text-[#555555]">
-            Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
-          </p>
-          <form className="mt-7 grid gap-3" action="mailto:contact@alvernadental.com" method="post" encType="text/plain">
-            <label className="sr-only" htmlFor="contact-nume">Nume</label>
-            <input id="contact-nume" name="nume" className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Nume" required />
-            <label className="sr-only" htmlFor="contact-telefon">Telefon</label>
-            <input id="contact-telefon" name="telefon" type="tel" className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Telefon" required />
-            <label className="sr-only" htmlFor="contact-serviciu">Serviciu</label>
-            <input id="contact-serviciu" name="serviciu" className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Serviciu dorit" />
-            <label className="sr-only" htmlFor="contact-mesaj">Mesaj</label>
-            <textarea id="contact-mesaj" name="mesaj" className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Mesaj opțional" />
-            <button type="submit" className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-[0_10px_24px_rgba(0,0,0,0.25)]">
-              Solicită programare
-            </button>
-            <p className="mt-2 text-center text-[11px] text-[#7a7a7a]">
-              Nu trimitem spam. Te contactăm doar pentru confirmarea programării.
-            </p>
-          </form>
-        </div>
+        <ContactFormCard source="service-page" />
 
         <div className="pt-0 text-white lg:pt-8">
           <h3 className="max-w-[720px] text-[42px] font-semibold leading-[1.04] tracking-[-0.04em]">{headline}</h3>
@@ -429,6 +404,125 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
         </div>
       </div>
     </section>
+  );
+}
+
+type ContactStatus = "idle" | "loading" | "ok" | "error";
+
+export function ContactFormCard({ source }: { source: string }) {
+  const [status, setStatus] = useState<ContactStatus>("idle");
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError(null);
+    setStatus("loading");
+    const formData = new FormData(event.currentTarget);
+    const payload = {
+      nume: String(formData.get("nume") ?? "").trim(),
+      telefon: String(formData.get("telefon") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      serviciu: String(formData.get("serviciu") ?? "").trim(),
+      mesaj: String(formData.get("mesaj") ?? "").trim(),
+      source,
+    };
+    try {
+      const resp = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = (await resp.json()) as { ok: boolean; error?: string };
+      if (!resp.ok || !json.ok) {
+        throw new Error(json.error ?? "Nu am putut trimite mesajul. Te rugăm să încerci din nou.");
+      }
+      setStatus("ok");
+      event.currentTarget.reset();
+    } catch (err) {
+      setStatus("error");
+      setError(err instanceof Error ? err.message : "Eroare necunoscută");
+    }
+  }
+
+  return (
+    <div
+      data-theme="light"
+      className="rounded-[24px] bg-white p-8 text-[#0A0A0A] shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
+    >
+      <p className="text-[14px] text-[#4F7F47]">@alvernadentalstudio</p>
+      <h3 className="mt-2 text-[44px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
+      <p className="mt-3 text-[14px] leading-[1.45] text-[#555555]">
+        Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
+      </p>
+      {status === "ok" ? (
+        <div role="status" className="mt-7 rounded-[18px] border border-[#4E7044]/30 bg-[#EDF4E9] p-6">
+          <p className="text-[18px] font-semibold text-[#2F5727]">Mulțumim! Mesajul a fost trimis.</p>
+          <p className="mt-2 text-[14px] leading-[1.5] text-[#3a4636]">
+            Te contactăm în maxim 24h pentru confirmarea programării.
+          </p>
+        </div>
+      ) : (
+        <form className="mt-7 grid gap-3" onSubmit={handleSubmit} noValidate>
+          <label className="sr-only" htmlFor="contact-nume">Nume</label>
+          <input
+            id="contact-nume"
+            name="nume"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            placeholder="Nume"
+            required
+            autoComplete="name"
+          />
+          <label className="sr-only" htmlFor="contact-telefon">Telefon</label>
+          <input
+            id="contact-telefon"
+            name="telefon"
+            type="tel"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            placeholder="Telefon"
+            required
+            autoComplete="tel"
+          />
+          <label className="sr-only" htmlFor="contact-email">Email</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            placeholder="Email (opțional)"
+            autoComplete="email"
+          />
+          <label className="sr-only" htmlFor="contact-serviciu">Serviciu</label>
+          <input
+            id="contact-serviciu"
+            name="serviciu"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            placeholder="Serviciu dorit"
+          />
+          <label className="sr-only" htmlFor="contact-mesaj">Mesaj</label>
+          <textarea
+            id="contact-mesaj"
+            name="mesaj"
+            className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            placeholder="Mesaj opțional"
+          />
+          {status === "error" ? (
+            <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[13px] text-[#a4392b]">
+              {error}
+            </p>
+          ) : null}
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] hover:shadow-[0_10px_24px_rgba(0,0,0,0.25)] disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {status === "loading" ? "Se trimite…" : "Solicită programare"}
+          </button>
+          <p className="mt-2 text-center text-[11px] text-[#7a7a7a]">
+            Nu trimitem spam. Te contactăm doar pentru confirmarea programării.
+          </p>
+        </form>
+      )}
+    </div>
   );
 }
 

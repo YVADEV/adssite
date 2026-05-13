@@ -1,5 +1,9 @@
 import HomePageClient from "@/components/home/HomePageClient";
 
 export default function Home() {
-  return <HomePageClient />;
+  return (
+    <div id="main" tabIndex={-1} className="outline-none">
+      <HomePageClient />
+    </div>
+  );
 }

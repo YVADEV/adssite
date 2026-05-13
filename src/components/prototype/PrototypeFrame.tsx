@@ -192,7 +192,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           </div>
         </div>
       </div>
-      <div ref={pageContentRef}>
+      <div ref={pageContentRef} id="main" tabIndex={-1} className="outline-none">
         <header
           className={`sticky top-0 z-40 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
             scrolled

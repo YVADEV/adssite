@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import { useState, type ReactNode } from "react";
 
 import alvernaLogo from "@/assets/alverna-logo.png";
@@ -29,10 +30,13 @@ export function ServiceHero({ image, imageAlt, kicker, title, intro, chip }: Ser
   return (
     <section className="relative w-full overflow-hidden bg-black">
       <div className="relative h-[78vh] min-h-[600px] max-h-[900px] w-full">
-        <img
+        <Image
           src={image}
           alt={imageAlt ?? "Alverna Dental Studio"}
-          className="absolute inset-0 h-full w-full object-cover saturate-[0.98] brightness-[0.92]"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover saturate-[0.98] brightness-[0.92]"
         />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
@@ -344,7 +348,7 @@ export function ServiceTestimonials() {
             <p>Număr de telefon: 0376 448 810</p>
             <p>Program: Deschis · Închide la 21</p>
           </div>
-          <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
+          <Image src={alvernaLogo} alt="Alverna Dental Studio" width={210} height={70} className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
         </article>
 
         {sharedReviews.map((r, i) => (

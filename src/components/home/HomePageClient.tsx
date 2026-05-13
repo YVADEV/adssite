@@ -1115,7 +1115,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section data-anim="section" className="home-banner-light-cards bg-[#F5F5F5]">
+      <section data-anim="section" data-theme="light" className="bg-[#F5F5F5]">
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-[120px] md:grid-cols-2 md:px-10 lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
           <article className="relative isolate z-20 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] p-[40px]">
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
@@ -1264,7 +1264,7 @@ export default function HomePageClient() {
 
       <section id="echipa" data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_1fr_440px] md:px-8 lg:px-[96px]">
-          <article className="home-echipa-highlight-card relative h-[560px] rounded-[16px] bg-white p-[32px] text-[#0A0A0A]">
+          <article data-theme="light" className="relative h-[560px] rounded-[16px] bg-white p-[32px] text-[#0A0A0A]">
             <p className="text-[12px] text-[#0A0A0A]">@alvernaofficial</p>
             <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-[#0A0A0A]">Puterea zambetului care inspira incredere</h3>
             <p className="mt-4 text-[14px] text-[#0A0A0A]">Conversion Rate Improvement:</p>

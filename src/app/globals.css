@@ -98,88 +98,98 @@ body {
   color: rgba(255, 255, 255, 0.55);
 }
 
-/* Global dark unification layer: enforce black surfaces and light text */
-[class*="bg-[#ececec]"],
-[class*="bg-[#ECECEC]"],
-[class*="bg-[#f5f5f5]"],
-[class*="bg-[#F5F5F5]"] {
+/*
+ * THEME SYSTEM
+ *
+ * The site uses an attribute-based theme: `<html data-theme="dark">`.
+ * The rules below convert Figma-imported light tokens (bg-white, bg-[#ececec],
+ * text-[#0A0A0A], etc.) into the Alverna dark palette ONLY inside a
+ * `[data-theme="dark"]` ancestor.
+ *
+ * To opt a subtree back to the original light values, wrap it with
+ * `<div data-theme="light">…</div>` (e.g. the home banner light cards).
+ *
+ * If a primitive must always render in a literal color regardless of theme
+ * (e.g. the hamburger bars), use an arbitrary value like `bg-[#ffffff]`
+ * which doesn't match the `bg-white` selector below.
+ */
+
+html[data-theme="dark"] [class*="bg-[#ececec]"],
+html[data-theme="dark"] [class*="bg-[#ECECEC]"],
+html[data-theme="dark"] [class*="bg-[#f5f5f5]"],
+html[data-theme="dark"] [class*="bg-[#F5F5F5]"] {
   background-color: var(--ads-bg) !important;
   background-image: none !important;
 }
 
-[class*="bg-white"] {
+html[data-theme="dark"] [class*="bg-white"] {
   background-color: var(--ads-surface) !important;
   background-image: none !important;
 }
 
-[class*="text-[#0A0A0A]"],
-[class*="text-[#0a0a0a]"],
-[class*="text-[#0f1115]"],
-[class*="text-[#111111]"],
-[class*="text-[#121111]"],
-[class*="text-[#1f1f1f]"],
-[class*="text-[#2f2f2f]"],
-[class*="text-[#303030]"],
-[class*="text-[#373737]"],
-[class*="text-[#2f2f2f]"],
-[class*="text-[#4a4a4a]"],
-[class*="text-[#4b4b4b]"],
-[class*="text-[#555]"],
-[class*="text-[#555555]"],
-[class*="text-[#5c5c5c]"],
-[class*="text-[#666]"],
-[class*="text-[#666666]"],
-[class*="text-[#6f7f6b]"],
-[class*="text-[#777777]"],
-[class*="text-[#7a7a7a]"],
-[class*="text-[#7e8d78]"],
-[class*="text-[#888888]"],
-[class*="text-[#909090]"],
-[class*="text-[#cfcfcf]"],
-[class*="text-[#d6d6d6]"],
-[class*="text-[#d7d7d7]"],
-[class*="text-black"] {
+html[data-theme="dark"] [class*="text-[#0A0A0A]"],
+html[data-theme="dark"] [class*="text-[#0a0a0a]"],
+html[data-theme="dark"] [class*="text-[#0f1115]"],
+html[data-theme="dark"] [class*="text-[#111111]"],
+html[data-theme="dark"] [class*="text-[#121111]"],
+html[data-theme="dark"] [class*="text-[#1f1f1f]"],
+html[data-theme="dark"] [class*="text-[#2f2f2f]"],
+html[data-theme="dark"] [class*="text-[#303030]"],
+html[data-theme="dark"] [class*="text-[#373737]"],
+html[data-theme="dark"] [class*="text-[#4a4a4a]"],
+html[data-theme="dark"] [class*="text-[#4b4b4b]"],
+html[data-theme="dark"] [class*="text-[#555]"],
+html[data-theme="dark"] [class*="text-[#555555]"],
+html[data-theme="dark"] [class*="text-[#5c5c5c]"],
+html[data-theme="dark"] [class*="text-[#666]"],
+html[data-theme="dark"] [class*="text-[#666666]"],
+html[data-theme="dark"] [class*="text-[#6f7f6b]"],
+html[data-theme="dark"] [class*="text-[#777777]"],
+html[data-theme="dark"] [class*="text-[#7a7a7a]"],
+html[data-theme="dark"] [class*="text-[#7e8d78]"],
+html[data-theme="dark"] [class*="text-[#888888]"],
+html[data-theme="dark"] [class*="text-[#909090]"],
+html[data-theme="dark"] [class*="text-[#cfcfcf]"],
+html[data-theme="dark"] [class*="text-[#d6d6d6]"],
+html[data-theme="dark"] [class*="text-[#d7d7d7]"],
+html[data-theme="dark"] [class*="text-black"] {
   color: #fff !important;
 }
 
-[class*="border-black"] {
+html[data-theme="dark"] [class*="border-black"] {
   border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
-.home-banner-light-cards [class*="bg-white"] {
+/* Opt-out: any subtree marked data-theme="light" restores the
+ * original light values. Wins because of higher specificity (two
+ * attribute selectors vs one). */
+[data-theme="light"] [class*="bg-white"],
+[data-theme="light"][class*="bg-white"] {
   background-color: #ffffff !important;
+  background-image: none !important;
 }
 
-.home-banner-light-cards [class*="text-[#0A0A0A]"],
-.home-banner-light-cards [class*="text-[#4b4b4b]"],
-.home-banner-light-cards [class*="text-black"] {
+[data-theme="light"] [class*="bg-[#ececec]"],
+[data-theme="light"] [class*="bg-[#ECECEC]"] {
+  background-color: #ececec !important;
+}
+
+[data-theme="light"] [class*="bg-[#f5f5f5]"],
+[data-theme="light"] [class*="bg-[#F5F5F5]"] {
+  background-color: #f5f5f5 !important;
+}
+
+[data-theme="light"] [class*="text-[#0A0A0A]"],
+[data-theme="light"] [class*="text-[#0a0a0a]"],
+[data-theme="light"] [class*="text-[#4b4b4b]"],
+[data-theme="light"] [class*="text-[#555555]"],
+[data-theme="light"] [class*="text-[#555]"],
+[data-theme="light"] [class*="text-black"] {
   color: #0a0a0a !important;
 }
 
-.home-echipa-highlight-card {
-  background-color: #ffffff !important;
-}
-
-.home-echipa-highlight-card,
-.home-echipa-highlight-card p,
-.home-echipa-highlight-card h3,
-.home-echipa-highlight-card span {
-  color: #0a0a0a !important;
-}
-
-.services-force-white-text,
-.services-force-white-text h1,
-.services-force-white-text h2,
-.services-force-white-text h3,
-.services-force-white-text h4,
-.services-force-white-text p,
-.services-force-white-text span,
-.services-force-white-text li,
-.services-force-white-text strong,
-.services-force-white-text small,
-.services-force-white-text label,
-.services-force-white-text a {
-  color: #ffffff !important;
+[data-theme="light"] [class*="border-black"] {
+  border-color: rgba(0, 0, 0, 0.12) !important;
 }
 
 html,

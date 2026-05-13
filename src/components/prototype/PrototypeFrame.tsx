@@ -26,6 +26,31 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAparatOpen, setMobileAparatOpen] = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+
+  useEffect(() => {
+    let lastY = typeof window !== "undefined" ? window.scrollY : 0;
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const delta = y - lastY;
+        if (y < 80) {
+          setHeaderHidden(false);
+        } else if (delta > 6) {
+          setHeaderHidden(true);
+        } else if (delta < -6) {
+          setHeaderHidden(false);
+        }
+        lastY = y;
+        ticking = false;
+      });
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const overlay = menuOverlayRef.current;
@@ -180,24 +205,29 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         </div>
       </div>
       <div ref={pageContentRef} className={isServicesRoute ? "services-force-white-text" : undefined}>
-        <header className="sticky top-0 z-30 h-[68px] w-full bg-[#0f1115] text-white sm:h-[72px]">
-          <div className="mx-auto flex h-full w-full max-w-[1920px] items-center justify-between px-3 text-[15px] font-medium sm:px-4 md:px-6 lg:px-8 2xl:px-12">
+        <header
+          className={`sticky top-0 z-40 h-[68px] w-full bg-[#0f1115]/95 text-white shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur transition-transform duration-300 ease-out sm:h-[72px] ${headerHidden ? "-translate-y-full" : "translate-y-0"}`}
+        >
+          <div className="mx-auto grid h-full w-full max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 text-[17px] font-semibold md:px-6 lg:px-8">
             <a
               href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-              className="inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]"
+              className="inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"
             >
               <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
               <span className="truncate">Programeaza-te acum</span>
             </a>
-            <nav className="hidden w-[min(100%,980px)] justify-center gap-8 tracking-[-0.01em] lg:flex xl:gap-14 2xl:gap-20">
-              <Link href="/">Acasă</Link>
-              <Link href="/cazuri">Cazuri</Link>
-              <Link href="/tarife">Tarife</Link>
-              <Link href="/echipa">Echipa</Link>
+            <nav
+              className="hidden items-center justify-center tracking-[-0.01em] lg:flex"
+              style={{ columnGap: "clamp(48px, 8vw, 160px)" }}
+            >
+              <Link className="transition-opacity duration-200 hover:opacity-75" href="/">Acasă</Link>
+              <Link className="transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</Link>
+              <Link className="transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</Link>
+              <Link className="transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</Link>
               <ServicesDropdown isDark />
-              <Link href="/contact">Contact</Link>
+              <Link className="transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</Link>
             </nav>
-            <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
+            <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] justify-self-end sm:h-12 sm:w-12 sm:gap-[6px]">
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
               <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />

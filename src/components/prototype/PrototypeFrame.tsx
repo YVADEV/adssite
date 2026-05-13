@@ -26,28 +26,19 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAparatOpen, setMobileAparatOpen] = useState(false);
-  const [headerHidden, setHeaderHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    let lastY = typeof window !== "undefined" ? window.scrollY : 0;
     let ticking = false;
     const handleScroll = () => {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(() => {
-        const y = window.scrollY;
-        const delta = y - lastY;
-        if (y < 80) {
-          setHeaderHidden(false);
-        } else if (delta > 6) {
-          setHeaderHidden(true);
-        } else if (delta < -6) {
-          setHeaderHidden(false);
-        }
-        lastY = y;
+        setScrolled(window.scrollY > 4);
         ticking = false;
       });
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -206,7 +197,11 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
       </div>
       <div ref={pageContentRef} className={isServicesRoute ? "services-force-white-text" : undefined}>
         <header
-          className={`sticky top-0 z-40 h-[68px] w-full bg-[#0f1115]/95 text-white shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur transition-transform duration-300 ease-out sm:h-[72px] ${headerHidden ? "-translate-y-full" : "translate-y-0"}`}
+          className={`sticky top-0 z-40 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
+            scrolled
+              ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+              : "bg-[#0f1115]"
+          }`}
         >
           <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-medium sm:px-4 md:px-6 lg:px-8">
             <a

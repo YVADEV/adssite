@@ -208,7 +208,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         <header
           className={`sticky top-0 z-40 h-[68px] w-full bg-[#0f1115]/95 text-white shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur transition-transform duration-300 ease-out sm:h-[72px] ${headerHidden ? "-translate-y-full" : "translate-y-0"}`}
         >
-          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-semibold sm:px-4 md:px-6 lg:px-8">
+          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-medium sm:px-4 md:px-6 lg:px-8">
             <a
               href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
               className="relative z-10 inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"

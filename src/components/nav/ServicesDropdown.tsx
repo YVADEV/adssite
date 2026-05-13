@@ -75,7 +75,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
         aria-label="Deschide meniul Servicii"
         aria-expanded={open}
         onFocus={handleOpen}
-        className={`text-[15px] tracking-[-0.01em] transition duration-200 ${isDark ? "text-white/90 hover:text-white" : "text-[#0A0A0A] hover:text-[#4E7044]"}`}
+        className={`text-[17px] font-medium tracking-[-0.01em] transition duration-200 ${isDark ? "text-white/90 hover:text-white" : "text-[#0A0A0A] hover:text-[#4E7044]"}`}
       >
         Servicii
       </button>

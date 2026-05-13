@@ -139,11 +139,11 @@ export default function ImplantDentarPageClient() {
           <img
             src="/services/implant-model-2.png"
             alt="Implant dentar Cluj - Alverna Dental Studio"
-            className="absolute inset-0 h-full w-full object-cover saturate-[0.92] brightness-[0.72]"
+            className="absolute inset-0 h-full w-full object-cover saturate-[0.98] brightness-[0.92]"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/55 via-black/55 to-black" />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-black/10" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
           <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
             <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
             Rată de succes ridicată · plan personalizat

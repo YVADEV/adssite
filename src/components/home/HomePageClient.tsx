@@ -391,6 +391,8 @@ export default function HomePageClient() {
   const menuTopLineRef = useRef<HTMLSpanElement>(null);
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
+  const prevMenuOpenRef = useRef(false);
   const contactSectionRef = useRef<HTMLElement>(null);
   const contactSpotlightRef = useRef<HTMLDivElement>(null);
   const footerSectionRef = useRef<HTMLElement>(null);
@@ -468,6 +470,49 @@ export default function HomePageClient() {
       document.body.style.overflow = "";
     };
   }, [menuOpen, menuVisible]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const overlay = menuOverlayRef.current;
+    if (!overlay) return;
+
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusables = () =>
+      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
+    focusables()[0]?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = focusables();
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (prevMenuOpenRef.current && !menuOpen) {
+      menuTriggerRef.current?.focus({ preventScroll: true });
+    }
+    prevMenuOpenRef.current = menuOpen;
+  }, [menuOpen]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -672,7 +717,15 @@ export default function HomePageClient() {
 
   return (
     <div ref={rootRef} className="ads-page overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
-      <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
+      <div
+        ref={menuOverlayRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Meniu principal"
+        aria-hidden={!menuVisible}
+        id="home-mobile-menu"
+        className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}
+      >
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
             <div className="flex items-center justify-between">
               <span className="text-[22px] font-bold tracking-[-0.03em] text-[#0A0A0A]">alverna®</span>
@@ -780,18 +833,22 @@ export default function HomePageClient() {
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
             style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
           >
-            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/">Acasă</a>
-            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</a>
-            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</a>
-            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</a>
+            <a className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" aria-current="page">Acasă</a>
+            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri">Cazuri</a>
+            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</a>
+            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa">Echipa</a>
             <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
-            <a className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</a>
+            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</a>
           </nav>
           <button
+            ref={menuTriggerRef}
             type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+            aria-expanded={menuOpen}
+            aria-controls="home-mobile-menu"
+            aria-haspopup="dialog"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="relative z-10 flex h-12 w-12 flex-col justify-center gap-[6px]"
+            className="relative z-10 flex h-12 w-12 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f]"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />

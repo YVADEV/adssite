@@ -201,6 +201,30 @@ a {
   text-decoration: none;
 }
 
+/* Accessibility — accessible focus indicator for keyboard users. */
+:where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid #9fc48f;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-anim],
+  [data-anim-cards],
+  [data-intro] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 .theme-light {
   background: #e6e6e6;
   color: #111316;

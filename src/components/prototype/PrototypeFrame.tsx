@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { services } from "@/config/services";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
@@ -19,11 +20,18 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   const menuTopLineRef = useRef<HTMLSpanElement>(null);
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileAparatOpen, setMobileAparatOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   useEffect(() => {
     let ticking = false;
@@ -89,10 +97,64 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
     };
   }, [menuOpen, menuVisible]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const overlay = menuOverlayRef.current;
+    if (!overlay) return;
+
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusables = () =>
+      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
+
+    const firstFocus = focusables()[0];
+    firstFocus?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = focusables();
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [menuOpen]);
+
+  const prevMenuOpenRef = useRef(false);
+  useEffect(() => {
+    if (prevMenuOpenRef.current && !menuOpen) {
+      menuTriggerRef.current?.focus({ preventScroll: true });
+    }
+    prevMenuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+
   return (
     <div className="overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
       <div
         ref={menuOverlayRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Meniu principal"
+        aria-hidden={!menuVisible}
+        id="mobile-menu"
         className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "" : "pointer-events-none"}`}
       >
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
@@ -212,14 +274,44 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
               style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
             >
-              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/">Acasă</Link>
-              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/cazuri">Cazuri</Link>
-              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/tarife">Tarife</Link>
-              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/echipa">Echipa</Link>
+              {[
+                { href: "/", label: "Acasă" },
+                { href: "/cazuri", label: "Cazuri" },
+                { href: "/tarife", label: "Tarife" },
+                { href: "/echipa", label: "Echipa" },
+              ].map((it) => (
+                <Link
+                  key={it.href}
+                  href={it.href}
+                  aria-current={isActive(it.href) ? "page" : undefined}
+                  className={`pointer-events-auto transition-opacity duration-200 hover:opacity-75 ${
+                    isActive(it.href) ? "underline decoration-2 underline-offset-[10px] opacity-100" : "opacity-90"
+                  }`}
+                >
+                  {it.label}
+                </Link>
+              ))}
               <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
-              <Link className="pointer-events-auto transition-opacity duration-200 hover:opacity-75" href="/contact">Contact</Link>
+              <Link
+                href="/contact"
+                aria-current={isActive("/contact") ? "page" : undefined}
+                className={`pointer-events-auto transition-opacity duration-200 hover:opacity-75 ${
+                  isActive("/contact") ? "underline decoration-2 underline-offset-[10px] opacity-100" : "opacity-90"
+                }`}
+              >
+                Contact
+              </Link>
             </nav>
-            <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
+            <button
+              ref={menuTriggerRef}
+              type="button"
+              aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-haspopup="dialog"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px]"
+            >
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
               <span ref={menuBottomLineRef} className="h-[2px] w-full bg-[#ffffff]" />

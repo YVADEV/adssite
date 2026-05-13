@@ -63,4 +63,6 @@ export const STATIC_ROUTES = [
   "/testimoniale/",
   "/contact/",
   "/turism-dentar/",
+  "/politica-de-confidentialitate/",
+  "/termeni-si-conditii/",
 ] as const;

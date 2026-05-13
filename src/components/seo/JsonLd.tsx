@@ -107,3 +107,34 @@ export function breadcrumbLd(items: ReadonlyArray<{ name: string; url: string }>
     })),
   };
 }
+
+export function physicianLd(params: {
+  name: string;
+  jobTitle: string;
+  description: string;
+  url: string;
+  image?: string;
+  sameAs?: ReadonlyArray<string>;
+  medicalSpecialty?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Physician",
+    name: params.name,
+    jobTitle: params.jobTitle,
+    description: params.description,
+    url: params.url,
+    image: params.image,
+    sameAs: params.sameAs,
+    medicalSpecialty: params.medicalSpecialty,
+    worksFor: { "@id": `${SITE_URL}/#organization` },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: BUSINESS.street,
+      addressLocality: BUSINESS.city,
+      addressRegion: BUSINESS.region,
+      postalCode: BUSINESS.postalCode,
+      addressCountry: BUSINESS.country,
+    },
+  };
+}

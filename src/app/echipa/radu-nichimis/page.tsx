@@ -2,19 +2,46 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
+import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/lib/seo";
+
+const PATH = "/echipa/radu-nichimis/";
+const NAME = "Ast.Univ Dr. Radu Nichimiș";
+const DESCRIPTION =
+  "Profil profesional Ast.Univ Dr. Radu Nichimiș, specialist în chirurgie maxilo-facială, cu accent pe planificare digitală, funcționalitate și armonie estetică.";
 
 export const metadata: Metadata = {
   title: "Ast.Univ Radu Nichimiș | Chirurgie maxilo-facială | Alverna Dental Studio",
-  description:
-    "Profil profesional Ast.Univ Dr. Radu Nichimiș, specialist în chirurgie maxilo-facială, cu accent pe planificare digitală, funcționalitate și armonie estetică.",
-  alternates: {
-    canonical: "https://alvernadental.com/echipa/radu-nichimis/",
+  description: DESCRIPTION,
+  alternates: { canonical: PATH },
+  openGraph: {
+    title: "Ast.Univ Dr. Radu Nichimiș — Chirurgie maxilo-facială",
+    description: DESCRIPTION,
+    url: PATH,
+    type: "profile",
   },
 };
 
 export default function RaduNichimisPage() {
+  const url = `${SITE_URL}${PATH}`;
   return (
     <PrototypeFrame darkHeader>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Acasă", url: `${SITE_URL}/` },
+          { name: "Echipa", url: `${SITE_URL}/echipa/` },
+          { name: NAME, url },
+        ])}
+      />
+      <JsonLd
+        data={physicianLd({
+          name: NAME,
+          jobTitle: "Medic specialist chirurgie maxilo-facială",
+          description: DESCRIPTION,
+          url,
+          medicalSpecialty: "OralAndMaxillofacialSurgery",
+        })}
+      />
       <main className="min-h-screen bg-black pb-24 pt-16 text-white md:pt-20 lg:pt-[130px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-white/65">Profil medical</p>

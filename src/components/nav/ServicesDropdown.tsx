@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { services } from "@/config/services";
 
 type ServicesDropdownProps = {
@@ -9,6 +10,8 @@ type ServicesDropdownProps = {
 };
 
 export default function ServicesDropdown({ isDark = false }: ServicesDropdownProps) {
+  const pathname = usePathname();
+  const isServicesActive = pathname.startsWith("/servicii");
   const rootRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
@@ -74,8 +77,12 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
         type="button"
         aria-label="Deschide meniul Servicii"
         aria-expanded={open}
+        aria-haspopup="menu"
+        aria-current={isServicesActive ? "page" : undefined}
         onFocus={handleOpen}
-        className={`text-[17px] font-medium tracking-[-0.01em] transition duration-200 ${isDark ? "text-white/90 hover:text-white" : "text-[#0A0A0A] hover:text-[#4E7044]"}`}
+        className={`text-[17px] font-medium tracking-[-0.01em] transition duration-200 ${
+          isServicesActive ? "underline decoration-2 underline-offset-[10px]" : ""
+        } ${isDark ? "text-white/90 hover:text-white" : "text-[#0A0A0A] hover:text-[#4E7044]"}`}
       >
         Servicii
       </button>
@@ -99,6 +106,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                   >
                     <Link
                       href={item.href}
+                      aria-current={pathname === item.href ? "page" : undefined}
                       onFocus={
                         isAparat
                           ? () => {
@@ -108,6 +116,8 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                           : undefined
                       }
                       className={`flex h-[34px] items-center justify-between rounded-[10px] px-2 py-1.5 text-[14px] font-medium leading-[1.4] transition duration-200 ${
+                        pathname === item.href ? "bg-[#4E7044]/15 text-[#9fc48f]" : ""
+                      } ${
                         isDark ? "text-white/90 hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "text-[#0A0A0A] hover:translate-x-[3px] hover:bg-[#edf2eb]"
                       }`}
                     >
@@ -125,7 +135,10 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                           <Link
                             key={child.slug}
                             href={child.href}
+                            aria-current={pathname === child.href ? "page" : undefined}
                             className={`mt-[6px] flex h-[30px] items-center rounded-[8px] px-2 text-[13px] font-normal leading-[1.3] transition duration-200 ${
+                              pathname === child.href ? "bg-[#4E7044]/15 text-[#9fc48f]" : ""
+                            } ${
                               isDark ? "text-white/70 hover:translate-x-[2px] hover:bg-white/10 hover:text-white/90" : "text-[#1c1c1c]/70 hover:translate-x-[2px] hover:bg-[#edf2eb]"
                             }`}
                           >

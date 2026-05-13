@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import StickyContactButtons from "@/components/layout/StickyContactButtons";
+import CookieConsent from "@/components/layout/CookieConsent";
 import { JsonLd, organizationLd, websiteLd } from "@/components/seo/JsonLd";
 import { BUSINESS, SITE_URL } from "@/lib/seo";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
         </a>
         {children}
         <StickyContactButtons />
+        <CookieConsent />
       </body>
     </html>
   );

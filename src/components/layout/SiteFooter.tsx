@@ -1,18 +1,19 @@
 "use client";
 
+import Link from "next/link";
+
 import { services } from "@/config/services";
 
 const pageLinks = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Acasă" },
   { href: "/turism-dentar", label: "Turism dentar" },
   { href: "/servicii", label: "Servicii" },
   { href: "/echipa", label: "Echipa" },
   { href: "/tarife", label: "Tarife" },
   { href: "/cazuri", label: "Studii de caz" },
-  { href: "/", label: "Blog" },
   { href: "/testimoniale", label: "Testimoniale" },
   { href: "/contact", label: "Contact" },
-  { href: "#", label: "GDPR" },
+  { href: "/politica-de-confidentialitate", label: "Politica de confidențialitate" },
 ];
 
 export default function SiteFooter() {
@@ -29,9 +30,8 @@ export default function SiteFooter() {
             sănătăți dentare excelente!
           </p>
           <div className="mt-6 flex flex-wrap gap-4 text-[13px] text-[#1f1f1f]">
-            <a href="#">Termeni și condiții</a>
-            <a href="#">Politica de cookies</a>
-            <a href="#">Politică de confidențialitate</a>
+            <Link href="/termeni-si-conditii" className="hover:underline">Termeni și condiții</Link>
+            <Link href="/politica-de-confidentialitate" className="hover:underline">Politică de confidențialitate</Link>
           </div>
         </section>
 
@@ -39,9 +39,9 @@ export default function SiteFooter() {
           <h4 className="text-[16px] font-semibold">Pagini</h4>
           <div className="mt-4 space-y-2 text-[14px] text-[#2f2f2f]">
             {pageLinks.map((item) => (
-              <a key={item.label} href={item.href} className="block">
+              <Link key={item.label} href={item.href} className="block hover:text-[#0A0A0A] hover:underline">
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </section>
@@ -50,9 +50,9 @@ export default function SiteFooter() {
           <h4 className="text-[16px] font-semibold">Servicii</h4>
           <div className="mt-4 space-y-2 text-[14px] text-[#2f2f2f]">
             {services.map((service) => (
-              <a key={service.slug} href={service.href} className="block">
+              <Link key={service.slug} href={service.href} className="block hover:text-[#0A0A0A] hover:underline">
                 {service.title}
-              </a>
+              </Link>
             ))}
           </div>
         </section>

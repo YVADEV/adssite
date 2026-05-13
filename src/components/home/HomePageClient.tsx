@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
+import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { LazyVideo } from "@/components/media/LazyVideo";
@@ -744,7 +745,7 @@ export default function HomePageClient() {
               { href: "/echipa", label: "Echipa" },
               { href: "/contact", label: "Contact" },
             ].map((item) => (
-              <a
+              <Link
                 key={item.label}
                 href={item.href}
                 data-menu-item
@@ -752,7 +753,7 @@ export default function HomePageClient() {
                 className="block text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
               <button
                 type="button"
@@ -781,16 +782,16 @@ export default function HomePageClient() {
                         </button>
                         <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAparatOpen ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
-                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-[#1f1f1f]">
+                            <Link key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-[#1f1f1f]">
                               {child.title}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-[#0A0A0A]">
+                      <Link key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-[#0A0A0A]">
                         {service.title}
-                      </a>
+                      </Link>
                     ),
                   )}
                 </div>
@@ -834,12 +835,12 @@ export default function HomePageClient() {
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
             style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
           >
-            <a className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" aria-current="page">Acasă</a>
-            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri">Cazuri</a>
-            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</a>
-            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa">Echipa</a>
+            <Link className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" aria-current="page">Acasă</Link>
+            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri">Cazuri</Link>
+            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</Link>
+            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa">Echipa</Link>
             <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
-            <a className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</a>
+            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</Link>
           </nav>
           <button
             ref={menuTriggerRef}

@@ -1,0 +1,245 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { CazuriVideoStrip } from "@/components/media/LazyVideo";
+import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
+import { CASE_STUDIES, getCaseStudy } from "@/config/cases";
+import { SITE_URL } from "@/lib/seo";
+
+type Props = { params: Promise<{ slug: string }> };
+
+export function generateStaticParams() {
+  return Object.keys(CASE_STUDIES).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const caz = getCaseStudy(slug);
+  if (!caz) return {};
+
+  const titleLine = caz.title.replace("\n", " ");
+
+  return {
+    title: `${caz.caseNumber} · ${titleLine} | Alverna Dental Studio`,
+    description: caz.seoDescription,
+    alternates: { canonical: caz.path },
+    openGraph: {
+      title: `${caz.caseNumber} · ${titleLine}`,
+      description: caz.seoDescription,
+      url: caz.path,
+      type: "article",
+      images: [{ url: caz.heroImage.src }],
+    },
+  };
+}
+
+export default async function CaseDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const caz = getCaseStudy(slug);
+  if (!caz) notFound();
+
+  const url = `${SITE_URL}${caz.path}`;
+  const titleLines = caz.title.split("\n");
+
+  return (
+    <PrototypeFrame darkHeader>
+      <JsonLd
+        data={breadcrumbLd([
+          { name: "Acasă", url: `${SITE_URL}/` },
+          { name: "Cazuri", url: `${SITE_URL}/cazuri/` },
+          { name: caz.caseNumber, url },
+        ])}
+      />
+      <main className="bg-black pb-20 pt-0 text-white">
+        {/* Hero — full-bleed patient photo */}
+        <section className="relative h-[calc(100vh-72px)] min-h-[620px] w-full overflow-hidden bg-black">
+          <Image
+            src={caz.heroImage}
+            alt={titleLines.join(" ")}
+            fill
+            priority
+            quality={100}
+            unoptimized
+            sizes="100vw"
+            className="object-cover object-center"
+            style={{ imageRendering: "auto" }}
+          />
+
+          <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1680px] flex-col px-6 md:px-10 lg:px-12">
+            <Link
+              href="/cazuri/"
+              className="absolute left-6 top-8 inline-flex w-fit items-center gap-2 text-[13px] font-medium text-white/70 transition hover:text-white md:left-10 lg:left-12 lg:top-10"
+            >
+              ← Înapoi la cazuri
+            </Link>
+            {caz.patientName && (
+              <p className="absolute bottom-28 left-6 text-[100px] font-semibold leading-none tracking-[-0.02em] text-white md:bottom-36 md:left-10 lg:bottom-44 lg:left-12">
+                {caz.patientName}
+              </p>
+            )}
+          </div>
+        </section>
+
+        {/* Story images — before → proteză → after */}
+        {caz.storyImages.length > 0 && (
+          <section className="mx-auto w-full max-w-[1680px] px-4 pt-6 md:px-8 md:pt-8 lg:px-12">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:gap-10">
+              {caz.storyImages.map((item) => (
+                <figure
+                  key={item.image.src}
+                  className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-black"
+                >
+                  <img
+                    src={item.image.src}
+                    alt={item.alt}
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={{ objectPosition: item.objectPosition ?? "center center" }}
+                  />
+                  <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                    {item.label}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Quick facts */}
+        <section className="mx-auto mt-14 w-full max-w-[1680px] border-y border-white/10 px-4 py-8 md:px-8 lg:mt-[100px] lg:px-12">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+            {caz.quickFacts.map((fact) => (
+              <div key={fact.label}>
+                <p className="text-[11px] uppercase tracking-[0.12em] text-white/45">{fact.label}</p>
+                <p className="mt-2 text-[15px] font-semibold leading-[1.35] text-white">{fact.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Story */}
+        <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_380px] lg:gap-20">
+            <div>
+              <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/55">Documentare clinică</p>
+              <h2 className="mt-3 max-w-[900px] text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
+                Povestea cazului
+              </h2>
+              <div className="mt-8 max-w-[820px] space-y-6 text-[16px] leading-[1.8] text-white/82">
+                {caz.paragraphs.map((p) => (
+                  <p key={p.slice(0, 48)}>{p}</p>
+                ))}
+              </div>
+            </div>
+            <aside className="lg:pt-16">
+              <blockquote className="rounded-[20px] border border-white/12 bg-white/[0.03] p-6 md:p-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9fc48f]">Rezultat final</p>
+                <p className="mt-4 text-[18px] font-medium leading-[1.55] tracking-[-0.02em] text-white md:text-[20px]">
+                  &ldquo;{caz.closingQuote}&rdquo;
+                </p>
+              </blockquote>
+            </aside>
+          </div>
+        </section>
+
+        {/* Doctor */}
+        <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/55">Echipa medicală</p>
+          <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
+            Medic responsabil de caz
+          </h2>
+          <div className="mt-8 grid grid-cols-1 items-center gap-8 rounded-[24px] border border-white/12 bg-white/[0.02] p-5 md:grid-cols-[280px_1fr] md:gap-10 md:p-8 lg:grid-cols-[320px_1fr]">
+            <article className="overflow-hidden rounded-[18px] border border-white/10 bg-[#111]">
+              <img
+                src={caz.doctor.image.src}
+                alt={caz.doctor.name}
+                className="aspect-[4/5] w-full object-cover object-top"
+              />
+            </article>
+            <div>
+              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-[#9fc48f]">Stomatologie · Cluj-Napoca</p>
+              <h3 className="mt-3 text-[32px] font-bold leading-[0.95] tracking-[-0.03em] text-white md:text-[40px]">
+                {caz.doctor.name}
+              </h3>
+              <p className="mt-2 text-[15px] font-medium text-white/70">{caz.doctor.role}</p>
+              <p className="mt-6 max-w-[560px] text-[16px] leading-[1.75] text-white/75">
+                {caz.doctor.name} a coordonat planul de tratament, de la evaluarea inițială până la proteza finală,
+                asigurând o abordare atentă, predictibilă și orientată spre confortul pacientei.
+              </p>
+              <Link
+                href="/echipa/"
+                className="mt-8 inline-flex h-[42px] items-center rounded-full border border-white/25 px-5 text-[13px] font-semibold text-white transition duration-300 hover:border-white/45 hover:bg-white/5"
+              >
+                Vezi echipa medicală
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Treatment steps */}
+        <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/55">Protocol tratament</p>
+          <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
+            Pași parcurși
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {caz.treatmentSteps.map((step, i) => (
+              <article
+                key={step.label}
+                className="rounded-[18px] border border-white/12 bg-white/[0.03] p-5 transition duration-300 hover:border-white/25"
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/45">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-[18px] font-semibold tracking-[-0.02em] text-white">{step.label}</h3>
+                <p className="mt-2 text-[14px] leading-[1.55] text-white/65">{step.detail}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Before & After */}
+        <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
+          <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white/55">Rezultat documentat</p>
+          <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
+            Before & After
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-10">
+            {caz.beforeAfterImages.map((item) => (
+              <figure
+                key={item.image.src}
+                className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-black"
+              >
+                <img
+                  src={item.image.src}
+                  alt={item.alt}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: item.objectPosition ?? "center center" }}
+                />
+                <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[12px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                  {item.label}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {/* Video strip */}
+        <section className="mx-auto mt-[120px] w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+          <div className="flex items-start justify-between gap-6">
+            <h2 className="text-[42px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[58px] lg:text-[72px]">
+              Cazuri <span className="text-white/55">mai în detaliu</span>
+              <br />
+              <span className="text-white/55">before and after</span>
+            </h2>
+            <Link href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-black">
+              Vezi toate
+            </Link>
+          </div>
+          <CazuriVideoStrip />
+        </section>
+      </main>
+    </PrototypeFrame>
+  );
+}

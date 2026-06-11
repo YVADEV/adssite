@@ -1,10 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
+import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
+import { CaseImage } from "@/components/cazuri/CaseImage";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
-import cazA7407853 from "@/assets/cazuri/A7407853 2.png";
+import { getCaseHrefForImage } from "@/config/cases";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
+import danaHero from "@/assets/cazuri/dana-hero.png";
 import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
@@ -12,7 +16,7 @@ import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
 const caseImages = [
   cazA7408097.src,
-  cazA7407853.src,
+  danaHero.src,
   cazA7408137.src,
   cazA7407944.src,
   cazA7407760.src,
@@ -22,8 +26,8 @@ const caseImages = [
 export default function CazuriPage() {
   const reduceMotion = useReducedMotion();
   const heroCases = [
-    { title: "Caz #1", role: "Implantologie", image: cazA7408097.src },
-    { title: "Caz #2", role: "Reabilitare", image: cazA7407853.src },
+    { title: "Caz #1", role: "All-on-4 Straumann", image: cazA7408097.src },
+    { title: "Caz #2", role: "Estetică dentară", image: danaHero.src },
     { title: "Caz #3", role: "Estetică dentară", image: cazA7408137.src },
     { title: "Caz #4", role: "Smile design", image: cazA7407944.src },
   ];
@@ -81,27 +85,44 @@ export default function CazuriPage() {
             }}
             className="relative z-[2] grid h-auto grid-cols-2 gap-[6px] lg:h-[680px] lg:w-full lg:max-w-[560px] lg:justify-self-end lg:grid-rows-2"
           >
-            {heroCases.map((item) => (
-              <motion.article
-                key={item.title}
-                variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" }, visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } } }}
-                whileHover={reduceMotion ? {} : { y: -8, borderColor: "rgba(255,255,255,0.35)", boxShadow: "0 10px 26px rgba(255,255,255,0.12)" }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative h-[225px] overflow-hidden rounded-[12px] border border-white/15 bg-[#111] lg:h-[337px]"
-              >
-                <motion.img src={item.image} alt={item.title} className="h-full w-full object-cover object-top" whileHover={reduceMotion ? {} : { scale: 1.05 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} />
-                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
-                <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
-                <p className="absolute right-2 top-2 max-w-[92px] text-right text-[10px] leading-[1.2] text-white/90">{item.role}</p>
-                <p className="absolute bottom-2 left-2 text-[15px] font-bold text-white">{item.title}</p>
-              </motion.article>
-            ))}
+            {heroCases.map((item) => {
+              const href = getCaseHrefForImage(item.image);
+              const card = (
+                <motion.article
+                  key={item.title}
+                  variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" }, visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } } }}
+                  whileHover={reduceMotion ? {} : { y: -8, borderColor: "rgba(255,255,255,0.35)", boxShadow: "0 10px 26px rgba(255,255,255,0.12)" }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className={`group relative h-[225px] overflow-hidden rounded-[12px] border border-white/15 bg-[#111] lg:h-[337px]${href ? " cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60" : ""}`}
+                >
+                  <motion.img src={item.image} alt={item.title} className="h-full w-full object-cover object-top" whileHover={reduceMotion ? {} : { scale: 1.07 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }} />
+                  {href ? (
+                    <CaseClickOverlay compact label="Vezi cazul" />
+                  ) : (
+                    <>
+                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
+                      <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
+                    </>
+                  )}
+                  <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white/90 transition-opacity duration-400 group-hover:opacity-0">{item.role}</p>
+                  <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[15px] font-bold text-white transition-all duration-400 group-hover:translate-y-1 group-hover:opacity-0">{item.title}</p>
+                </motion.article>
+              );
+
+              return href ? (
+                <Link key={item.title} href={href} aria-label={`Vezi ${item.title} în detaliu`} className="block">
+                  {card}
+                </Link>
+              ) : (
+                card
+              );
+            })}
           </motion.div>
         </motion.section>
 
         <section className="mx-auto mt-14 grid w-full max-w-[1680px] grid-cols-1 gap-6 px-4 md:grid-cols-2 md:px-8 lg:mt-[120px] lg:grid-cols-3 lg:gap-[74px] lg:px-12">
           {caseImages.map((src, i) => (
-            <motion.img
+            <CaseImage
               key={src}
               src={src}
               alt=""
@@ -110,7 +131,6 @@ export default function CazuriPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }}
-              whileHover={{ scale: 1.01 }}
             />
           ))}
         </section>

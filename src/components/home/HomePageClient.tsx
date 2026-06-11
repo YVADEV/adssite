@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
 import SiteFooter from "@/components/layout/SiteFooter";
+import { CaseImage } from "@/components/cazuri/CaseImage";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { services } from "@/config/services";
@@ -16,8 +17,8 @@ import alvernaLogo from "@/assets/alverna-logo.png";
 import teamBannerImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
 import adsPaulaImage from "@/assets/cazuri/Banner/adsPaula.png";
 import appPromoImage from "@/assets/cazuri/Banner/app.png";
-import cazA7407853 from "@/assets/cazuri/A7407853 2.png";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
+import danaHero from "@/assets/cazuri/dana-hero.png";
 import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
@@ -25,7 +26,7 @@ import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
 const caseImages = [
   cazA7408097.src,
-  cazA7407853.src,
+  danaHero.src,
   cazA7408137.src,
   cazA7407760.src,
   cazA7407944.src,
@@ -940,7 +941,7 @@ export default function HomePageClient() {
         </div>
         <div className="mx-auto mt-[64px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
           {caseImages.map((src, i) => (
-            <motion.img key={src} src={src} alt="" data-anim="image" className="h-[430px] w-full rounded-[28px] object-cover lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
+            <CaseImage key={src} src={src} alt="" data-anim="image" className="h-[430px] w-full rounded-[28px] object-cover lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
           ))}
         </div>
       </section>

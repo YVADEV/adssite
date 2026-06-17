@@ -82,6 +82,7 @@ export const pricingData = [
       { name: "Injectări cu Acid Hyaluronic Juvederm Ultra 3", price: "1450 RON" },
       { name: "Injectări cu Acid Hyaluronic Juvederm Ultra Smile", price: "1300 RON" },
       { name: "Botox (3 zone)", price: "1500 RON" },
+      { name: "Gummi line botox (zâmbet gingival)", price: "750 RON" },
     ],
   },
   {

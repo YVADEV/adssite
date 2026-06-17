@@ -29,14 +29,14 @@ export default function ServiciiPage() {
               whileHover={{ scale: 1.005 }}
             >
               <p className="text-[12px] font-medium uppercase tracking-[0.12em] text-[#6b6b6b]">Serviciu</p>
-              <h2 className="mt-3 text-[28px] font-semibold leading-[1.05] tracking-[-0.02em] text-[#0A0A0A]">{service.title}</h2>
+              <h2 className="mt-3 text-[28px] font-semibold leading-[1.05] tracking-[-0.02em] text-white">{service.title}</h2>
               <p className="mt-3 text-[14px] leading-[1.6] text-[#4a4a4a]">Tratament personalizat, comunicare clară și monitorizare atentă în fiecare etapă.</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 <a href={service.href} className="inline-flex h-[38px] items-center rounded-full bg-[#0A0A0A] px-4 text-[13px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                   Vezi detalii
                 </a>
                 {service.children?.map((child) => (
-                  <a key={child.slug} href={child.href} className="inline-flex h-[38px] items-center rounded-full border border-black/15 px-4 text-[12px] font-semibold text-[#0A0A0A] transition duration-300 hover:scale-[1.02]">
+                  <a key={child.slug} href={child.href} className="inline-flex h-[38px] items-center rounded-full border border-black/15 px-4 text-[12px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                     {child.title}
                   </a>
                 ))}

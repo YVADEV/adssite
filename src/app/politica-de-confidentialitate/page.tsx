@@ -14,13 +14,13 @@ export default function PrivacyPolicyPage() {
     <PrototypeFrame>
       <main className="bg-[#0A0A0A] pb-24 pt-16 md:pt-20 lg:pt-[120px]">
         <article className="mx-auto w-full max-w-[860px] px-4 text-white md:px-8 lg:px-12">
-          <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-[#9fc48f]">Document legal</p>
+          <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white">Document legal</p>
           <h1 className="mt-4 text-[40px] font-extrabold leading-[0.95] tracking-[-0.03em] md:text-[64px]">
             Politica de confidențialitate
           </h1>
-          <p className="mt-4 text-[13px] text-white/55">Ultima actualizare: 13 mai 2026</p>
+          <p className="mt-4 text-[13px] text-white">Ultima actualizare: 13 mai 2026</p>
 
-          <div className="mt-10 space-y-7 text-[15px] leading-[1.75] text-white/85">
+          <div className="mt-10 space-y-7 text-[15px] leading-[1.75] text-white">
             <section>
               <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">1. Operatorul de date</h2>
               <p className="mt-2">
@@ -35,7 +35,7 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">2. Ce date colectăm</h2>
-              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-[#9fc48f]">
+              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-white">
                 <li>Datele pe care ni le transmiți prin formularul de contact: nume, telefon, email, serviciu de interes, mesajul tău.</li>
                 <li>Date despre vizita pe site (pagini accesate, durată, dispozitiv) — în formă agregată, fără identificare directă.</li>
                 <li>Date medicale relevante pentru tratament, pe care ni le furnizezi în cabinet, sub regimul secretului profesional medical.</li>
@@ -44,7 +44,7 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">3. Pentru ce le folosim</h2>
-              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-[#9fc48f]">
+              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-white">
                 <li>Pentru a-ți răspunde la solicitări și a confirma programări.</li>
                 <li>Pentru a planifica și a urmări tratamentul tău, dacă alegi să devii pacient.</li>
                 <li>Pentru a respecta obligațiile legale (facturare, raportare medicală).</li>
@@ -80,7 +80,7 @@ export default function PrivacyPolicyPage() {
 
             <section>
               <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">7. Drepturile tale</h2>
-              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-[#9fc48f]">
+              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-white">
                 <li>Dreptul de acces la propriile date.</li>
                 <li>Dreptul la rectificare sau ștergere.</li>
                 <li>Dreptul la restricționarea sau opoziția față de prelucrare.</li>

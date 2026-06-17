@@ -52,7 +52,7 @@ export default function GlobalIntro() {
         <p data-intro="title" className="text-[42px] font-bold leading-[0.9] tracking-[-0.045em] text-white sm:text-[68px] md:text-[96px] lg:text-[124px]">
           ALVERNA DENTAL
         </p>
-        <p data-intro="subtitle" className="mt-3 text-[11px] font-medium uppercase tracking-[0.25em] text-white/75 sm:text-[13px]">
+        <p data-intro="subtitle" className="mt-3 text-[11px] font-medium uppercase tracking-[0.25em] text-white sm:text-[13px]">
           STUDIO
         </p>
       </div>

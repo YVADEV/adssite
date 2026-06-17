@@ -129,8 +129,8 @@ export default function PedodontiePageClient() {
             <div className="divide-y divide-black/10">
               {fearPrevention.map((item, idx) => (
                 <div key={item} className="grid gap-3 py-5 md:grid-cols-[90px_1fr] md:items-start">
-                  <p className="text-[30px] font-semibold leading-none tracking-[-0.03em] text-[#141414]/65">{`0${idx + 1}`}</p>
-                  <p className="text-[15px] leading-[1.65] text-[#3c3c3c]">{item}</p>
+                  <p className="text-[30px] font-semibold leading-none tracking-[-0.03em] text-white">{`0${idx + 1}`}</p>
+                  <p className="text-[15px] leading-[1.65] text-white">{item}</p>
                 </div>
               ))}
             </div>

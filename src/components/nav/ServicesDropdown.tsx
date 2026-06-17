@@ -82,7 +82,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
         onFocus={handleOpen}
         className={`text-[17px] font-medium tracking-[-0.01em] transition duration-200 ${
           isServicesActive ? "underline decoration-2 underline-offset-[10px]" : ""
-        } ${isDark ? "text-white/90 hover:text-white" : "text-[#0A0A0A] hover:text-[#4E7044]"}`}
+        } ${isDark ? "text-white hover:text-white" : "text-white hover:text-white"}`}
       >
         Servicii
       </button>
@@ -90,7 +90,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       <div
         className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[760px] max-w-[92vw] -translate-x-1/2 rounded-[24px] border px-10 py-8 shadow-[0_16px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
           open ? "pointer-events-auto translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-[14px] scale-[0.98] opacity-0"
-        } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.75)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-[#0A0A0A]"}`}
+        } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.75)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}
       >
         <div className="grid grid-cols-3 gap-x-16">
           {groupedColumns.map((column, idx) => (
@@ -116,9 +116,9 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                           : undefined
                       }
                       className={`flex h-[34px] items-center justify-between rounded-[10px] px-2 py-1.5 text-[14px] font-medium leading-[1.4] transition duration-200 ${
-                        pathname === item.href ? "bg-[#4E7044]/15 text-[#9fc48f]" : ""
+                        pathname === item.href ? "bg-[#4E7044]/15 text-white" : ""
                       } ${
-                        isDark ? "text-white/90 hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "text-[#0A0A0A] hover:translate-x-[3px] hover:bg-[#edf2eb]"
+                        isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "text-white hover:translate-x-[3px] hover:bg-[#edf2eb]"
                       }`}
                     >
                       <span>{item.title}</span>
@@ -137,9 +137,9 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                             href={child.href}
                             aria-current={pathname === child.href ? "page" : undefined}
                             className={`mt-[6px] flex h-[30px] items-center rounded-[8px] px-2 text-[13px] font-normal leading-[1.3] transition duration-200 ${
-                              pathname === child.href ? "bg-[#4E7044]/15 text-[#9fc48f]" : ""
+                              pathname === child.href ? "bg-[#4E7044]/15 text-white" : ""
                             } ${
-                              isDark ? "text-white/70 hover:translate-x-[2px] hover:bg-white/10 hover:text-white/90" : "text-[#1c1c1c]/70 hover:translate-x-[2px] hover:bg-[#edf2eb]"
+                              isDark ? "text-white hover:translate-x-[2px] hover:bg-white/10 hover:text-white" : "text-white hover:translate-x-[2px] hover:bg-[#edf2eb]"
                             }`}
                           >
                             {child.title}

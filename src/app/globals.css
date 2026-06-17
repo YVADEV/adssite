@@ -7,7 +7,7 @@
   --ads-primary: #88a875;
   --ads-secondary: #a3b18a;
   --ads-text-primary: #ffffff;
-  --ads-text-secondary: #a0a4ab;
+  --ads-text-secondary: #ffffff;
   --ads-divider: rgba(255, 255, 255, 0.08);
   --ads-error: #ff3b30;
   --ads-warning: #ff9500;
@@ -31,6 +31,14 @@
   --ads-font-size-large-title: 32px;
 
   --ads-shadow-card: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+  /* Mission card / button white glow */
+  --ads-glow-xs: -2px -2px 5px rgba(255, 255, 255, 0.55), 3px 4px 7px rgba(0, 0, 0, 0.08);
+  --ads-glow-sm: -3px -3px 7px rgba(255, 255, 255, 0.55), 5px 7px 11px rgba(0, 0, 0, 0.08);
+  --ads-glow-md: -4px -4px 10px rgba(255, 255, 255, 0.55), 8px 10px 16px rgba(0, 0, 0, 0.08);
+  --ads-glow-lg: -4px -4px 12px rgba(255, 255, 255, 0.55), 9px 11px 18px rgba(0, 0, 0, 0.08);
+  --ads-glow-xl: -5px -5px 14px rgba(255, 255, 255, 0.55), 10px 12px 20px rgba(0, 0, 0, 0.08);
+  --ads-glow-hover: -4px -4px 14px rgba(255, 255, 255, 0.62), 9px 11px 20px rgba(0, 0, 0, 0.1);
 
   --background: var(--ads-bg);
   --foreground: var(--ads-text-primary);
@@ -76,12 +84,145 @@ body {
   font-size: var(--ads-font-size-body);
   font-weight: 600;
   cursor: pointer;
+  box-shadow: var(--ads-glow-md);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.ads-btn-primary:hover {
+  box-shadow: var(--ads-glow-hover);
 }
 
 .ads-btn-primary:active {
   transform: scale(0.97);
   opacity: 0.92;
   transition: 0.14s ease-out;
+}
+
+/* Mission-style white glow — cards */
+.ads-mission-glow {
+  box-shadow: var(--ads-glow-md);
+}
+
+/* Mission-style white glow — buttons (size variants) */
+.ads-btn-glow {
+  box-shadow: var(--ads-glow-md);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.ads-btn-glow:hover {
+  box-shadow: var(--ads-glow-hover);
+}
+
+.ads-btn-glow-xs {
+  box-shadow: var(--ads-glow-xs);
+}
+
+.ads-btn-glow-sm {
+  box-shadow: var(--ads-glow-sm);
+}
+
+.ads-btn-glow-lg {
+  box-shadow: var(--ads-glow-lg);
+}
+
+.ads-btn-glow-xl {
+  box-shadow: var(--ads-glow-xl);
+}
+
+/* Auto-apply mission glow to CTA buttons & links */
+:is(
+  .ads-btn-glow,
+  .ads-btn-glow-xs,
+  .ads-btn-glow-sm,
+  .ads-btn-glow-lg,
+  .ads-btn-glow-xl,
+  .ads-btn-primary,
+  button.rounded-full:not(.ads-btn-no-glow),
+  a.rounded-full.inline-flex,
+  a.rounded-full[class*="px-"],
+  button.rounded-\[8px\],
+  button.rounded-\[12px\]:not(.ads-btn-no-glow),
+  a.rounded-\[18px\].inline-flex
+) {
+  box-shadow: var(--ads-glow-md);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+:is(
+  .ads-btn-glow,
+  .ads-btn-glow-xs,
+  .ads-btn-glow-sm,
+  .ads-btn-glow-lg,
+  .ads-btn-glow-xl,
+  .ads-btn-primary,
+  button.rounded-full:not(.ads-btn-no-glow),
+  a.rounded-full.inline-flex,
+  a.rounded-full[class*="px-"],
+  button.rounded-\[8px\],
+  button.rounded-\[12px\]:not(.ads-btn-no-glow),
+  a.rounded-\[18px\].inline-flex
+):hover {
+  box-shadow: var(--ads-glow-hover);
+}
+
+/* Glow scaled to button height */
+[class*="h-[26px]"]:is(button, a)[class*="rounded"],
+[class*="h-[38px]"]:is(button, a)[class*="rounded"] {
+  box-shadow: var(--ads-glow-xs);
+}
+
+[class*="h-[40px]"]:is(button, a)[class*="rounded"],
+[class*="h-[42px]"]:is(button, a)[class*="rounded"] {
+  box-shadow: var(--ads-glow-sm);
+}
+
+[class*="h-[44px]"]:is(button, a)[class*="rounded"],
+[class*="h-[46px]"]:is(button, a)[class*="rounded"] {
+  box-shadow: var(--ads-glow-md);
+}
+
+[class*="h-[52px]"]:is(button, a)[class*="rounded"],
+[class*="h-[54px]"]:is(button, a)[class*="rounded"],
+[class*="h-[56px]"]:is(button, a)[class*="rounded"] {
+  box-shadow: var(--ads-glow-lg);
+}
+
+[class*="h-[64px]"]:is(button, a)[class*="rounded"] {
+  box-shadow: var(--ads-glow-xl);
+}
+
+button.rounded-full[class*="py-2"],
+a.rounded-full[class*="py-2"] {
+  box-shadow: var(--ads-glow-sm);
+}
+
+/* Exclude navigation / accordion / menu controls */
+.ads-btn-no-glow,
+button.flex-col.justify-center,
+button[aria-controls^="faq"],
+button[id^="faq-button"],
+button[aria-label="Deschide meniul Servicii"],
+button[aria-label="Deschide lista de servicii"],
+button[aria-label^="Deschide submeniul"],
+button[aria-label*="Close menu"],
+button[aria-label*="Open menu"],
+button[aria-label*="Închide meniul"],
+button[aria-label*="Deschide meniul"]:not(.ads-btn-glow) {
+  box-shadow: none !important;
+}
+
+.ads-btn-no-glow:hover,
+button.flex-col.justify-center:hover,
+button[aria-controls^="faq"]:hover,
+button[id^="faq-button"]:hover,
+button[aria-label="Deschide meniul Servicii"]:hover,
+button[aria-label="Deschide lista de servicii"]:hover,
+button[aria-label^="Deschide submeniul"]:hover,
+button[aria-label*="Close menu"]:hover,
+button[aria-label*="Open menu"]:hover,
+button[aria-label*="Închide meniul"]:hover,
+button[aria-label*="Deschide meniul"]:not(.ads-btn-glow):hover {
+  box-shadow: none !important;
 }
 
 .ads-input {
@@ -156,36 +297,83 @@ html[data-theme="dark"] [class*="text-black"] {
   color: #fff !important;
 }
 
+/* Semi-transparent white text → full white */
+html[data-theme="dark"] [class*="text-white/"] {
+  color: #fff !important;
+}
+
+/* Green accent text */
+html[data-theme="dark"] [class*="text-[#9fc48f]"],
+html[data-theme="dark"] [class*="text-[#4F7F47]"],
+html[data-theme="dark"] [class*="text-[#4f7f45]"],
+html[data-theme="dark"] [class*="text-[#5b8b55]"],
+html[data-theme="dark"] [class*="text-[#95d682]"],
+html[data-theme="dark"] [class*="text-[#4E7044]"],
+html[data-theme="dark"] [class*="text-[#3e6538]"],
+html[data-theme="dark"] [class*="text-[#5da56d]"],
+html[data-theme="dark"] [class*="text-[#5aa36c]"],
+html[data-theme="dark"] [class*="text-[#88a875]"],
+html[data-theme="dark"] [class*="text-[#a3b18a]"] {
+  color: #fff !important;
+}
+
+/* Gold / yellow accent text */
+html[data-theme="dark"] [class*="text-[#f5b301]"],
+html[data-theme="dark"] [class*="text-[#d4a017]"],
+html[data-theme="dark"] [class*="text-[#f5a623]"] {
+  color: #fff !important;
+}
+
+/* Additional gray tones */
+html[data-theme="dark"] [class*="text-[#3d3d3d]"],
+html[data-theme="dark"] [class*="text-[#3a3a3a]"],
+html[data-theme="dark"] [class*="text-[#3b3b3b]"],
+html[data-theme="dark"] [class*="text-[#6a6a6a]"],
+html[data-theme="dark"] [class*="text-[#141414]"] {
+  color: #fff !important;
+}
+
+html[data-theme="dark"] [class*="text-[#1c1c1c]"] {
+  color: #fff !important;
+}
+
+/* Hover text accents */
+html[data-theme="dark"] [class*="hover:text-[#"]:hover {
+  color: #fff !important;
+}
+
+/* List markers */
+html[data-theme="dark"] [class*="marker:text-"]::marker {
+  color: #fff !important;
+}
+
+/* Force all custom hex text colors to white in dark theme */
+html[data-theme="dark"] [class*="text-[#"] {
+  color: #fff !important;
+}
+
 html[data-theme="dark"] [class*="border-black"] {
   border-color: rgba(255, 255, 255, 0.28) !important;
 }
 
-/* Opt-out: any subtree marked data-theme="light" restores the
- * original light values. Wins because of higher specificity (two
- * attribute selectors vs one). */
+/* Opt-out: light subtrees keep dark surfaces + white text. */
 [data-theme="light"] [class*="bg-white"],
 [data-theme="light"][class*="bg-white"] {
-  background-color: #ffffff !important;
+  background-color: var(--ads-surface) !important;
   background-image: none !important;
 }
 
 [data-theme="light"] [class*="bg-[#ececec]"],
-[data-theme="light"] [class*="bg-[#ECECEC]"] {
-  background-color: #ececec !important;
-}
-
+[data-theme="light"] [class*="bg-[#ECECEC]"],
 [data-theme="light"] [class*="bg-[#f5f5f5]"],
 [data-theme="light"] [class*="bg-[#F5F5F5]"] {
-  background-color: #f5f5f5 !important;
+  background-color: var(--ads-surface) !important;
+  background-image: none !important;
 }
 
-[data-theme="light"] [class*="text-[#0A0A0A]"],
-[data-theme="light"] [class*="text-[#0a0a0a]"],
-[data-theme="light"] [class*="text-[#4b4b4b]"],
-[data-theme="light"] [class*="text-[#555555]"],
-[data-theme="light"] [class*="text-[#555]"],
-[data-theme="light"] [class*="text-black"] {
-  color: #0a0a0a !important;
+[data-theme="light"] [class*="text-[#"],
+[data-theme="light"] [class*="text-white/"] {
+  color: #fff !important;
 }
 
 [data-theme="light"] [class*="border-black"] {

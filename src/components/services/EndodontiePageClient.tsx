@@ -111,7 +111,7 @@ export default function EndodontiePageClient() {
               <p>
                 Endodonția devine necesară când infecția atinge pulpa dentară și rădăcina. Intervenția timpurie previne extinderea infecției spre os și apariția abceselor.
               </p>
-              <p className="font-semibold text-[#0A0A0A]">Simptome frecvente:</p>
+              <p className="font-semibold text-white">Simptome frecvente:</p>
               <ul className="space-y-2">
                 {symptoms.map((item) => (
                   <li key={item} className="flex gap-3">

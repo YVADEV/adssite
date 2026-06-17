@@ -27,7 +27,7 @@ export default function CazuriPage() {
   const reduceMotion = useReducedMotion();
   const heroCases = [
     { title: "Caz #1", role: "All-on-4 Straumann", image: cazA7408097.src },
-    { title: "Caz #2", role: "Estetică dentară", image: danaHero.src },
+    { title: "Caz #2", role: "Reabilitare orală · zirconiu", image: danaHero.src },
     { title: "Caz #3", role: "Estetică dentară", image: cazA7408137.src },
     { title: "Caz #4", role: "Smile design", image: cazA7407944.src },
   ];
@@ -62,14 +62,14 @@ export default function CazuriPage() {
             <div className="mt-auto grid grid-cols-1 gap-6 md:grid-cols-[230px_1fr]">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
                 <p className="text-[12px] font-semibold text-white">Before & After</p>
-                <p className="mt-2 text-[12px] leading-[1.35] text-white/70">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
+                <p className="mt-2 text-[12px] leading-[1.35] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
               </motion.div>
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[330px] text-[16px] leading-[1.1] text-white/65"
+                className="max-w-[330px] text-[16px] leading-[1.1] text-white"
               >
                 Fiecare caz este analizat complet, cu pași explicați și obiective clare. Accent pe funcționalitate, estetică și confort pe termen lung.
               </motion.p>
@@ -104,7 +104,7 @@ export default function CazuriPage() {
                       <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
                     </>
                   )}
-                  <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white/90 transition-opacity duration-400 group-hover:opacity-0">{item.role}</p>
+                  <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white transition-opacity duration-400 group-hover:opacity-0">{item.role}</p>
                   <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[15px] font-bold text-white transition-all duration-400 group-hover:translate-y-1 group-hover:opacity-0">{item.title}</p>
                 </motion.article>
               );
@@ -138,11 +138,11 @@ export default function CazuriPage() {
         <section className="mx-auto mt-[120px] w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="flex items-start justify-between gap-6">
             <h2 className="text-[42px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[58px] lg:text-[72px]">
-              Cazuri <span className="text-white/55">mai în detaliu</span>
+              Cazuri <span className="text-white">mai în detaliu</span>
               <br />
-              <span className="text-white/55">before and after</span>
+              <span className="text-white">before and after</span>
             </h2>
-            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-black">
+            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-white">
               Vezi toate
             </a>
           </div>

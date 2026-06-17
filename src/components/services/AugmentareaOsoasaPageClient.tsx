@@ -175,7 +175,7 @@ export default function AugmentareaOsoasaPageClient() {
           heading="Materiale și tehnologii utilizate"
           body={
             <div className="space-y-4">
-              <p className="font-semibold text-[#0A0A0A]">Tipuri de materiale utilizate în adiția osoasă:</p>
+              <p className="font-semibold text-white">Tipuri de materiale utilizate în adiția osoasă:</p>
               <ul className="space-y-2">
                 {materials.map((item) => (
                   <li key={item} className="flex gap-3">
@@ -184,7 +184,7 @@ export default function AugmentareaOsoasaPageClient() {
                   </li>
                 ))}
               </ul>
-              <p className="font-semibold text-[#0A0A0A]">Tehnologii moderne pentru regenerare osoasă:</p>
+              <p className="font-semibold text-white">Tehnologii moderne pentru regenerare osoasă:</p>
               <ul className="space-y-2">
                 {technologies.map((item) => (
                   <li key={item} className="flex gap-3">

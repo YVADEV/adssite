@@ -4,7 +4,7 @@ import caz1Before from "@/assets/cazuri/caz1-before.png";
 import caz1Proteza from "@/assets/cazuri/caz1-proteza.png";
 import caz1After from "@/assets/cazuri/caz1-after.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
-import danaHeroCloseup from "@/assets/cazuri/dana-hero-closeup.png";
+import danaHeroBlackBg from "@/assets/cazuri/dana-hero-black-bg.png";
 import danaBefore from "@/assets/cazuri/dana-before.png";
 import danaHug from "@/assets/cazuri/dana-hug.png";
 import andreeaParvuImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Andreea.png";
@@ -31,6 +31,8 @@ export type CaseStudy = {
   caseNumber: string;
   patientName?: string;
   heroImage: StaticImageData;
+  heroObjectPosition?: string;
+  heroImageScale?: number;
   thumbnailSrc: string;
   storyImages: CaseStoryImage[];
   intro: string;
@@ -96,11 +98,12 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     slug: "dana",
     path: "/cazuri/dana/",
     title: "Zâmbet reînnoit.\nArmonie regăsită.",
-    subtitle: "Reabilitare estetică și funcțională personalizată",
-    category: "Estetică dentară",
+    subtitle: "Reabilitare dentară totală din zirconiu cu tratamente chirurgicale parodontale",
+    category: "Reabilitare orală",
     caseNumber: "Caz #2",
     patientName: "Dana",
-    heroImage: danaHeroCloseup,
+    heroImage: danaHeroBlackBg,
+    heroObjectPosition: "center center",
     thumbnailSrc: danaHero.src,
     storyImages: [
       { image: danaBefore, label: "Before", alt: "Dana — situație inițială", objectPosition: "center center" },
@@ -108,37 +111,56 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       { image: danaHero, label: "After", alt: "Dana — rezultat final", objectPosition: "center 36%" },
     ],
     intro:
-      "Pacienta noastră a ajuns la clinică cu nevoia de a-și recâștiga un zâmbet echilibrat, estetic și confortabil în viața de zi cu zi.",
+      "Acest caz complex de reabilitare orală completă a fost realizat în cadrul Alverna Dental Studio, printr-o abordare multidisciplinară care a combinat tratamente chirurgicale parodontale și restaurări protetice integral din zirconiu.",
     paragraphs: [
-      "Dana a ajuns la noi cu aspecte estetice și funcționale care îi afectau încrederea în zâmbet. La evaluarea inițială am analizat atent structura dentară, gingiile și armonia facială, pentru a construi un plan clar și predictibil.",
-      "Tratamentul a fost gândit etapizat, cu accent pe estetică naturală și confort pe termen lung. Echipa medicală a lucrat integrat pentru ca fiecare detaliu — de la formă și culoare, până la adaptare și funcție — să fie aliniat cu așteptările pacientei.",
-      "Rezultatul final reflectă un zâmbet luminos, echilibrat și natural, integrat armonios în fizionomie. Dana a plecat din clinică cu mai multă încredere și cu bucuria unui rezultat documentat complet.",
+      "Acest caz complex de reabilitare orală completă a fost realizat în cadrul Alverna Dental Studio, printr-o abordare multidisciplinară care a combinat tratamente chirurgicale parodontale și restaurări protetice integral din zirconiu.",
+      "Pacientul s-a prezentat cu multiple probleme estetice și funcționale, inclusiv uzură dentară, disproporții gingivale și restaurări vechi neadaptate. În urma unei evaluări clinice și radiologice complete, a fost stabilit un plan de tratament personalizat, orientat către restabilirea armoniei zâmbetului și a funcției masticatorii.",
+      "Prima etapă a inclus gingivoplastii realizate la nivelul dinților frontali și laterali, realizate de Dr. Laura Grigoreanu, cu scopul de a remodela conturul gingival și de a crea un cadru estetic ideal pentru viitoarele restaurări. Intervențiile chirurgicale au permis obținerea unor proporții dento-gingivale echilibrate și a unui zâmbet mai armonios.",
+      "După vindecarea țesuturilor, s-a trecut la etapa protetică, unde Dr. Andreea Parvu a conceput reabilitarea totală cu restaurări integral din zirconiu, material ales pentru rezistența sa excepțională, biocompatibilitate și aspectul natural pe care îl oferă. Fiecare lucrare a fost proiectată și personalizată pentru a respecta trăsăturile faciale, ocluzia și cerințele estetice ale pacientului.",
+      "Un avantaj important al acestui caz a fost colaborarea directă dintre medic și tehnicianul dentar, toate restaurările fiind realizate în laboratorul propriu Alverna Dental Studio, sub directa îndrumare a lui Rares Harmath, technician dentar cu o vastă experiență internațională, ceea ce a permis un control riguros asupra fiecărei etape de lucru și obținerea unui rezultat predictibil.",
+      "Rezultatul final este un zâmbet complet reabilitat, cu o estetică naturală, funcționalitate optimă și integrare armonioasă a restaurărilor în contextul facial al pacientului. Acest caz evidențiază importanța unei abordări interdisciplinare, în care chirurgia parodontală și protetica modernă lucrează împreună pentru a oferi rezultate durabile și personalizate.",
     ],
     closingQuote:
-      "Zâmbetul nu este doar estetică — este încredere. Iar bucuria Danei la finalul tratamentului confirmă că am atins obiectivul împreună.",
+      "Rezultatul final este un zâmbet complet reabilitat, cu o estetică naturală, funcționalitate optimă și integrare armonioasă a restaurărilor în contextul facial al pacientului.",
     beforeAfterImages: [
       { image: danaBefore, label: "Before", alt: "Dana — înainte de tratament", objectPosition: "center center" },
       { image: danaHero, label: "After", alt: "Dana — după tratament", objectPosition: "center 36%" },
     ],
     treatmentSteps: [
-      { label: "Consult & plan", detail: "Evaluare clinică detaliată și stabilirea obiectivelor estetice și funcționale." },
-      { label: "Tratament etapizat", detail: "Intervenții planificate cu atenție la confort, estetică și predictibilitate." },
-      { label: "Finisaje estetice", detail: "Ajustări fine pentru un zâmbet natural, luminos și echilibrat." },
-      { label: "Rezultat final", detail: "Zâmbet reînnoit, documentat și validat împreună cu pacienta." },
+      {
+        label: "Evaluare & plan",
+        detail:
+          "Evaluare clinică și radiologică completă, cu plan de tratament personalizat pentru restabilirea armoniei zâmbetului și a funcției masticatorii.",
+      },
+      {
+        label: "Gingivoplastii",
+        detail:
+          "Intervenții chirurgicale parodontale la dinții frontali și laterali, realizate de Dr. Laura Grigoreanu, pentru proporții dento-gingivale echilibrate.",
+      },
+      {
+        label: "Reabilitare zirconiu",
+        detail:
+          "Restaurări integrale din zirconiu, concepute de Dr. Andreea Parvu, personalizate pentru trăsăturile faciale, ocluzie și cerințele estetice.",
+      },
+      {
+        label: "Laborator propriu",
+        detail:
+          "Lucrări realizate în laboratorul Alverna Dental Studio, sub îndrumarea lui Rares Harmath, pentru control riguros și rezultat predictibil.",
+      },
     ],
     quickFacts: [
-      { label: "Tip caz", value: "Estetică dentară" },
-      { label: "Abordare", value: "Personalizată, etapizată" },
-      { label: "Echipă", value: "Medic + asistentă dedicată" },
-      { label: "Rezultat", value: "Estetică naturală & confort" },
+      { label: "Tip caz", value: "Reabilitare orală totală" },
+      { label: "Material", value: "Zirconiu integral" },
+      { label: "Chirurgie", value: "Gingivoplastii parodontale" },
+      { label: "Laborator", value: "Alverna Dental Studio" },
     ],
     doctor: {
       name: "Dr. Andreea Pârvu",
-      role: "Stomatologie generală",
+      role: "Protetică dentară",
       image: andreeaParvuImage,
     },
     seoDescription:
-      "Caz #2 Alverna Dental Studio: reabilitare estetică dentară pentru Dana. Zâmbet reînnoit, armonie regăsită — Dr. Andreea Pârvu.",
+      "Reabilitare orală totală prin gingivoplastii și restaurări integral din zirconiu, realizată în cadrul Alverna Dental Studio, cu sprijinul laboratorului dentar propriu, pentru un rezultat estetic și funcțional de înaltă precizie.",
   },
 };
 

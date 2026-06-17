@@ -15,7 +15,7 @@ export default function StickyContactButtons() {
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"
-        className="inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white shadow-[0_12px_24px_rgba(0,0,0,0.35)] transition duration-200 hover:bg-white/10"
+        className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >
         <svg
           aria-hidden
@@ -32,7 +32,7 @@ export default function StickyContactButtons() {
       <a
         href="tel:+40748085933"
         aria-label="Sună"
-        className="inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white shadow-[0_12px_24px_rgba(0,0,0,0.35)] transition duration-200 hover:bg-white/10"
+        className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >
         <svg
           aria-hidden
@@ -48,7 +48,7 @@ export default function StickyContactButtons() {
       <a
         href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
         aria-label="Mail"
-        className="inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white shadow-[0_12px_24px_rgba(0,0,0,0.35)] transition duration-200 hover:bg-white/10"
+        className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >
         <svg
           aria-hidden

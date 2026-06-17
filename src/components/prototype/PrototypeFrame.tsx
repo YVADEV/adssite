@@ -7,7 +7,9 @@ import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { services } from "@/config/services";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
+import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
 import SiteFooter from "@/components/layout/SiteFooter";
+import SiteLogo from "@/components/nav/SiteLogo";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -165,21 +167,18 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col justify-center">
-            <div className="pl-[6vw] text-right md:pl-[10vw]">
+          <MobileMenuLayout>
               {[
                 { href: "/", label: "Acasă" },
-                { href: "/cazuri", label: "Cazuri" },
-                { href: "/tarife", label: "Tarife" },
                 { href: "/echipa", label: "Echipa" },
-                { href: "/contact", label: "Contact" },
+                { href: "/cazuri", label: "Cazuri" },
               ].map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   data-menu-item
                   onClick={() => setMenuOpen(false)}
-                  className="block text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
                 >
                   {item.label}
                 </Link>
@@ -190,7 +189,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                 aria-label="Deschide lista de servicii"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="mt-2 flex w-full items-center justify-end gap-3 rounded-[12px] px-3 py-2 text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
+                className="ads-btn-no-glow mt-2 flex w-full items-center justify-start gap-3 rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
               >
                 <span>Servicii</span>
                 <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
@@ -206,7 +205,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                           aria-label={`Deschide submeniul ${service.title}`}
                           aria-expanded={mobileAparatOpen}
                           onClick={() => setMobileAparatOpen((prev) => !prev)}
-                          className="flex min-h-[48px] w-full items-center justify-end gap-2 rounded-[10px] px-2 text-right text-[18px] font-semibold text-white"
+                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[18px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
                           <span>{mobileAparatOpen ? "−" : "+"}</span>
@@ -217,7 +216,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                               key={child.slug}
                               href={child.href}
                               onClick={() => setMenuOpen(false)}
-                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-white/85"
+                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[15px] text-white"
                             >
                               {child.title}
                             </Link>
@@ -229,7 +228,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                         key={service.slug}
                         href={service.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-white"
+                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[17px] font-medium text-white"
                       >
                         {service.title}
                       </Link>
@@ -237,8 +236,22 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                   )}
                 </div>
               </div>
-            </div>
-          </nav>
+
+              {[
+                { href: "/tarife", label: "Tarife" },
+                { href: "/contact", label: "Contact" },
+              ].map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  data-menu-item
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+                >
+                  {item.label}
+                </Link>
+              ))}
+          </MobileMenuLayout>
           <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
             <div className="text-[13px] leading-[1.5]">
               <a href="tel:+40748085933">+40 748 085 933</a>
@@ -263,22 +276,15 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           }`}
         >
           <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-medium sm:px-4 md:px-6 lg:px-8">
-            <a
-              href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-              className="relative z-10 inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[20px] lg:tracking-[-0.4px]"
-            >
-              <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
-              <span className="truncate">Programeaza-te acum</span>
-            </a>
+            <SiteLogo />
             <nav
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
               style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
             >
               {[
                 { href: "/", label: "Acasă" },
-                { href: "/cazuri", label: "Cazuri" },
-                { href: "/tarife", label: "Tarife" },
                 { href: "/echipa", label: "Echipa" },
+                { href: "/cazuri", label: "Cazuri" },
               ].map((it) => (
                 <Link
                   key={it.href}
@@ -292,6 +298,15 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                 </Link>
               ))}
               <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
+              <Link
+                href="/tarife"
+                aria-current={isActive("/tarife") ? "page" : undefined}
+                className={`pointer-events-auto transition-opacity duration-200 hover:opacity-75 ${
+                  isActive("/tarife") ? "underline decoration-2 underline-offset-[10px] opacity-100" : "opacity-90"
+                }`}
+              >
+                Tarife
+              </Link>
               <Link
                 href="/contact"
                 aria-current={isActive("/contact") ? "page" : undefined}

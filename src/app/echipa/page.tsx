@@ -5,7 +5,9 @@ import { motion } from "motion/react";
 import { useReducedMotion } from "motion/react";
 import gsap from "gsap";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
+import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
 import SiteFooter from "@/components/layout/SiteFooter";
+import SiteLogo from "@/components/nav/SiteLogo";
 import { services } from "@/config/services";
 import andreeaImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Andreea.png";
 import raduImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Radu.png";
@@ -26,30 +28,7 @@ import ioanaGheorghitaImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Managmen
 import alinaCrimImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Managment/Alina Crim.png";
 import martaCrinaImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Managment/Marta Crina.png";
 import raresHarmathImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Managment/Rares Harmath.png";
-
-const teamCards = [
-  {
-    name: "Andreea Pârvu",
-    role: "Stomatologie generală",
-    image: andreeaImage.src,
-  },
-  {
-    name: "Ast. Univ Radu Nichimiș",
-    role: "Maxilo-Facială",
-    image: raduImage.src,
-    href: "/echipa/radu-nichimis/",
-  },
-  {
-    name: "Dr. Laura Grigorean",
-    role: "Creative Director",
-    image: lauraImage.src,
-  },
-  {
-    name: "Dr. Valentina Nichimiș",
-    role: "UX/UI Designer",
-    image: valentinaImage.src,
-  },
-];
+import heroTeamImage from "@/assets/echipa/hero-team.png";
 
 const specialistTeam = [
   { name: "Dr.Radu Nichimiș", image: raduImage.src, href: "/echipa/radu-nichimis/" },
@@ -155,27 +134,24 @@ export default function EchipaPage() {
       <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
-            <span className="text-[22px] font-bold tracking-[-0.03em] text-[#0A0A0A]">alverna®</span>
+            <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
             <button type="button" aria-label="Close menu" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
               <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#0A0A0A]" />
               <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#0A0A0A]" />
             </button>
           </div>
-          <nav className="flex flex-1 flex-col justify-center">
-            <div className="pl-[6vw] text-right md:pl-[10vw]">
+          <MobileMenuLayout>
               {[
-                { href: "/turism-dentar", label: "Turism dentar" },
+                { href: "/", label: "Acasă" },
                 { href: "/echipa", label: "Echipa" },
-                { href: "/tarife", label: "Tarife" },
-                { href: "/", label: "Blog" },
-                { href: "/testimoniale", label: "Testimoniale" },
+                { href: "/cazuri", label: "Cazuri" },
               ].map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   data-menu-item
                   onClick={() => setMenuOpen(false)}
-                  className="block text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A] transition duration-250 hover:translate-y-[-2px]"
+                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
                 >
                   {item.label}
                 </a>
@@ -185,7 +161,7 @@ export default function EchipaPage() {
                 aria-label="Deschide lista de servicii"
                 aria-expanded={mobileServicesOpen}
                 onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="mt-2 flex w-full items-center justify-end gap-3 rounded-[12px] px-3 py-2 text-right text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-[#0A0A0A]"
+                className="ads-btn-no-glow mt-2 flex w-full items-center justify-start gap-3 rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
               >
                 <span>Servicii</span>
                 <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
@@ -200,30 +176,44 @@ export default function EchipaPage() {
                           aria-label={`Deschide submeniul ${service.title}`}
                           aria-expanded={mobileAparatOpen}
                           onClick={() => setMobileAparatOpen((prev) => !prev)}
-                          className="flex min-h-[48px] w-full items-center justify-end gap-2 rounded-[10px] px-2 text-right text-[18px] font-semibold text-[#0A0A0A]"
+                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[18px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
                           <span>{mobileAparatOpen ? "−" : "+"}</span>
                         </button>
                         <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAparatOpen ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
-                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-right text-[15px] text-[#1f1f1f]">
+                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[15px] text-white">
                               {child.title}
                             </a>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-right text-[17px] font-medium text-[#0A0A0A]">
+                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[17px] font-medium text-white">
                         {service.title}
                       </a>
                     ),
                   )}
                 </div>
               </div>
-            </div>
-          </nav>
-          <div className="flex flex-col gap-4 pt-6 text-[#0A0A0A] sm:flex-row sm:items-end sm:justify-between">
+
+              {[
+                { href: "/tarife", label: "Tarife" },
+                { href: "/contact", label: "Contact" },
+              ].map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  data-menu-item
+                  onClick={() => setMenuOpen(false)}
+                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+                >
+                  {item.label}
+                </a>
+              ))}
+          </MobileMenuLayout>
+          <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
             <div className="text-[13px] leading-[1.5]">
               <a href="tel:+40748085933">+40 748 085 933</a>
               <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
@@ -241,21 +231,15 @@ export default function EchipaPage() {
 
       <div ref={pageContentRef}>
         <header className="flex h-[68px] w-full items-center justify-between bg-[#0f1115] px-3 text-[15px] font-medium text-white sm:h-[72px] sm:px-4 md:px-6 lg:px-8">
-          <a
-            href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-            className="inline-flex min-w-0 items-center gap-2 truncate text-[14px] font-bold tracking-[-0.02em] text-white transition duration-200 hover:opacity-80 sm:text-[16px] lg:text-[22px] lg:tracking-[-0.88px]"
-          >
-            <span aria-hidden className="text-[16px] sm:text-[18px]">✉</span>
-            <span className="truncate">Programeaza-te acum</span>
-          </a>
+          <SiteLogo />
           <nav className="hidden items-center gap-8 text-[14px] text-white lg:flex xl:gap-[80px]">
             <a href="/">Acasă</a>
-            <a href="/cazuri">Cazuri</a>
-            <a href="/tarife">Tarife</a>
             <a href="/echipa" className="text-white">
               Echipă
             </a>
+            <a href="/cazuri">Cazuri</a>
             <ServicesDropdown isDark />
+            <a href="/tarife">Tarife</a>
             <a href="/contact">Contact</a>
           </nav>
           <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
@@ -271,7 +255,7 @@ export default function EchipaPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 grid min-h-[calc(100vh-90px)] w-screen -translate-x-1/2 grid-cols-1 gap-10 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[1fr_1fr] lg:gap-[60px] xl:px-[120px]"
+          className="relative left-1/2 mt-0 grid min-h-[calc(100vh-90px)] w-screen -translate-x-1/2 grid-cols-1 items-stretch gap-10 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[1fr_1fr] lg:grid-rows-1 lg:gap-[60px] xl:px-[120px]"
         >
           <motion.div
             aria-hidden
@@ -280,7 +264,7 @@ export default function EchipaPage() {
             className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
           />
 
-          <div className="relative z-[2] flex min-h-[420px] flex-col">
+          <div className="relative z-[2] flex h-full min-h-[420px] flex-col">
             <p className="mb-[18px] text-[14px] font-semibold text-white">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
@@ -300,8 +284,8 @@ export default function EchipaPage() {
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
               >
                 <p className="text-[12px] font-semibold text-white">Medici specialiști</p>
-                <p className="mt-2 text-[12px] leading-[1.35] text-white/70">Suntem un colectiv de stomatologi cu o experiență vastă la activ.</p>
-                <button className="mt-3 inline-flex h-[26px] items-center rounded-full bg-white px-4 text-[11px] font-semibold text-black">
+                <p className="mt-2 text-[12px] leading-[1.35] text-white">Suntem un colectiv de stomatologi cu o experiență vastă la activ.</p>
+                <button className="ads-btn-glow-xs mt-3 inline-flex h-[26px] items-center rounded-full bg-white px-4 text-[11px] font-semibold text-white">
                   Află mai multe
                   <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full border border-black/20 text-[10px]">→</span>
                 </button>
@@ -312,7 +296,7 @@ export default function EchipaPage() {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[330px] text-[16px] leading-[1.1] text-white/65"
+                className="max-w-[330px] text-[16px] leading-[1.1] text-white"
               >
                 Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
                 <br />
@@ -325,93 +309,22 @@ export default function EchipaPage() {
           </div>
 
           <motion.div
-            initial={reduceMotion ? false : "hidden"}
-            whileInView={reduceMotion ? undefined : "visible"}
+            initial={reduceMotion ? false : { opacity: 0, y: 50, scale: 0.96, filter: "blur(12px)" }}
+            whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: {
-                  delayChildren: 0.26,
-                  staggerChildren: 0.12,
-                },
-              },
-            }}
-            className="relative z-[2] grid h-auto grid-cols-2 gap-[6px] lg:h-[680px] lg:w-full lg:max-w-[560px] lg:justify-self-end lg:grid-rows-2"
+            transition={reduceMotion ? {} : { duration: 1.1, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-[2] h-full min-h-[420px] w-full overflow-hidden rounded-[12px] border border-white/15 lg:justify-self-end"
           >
-            {teamCards.map((member) => {
-              const cardProps = {
-                variants: reduceMotion
-                  ? undefined
-                  : {
-                      hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        filter: "blur(0px)",
-                        transition: { duration: 1.1 },
-                      },
-                    },
-                whileHover: reduceMotion
-                  ? {}
-                  : {
-                      y: -8,
-                      borderColor: "rgba(255,255,255,0.35)",
-                      boxShadow: "0 10px 26px rgba(255,255,255,0.12)",
-                    },
-                transition: { duration: 0.6 },
-                className: "group relative h-[225px] overflow-hidden rounded-[12px] border border-white/15 bg-[#111] lg:h-[337px]",
-              };
-
-              if (member.href) {
-                return (
-                  <a key={member.name} href={member.href} className="block">
-                    <motion.article {...cardProps}>
-                      <motion.img
-                        src={member.image}
-                        alt={member.name}
-                        className="h-full w-full object-cover object-center"
-                        initial={reduceMotion ? false : { y: 16, scale: 1.08 }}
-                        whileInView={reduceMotion ? {} : { y: 0, scale: 1.01 }}
-                        viewport={{ once: true, amount: 0.35 }}
-                        whileHover={reduceMotion ? {} : { scale: 1.05 }}
-                        transition={reduceMotion ? {} : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                        style={{ filter: "contrast(1.03)" }}
-                      />
-                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
-                      <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
-                      <p className="absolute right-2 top-2 max-w-[80px] text-right text-[10px] leading-[1.2] text-white/90">{member.role}</p>
-                      <motion.p whileHover={reduceMotion ? {} : { y: -4 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute bottom-2 left-2 text-[15px] font-bold text-white">
-                        {member.name}
-                      </motion.p>
-                    </motion.article>
-                  </a>
-                );
-              }
-
-              return (
-                <motion.article key={member.name} {...cardProps}>
-                  <motion.img
-                    src={member.image}
-                    alt={member.name}
-                    className="h-full w-full object-cover object-center"
-                    initial={reduceMotion ? false : { y: 16, scale: 1.08 }}
-                    whileInView={reduceMotion ? {} : { y: 0, scale: 1.01 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    whileHover={reduceMotion ? {} : { scale: 1.05 }}
-                    transition={reduceMotion ? {} : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ filter: "contrast(1.03)" }}
-                  />
-                  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
-                  <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
-                  <p className="absolute right-2 top-2 max-w-[80px] text-right text-[10px] leading-[1.2] text-white/90">{member.role}</p>
-                  <motion.p whileHover={reduceMotion ? {} : { y: -4 }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute bottom-2 left-2 text-[15px] font-bold text-white">
-                    {member.name}
-                  </motion.p>
-                </motion.article>
-              );
-            })}
+            <motion.img
+              src={heroTeamImage.src}
+              alt="Echipa Alverna Dental Studio"
+              className="h-full w-full object-cover object-[center_18%]"
+              initial={reduceMotion ? false : { scale: 1.06 }}
+              whileInView={reduceMotion ? {} : { scale: 1 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              style={{ filter: "contrast(1.03)" }}
+            />
           </motion.div>
         </motion.section>
 
@@ -481,7 +394,7 @@ export default function EchipaPage() {
                           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         />
                         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                        <p className="absolute right-3 top-3 max-w-[80px] text-right text-[10px] leading-[1.2] text-white/90">{group.title}</p>
+                        <p className="absolute right-3 top-3 max-w-[80px] text-right text-[10px] leading-[1.2] text-white">{group.title}</p>
                         <motion.h3
                           whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
                           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -504,7 +417,7 @@ export default function EchipaPage() {
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     />
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                    <p className="absolute right-3 top-3 max-w-[80px] text-right text-[10px] leading-[1.2] text-white/90">{group.title}</p>
+                    <p className="absolute right-3 top-3 max-w-[80px] text-right text-[10px] leading-[1.2] text-white">{group.title}</p>
                     <motion.h3
                       whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

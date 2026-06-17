@@ -75,10 +75,11 @@ export default function EchipaPage() {
   const menuTopLineRef = useRef<HTMLSpanElement>(null);
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [mobileAparatOpen, setMobileAparatOpen] = useState(false);
+  const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
 
   useEffect(() => {
     const overlay = menuOverlayRef.current;
@@ -129,15 +130,75 @@ export default function EchipaPage() {
     };
   }, [menuOpen, menuVisible]);
 
+  useEffect(() => {
+    if (!menuOpen) {
+      setMobileServicesOpen(false);
+      setOpenSubmenuSlug(null);
+    }
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const overlay = menuOverlayRef.current;
+    if (!overlay) return;
+
+    const focusableSelector =
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusables = () =>
+      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
+    focusables()[0]?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setMenuOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const list = focusables();
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  const prevMenuOpenRef = useRef(false);
+  useEffect(() => {
+    if (prevMenuOpenRef.current && !menuOpen) {
+      menuTriggerRef.current?.focus({ preventScroll: true });
+    }
+    prevMenuOpenRef.current = menuOpen;
+  }, [menuOpen]);
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-black text-white">
-      <div ref={menuOverlayRef} className={`fixed inset-0 z-[8888] bg-[#f5f5f5] ${menuVisible ? "" : "pointer-events-none"}`}>
+      <div
+        ref={menuOverlayRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Meniu principal"
+        aria-hidden={!menuVisible}
+        id="echipa-mobile-menu"
+        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "" : "pointer-events-none"}`}
+      >
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
             <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-            <button type="button" aria-label="Close menu" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#0A0A0A]" />
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#0A0A0A]" />
+            <button type="button" aria-label="Închide meniul" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
+              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
+              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
             </button>
           </div>
           <MobileMenuLayout>
@@ -174,14 +235,16 @@ export default function EchipaPage() {
                         <button
                           type="button"
                           aria-label={`Deschide submeniul ${service.title}`}
-                          aria-expanded={mobileAparatOpen}
-                          onClick={() => setMobileAparatOpen((prev) => !prev)}
+                          aria-expanded={openSubmenuSlug === service.slug}
+                          onClick={() =>
+                            setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
+                          }
                           className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[18px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
-                          <span>{mobileAparatOpen ? "−" : "+"}</span>
+                          <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
                         </button>
-                        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAparatOpen ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${openSubmenuSlug === service.slug ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
                             <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[15px] text-white">
                               {child.title}
@@ -220,8 +283,8 @@ export default function EchipaPage() {
             </div>
             <div className="text-right text-[12px] leading-[1.6]">
               <div className="flex justify-end gap-5">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <a href="/politica-de-confidentialitate">Privacy Policy</a>
+                <a href="/termeni-si-conditii">Terms of Service</a>
               </div>
               <p className="mt-1">© Alverna Dental Studio</p>
             </div>
@@ -242,7 +305,16 @@ export default function EchipaPage() {
             <a href="/tarife">Tarife</a>
             <a href="/contact">Contact</a>
           </nav>
-          <button type="button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((prev) => !prev)} className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]">
+          <button
+            ref={menuTriggerRef}
+            type="button"
+            aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
+            aria-expanded={menuOpen}
+            aria-controls="echipa-mobile-menu"
+            aria-haspopup="dialog"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px] lg:hidden"
+          >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
@@ -255,7 +327,7 @@ export default function EchipaPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 grid min-h-[calc(100vh-90px)] w-screen -translate-x-1/2 grid-cols-1 items-stretch gap-10 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[1fr_1fr] lg:grid-rows-1 lg:gap-[60px] xl:px-[120px]"
+          className="relative left-1/2 mt-0 grid w-screen -translate-x-1/2 grid-cols-1 gap-10 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[1fr_1fr] lg:items-stretch lg:gap-[60px] xl:px-[120px]"
         >
           <motion.div
             aria-hidden
@@ -264,7 +336,7 @@ export default function EchipaPage() {
             className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
           />
 
-          <div className="relative z-[2] flex h-full min-h-[420px] flex-col">
+          <div className="relative z-[2] flex min-h-[min(72vh,680px)] flex-col lg:min-h-[680px]">
             <p className="mb-[18px] text-[14px] font-semibold text-white">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
@@ -276,36 +348,20 @@ export default function EchipaPage() {
               {"Fă cunoștință\ncu echipa noastră"}
             </motion.h1>
 
-            <div className="mt-auto grid grid-cols-1 gap-6 md:grid-cols-[230px_1fr]">
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.6 }}
-                transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <p className="text-[12px] font-semibold text-white">Medici specialiști</p>
-                <p className="mt-2 text-[12px] leading-[1.35] text-white">Suntem un colectiv de stomatologi cu o experiență vastă la activ.</p>
-                <button className="ads-btn-glow-xs mt-3 inline-flex h-[26px] items-center rounded-full bg-white px-4 text-[11px] font-semibold text-white">
-                  Află mai multe
-                  <span className="ml-2 inline-flex h-4 w-4 items-center justify-center rounded-full border border-black/20 text-[10px]">→</span>
-                </button>
-              </motion.div>
-
-              <motion.p
-                initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.6 }}
-                transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[330px] text-[16px] leading-[1.1] text-white"
-              >
-                Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
-                <br />
-                <br />
-                <span className="font-semibold text-white">Interacțiune de calitate</span>
-                <br />
-                În relația medic-pacient, ne bazăm pe comunicare, empatie și răbdare.
-              </motion.p>
-            </div>
+            <motion.p
+              initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-auto max-w-[420px] text-[16px] leading-[1.1] text-white"
+            >
+              Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
+              <br />
+              <br />
+              <span className="font-semibold text-white">Interacțiune de calitate</span>
+              <br />
+              În relația medic-pacient, ne bazăm pe comunicare, empatie și răbdare.
+            </motion.p>
           </div>
 
           <motion.div
@@ -313,7 +369,7 @@ export default function EchipaPage() {
             whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={reduceMotion ? {} : { duration: 1.1, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-[2] h-full min-h-[420px] w-full overflow-hidden rounded-[12px] border border-white/15 lg:justify-self-end"
+            className="relative z-[2] h-[min(72vh,680px)] w-full overflow-hidden rounded-[12px] border border-white/15 lg:h-[680px] lg:w-full lg:max-w-[560px] lg:justify-self-end"
           >
             <motion.img
               src={heroTeamImage.src}

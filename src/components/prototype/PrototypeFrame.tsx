@@ -26,7 +26,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [mobileAparatOpen, setMobileAparatOpen] = useState(false);
+  const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -140,6 +140,13 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    if (!menuOpen) {
+      setMobileServicesOpen(false);
+      setOpenSubmenuSlug(null);
+    }
+  }, [menuOpen]);
+
   const prevMenuOpenRef = useRef(false);
   useEffect(() => {
     if (prevMenuOpenRef.current && !menuOpen) {
@@ -162,7 +169,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
             <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-            <button type="button" aria-label="Close menu" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
+            <button type="button" aria-label="Închide meniul" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
               <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
               <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
             </button>
@@ -203,14 +210,16 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                         <button
                           type="button"
                           aria-label={`Deschide submeniul ${service.title}`}
-                          aria-expanded={mobileAparatOpen}
-                          onClick={() => setMobileAparatOpen((prev) => !prev)}
+                          aria-expanded={openSubmenuSlug === service.slug}
+                          onClick={() =>
+                            setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
+                          }
                           className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[18px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
-                          <span>{mobileAparatOpen ? "−" : "+"}</span>
+                          <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
                         </button>
-                        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileAparatOpen ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${openSubmenuSlug === service.slug ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
                             <Link
                               key={child.slug}
@@ -259,8 +268,8 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             </div>
             <div className="text-right text-[12px] leading-[1.6]">
               <div className="flex justify-end gap-5">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
+                <a href="/politica-de-confidentialitate">Privacy Policy</a>
+                <a href="/termeni-si-conditii">Terms of Service</a>
               </div>
               <p className="mt-1">© Alverna Dental Studio</p>
             </div>
@@ -325,7 +334,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               aria-controls="mobile-menu"
               aria-haspopup="dialog"
               onClick={() => setMenuOpen((prev) => !prev)}
-              className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px]"
+              className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px] lg:hidden"
             >
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />

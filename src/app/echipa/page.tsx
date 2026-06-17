@@ -95,11 +95,11 @@ export default function EchipaPage() {
     let tl: gsap.core.Timeline | null = null;
 
     if (menuOpen) {
-      setMenuVisible(true);
       document.body.style.overflow = "hidden";
+      gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
+      gsap.set(menuItems, { opacity: 0, y: 40 });
+      setMenuVisible(true);
       frame = requestAnimationFrame(() => {
-        gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
-        gsap.set(menuItems, { opacity: 0, y: 40 });
         tl = gsap.timeline({ defaults: { ease } });
         tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
           .to(page, { opacity: 0.2, duration: 0.42, ease }, "<")
@@ -191,7 +191,7 @@ export default function EchipaPage() {
         aria-label="Meniu principal"
         aria-hidden={!menuVisible}
         id="echipa-mobile-menu"
-        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "visible" : "pointer-events-none invisible opacity-0"}`}
       >
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
@@ -313,7 +313,7 @@ export default function EchipaPage() {
             aria-controls="echipa-mobile-menu"
             aria-haspopup="dialog"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px] lg:hidden"
+            className="hidden h-10 w-10 shrink-0 max-lg:flex flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />

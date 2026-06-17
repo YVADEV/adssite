@@ -64,11 +64,11 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
     let tl: gsap.core.Timeline | null = null;
 
     if (menuOpen) {
-      setMenuVisible(true);
       document.body.style.overflow = "hidden";
+      gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
+      gsap.set(menuItems, { opacity: 0, y: 40 });
+      setMenuVisible(true);
       frame = requestAnimationFrame(() => {
-        gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
-        gsap.set(menuItems, { opacity: 0, y: 40 });
         tl = gsap.timeline({ defaults: { ease } });
         tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
           .to(page, { opacity: 0.2, duration: 0.42, ease }, "<")
@@ -164,7 +164,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         aria-label="Meniu principal"
         aria-hidden={!menuVisible}
         id="mobile-menu"
-        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "visible" : "pointer-events-none invisible opacity-0"}`}
       >
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
           <div className="flex items-center justify-between">
@@ -334,7 +334,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               aria-controls="mobile-menu"
               aria-haspopup="dialog"
               onClick={() => setMenuOpen((prev) => !prev)}
-              className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px] lg:hidden"
+              className="relative z-10 hidden h-10 w-10 shrink-0 max-lg:flex flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px]"
             >
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />

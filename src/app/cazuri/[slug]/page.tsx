@@ -54,11 +54,7 @@ export default async function CaseDetailPage({ params }: Props) {
       />
       <main className="bg-black pb-20 pt-0 text-white">
         {/* Hero — full-bleed patient photo */}
-        <section
-          className={`relative w-full overflow-hidden bg-black ${
-            caz.slug === "dana" ? "h-[calc(100vh-40px)] min-h-[700px]" : "h-[calc(100vh-72px)] min-h-[620px]"
-          }`}
-        >
+        <section className="relative h-[calc(100vh-40px)] min-h-[700px] w-full overflow-hidden bg-black">
           <Image
             src={caz.heroImage}
             alt={titleLines.join(" ")}
@@ -67,7 +63,7 @@ export default async function CaseDetailPage({ params }: Props) {
             quality={100}
             unoptimized
             sizes="100vw"
-            className={caz.slug === "dana" ? "object-contain" : "object-cover"}
+            className="object-contain"
             style={{
               imageRendering: "auto",
               objectPosition: caz.heroObjectPosition ?? "center",
@@ -94,9 +90,9 @@ export default async function CaseDetailPage({ params }: Props) {
         {caz.storyImages.length > 0 && (
           <section className="mx-auto w-full max-w-[1680px] px-4 pt-6 md:px-8 md:pt-8 lg:px-12">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:gap-10">
-              {caz.storyImages.map((item) => (
+              {caz.storyImages.map((item, i) => (
                 <figure
-                  key={item.image.src}
+                  key={`story-${item.label}-${i}`}
                   className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-black"
                 >
                   <img
@@ -135,8 +131,8 @@ export default async function CaseDetailPage({ params }: Props) {
                 Povestea cazului
               </h2>
               <div className="mt-8 max-w-[820px] space-y-6 text-[16px] leading-[1.8] text-white">
-                {caz.paragraphs.map((p) => (
-                  <p key={p.slice(0, 48)}>{p}</p>
+                {caz.paragraphs.map((p, i) => (
+                  <p key={`paragraph-${i}`}>{p}</p>
                 ))}
               </div>
             </div>
@@ -158,11 +154,11 @@ export default async function CaseDetailPage({ params }: Props) {
             Medic responsabil de caz
           </h2>
           <div className="mt-8 grid grid-cols-1 items-center gap-8 rounded-[24px] border border-white/12 bg-white/[0.02] p-5 md:grid-cols-[280px_1fr] md:gap-10 md:p-8 lg:grid-cols-[320px_1fr]">
-            <article className="overflow-hidden rounded-[18px] border border-white/10 bg-[#111]">
+            <article className="overflow-hidden rounded-[18px] border border-white/10 bg-black">
               <img
                 src={caz.doctor.image.src}
                 alt={caz.doctor.name}
-                className="aspect-[4/5] w-full object-cover object-top"
+                className="aspect-[4/5] w-full object-contain object-top"
               />
             </article>
             <div>
@@ -214,9 +210,9 @@ export default async function CaseDetailPage({ params }: Props) {
             Before & After
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-10">
-            {caz.beforeAfterImages.map((item) => (
+            {caz.beforeAfterImages.map((item, i) => (
               <figure
-                key={item.image.src}
+                key={`before-after-${item.label}-${i}`}
                 className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-black"
               >
                 <img
@@ -241,7 +237,7 @@ export default async function CaseDetailPage({ params }: Props) {
               <br />
               <span className="text-white">before and after</span>
             </h2>
-            <Link href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-white">
+            <Link href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-black">
               Vezi toate
             </Link>
           </div>

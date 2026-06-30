@@ -7,6 +7,7 @@ import { CaseImage } from "@/components/cazuri/CaseImage";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { getCaseHrefForImage } from "@/config/cases";
+import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
@@ -26,10 +27,10 @@ const caseImages = [
 export default function CazuriPage() {
   const reduceMotion = useReducedMotion();
   const heroCases = [
-    { title: "Caz #1", role: "All-on-4 Straumann", image: cazA7408097.src },
-    { title: "Caz #2", role: "Reabilitare orală · zirconiu", image: danaHero.src },
-    { title: "Caz #3", role: "Estetică dentară", image: cazA7408137.src },
-    { title: "Caz #4", role: "Smile design", image: cazA7407944.src },
+    { title: "Caz #1", role: "All-on-4 Straumann", image: ceciliaHero.src, objectPosition: "center 42%" },
+    { title: "Caz #2", role: "Reabilitare orală · zirconiu", image: danaHero.src, objectPosition: "center 38%" },
+    { title: "Caz #3", role: "Estetică dentară", image: cazA7408137.src, objectPosition: "center 36%" },
+    { title: "Caz #4", role: "Smile design", image: cazA7407944.src, objectPosition: "center 36%" },
   ];
 
   return (
@@ -83,7 +84,7 @@ export default function CazuriPage() {
               hidden: {},
               visible: { transition: { delayChildren: 0.26, staggerChildren: 0.12 } },
             }}
-            className="relative z-[2] grid h-auto grid-cols-2 gap-[6px] lg:h-[680px] lg:w-full lg:max-w-[560px] lg:justify-self-end lg:grid-rows-2"
+            className="relative z-[2] grid h-auto grid-cols-2 gap-2 lg:h-[976px] lg:w-full lg:max-w-[700px] lg:justify-self-end lg:grid-rows-2"
           >
             {heroCases.map((item) => {
               const href = getCaseHrefForImage(item.image);
@@ -93,9 +94,16 @@ export default function CazuriPage() {
                   variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" }, visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } } }}
                   whileHover={reduceMotion ? {} : { y: -8, borderColor: "rgba(255,255,255,0.35)", boxShadow: "0 10px 26px rgba(255,255,255,0.12)" }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className={`group relative h-[225px] overflow-hidden rounded-[12px] border border-white/15 bg-[#111] lg:h-[337px]${href ? " cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60" : ""}`}
+                  className={`group relative h-[320px] overflow-hidden rounded-[12px] border border-white/15 bg-[#111] sm:h-[360px] lg:h-[480px]${href ? " cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60" : ""}`}
                 >
-                  <motion.img src={item.image} alt={item.title} className="h-full w-full object-cover object-top" whileHover={reduceMotion ? {} : { scale: 1.07 }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }} />
+                  <motion.img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover"
+                    style={{ objectPosition: item.objectPosition ?? "center 36%" }}
+                    whileHover={reduceMotion ? {} : { scale: 1.04 }}
+                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  />
                   {href ? (
                     <CaseClickOverlay compact label="Vezi cazul" />
                   ) : (
@@ -142,7 +150,7 @@ export default function CazuriPage() {
               <br />
               <span className="text-white">before and after</span>
             </h2>
-            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-white">
+            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-black">
               Vezi toate
             </a>
           </div>

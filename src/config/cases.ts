@@ -1,18 +1,29 @@
 import type { StaticImageData } from "next/image";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
+import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
+import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
+import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
+import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 import caz1Before from "@/assets/cazuri/caz1-before.png";
 import caz1Proteza from "@/assets/cazuri/caz1-proteza.png";
 import caz1After from "@/assets/cazuri/caz1-after.png";
+import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import danaHeroBlackBg from "@/assets/cazuri/dana-hero-black-bg.png";
 import danaBefore from "@/assets/cazuri/dana-before.png";
 import danaHug from "@/assets/cazuri/dana-hug.png";
-import andreeaParvuImage from "@/assets/cazuri/Clipuri cazuri/Echipa/Andreea.png";
+import andreeaParvuImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
 
 export type CaseDoctor = {
   name: string;
   role: string;
   image: StaticImageData;
+};
+
+export const DEFAULT_CASE_DOCTOR: CaseDoctor = {
+  name: "Dr. Andreea Pârvu",
+  role: "Protetică dentară",
+  image: andreeaParvuImage,
 };
 
 export type CaseStoryImage = {
@@ -45,6 +56,21 @@ export type CaseStudy = {
   seoDescription: string;
 };
 
+function storyGalleryFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
+  return [
+    { image, label: "Before", alt: `${name} — situație inițială`, objectPosition: "center top" },
+    { image, label: "În clinică", alt: `${name} — documentare în clinică`, objectPosition: "center center" },
+    { image, label: "After", alt: `${name} — rezultat final`, objectPosition: "center 36%" },
+  ];
+}
+
+function beforeAfterFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
+  return [
+    { image, label: "Before", alt: `${name} — înainte de tratament`, objectPosition: "center top" },
+    { image, label: "After", alt: `${name} — după tratament`, objectPosition: "center 36%" },
+  ];
+}
+
 export const CASE_STUDIES: Record<string, CaseStudy> = {
   implantologie: {
     slug: "implantologie",
@@ -54,8 +80,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     category: "All-on-4 Straumann",
     caseNumber: "Caz #1",
     patientName: "Cecilia",
-    heroImage: cazA7408097,
-    thumbnailSrc: cazA7408097.src,
+    heroImage: ceciliaHero,
+    heroObjectPosition: "center center",
+    thumbnailSrc: ceciliaHero.src,
     storyImages: [
       { image: caz1Before, label: "Before", alt: "Situație inițială — înainte de tratament", objectPosition: "center center" },
       { image: caz1Proteza, label: "Proteză", alt: "Lucrare protetică All-on-4 Straumann", objectPosition: "center center" },
@@ -86,11 +113,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       { label: "Abordare", value: "Minim invazivă, timp optim" },
       { label: "Rezultat", value: "Funcție, estetică și confort" },
     ],
-    doctor: {
-      name: "Dr. Andreea Pârvu",
-      role: "Stomatologie generală",
-      image: andreeaParvuImage,
-    },
+    doctor: DEFAULT_CASE_DOCTOR,
     seoDescription:
       "Caz #1 Alverna Dental Studio: reabilitare totală All-on-4 Straumann, compozit pe titan. Zâmbet reconstruit, încredere redescoperită — Dr. Andreea Pârvu.",
   },
@@ -154,13 +177,165 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       { label: "Chirurgie", value: "Gingivoplastii parodontale" },
       { label: "Laborator", value: "Alverna Dental Studio" },
     ],
-    doctor: {
-      name: "Dr. Andreea Pârvu",
-      role: "Protetică dentară",
-      image: andreeaParvuImage,
-    },
+    doctor: DEFAULT_CASE_DOCTOR,
     seoDescription:
       "Reabilitare orală totală prin gingivoplastii și restaurări integral din zirconiu, realizată în cadrul Alverna Dental Studio, cu sprijinul laboratorului dentar propriu, pentru un rezultat estetic și funcțional de înaltă precizie.",
+  },
+  "estetica-dentara": {
+    slug: "estetica-dentara",
+    path: "/cazuri/estetica-dentara/",
+    title: "Estetică rafinată.\nZâmbet echilibrat.",
+    subtitle: "Tratamente estetice dentare pentru armonie, culoare și proporții naturale",
+    category: "Estetică dentară",
+    caseNumber: "Caz #3",
+    heroImage: cazA7408137,
+    heroObjectPosition: "center center",
+    thumbnailSrc: cazA7408137.src,
+    storyImages: storyGalleryFromHero(cazA7408137, "Caz estetică dentară"),
+    intro:
+      "Acest caz de estetică dentară a fost planificat și realizat în Alverna Dental Studio, cu accent pe proporții naturale, culoare echilibrată și integrare armonioasă în fizionomia pacientului.",
+    paragraphs: [
+      "Acest caz de estetică dentară a fost planificat și realizat în Alverna Dental Studio, cu accent pe proporții naturale, culoare echilibrată și integrare armonioasă în fizionomia pacientului.",
+      "Pacientul s-a prezentat cu imperfecțiuni estetice la nivelul dinților frontali, inclusiv disproporții de formă, nuanțe inegale și detalii care afectau armonia zâmbetului. În urma evaluării clinice și a analizei fotografice, a fost stabilit un plan orientat spre un rezultat natural, discret și durabil.",
+      "Tratamentul a inclus prepararea minim invazivă, selecția atentă a nuanțelor și realizarea restaurărilor cu materiale estetice de înaltă calitate. Fiecare detaliu a fost adaptat trăsăturilor faciale și conturului buzelor, pentru un zâmbet coerent și plăcut vizual.",
+      "Etapele protetice au fost coordonate în laboratorul propriu Alverna Dental Studio, ceea ce a permis control riguros asupra formei, texturii și finisajului lucrărilor finale.",
+      "Rezultatul obținut redă un zâmbet echilibrat, cu aspect natural și integrare estetică excelentă, respectând atât cerințele pacientului, cât și standardele clinice ale echipei noastre.",
+    ],
+    closingQuote:
+      "Rezultatul final este un zâmbet echilibrat, cu estetică naturală și integrare armonioasă în contextul facial al pacientului.",
+    beforeAfterImages: beforeAfterFromHero(cazA7408137, "Estetică dentară"),
+    treatmentSteps: [
+      { label: "Evaluare estetică", detail: "Analiză clinică și fotografică pentru stabilirea obiectivelor de formă, culoare și proporție." },
+      { label: "Plan personalizat", detail: "Definirea etapelor de tratament și a materialelor potrivite pentru un rezultat natural." },
+      { label: "Restaurări estetice", detail: "Realizarea lucrărilor cu atenție la detaliu, textură și nuanță, adaptate zâmbetului pacientului." },
+      { label: "Control final", detail: "Verificare ocluzală și estetică, cu ajustări pentru confort și durabilitate pe termen lung." },
+    ],
+    quickFacts: [
+      { label: "Tip caz", value: "Estetică dentară" },
+      { label: "Obiectiv", value: "Armonie și naturalețe" },
+      { label: "Abordare", value: "Minim invazivă" },
+      { label: "Laborator", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #3 Alverna Dental Studio: tratamente estetice dentare pentru armonie, culoare și proporții naturale — documentare clinică completă.",
+  },
+  "smile-design": {
+    slug: "smile-design",
+    path: "/cazuri/smile-design/",
+    title: "Smile design.\nArmonie regândită.",
+    subtitle: "Design de zâmbet personalizat pentru proporții, simetrie și expresie naturală",
+    category: "Smile design",
+    caseNumber: "Caz #4",
+    heroImage: cazA7407944,
+    heroObjectPosition: "center center",
+    thumbnailSrc: cazA7407944.src,
+    storyImages: storyGalleryFromHero(cazA7407944, "Caz smile design"),
+    intro:
+      "Acest caz de smile design a fost abordat în Alverna Dental Studio printr-o planificare estetică detaliată, orientată către un zâmbet echilibrat, funcțional și natural.",
+    paragraphs: [
+      "Acest caz de smile design a fost abordat în Alverna Dental Studio printr-o planificare estetică detaliată, orientată către un zâmbet echilibrat, funcțional și natural.",
+      "Pacientul a solicitat îmbunătățirea aspectului zâmbetului, cu focus pe simetrie, proporții dento-gingivale și expresie facială. Evaluarea inițială a inclus analiza profilului, a liniei zâmbetului și a raportului dintre dinți și gingie.",
+      "Planul de tratament a fost construit etapizat, combinând intervenții estetice și protetice pentru a obține un rezultat predictibil. Proporțiile au fost validate înainte de etapa finală, pentru a asigura coerența vizuală a zâmbetului.",
+      "Restaurările finale au fost realizate cu materiale premium, personalizate în laboratorul propriu, sub coordonarea directă a echipei medicale și tehnice.",
+      "Rezultatul este un zâmbet reconstruit armonios, cu integrare naturală în trăsăturile pacientului și îmbunătățire clară a încrederii în apariție.",
+    ],
+    closingQuote:
+      "Smile design-ul a transformat nu doar aspectul dinților, ci întreaga expresie a zâmbetului — natural, echilibrat și autentic.",
+    beforeAfterImages: beforeAfterFromHero(cazA7407944, "Smile design"),
+    treatmentSteps: [
+      { label: "Analiză facială", detail: "Evaluare a proporțiilor, simetriei și liniei zâmbetului în contextul trăsăturilor faciale." },
+      { label: "Design digital", detail: "Planificare estetică a formei, dimensiunii și poziției dinților pentru un rezultat predictibil." },
+      { label: "Etape clinice", detail: "Intervenții coordonate pentru preparare, gingie și restaurări, cu verificări intermediare." },
+      { label: "Finalizare", detail: "Lucrări protetice personalizate, ajustate pentru funcție, confort și estetică de lungă durată." },
+    ],
+    quickFacts: [
+      { label: "Tip caz", value: "Smile design" },
+      { label: "Focus", value: "Simetrie și proporții" },
+      { label: "Planificare", value: "Personalizată" },
+      { label: "Laborator", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #4 Alverna Dental Studio: smile design personalizat pentru proporții, simetrie și expresie naturală — documentare clinică completă.",
+  },
+  "reabilitare-protetica": {
+    slug: "reabilitare-protetica",
+    path: "/cazuri/reabilitare-protetica/",
+    title: "Funcție restabilită.\nEstetică integrată.",
+    subtitle: "Reabilitare protetică complexă pentru confort masticator și aspect natural",
+    category: "Protetică dentară",
+    caseNumber: "Caz #5",
+    heroImage: cazA7407760,
+    heroObjectPosition: "center center",
+    thumbnailSrc: cazA7407760.src,
+    storyImages: storyGalleryFromHero(cazA7407760, "Caz reabilitare protetică"),
+    intro:
+      "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată și predictibilă.",
+    paragraphs: [
+      "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată și predictibilă.",
+      "Pacientul s-a prezentat cu pierderi dentare și restaurări vechi care compromiteau atât estetica, cât și confortul la masticație. Evaluarea clinică și radiologică a permis stabilirea unui plan etapizat, orientat spre stabilitate și durabilitate.",
+      "Tratamentul a inclus pregătirea structurilor dentare, selecția materialelor potrivite și realizarea lucrărilor protetice cu atenție la ocluzie și integrare gingivală.",
+      "Colaborarea directă între medic și tehnicianul dentar, în laboratorul propriu, a asigurat control constant asupra fiecărei etape și un rezultat final coerent.",
+      "La finalul tratamentului, pacientul a obținut un zâmbet funcțional, confortabil și estetic, cu îmbunătățire clară a calității vieții de zi cu zi.",
+    ],
+    closingQuote:
+      "Rezultatul final combină funcție, confort și estetică — un zâmbet reconstruit cu grijă, pas cu pas.",
+    beforeAfterImages: beforeAfterFromHero(cazA7407760, "Reabilitare protetică"),
+    treatmentSteps: [
+      { label: "Diagnostic", detail: "Evaluare completă a situației clinice, cu stabilirea priorităților funcționale și estetice." },
+      { label: "Plan protetic", detail: "Definirea etapelor de tratament și a soluțiilor materiale pentru durabilitate." },
+      { label: "Lucrări intermediare", detail: "Etape clinice progresive, cu verificări ale ocluziei și confortului pacientului." },
+      { label: "Proteză finală", detail: "Restaurări finale personalizate, integrate armonios în zâmbet și fizionomie." },
+    ],
+    quickFacts: [
+      { label: "Tip caz", value: "Reabilitare protetică" },
+      { label: "Obiectiv", value: "Funcție și estetică" },
+      { label: "Abordare", value: "Etapizată, predictibilă" },
+      { label: "Laborator", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #5 Alverna Dental Studio: reabilitare protetică complexă pentru confort masticator și aspect natural — documentare clinică completă.",
+  },
+  "reabilitare-complexa": {
+    slug: "reabilitare-complexa",
+    path: "/cazuri/reabilitare-complexa/",
+    title: "Transformare completă.\nÎncredere regăsită.",
+    subtitle: "Reabilitare orală complexă cu abordare multidisciplinară",
+    category: "Reabilitare complexă",
+    caseNumber: "Caz #6",
+    heroImage: cazA7408160,
+    heroObjectPosition: "center center",
+    thumbnailSrc: cazA7408160.src,
+    storyImages: storyGalleryFromHero(cazA7408160, "Caz reabilitare complexă"),
+    intro:
+      "Acest caz complex de reabilitare orală a fost coordonat în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
+    paragraphs: [
+      "Acest caz complex de reabilitare orală a fost coordonat în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
+      "Pacientul s-a prezentat cu multiple compromitere dentară, afectând atât aspectul zâmbetului, cât și funcția zilnică. După evaluarea completă, echipa medicală a construit un plan personalizat, cu etape clare și obiective măsurabile.",
+      "Tratamentul a inclus intervenții clinice coordonate, cu atenție la proporții, ocluzie și confortul pacientului pe parcursul întregului proces.",
+      "Lucrările finale au fost realizate în laboratorul propriu, cu personalizare atentă pentru fiecare detaliu estetic și funcțional.",
+      "Rezultatul documentat reflectă o transformare completă: zâmbet reabilitat, funcție îmbunătățită și o experiență clinică orientată spre siguranță și predictibilitate.",
+    ],
+    closingQuote:
+      "Un caz complex transformat în rezultat clar, stabil și natural — prin planificare riguroasă și execuție atentă.",
+    beforeAfterImages: beforeAfterFromHero(cazA7408160, "Reabilitare complexă"),
+    treatmentSteps: [
+      { label: "Evaluare multidisciplinară", detail: "Analiză clinică completă și stabilirea obiectivelor funcționale și estetice." },
+      { label: "Plan etapizat", detail: "Secvențiere clară a intervențiilor, cu verificări intermediare la fiecare etapă." },
+      { label: "Tratamente coordonate", detail: "Intervenții estetice și protetice integrate într-un flux clinic unitar." },
+      { label: "Rezultat final", detail: "Restaurări personalizate, verificate clinic pentru funcție, confort și estetică." },
+    ],
+    quickFacts: [
+      { label: "Tip caz", value: "Reabilitare complexă" },
+      { label: "Abordare", value: "Multidisciplinară" },
+      { label: "Focus", value: "Funcție și estetică" },
+      { label: "Laborator", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #6 Alverna Dental Studio: reabilitare orală complexă cu abordare multidisciplinară — documentare clinică completă.",
   },
 };
 

@@ -1179,27 +1179,22 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section data-anim="section" className="bg-[#f5f5f5]">
-        <div className="mx-auto w-full max-w-[1680px] px-5 pb-[120px] pt-[120px] md:px-10 lg:px-[96px]">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:flex lg:items-start lg:justify-between lg:gap-16">
+      <section data-anim="section" className="px-5 py-16 md:px-10 md:py-20 lg:px-[96px]">
+        <div className="mx-auto w-full max-w-[1680px]">
+          <div className="grid grid-cols-2 gap-4 rounded-[20px] border border-white/12 bg-[#111111] p-6 ads-mission-glow md:grid-cols-4 md:gap-0 md:divide-x md:divide-white/10 md:p-10">
             {[
               ["15", "Ani de activitate"],
               ["9000", "Pacienti"],
               ["3000", "Pacienti internationali"],
               ["15 de ani", "Medici cu peste 15 ani de experienta"],
             ].map(([n, t]) => (
-              <article key={n} className="text-center md:text-left">
-                <h3 className="text-[48px] font-semibold leading-none text-white md:text-[56px] lg:text-[64px]">{n}</h3>
-                <p className="mx-auto mt-2 max-w-[120px] text-[12px] text-white md:mx-0">{t}</p>
+              <article key={n} className="px-2 text-center md:px-6 md:text-left">
+                <h3 className="text-[44px] font-bold leading-none tracking-[-0.04em] text-white md:text-[56px] lg:text-[72px]">
+                  {n}
+                </h3>
+                <p className="mx-auto mt-3 max-w-[150px] text-[12px] leading-[1.45] text-white/75 md:mx-0 md:text-[13px]">{t}</p>
               </article>
             ))}
-          </div>
-
-          <div className="mt-10 flex flex-col gap-6 text-center md:mt-12 md:grid md:grid-cols-2 md:items-start md:text-left lg:mt-10 lg:flex lg:flex-row lg:items-start lg:justify-between">
-            <p className="mt-[64px] text-[12px] text-white">@alvernadental</p>
-            <p className="mx-auto max-w-[520px] text-[14px] leading-[1.6] text-white md:mx-0">
-              O vizită într-un cabinet stomatologic Cluj, oricât de modern și bine echipat ar fi, nu aduce rezultatele dorite fără o echipă la calitate superioară.
-            </p>
           </div>
         </div>
       </section>
@@ -1231,21 +1226,21 @@ export default function HomePageClient() {
             <p className="absolute bottom-[24px] right-[40px] z-[40] text-[14px] text-white">We do it all.</p>
           </article>
 
-          <article className="relative z-10 h-[560px] rounded-[16px] bg-white p-[44px]">
-            <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.09),transparent_55%)]" />
+          <article className="relative z-10 h-[560px] rounded-[16px] bg-[#0A0A0A] p-[44px]">
+            <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
             <div className="relative z-10 flex h-full flex-col">
               <p className="text-[14px] text-white">Clinica dentara cluj</p>
               <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
                 {"Puterea zambetului\ncare inspira incredere"}
               </h3>
               <div className="mt-8">
-                <p className="text-[13px] text-white">Cabinet stomatologic cluj</p>
+                <p className="text-[13px] text-white/80">Cabinet stomatologic cluj</p>
                 <p className="mt-1 text-[40px] font-semibold text-white">
-                  4.8 <span className="text-[22px] text-white">★★★★★</span>
+                  4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
                 </p>
               </div>
-              <div className="mt-auto rounded-[12px] bg-[#f7f7f7] p-4">
-                <p className="text-[16px] leading-[1.3] text-white">★★★★★</p>
+              <div className="mt-auto rounded-[12px] border border-white/10 bg-[#111111] p-4">
+                <p className="text-[16px] leading-[1.3] text-[#f2d16b]">★★★★★</p>
                 <div className="mt-3 flex items-center gap-2">
                   <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
                   <span className="text-[12px] text-white">Ion Ionut</span>
@@ -1255,18 +1250,18 @@ export default function HomePageClient() {
           </article>
 
           <div className="relative z-10 flex h-[560px] flex-col gap-[6px]">
-            <article className="flex h-[275px] flex-col items-center justify-center rounded-[16px] bg-white px-6 text-center">
+            <article className="flex h-[275px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 text-center">
               <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
-                <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-white text-[32px] font-semibold text-white">100</div>
+                <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111] text-[32px] font-semibold text-white">100</div>
               </div>
               <p className="mt-4 text-[16px] font-semibold text-white">Scanare 3D</p>
-              <p className="mt-1 text-[12px] text-white">We prioritize performance without sacrificing visual appeal or functionality.</p>
+              <p className="mt-1 text-[12px] text-white/75">We prioritize performance without sacrificing visual appeal or functionality.</p>
             </article>
 
-            <article className="h-[275px] rounded-[16px] bg-white p-6">
+            <article className="h-[275px] rounded-[16px] bg-[#0A0A0A] p-6">
               <h3 className="text-[56px] font-bold leading-none text-white">9000</h3>
-              <p className="mt-2 text-[14px] text-white">Pacienti multumiti</p>
-              <p className="mt-2 text-[16px] text-white">★★★★★</p>
+              <p className="mt-2 text-[14px] text-white/80">Pacienti multumiti</p>
+              <p className="mt-2 text-[16px] text-[#f2d16b]">★★★★★</p>
               <img src={cazA7407760.src} alt="" className="mt-4 h-[110px] w-full rounded-[10px] object-cover" />
             </article>
           </div>
@@ -1352,15 +1347,15 @@ export default function HomePageClient() {
       </section>
 
       <section id="echipa" data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
-        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_1fr_440px] md:px-8 lg:px-[96px]">
-          <article data-theme="light" className="relative h-[560px] rounded-[16px] bg-white p-[32px] text-white">
-            <p className="text-[12px] text-white">@alvernaofficial</p>
+        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
+          <article data-theme="light" className="relative flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-[32px] text-white md:rounded-l-[16px] md:rounded-r-none">
+            <p className="text-[12px] text-white/80">@alvernaofficial</p>
             <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-white">Puterea zambetului care inspira incredere</h3>
-            <p className="mt-4 text-[14px] text-white">Conversion Rate Improvement:</p>
+            <p className="mt-4 text-[14px] text-white/80">Conversion Rate Improvement:</p>
             <p className="mt-1 text-[40px] font-semibold leading-none text-white">4.2% &gt; 5.9%</p>
-            <div className="mt-auto rounded-[12px] bg-[#f7f7f7] p-4">
-              <p className="text-[16px] leading-[1.3] text-white">★★★★★</p>
-              <p className="mt-2 text-[13px] text-white">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
+            <div className="absolute bottom-[24px] left-[32px] right-[32px] rounded-[12px] border border-white/10 bg-[#111111] p-4">
+              <p className="text-[16px] leading-[1.3] text-[#f2d16b]">★★★★★</p>
+              <p className="mt-2 text-[13px] text-white/85">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
               <div className="mt-3 flex items-center gap-2">
                 <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
                 <span className="text-[12px] text-white">Agata Sril</span>
@@ -1368,11 +1363,11 @@ export default function HomePageClient() {
             </div>
           </article>
 
-          <article className="relative h-[560px] overflow-hidden rounded-[16px] bg-[#0A0A0A]">
+          <article className="relative h-[560px] w-full overflow-hidden rounded-[16px] bg-[#0A0A0A] md:rounded-none">
             <img src={cazA7407760.src} alt="" className="h-full w-full object-cover opacity-90" />
           </article>
 
-          <article className="relative isolate h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] p-[40px]">
+          <article className="relative isolate h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] p-[40px] md:rounded-l-none md:rounded-r-[24px]">
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
             </div>

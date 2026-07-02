@@ -6,7 +6,7 @@ import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
 import { CaseImage } from "@/components/cazuri/CaseImage";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
-import { getCaseHrefForImage } from "@/config/cases";
+import { CASE_STUDIES, getCaseHrefForImage } from "@/config/cases";
 import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
@@ -27,10 +27,34 @@ const caseImages = [
 export default function CazuriPage() {
   const reduceMotion = useReducedMotion();
   const heroCases = [
-    { title: "Caz #1", role: "All-on-4 Straumann", image: ceciliaHero.src, objectPosition: "center 42%" },
-    { title: "Caz #2", role: "Reabilitare orală · zirconiu", image: danaHero.src, objectPosition: "center 38%" },
-    { title: "Caz #3", role: "Estetică dentară", image: cazA7408137.src, objectPosition: "center 36%" },
-    { title: "Caz #4", role: "Smile design", image: cazA7407944.src, objectPosition: "center 36%" },
+    {
+      title: "Caz #1",
+      role: "All-on-4 Straumann",
+      image: ceciliaHero.src,
+      href: CASE_STUDIES.implantologie.path,
+      objectPosition: "center 42%",
+    },
+    {
+      title: "Caz #2",
+      role: "Reabilitare orală · zirconiu",
+      image: danaHero.src,
+      href: CASE_STUDIES.dana.path,
+      objectPosition: "center 38%",
+    },
+    {
+      title: "Caz #3",
+      role: "Estetică dentară",
+      image: cazA7408137.src,
+      href: CASE_STUDIES["estetica-dentara"].path,
+      objectPosition: "center 36%",
+    },
+    {
+      title: "Caz #4",
+      role: "Smile design",
+      image: cazA7407944.src,
+      href: CASE_STUDIES["smile-design"].path,
+      objectPosition: "center 36%",
+    },
   ];
 
   return (
@@ -87,7 +111,7 @@ export default function CazuriPage() {
             className="relative z-[2] grid h-auto grid-cols-2 gap-2 lg:h-[976px] lg:w-full lg:max-w-[700px] lg:justify-self-end lg:grid-rows-2"
           >
             {heroCases.map((item) => {
-              const href = getCaseHrefForImage(item.image);
+              const href = item.href ?? getCaseHrefForImage(item.image);
               const card = (
                 <motion.article
                   key={item.title}
@@ -105,15 +129,26 @@ export default function CazuriPage() {
                     transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                   />
                   {href ? (
-                    <CaseClickOverlay compact label="Vezi cazul" />
+                    <>
+                      <CaseClickOverlay compact label="Vezi cazul" />
+                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white transition-opacity duration-400 group-hover:opacity-0">
+                        {item.role}
+                      </p>
+                      <div className="pointer-events-none absolute inset-x-2 bottom-2 z-[2] flex items-center justify-between gap-2">
+                        <p className="text-[15px] font-bold text-white">{item.title}</p>
+                        <span className="inline-flex shrink-0 items-center rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-black shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
+                          Vezi cazul →
+                        </span>
+                      </div>
+                    </>
                   ) : (
                     <>
                       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
                       <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
+                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white">{item.role}</p>
+                      <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[15px] font-bold text-white">{item.title}</p>
                     </>
                   )}
-                  <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white transition-opacity duration-400 group-hover:opacity-0">{item.role}</p>
-                  <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[15px] font-bold text-white transition-all duration-400 group-hover:translate-y-1 group-hover:opacity-0">{item.title}</p>
                 </motion.article>
               );
 

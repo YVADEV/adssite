@@ -339,9 +339,12 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
   },
 };
 
-/** Maps thumbnail image src → case slug for clickable images site-wide. */
+/** Maps image src → case slug for clickable images site-wide. */
 export const IMAGE_TO_CASE_SLUG: Record<string, string> = Object.fromEntries(
-  Object.values(CASE_STUDIES).map((c) => [c.thumbnailSrc, c.slug]),
+  Object.values(CASE_STUDIES).flatMap((c) => [
+    [c.thumbnailSrc, c.slug],
+    [c.heroImage.src, c.slug],
+  ]).concat([[cazA7408097.src, "implantologie"]]),
 );
 
 export function getCaseHrefForImage(src: string): string | null {

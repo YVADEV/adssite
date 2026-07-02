@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { CaseTeamBanner } from "@/components/cazuri/CaseTeamBanner";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
 import { CASE_STUDIES, getCaseStudy } from "@/config/cases";
@@ -147,39 +148,7 @@ export default async function CaseDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Doctor */}
-        <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
-          <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white">Echipa medicală</p>
-          <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
-            Medic responsabil de caz
-          </h2>
-          <div className="mt-8 grid grid-cols-1 items-center gap-8 rounded-[24px] border border-white/12 bg-white/[0.02] p-5 md:grid-cols-[280px_1fr] md:gap-10 md:p-8 lg:grid-cols-[320px_1fr]">
-            <article className="overflow-hidden rounded-[18px] border border-white/10 bg-black">
-              <img
-                src={caz.doctor.image.src}
-                alt={caz.doctor.name}
-                className="aspect-[4/5] w-full object-contain object-top"
-              />
-            </article>
-            <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-white">Stomatologie · Cluj-Napoca</p>
-              <h3 className="mt-3 text-[32px] font-bold leading-[0.95] tracking-[-0.03em] text-white md:text-[40px]">
-                {caz.doctor.name}
-              </h3>
-              <p className="mt-2 text-[15px] font-medium text-white">{caz.doctor.role}</p>
-              <p className="mt-6 max-w-[560px] text-[16px] leading-[1.75] text-white">
-                {caz.doctor.name} a coordonat planul de tratament, de la evaluarea inițială până la proteza finală,
-                asigurând o abordare atentă, predictibilă și orientată spre confortul pacientei.
-              </p>
-              <Link
-                href="/echipa/"
-                className="mt-8 inline-flex h-[42px] items-center rounded-full border border-white/25 px-5 text-[13px] font-semibold text-white transition duration-300 hover:border-white/45 hover:bg-white/5"
-              >
-                Vezi echipa medicală
-              </Link>
-            </div>
-          </div>
-        </section>
+        <CaseTeamBanner />
 
         {/* Treatment steps */}
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">

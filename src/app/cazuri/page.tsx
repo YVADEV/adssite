@@ -10,7 +10,7 @@ import { CASE_STUDIES, getCaseHrefForImage } from "@/config/cases";
 import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
-import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
+import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
@@ -18,7 +18,7 @@ import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 const caseImages = [
   cazA7408097.src,
   danaHero.src,
-  cazA7408137.src,
+  aureliaHero.src,
   cazA7407944.src,
   cazA7407760.src,
   cazA7408160.src,
@@ -44,7 +44,7 @@ export default function CazuriPage() {
     {
       title: "Caz #3",
       role: "Estetică dentară",
-      image: cazA7408137.src,
+      image: aureliaHero.src,
       href: CASE_STUDIES["estetica-dentara"].path,
       objectPosition: "center 36%",
     },

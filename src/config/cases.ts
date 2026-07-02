@@ -1,6 +1,7 @@
 import type { StaticImageData } from "next/image";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
-import cazA7408137 from "@/assets/cazuri/A7408137 2.png";
+import aureliaBefore from "@/assets/cazuri/aurelia-before.png";
+import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
@@ -9,7 +10,6 @@ import caz1Proteza from "@/assets/cazuri/caz1-proteza.png";
 import caz1After from "@/assets/cazuri/caz1-after.png";
 import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import danaHero from "@/assets/cazuri/dana-hero.png";
-import danaHeroBlackBg from "@/assets/cazuri/dana-hero-black-bg.png";
 import danaBefore from "@/assets/cazuri/dana-before.png";
 import danaHug from "@/assets/cazuri/dana-hug.png";
 import andreeaParvuImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
@@ -125,7 +125,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     category: "Reabilitare orală",
     caseNumber: "Caz #2",
     patientName: "Dana",
-    heroImage: danaHeroBlackBg,
+    heroImage: danaHero,
     heroObjectPosition: "center center",
     thumbnailSrc: danaHero.src,
     storyImages: [
@@ -188,22 +188,29 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     subtitle: "Tratamente estetice dentare pentru armonie, culoare și proporții naturale",
     category: "Estetică dentară",
     caseNumber: "Caz #3",
-    heroImage: cazA7408137,
+    patientName: "Aurelia",
+    heroImage: aureliaHero,
     heroObjectPosition: "center center",
-    thumbnailSrc: cazA7408137.src,
-    storyImages: storyGalleryFromHero(cazA7408137, "Caz estetică dentară"),
+    thumbnailSrc: aureliaHero.src,
+    storyImages: [
+      { image: aureliaBefore, label: "Before", alt: "Aurelia — situație inițială", objectPosition: "center center" },
+      { image: aureliaHero, label: "After", alt: "Aurelia — rezultat final", objectPosition: "center 36%" },
+    ],
     intro:
       "Acest caz de estetică dentară a fost planificat și realizat în Alverna Dental Studio, cu accent pe proporții naturale, culoare echilibrată și integrare armonioasă în fizionomia pacientului.",
     paragraphs: [
       "Acest caz de estetică dentară a fost planificat și realizat în Alverna Dental Studio, cu accent pe proporții naturale, culoare echilibrată și integrare armonioasă în fizionomia pacientului.",
-      "Pacientul s-a prezentat cu imperfecțiuni estetice la nivelul dinților frontali, inclusiv disproporții de formă, nuanțe inegale și detalii care afectau armonia zâmbetului. În urma evaluării clinice și a analizei fotografice, a fost stabilit un plan orientat spre un rezultat natural, discret și durabil.",
+      "Aurelia s-a prezentat cu imperfecțiuni estetice la nivelul dinților frontali, inclusiv disproporții de formă, nuanțe inegale și detalii care afectau armonia zâmbetului. În urma evaluării clinice și a analizei fotografice, a fost stabilit un plan orientat spre un rezultat natural, discret și durabil.",
       "Tratamentul a inclus prepararea minim invazivă, selecția atentă a nuanțelor și realizarea restaurărilor cu materiale estetice de înaltă calitate. Fiecare detaliu a fost adaptat trăsăturilor faciale și conturului buzelor, pentru un zâmbet coerent și plăcut vizual.",
       "Etapele protetice au fost coordonate în laboratorul propriu Alverna Dental Studio, ceea ce a permis control riguros asupra formei, texturii și finisajului lucrărilor finale.",
       "Rezultatul obținut redă un zâmbet echilibrat, cu aspect natural și integrare estetică excelentă, respectând atât cerințele pacientului, cât și standardele clinice ale echipei noastre.",
     ],
     closingQuote:
       "Rezultatul final este un zâmbet echilibrat, cu estetică naturală și integrare armonioasă în contextul facial al pacientului.",
-    beforeAfterImages: beforeAfterFromHero(cazA7408137, "Estetică dentară"),
+    beforeAfterImages: [
+      { image: aureliaBefore, label: "Before", alt: "Aurelia — înainte de tratament", objectPosition: "center center" },
+      { image: aureliaHero, label: "After", alt: "Aurelia — după tratament", objectPosition: "center 36%" },
+    ],
     treatmentSteps: [
       { label: "Evaluare estetică", detail: "Analiză clinică și fotografică pentru stabilirea obiectivelor de formă, culoare și proporție." },
       { label: "Plan personalizat", detail: "Definirea etapelor de tratament și a materialelor potrivite pentru un rezultat natural." },

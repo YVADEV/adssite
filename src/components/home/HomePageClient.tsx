@@ -18,7 +18,7 @@ import heroCardThumb from "@/assets/vladuta lupau.png";
 import vdScaun from "@/assets/VDscaun.png";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import teamBannerImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
-import adsPaulaImage from "@/assets/cazuri/Banner/adsPaula.png";
+import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.png";
 import appPromoImage from "@/assets/cazuri/Banner/app.png";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
@@ -1307,8 +1307,8 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="echipa" data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
-        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
+      <section id="echipa" data-anim="section" className="overflow-visible bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
+        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] overflow-visible px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
           <article
             data-theme="light"
             className="relative order-3 flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-[32px] text-white md:order-1 md:rounded-l-[16px] md:rounded-r-none"
@@ -1327,34 +1327,30 @@ export default function HomePageClient() {
             </div>
           </article>
 
-          <article className="order-2 flex min-h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-5 text-white md:order-2 md:h-[560px] md:rounded-none md:px-6 md:py-6">
-            <div className="order-2 shrink-0 md:order-1">
-              <p className="text-[16px]">Echipa</p>
-            </div>
-
-            <div className="relative order-1 my-0 min-h-[240px] flex-1 overflow-hidden rounded-[12px] bg-black md:order-2 md:my-4 md:min-h-0">
-              <img
-                src={labBannerImage.src}
-                alt="Lucrări protetice din laboratorul dentar Alverna"
-                className="h-full w-full object-contain object-center p-2 md:p-3"
-              />
-            </div>
-
-            <div className="order-3 shrink-0 md:order-3">
-              <p className="text-center text-[22px] font-semibold leading-[1.15] md:text-left">Laborator dentar</p>
-              <div className="mt-3 flex items-center justify-end text-[16px]">
-                <span>We do it all.</span>
-              </div>
-            </div>
+          <article className="order-2 relative h-[280px] overflow-hidden rounded-[16px] bg-[#0A0A0A] md:order-2 md:h-[560px] md:rounded-none">
+            <img
+              src={labBannerImage.src}
+              alt="Lucrări protetice din laboratorul dentar Alverna"
+              className="h-full w-full object-contain object-center p-3 md:p-6"
+            />
           </article>
 
-          <article className="relative isolate order-1 z-20 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] md:order-3 md:rounded-l-none md:rounded-r-[24px]">
-            <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A]" aria-hidden />
+          <article className="relative isolate order-1 z-20 h-[560px] overflow-visible rounded-[24px] bg-transparent p-[32px] md:order-3 md:rounded-l-none md:rounded-r-[24px] md:p-[40px]">
+            <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A] md:rounded-l-none md:rounded-r-[24px]">
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
+            </div>
+            <div className="relative z-[40] text-[16px] text-white">
+              <p>Echipa</p>
+            </div>
             <img
-              src={adsPaulaImage.src}
+              src={labDoctorBannerImage.src}
               alt="Echipa Alverna Dental Studio"
-              className="pointer-events-none absolute bottom-0 right-[-35px] z-[20] h-[660px] w-auto object-contain"
+              className="pointer-events-none absolute bottom-0 right-[-35px] z-[20] h-[660px] w-auto object-contain mix-blend-lighten"
             />
+            <p className="absolute bottom-[52px] left-[32px] z-[40] max-w-[220px] text-[22px] font-semibold leading-[1.15] text-white md:bottom-[56px] md:left-[36px]">
+              Laborator dentar
+            </p>
+            <p className="absolute bottom-[24px] right-[32px] z-[40] text-[16px] text-white md:right-[40px]">We do it all.</p>
           </article>
         </div>
       </section>

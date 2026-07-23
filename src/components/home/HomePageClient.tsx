@@ -1348,12 +1348,12 @@ export default function HomePageClient() {
             </div>
           </article>
 
-          <article className="relative isolate order-1 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] md:order-3 md:rounded-l-none md:rounded-r-[24px]">
-            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[24px] bg-[#0A0A0A]" aria-hidden />
+          <article className="relative isolate order-1 z-20 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] md:order-3 md:rounded-l-none md:rounded-r-[24px]">
+            <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A]" aria-hidden />
             <img
               src={adsPaulaImage.src}
               alt="Echipa Alverna Dental Studio"
-              className="pointer-events-none absolute bottom-0 left-1/2 z-[20] h-[520px] w-auto max-w-none -translate-x-[42%] object-contain object-bottom sm:h-[580px] sm:-translate-x-[38%] md:left-auto md:right-[-34px] md:h-[660px] md:translate-x-0"
+              className="pointer-events-none absolute bottom-0 right-[-35px] z-[20] h-[660px] w-auto object-contain"
             />
           </article>
         </div>

@@ -1309,7 +1309,10 @@ export default function HomePageClient() {
 
       <section id="echipa" data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
-          <article data-theme="light" className="relative flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-[32px] text-white md:rounded-l-[16px] md:rounded-r-none">
+          <article
+            data-theme="light"
+            className="relative order-3 flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-[32px] text-white md:order-1 md:rounded-l-[16px] md:rounded-r-none"
+          >
             <p className="text-[16px] text-white/80">@alvernaofficial</p>
             <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-white">Puterea zambetului care inspira incredere</h3>
             <p className="mt-4 text-[16px] text-white/80">Conversion Rate Improvement:</p>
@@ -1324,12 +1327,12 @@ export default function HomePageClient() {
             </div>
           </article>
 
-          <article className="flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-5 text-white md:rounded-none md:px-6 md:py-6">
-            <div className="shrink-0">
+          <article className="order-2 flex min-h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-5 text-white md:order-2 md:h-[560px] md:rounded-none md:px-6 md:py-6">
+            <div className="order-2 shrink-0 md:order-1">
               <p className="text-[16px]">Echipa</p>
             </div>
 
-            <div className="relative my-4 min-h-0 flex-1 overflow-hidden rounded-[12px] bg-black">
+            <div className="relative order-1 my-0 min-h-[240px] flex-1 overflow-hidden rounded-[12px] bg-black md:order-2 md:my-4 md:min-h-0">
               <img
                 src={labBannerImage.src}
                 alt="Lucrări protetice din laboratorul dentar Alverna"
@@ -1337,7 +1340,7 @@ export default function HomePageClient() {
               />
             </div>
 
-            <div className="shrink-0">
+            <div className="order-3 shrink-0 md:order-3">
               <p className="text-center text-[22px] font-semibold leading-[1.15] md:text-left">Laborator dentar</p>
               <div className="mt-3 flex items-center justify-end text-[16px]">
                 <span>We do it all.</span>
@@ -1345,11 +1348,12 @@ export default function HomePageClient() {
             </div>
           </article>
 
-          <article className="relative isolate h-[560px] overflow-hidden rounded-[24px] bg-[#0A0A0A] md:rounded-l-none md:rounded-r-[24px]">
+          <article className="relative isolate order-1 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] md:order-3 md:rounded-l-none md:rounded-r-[24px]">
+            <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-[24px] bg-[#0A0A0A]" aria-hidden />
             <img
               src={adsPaulaImage.src}
               alt="Echipa Alverna Dental Studio"
-              className="pointer-events-none absolute bottom-0 right-[-34px] z-[20] h-[660px] w-auto object-contain"
+              className="pointer-events-none absolute bottom-0 left-1/2 z-[20] h-[520px] w-auto max-w-none -translate-x-[42%] object-contain object-bottom sm:h-[580px] sm:-translate-x-[38%] md:left-auto md:right-[-34px] md:h-[660px] md:translate-x-0"
             />
           </article>
         </div>

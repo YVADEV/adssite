@@ -1,5 +1,35 @@
 @import "tailwindcss";
 
+.instagram-reels-track {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.instagram-reels-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Crop Instagram embed chrome — show reel video only */
+.instagram-reel-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #000;
+}
+
+.instagram-reel-frame iframe {
+  position: absolute;
+  top: -54px;
+  left: 0;
+  width: 100%;
+  height: 780px;
+  max-width: none;
+  border: 0;
+}
+
 :root {
   /* ADS Design Tokens */
   --ads-bg: #0f1115;
@@ -24,7 +54,7 @@
   --ads-radius-lg: 18px;
   --ads-radius-xl: 24px;
 
-  --ads-font-size-caption: 13px;
+  --ads-font-size-caption: 16px;
   --ads-font-size-body: 16px;
   --ads-font-size-section: 18px;
   --ads-font-size-title: 24px;
@@ -55,6 +85,33 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-size: var(--ads-font-size-body);
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+.ads-readable {
+  font-size: var(--ads-font-size-body);
+  line-height: 1.65;
+  max-width: 42rem;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 767px) {
+  .ads-readable {
+    max-width: none;
+  }
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  font-size: max(16px, 1rem);
+}
+
+.ads-caption {
+  font-size: var(--ads-font-size-caption);
 }
 
 .ads-page {
@@ -1226,7 +1283,7 @@ a {
 }
 
 .fig-contact-card p {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .fig-contact-card button {
@@ -1351,7 +1408,7 @@ a {
 
 .fig-review-grid p {
   margin-top: 10px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .fig-price-wrap {
@@ -1484,7 +1541,7 @@ a {
   }
 
   .fig-hero-content ul {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .fig-projects,

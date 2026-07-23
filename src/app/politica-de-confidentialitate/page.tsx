@@ -14,13 +14,13 @@ export default function PrivacyPolicyPage() {
     <PrototypeFrame>
       <main className="bg-[#0A0A0A] pb-24 pt-16 md:pt-20 lg:pt-[120px]">
         <article className="mx-auto w-full max-w-[860px] px-4 text-white md:px-8 lg:px-12">
-          <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white">Document legal</p>
+          <p className="text-[16px] font-medium uppercase tracking-[0.18em] text-white">Document legal</p>
           <h1 className="mt-4 text-[40px] font-extrabold leading-[0.95] tracking-[-0.03em] md:text-[64px]">
             Politica de confidențialitate
           </h1>
-          <p className="mt-4 text-[13px] text-white">Ultima actualizare: 13 mai 2026</p>
+          <p className="mt-4 text-[16px] text-white">Ultima actualizare: 13 mai 2026</p>
 
-          <div className="mt-10 space-y-7 text-[15px] leading-[1.75] text-white">
+          <div className="mt-10 space-y-7 text-[16px] leading-[1.75] text-white">
             <section>
               <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">1. Operatorul de date</h2>
               <p className="mt-2">

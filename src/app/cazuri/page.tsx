@@ -74,7 +74,7 @@ export default function CazuriPage() {
             className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
           />
           <div className="relative z-[2] flex min-h-[420px] flex-col">
-            <p className="mb-[18px] text-[14px] font-semibold text-white">@alvernadentalstudio</p>
+            <p className="mb-[18px] text-[16px] font-semibold text-white">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -86,15 +86,15 @@ export default function CazuriPage() {
             </motion.h1>
             <div className="mt-auto grid grid-cols-1 gap-6 md:grid-cols-[230px_1fr]">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
-                <p className="text-[12px] font-semibold text-white">Before & After</p>
-                <p className="mt-2 text-[12px] leading-[1.35] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
+                <p className="text-[16px] font-semibold text-white">Before & After</p>
+                <p className="mt-2 text-[16px] leading-[1.35] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
               </motion.div>
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[330px] text-[16px] leading-[1.1] text-white"
+                className="max-w-[330px] text-[16px] leading-[1.65] text-white"
               >
                 Fiecare caz este analizat complet, cu pași explicați și obiective clare. Accent pe funcționalitate, estetică și confort pe termen lung.
               </motion.p>
@@ -131,12 +131,12 @@ export default function CazuriPage() {
                   {href ? (
                     <>
                       <CaseClickOverlay compact label="Vezi cazul" />
-                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white transition-opacity duration-400 group-hover:opacity-0">
+                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[16px] leading-[1.2] text-white transition-opacity duration-400 group-hover:opacity-0">
                         {item.role}
                       </p>
                       <div className="pointer-events-none absolute inset-x-2 bottom-2 z-[2] flex items-center justify-between gap-2">
-                        <p className="text-[15px] font-bold text-white">{item.title}</p>
-                        <span className="inline-flex shrink-0 items-center rounded-full bg-white px-3 py-1 text-[11px] font-semibold text-black shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
+                        <p className="text-[16px] font-bold text-white">{item.title}</p>
+                        <span className="inline-flex shrink-0 items-center rounded-full bg-white px-3 py-1 text-[16px] font-semibold text-black shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
                           Vezi cazul →
                         </span>
                       </div>
@@ -144,9 +144,9 @@ export default function CazuriPage() {
                   ) : (
                     <>
                       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
-                      <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[11px] leading-none text-white">+</span>
-                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[10px] leading-[1.2] text-white">{item.role}</p>
-                      <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[15px] font-bold text-white">{item.title}</p>
+                      <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[16px] leading-none text-white">+</span>
+                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[16px] leading-[1.2] text-white">{item.role}</p>
+                      <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[16px] font-bold text-white">{item.title}</p>
                     </>
                   )}
                 </motion.article>

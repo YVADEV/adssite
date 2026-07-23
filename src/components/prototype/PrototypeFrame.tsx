@@ -214,7 +214,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                           onClick={() =>
                             setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
                           }
-                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[18px] font-semibold text-white"
+                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[16px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
                           <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
@@ -225,7 +225,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                               key={child.slug}
                               href={child.href}
                               onClick={() => setMenuOpen(false)}
-                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[15px] text-white"
+                              className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[16px] text-white"
                             >
                               {child.title}
                             </Link>
@@ -237,7 +237,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                         key={service.slug}
                         href={service.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[17px] font-medium text-white"
+                        className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[16px] font-medium text-white"
                       >
                         {service.title}
                       </Link>
@@ -262,11 +262,11 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               ))}
           </MobileMenuLayout>
           <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
-            <div className="text-[13px] leading-[1.5]">
+            <div className="text-[16px] leading-[1.5]">
               <a href="tel:+40748085933">+40 748 085 933</a>
               <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
             </div>
-            <div className="text-right text-[12px] leading-[1.6]">
+            <div className="text-right text-[16px] leading-[1.6]">
               <div className="flex justify-end gap-5">
                 <a href="/politica-de-confidentialitate">Privacy Policy</a>
                 <a href="/termeni-si-conditii">Terms of Service</a>
@@ -284,7 +284,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               : "bg-[#0f1115]"
           }`}
         >
-          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-medium sm:px-4 md:px-6 lg:px-8">
+          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[16px] font-medium sm:px-4 md:px-6 lg:px-8">
             <SiteLogo />
             <nav
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"

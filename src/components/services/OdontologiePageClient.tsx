@@ -161,8 +161,8 @@ export default function OdontologiePageClient() {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {forensicBlocks.map((item) => (
                 <div key={item.title} className="border-t border-black/12 pt-4">
-                  <h4 className="text-[18px] font-semibold text-white">{item.title}</h4>
-                  <p className="mt-2 text-[15px] leading-[1.65] text-white">{item.text}</p>
+                  <h4 className="text-[20px] font-semibold text-white">{item.title}</h4>
+                  <p className="mt-2 text-[16px] leading-[1.65] text-white">{item.text}</p>
                 </div>
               ))}
             </div>

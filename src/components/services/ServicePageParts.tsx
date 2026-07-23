@@ -41,22 +41,22 @@ export function ServiceHero({ image, imageAlt, kicker, title, intro, chip }: Ser
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
+        <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
           <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
           {chip}
         </div>
         <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
           <motion.div {...reveal} className="max-w-[1180px]">
-            <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
+            <p className="text-[16px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
             <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[112px]">
               {title}
             </h1>
-            <p className="mt-6 max-w-[820px] text-[16px] leading-[1.75] text-white md:text-[17px]">{intro}</p>
+            <p className="mt-6 max-w-[820px] ads-readable text-white">{intro}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[14px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+              <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                 Solicită o evaluare
               </a>
-              <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[14px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+              <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
                 Vezi tarife
               </a>
             </div>
@@ -76,8 +76,8 @@ export function ServiceQuickFacts({ facts }: { facts: ReadonlyArray<readonly [st
       <motion.div {...reveal} className="grid grid-cols-1 gap-6 border-y border-black/12 py-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         {facts.map(([label, value]) => (
           <div key={label}>
-            <p className="text-[11px] uppercase tracking-[0.12em] text-white">{label}</p>
-            <p className="mt-2 text-[15px] font-semibold leading-[1.35] text-white">{value}</p>
+            <p className="text-[16px] uppercase tracking-[0.12em] text-white">{label}</p>
+            <p className="mt-2 text-[16px] font-semibold leading-[1.35] text-white">{value}</p>
           </div>
         ))}
       </motion.div>
@@ -126,7 +126,7 @@ export function ServiceParagraphSection({
       className={`${sectionWrapperClass(first)} grid border-t border-black/12 pt-10 lg:grid-cols-[minmax(260px,0.95fr)_minmax(0,1.55fr)] lg:gap-14`}
     >
       <SectionHeading heading={heading} level={headingLevel} />
-      <p className="mt-5 text-[16px] leading-[1.75] text-white lg:mt-0">{body}</p>
+      <p className="mt-5 ads-readable text-white lg:mt-0">{body}</p>
     </motion.article>
   );
 }
@@ -177,8 +177,8 @@ export function ServiceCardsSection({
             transition={{ duration: 0.55, delay: idx * 0.08 }}
             className="border-t border-black/12 pt-4"
           >
-            <h4 className="text-[18px] font-semibold text-white">{item.title}</h4>
-            <p className="mt-2 text-[15px] leading-[1.65] text-white">{item.text}</p>
+            <h4 className="text-[20px] font-semibold text-white">{item.title}</h4>
+            <p className="mt-2 text-[16px] leading-[1.65] text-white">{item.text}</p>
           </motion.article>
         ))}
       </div>
@@ -207,7 +207,7 @@ export function ServiceStepsSection({
           >
             <p className="text-[30px] font-semibold leading-none tracking-[-0.03em] text-white">{item.step}</p>
             <p className="text-[19px] font-semibold leading-[1.2] text-white">{item.title}</p>
-            <p className="text-[15px] leading-[1.65] text-white">{item.text}</p>
+            <p className="text-[16px] leading-[1.65] text-white">{item.text}</p>
           </motion.article>
         ))}
       </div>
@@ -259,8 +259,8 @@ export function ServiceFAQ({
                 onClick={() => setOpenFaq((prev) => (prev === index ? null : index))}
                 className="ads-btn-no-glow flex w-full items-start justify-between gap-4 text-left"
               >
-                <h4 className="text-[18px] font-semibold leading-[1.35] text-white">{item.q}</h4>
-                <span aria-hidden className="pt-1 text-[18px] text-white">
+                <h4 className="text-[20px] font-semibold leading-[1.35] text-white">{item.q}</h4>
+                <span aria-hidden className="pt-1 text-[16px] text-white">
                   {isOpen ? "−" : "+"}
                 </span>
               </button>
@@ -272,7 +272,7 @@ export function ServiceFAQ({
                   isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="mt-3 max-w-[1100px] text-[15px] leading-[1.7] text-white">{item.a}</p>
+                <p className="mt-3 max-w-[1100px] text-[16px] leading-[1.7] text-white">{item.a}</p>
               </div>
             </article>
           );
@@ -330,7 +330,7 @@ export function ServiceTestimonials() {
   return (
     <section data-theme="light" className="bg-[#ececec] pb-[110px]">
       <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-        <p className="text-[12px] font-semibold uppercase tracking-[0.12em] text-white">✚ Testimoniale</p>
+        <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white">✚ Testimoniale</p>
         <h3 className="mt-2 text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">
           Recenzii
         </h3>
@@ -343,7 +343,7 @@ export function ServiceTestimonials() {
             <span className="mb-2 text-base opacity-60">/5</span>
             <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
           </div>
-          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[14px] leading-[1.45] text-white">
+          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[16px] leading-[1.45] text-white">
             <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
             <p>Număr de telefon: 0376 448 810</p>
             <p>Program: Deschis · Închide la 21</p>
@@ -363,13 +363,13 @@ export function ServiceTestimonials() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
-                <p className="mt-1 text-[13px] text-white">{r.meta}</p>
-                <p className="mt-1 text-[13px] text-white">{r.time}</p>
+                <p className="mt-1 text-[16px] text-white">{r.meta}</p>
+                <p className="mt-1 text-[16px] text-white">{r.time}</p>
               </div>
               <span aria-hidden className="text-3xl opacity-40">+</span>
             </div>
-            <p className="mt-6 text-[15px] leading-[1.55] text-white">{r.text}</p>
-            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[18px] leading-none tracking-[0.08em] text-white">
+            <p className="mt-6 text-[16px] leading-[1.55] text-white">{r.text}</p>
+            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[16px] leading-none tracking-[0.08em] text-white">
               ★★★★★
             </p>
           </motion.article>
@@ -396,12 +396,12 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
           <h3 className="max-w-[720px] text-[42px] font-semibold leading-[1.04] tracking-[-0.04em]">{headline}</h3>
           <p className="mt-5 max-w-[680px] text-[16px] leading-[1.55] text-white">{body}</p>
           <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
-            <p className="text-[20px] font-semibold text-white">4.8 ★★★★★</p>
-            <p className="mt-1 text-[13px] text-white">Peste 9000 de pacienți mulțumiți</p>
+            <p className="text-[16px] font-semibold text-white">4.8 ★★★★★</p>
+            <p className="mt-1 text-[16px] text-white">Peste 9000 de pacienți mulțumiți</p>
           </div>
           <a
             href="tel:+40376448810"
-            className="mt-7 inline-block text-[14px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:text-white hover:decoration-white"
+            className="mt-7 inline-block text-[16px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:text-white hover:decoration-white"
           >
             Preferi telefonic? Sună acum
           </a>
@@ -453,15 +453,15 @@ export function ContactFormCard({ source }: { source: string }) {
       data-theme="light"
       className="rounded-[24px] bg-white p-8 text-white shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
     >
-      <p className="text-[14px] text-white">@alvernadentalstudio</p>
+      <p className="text-[16px] text-white">@alvernadentalstudio</p>
       <h3 className="mt-2 text-[44px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
-      <p className="mt-3 text-[14px] leading-[1.45] text-white">
+      <p className="mt-3 text-[16px] leading-[1.45] text-white">
         Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
       </p>
       {status === "ok" ? (
         <div role="status" className="mt-7 rounded-[18px] border border-[#4E7044]/30 bg-[#EDF4E9] p-6">
-          <p className="text-[18px] font-semibold text-white">Mulțumim! Mesajul a fost trimis.</p>
-          <p className="mt-2 text-[14px] leading-[1.5] text-white">
+          <p className="text-[16px] font-semibold text-white">Mulțumim! Mesajul a fost trimis.</p>
+          <p className="mt-2 text-[16px] leading-[1.5] text-white">
             Te contactăm în maxim 24h pentru confirmarea programării.
           </p>
         </div>
@@ -510,7 +510,7 @@ export function ContactFormCard({ source }: { source: string }) {
             placeholder="Mesaj opțional"
           />
           {status === "error" ? (
-            <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[13px] text-[#a4392b]">
+            <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[16px] text-[#a4392b]">
               {error}
             </p>
           ) : null}
@@ -521,7 +521,7 @@ export function ContactFormCard({ source }: { source: string }) {
           >
             {status === "loading" ? "Se trimite…" : "Solicită programare"}
           </button>
-          <p className="mt-2 text-center text-[11px] text-white">
+          <p className="mt-2 text-center text-[16px] text-white">
             Nu trimitem spam. Te contactăm doar pentru confirmarea programării.
           </p>
         </form>
@@ -547,11 +547,11 @@ export function ServiceFinalCTA({
         <p className="mt-4 max-w-[980px] text-[16px] leading-[1.7] text-white">{body}</p>
         <a
           href="/#contact"
-          className="mt-7 inline-flex h-[44px] items-center rounded-full bg-white px-6 text-[14px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+          className="mt-7 inline-flex h-[44px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
         >
           {buttonLabel}
         </a>
-        <p className="mt-4 text-[13px] text-white">Te contactăm în maxim 24h pentru confirmare.</p>
+        <p className="mt-4 text-[16px] text-white">Te contactăm în maxim 24h pentru confirmare.</p>
       </motion.div>
     </section>
   );

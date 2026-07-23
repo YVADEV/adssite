@@ -51,24 +51,24 @@ export default function ServicePageTemplate({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
-          <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[11px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
+          <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
             <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
             {chip}
           </div>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
             <motion.div {...reveal} className="max-w-[1180px]">
-              <p className="text-[12px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
+              <p className="text-[16px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
               <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[112px]">
                 {title}
               </h1>
-              <p className="mt-6 max-w-[820px] text-[16px] leading-[1.75] text-white md:text-[17px]">
+              <p className="mt-6 max-w-[820px] text-[16px] leading-[1.75] text-white">
                 {shortIntro}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[14px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+                <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                   Solicită o evaluare
                 </a>
-                <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[14px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+                <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
                   Vezi tarife
                 </a>
               </div>
@@ -108,7 +108,7 @@ export default function ServicePageTemplate({
           <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.03em] text-white md:text-[44px]">Beneficii</h2>
           <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
             {benefitItems.map((item) => (
-              <article key={item} className="rounded-[16px] border border-white/10 bg-white/[0.04] p-5 text-[15px] leading-[1.55] text-white">
+              <article key={item} className="rounded-[16px] border border-white/10 bg-white/[0.04] p-5 text-[16px] leading-[1.65] text-white">
                 {item}
               </article>
             ))}
@@ -128,7 +128,7 @@ export default function ServicePageTemplate({
           </p>
           <a
             href="/#contact"
-            className="relative mt-7 inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[14px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+            className="relative mt-7 inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
           >
             Solicită programare
           </a>

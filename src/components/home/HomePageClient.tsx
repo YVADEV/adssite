@@ -23,6 +23,7 @@ import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
+import labBannerImage from "@/assets/cazuri/lab-dantura-banner.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
@@ -378,13 +379,13 @@ const missionCards = [
 
 function SectionTitle({ left, title, subtitle }: { left: string; title: string; subtitle?: string }) {
   return (
-    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 px-4 md:px-6 lg:grid-cols-[140px_520px_620px] lg:px-8">
-      <span className="pt-1 text-[12px] font-medium leading-[1.2] opacity-60 md:text-[14px]">{left}</span>
-      <div>
-        <h2 data-anim="text" className="text-[42px] font-extrabold leading-[0.96] tracking-[-0.045em] md:text-[72px] lg:text-[96px]">
+    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-3 px-4 md:px-6 lg:grid-cols-[140px_minmax(0,1fr)] lg:gap-x-10 lg:px-8">
+      <span className="pt-1 text-[16px] font-medium leading-[1.4] opacity-60">{left}</span>
+      <div className="min-w-0">
+        <h2 data-anim="text" className="text-[32px] font-extrabold leading-[1.05] tracking-[-0.045em] sm:text-[42px] md:text-[72px] lg:text-[96px]">
           {title}
         </h2>
-        {subtitle ? <p className="mt-2 text-[18px] font-semibold">{subtitle}</p> : null}
+        {subtitle ? <p className="mt-2 text-[16px] font-semibold leading-[1.4] md:text-[16px]">{subtitle}</p> : null}
       </div>
     </div>
   );
@@ -785,21 +786,21 @@ export default function HomePageClient() {
                           onClick={() =>
                             setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
                           }
-                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[18px] font-semibold text-white"
+                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[16px] font-semibold text-white"
                         >
                           <span>{service.title}</span>
                           <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
                         </button>
                         <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${openSubmenuSlug === service.slug ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
                           {(service.children ?? []).map((child) => (
-                            <Link key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[15px] text-white">
+                            <Link key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[16px] text-white">
                               {child.title}
                             </Link>
                           ))}
                         </div>
                       </div>
                     ) : (
-                      <Link key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[17px] font-medium text-white">
+                      <Link key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[16px] font-medium text-white">
                         {service.title}
                       </Link>
                     ),
@@ -823,11 +824,11 @@ export default function HomePageClient() {
               ))}
             </MobileMenuLayout>
             <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
-              <div className="text-[13px] leading-[1.5]">
+              <div className="text-[16px] leading-[1.5]">
                 <a href="tel:+40748085933">+40 748 085 933</a>
                 <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
               </div>
-              <div className="text-right text-[12px] leading-[1.6]">
+              <div className="text-right text-[16px] leading-[1.6]">
                 <div className="flex justify-end gap-5">
                   <a href="/politica-de-confidentialitate">Privacy Policy</a>
                   <a href="/termeni-si-conditii">Terms of Service</a>
@@ -847,7 +848,7 @@ export default function HomePageClient() {
             : "bg-[#0f1115]"
         }`}
       >
-        <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[17px] font-medium sm:px-4 md:px-6 lg:px-8">
+        <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[16px] font-medium sm:px-4 md:px-6 lg:px-8">
           <SiteLogo />
           <nav
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
@@ -899,12 +900,12 @@ export default function HomePageClient() {
             <div data-intro="hero-title" className="absolute left-5 top-5 text-white md:left-7 md:top-7 lg:left-9 lg:top-9">
             <h1 className="max-w-[980px] text-[52px] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
             <p className="mt-1 max-w-[560px] text-[28px] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
-            <p className="mt-4 max-w-[700px] text-[14px] font-medium leading-[1.35] text-white md:text-[16px]">
+            <p className="mt-4 max-w-[700px] text-[16px] font-medium leading-[1.35] text-white">
               Tratamente moderne, medici specializați, rezultate predictibile pentru un zâmbet sănătos și fără stres.
             </p>
           </div>
 
-            <div className="absolute bottom-8 left-5 w-[280px] text-[12px] font-medium leading-[1.2] text-white md:bottom-12 md:left-7 md:text-[14px] lg:left-9">
+            <div className="absolute bottom-8 left-4 max-w-[min(280px,calc(100%-2rem))] text-[16px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 lg:left-9">
               <p>Implantologie</p>
               <p className="mt-[12px]">Ortodontie</p>
               <p className="mt-[12px]">Inviseline</p>
@@ -927,11 +928,11 @@ export default function HomePageClient() {
                 className="ads-card flex h-[124px] min-w-[0] flex-col justify-between rounded-[18px] border border-[#f1f1f1] bg-white p-4 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[132px] lg:h-[126px]"
               >
                 <div className="flex items-center justify-between">
-                  <p className="truncate pr-2 text-[11px] font-semibold text-white">{review.name}</p>
-                  <p className="text-[11px] font-semibold text-white">{review.rating} ★</p>
+                  <p className="truncate pr-2 text-[16px] font-semibold text-white">{review.name}</p>
+                  <p className="text-[16px] font-semibold text-white">{review.rating} ★</p>
                 </div>
                 <div>
-                  <p className="line-clamp-3 text-[11px] leading-[1.25] text-white">{review.text}</p>
+                  <p className="line-clamp-3 text-[16px] leading-[1.25] text-white">{review.text}</p>
                 </div>
               </div>
             ))}
@@ -941,16 +942,16 @@ export default function HomePageClient() {
 
       <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[72px] pt-[120px] md:pb-[96px] lg:pb-[72px]">
         <SectionTitle left="(27)" title="Cazuri" subtitle="©2026" />
-        <div className="mx-auto mt-3 w-full max-w-[1680px] px-4 text-[15px] font-normal leading-[1.5] text-white md:px-6 md:text-[16px] lg:px-8 lg:pl-[708px]">
+        <div className="mx-auto mt-3 w-full max-w-[1680px] px-4 text-[16px] font-normal leading-[1.5] text-white md:px-6 lg:px-8 lg:pl-[708px]">
           La Alverna Dental Studio dispunem de propriul laborator de tehnică dentară, ceea ce ne permite să controlăm îndeaproape calitatea lucrărilor și a materialelor folosite.
         </div>
         <div className="mx-auto mt-4 flex w-full max-w-[1680px] flex-wrap items-center justify-between gap-4 px-4 md:px-6 lg:px-8">
-          <p className="text-[13px] text-white">Before / After · Implant + coroană – 3 luni</p>
+          <p className="text-[16px] text-white">Before / After · Implant + coroană – 3 luni</p>
           <div className="flex items-center gap-3">
-            <button className="h-[42px] rounded-full border border-black/15 px-4 text-[13px] font-medium text-white transition duration-300 hover:scale-[1.02]">Vezi toate cazurile</button>
+            <button className="h-[42px] rounded-full border border-black/15 px-4 text-[16px] font-medium text-white transition duration-300 hover:scale-[1.02]">Vezi toate cazurile</button>
             <a
               href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-              className="inline-flex h-[42px] items-center rounded-full bg-black px-4 text-[13px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+              className="inline-flex h-[42px] items-center rounded-full bg-black px-4 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
             >
               Programeaza-te
             </a>
@@ -978,7 +979,7 @@ export default function HomePageClient() {
                 className="aspect-[682/1024] h-[min(720px,82vh)] w-full max-w-[440px] object-cover object-[center_38%]"
               />
             </div>
-            <p className="max-w-[520px] text-[16px] leading-[1.45] tracking-[-0.64px] text-white">
+            <p className="max-w-[520px] text-[16px] leading-[1.65] tracking-[-0.64px] text-white">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
             </p>
           </div>
@@ -1013,9 +1014,9 @@ export default function HomePageClient() {
                     <span className="ml-[2px] inline-block h-0 w-0 border-b-[10px] border-l-[16px] border-t-[10px] border-b-transparent border-l-white border-t-transparent" />
                   </motion.button>
                   <div className="absolute bottom-[16px] left-[16px] right-[16px] p-0">
-                    <p className="text-[12px] text-[rgba(255,255,255,0.6)]">{recommendationClipMeta[idx].date}</p>
+                    <p className="text-[16px] text-[rgba(255,255,255,0.6)]">{recommendationClipMeta[idx].date}</p>
                     <h4 className="mt-[6px] text-[20px] font-semibold text-white">{recommendationClipMeta[idx].title}</h4>
-                    <p className="mt-1 text-[14px] leading-[1.4] text-[rgba(255,255,255,0.8)]">{recommendationClipMeta[idx].description}</p>
+                    <p className="mt-1 text-[16px] leading-[1.4] text-[rgba(255,255,255,0.8)]">{recommendationClipMeta[idx].description}</p>
                   </div>
                 </motion.div>
               </article>
@@ -1038,7 +1039,7 @@ export default function HomePageClient() {
                     aria-label="Servicii anterioare"
                     className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
                   >
-                    <span className="text-[20px] leading-none">←</span>
+                    <span className="text-[16px] leading-none">←</span>
                   </button>
                   <button
                     type="button"
@@ -1046,11 +1047,11 @@ export default function HomePageClient() {
                     aria-label="Servicii următoare"
                     className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
                   >
-                    <span className="text-[20px] leading-none">→</span>
+                    <span className="text-[16px] leading-none">→</span>
                   </button>
                   <a
                     href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-                    className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[13px] font-semibold"
+                    className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[16px] font-semibold"
                   >
                     Programează-te
                   </a>
@@ -1071,8 +1072,8 @@ export default function HomePageClient() {
                           transition={{ duration: 0.35, ease: "easeOut" }}
                           className="grid h-[60px] w-full max-w-full grid-cols-[minmax(0,1fr)_36px] items-center border-b border-[rgba(255,255,255,0.12)] lg:h-[72px]"
                         >
-                          <span className="truncate pr-4 text-[20px] font-normal text-white md:text-[24px] lg:text-[28px]">{service.title}</span>
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(255,255,255,0.18)] text-[18px] leading-none text-white">+</span>
+                          <span className="truncate pr-4 text-[16px] font-normal text-white md:text-[24px] lg:text-[28px]">{service.title}</span>
+                          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(255,255,255,0.18)] text-[16px] leading-none text-white">+</span>
                         </motion.a>
                       ))}
                     </div>
@@ -1090,23 +1091,23 @@ export default function HomePageClient() {
       </section>
 
       <section data-anim="section" className="bg-[#f5f5f5]">
-        <div className="mx-auto w-full max-w-[1680px] px-5 pb-[140px] pt-[140px] md:px-10 lg:px-[96px]">
-          <div className="mb-8 flex items-center justify-between text-[12px] text-white">
+        <div className="mx-auto w-full max-w-[1680px] px-4 pb-16 pt-16 md:px-10 md:pb-[140px] md:pt-[140px] lg:px-[96px]">
+          <div className="mb-6 flex flex-col gap-2 text-[16px] leading-[1.5] text-white sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
             <span>Misiunea noastra</span>
-            <span>@alvernadentalstudio</span>
+            <span className="break-all sm:break-normal">@alvernadentalstudio</span>
           </div>
-          <h2 className="mb-4 text-[48px] font-semibold leading-[1.1] text-white">Misiunea Noastră</h2>
-          <p className="mb-16 max-w-[520px] text-[14px] leading-[1.6] text-white">
+          <h2 className="mb-4 text-[32px] font-semibold leading-[1.12] text-white sm:text-[40px] md:text-[48px]">Misiunea Noastră</h2>
+          <p className="ads-readable mb-10 text-white md:mb-16">
             Dacă ar fi să discutăm în termeni filozofici, ne întrebăm adeseori de ce facem ceea ce facem, care este motivul pentru care muncim din greu și petrecem multe ore într-un cabinet stomatologic.
           </p>
 
-          <div className="mb-10 flex w-full items-center justify-between gap-6">
+          <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {missionCards.map((text, idx) => (
               <article
                 key={`mission-card-${idx}`}
-                className="flex h-[126px] w-[313px] items-center gap-3 rounded-[32px] bg-[#F5F5F5] p-4 ads-mission-glow"
+                className="flex min-h-[126px] w-full items-start gap-3 rounded-[32px] bg-[#F5F5F5] p-4 ads-mission-glow md:items-center"
               >
-                <div className="relative h-8 w-8 overflow-hidden rounded-[8px] bg-black">
+                <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-[8px] bg-black">
                   <LazyVideo
                     src={recommendationClips[idx % recommendationClips.length]}
                     poster="/services/smile-mirror.png"
@@ -1115,18 +1116,20 @@ export default function HomePageClient() {
                   <div className="absolute inset-0 bg-black/35" />
                   <span className="absolute left-1/2 top-1/2 inline-block h-0 w-0 -translate-x-1/2 -translate-y-1/2 border-b-[4px] border-l-[6px] border-t-[4px] border-b-transparent border-l-white border-t-transparent" />
                 </div>
-                <p className="text-[12px] leading-[1.4] text-white">{text}</p>
+                <p className="min-w-0 flex-1 text-[16px] leading-[1.65] text-white">{text}</p>
               </article>
             ))}
           </div>
 
-          <div className="relative h-[420px] w-full overflow-hidden rounded-[24px]">
+          <div className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
             <video autoPlay muted loop playsInline preload="auto" data-anim="image" className="h-full w-full object-cover">
               <source src="/hero.mp4" type="video/mp4" />
             </video>
-            <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-4">
-              <button className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-[28px] text-white">▶</button>
-              <span className="text-[16px] font-medium text-white">Descopera cabinetul nostru</span>
+            <div className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4">
+              <button type="button" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[24px] text-[#0f1115] sm:h-16 sm:w-16 sm:text-[28px]" aria-label="Redă video">
+                ▶
+              </button>
+              <span className="text-[16px] font-medium leading-[1.65] text-white">Descopera cabinetul nostru</span>
             </div>
           </div>
         </div>
@@ -1146,7 +1149,7 @@ export default function HomePageClient() {
               <span className="mb-2 text-base opacity-60">/5</span>
               <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
             </div>
-            <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[14px] leading-[1.45] text-white">
+            <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[16px] leading-[1.65] text-white">
               <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
               <p>Număr de telefon: 0376 448 810</p>
               <p>Program:</p>
@@ -1167,13 +1170,13 @@ export default function HomePageClient() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-[32px] font-semibold leading-[1.05]">{r.name}</p>
-                  <p className="mt-1 text-[14px] opacity-60">{r.meta}</p>
-                  <p className="mt-1 text-[14px] opacity-60">{r.time}</p>
+                  <p className="mt-1 text-[16px] opacity-60">{r.meta}</p>
+                  <p className="mt-1 text-[16px] opacity-60">{r.time}</p>
                 </div>
                 <span className="text-3xl opacity-40">+</span>
               </div>
               <p className="mt-6 text-[16px] leading-[1.5] tracking-[-0.2px] text-white">{r.text}</p>
-              <p className="mt-auto pt-4 text-[18px] leading-none tracking-[0.08em] text-white">★★★★★</p>
+              <p className="mt-auto pt-4 text-[16px] leading-none tracking-[0.08em] text-white">★★★★★</p>
             </motion.article>
           ))}
         </div>
@@ -1192,7 +1195,7 @@ export default function HomePageClient() {
                 <h3 className="text-[44px] font-bold leading-none tracking-[-0.04em] text-white md:text-[56px] lg:text-[72px]">
                   {n}
                 </h3>
-                <p className="mx-auto mt-3 max-w-[150px] text-[12px] leading-[1.45] text-white/75 md:mx-0 md:text-[13px]">{t}</p>
+                <p className="mx-auto mt-3 max-w-[150px] text-[16px] leading-[1.65] text-white/75 md:mx-0">{t}</p>
               </article>
             ))}
           </div>
@@ -1205,7 +1208,7 @@ export default function HomePageClient() {
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
             </div>
-            <div className="relative z-[40] text-[14px] text-white">
+            <div className="relative z-[40] text-[16px] text-white">
               <p>Echipa</p>
               <p className="mt-1">Faceti cunostinta cu echipa</p>
             </div>
@@ -1222,19 +1225,19 @@ export default function HomePageClient() {
               <br />
               cabinet stomatologic
             </p>
-            <p className="absolute bottom-[24px] left-[40px] z-[40] text-[14px] text-white">echipa noastra ↗</p>
-            <p className="absolute bottom-[24px] right-[40px] z-[40] text-[14px] text-white">We do it all.</p>
+            <p className="absolute bottom-[24px] left-[40px] z-[40] text-[16px] text-white">echipa noastra ↗</p>
+            <p className="absolute bottom-[24px] right-[40px] z-[40] text-[16px] text-white">We do it all.</p>
           </article>
 
           <article className="relative z-10 h-[560px] rounded-[16px] bg-[#0A0A0A] p-[44px]">
             <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
             <div className="relative z-10 flex h-full flex-col">
-              <p className="text-[14px] text-white">Clinica dentara cluj</p>
+              <p className="text-[16px] text-white">Clinica dentara cluj</p>
               <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
                 {"Puterea zambetului\ncare inspira incredere"}
               </h3>
               <div className="mt-8">
-                <p className="text-[13px] text-white/80">Cabinet stomatologic cluj</p>
+                <p className="text-[16px] text-white/80">Cabinet stomatologic cluj</p>
                 <p className="mt-1 text-[40px] font-semibold text-white">
                   4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
                 </p>
@@ -1243,7 +1246,7 @@ export default function HomePageClient() {
                 <p className="text-[16px] leading-[1.3] text-[#f2d16b]">★★★★★</p>
                 <div className="mt-3 flex items-center gap-2">
                   <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
-                  <span className="text-[12px] text-white">Ion Ionut</span>
+                  <span className="text-[16px] text-white">Ion Ionut</span>
                 </div>
               </div>
             </div>
@@ -1255,12 +1258,12 @@ export default function HomePageClient() {
                 <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111] text-[32px] font-semibold text-white">100</div>
               </div>
               <p className="mt-4 text-[16px] font-semibold text-white">Scanare 3D</p>
-              <p className="mt-1 text-[12px] text-white/75">We prioritize performance without sacrificing visual appeal or functionality.</p>
+              <p className="mt-1 text-[16px] text-white/75">We prioritize performance without sacrificing visual appeal or functionality.</p>
             </article>
 
             <article className="h-[275px] rounded-[16px] bg-[#0A0A0A] p-6">
               <h3 className="text-[56px] font-bold leading-none text-white">9000</h3>
-              <p className="mt-2 text-[14px] text-white/80">Pacienti multumiti</p>
+              <p className="mt-2 text-[16px] text-white/80">Pacienti multumiti</p>
               <p className="mt-2 text-[16px] text-[#f2d16b]">★★★★★</p>
               <img src={cazA7407760.src} alt="" className="mt-4 h-[110px] w-full rounded-[10px] object-cover" />
             </article>
@@ -1281,7 +1284,7 @@ export default function HomePageClient() {
                   aria-label="Tarife anterioare"
                   className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
                 >
-                  <span className="text-[20px] leading-none">←</span>
+                  <span className="text-[16px] leading-none">←</span>
                 </button>
                 <button
                   type="button"
@@ -1289,17 +1292,17 @@ export default function HomePageClient() {
                   aria-label="Tarife următoare"
                   className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
                 >
-                  <span className="text-[20px] leading-none">→</span>
+                  <span className="text-[16px] leading-none">→</span>
                 </button>
                 <a
                   href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-                  className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[13px] font-semibold"
+                  className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[16px] font-semibold"
                 >
                   Programează-te
                 </a>
               </div>
             </div>
-            <div className="mt-5 flex flex-wrap gap-2 text-[12px] text-white">
+            <div className="mt-5 flex flex-wrap gap-2 text-[16px] text-white">
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Preturi transparente</span>
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Fara costuri ascunse</span>
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Consultatie initiala disponibila</span>
@@ -1316,21 +1319,21 @@ export default function HomePageClient() {
                     <div className="mt-5 space-y-0">
                       {category.items.slice(0, 7).map((entry, idx) => (
                         <div key={`${category.category}-${entry.name}`} className="group flex items-end gap-3 py-[8px] transition-colors duration-200 hover:bg-[rgba(79,127,71,0.05)]">
-                          <p className="text-[18px] font-bold leading-none text-[#303030] md:text-[20px]">
+                          <p className="text-[16px] font-bold leading-none text-[#303030] md:text-[16px]">
                             {entry.name}
-                            {idx === 0 ? <span className="ml-2 text-[11px] text-white">de la</span> : null}
-                            {idx === 1 ? <span className="ml-2 text-[11px] text-white">cel mai popular</span> : null}
-                            {idx === 2 ? <span className="ml-2 text-[11px] text-white">rapid / fara durere</span> : null}
+                            {idx === 0 ? <span className="ml-2 text-[16px] text-white">de la</span> : null}
+                            {idx === 1 ? <span className="ml-2 text-[16px] text-white">cel mai popular</span> : null}
+                            {idx === 2 ? <span className="ml-2 text-[16px] text-white">rapid / fara durere</span> : null}
                           </p>
                           <span className="mb-[6px] flex-1 border-b border-dotted border-[rgba(10,10,10,0.18)]" />
-                          <p className="pl-8 text-right text-[18px] font-bold leading-none text-white md:pl-10 md:text-[20px]">{entry.price}</p>
+                          <p className="pl-8 text-right text-[16px] font-bold leading-none text-white md:pl-10 md:text-[16px]">{entry.price}</p>
                         </div>
                       ))}
                     </div>
                     <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.2)] bg-[rgba(79,127,71,0.04)] p-4">
-                      <p className="text-[18px] font-semibold text-white">Programeaza-te acum</p>
-                      <p className="mt-1 text-[13px] text-white">Primeste o evaluare personalizata</p>
-                      <a href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[14px] font-semibold text-white">Solicita programare</a>
+                      <p className="text-[16px] font-semibold text-white">Programeaza-te acum</p>
+                      <p className="mt-1 text-[16px] text-white">Primeste o evaluare personalizata</p>
+                      <a href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[16px] font-semibold text-white">Solicita programare</a>
                     </div>
                   </article>
                 ))}
@@ -1349,39 +1352,49 @@ export default function HomePageClient() {
       <section id="echipa" data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
           <article data-theme="light" className="relative flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-[32px] text-white md:rounded-l-[16px] md:rounded-r-none">
-            <p className="text-[12px] text-white/80">@alvernaofficial</p>
+            <p className="text-[16px] text-white/80">@alvernaofficial</p>
             <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-white">Puterea zambetului care inspira incredere</h3>
-            <p className="mt-4 text-[14px] text-white/80">Conversion Rate Improvement:</p>
+            <p className="mt-4 text-[16px] text-white/80">Conversion Rate Improvement:</p>
             <p className="mt-1 text-[40px] font-semibold leading-none text-white">4.2% &gt; 5.9%</p>
             <div className="absolute bottom-[24px] left-[32px] right-[32px] rounded-[12px] border border-white/10 bg-[#111111] p-4">
               <p className="text-[16px] leading-[1.3] text-[#f2d16b]">★★★★★</p>
-              <p className="mt-2 text-[13px] text-white/85">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
+              <p className="mt-2 text-[16px] text-white/85">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
               <div className="mt-3 flex items-center gap-2">
                 <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
-                <span className="text-[12px] text-white">Agata Sril</span>
+                <span className="text-[16px] text-white">Agata Sril</span>
               </div>
             </div>
           </article>
 
-          <article className="relative h-[560px] w-full overflow-hidden rounded-[16px] bg-[#0A0A0A] md:rounded-none">
-            <img src={cazA7407760.src} alt="" className="h-full w-full object-cover opacity-90" />
+          <article className="flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-5 text-white md:rounded-none md:px-6 md:py-6">
+            <div className="shrink-0">
+              <p className="text-[16px]">Echipa</p>
+              <p className="mt-1 text-[16px] text-white/85">Faceti cunostinta cu echipa</p>
+            </div>
+
+            <div className="relative my-4 min-h-0 flex-1 overflow-hidden rounded-[12px] bg-black">
+              <img
+                src={labBannerImage.src}
+                alt="Lucrări protetice din laboratorul dentar Alverna"
+                className="h-full w-full object-contain object-center p-2 md:p-3"
+              />
+            </div>
+
+            <div className="shrink-0">
+              <p className="text-center text-[22px] font-semibold leading-[1.15] md:text-left">Laborator dentar</p>
+              <div className="mt-3 flex items-center justify-between gap-4 text-[16px]">
+                <span>echipa noastra ↗</span>
+                <span className="text-right">We do it all.</span>
+              </div>
+            </div>
           </article>
 
-          <article className="relative isolate h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] p-[40px] md:rounded-l-none md:rounded-r-[24px]">
-            <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
-            </div>
-            <div className="relative z-[40] text-[14px] text-white">
-              <p>Echipa</p>
-              <p className="mt-1">Faceti cunostinta cu echipa</p>
-            </div>
-            <img src={adsPaulaImage.src} alt="" className="pointer-events-none absolute bottom-0 right-[-34px] z-[20] h-[660px] w-auto object-contain" />
-            <h3 className="absolute bottom-[104px] left-[36px] z-[30] whitespace-pre-line text-[64px] font-bold leading-[0.88] text-white">
-              {"alverna\ndental\nstudio"}
-            </h3>
-            <p className="absolute bottom-[46px] left-1/2 z-[40] w-[300px] -translate-x-1/2 text-center text-[22px] leading-[1.15] text-white">Laborator dentar</p>
-            <p className="absolute bottom-[24px] left-[40px] z-[40] text-[14px] text-white">echipa noastra ↗</p>
-            <p className="absolute bottom-[24px] right-[40px] z-[40] text-[14px] text-white">We do it all.</p>
+          <article className="relative isolate h-[560px] overflow-hidden rounded-[24px] bg-[#0A0A0A] md:rounded-l-none md:rounded-r-[24px]">
+            <img
+              src={adsPaulaImage.src}
+              alt="Echipa Alverna Dental Studio"
+              className="pointer-events-none absolute bottom-0 right-[-34px] z-[20] h-[660px] w-auto object-contain"
+            />
           </article>
         </div>
       </section>
@@ -1395,15 +1408,15 @@ export default function HomePageClient() {
             <h2 className="max-w-[720px] text-[40px] font-bold leading-[1.05] tracking-[-0.04em] text-white md:text-[48px] lg:text-[56px]">
               Descarca aplicatia ads si groaza de dentist va disparea
             </h2>
-            <p className="mt-8 max-w-[680px] text-[16px] leading-[1.55] text-white">
+            <p className="mt-8 max-w-[680px] text-[16px] leading-[1.65] text-white">
               O vizită într-un cabinet stomatologic Cluj, oricât de modern și bine echipat ar fi, nu aduce rezultatele dorite fără un medic stomatolog Cluj pe măsură. Medicii din clinica stomatologică Alverna Dental Studio sunt atenți, dedicați și foarte bine pregătiți, fiecare medic stomatolog Cluj fiind specializat pe anumite servicii de stomatologie. Împreună, ca echipă, putem aborda, eficient și la calitate superioară, orice situație dentară cu care v-ați confrunta.
             </p>
             <div className="mt-16 flex flex-col gap-6 md:flex-row md:items-center md:gap-6">
               <button className="flex h-[56px] min-w-[210px] items-center gap-[10px] rounded-[8px] bg-black px-[18px] text-white transition duration-200 ease-out hover:scale-[1.03]">
                 <span className="text-[24px] leading-none"></span>
                 <span className="flex flex-col items-start leading-none">
-                  <span className="text-[10px] font-medium">Download on the</span>
-                  <span className="mt-[2px] text-[18px] font-semibold">App Store</span>
+                  <span className="text-[16px] font-medium">Download on the</span>
+                  <span className="mt-[2px] text-[16px] font-semibold">App Store</span>
                 </span>
               </button>
               <button className="flex h-[56px] min-w-[210px] items-center gap-[10px] rounded-[8px] bg-black px-[18px] text-white transition duration-200 ease-out hover:scale-[1.03]">
@@ -1412,8 +1425,8 @@ export default function HomePageClient() {
                   <span className="absolute left-[6px] top-[6px] h-0 w-0 border-b-[6px] border-l-[10px] border-t-[6px] border-b-transparent border-l-[#60a5fa] border-t-transparent opacity-90" />
                 </span>
                 <span className="flex flex-col items-start leading-none">
-                  <span className="text-[10px] font-medium uppercase">Get it on</span>
-                  <span className="mt-[2px] text-[18px] font-semibold">Google Play</span>
+                  <span className="text-[16px] font-medium uppercase">Get it on</span>
+                  <span className="mt-[2px] text-[16px] font-semibold">Google Play</span>
                 </span>
               </button>
             </div>
@@ -1466,14 +1479,14 @@ export default function HomePageClient() {
 
           <div className="pt-0 text-white lg:pt-8">
             <h3 className="max-w-[720px] text-[44px] font-semibold leading-[1.04] tracking-[-0.04em]">Primul pas spre un zâmbet sănătos începe aici.</h3>
-            <p className="mt-5 max-w-[680px] text-[16px] leading-[1.55] text-white">
+            <p className="mt-5 max-w-[680px] text-[16px] leading-[1.65] text-white">
               Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune.
             </p>
             <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
-              <p className="text-[20px] font-semibold text-white">4.8 ★★★★★</p>
-              <p className="mt-1 text-[13px] text-white">Peste 9000 de pacienți mulțumiți</p>
+              <p className="text-[16px] font-semibold text-white">4.8 ★★★★★</p>
+              <p className="mt-1 text-[16px] text-white">Peste 9000 de pacienți mulțumiți</p>
             </div>
-            <p className="mt-7 text-[14px] text-white underline decoration-[#9fc48f]/50 underline-offset-4">Preferi telefonic? Sună acum</p>
+            <p className="mt-7 text-[16px] text-white underline decoration-[#9fc48f]/50 underline-offset-4">Preferi telefonic? Sună acum</p>
           </div>
         </div>
       </section>

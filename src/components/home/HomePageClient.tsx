@@ -1210,7 +1210,6 @@ export default function HomePageClient() {
             </div>
             <div className="relative z-[40] text-[16px] text-white">
               <p>Echipa</p>
-              <p className="mt-1">Faceti cunostinta cu echipa</p>
             </div>
             <img
               src={teamBannerImage.src}
@@ -1220,11 +1219,6 @@ export default function HomePageClient() {
             <h3 className="absolute bottom-[92px] left-[36px] z-[30] whitespace-pre-line text-[64px] font-bold leading-[0.88] text-white">
               {"alverna\ndental\nstudio"}
             </h3>
-            <p className="absolute bottom-[46px] left-1/2 z-[40] w-[300px] -translate-x-1/2 text-center text-[22px] leading-[1.15] text-white">
-              Un zambet cu incredere
-              <br />
-              cabinet stomatologic
-            </p>
             <p className="absolute bottom-[24px] left-[40px] z-[40] text-[16px] text-white">echipa noastra ↗</p>
             <p className="absolute bottom-[24px] right-[40px] z-[40] text-[16px] text-white">We do it all.</p>
           </article>
@@ -1369,7 +1363,6 @@ export default function HomePageClient() {
           <article className="flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-5 text-white md:rounded-none md:px-6 md:py-6">
             <div className="shrink-0">
               <p className="text-[16px]">Echipa</p>
-              <p className="mt-1 text-[16px] text-white/85">Faceti cunostinta cu echipa</p>
             </div>
 
             <div className="relative my-4 min-h-0 flex-1 overflow-hidden rounded-[12px] bg-black">

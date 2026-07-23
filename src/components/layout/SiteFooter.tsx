@@ -21,8 +21,8 @@ export default function SiteFooter() {
   return (
     <>
       <InstagramReelsSection />
-    <footer className="bg-white px-4 pb-10 pt-12 text-white md:px-8 lg:px-12">
-      <div className="mx-auto grid w-full max-w-[1720px] grid-cols-1 gap-10 border-t border-black/10 pt-10 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
+    <footer className="flex flex-col bg-white px-4 pb-10 pt-12 text-white md:px-8 lg:px-12">
+      <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-10 border-t border-black/10 pt-10 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <section>
           <h3 className="text-[24px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
           <p className="mt-4 max-w-[560px] text-[16px] leading-[1.7] text-white">
@@ -79,14 +79,16 @@ export default function SiteFooter() {
         </section>
       </div>
 
-      <a
-        href="https://www.instagram.com/alvernadentalstudio/?hl=en"
-        target="_blank"
-        rel="noreferrer"
-        className="mx-auto mt-16 block w-full max-w-[1720px] text-center text-[48px] font-semibold leading-[0.92] tracking-[-0.04em] text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white md:text-[80px] lg:text-[120px]"
-      >
-        @alvernadentalstudio
-      </a>
+      <div className="mx-auto mt-16 w-full max-w-[1720px] shrink-0 px-2">
+        <a
+          href="https://www.instagram.com/alvernadentalstudio/?hl=en"
+          target="_blank"
+          rel="noreferrer"
+          className="ads-footer-instagram block w-full text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
+        >
+          @alvernadentalstudio
+        </a>
+      </div>
     </footer>
     </>
   );

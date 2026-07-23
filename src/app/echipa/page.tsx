@@ -6,9 +6,9 @@ import { useReducedMotion } from "motion/react";
 import gsap from "gsap";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
 import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
+import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
-import { services } from "@/config/services";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
 import andreeaImage from "@/assets/echipa/andreea-parvu.png";
 import raresImage from "@/assets/echipa/rares-gorun.png";
@@ -217,49 +217,13 @@ export default function EchipaPage() {
                   {item.label}
                 </a>
               ))}
-              <button
-                type="button"
-                aria-label="Deschide lista de servicii"
-                aria-expanded={mobileServicesOpen}
-                onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="ads-btn-no-glow mt-2 flex w-full items-center justify-start gap-3 rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
-              >
-                <span>Servicii</span>
-                <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
-              </button>
-              <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileServicesOpen ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="pl-3 pt-1">
-                  {services.map((service) =>
-                    service.children?.length ? (
-                      <div key={service.slug}>
-                        <button
-                          type="button"
-                          aria-label={`Deschide submeniul ${service.title}`}
-                          aria-expanded={openSubmenuSlug === service.slug}
-                          onClick={() =>
-                            setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
-                          }
-                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[16px] font-semibold text-white"
-                        >
-                          <span>{service.title}</span>
-                          <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
-                        </button>
-                        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${openSubmenuSlug === service.slug ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
-                          {(service.children ?? []).map((child) => (
-                            <a key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[16px] text-white">
-                              {child.title}
-                            </a>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <a key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[16px] font-medium text-white">
-                        {service.title}
-                      </a>
-                    ),
-                  )}
-                </div>
-              </div>
+              <MobileMenuNavServices
+                mobileServicesOpen={mobileServicesOpen}
+                setMobileServicesOpen={setMobileServicesOpen}
+                openSubmenuSlug={openSubmenuSlug}
+                setOpenSubmenuSlug={setOpenSubmenuSlug}
+                onCloseMenu={() => setMenuOpen(false)}
+              />
 
               {[
                 { href: "/tarife", label: "Tarife" },

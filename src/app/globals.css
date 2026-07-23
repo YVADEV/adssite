@@ -98,6 +98,18 @@ body {
   overflow-wrap: break-word;
 }
 
+.ads-footer-instagram {
+  display: block;
+  width: 100%;
+  margin-inline: auto;
+  text-align: center;
+  font-size: clamp(32px, 10vw, 120px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 767px) {
   .ads-readable {
     max-width: none;

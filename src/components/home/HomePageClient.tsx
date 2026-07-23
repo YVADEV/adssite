@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
 import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
+import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { CaseImage } from "@/components/cazuri/CaseImage";
@@ -764,49 +765,13 @@ export default function HomePageClient() {
                 {item.label}
               </Link>
             ))}
-              <button
-                type="button"
-                aria-label="Deschide lista de servicii"
-                aria-expanded={mobileServicesOpen}
-                onClick={() => setMobileServicesOpen((prev) => !prev)}
-                className="ads-btn-no-glow mt-2 flex w-full items-center justify-start gap-3 rounded-[12px] px-3 py-2 text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white"
-              >
-                <span>Servicii</span>
-                <span className="text-[22px]">{mobileServicesOpen ? "−" : "+"}</span>
-              </button>
-              <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${mobileServicesOpen ? "max-h-[1200px] opacity-100" : "max-h-0 opacity-0"}`}>
-                <div className="pl-3 pt-1">
-                  {services.map((service) =>
-                    service.children?.length ? (
-                      <div key={service.slug}>
-                        <button
-                          type="button"
-                          aria-label={`Deschide submeniul ${service.title}`}
-                          aria-expanded={openSubmenuSlug === service.slug}
-                          onClick={() =>
-                            setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
-                          }
-                          className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[16px] font-semibold text-white"
-                        >
-                          <span>{service.title}</span>
-                          <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
-                        </button>
-                        <div className={`overflow-hidden transition-[max-height,opacity] duration-300 ${openSubmenuSlug === service.slug ? "max-h-[180px] opacity-100" : "max-h-0 opacity-0"}`}>
-                          {(service.children ?? []).map((child) => (
-                            <Link key={child.slug} href={child.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[16px] text-white">
-                              {child.title}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ) : (
-                      <Link key={service.slug} href={service.href} onClick={() => setMenuOpen(false)} className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[16px] font-medium text-white">
-                        {service.title}
-                      </Link>
-                    ),
-                  )}
-                </div>
-              </div>
+              <MobileMenuNavServices
+                mobileServicesOpen={mobileServicesOpen}
+                setMobileServicesOpen={setMobileServicesOpen}
+                openSubmenuSlug={openSubmenuSlug}
+                setOpenSubmenuSlug={setOpenSubmenuSlug}
+                onCloseMenu={() => setMenuOpen(false)}
+              />
 
               {[
                 { href: "/tarife", label: "Tarife" },
@@ -1219,7 +1184,6 @@ export default function HomePageClient() {
             <h3 className="absolute bottom-[92px] left-[36px] z-[30] whitespace-pre-line text-[64px] font-bold leading-[0.88] text-white">
               {"alverna\ndental\nstudio"}
             </h3>
-            <p className="absolute bottom-[24px] left-[40px] z-[40] text-[16px] text-white">echipa noastra ↗</p>
             <p className="absolute bottom-[24px] right-[40px] z-[40] text-[16px] text-white">We do it all.</p>
           </article>
 
@@ -1375,9 +1339,8 @@ export default function HomePageClient() {
 
             <div className="shrink-0">
               <p className="text-center text-[22px] font-semibold leading-[1.15] md:text-left">Laborator dentar</p>
-              <div className="mt-3 flex items-center justify-between gap-4 text-[16px]">
-                <span>echipa noastra ↗</span>
-                <span className="text-right">We do it all.</span>
+              <div className="mt-3 flex items-center justify-end text-[16px]">
+                <span>We do it all.</span>
               </div>
             </div>
           </article>

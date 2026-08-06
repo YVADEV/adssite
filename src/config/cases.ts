@@ -13,6 +13,12 @@ import danaHero from "@/assets/cazuri/dana-hero.png";
 import danaBefore from "@/assets/cazuri/dana-before.png";
 import danaHug from "@/assets/cazuri/dana-hug.png";
 import andreeaParvuImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
+import sergiuHero from "@/assets/cazuri/sergiu-witberg/hero.png";
+import sergiuBefore1 from "@/assets/cazuri/sergiu-witberg/before-1.png";
+import sergiuBefore2 from "@/assets/cazuri/sergiu-witberg/before-2.png";
+import sergiuWithDoctor from "@/assets/cazuri/sergiu-witberg/with-doctor.png";
+import sergiuAfter1 from "@/assets/cazuri/sergiu-witberg/after-1.png";
+import sergiuAfter2 from "@/assets/cazuri/sergiu-witberg/after-2.png";
 
 export type CaseDoctor = {
   name: string;
@@ -343,6 +349,52 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     doctor: DEFAULT_CASE_DOCTOR,
     seoDescription:
       "Caz #6 Alverna Dental Studio: reabilitare orală complexă cu abordare multidisciplinară — documentare clinică completă.",
+  },
+  "sergiu-witberg": {
+    slug: "sergiu-witberg",
+    path: "/cazuri/sergiu-witberg/",
+    title: "Zâmbet transformat.\nRezultat natural.",
+    subtitle: "Reabilitare estetică și funcțională cu restaurări protetice personalizate",
+    category: "Estetică dentară · Protetică",
+    caseNumber: "Caz #7",
+    patientName: "Sergiu Witberg",
+    heroImage: sergiuHero,
+    heroObjectPosition: "center 32%",
+    thumbnailSrc: sergiuHero.src,
+    storyImages: [
+      { image: sergiuBefore1, label: "Before", alt: "Sergiu Witberg — situație inițială", objectPosition: "center center" },
+      { image: sergiuWithDoctor, label: "În clinică", alt: "Sergiu Witberg alături de echipa Alverna", objectPosition: "center center" },
+      { image: sergiuAfter1, label: "After", alt: "Sergiu Witberg — rezultat final", objectPosition: "center center" },
+    ],
+    intro:
+      "Cazul lui Sergiu Witberg a fost planificat în Alverna Dental Studio pentru a corecta aspectul dinților frontali, culoarea și alinierea, cu obiectiv clar de naturalitate și confort pe termen lung.",
+    paragraphs: [
+      "Sergiu Witberg s-a prezentat la clinică cu discolorații dentare, uzură vizibilă și aliniere neuniformă la nivelul arcadelor, aspecte care afectau atât estetica zâmbetului, cât și încrederea în apariție.",
+      "După evaluarea clinică și fotografică, echipa a stabilit un plan de reabilitare orientat spre proporții echilibrate, nuanțe armonioase și funcție masticatorie stabilă.",
+      "Tratamentul a inclus etape protetice personalizate, realizate în laboratorul propriu Alverna Dental Studio, cu atenție la contur, textură și integrarea lucrărilor în fizionomia pacientului.",
+      "Rezultatul final redă un zâmbet luminos, simetric și natural, documentat atât în clinică, cât și în fotografiile de control post-tratament.",
+    ],
+    closingQuote:
+      "Rezultatul final este un zâmbet natural, echilibrat și integrat armonios — Sergiu pleacă din clinică cu încredere regăsită.",
+    beforeAfterImages: [
+      { image: sergiuBefore2, label: "Before", alt: "Sergiu Witberg — înainte de tratament", objectPosition: "center center" },
+      { image: sergiuAfter2, label: "After", alt: "Sergiu Witberg — după tratament", objectPosition: "center center" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și funcțională pentru definirea obiectivelor de culoare, formă și aliniere." },
+      { label: "Plan protetic", detail: "Planificare personalizată a restaurărilor, cu validare estetică înainte de etapa finală." },
+      { label: "Lucrări în laborator", detail: "Restaurări realizate în laboratorul Alverna Dental Studio, sub coordonarea echipei medicale." },
+      { label: "Control final", detail: "Verificare ocluzală, confort și estetică, cu documentare completă before & after." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Sergiu Witberg" },
+      { label: "Tip caz", value: "Estetică · Protetică" },
+      { label: "Obiectiv", value: "Zâmbet natural" },
+      { label: "Laborator", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #7 Alverna Dental Studio: reabilitare estetică pentru Sergiu Witberg — before & after documentat, restaurări protetice personalizate.",
   },
 };
 

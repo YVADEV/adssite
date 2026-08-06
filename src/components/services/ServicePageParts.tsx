@@ -330,8 +330,7 @@ export function ServiceTestimonials() {
   return (
     <section data-theme="light" className="bg-[#ececec] pb-[110px]">
       <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-        <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white">✚ Testimoniale</p>
-        <h3 className="mt-2 text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">
+        <h3 className="text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">
           Recenzii
         </h3>
         <p className="mt-3 text-[16px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
@@ -360,13 +359,10 @@ export function ServiceTestimonials() {
             transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
             className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[22px]"
           >
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
-                <p className="mt-1 text-[16px] text-white">{r.meta}</p>
-                <p className="mt-1 text-[16px] text-white">{r.time}</p>
-              </div>
-              <span aria-hidden className="text-3xl opacity-40">+</span>
+            <div>
+              <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
+              <p className="mt-1 text-[16px] text-white">{r.meta}</p>
+              <p className="mt-1 text-[16px] text-white">{r.time}</p>
             </div>
             <p className="mt-6 text-[16px] leading-[1.55] text-white">{r.text}</p>
             <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[16px] leading-none tracking-[0.08em] text-white">

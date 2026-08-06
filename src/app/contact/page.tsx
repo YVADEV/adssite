@@ -78,8 +78,7 @@ export default function ContactPage() {
         <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-[16px] font-semibold uppercase tracking-[0.14em] text-white">✚ Locație</p>
-              <h2 className="mt-2 text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[56px]">
+              <h2 className="text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[56px]">
                 Vino la noi în clinică
               </h2>
             </div>
@@ -156,8 +155,7 @@ export default function ContactPage() {
 
         <section className="bg-black pb-[110px] pt-[100px]">
           <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-            <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white">✚ Testimoniale</p>
-            <h3 className="mt-2 text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">Recenzii</h3>
+            <h3 className="text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">Recenzii</h3>
             <p className="mt-3 text-[16px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
           </div>
           <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
@@ -177,14 +175,11 @@ export default function ContactPage() {
 
             {reviews.map((r) => (
               <article key={r.name} className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[22px]">
-                <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
                     <p className="mt-1 text-[16px] text-white">{r.meta}</p>
                     <p className="mt-1 text-[16px] text-white">{r.time}</p>
                   </div>
-                  <span className="text-3xl opacity-40">+</span>
-                </div>
                 <p className="mt-6 text-[16px] leading-[1.65] text-white">{r.text}</p>
                 <p className="mt-auto pt-4 text-[16px] leading-none tracking-[0.08em] text-white">★★★★★</p>
               </article>

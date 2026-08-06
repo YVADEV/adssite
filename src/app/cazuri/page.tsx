@@ -14,6 +14,7 @@ import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
+import sergiuHero from "@/assets/cazuri/sergiu-witberg/hero.png";
 
 const caseImages = [
   cazA7408097.src,
@@ -22,6 +23,7 @@ const caseImages = [
   cazA7407944.src,
   cazA7407760.src,
   cazA7408160.src,
+  sergiuHero.src,
 ];
 
 export default function CazuriPage() {
@@ -54,6 +56,13 @@ export default function CazuriPage() {
       image: cazA7407944.src,
       href: CASE_STUDIES["smile-design"].path,
       objectPosition: "center 36%",
+    },
+    {
+      title: "Sergiu Witberg",
+      role: "Estetică · Protetică",
+      image: sergiuHero.src,
+      href: CASE_STUDIES["sergiu-witberg"].path,
+      objectPosition: "center 32%",
     },
   ];
 

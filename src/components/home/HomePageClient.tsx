@@ -11,6 +11,7 @@ import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { CaseImage } from "@/components/cazuri/CaseImage";
+import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { services } from "@/config/services";
@@ -378,16 +379,12 @@ const missionCards = [
   "Planurile de tratament sunt personalizate pentru fiecare caz in parte.",
 ];
 
-function SectionTitle({ left, title, subtitle }: { left: string; title: string; subtitle?: string }) {
+function SectionTitle({ title }: { title: string }) {
   return (
-    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-3 px-4 md:px-6 lg:grid-cols-[140px_minmax(0,1fr)] lg:gap-x-10 lg:px-8">
-      <span className="pt-1 text-[16px] font-medium leading-[1.4] opacity-60">{left}</span>
-      <div className="min-w-0">
-        <h2 data-anim="text" className="text-[32px] font-extrabold leading-[1.05] tracking-[-0.045em] sm:text-[42px] md:text-[72px] lg:text-[96px]">
-          {title}
-        </h2>
-        {subtitle ? <p className="mt-2 text-[16px] font-semibold leading-[1.4] md:text-[16px]">{subtitle}</p> : null}
-      </div>
+    <div className="mx-auto w-full max-w-[1680px] px-4 md:px-6 lg:px-8">
+      <h2 data-anim="text" className="text-[32px] font-extrabold leading-[1.05] tracking-[-0.045em] sm:text-[42px] md:text-[72px] lg:text-[96px]">
+        {title}
+      </h2>
     </div>
   );
 }
@@ -849,19 +846,7 @@ export default function HomePageClient() {
       >
         <div className="relative left-1/2 h-[calc(100vh-72px)] w-screen -translate-x-1/2">
           <div data-intro="hero-media" className="relative h-full w-full overflow-hidden rounded-[32px]">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              poster="/services/dental-chair.png"
-              aria-label="Alverna Dental Studio — clinică modernă din Cluj"
-              data-anim="image"
-              className="absolute inset-0 h-full w-full object-cover"
-            >
-              <source src="/hero1.mp4" type="video/mp4" />
-            </video>
+            <HeroIntroVideo />
             <div data-intro="hero-title" className="absolute left-5 top-5 text-white md:left-7 md:top-7 lg:left-9 lg:top-9">
             <h1 className="max-w-[980px] text-[52px] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
             <p className="mt-1 max-w-[560px] text-[28px] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
@@ -881,10 +866,6 @@ export default function HomePageClient() {
         </div>
 
         <div data-intro="trust" className="mx-auto mt-[72px] w-full overflow-visible pb-[8px]">
-          <div className="mb-[18px] flex text-white">
-            <span className="mr-[223px]">✚ Recenzii</span>
-            <span>(2016-25©)</span>
-          </div>
           <div data-anim-cards className="grid grid-cols-1 items-end gap-[10px] md:grid-cols-3 md:gap-3 lg:grid-cols-6 lg:gap-2">
             {partnerReviewCards.map((review) => (
               <div
@@ -906,7 +887,7 @@ export default function HomePageClient() {
       </section>
 
       <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[72px] pt-[120px] md:pb-[96px] lg:pb-[72px]">
-        <SectionTitle left="(27)" title="Cazuri" subtitle="©2026" />
+        <SectionTitle title="Cazuri" />
         <div className="mx-auto mt-3 w-full max-w-[1680px] px-4 text-[16px] font-normal leading-[1.5] text-white md:px-6 lg:px-8 lg:pl-[708px]">
           La Alverna Dental Studio dispunem de propriul laborator de tehnică dentară, ceea ce ne permite să controlăm îndeaproape calitatea lucrărilor și a materialelor folosite.
         </div>
@@ -931,11 +912,7 @@ export default function HomePageClient() {
 
       <section data-anim="section" className="bg-[#ececec] pb-[90px] pt-[30px] lg:pb-[180px]">
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-[1fr_1fr]">
-            <p className="text-sm">✚ Cabinet stomatologic Cluj</p>
-            <h2 className="ads-section-title text-[64px] font-semibold leading-[0.95] tracking-[-2.4px] text-white">Ce ne recomandă?</h2>
-          </div>
-          <div className="mt-[40px] grid grid-cols-1 items-start gap-6 md:mt-[56px] md:grid-cols-[auto_1fr] lg:mt-[74px] lg:gap-10">
+          <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[auto_1fr] lg:gap-10">
             <div className="overflow-hidden rounded-[12px]">
               <img
                 src={vdScaun.src}
@@ -992,11 +969,9 @@ export default function HomePageClient() {
 
       <section id="servicii" className="overflow-hidden bg-[#121212] pb-0">
         <div className="mx-auto w-full max-w-[1680px] overflow-x-hidden rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[120px_minmax(0,1fr)] lg:gap-16">
-            <p className="w-[120px] text-[16px] leading-[1.25] text-white">+ Cabinet stomatologic cluj</p>
-            <div className="min-w-0">
+          <div className="min-w-0">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii ••(4)</h2>
+                <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
                 <div className="flex items-center gap-2 md:gap-3">
                   <button
                     type="button"
@@ -1045,7 +1020,6 @@ export default function HomePageClient() {
                   ))}
                 </div>
               </div>
-            </div>
           </div>
           <div className="mt-8 flex items-center justify-center gap-4">
             {servicePages.map((_, idx) => (
@@ -1057,8 +1031,7 @@ export default function HomePageClient() {
 
       <section data-anim="section" className="bg-[#f5f5f5]">
         <div className="mx-auto w-full max-w-[1680px] px-4 pb-16 pt-16 md:px-10 md:pb-[140px] md:pt-[140px] lg:px-[96px]">
-          <div className="mb-6 flex flex-col gap-2 text-[16px] leading-[1.5] text-white sm:mb-8 sm:flex-row sm:items-center sm:justify-between">
-            <span>Misiunea noastra</span>
+          <div className="mb-6 flex justify-end text-[16px] leading-[1.5] text-white sm:mb-8">
             <span className="break-all sm:break-normal">@alvernadentalstudio</span>
           </div>
           <h2 className="mb-4 text-[32px] font-semibold leading-[1.12] text-white sm:text-[40px] md:text-[48px]">Misiunea Noastră</h2>
@@ -1101,7 +1074,7 @@ export default function HomePageClient() {
       </section>
 
       <section data-anim="section" className="bg-[#ececec] pb-[120px]">
-        <SectionTitle left="✚ Testimoniale" title="Recenzii" subtitle="©2025" />
+        <SectionTitle title="Recenzii" />
         <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[16px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
         </div>
@@ -1132,13 +1105,10 @@ export default function HomePageClient() {
               transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }}
               className="flex h-full min-h-[313px] flex-col rounded-[18px] bg-[#f5f5f5] p-[24px] ads-mission-glow"
             >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-[32px] font-semibold leading-[1.05]">{r.name}</p>
-                  <p className="mt-1 text-[16px] opacity-60">{r.meta}</p>
-                  <p className="mt-1 text-[16px] opacity-60">{r.time}</p>
-                </div>
-                <span className="text-3xl opacity-40">+</span>
+              <div>
+                <p className="text-[32px] font-semibold leading-[1.05]">{r.name}</p>
+                <p className="mt-1 text-[16px] opacity-60">{r.meta}</p>
+                <p className="mt-1 text-[16px] opacity-60">{r.time}</p>
               </div>
               <p className="mt-6 text-[16px] leading-[1.5] tracking-[-0.2px] text-white">{r.text}</p>
               <p className="mt-auto pt-4 text-[16px] leading-none tracking-[0.08em] text-white">★★★★★</p>
@@ -1190,13 +1160,11 @@ export default function HomePageClient() {
           <article className="relative z-10 h-[560px] rounded-[16px] bg-[#0A0A0A] p-[44px]">
             <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
             <div className="relative z-10 flex h-full flex-col">
-              <p className="text-[16px] text-white">Clinica dentara cluj</p>
-              <h3 className="mt-4 whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
+              <h3 className="whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
                 {"Puterea zambetului\ncare inspira incredere"}
               </h3>
               <div className="mt-8">
-                <p className="text-[16px] text-white/80">Cabinet stomatologic cluj</p>
-                <p className="mt-1 text-[40px] font-semibold text-white">
+                <p className="text-[40px] font-semibold text-white">
                   4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
                 </p>
               </div>
@@ -1232,8 +1200,7 @@ export default function HomePageClient() {
       <section id="tarife" className="relative w-full overflow-hidden bg-[#f5f5f5] pb-14 md:pb-20 lg:pb-[120px]">
         <div className="mx-auto w-full max-w-[1680px] bg-[#f5f5f5] px-5 py-12 md:px-10 md:py-16 lg:px-[96px] lg:py-[96px]">
           <div className="w-full">
-            <p className="text-[16px] leading-[1.25] text-white">+ Tarife</p>
-            <div className="mt-2 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
               <div className="flex items-center gap-2 md:gap-3">
                 <button

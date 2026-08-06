@@ -19,6 +19,19 @@ import sergiuBefore2 from "@/assets/cazuri/sergiu-witberg/before-2.png";
 import sergiuWithDoctor from "@/assets/cazuri/sergiu-witberg/with-doctor.png";
 import sergiuAfter1 from "@/assets/cazuri/sergiu-witberg/after-1.png";
 import sergiuAfter2 from "@/assets/cazuri/sergiu-witberg/after-2.png";
+import simonaHero from "@/assets/cazuri/simona/hero.png";
+import simonaBefore1 from "@/assets/cazuri/simona/before-1.png";
+import simonaBefore2 from "@/assets/cazuri/simona/before-2.png";
+import simonaAfter1 from "@/assets/cazuri/simona/after-1.png";
+import simonaAfter2 from "@/assets/cazuri/simona/after-2.png";
+import raduHero from "@/assets/cazuri/radu/hero.png";
+import raduAfter1 from "@/assets/cazuri/radu/after-1.png";
+import raduAfter2 from "@/assets/cazuri/radu/after-2.png";
+import carmenHero from "@/assets/cazuri/carmen/hero.png";
+import carmenBefore1 from "@/assets/cazuri/carmen/before-1.png";
+import carmenBefore2 from "@/assets/cazuri/carmen/before-2.png";
+import carmenAfter1 from "@/assets/cazuri/carmen/after-1.png";
+import carmenAfter2 from "@/assets/cazuri/carmen/after-2.png";
 
 export type CaseDoctor = {
   name: string;
@@ -353,9 +366,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
   "sergiu-witberg": {
     slug: "sergiu-witberg",
     path: "/cazuri/sergiu-witberg/",
-    title: "Zâmbet transformat.\nRezultat natural.",
-    subtitle: "Reabilitare estetică și funcțională cu restaurări protetice personalizate",
-    category: "Estetică dentară · Protetică",
+    title: "Armonie, naturalețe\nși un zâmbet care îl reprezintă",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
     caseNumber: "Caz #7",
     patientName: "Sergiu Witberg",
     heroImage: sergiuHero,
@@ -367,34 +380,175 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       { image: sergiuAfter1, label: "After", alt: "Sergiu Witberg — rezultat final", objectPosition: "center center" },
     ],
     intro:
-      "Cazul lui Sergiu Witberg a fost planificat în Alverna Dental Studio pentru a corecta aspectul dinților frontali, culoarea și alinierea, cu obiectiv clar de naturalitate și confort pe termen lung.",
+      "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
     paragraphs: [
-      "Sergiu Witberg s-a prezentat la clinică cu discolorații dentare, uzură vizibilă și aliniere neuniformă la nivelul arcadelor, aspecte care afectau atât estetica zâmbetului, cât și încrederea în apariție.",
-      "După evaluarea clinică și fotografică, echipa a stabilit un plan de reabilitare orientat spre proporții echilibrate, nuanțe armonioase și funcție masticatorie stabilă.",
-      "Tratamentul a inclus etape protetice personalizate, realizate în laboratorul propriu Alverna Dental Studio, cu atenție la contur, textură și integrarea lucrărilor în fizionomia pacientului.",
-      "Rezultatul final redă un zâmbet luminos, simetric și natural, documentat atât în clinică, cât și în fotografiile de control post-tratament.",
+      "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
+      "În urma evaluării clinice și a unei planificări personalizate, Dr. Andreea Parcu a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța fiecărui dinte au fost alese cu atenție pentru a corecta imperfecțiunile existente și pentru a obține o integrare firească în ansamblul facial.",
+      "Rezultatul este un zâmbet luminos și echilibrat, cu o estetică naturală, adaptată personalității pacientului. Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
+      "Tratament realizat de Dr. Andreea Parcu, în cadrul Alverna Dental Studio.",
     ],
     closingQuote:
-      "Rezultatul final este un zâmbet natural, echilibrat și integrat armonios — Sergiu pleacă din clinică cu încredere regăsită.",
+      "Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
     beforeAfterImages: [
       { image: sergiuBefore2, label: "Before", alt: "Sergiu Witberg — înainte de tratament", objectPosition: "center center" },
       { image: sergiuAfter2, label: "After", alt: "Sergiu Witberg — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
-      { label: "Evaluare clinică", detail: "Analiză estetică și funcțională pentru definirea obiectivelor de culoare, formă și aliniere." },
-      { label: "Plan protetic", detail: "Planificare personalizată a restaurărilor, cu validare estetică înainte de etapa finală." },
-      { label: "Lucrări în laborator", detail: "Restaurări realizate în laboratorul Alverna Dental Studio, sub coordonarea echipei medicale." },
-      { label: "Control final", detail: "Verificare ocluzală, confort și estetică, cu documentare completă before & after." },
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată, orientată spre un zâmbet armonios și natural." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică realizată de Dr. Andreea Parcu, cu selecție atentă a formei, proporțiilor și nuanței." },
+      { label: "Integrare facială", detail: "Corectarea imperfecțiunilor existente și adaptarea lucrărilor la fizionomia pacientului." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, echilibrat și autentic — estetică naturală adaptată personalității pacientului." },
     ],
     quickFacts: [
       { label: "Pacient", value: "Sergiu Witberg" },
-      { label: "Tip caz", value: "Estetică · Protetică" },
-      { label: "Obiectiv", value: "Zâmbet natural" },
-      { label: "Laborator", value: "Alverna Dental Studio" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Medic", value: "Dr. Andreea Parcu" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: {
+      ...DEFAULT_CASE_DOCTOR,
+      name: "Dr. Andreea Parcu",
+    },
+    seoDescription:
+      "Caz #7 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Sergiu Witberg — armonie, naturalețe și un zâmbet care îl reprezintă.",
+  },
+  simona: {
+    slug: "simona",
+    path: "/cazuri/simona/",
+    title: "Zâmbet luminos.\nEstetică naturală.",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
+    caseNumber: "Caz #8",
+    patientName: "Simona",
+    heroImage: simonaHero,
+    heroObjectPosition: "center 42%",
+    thumbnailSrc: simonaHero.src,
+    storyImages: [
+      { image: simonaBefore1, label: "Before", alt: "Simona — situație inițială", objectPosition: "center center" },
+      { image: simonaAfter1, label: "În clinică", alt: "Simona — documentare clinică", objectPosition: "center center" },
+      { image: simonaHero, label: "After", alt: "Simona — rezultat final", objectPosition: "center 42%" },
+    ],
+    intro:
+      "Simona și-a dorit un zâmbet mai luminos și armonios, păstrând un aspect natural, potrivit trăsăturilor sale.",
+    paragraphs: [
+      "Simona și-a dorit un zâmbet mai luminos și armonios, păstrând un aspect natural, potrivit trăsăturilor sale.",
+      "În urma evaluării clinice și a planificării personalizate, echipa Alverna Dental Studio a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța fiecărui dinte au fost alese cu atenție pentru a corecta imperfecțiunile existente.",
+      "Rezultatul este un zâmbet echilibrat, cu estetică naturală și integrare firească în ansamblul facial. Documentarea clinică before & after confirmă transformarea obținută.",
+      "Tratament realizat în cadrul Alverna Dental Studio.",
+    ],
+    closingQuote:
+      "Un zâmbet reușit nu înseamnă doar dinți frumoși, ci un rezultat în care pacientul se simte cu adevărat ea însăși.",
+    beforeAfterImages: [
+      { image: simonaBefore2, label: "Before", alt: "Simona — înainte de tratament", objectPosition: "center center" },
+      { image: simonaAfter2, label: "After", alt: "Simona — după tratament", objectPosition: "center center" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru un zâmbet armonios și natural." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică cu selecție atentă a formei, proporțiilor și nuanței fiecărui dinte." },
+      { label: "Integrare facială", detail: "Corectarea imperfecțiunilor și adaptarea lucrărilor la fizionomia pacientei." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, echilibrat și autentic — documentat clinic before & after." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Simona" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Obiectiv", value: "Estetică naturală" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
     ],
     doctor: DEFAULT_CASE_DOCTOR,
     seoDescription:
-      "Caz #7 Alverna Dental Studio: reabilitare estetică pentru Sergiu Witberg — before & after documentat, restaurări protetice personalizate.",
+      "Caz #8 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Simona — zâmbet luminos, estetică naturală.",
+  },
+  radu: {
+    slug: "radu",
+    path: "/cazuri/radu/",
+    title: "Zâmbet redefinit.\nRezultat armonios.",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
+    caseNumber: "Caz #9",
+    patientName: "Radu",
+    heroImage: raduAfter1,
+    heroObjectPosition: "center center",
+    thumbnailSrc: raduAfter1.src,
+    storyImages: [
+      { image: raduAfter2, label: "În clinică", alt: "Radu — documentare în clinică", objectPosition: "center center" },
+      { image: raduAfter1, label: "Detaliu", alt: "Radu — detaliu clinic", objectPosition: "center center" },
+      { image: raduHero, label: "After", alt: "Radu — rezultat final", objectPosition: "center 45%" },
+    ],
+    intro:
+      "Radu și-a dorit un zâmbet mai armonios și luminos, cu un aspect natural care să se potrivească trăsăturilor sale.",
+    paragraphs: [
+      "Radu și-a dorit un zâmbet mai armonios și luminos, cu un aspect natural care să se potrivească trăsăturilor sale.",
+      "În urma evaluării clinice și a planificării personalizate, echipa Alverna Dental Studio a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța dinților au fost alese cu atenție pentru un rezultat echilibrat.",
+      "Rezultatul este un zâmbet uniform, luminos și integrat natural în fizionomie — documentat clinic în mai multe unghiuri, inclusiv în cabinet.",
+      "Tratament realizat în cadrul Alverna Dental Studio.",
+    ],
+    closingQuote:
+      "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Radu a obținut la finalul tratamentului.",
+    beforeAfterImages: [
+      { image: raduAfter1, label: "Documentare clinică", alt: "Radu — documentare clinică", objectPosition: "center center" },
+      { image: raduHero, label: "After", alt: "Radu — rezultat final", objectPosition: "center 45%" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru un zâmbet armonios, adaptat trăsăturilor pacientului." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică cu selecție atentă a formei, proporțiilor și nuanței fiecărui dinte." },
+      { label: "Integrare facială", detail: "Adaptarea lucrărilor la fizionomie, pentru un rezultat natural și echilibrat." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, uniform și autentic — documentat clinic la finalul tratamentului." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Radu" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Obiectiv", value: "Zâmbet armonios" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #9 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Radu — zâmbet redefinit, rezultat armonios.",
+  },
+  carmen: {
+    slug: "carmen",
+    path: "/cazuri/carmen/",
+    title: "Zâmbet transformat.\nRezultat luminos.",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
+    caseNumber: "Caz #10",
+    patientName: "Carmen",
+    heroImage: carmenAfter1,
+    heroObjectPosition: "center center",
+    thumbnailSrc: carmenAfter1.src,
+    storyImages: [
+      { image: carmenBefore1, label: "Before", alt: "Carmen — situație inițială", objectPosition: "center center" },
+      { image: carmenAfter2, label: "În clinică", alt: "Carmen — documentare clinică", objectPosition: "center center" },
+      { image: carmenHero, label: "After", alt: "Carmen — rezultat final", objectPosition: "center 42%" },
+    ],
+    intro:
+      "Carmen și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+    paragraphs: [
+      "Carmen și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+      "În urma evaluării clinice și a planificării personalizate, echipa Alverna Dental Studio a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța dinților au fost alese cu atenție pentru a corecta discolorațiile și imperfecțiunile existente.",
+      "Rezultatul este un zâmbet echilibrat, luminos și integrat natural în fizionomie — documentat clinic before & after.",
+      "Tratament realizat în cadrul Alverna Dental Studio.",
+    ],
+    closingQuote:
+      "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Carmen a obținut la finalul tratamentului.",
+    beforeAfterImages: [
+      { image: carmenBefore2, label: "Before", alt: "Carmen — înainte de tratament", objectPosition: "center center" },
+      { image: carmenAfter1, label: "After", alt: "Carmen — după tratament", objectPosition: "center center" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru corectarea discolorațiilor și obținerea unui zâmbet uniform." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică cu selecție atentă a formei, proporțiilor și nuanței fiecărui dinte." },
+      { label: "Integrare facială", detail: "Adaptarea lucrărilor la fizionomie, pentru un rezultat natural și echilibrat." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, uniform și autentic — documentat clinic la finalul tratamentului." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Carmen" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Obiectiv", value: "Zâmbet luminos" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #10 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Carmen — zâmbet transformat, rezultat luminos.",
   },
 };
 
@@ -403,7 +557,7 @@ export const IMAGE_TO_CASE_SLUG: Record<string, string> = Object.fromEntries(
   Object.values(CASE_STUDIES).flatMap((c) => [
     [c.thumbnailSrc, c.slug],
     [c.heroImage.src, c.slug],
-  ]).concat([[cazA7408097.src, "implantologie"]]),
+  ]).concat([[cazA7408097.src, "implantologie"], [raduAfter1.src, "radu"], [carmenAfter1.src, "carmen"]]),
 );
 
 export function getCaseHrefForImage(src: string): string | null {

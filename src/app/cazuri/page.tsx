@@ -1,13 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
 import { CaseImage } from "@/components/cazuri/CaseImage";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
-import { CASE_STUDIES, getCaseHrefForImage } from "@/config/cases";
-import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
@@ -15,6 +11,9 @@ import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 import sergiuHero from "@/assets/cazuri/sergiu-witberg/hero.png";
+import simonaHero from "@/assets/cazuri/simona/hero.png";
+import raduAfter1 from "@/assets/cazuri/radu/after-1.png";
+import carmenAfter1 from "@/assets/cazuri/carmen/after-1.png";
 
 const caseImages = [
   cazA7408097.src,
@@ -24,47 +23,13 @@ const caseImages = [
   cazA7407760.src,
   cazA7408160.src,
   sergiuHero.src,
+  simonaHero.src,
+  raduAfter1.src,
+  carmenAfter1.src,
 ];
 
 export default function CazuriPage() {
   const reduceMotion = useReducedMotion();
-  const heroCases = [
-    {
-      title: "Caz #1",
-      role: "All-on-4 Straumann",
-      image: ceciliaHero.src,
-      href: CASE_STUDIES.implantologie.path,
-      objectPosition: "center 42%",
-    },
-    {
-      title: "Caz #2",
-      role: "Reabilitare orală · zirconiu",
-      image: danaHero.src,
-      href: CASE_STUDIES.dana.path,
-      objectPosition: "center 38%",
-    },
-    {
-      title: "Caz #3",
-      role: "Estetică dentară",
-      image: aureliaHero.src,
-      href: CASE_STUDIES["estetica-dentara"].path,
-      objectPosition: "center 36%",
-    },
-    {
-      title: "Caz #4",
-      role: "Smile design",
-      image: cazA7407944.src,
-      href: CASE_STUDIES["smile-design"].path,
-      objectPosition: "center 36%",
-    },
-    {
-      title: "Sergiu Witberg",
-      role: "Estetică · Protetică",
-      image: sergiuHero.src,
-      href: CASE_STUDIES["sergiu-witberg"].path,
-      objectPosition: "center 32%",
-    },
-  ];
 
   return (
     <PrototypeFrame darkHeader>
@@ -74,7 +39,7 @@ export default function CazuriPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 grid min-h-[calc(100vh-72px)] w-screen -translate-x-1/2 grid-cols-1 gap-10 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[1fr_1fr] lg:gap-[60px] xl:px-[120px]"
+          className="relative left-1/2 mt-0 flex w-screen -translate-x-1/2 flex-col overflow-hidden border border-white/20 bg-black px-6 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-10 xl:px-[120px]"
         >
           <motion.div
             aria-hidden
@@ -82,94 +47,33 @@ export default function CazuriPage() {
             transition={reduceMotion ? {} : { duration: 10, repeat: Infinity, ease: "easeInOut" }}
             className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
           />
-          <div className="relative z-[2] flex min-h-[420px] flex-col">
-            <p className="mb-[18px] text-[16px] font-semibold text-white">@alvernadentalstudio</p>
+          <div className="relative z-[2] flex flex-col">
+            <p className="mb-3 text-[18px] font-semibold text-white md:mb-4 md:text-[20px]">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.55 }}
               transition={reduceMotion ? {} : { duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[420px] whitespace-pre-line text-[42px] font-bold leading-[0.95] tracking-[-1.8px] text-white"
+              className="max-w-[640px] whitespace-pre-line text-[52px] font-bold leading-[0.95] tracking-[-2px] text-white md:text-[72px] md:tracking-[-2.8px] lg:max-w-[820px] lg:text-[96px] lg:tracking-[-3.6px]"
             >
               {"Cazuri reale,\nrezultate\ndocumentate"}
             </motion.h1>
-            <div className="mt-auto grid grid-cols-1 gap-6 md:grid-cols-[230px_1fr]">
+            <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-[minmax(280px,360px)_1fr] md:gap-10 lg:mt-12 lg:gap-12">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
-                <p className="text-[16px] font-semibold text-white">Before & After</p>
-                <p className="mt-2 text-[16px] leading-[1.35] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
+                <p className="text-[20px] font-semibold text-white md:text-[24px]">Before & After</p>
+                <p className="mt-3 text-[18px] leading-[1.4] text-white md:text-[20px] lg:text-[22px]">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
               </motion.div>
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[330px] text-[16px] leading-[1.65] text-white"
+                className="max-w-[520px] text-[18px] leading-[1.65] text-white md:text-[20px] lg:max-w-[620px] lg:text-[22px]"
               >
                 Fiecare caz este analizat complet, cu pași explicați și obiective clare. Accent pe funcționalitate, estetică și confort pe termen lung.
               </motion.p>
             </div>
           </div>
-          <motion.div
-            initial={reduceMotion ? false : "hidden"}
-            whileInView={reduceMotion ? undefined : "visible"}
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              hidden: {},
-              visible: { transition: { delayChildren: 0.26, staggerChildren: 0.12 } },
-            }}
-            className="relative z-[2] grid h-auto grid-cols-2 gap-2 lg:h-[976px] lg:w-full lg:max-w-[700px] lg:justify-self-end lg:grid-rows-2"
-          >
-            {heroCases.map((item) => {
-              const href = item.href ?? getCaseHrefForImage(item.image);
-              const card = (
-                <motion.article
-                  key={item.title}
-                  variants={reduceMotion ? undefined : { hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" }, visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] } } }}
-                  whileHover={reduceMotion ? {} : { y: -8, borderColor: "rgba(255,255,255,0.35)", boxShadow: "0 10px 26px rgba(255,255,255,0.12)" }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className={`group relative h-[320px] overflow-hidden rounded-[12px] border border-white/15 bg-[#111] sm:h-[360px] lg:h-[480px]${href ? " cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60" : ""}`}
-                >
-                  <motion.img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: item.objectPosition ?? "center 36%" }}
-                    whileHover={reduceMotion ? {} : { scale: 1.04 }}
-                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                  {href ? (
-                    <>
-                      <CaseClickOverlay compact label="Vezi cazul" />
-                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[16px] leading-[1.2] text-white transition-opacity duration-400 group-hover:opacity-0">
-                        {item.role}
-                      </p>
-                      <div className="pointer-events-none absolute inset-x-2 bottom-2 z-[2] flex items-center justify-between gap-2">
-                        <p className="text-[16px] font-bold text-white">{item.title}</p>
-                        <span className="inline-flex shrink-0 items-center rounded-full bg-white px-3 py-1 text-[16px] font-semibold text-black shadow-[0_4px_16px_rgba(0,0,0,0.25)]">
-                          Vezi cazul →
-                        </span>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_55%)]" />
-                      <span className="absolute left-2 top-2 inline-flex h-[18px] w-[18px] items-center justify-center rounded-full border border-white/35 bg-black/35 text-[16px] leading-none text-white">+</span>
-                      <p className="pointer-events-none absolute right-2 top-2 z-[2] max-w-[92px] text-right text-[16px] leading-[1.2] text-white">{item.role}</p>
-                      <p className="pointer-events-none absolute bottom-2 left-2 z-[2] text-[16px] font-bold text-white">{item.title}</p>
-                    </>
-                  )}
-                </motion.article>
-              );
-
-              return href ? (
-                <Link key={item.title} href={href} aria-label={`Vezi ${item.title} în detaliu`} className="block">
-                  {card}
-                </Link>
-              ) : (
-                card
-              );
-            })}
-          </motion.div>
         </motion.section>
 
         <section className="mx-auto mt-14 grid w-full max-w-[1680px] grid-cols-1 gap-6 px-4 md:grid-cols-2 md:px-8 lg:mt-[120px] lg:grid-cols-3 lg:gap-[74px] lg:px-12">

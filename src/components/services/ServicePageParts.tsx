@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
@@ -14,11 +14,139 @@ export const reveal = {
   transition: { duration: 0.75, ease: "easeOut" as const },
 } as const;
 
+function ServiceHeroVideo({
+  videoSrc,
+  videoObjectFit,
+  image,
+  imageAlt,
+  withSound,
+  variant = "fullscreen",
+}: {
+  videoSrc: string;
+  videoObjectFit: "cover" | "contain";
+  image?: string;
+  imageAlt?: string;
+  withSound?: boolean;
+  variant?: "fullscreen" | "panel";
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const isPanel = variant === "panel";
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.muted = true;
+    setIsMuted(true);
+    void video.play().catch(() => undefined);
+  }, [videoSrc]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !withSound) return;
+
+    video.muted = false;
+    setIsMuted(false);
+    void video.play().catch(() => {
+      video.muted = true;
+      setIsMuted(true);
+      void video.play().catch(() => undefined);
+    });
+  }, [withSound, videoSrc]);
+
+  const toggleSound = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const nextMuted = !isMuted;
+    video.muted = nextMuted;
+    setIsMuted(nextMuted);
+    void video.play();
+  };
+
+  return (
+    <div className={isPanel ? "relative h-full w-full overflow-hidden rounded-[20px] bg-[#0a0a0a]" : "contents"}>
+      <video
+        ref={videoRef}
+        autoPlay
+        muted={withSound ? isMuted : true}
+        loop
+        playsInline
+        preload="auto"
+        poster={image}
+        aria-label={imageAlt ?? "Alverna Dental Studio"}
+        className={
+          isPanel
+            ? "absolute inset-0 h-full w-full rounded-[20px] object-cover object-center saturate-[0.98] brightness-[0.92]"
+            : `absolute inset-0 h-full w-full object-center saturate-[0.98] brightness-[0.92] ${
+                videoObjectFit === "contain" ? "object-contain" : "object-cover"
+              }`
+        }
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+      {withSound ? (
+        <button
+          type="button"
+          onClick={toggleSound}
+          aria-label={isMuted ? "Activează sunetul" : "Dezactivează sunetul"}
+          aria-pressed={!isMuted}
+          className={
+            isPanel
+              ? "absolute bottom-3 right-0 z-20 inline-flex h-[40px] items-center rounded-full border border-white/35 bg-black/55 px-4 text-[14px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-black/70 md:bottom-4"
+              : "absolute right-4 top-20 z-20 inline-flex h-[44px] items-center rounded-full border border-white/35 bg-black/55 px-4 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-black/70 md:right-8 md:top-24 lg:right-12 lg:top-28"
+          }
+        >
+          {isMuted ? "Activează sunetul" : "Sunet activ"}
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+function ServiceHeroContent({
+  chip,
+  kicker,
+  title,
+  intro,
+  className = "",
+}: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro"> & { className?: string }) {
+  return (
+    <>
+      <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
+        <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
+        {chip}
+      </div>
+      <div className={`relative z-10 flex h-full w-full flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32 ${className}`}>
+        <motion.div {...reveal} className="max-w-[820px]">
+          <p className="text-[16px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
+          <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[96px]">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-[720px] ads-readable text-white">{intro}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+              Solicită o evaluare
+            </a>
+            <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+              Vezi tarife
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </>
+  );
+}
+
 // -----------------------------------------------------------------------------
 // HERO
 // -----------------------------------------------------------------------------
 export type ServiceHeroProps = {
-  image: string;
+  image?: string;
+  videoSrc?: string;
+  videoObjectFit?: "cover" | "contain";
+  videoWithSound?: boolean;
   imageAlt?: string;
   kicker: string;
   title: ReactNode;
@@ -26,42 +154,75 @@ export type ServiceHeroProps = {
   chip: string;
 };
 
-export function ServiceHero({ image, imageAlt, kicker, title, intro, chip }: ServiceHeroProps) {
+export function ServiceHero({
+  image,
+  videoSrc,
+  videoObjectFit = "cover",
+  videoWithSound = false,
+  imageAlt,
+  kicker,
+  title,
+  intro,
+  chip,
+}: ServiceHeroProps) {
+  const splitVideoLayout = Boolean(videoSrc && videoObjectFit === "contain");
+
+  if (splitVideoLayout && videoSrc) {
+    return (
+      <section className="relative w-full overflow-hidden bg-black">
+        <div className="relative h-[92vh] min-h-[720px] max-h-[1100px] w-full bg-black">
+          <div className="mx-auto grid h-full w-full max-w-[1680px] grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:gap-8 xl:gap-12">
+            <div className="relative h-full min-h-0">
+              <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} />
+            </div>
+            <div className="relative flex h-full min-h-[320px] items-center justify-center px-4 pb-8 pt-24 lg:min-h-0 lg:justify-end lg:px-0 lg:pb-16 lg:pt-28">
+              <motion.div
+                {...reveal}
+                className="relative aspect-[9/16] h-[min(62vh,760px)] w-auto max-w-[360px] rounded-[20px] border border-white/45 ads-btn-glow-lg lg:h-[min(78vh,900px)] lg:max-w-[420px] lg:-translate-x-[157px]"
+              >
+                <div className="h-full w-full overflow-hidden rounded-[20px]">
+                  <ServiceHeroVideo
+                    videoSrc={videoSrc}
+                    videoObjectFit={videoObjectFit}
+                    image={image}
+                    imageAlt={imageAlt}
+                    withSound={videoWithSound}
+                    variant="panel"
+                  />
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="relative w-full overflow-hidden bg-black">
-      <div className="relative h-[78vh] min-h-[600px] max-h-[900px] w-full">
-        <Image
-          src={image}
-          alt={imageAlt ?? "Alverna Dental Studio"}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover saturate-[0.98] brightness-[0.92]"
-        />
+      <div className="relative h-[78vh] min-h-[600px] max-h-[900px] w-full bg-black">
+        {videoSrc ? (
+          <ServiceHeroVideo
+            videoSrc={videoSrc}
+            videoObjectFit={videoObjectFit}
+            image={image}
+            imageAlt={imageAlt}
+            withSound={videoWithSound}
+          />
+        ) : (
+          <Image
+            src={image ?? "/services/braces-model.png"}
+            alt={imageAlt ?? "Alverna Dental Studio"}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover saturate-[0.98] brightness-[0.92]"
+          />
+        )}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
-        <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
-          <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
-          {chip}
-        </div>
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
-          <motion.div {...reveal} className="max-w-[1180px]">
-            <p className="text-[16px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
-            <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[112px]">
-              {title}
-            </h1>
-            <p className="mt-6 max-w-[820px] ads-readable text-white">{intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
-                Solicită o evaluare
-              </a>
-              <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
-                Vezi tarife
-              </a>
-            </div>
-          </motion.div>
-        </div>
+        <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} className="mx-auto max-w-[1680px]" />
       </div>
     </section>
   );

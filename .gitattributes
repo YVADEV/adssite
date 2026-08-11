@@ -1,1 +1,2 @@
 public/hero1.mp4 filter=lfs diff=lfs merge=lfs -text
+public/spark-hero.mp4 filter=lfs diff=lfs merge=lfs -text

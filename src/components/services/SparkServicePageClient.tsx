@@ -98,6 +98,9 @@ export default function SparkServicePageClient() {
   return (
     <ServicePageShell>
       <ServiceHero
+        videoSrc="/spark-hero.mp4"
+        videoObjectFit="contain"
+        videoWithSound
         image="/services/braces-model.png"
         imageAlt="Aparat dentar Spark transparent"
         chip="Spark Aligners"

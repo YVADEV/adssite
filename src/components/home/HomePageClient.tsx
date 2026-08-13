@@ -1059,10 +1059,13 @@ export default function HomePageClient() {
             ))}
           </div>
 
-          <div className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
-            <video autoPlay muted loop playsInline preload="auto" data-anim="image" className="h-full w-full object-cover">
-              <source src="/hero.mp4" type="video/mp4" />
-            </video>
+          <div data-anim="image" className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
+            <LazyVideo
+              src="/hero.mp4"
+              poster="/services/smile-mirror.png"
+              ariaLabel="Descoperă cabinetul Alverna Dental Studio"
+              className="h-full w-full object-cover"
+            />
             <div className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4">
               <button type="button" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[21px] text-[#0f1115] sm:h-16 sm:w-16 sm:text-[28px]" aria-label="Redă video">
                 ▶
@@ -1372,10 +1375,10 @@ export default function HomePageClient() {
               <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat — vedere generală" />
             </article>
             <article className="relative h-[587px] bg-black">
-              <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat — restaurare completă" />
+              <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
             </article>
             <article className="relative h-[587px] rounded-r-[18px] bg-black">
-              <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat — albire și aliniere" />
+              <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />
             </article>
           </div>
         </div>

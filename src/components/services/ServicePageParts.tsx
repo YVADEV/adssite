@@ -39,21 +39,15 @@ function ServiceHeroVideo({
 
     video.muted = true;
     setIsMuted(true);
-    void video.play().catch(() => undefined);
+    const play = () => void video.play().catch(() => undefined);
+    play();
+    video.addEventListener("loadeddata", play);
+    video.addEventListener("canplay", play);
+    return () => {
+      video.removeEventListener("loadeddata", play);
+      video.removeEventListener("canplay", play);
+    };
   }, [videoSrc]);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !withSound) return;
-
-    video.muted = false;
-    setIsMuted(false);
-    void video.play().catch(() => {
-      video.muted = true;
-      setIsMuted(true);
-      void video.play().catch(() => undefined);
-    });
-  }, [withSound, videoSrc]);
 
   const toggleSound = () => {
     const video = videoRef.current;
@@ -73,7 +67,7 @@ function ServiceHeroVideo({
         muted={withSound ? isMuted : true}
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         poster={image}
         aria-label={imageAlt ?? "Alverna Dental Studio"}
         className={

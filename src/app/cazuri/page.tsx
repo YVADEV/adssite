@@ -35,25 +35,23 @@ export default function CazuriPage() {
     <PrototypeFrame darkHeader>
       <main className="bg-black pb-20 pt-0">
         <motion.section
-          initial={reduceMotion ? false : { opacity: 0, y: 80, scale: 0.96, filter: "blur(18px)" }}
-          whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+          whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={reduceMotion ? {} : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="relative left-1/2 mt-0 flex w-screen -translate-x-1/2 flex-col overflow-hidden border border-white/20 bg-black px-6 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-10 xl:px-[120px]"
         >
-          <motion.div
+          <div
             aria-hidden
-            animate={reduceMotion ? {} : { x: [-16, 20, -16], y: [-10, 14, -10] }}
-            transition={reduceMotion ? {} : { duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
+            className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08)_0%,transparent_72%)]"
           />
           <div className="relative z-[2] flex flex-col">
             <p className="mb-3 text-[21px] font-semibold text-white md:mb-4">@alvernadentalstudio</p>
             <motion.h1
-              initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.55 }}
-              transition={reduceMotion ? {} : { duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={reduceMotion ? {} : { duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-[640px] whitespace-pre-line text-[52px] font-bold leading-[0.95] tracking-[-2px] text-white md:text-[72px] md:tracking-[-2.8px] lg:max-w-[820px] lg:text-[96px] lg:tracking-[-3.6px]"
             >
               {"Cazuri reale,\nrezultate\ndocumentate"}

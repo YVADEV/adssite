@@ -41,6 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 # Large local-only media
-public/cori-angel.mp4
 src/assets/cazuri/Clipuri cazuri/Cori Angel Aligners de postat .mp4
+public/hero1-source.mp4
+public/spark-hero-source.mp4
+public/cori-angel-source.mp4
 public/hero1-full.mp4

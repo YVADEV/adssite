@@ -98,7 +98,7 @@ export default function SparkServicePageClient() {
   return (
     <ServicePageShell>
       <ServiceHero
-        videoSrc="/spark-hero.mp4"
+        videoSrc="/spark-hero.mp4?v=3"
         videoObjectFit="contain"
         videoWithSound
         image="/services/braces-model.png"

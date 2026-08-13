@@ -42,7 +42,7 @@ export default function CookieConsent() {
       className="fixed bottom-3 left-3 right-3 z-[9999] max-w-[640px] rounded-[16px] border border-white/10 bg-[#0f1115]/95 p-4 text-white shadow-[0_18px_50px_rgba(0,0,0,0.5)] backdrop-blur-md sm:bottom-5 sm:left-5"
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[16px] leading-[1.5] text-white">
+        <p className="text-[21px] leading-[1.5] text-white">
           Folosim cookie-uri pentru a îmbunătăți experiența pe site și pentru analize anonime. Detalii în{" "}
           <Link href="/politica-de-confidentialitate" className="underline decoration-[#9fc48f]/60 underline-offset-4 hover:text-white">
             Politica de confidențialitate
@@ -53,14 +53,14 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => persist("rejected")}
-            className="rounded-full border border-white/25 px-4 py-2 text-[16px] font-semibold text-white transition hover:bg-white/5"
+            className="rounded-full border border-white/25 px-4 py-2 text-[21px] font-semibold text-white transition hover:bg-white/5"
           >
             Doar esențiale
           </button>
           <button
             type="button"
             onClick={() => persist("accepted")}
-            className="rounded-full bg-white px-4 py-2 text-[16px] font-semibold text-white transition hover:scale-[1.03]"
+            className="rounded-full bg-white px-4 py-2 text-[21px] font-semibold text-white transition hover:scale-[1.03]"
           >
             Accept
           </button>

@@ -24,15 +24,15 @@ export default function SiteFooter() {
     <footer className="flex flex-col bg-white px-4 pb-10 pt-12 text-white md:px-8 lg:px-12">
       <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-10 border-t border-black/10 pt-10 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <section>
-          <h3 className="text-[24px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
-          <p className="mt-4 max-w-[560px] text-[16px] leading-[1.7] text-white">
+          <h3 className="text-[21px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
+          <p className="mt-4 max-w-[560px] text-[21px] leading-[1.7] text-white">
             Clinica stomatologică Alverna Dental Studio include cabinete stomatologice modern amenajate și echipate cu
             aparatură de ultimă generație. Astfel, serviciile pe care le oferim sunt de o calitate superioară, iar
             pacienții noștri se simt mereu bine primiți. Fiecare cabinet stomatologic este pregătit să vă asigure un
             confort sporit, iar experiența și profesionalismul medicilor noștri sunt puse în slujba asigurării unei
             sănătăți dentare excelente!
           </p>
-          <div className="mt-6 flex flex-wrap gap-4 text-[16px] text-white">
+          <div className="mt-6 flex flex-wrap gap-4 text-[21px] text-white">
             <Link href="/termeni-si-conditii" className="hover:underline">
               Termeni și condiții
             </Link>
@@ -43,8 +43,8 @@ export default function SiteFooter() {
         </section>
 
         <section>
-          <h4 className="text-[18px] font-semibold text-white">Pagini</h4>
-          <div className="mt-4 space-y-2 text-[16px] text-white">
+          <h4 className="text-[21px] font-semibold text-white">Pagini</h4>
+          <div className="mt-4 space-y-2 text-[21px] text-white">
             {pageLinks.map((item) => (
               <Link key={item.label} href={item.href} className="block hover:text-white hover:underline">
                 {item.label}
@@ -54,8 +54,8 @@ export default function SiteFooter() {
         </section>
 
         <section>
-          <h4 className="text-[18px] font-semibold text-white">Servicii</h4>
-          <div className="mt-4 space-y-2 text-[16px] text-white">
+          <h4 className="text-[21px] font-semibold text-white">Servicii</h4>
+          <div className="mt-4 space-y-2 text-[21px] text-white">
             {services.map((service) => (
               <Link key={service.slug} href={service.href} className="block hover:text-white hover:underline">
                 {service.title}
@@ -65,8 +65,8 @@ export default function SiteFooter() {
         </section>
 
         <section>
-          <h4 className="text-[18px] font-semibold text-white">Contact</h4>
-          <div className="mt-4 space-y-2 text-[16px] leading-[1.6] text-white">
+          <h4 className="text-[21px] font-semibold text-white">Contact</h4>
+          <div className="mt-4 space-y-2 text-[21px] leading-[1.6] text-white">
             <p>Str. Alverna 33, 400469, Cluj-Napoca, Romania</p>
             <a href="tel:+40748085933">+40 376 448 810</a>
             <a href="mailto:contact@alvernadental.com" className="block">

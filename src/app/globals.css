@@ -54,9 +54,9 @@
   --ads-radius-lg: 18px;
   --ads-radius-xl: 24px;
 
-  --ads-font-size-caption: 16px;
-  --ads-font-size-body: 16px;
-  --ads-font-size-section: 18px;
+  --ads-font-size-caption: 21px;
+  --ads-font-size-body: 21px;
+  --ads-font-size-section: 21px;
   --ads-font-size-title: 24px;
   --ads-font-size-large-title: 32px;
 
@@ -119,7 +119,7 @@ body {
 input:not([type="checkbox"]):not([type="radio"]),
 select,
 textarea {
-  font-size: max(16px, 1rem);
+  font-size: max(21px, 1rem);
 }
 
 .ads-caption {
@@ -301,7 +301,7 @@ button[aria-label*="Deschide meniul"]:not(.ads-btn-glow):hover {
   background: rgba(26, 29, 34, 0.85);
   color: var(--ads-text-primary);
   padding: 0 16px;
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .ads-input::placeholder {
@@ -707,11 +707,11 @@ a {
 }
 
 .home-clinic-showcase h3 {
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .home-clinic-showcase p {
-  font-size: 10px;
+  font-size: 21px;
   margin: 6px 0;
 }
 
@@ -733,7 +733,7 @@ a {
 
 .home-metrics-row strong {
   display: block;
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .home-metrics-row span {
@@ -791,7 +791,7 @@ a {
 
 .home-tarife-grid p {
   margin-top: 6px;
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .home-promo-grid {
@@ -1249,7 +1249,7 @@ a {
 .fig-nav button {
   border: 0;
   background: transparent;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 1;
 }
 
@@ -1295,7 +1295,7 @@ a {
 }
 
 .fig-contact-card p {
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .fig-contact-card button {
@@ -1420,7 +1420,7 @@ a {
 
 .fig-review-grid p {
   margin-top: 10px;
-  font-size: 16px;
+  font-size: 21px;
 }
 
 .fig-price-wrap {
@@ -1553,7 +1553,7 @@ a {
   }
 
   .fig-hero-content ul {
-    font-size: 16px;
+    font-size: 21px;
   }
 
   .fig-projects,

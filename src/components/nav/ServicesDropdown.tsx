@@ -80,7 +80,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
         aria-haspopup="menu"
         aria-current={isServicesActive ? "page" : undefined}
         onFocus={handleOpen}
-        className={`text-[16px] font-medium tracking-[-0.01em] transition duration-200 ${
+        className={`text-[18px] font-medium tracking-[-0.01em] transition duration-200 ${
           isServicesActive ? "underline decoration-2 underline-offset-[10px]" : ""
         } ${isDark ? "text-white hover:text-white" : "text-white hover:text-white"}`}
       >
@@ -115,14 +115,14 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                             }
                           : undefined
                       }
-                      className={`flex h-[34px] items-center justify-between rounded-[10px] px-2 py-1.5 text-[16px] font-medium leading-[1.4] transition duration-200 ${
+                      className={`flex h-[34px] items-center justify-between rounded-[10px] px-2 py-1.5 text-[21px] font-medium leading-[1.4] transition duration-200 ${
                         pathname === item.href ? "bg-[#4E7044]/15 text-white" : ""
                       } ${
                         isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "text-white hover:translate-x-[3px] hover:bg-[#edf2eb]"
                       }`}
                     >
                       <span>{item.title}</span>
-                      {isAparat ? <span className="text-[16px] opacity-60">›</span> : null}
+                      {isAparat ? <span className="text-[21px] opacity-60">›</span> : null}
                     </Link>
 
                     {isAparat && aparatDentar?.children?.length ? (
@@ -136,7 +136,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                             key={child.slug}
                             href={child.href}
                             aria-current={pathname === child.href ? "page" : undefined}
-                            className={`mt-[6px] flex h-[30px] items-center rounded-[8px] px-2 text-[16px] font-normal leading-[1.3] transition duration-200 ${
+                            className={`mt-[6px] flex h-[30px] items-center rounded-[8px] px-2 text-[21px] font-normal leading-[1.3] transition duration-200 ${
                               pathname === child.href ? "bg-[#4E7044]/15 text-white" : ""
                             } ${
                               isDark ? "text-white hover:translate-x-[2px] hover:bg-white/10 hover:text-white" : "text-white hover:translate-x-[2px] hover:bg-[#edf2eb]"

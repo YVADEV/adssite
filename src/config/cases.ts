@@ -383,9 +383,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
     paragraphs: [
       "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
-      "În urma evaluării clinice și a unei planificări personalizate, Dr. Andreea Parcu a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța fiecărui dinte au fost alese cu atenție pentru a corecta imperfecțiunile existente și pentru a obține o integrare firească în ansamblul facial.",
+      "În urma evaluării clinice și a unei planificări personalizate, Dr. Andreea Parvu a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța fiecărui dinte au fost alese cu atenție pentru a corecta imperfecțiunile existente și pentru a obține o integrare firească în ansamblul facial.",
       "Rezultatul este un zâmbet luminos și echilibrat, cu o estetică naturală, adaptată personalității pacientului. Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
-      "Tratament realizat de Dr. Andreea Parcu, în cadrul Alverna Dental Studio.",
+      "Tratament realizat de Dr. Andreea Parvu, în cadrul Alverna Dental Studio.",
     ],
     closingQuote:
       "Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
@@ -395,19 +395,19 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată, orientată spre un zâmbet armonios și natural." },
-      { label: "Fațete dentare", detail: "Reabilitare estetică realizată de Dr. Andreea Parcu, cu selecție atentă a formei, proporțiilor și nuanței." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică realizată de Dr. Andreea Parvu, cu selecție atentă a formei, proporțiilor și nuanței." },
       { label: "Integrare facială", detail: "Corectarea imperfecțiunilor existente și adaptarea lucrărilor la fizionomia pacientului." },
       { label: "Rezultat final", detail: "Zâmbet luminos, echilibrat și autentic — estetică naturală adaptată personalității pacientului." },
     ],
     quickFacts: [
       { label: "Pacient", value: "Sergiu Witberg" },
       { label: "Tip caz", value: "Fațete dentare" },
-      { label: "Medic", value: "Dr. Andreea Parcu" },
+      { label: "Medic", value: "Dr. Andreea Parvu" },
       { label: "Clinică", value: "Alverna Dental Studio" },
     ],
     doctor: {
       ...DEFAULT_CASE_DOCTOR,
-      name: "Dr. Andreea Parcu",
+      name: "Dr. Andreea Parvu",
     },
     seoDescription:
       "Caz #7 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Sergiu Witberg — armonie, naturalețe și un zâmbet care îl reprezintă.",

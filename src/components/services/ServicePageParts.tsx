@@ -94,8 +94,8 @@ function ServiceHeroVideo({
           aria-pressed={!isMuted}
           className={
             isPanel
-              ? "absolute bottom-3 right-0 z-20 inline-flex h-[40px] items-center rounded-full border border-white/35 bg-black/55 px-4 text-[14px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-black/70 md:bottom-4"
-              : "absolute right-4 top-20 z-20 inline-flex h-[44px] items-center rounded-full border border-white/35 bg-black/55 px-4 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-black/70 md:right-8 md:top-24 lg:right-12 lg:top-28"
+              ? "absolute bottom-3 right-0 z-20 inline-flex h-[40px] items-center rounded-full border border-white/35 bg-black/55 px-4 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-black/70 md:bottom-4"
+              : "absolute right-4 top-20 z-20 inline-flex h-[44px] items-center rounded-full border border-white/35 bg-black/55 px-4 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-black/70 md:right-8 md:top-24 lg:right-12 lg:top-28"
           }
         >
           {isMuted ? "Activează sunetul" : "Sunet activ"}
@@ -114,22 +114,22 @@ function ServiceHeroContent({
 }: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro"> & { className?: string }) {
   return (
     <>
-      <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
+      <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
         <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
         {chip}
       </div>
       <div className={`relative z-10 flex h-full w-full flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32 ${className}`}>
         <motion.div {...reveal} className="max-w-[820px]">
-          <p className="text-[16px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
+          <p className="text-[21px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
           <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[96px]">
             {title}
           </h1>
           <p className="mt-6 max-w-[720px] ads-readable text-white">{intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+            <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
               Solicită o evaluare
             </a>
-            <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[16px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+            <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
               Vezi tarife
             </a>
           </div>
@@ -237,8 +237,8 @@ export function ServiceQuickFacts({ facts }: { facts: ReadonlyArray<readonly [st
       <motion.div {...reveal} className="grid grid-cols-1 gap-6 border-y border-black/12 py-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
         {facts.map(([label, value]) => (
           <div key={label}>
-            <p className="text-[16px] uppercase tracking-[0.12em] text-white">{label}</p>
-            <p className="mt-2 text-[16px] font-semibold leading-[1.35] text-white">{value}</p>
+            <p className="text-[21px] uppercase tracking-[0.12em] text-white">{label}</p>
+            <p className="mt-2 text-[21px] font-semibold leading-[1.35] text-white">{value}</p>
           </div>
         ))}
       </motion.div>
@@ -304,7 +304,7 @@ export function ServiceBulletsSection({
       className={`${sectionWrapperClass(first)} grid border-t border-black/12 pt-10 lg:grid-cols-[minmax(260px,0.95fr)_minmax(0,1.55fr)] lg:gap-14`}
     >
       <SectionHeading heading={heading} level={headingLevel} />
-      <ul className="mt-5 space-y-3 text-[16px] leading-[1.75] text-white lg:mt-0">
+      <ul className="mt-5 space-y-3 text-[21px] leading-[1.75] text-white lg:mt-0">
         {items.map((item) => (
           <li key={item} className="flex gap-3">
             <span className="mt-[10px] h-[4px] w-[4px] rounded-full bg-[#4E7044]" />
@@ -338,8 +338,8 @@ export function ServiceCardsSection({
             transition={{ duration: 0.55, delay: idx * 0.08 }}
             className="border-t border-black/12 pt-4"
           >
-            <h4 className="text-[20px] font-semibold text-white">{item.title}</h4>
-            <p className="mt-2 text-[16px] leading-[1.65] text-white">{item.text}</p>
+            <h4 className="text-[21px] font-semibold text-white">{item.title}</h4>
+            <p className="mt-2 text-[21px] leading-[1.65] text-white">{item.text}</p>
           </motion.article>
         ))}
       </div>
@@ -367,8 +367,8 @@ export function ServiceStepsSection({
             className="grid gap-3 py-5 md:grid-cols-[90px_1fr_1.4fr] md:items-start"
           >
             <p className="text-[30px] font-semibold leading-none tracking-[-0.03em] text-white">{item.step}</p>
-            <p className="text-[19px] font-semibold leading-[1.2] text-white">{item.title}</p>
-            <p className="text-[16px] leading-[1.65] text-white">{item.text}</p>
+            <p className="text-[21px] font-semibold leading-[1.2] text-white">{item.title}</p>
+            <p className="text-[21px] leading-[1.65] text-white">{item.text}</p>
           </motion.article>
         ))}
       </div>
@@ -385,7 +385,7 @@ export function ServiceTextBlock({
   return (
     <motion.article {...reveal} className={`${sectionWrapperClass(first)} border-t border-black/12 pt-10`}>
       <SectionHeading heading={heading} level={headingLevel} />
-      <div className="mt-5 max-w-[1120px] text-[16px] leading-[1.75] text-white">{body}</div>
+      <div className="mt-5 max-w-[1120px] text-[21px] leading-[1.75] text-white">{body}</div>
     </motion.article>
   );
 }
@@ -420,8 +420,8 @@ export function ServiceFAQ({
                 onClick={() => setOpenFaq((prev) => (prev === index ? null : index))}
                 className="ads-btn-no-glow flex w-full items-start justify-between gap-4 text-left"
               >
-                <h4 className="text-[20px] font-semibold leading-[1.35] text-white">{item.q}</h4>
-                <span aria-hidden className="pt-1 text-[16px] text-white">
+                <h4 className="text-[21px] font-semibold leading-[1.35] text-white">{item.q}</h4>
+                <span aria-hidden className="pt-1 text-[21px] text-white">
                   {isOpen ? "−" : "+"}
                 </span>
               </button>
@@ -433,7 +433,7 @@ export function ServiceFAQ({
                   isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="mt-3 max-w-[1100px] text-[16px] leading-[1.7] text-white">{item.a}</p>
+                <p className="mt-3 max-w-[1100px] text-[21px] leading-[1.7] text-white">{item.a}</p>
               </div>
             </article>
           );
@@ -477,7 +477,7 @@ export function ServiceCasesGrid() {
             <br />
             <span className="text-white">before and after</span>
           </h2>
-          <a href="/cazuri/" className="mt-5 rounded-full bg-black px-6 py-2 text-xs font-semibold text-white">
+          <a href="/cazuri/" className="mt-5 rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white">
             Vezi toate
           </a>
         </div>
@@ -494,7 +494,7 @@ export function ServiceTestimonials() {
         <h3 className="text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">
           Recenzii
         </h3>
-        <p className="mt-3 text-[16px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
+        <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
       </div>
       <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
         <article className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[26px]">
@@ -503,7 +503,7 @@ export function ServiceTestimonials() {
             <span className="mb-2 text-base opacity-60">/5</span>
             <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
           </div>
-          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[16px] leading-[1.45] text-white">
+          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45] text-white">
             <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
             <p>Număr de telefon: 0376 448 810</p>
             <p>Program: Deschis · Închide la 21</p>
@@ -522,11 +522,11 @@ export function ServiceTestimonials() {
           >
             <div>
               <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
-              <p className="mt-1 text-[16px] text-white">{r.meta}</p>
-              <p className="mt-1 text-[16px] text-white">{r.time}</p>
+              <p className="mt-1 text-[21px] text-white">{r.meta}</p>
+              <p className="mt-1 text-[21px] text-white">{r.time}</p>
             </div>
-            <p className="mt-6 text-[16px] leading-[1.55] text-white">{r.text}</p>
-            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[16px] leading-none tracking-[0.08em] text-white">
+            <p className="mt-6 text-[21px] leading-[1.55] text-white">{r.text}</p>
+            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em] text-white">
               ★★★★★
             </p>
           </motion.article>
@@ -551,14 +551,14 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
 
         <div className="pt-0 text-white lg:pt-8">
           <h3 className="max-w-[720px] text-[42px] font-semibold leading-[1.04] tracking-[-0.04em]">{headline}</h3>
-          <p className="mt-5 max-w-[680px] text-[16px] leading-[1.55] text-white">{body}</p>
+          <p className="mt-5 max-w-[680px] text-[21px] leading-[1.55] text-white">{body}</p>
           <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
-            <p className="text-[16px] font-semibold text-white">4.8 ★★★★★</p>
-            <p className="mt-1 text-[16px] text-white">Peste 9000 de pacienți mulțumiți</p>
+            <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
+            <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
           </div>
           <a
             href="tel:+40376448810"
-            className="mt-7 inline-block text-[16px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:text-white hover:decoration-white"
+            className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:text-white hover:decoration-white"
           >
             Preferi telefonic? Sună acum
           </a>
@@ -610,15 +610,15 @@ export function ContactFormCard({ source }: { source: string }) {
       data-theme="light"
       className="rounded-[24px] bg-white p-8 text-white shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
     >
-      <p className="text-[16px] text-white">@alvernadentalstudio</p>
+      <p className="text-[21px] text-white">@alvernadentalstudio</p>
       <h3 className="mt-2 text-[44px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
-      <p className="mt-3 text-[16px] leading-[1.45] text-white">
+      <p className="mt-3 text-[21px] leading-[1.45] text-white">
         Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
       </p>
       {status === "ok" ? (
         <div role="status" className="mt-7 rounded-[18px] border border-[#4E7044]/30 bg-[#EDF4E9] p-6">
-          <p className="text-[16px] font-semibold text-white">Mulțumim! Mesajul a fost trimis.</p>
-          <p className="mt-2 text-[16px] leading-[1.5] text-white">
+          <p className="text-[21px] font-semibold text-white">Mulțumim! Mesajul a fost trimis.</p>
+          <p className="mt-2 text-[21px] leading-[1.5] text-white">
             Te contactăm în maxim 24h pentru confirmarea programării.
           </p>
         </div>
@@ -628,7 +628,7 @@ export function ContactFormCard({ source }: { source: string }) {
           <input
             id="contact-nume"
             name="nume"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
             placeholder="Nume"
             required
             autoComplete="name"
@@ -638,7 +638,7 @@ export function ContactFormCard({ source }: { source: string }) {
             id="contact-telefon"
             name="telefon"
             type="tel"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
             placeholder="Telefon"
             required
             autoComplete="tel"
@@ -648,7 +648,7 @@ export function ContactFormCard({ source }: { source: string }) {
             id="contact-email"
             name="email"
             type="email"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
             placeholder="Email (opțional)"
             autoComplete="email"
           />
@@ -656,29 +656,29 @@ export function ContactFormCard({ source }: { source: string }) {
           <input
             id="contact-serviciu"
             name="serviciu"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
             placeholder="Serviciu dorit"
           />
           <label className="sr-only" htmlFor="contact-mesaj">Mesaj</label>
           <textarea
             id="contact-mesaj"
             name="mesaj"
-            className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
             placeholder="Mesaj opțional"
           />
           {status === "error" ? (
-            <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[16px] text-[#a4392b]">
+            <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px] text-[#a4392b]">
               {error}
             </p>
           ) : null}
           <button
             type="submit"
             disabled={status === "loading"}
-            className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
+            className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {status === "loading" ? "Se trimite…" : "Solicită programare"}
           </button>
-          <p className="mt-2 text-center text-[16px] text-white">
+          <p className="mt-2 text-center text-[21px] text-white">
             Nu trimitem spam. Te contactăm doar pentru confirmarea programării.
           </p>
         </form>
@@ -701,14 +701,14 @@ export function ServiceFinalCTA({
       <motion.div {...reveal} className="relative overflow-hidden rounded-[28px] bg-[#0A0A0A] p-8 text-white md:p-10 lg:p-12">
         <div className="pointer-events-none absolute -right-24 -top-20 h-[220px] w-[220px] rounded-full bg-[#4E7044]/30 blur-[90px]" />
         <h3 className="text-[30px] font-semibold leading-[1.05] tracking-[-0.028em] md:text-[40px]">{title}</h3>
-        <p className="mt-4 max-w-[980px] text-[16px] leading-[1.7] text-white">{body}</p>
+        <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a
           href="/#contact"
-          className="mt-7 inline-flex h-[44px] items-center rounded-full bg-white px-6 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+          className="mt-7 inline-flex h-[44px] items-center rounded-full bg-white px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
         >
           {buttonLabel}
         </a>
-        <p className="mt-4 text-[16px] text-white">Te contactăm în maxim 24h pentru confirmare.</p>
+        <p className="mt-4 text-[21px] text-white">Te contactăm în maxim 24h pentru confirmare.</p>
       </motion.div>
     </section>
   );

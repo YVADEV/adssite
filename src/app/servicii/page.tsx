@@ -11,7 +11,7 @@ export default function ServiciiPage() {
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_760px]">
             <h1 className="text-[92px] font-semibold leading-[0.9] tracking-[-4px] lg:text-[144px] lg:tracking-[-8.64px]">Servicii</h1>
-            <p className="pt-4 text-[16px] leading-6 tracking-[-0.64px] opacity-70 lg:pt-[28px]">
+            <p className="pt-4 text-[21px] leading-6 tracking-[-0.64px] opacity-70 lg:pt-[28px]">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet este dotat cu aparatură medicală de ultimă generație.
             </p>
           </div>
@@ -28,15 +28,15 @@ export default function ServiciiPage() {
               transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }}
               whileHover={{ scale: 1.005 }}
             >
-              <p className="text-[16px] font-medium uppercase tracking-[0.12em] text-[#6b6b6b]">Serviciu</p>
+              <p className="text-[21px] font-medium uppercase tracking-[0.12em] text-[#6b6b6b]">Serviciu</p>
               <h2 className="mt-3 text-[28px] font-semibold leading-[1.05] tracking-[-0.02em] text-white">{service.title}</h2>
-              <p className="mt-3 text-[16px] leading-[1.6] text-[#4a4a4a]">Tratament personalizat, comunicare clară și monitorizare atentă în fiecare etapă.</p>
+              <p className="mt-3 text-[21px] leading-[1.6] text-[#4a4a4a]">Tratament personalizat, comunicare clară și monitorizare atentă în fiecare etapă.</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                <a href={service.href} className="inline-flex h-[38px] items-center rounded-full bg-[#0A0A0A] px-4 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+                <a href={service.href} className="inline-flex h-[38px] items-center rounded-full bg-[#0A0A0A] px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                   Vezi detalii
                 </a>
                 {service.children?.map((child) => (
-                  <a key={child.slug} href={child.href} className="inline-flex h-[38px] items-center rounded-full border border-black/15 px-4 text-[16px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+                  <a key={child.slug} href={child.href} className="inline-flex h-[38px] items-center rounded-full border border-black/15 px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                     {child.title}
                   </a>
                 ))}

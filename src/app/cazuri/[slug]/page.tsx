@@ -75,7 +75,7 @@ export default async function CaseDetailPage({ params }: Props) {
           <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1680px] flex-col px-6 md:px-10 lg:px-12">
             <Link
               href="/cazuri/"
-              className="absolute left-6 top-8 inline-flex w-fit items-center gap-2 text-[16px] font-medium text-white transition hover:text-white md:left-10 lg:left-12 lg:top-10"
+              className="absolute left-6 top-8 inline-flex w-fit items-center gap-2 text-[21px] font-medium text-white transition hover:text-white md:left-10 lg:left-12 lg:top-10"
             >
               ← Înapoi la cazuri
             </Link>
@@ -102,7 +102,7 @@ export default async function CaseDetailPage({ params }: Props) {
                     className="absolute inset-0 h-full w-full object-cover"
                     style={{ objectPosition: item.objectPosition ?? "center center" }}
                   />
-                  <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                  <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
                     {item.label}
                   </figcaption>
                 </figure>
@@ -116,8 +116,8 @@ export default async function CaseDetailPage({ params }: Props) {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
             {caz.quickFacts.map((fact) => (
               <div key={fact.label}>
-                <p className="text-[16px] uppercase tracking-[0.12em] text-white">{fact.label}</p>
-                <p className="mt-2 text-[16px] font-semibold leading-[1.35] text-white">{fact.value}</p>
+                <p className="text-[21px] uppercase tracking-[0.12em] text-white">{fact.label}</p>
+                <p className="mt-2 text-[21px] font-semibold leading-[1.35] text-white">{fact.value}</p>
               </div>
             ))}
           </div>
@@ -127,11 +127,11 @@ export default async function CaseDetailPage({ params }: Props) {
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_380px] lg:gap-20">
             <div>
-              <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white">Documentare clinică</p>
+              <p className="text-[21px] font-semibold uppercase tracking-[0.12em] text-white">Documentare clinică</p>
               <h2 className="mt-3 max-w-[900px] text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
                 Povestea cazului
               </h2>
-              <div className="mt-8 max-w-[820px] space-y-6 text-[16px] leading-[1.8] text-white">
+              <div className="mt-8 max-w-[820px] space-y-6 text-[21px] leading-[1.8] text-white">
                 {caz.paragraphs.map((p, i) => (
                   <p key={`paragraph-${i}`}>{p}</p>
                 ))}
@@ -139,8 +139,8 @@ export default async function CaseDetailPage({ params }: Props) {
             </div>
             <aside className="lg:pt-16">
               <blockquote className="rounded-[20px] border border-white/12 bg-white/[0.03] p-6 md:p-8">
-                <p className="text-[16px] font-semibold uppercase tracking-[0.14em] text-white">Rezultat final</p>
-                <p className="mt-4 text-[16px] font-medium leading-[1.65] tracking-[-0.02em] text-white md:text-[16px]">
+                <p className="text-[21px] font-semibold uppercase tracking-[0.14em] text-white">Rezultat final</p>
+                <p className="mt-4 text-[21px] font-medium leading-[1.65] tracking-[-0.02em] text-white md:text-[21px]">
                   &ldquo;{caz.closingQuote}&rdquo;
                 </p>
               </blockquote>
@@ -152,7 +152,7 @@ export default async function CaseDetailPage({ params }: Props) {
 
         {/* Treatment steps */}
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
-          <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white">Protocol tratament</p>
+          <p className="text-[21px] font-semibold uppercase tracking-[0.12em] text-white">Protocol tratament</p>
           <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
             Pași parcurși
           </h2>
@@ -162,11 +162,11 @@ export default async function CaseDetailPage({ params }: Props) {
                 key={step.label}
                 className="rounded-[18px] border border-white/12 bg-white/[0.03] p-5 transition duration-300 hover:border-white/25"
               >
-                <span className="text-[16px] font-semibold uppercase tracking-[0.14em] text-white">
+                <span className="text-[21px] font-semibold uppercase tracking-[0.14em] text-white">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-3 text-[20px] font-semibold tracking-[-0.02em] text-white">{step.label}</h3>
-                <p className="mt-2 text-[16px] leading-[1.65] text-white">{step.detail}</p>
+                <h3 className="mt-3 text-[21px] font-semibold tracking-[-0.02em] text-white">{step.label}</h3>
+                <p className="mt-2 text-[21px] leading-[1.65] text-white">{step.detail}</p>
               </article>
             ))}
           </div>
@@ -174,7 +174,7 @@ export default async function CaseDetailPage({ params }: Props) {
 
         {/* Before & After */}
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
-          <p className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white">Rezultat documentat</p>
+          <p className="text-[21px] font-semibold uppercase tracking-[0.12em] text-white">Rezultat documentat</p>
           <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
             Before & After
           </h2>
@@ -190,7 +190,7 @@ export default async function CaseDetailPage({ params }: Props) {
                   className="absolute inset-0 h-full w-full object-cover"
                   style={{ objectPosition: item.objectPosition ?? "center center" }}
                 />
-                <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[16px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
                   {item.label}
                 </figcaption>
               </figure>
@@ -206,7 +206,7 @@ export default async function CaseDetailPage({ params }: Props) {
               <br />
               <span className="text-white">before and after</span>
             </h2>
-            <Link href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-black">
+            <Link href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-[21px] font-semibold text-black">
               Vezi toate
             </Link>
           </div>

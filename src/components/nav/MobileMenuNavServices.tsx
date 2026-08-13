@@ -53,7 +53,7 @@ export function MobileMenuNavServices({
                   onClick={() =>
                     setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
                   }
-                  className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[16px] font-semibold text-white"
+                  className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[21px] font-semibold text-white"
                 >
                   <span>{service.title}</span>
                   <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
@@ -70,7 +70,7 @@ export function MobileMenuNavServices({
                       key={child.slug}
                       href={child.href}
                       onClick={onCloseMenu}
-                      className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[16px] text-white"
+                      className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[21px] text-white"
                     >
                       {child.title}
                     </Link>
@@ -82,7 +82,7 @@ export function MobileMenuNavServices({
                 key={service.slug}
                 href={service.href}
                 onClick={onCloseMenu}
-                className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[16px] font-medium text-white"
+                className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[21px] font-medium text-white"
               >
                 {service.title}
               </Link>

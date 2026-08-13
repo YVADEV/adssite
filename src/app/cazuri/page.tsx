@@ -48,7 +48,7 @@ export default function CazuriPage() {
             className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
           />
           <div className="relative z-[2] flex flex-col">
-            <p className="mb-3 text-[18px] font-semibold text-white md:mb-4 md:text-[20px]">@alvernadentalstudio</p>
+            <p className="mb-3 text-[21px] font-semibold text-white md:mb-4">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -60,15 +60,15 @@ export default function CazuriPage() {
             </motion.h1>
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-[minmax(280px,360px)_1fr] md:gap-10 lg:mt-12 lg:gap-12">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
-                <p className="text-[20px] font-semibold text-white md:text-[24px]">Before & After</p>
-                <p className="mt-3 text-[18px] leading-[1.4] text-white md:text-[20px] lg:text-[22px]">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
+                <p className="text-[21px] font-semibold text-white">Before & After</p>
+                <p className="mt-3 text-[21px] leading-[1.4] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
               </motion.div>
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[520px] text-[18px] leading-[1.65] text-white md:text-[20px] lg:max-w-[620px] lg:text-[22px]"
+                className="max-w-[520px] text-[21px] leading-[1.65] text-white lg:max-w-[620px]"
               >
                 Fiecare caz este analizat complet, cu pași explicați și obiective clare. Accent pe funcționalitate, estetică și confort pe termen lung.
               </motion.p>
@@ -98,7 +98,7 @@ export default function CazuriPage() {
               <br />
               <span className="text-white">before and after</span>
             </h2>
-            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-xs font-semibold text-black">
+            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-[21px] font-semibold text-black">
               Vezi toate
             </a>
           </div>

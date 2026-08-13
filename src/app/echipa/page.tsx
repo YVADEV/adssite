@@ -241,11 +241,11 @@ export default function EchipaPage() {
               ))}
           </MobileMenuLayout>
           <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
-            <div className="text-[16px] leading-[1.5]">
+            <div className="text-[21px] leading-[1.5]">
               <a href="tel:+40748085933">+40 748 085 933</a>
               <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
             </div>
-            <div className="text-right text-[16px] leading-[1.6]">
+            <div className="text-right text-[21px] leading-[1.6]">
               <div className="flex justify-end gap-5">
                 <a href="/politica-de-confidentialitate">Privacy Policy</a>
                 <a href="/termeni-si-conditii">Terms of Service</a>
@@ -257,9 +257,9 @@ export default function EchipaPage() {
       </div>
 
       <div ref={pageContentRef}>
-        <header className="flex h-[68px] w-full items-center justify-between bg-[#0f1115] px-3 text-[16px] font-medium text-white sm:h-[72px] sm:px-4 md:px-6 lg:px-8">
+        <header className="flex h-[68px] w-full items-center justify-between bg-[#0f1115] px-3 text-[18px] font-medium text-white sm:h-[72px] sm:px-4 md:px-6 lg:px-8">
           <SiteLogo />
-          <nav className="hidden items-center gap-8 text-[16px] text-white lg:flex xl:gap-[80px]">
+          <nav className="hidden items-center gap-8 text-[18px] text-white lg:flex xl:gap-[80px]">
             <a href="/">Acasă</a>
             <a href="/echipa" className="text-white">
               Echipă
@@ -301,7 +301,7 @@ export default function EchipaPage() {
           />
 
           <div className="relative z-[2] flex min-h-[min(72vh,680px)] flex-col lg:min-h-[680px]">
-            <p className="mb-[18px] text-[16px] font-semibold text-white">@alvernadentalstudio</p>
+            <p className="mb-[18px] text-[21px] font-semibold text-white">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -317,7 +317,7 @@ export default function EchipaPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-auto max-w-[420px] text-[16px] leading-[1.6] text-white"
+              className="mt-auto max-w-[420px] text-[21px] leading-[1.6] text-white"
             >
               Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
               <br />
@@ -414,11 +414,11 @@ export default function EchipaPage() {
                           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         />
                         <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                        <p className="absolute right-3 top-3 max-w-[80px] text-right text-[16px] leading-[1.2] text-white">{group.title}</p>
+                        <p className="absolute right-3 top-3 max-w-[80px] text-right text-[21px] leading-[1.2] text-white">{group.title}</p>
                         <motion.h3
                           whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
                           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute bottom-3 left-3 text-[16px] font-bold text-white"
+                          className="absolute bottom-3 left-3 text-[21px] font-bold text-white"
                         >
                           {member.name}
                         </motion.h3>
@@ -437,11 +437,11 @@ export default function EchipaPage() {
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     />
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                    <p className="absolute right-3 top-3 max-w-[80px] text-right text-[16px] leading-[1.2] text-white">{group.title}</p>
+                    <p className="absolute right-3 top-3 max-w-[80px] text-right text-[21px] leading-[1.2] text-white">{group.title}</p>
                     <motion.h3
                       whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
                       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute bottom-3 left-3 text-[16px] font-bold text-white"
+                      className="absolute bottom-3 left-3 text-[21px] font-bold text-white"
                     >
                       {member.name}
                     </motion.h3>

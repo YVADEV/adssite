@@ -871,15 +871,15 @@ export default function HomePageClient() {
               <div
                 key={review.name}
                 data-anim="card"
-                className="ads-card flex h-[124px] min-w-[0] flex-col justify-between rounded-[18px] border border-[#f1f1f1] bg-white p-4 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[132px] lg:h-[126px]"
+                className="ads-card flex h-[156px] min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#f1f1f1] bg-white p-4 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[164px] lg:h-[156px]"
               >
-                <div className="flex items-center justify-between">
-                  <p className="truncate pr-2 text-[21px] font-semibold text-white">{review.name}</p>
-                  <p className="text-[21px] font-semibold text-white">{review.rating} ★</p>
+                <div className="flex shrink-0 items-center justify-between gap-2">
+                  <p className="min-w-0 truncate text-[21px] font-semibold text-white">{review.name}</p>
+                  <p className="shrink-0 whitespace-nowrap text-[21px] font-semibold text-white">{review.rating} ★</p>
                 </div>
-                <div>
-                  <p className="line-clamp-3 text-[21px] leading-[1.25] text-white">{review.text}</p>
-                </div>
+                <p className="mt-2 min-h-0 flex-1 overflow-hidden text-[18px] leading-[1.35] text-white [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                  {review.text}
+                </p>
               </div>
             ))}
           </div>

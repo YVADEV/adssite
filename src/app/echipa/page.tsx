@@ -291,7 +291,7 @@ export default function EchipaPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 grid w-screen -translate-x-1/2 grid-cols-1 gap-10 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[1fr_1fr] lg:items-stretch lg:gap-[60px] xl:px-[120px]"
+          className="relative left-1/2 mt-0 grid w-screen -translate-x-1/2 grid-cols-1 gap-8 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
         >
           <motion.div
             aria-hidden
@@ -300,7 +300,7 @@ export default function EchipaPage() {
             className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
           />
 
-          <div className="relative z-[2] flex min-h-[min(72vh,680px)] flex-col lg:min-h-[680px]">
+          <div className="relative z-[2] flex flex-col lg:py-4">
             <p className="mb-[18px] text-[21px] font-semibold text-white">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
@@ -317,7 +317,7 @@ export default function EchipaPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-auto max-w-[420px] text-[21px] leading-[1.6] text-white"
+              className="mt-6 max-w-[420px] text-[21px] leading-[1.6] text-white lg:mt-8"
             >
               Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
               <br />
@@ -333,13 +333,13 @@ export default function EchipaPage() {
             whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             viewport={{ once: true, amount: 0.2 }}
             transition={reduceMotion ? {} : { duration: 1.1, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-[2] h-[min(72vh,680px)] w-full overflow-hidden rounded-[12px] border border-white/15 lg:h-[680px] lg:w-full lg:max-w-[560px] lg:justify-self-end"
+            className="relative z-[2] w-full min-w-0 overflow-hidden rounded-[12px] border border-white/15 lg:w-full"
           >
             <motion.img
               src={heroTeamImage.src}
               alt="Echipa Alverna Dental Studio"
-              className="h-full w-full object-cover object-[center_18%]"
-              initial={reduceMotion ? false : { scale: 1.06 }}
+              className="h-auto w-full object-contain object-center"
+              initial={reduceMotion ? false : { scale: 1.02 }}
               whileInView={reduceMotion ? {} : { scale: 1 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}

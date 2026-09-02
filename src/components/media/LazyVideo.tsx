@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { useAutoplayVideo } from "@/components/media/useAutoplayVideo";
 
@@ -17,16 +17,28 @@ export type LazyVideoProps = {
 /**
  * Autoplay-muted video that loads near the viewport with metadata preload only.
  */
-export function LazyVideo({
-  src,
-  poster,
-  className = "h-full w-full object-cover",
-  ariaLabel,
-  loop = true,
-  loadDelayMs = 0,
-}: LazyVideoProps) {
+export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function LazyVideo(
+  {
+    src,
+    poster,
+    className = "h-full w-full object-cover",
+    ariaLabel,
+    loop = true,
+    loadDelayMs = 0,
+  },
+  forwardedRef
+) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  function setVideoRef(el: HTMLVideoElement | null) {
+    videoRef.current = el;
+    if (typeof forwardedRef === "function") {
+      forwardedRef(el);
+    } else if (forwardedRef) {
+      forwardedRef.current = el;
+    }
+  }
   const [shouldLoad, setShouldLoad] = useState(false);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
 
@@ -99,7 +111,7 @@ export function LazyVideo({
         )
       ) : (
         <video
-          ref={videoRef}
+          ref={setVideoRef}
           autoPlay
           muted
           loop={loop}
@@ -114,20 +126,24 @@ export function LazyVideo({
       )}
     </div>
   );
-}
+});
+
+/** Shared video strip article height — responsive, desktop unchanged at md+. */
+const VIDEO_STRIP_ARTICLE_CLASS =
+  "relative h-[min(70vw,400px)] bg-black sm:h-[460px] md:h-[520px]";
 
 /** Shared "Cazuri before/after" 3-video grid — center clip loads last (largest file). */
 export function CazuriVideoStrip() {
   return (
     <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-      <article className="relative h-[520px] rounded-l-[18px] bg-black">
+      <article className={`${VIDEO_STRIP_ARTICLE_CLASS} rounded-l-[18px]`}>
         <LazyVideo
           src="/cazuri-1.mp4"
           poster="/services/exam-male.png"
           ariaLabel="Caz tratat — fațete dentare, vedere generală"
         />
       </article>
-      <article className="relative h-[520px] bg-black">
+      <article className={VIDEO_STRIP_ARTICLE_CLASS}>
         <LazyVideo
           src="/cori-angel.mp4"
           poster="/services/smile-mirror.png"
@@ -135,7 +151,7 @@ export function CazuriVideoStrip() {
           loadDelayMs={400}
         />
       </article>
-      <article className="relative h-[520px] rounded-r-[18px] bg-black">
+      <article className={`${VIDEO_STRIP_ARTICLE_CLASS} rounded-r-[18px]`}>
         <LazyVideo
           src="/cazuri-2.mp4"
           poster="/services/whitening-2.png"

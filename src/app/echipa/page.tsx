@@ -3,10 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { useReducedMotion } from "motion/react";
-import gsap from "gsap";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
-import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
 import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
+import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
+import { useMobileMenu } from "@/hooks/useMobileMenu";
+import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
@@ -65,7 +66,7 @@ const teamGroups = [
   { title: "Medici specialisti", members: specialistTeam },
   { title: "Laborator", members: laboratoryTeam },
   { title: "Asistente", members: assistantsTeam },
-  { title: "Managment", members: managementTeam },
+  { title: "Management", members: managementTeam },
 ];
 
 export default function EchipaPage() {
@@ -76,188 +77,90 @@ export default function EchipaPage() {
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
+  const [isMobileTeamGrid, setIsMobileTeamGrid] = useState(false);
+  const scrolled = useStickyHeaderScroll();
+
+  const {
+    menuOpen,
+    menuVisible,
+    mobileServicesOpen,
+    setMobileServicesOpen,
+    openSubmenuSlug,
+    setOpenSubmenuSlug,
+    closeMenu,
+    toggleMenu,
+  } = useMobileMenu({
+    overlayRef: menuOverlayRef,
+    pageRef: pageContentRef,
+    topLineRef: menuTopLineRef,
+    midLineRef: menuMidLineRef,
+    bottomLineRef: menuBottomLineRef,
+    menuTriggerRef,
+  });
 
   useEffect(() => {
-    const overlay = menuOverlayRef.current;
-    const page = pageContentRef.current;
-    const top = menuTopLineRef.current;
-    const mid = menuMidLineRef.current;
-    const bottom = menuBottomLineRef.current;
-    if (!overlay || !page || !top || !mid || !bottom) return;
-
-    const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
-    const menuItems = overlay.querySelectorAll<HTMLElement>("[data-menu-item]");
-    let frame = 0;
-    let tl: gsap.core.Timeline | null = null;
-
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-      gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
-      gsap.set(menuItems, { opacity: 0, y: 40 });
-      setMenuVisible(true);
-      frame = requestAnimationFrame(() => {
-        tl = gsap.timeline({ defaults: { ease } });
-        tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
-          .to(page, { opacity: 0.2, duration: 0.42, ease }, "<")
-          .to(top, { y: 8, rotate: 45, duration: 0.36, ease }, "-=0.34")
-          .to(mid, { opacity: 0, scaleX: 0.35, duration: 0.3, ease }, "<")
-          .to(bottom, { y: -8, rotate: -45, duration: 0.36, ease }, "<")
-          .to(menuItems, { opacity: 1, y: 0, stagger: 0.08, duration: 0.62, ease }, "-=0.16");
-      });
-    } else if (menuVisible) {
-      tl = gsap.timeline({ defaults: { ease } });
-      tl.to(menuItems, { opacity: 0, y: 20, stagger: { each: 0.07, from: "end" }, duration: 0.34, ease })
-        .to(overlay, { opacity: 0, duration: 0.38, ease }, "-=0.08")
-        .to(page, { opacity: 1, duration: 0.38, ease }, "<")
-        .to(top, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .to(mid, { opacity: 1, scaleX: 1, duration: 0.28, ease }, "<")
-        .to(bottom, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .add(() => setMenuVisible(false));
-      document.body.style.overflow = "";
-    } else {
-      gsap.set(overlay, { opacity: 0, pointerEvents: "none" });
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      cancelAnimationFrame(frame);
-      tl?.kill();
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen, menuVisible]);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      setMobileServicesOpen(false);
-      setOpenSubmenuSlug(null);
-    }
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const overlay = menuOverlayRef.current;
-    if (!overlay) return;
-
-    const focusableSelector =
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    const focusables = () =>
-      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
-    focusables()[0]?.focus();
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        setMenuOpen(false);
-        return;
-      }
-      if (e.key !== "Tab") return;
-      const list = focusables();
-      if (list.length === 0) return;
-      const first = list[0];
-      const last = list[list.length - 1];
-      const active = document.activeElement as HTMLElement | null;
-      if (e.shiftKey && active === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
-
-  const prevMenuOpenRef = useRef(false);
-  useEffect(() => {
-    if (prevMenuOpenRef.current && !menuOpen) {
-      menuTriggerRef.current?.focus({ preventScroll: true });
-    }
-    prevMenuOpenRef.current = menuOpen;
-  }, [menuOpen]);
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const sync = () => setIsMobileTeamGrid(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-black text-white">
-      <div
-        ref={menuOverlayRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Meniu principal"
-        aria-hidden={!menuVisible}
+    <div className="min-h-screen overflow-x-clip bg-black text-white">
+      <MobileMenuOverlay
         id="echipa-mobile-menu"
-        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "visible" : "pointer-events-none invisible opacity-0"}`}
+        overlayRef={menuOverlayRef}
+        menuVisible={menuVisible}
+        onClose={closeMenu}
       >
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
-          <div className="flex items-center justify-between">
-            <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-            <button type="button" aria-label="Închide meniul" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
-            </button>
-          </div>
-          <MobileMenuLayout>
-              {[
-                { href: "/", label: "Acasă" },
-                { href: "/echipa", label: "Echipa" },
-                { href: "/cazuri", label: "Cazuri" },
-              ].map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  data-menu-item
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <MobileMenuNavServices
-                mobileServicesOpen={mobileServicesOpen}
-                setMobileServicesOpen={setMobileServicesOpen}
-                openSubmenuSlug={openSubmenuSlug}
-                setOpenSubmenuSlug={setOpenSubmenuSlug}
-                onCloseMenu={() => setMenuOpen(false)}
-              />
+        {[
+          { href: "/", label: "Acasă" },
+          { href: "/echipa", label: "Echipa" },
+          { href: "/cazuri", label: "Cazuri" },
+        ].map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            data-menu-item
+            onClick={closeMenu}
+            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+          >
+            {item.label}
+          </a>
+        ))}
+        <MobileMenuNavServices
+          mobileServicesOpen={mobileServicesOpen}
+          setMobileServicesOpen={setMobileServicesOpen}
+          openSubmenuSlug={openSubmenuSlug}
+          setOpenSubmenuSlug={setOpenSubmenuSlug}
+          onCloseMenu={closeMenu}
+        />
+        {[
+          { href: "/tarife", label: "Tarife" },
+          { href: "/contact", label: "Contact" },
+        ].map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            data-menu-item
+            onClick={closeMenu}
+            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+          >
+            {item.label}
+          </a>
+        ))}
+      </MobileMenuOverlay>
 
-              {[
-                { href: "/tarife", label: "Tarife" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  data-menu-item
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
-                >
-                  {item.label}
-                </a>
-              ))}
-          </MobileMenuLayout>
-          <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
-            <div className="text-[21px] leading-[1.5]">
-              <a href="tel:+40748085933">+40 748 085 933</a>
-              <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
-            </div>
-            <div className="text-right text-[21px] leading-[1.6]">
-              <div className="flex justify-end gap-5">
-                <a href="/politica-de-confidentialitate">Privacy Policy</a>
-                <a href="/termeni-si-conditii">Terms of Service</a>
-              </div>
-              <p className="mt-1">© Alverna Dental Studio</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div ref={pageContentRef}>
-        <header className="flex h-[68px] w-full items-center justify-between bg-[#0f1115] px-3 text-[18px] font-medium text-white sm:h-[72px] sm:px-4 md:px-6 lg:px-8">
+      <div ref={pageContentRef} id="main" tabIndex={-1} className="outline-none">
+        <header
+          className={`sticky top-0 z-50 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
+            scrolled
+              ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+              : "bg-[#0f1115]"
+          }`}
+        >
+          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[18px] font-medium sm:px-4 md:px-6 lg:px-8">
           <SiteLogo />
           <nav className="hidden items-center gap-8 text-[18px] text-white lg:flex xl:gap-[80px]">
             <a href="/">Acasă</a>
@@ -276,22 +179,23 @@ export default function EchipaPage() {
             aria-expanded={menuOpen}
             aria-controls="echipa-mobile-menu"
             aria-haspopup="dialog"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="hidden h-10 w-10 shrink-0 max-lg:flex flex-col justify-center gap-[5px] sm:h-12 sm:w-12 sm:gap-[6px]"
+            onClick={toggleMenu}
+            className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px]"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
           </button>
+          </div>
         </header>
 
-      <main className="pb-[180px]">
+      <main className="pb-24 md:pb-32 lg:pb-[180px]">
         <motion.section
           initial={reduceMotion ? false : { opacity: 0, y: 80, scale: 0.96, filter: "blur(18px)" }}
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 grid w-screen -translate-x-1/2 grid-cols-1 gap-8 overflow-hidden border border-white/20 bg-black px-6 py-10 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
+          className="relative left-1/2 mt-0 grid w-screen max-w-[100vw] -translate-x-1/2 grid-cols-1 gap-8 overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
         >
           <motion.div
             aria-hidden
@@ -301,13 +205,13 @@ export default function EchipaPage() {
           />
 
           <div className="relative z-[2] flex flex-col lg:py-4">
-            <p className="mb-[18px] text-[21px] font-semibold text-white">@alvernadentalstudio</p>
+            <p className="mb-[18px] text-[18px] font-semibold text-white md:text-[21px]">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, amount: 0.55 }}
               transition={reduceMotion ? {} : { duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[420px] whitespace-pre-line text-[42px] font-bold leading-[0.95] tracking-[-1.8px]"
+              className="max-w-[420px] whitespace-pre-line text-[32px] font-bold leading-[0.95] tracking-[-1.8px] md:text-[42px]"
             >
               {"Fă cunoștință\ncu echipa noastră"}
             </motion.h1>
@@ -317,7 +221,7 @@ export default function EchipaPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 max-w-[420px] text-[21px] leading-[1.6] text-white lg:mt-8"
+              className="mt-6 max-w-[420px] text-[18px] leading-[1.6] text-white md:text-[21px] lg:mt-8"
             >
               Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
               <br />
@@ -348,109 +252,141 @@ export default function EchipaPage() {
           </motion.div>
         </motion.section>
 
-        {teamGroups.map((group) => (
-          <section key={group.title} className="mx-auto mt-12 w-full max-w-[1680px] px-4 md:px-8 lg:mt-14 lg:px-12">
-            <motion.h2
-              initial={reduceMotion ? false : { opacity: 0, y: 24, filter: "blur(12px)" }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
-              viewport={{ once: true, amount: 0.55 }}
-              transition={reduceMotion ? {} : { duration: 1.15, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[46px] font-semibold tracking-[-1.6px] text-white md:text-[56px]"
-            >
-              {group.title}
-            </motion.h2>
-            <motion.div
-              initial={reduceMotion ? false : "hidden"}
-              whileInView={reduceMotion ? undefined : "visible"}
-              viewport={{ once: true, amount: 0.2 }}
-              variants={
-                reduceMotion
-                  ? undefined
-                  : {
-                      hidden: {},
-                      visible: {
-                        transition: {
-                          delayChildren: 0.2,
-                          staggerChildren: 0.12,
-                        },
-                      },
-                    }
-              }
-              className="mt-6 grid grid-cols-1 justify-center gap-[18px] sm:grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:repeat(5,248px)]"
-            >
-              {group.members.map((member) => {
-                const cardProps = {
-                  variants: reduceMotion
-                    ? undefined
-                    : {
-                        hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" },
-                        visible: {
-                          opacity: 1,
-                          y: 0,
-                          scale: 1,
-                          filter: "blur(0px)",
-                          transition: { duration: 1.1 },
-                        },
-                      },
-                  whileHover: reduceMotion
-                    ? {}
-                    : {
-                        y: -8,
-                        boxShadow: "0 12px 28px rgba(255,255,255,0.12)",
-                        borderColor: "rgba(255,255,255,0.35)",
-                      },
-                  transition: { duration: 0.6 },
-                  className: "group relative h-[383px] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] lg:w-[248px]",
-                };
-                if ("href" in member && typeof member.href === "string") {
-                  return (
-                    <a key={`${group.title}-${member.name}`} href={member.href} className="block">
-                      <motion.article {...cardProps}>
-                        <motion.img
-                          src={member.image}
-                          alt={member.name}
-                          className="h-full w-full object-cover object-top"
-                          whileHover={reduceMotion ? {} : { scale: 1.05 }}
-                          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                        <p className="absolute right-3 top-3 max-w-[80px] text-right text-[21px] leading-[1.2] text-white">{group.title}</p>
-                        <motion.h3
-                          whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
-                          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute bottom-3 left-3 text-[21px] font-bold text-white"
-                        >
-                          {member.name}
-                        </motion.h3>
-                      </motion.article>
-                    </a>
-                  );
-                }
+        {teamGroups.map((group) => {
+          const gridClassName = isMobileTeamGrid
+            ? "mt-6 grid grid-cols-2 justify-items-stretch gap-3 sm:gap-[18px] md:grid-cols-3"
+            : "mt-6 grid grid-cols-1 justify-center gap-[18px] sm:grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:repeat(5,248px)]";
 
-                return (
-                  <motion.article key={`${group.title}-${member.name}`} {...cardProps}>
-                    <motion.img
-                      src={member.image}
-                      alt={member.name}
-                      className="h-full w-full object-cover object-top"
-                      whileHover={reduceMotion ? {} : { scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                    <p className="absolute right-3 top-3 max-w-[80px] text-right text-[21px] leading-[1.2] text-white">{group.title}</p>
-                    <motion.h3
-                      whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute bottom-3 left-3 text-[21px] font-bold text-white"
-                    >
-                      {member.name}
-                    </motion.h3>
-                  </motion.article>
-                );
-              })}
-            </motion.div>
-          </section>
-        ))}
+          const gridContent = group.members.map((member, index) => {
+            const cardClassName = isMobileTeamGrid
+              ? "group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] sm:h-[360px]"
+              : "group relative h-[383px] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] lg:w-[248px]";
+
+            const labelClassName = isMobileTeamGrid
+              ? "absolute right-2 top-2 max-w-[72px] text-right text-[13px] leading-[1.2] text-white sm:right-3 sm:top-3 sm:max-w-[80px] sm:text-[16px]"
+              : "absolute right-3 top-3 max-w-[80px] text-right text-[21px] leading-[1.2] text-white";
+
+            const nameClassName = isMobileTeamGrid
+              ? "absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] text-[15px] font-bold leading-[1.15] text-white sm:bottom-3 sm:left-3 sm:text-[18px]"
+              : "absolute bottom-3 left-3 text-[21px] font-bold text-white";
+
+            const desktopCardProps = {
+              variants: reduceMotion
+                ? undefined
+                : {
+                    hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      filter: "blur(0px)",
+                      transition: { duration: 1.1 },
+                    },
+                  },
+              whileHover: reduceMotion
+                ? {}
+                : {
+                    y: -8,
+                    boxShadow: "0 12px 28px rgba(255,255,255,0.12)",
+                    borderColor: "rgba(255,255,255,0.35)",
+                  },
+              transition: { duration: 0.6 },
+              className: cardClassName,
+            };
+
+            const mobileCardProps = reduceMotion
+              ? { className: cardClassName }
+              : {
+                  initial: { opacity: 0, y: 16 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, amount: 0.05 },
+                  transition: { duration: 0.4, delay: Math.min(index * 0.03, 0.24), ease: [0.22, 1, 0.36, 1] as const },
+                  className: cardClassName,
+                };
+
+            const cardProps = isMobileTeamGrid ? mobileCardProps : desktopCardProps;
+
+            const cardInner = (
+              <>
+                <motion.img
+                  src={member.image}
+                  alt={member.name}
+                  className="h-full w-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                  whileHover={reduceMotion || isMobileTeamGrid ? {} : { scale: 1.05 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
+                <p className={labelClassName}>{group.title}</p>
+                {isMobileTeamGrid ? (
+                  <h3 className={nameClassName}>{member.name}</h3>
+                ) : (
+                  <motion.h3
+                    whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className={nameClassName}
+                  >
+                    {member.name}
+                  </motion.h3>
+                )}
+              </>
+            );
+
+            if ("href" in member && typeof member.href === "string") {
+              return (
+                <a key={`${group.title}-${member.name}`} href={member.href} className="block">
+                  <motion.article {...cardProps}>{cardInner}</motion.article>
+                </a>
+              );
+            }
+
+            return (
+              <motion.article key={`${group.title}-${member.name}`} {...cardProps}>
+                {cardInner}
+              </motion.article>
+            );
+          });
+
+          return (
+            <section key={group.title} className="mx-auto mt-12 w-full max-w-[1680px] px-4 md:px-8 lg:mt-14 lg:px-12">
+              <motion.h2
+                initial={reduceMotion ? false : { opacity: 0, y: 24, filter: "blur(12px)" }}
+                whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, amount: 0.55 }}
+                transition={reduceMotion ? {} : { duration: 1.15, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+                className="text-[34px] font-semibold tracking-[-1.6px] text-white sm:text-[40px] md:text-[56px]"
+              >
+                {group.title}
+              </motion.h2>
+              {isMobileTeamGrid ? (
+                <div className={gridClassName}>{gridContent}</div>
+              ) : (
+                <motion.div
+                  initial={reduceMotion ? false : "hidden"}
+                  whileInView={reduceMotion ? undefined : "visible"}
+                  viewport={{ once: true, amount: 0.2 }}
+                  variants={
+                    reduceMotion
+                      ? undefined
+                      : {
+                          hidden: {},
+                          visible: {
+                            transition: {
+                              delayChildren: 0.2,
+                              staggerChildren: 0.12,
+                            },
+                          },
+                        }
+                  }
+                  className={gridClassName}
+                >
+                  {gridContent}
+                </motion.div>
+              )}
+            </section>
+          );
+        })}
       </main>
       <SiteFooter />
       </div>

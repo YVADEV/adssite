@@ -55,7 +55,7 @@ export default async function CaseDetailPage({ params }: Props) {
       />
       <main className="bg-black pb-20 pt-0 text-white">
         {/* Hero — full-bleed patient photo */}
-        <section className="relative h-[calc(100vh-40px)] min-h-[700px] w-full overflow-hidden bg-black">
+        <section className="relative h-[min(calc(100vh-40px),640px)] w-full overflow-hidden bg-black md:min-h-[700px] md:h-[calc(100vh-40px)]">
           <Image
             src={caz.heroImage}
             alt={titleLines.join(" ")}
@@ -75,12 +75,12 @@ export default async function CaseDetailPage({ params }: Props) {
           <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1680px] flex-col px-6 md:px-10 lg:px-12">
             <Link
               href="/cazuri/"
-              className="absolute left-6 top-8 inline-flex w-fit items-center gap-2 text-[21px] font-medium text-white transition hover:text-white md:left-10 lg:left-12 lg:top-10"
+              className="absolute left-4 top-6 inline-flex w-fit items-center gap-2 text-[18px] font-medium text-white transition hover:text-white md:left-10 md:top-8 md:text-[21px] lg:left-12 lg:top-10"
             >
               ← Înapoi la cazuri
             </Link>
             {caz.patientName && (
-              <p className="absolute bottom-28 left-6 text-[100px] font-semibold leading-none tracking-[-0.02em] text-white md:bottom-36 md:left-10 lg:bottom-44 lg:left-12">
+              <p className="absolute bottom-20 left-4 max-w-[calc(100%-2rem)] text-[36px] font-semibold leading-[0.95] tracking-[-0.02em] text-white sm:text-[56px] md:bottom-36 md:left-10 md:text-[80px] lg:bottom-44 lg:left-12 lg:text-[100px]">
                 {caz.patientName}
               </p>
             )}
@@ -199,14 +199,14 @@ export default async function CaseDetailPage({ params }: Props) {
         </section>
 
         {/* Video strip */}
-        <section className="mx-auto mt-[120px] w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <div className="flex items-start justify-between gap-6">
-            <h2 className="text-[42px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[58px] lg:text-[72px]">
+        <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:mt-24 md:px-8 lg:mt-[120px] lg:px-12">
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
+            <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
               Cazuri <span className="text-white">mai în detaliu</span>
               <br />
               <span className="text-white">before and after</span>
             </h2>
-            <Link href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-[21px] font-semibold text-black">
+            <Link href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
               Vezi toate
             </Link>
           </div>

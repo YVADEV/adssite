@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../**/*.{js,ts,jsx,tsx,mdx}";
 
 .instagram-reels-track {
   scroll-snap-type: x mandatory;
@@ -81,12 +82,18 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  overflow-x: clip;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: var(--ads-font-size-body);
   line-height: 1.6;
+  overflow-x: clip;
+  max-width: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -165,6 +172,63 @@ textarea {
   transform: scale(0.97);
   opacity: 0.92;
   transition: 0.14s ease-out;
+}
+
+/* Literal light surfaces — bypass dark-theme token conversion */
+.ads-btn-lit {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+
+.ads-btn-lit:hover {
+  opacity: 0.92;
+}
+
+.ads-card-lit {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+
+.ads-card-lit input,
+.ads-card-lit textarea {
+  background-color: #f5f5f5 !important;
+  color: #0a0a0a !important;
+}
+
+.ads-card-lit input::placeholder,
+.ads-card-lit textarea::placeholder {
+  color: rgba(10, 10, 10, 0.45);
+}
+
+.ads-card-lit .ads-link-accent {
+  color: #4e7044;
+}
+
+.ads-card-lit .ads-link-accent:hover {
+  color: #0a0a0a;
+}
+
+.ads-form-success-box {
+  color: #2d5a28;
+}
+
+.ads-text-on-light {
+  color: #0a0a0a !important;
+}
+
+.ads-surface-light-muted {
+  background-color: #f5f5f5 !important;
+  color: #0a0a0a !important;
+}
+
+.ads-surface-light-chip {
+  background-color: #f8f8f8 !important;
+  color: #0a0a0a !important;
+}
+
+.ads-btn-outline-lit:hover {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
 }
 
 /* Mission-style white glow — cards */

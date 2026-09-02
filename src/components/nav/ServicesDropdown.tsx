@@ -88,13 +88,13 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       </button>
 
       <div
-        className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[760px] max-w-[92vw] -translate-x-1/2 rounded-[24px] border px-10 py-8 shadow-[0_16px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+        className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[860px] max-w-[92vw] -translate-x-1/2 rounded-[24px] border px-10 py-8 shadow-[0_16px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
           open ? "pointer-events-auto translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-[14px] scale-[0.98] opacity-0"
         } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.75)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}
       >
-        <div className="grid grid-cols-3 gap-x-16">
+        <div className="grid grid-cols-3 gap-x-10">
           {groupedColumns.map((column, idx) => (
-            <div key={`services-column-${idx}`} className="space-y-[14px]">
+            <div key={`services-column-${idx}`} className="space-y-2">
               {column.map((item) => {
                 const isAparat = item.slug === "aparat-dentar";
                 return (
@@ -115,20 +115,20 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                             }
                           : undefined
                       }
-                      className={`flex h-[34px] items-center justify-between rounded-[10px] px-2 py-1.5 text-[21px] font-medium leading-[1.4] transition duration-200 ${
+                      className={`flex min-h-[40px] items-center justify-between gap-2 rounded-[10px] px-3 py-2 text-[19px] font-medium leading-[1.35] transition duration-200 ${
                         pathname === item.href ? "bg-[#4E7044]/15 text-white" : ""
                       } ${
-                        isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "text-white hover:translate-x-[3px] hover:bg-[#edf2eb]"
+                        isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[3px] hover:bg-[#edf2eb]"
                       }`}
                     >
-                      <span>{item.title}</span>
+                      <span className="min-w-0 flex-1 text-left">{item.title}</span>
                       {isAparat ? <span className="text-[21px] opacity-60">›</span> : null}
                     </Link>
 
                     {isAparat && aparatDentar?.children?.length ? (
                       <div
                         className={`overflow-hidden pl-[16px] transition-[max-height,opacity] duration-300 ease-out ${
-                          nestedOpen ? "max-h-[120px] opacity-100" : "max-h-0 opacity-0"
+                          nestedOpen ? "max-h-[160px] opacity-100" : "max-h-0 opacity-0"
                         }`}
                       >
                         {aparatDentar.children.map((child) => (
@@ -136,10 +136,10 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                             key={child.slug}
                             href={child.href}
                             aria-current={pathname === child.href ? "page" : undefined}
-                            className={`mt-[6px] flex h-[30px] items-center rounded-[8px] px-2 text-[21px] font-normal leading-[1.3] transition duration-200 ${
+                            className={`mt-1.5 flex min-h-[36px] items-center rounded-[8px] px-3 py-2 text-[18px] font-normal leading-[1.35] transition duration-200 ${
                               pathname === child.href ? "bg-[#4E7044]/15 text-white" : ""
                             } ${
-                              isDark ? "text-white hover:translate-x-[2px] hover:bg-white/10 hover:text-white" : "text-white hover:translate-x-[2px] hover:bg-[#edf2eb]"
+                              isDark ? "text-white hover:translate-x-[2px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[2px] hover:bg-[#edf2eb]"
                             }`}
                           >
                             {child.title}

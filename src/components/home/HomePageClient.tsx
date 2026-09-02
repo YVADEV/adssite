@@ -6,21 +6,22 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
-import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
 import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
+import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
+import { useMobileMenu } from "@/hooks/useMobileMenu";
+import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { CaseImage } from "@/components/cazuri/CaseImage";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { services } from "@/config/services";
-import heroCardThumb from "@/assets/vladuta lupau.png";
+import { CLINIC } from "@/lib/contact";
 import vdScaun from "@/assets/VDscaun.png";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import teamBannerImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
 import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.png";
-import appPromoImage from "@/assets/cazuri/Banner/app.png";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
@@ -397,134 +398,41 @@ export default function HomePageClient() {
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
-  const prevMenuOpenRef = useRef(false);
   const contactSectionRef = useRef<HTMLElement>(null);
   const contactSpotlightRef = useRef<HTMLDivElement>(null);
   const footerSectionRef = useRef<HTMLElement>(null);
   const footerSpotlightRef = useRef<HTMLDivElement>(null);
   const [activeServicesDot, setActiveServicesDot] = useState(0);
   const [activeTarifeIndex, setActiveTarifeIndex] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const recommendationVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const cabinetVideoRef = useRef<HTMLVideoElement>(null);
+  const [activeClipControls, setActiveClipControls] = useState<Set<number>>(() => new Set());
+  const [cabinetVideoActive, setCabinetVideoActive] = useState(false);
+  const scrolled = useStickyHeaderScroll();
 
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 4);
-        ticking = false;
-      });
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  function activateVideoWithSound(video: HTMLVideoElement | null, onActivated?: () => void) {
+    if (!video) return;
+    video.muted = false;
+    void video.play().then(() => onActivated?.()).catch(() => undefined);
+  }
 
-  useEffect(() => {
-    const overlay = menuOverlayRef.current;
-    const page = pageContentRef.current;
-    const top = menuTopLineRef.current;
-    const mid = menuMidLineRef.current;
-    const bottom = menuBottomLineRef.current;
-    if (!overlay || !page || !top || !mid || !bottom) return;
-
-    const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
-    const menuItems = overlay.querySelectorAll<HTMLElement>("[data-menu-item]");
-    let frame = 0;
-    let tl: gsap.core.Timeline | null = null;
-
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-      gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
-      gsap.set(menuItems, { opacity: 0, y: 40 });
-      setMenuVisible(true);
-      frame = requestAnimationFrame(() => {
-        tl = gsap.timeline({ defaults: { ease } });
-        tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
-          .to(page, { opacity: 0.2, duration: 0.42, ease }, "<")
-          .to(top, { y: 8, rotate: 45, duration: 0.36, ease }, "-=0.34")
-          .to(mid, { opacity: 0, scaleX: 0.35, duration: 0.3, ease }, "<")
-          .to(bottom, { y: -8, rotate: -45, duration: 0.36, ease }, "<")
-          .to(menuItems, { opacity: 1, y: 0, stagger: 0.08, duration: 0.62, ease }, "-=0.16");
-      });
-    } else if (menuVisible) {
-      tl = gsap.timeline({ defaults: { ease } });
-      tl.to(menuItems, { opacity: 0, y: 20, stagger: { each: 0.07, from: "end" }, duration: 0.34, ease })
-        .to(overlay, { opacity: 0, duration: 0.38, ease }, "-=0.08")
-        .to(page, { opacity: 1, duration: 0.38, ease }, "<")
-        .to(top, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .to(mid, { opacity: 1, scaleX: 1, duration: 0.28, ease }, "<")
-        .to(bottom, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .add(() => {
-          setMenuVisible(false);
-        });
-      document.body.style.overflow = "";
-    } else {
-      gsap.set(overlay, { opacity: 0, pointerEvents: "none" });
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      cancelAnimationFrame(frame);
-      tl?.kill();
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen, menuVisible]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const overlay = menuOverlayRef.current;
-    if (!overlay) return;
-
-    const focusableSelector =
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    const focusables = () =>
-      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
-    focusables()[0]?.focus();
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        setMenuOpen(false);
-        return;
-      }
-      if (e.key !== "Tab") return;
-      const list = focusables();
-      if (list.length === 0) return;
-      const first = list[0];
-      const last = list[list.length - 1];
-      const active = document.activeElement as HTMLElement | null;
-      if (e.shiftKey && active === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      setMobileServicesOpen(false);
-      setOpenSubmenuSlug(null);
-    }
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (prevMenuOpenRef.current && !menuOpen) {
-      menuTriggerRef.current?.focus({ preventScroll: true });
-    }
-    prevMenuOpenRef.current = menuOpen;
-  }, [menuOpen]);
+  const {
+    menuOpen,
+    menuVisible,
+    mobileServicesOpen,
+    setMobileServicesOpen,
+    openSubmenuSlug,
+    setOpenSubmenuSlug,
+    closeMenu,
+    toggleMenu,
+  } = useMobileMenu({
+    overlayRef: menuOverlayRef,
+    pageRef: pageContentRef,
+    topLineRef: menuTopLineRef,
+    midLineRef: menuMidLineRef,
+    bottomLineRef: menuBottomLineRef,
+    menuTriggerRef,
+  });
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -729,77 +637,49 @@ export default function HomePageClient() {
 
   return (
     <div ref={rootRef} className="ads-page overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
-      <div
-        ref={menuOverlayRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Meniu principal"
-        aria-hidden={!menuVisible}
+      <MobileMenuOverlay
         id="home-mobile-menu"
-        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "visible" : "pointer-events-none invisible opacity-0"}`}
+        overlayRef={menuOverlayRef}
+        menuVisible={menuVisible}
+        onClose={closeMenu}
       >
-          <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
-            <div className="flex items-center justify-between">
-              <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-              <button type="button" aria-label="Închide meniul" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
-                <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
-                <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
-              </button>
-            </div>
-            <MobileMenuLayout>
-            {[
-              { href: "/", label: "Acasă" },
-              { href: "/echipa", label: "Echipa" },
-              { href: "/cazuri", label: "Cazuri" },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                data-menu-item
-                onClick={() => setMenuOpen(false)}
-                className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
-              >
-                {item.label}
-              </Link>
-            ))}
-              <MobileMenuNavServices
-                mobileServicesOpen={mobileServicesOpen}
-                setMobileServicesOpen={setMobileServicesOpen}
-                openSubmenuSlug={openSubmenuSlug}
-                setOpenSubmenuSlug={setOpenSubmenuSlug}
-                onCloseMenu={() => setMenuOpen(false)}
-              />
-
-              {[
-                { href: "/tarife", label: "Tarife" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  data-menu-item
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </MobileMenuLayout>
-            <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
-              <div className="text-[21px] leading-[1.5]">
-                <a href="tel:+40748085933">+40 748 085 933</a>
-                <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
-              </div>
-              <div className="text-right text-[21px] leading-[1.6]">
-                <div className="flex justify-end gap-5">
-                  <a href="/politica-de-confidentialitate">Privacy Policy</a>
-                  <a href="/termeni-si-conditii">Terms of Service</a>
-                </div>
-                <p className="mt-1">© Alverna Dental Studio</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        {[
+          { href: "/", label: "Acasă" },
+          { href: "/echipa", label: "Echipa" },
+          { href: "/cazuri", label: "Cazuri" },
+        ].map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            data-menu-item
+            onClick={closeMenu}
+            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+          >
+            {item.label}
+          </Link>
+        ))}
+        <MobileMenuNavServices
+          mobileServicesOpen={mobileServicesOpen}
+          setMobileServicesOpen={setMobileServicesOpen}
+          openSubmenuSlug={openSubmenuSlug}
+          setOpenSubmenuSlug={setOpenSubmenuSlug}
+          onCloseMenu={closeMenu}
+        />
+        {[
+          { href: "/tarife", label: "Tarife" },
+          { href: "/contact", label: "Contact" },
+        ].map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            data-menu-item
+            onClick={closeMenu}
+            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </MobileMenuOverlay>
 
       <div ref={pageContentRef}>
       <header
@@ -830,7 +710,7 @@ export default function HomePageClient() {
             aria-expanded={menuOpen}
             aria-controls="home-mobile-menu"
             aria-haspopup="dialog"
-            onClick={() => setMenuOpen((prev) => !prev)}
+            onClick={toggleMenu}
             className="relative z-10 hidden h-12 w-12 max-lg:flex flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f]"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
@@ -844,40 +724,40 @@ export default function HomePageClient() {
         data-anim="section"
         className="mx-auto mt-0 w-full max-w-[1680px] overflow-visible px-4 pb-[72px] md:px-6 md:pb-[96px] lg:px-8 lg:pb-[140px]"
       >
-        <div className="relative left-1/2 h-[calc(100vh-72px)] w-screen -translate-x-1/2">
-          <div data-intro="hero-media" className="relative h-full w-full overflow-hidden rounded-[32px]">
+        <div className="relative left-1/2 h-[calc(100vh-72px)] w-screen max-w-[100vw] -translate-x-1/2 max-md:h-[min(calc(100vh-72px),820px)]">
+          <div data-intro="hero-media" className="relative h-full w-full overflow-hidden rounded-[20px] md:rounded-[32px]">
             <HeroIntroVideo />
-            <div data-intro="hero-title" className="absolute left-5 top-5 text-white md:left-7 md:top-7 lg:left-9 lg:top-9">
-            <h1 className="max-w-[980px] text-[52px] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
-            <p className="mt-1 max-w-[560px] text-[28px] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
-            <p className="mt-4 max-w-[700px] text-[21px] font-medium leading-[1.35] text-white">
+            <div data-intro="hero-title" className="absolute left-4 top-4 text-white max-md:max-w-[calc(100%-2rem)] md:left-7 md:top-7 lg:left-9 lg:top-9">
+            <h1 className="max-w-[980px] text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
+            <p className="mt-1 max-w-[560px] text-[22px] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
+            <p className="mt-4 max-w-[700px] text-[18px] font-medium leading-[1.35] text-white md:text-[21px]">
               Tratamente moderne, medici specializați, rezultate predictibile pentru un zâmbet sănătos și fără stres.
             </p>
           </div>
 
-            <div className="absolute bottom-8 left-4 max-w-[min(280px,calc(100%-2rem))] text-[21px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 lg:left-9">
+            <div className="absolute bottom-6 left-4 max-w-[min(280px,calc(100%-2rem))] text-[18px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 md:text-[21px] lg:left-9">
               <p>Implantologie</p>
               <p className="mt-[12px]">Ortodontie</p>
-              <p className="mt-[12px]">Inviseline</p>
+              <p className="mt-[12px]">Invisalign</p>
               <p className="mt-[12px]">Aparat dentar</p>
             </div>
 
           </div>
         </div>
 
-        <div data-intro="trust" className="mx-auto mt-[72px] w-full overflow-visible pb-[8px]">
-          <div data-anim-cards className="grid grid-cols-1 items-end gap-[10px] md:grid-cols-3 md:gap-3 lg:grid-cols-6 lg:gap-2">
+        <div data-intro="trust" className="mx-auto mt-10 w-full overflow-hidden pb-[8px] md:mt-[72px]">
+          <div data-anim-cards className="grid grid-cols-1 items-end gap-[10px] min-[420px]:grid-cols-2 md:grid-cols-3 md:gap-3 lg:grid-cols-6 lg:gap-2">
             {partnerReviewCards.map((review) => (
               <div
                 key={review.name}
                 data-anim="card"
-                className="ads-card flex h-[156px] min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#f1f1f1] bg-white p-4 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[164px] lg:h-[156px]"
+                className="ads-surface-light-muted ads-card flex h-[148px] min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#f1f1f1] p-3 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[164px] md:p-4 lg:h-[156px]"
               >
                 <div className="flex shrink-0 items-center justify-between gap-2">
-                  <p className="min-w-0 truncate text-[21px] font-semibold text-white">{review.name}</p>
-                  <p className="shrink-0 whitespace-nowrap text-[21px] font-semibold text-white">{review.rating} ★</p>
+                  <p className="min-w-0 truncate text-[16px] font-semibold md:text-[21px]">{review.name}</p>
+                  <p className="shrink-0 whitespace-nowrap text-[16px] font-semibold md:text-[21px]">{review.rating} ★</p>
                 </div>
-                <p className="mt-2 min-h-0 flex-1 overflow-hidden text-[18px] leading-[1.35] text-white [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical]">
+                <p className="mt-2 min-h-0 flex-1 overflow-hidden text-[16px] leading-[1.35] [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] md:text-[18px]">
                   {review.text}
                 </p>
               </div>
@@ -886,18 +766,23 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[72px] pt-[120px] md:pb-[96px] lg:pb-[72px]">
+      <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[72px] pt-16 md:pb-[96px] md:pt-24 lg:pb-[72px] lg:pt-[120px]">
         <SectionTitle title="Cazuri" />
         <div className="mx-auto mt-3 w-full max-w-[1680px] px-4 text-[21px] font-normal leading-[1.5] text-white md:px-6 lg:px-8 lg:pl-[708px]">
           La Alverna Dental Studio dispunem de propriul laborator de tehnică dentară, ceea ce ne permite să controlăm îndeaproape calitatea lucrărilor și a materialelor folosite.
         </div>
-        <div className="mx-auto mt-4 flex w-full max-w-[1680px] flex-wrap items-center justify-between gap-4 px-4 md:px-6 lg:px-8">
-          <p className="text-[21px] text-white">Before / After · Implant + coroană – 3 luni</p>
-          <div className="flex items-center gap-3">
-            <button className="h-[42px] rounded-full border border-black/15 px-4 text-[21px] font-medium text-white transition duration-300 hover:scale-[1.02]">Vezi toate cazurile</button>
+        <div className="mx-auto mt-4 flex w-full max-w-[1680px] flex-col gap-4 px-4 max-[480px]:items-stretch sm:flex-row sm:flex-wrap sm:items-center sm:justify-between md:px-6 lg:px-8">
+          <p className="min-w-0 text-[21px] text-white">Before / After · Implant + coroană – 3 luni</p>
+          <div className="flex w-full flex-col gap-3 min-[480px]:w-auto min-[480px]:flex-row min-[480px]:items-center">
+            <Link
+              href="/cazuri/"
+              className="inline-flex min-h-[42px] items-center justify-center rounded-full border border-black/15 px-4 text-center text-[18px] font-medium text-white transition duration-300 hover:scale-[1.02] min-[480px]:text-[21px]"
+            >
+              Vezi toate cazurile
+            </Link>
             <a
               href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-              className="inline-flex h-[42px] items-center rounded-full bg-black px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+              className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-black px-4 text-center text-[18px] font-semibold text-white transition duration-300 hover:scale-[1.02] min-[480px]:text-[21px]"
             >
               Programeaza-te
             </a>
@@ -905,7 +790,7 @@ export default function HomePageClient() {
         </div>
         <div className="mx-auto mt-[64px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
           {caseImages.map((src, i) => (
-            <CaseImage key={src} src={src} alt="" data-anim="image" className="h-[430px] w-full rounded-[28px] object-cover lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
+            <CaseImage key={src} src={src} alt="" data-anim="image" className="h-[min(72vw,380px)] w-full rounded-[28px] object-cover sm:h-[430px] lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
           ))}
         </div>
       </section>
@@ -918,47 +803,57 @@ export default function HomePageClient() {
                 src={vdScaun.src}
                 alt="Echipa medicală Alverna Dental Studio în timpul unui tratament"
                 data-anim="image"
-                className="aspect-[682/1024] h-[min(720px,82vh)] w-full max-w-[440px] object-cover object-[center_38%]"
+                className="aspect-[682/1024] h-[min(520px,70vh)] w-full max-w-[440px] object-cover object-[center_38%] md:h-[min(720px,82vh)]"
               />
             </div>
             <p className="max-w-[520px] text-[21px] leading-[1.65] tracking-[-0.64px] text-white">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
             </p>
           </div>
-          <div className="mt-10 grid grid-cols-1 gap-[8px] md:grid-cols-2 lg:mt-[-310px] lg:ml-[815px] lg:gap-[4px]">
+          <div className="mt-10 grid min-w-0 grid-cols-1 gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-[815px] xl:gap-[4px]">
             {advantages.map((a, idx) => (
-              <article key={a.value} className="w-[380px] rounded-[18px] bg-[#f5f5f5] p-5">
+              <article key={a.value} className="w-full max-w-[380px] rounded-[18px] bg-[#f5f5f5] p-5 md:max-w-none lg:w-[380px]">
                 <div className="flex items-start justify-between">
-                  <strong className="text-[56px] font-semibold leading-none tracking-[-2px] text-white">{a.value}</strong>
+                  <strong className="text-[36px] font-semibold leading-none tracking-[-2px] text-white md:text-[56px]">{a.value}</strong>
                   <span className="text-[21px] opacity-40">{a.idx}</span>
                 </div>
-                <h3 className="mt-3 text-[34px] tracking-[-0.8px] text-white">{a.label}</h3>
+                <h3 className="mt-3 text-[24px] tracking-[-0.8px] text-white md:text-[34px]">{a.label}</h3>
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative mt-2 h-[396px] w-[267px] overflow-hidden rounded-[24px] bg-black"
+                  className="relative mt-2 h-[min(72vw,300px)] w-full max-w-[267px] overflow-hidden rounded-[24px] bg-black sm:h-[396px] sm:w-[267px]"
                   style={{ boxShadow: "-12px -12px 24px #ffffff, 12px 12px 24px rgba(0,0,0,0.08)" }}
                 >
                   <LazyVideo
+                    ref={(el) => {
+                      recommendationVideoRefs.current[idx] = el;
+                    }}
                     src={recommendationClips[idx]}
                     poster="/services/smile-mirror.png"
                     className="absolute inset-0 h-full w-full scale-[1.05]"
                     ariaLabel={`Clip ${recommendationClipMeta[idx].title}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.68)]" />
-                  <motion.button
-                    type="button"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(0,0,0,0.6)] backdrop-blur-[2px]"
-                    aria-label="Play clip"
-                  >
-                    <span className="ml-[2px] inline-block h-0 w-0 border-b-[10px] border-l-[16px] border-t-[10px] border-b-transparent border-l-white border-t-transparent" />
-                  </motion.button>
-                  <div className="absolute bottom-[16px] left-[16px] right-[16px] p-0">
-                    <p className="text-[21px] text-[rgba(255,255,255,0.6)]">{recommendationClipMeta[idx].date}</p>
-                    <h4 className="mt-[6px] text-[21px] font-semibold text-white">{recommendationClipMeta[idx].title}</h4>
-                    <p className="mt-1 text-[21px] leading-[1.4] text-[rgba(255,255,255,0.8)]">{recommendationClipMeta[idx].description}</p>
+                  {!activeClipControls.has(idx) ? (
+                    <motion.button
+                      type="button"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      onClick={() =>
+                        activateVideoWithSound(recommendationVideoRefs.current[idx], () => {
+                          setActiveClipControls((prev) => new Set(prev).add(idx));
+                        })
+                      }
+                      className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(0,0,0,0.6)] backdrop-blur-[2px]"
+                      aria-label="Redă clip cu sunet"
+                    >
+                      <span className="ml-[2px] inline-block h-0 w-0 border-b-[10px] border-l-[16px] border-t-[10px] border-b-transparent border-l-white border-t-transparent" />
+                    </motion.button>
+                  ) : null}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10 sm:inset-auto sm:bottom-[16px] sm:left-[16px] sm:right-[16px] sm:bg-none sm:p-0 sm:pt-0">
+                    <p className="text-[14px] text-[rgba(255,255,255,0.6)] sm:text-[21px]">{recommendationClipMeta[idx].date}</p>
+                    <h4 className="mt-1 text-[16px] font-semibold leading-[1.2] text-white sm:mt-[6px] sm:text-[21px]">{recommendationClipMeta[idx].title}</h4>
+                    <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:mt-1 sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[idx].description}</p>
                   </div>
                 </motion.div>
               </article>
@@ -971,7 +866,7 @@ export default function HomePageClient() {
         <div className="mx-auto w-full max-w-[1680px] overflow-x-hidden rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
           <div className="min-w-0">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
+                <h2 className="text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
                 <div className="flex items-center gap-2 md:gap-3">
                   <button
                     type="button"
@@ -1061,40 +956,50 @@ export default function HomePageClient() {
 
           <div data-anim="image" className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
             <LazyVideo
+              ref={cabinetVideoRef}
               src="/hero.mp4"
               poster="/services/smile-mirror.png"
               ariaLabel="Descoperă cabinetul Alverna Dental Studio"
               className="h-full w-full object-cover"
             />
-            <div className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4">
-              <button type="button" className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-white text-[21px] text-[#0f1115] sm:h-16 sm:w-16 sm:text-[28px]" aria-label="Redă video">
-                ▶
-              </button>
-              <span className="text-[21px] font-medium leading-[1.65] text-white">Descopera cabinetul nostru</span>
-            </div>
+            {!cabinetVideoActive ? (
+              <div className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    activateVideoWithSound(cabinetVideoRef.current, () => setCabinetVideoActive(true))
+                  }
+                  className="ads-btn-lit flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[21px] sm:h-16 sm:w-16 sm:text-[28px]"
+                  aria-label="Redă video cu sunet"
+                >
+                  ▶
+                </button>
+                <span className="text-[21px] font-medium leading-[1.65] text-white">Descopera cabinetul nostru</span>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
 
-      <section data-anim="section" className="bg-[#ececec] pb-[120px]">
+      <section data-anim="section" className="bg-[#ececec] pb-16 md:pb-[120px]">
         <SectionTitle title="Recenzii" />
         <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
         </div>
         <div className="mx-auto mt-10 grid w-full max-w-[1680px] grid-cols-1 gap-[20px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-12">
           <article
-            className="flex min-h-[313px] flex-col rounded-[18px] bg-[#f5f5f5] p-[30px] ads-mission-glow"
+            className="ads-surface-light-muted flex min-h-[313px] flex-col rounded-[18px] p-[30px] ads-mission-glow"
           >
             <div className="flex items-end gap-2">
-              <strong className="text-[56px] font-semibold leading-none tracking-[-3.36px]">4,8</strong>
+              <strong className="text-[40px] font-semibold leading-none tracking-[-3.36px] md:text-[56px]">4,8</strong>
               <span className="mb-2 text-base opacity-60">/5</span>
               <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
             </div>
-            <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65] text-white">
-              <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
-              <p>Număr de telefon: 0376 448 810</p>
+            <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65]">
+              <p>Adresă: {CLINIC.addressLine}</p>
+              <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
               <p>Program:</p>
-              <p>Deschis · Închide la 21</p>
+              <p>{CLINIC.hoursDisplay}</p>
             </div>
             <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto pt-4 h-auto w-[220px] object-contain" />
           </article>
@@ -1106,15 +1011,15 @@ export default function HomePageClient() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }}
-              className="flex h-full min-h-[313px] flex-col rounded-[18px] bg-[#f5f5f5] p-[24px] ads-mission-glow"
+              className="ads-surface-light-muted flex h-full min-h-[313px] flex-col rounded-[18px] p-[24px] ads-mission-glow"
             >
               <div>
-                <p className="text-[32px] font-semibold leading-[1.05]">{r.name}</p>
+                <p className="text-[24px] font-semibold leading-[1.05] md:text-[32px]">{r.name}</p>
                 <p className="mt-1 text-[21px] opacity-60">{r.meta}</p>
                 <p className="mt-1 text-[21px] opacity-60">{r.time}</p>
               </div>
-              <p className="mt-6 text-[21px] leading-[1.5] tracking-[-0.2px] text-white">{r.text}</p>
-              <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em] text-white">★★★★★</p>
+              <p className="mt-6 text-[21px] leading-[1.5] tracking-[-0.2px]">{r.text}</p>
+              <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>
             </motion.article>
           ))}
         </div>
@@ -1122,7 +1027,7 @@ export default function HomePageClient() {
 
       <section data-anim="section" className="px-5 py-16 md:px-10 md:py-20 lg:px-[96px]">
         <div className="mx-auto w-full max-w-[1680px]">
-          <div className="grid grid-cols-2 gap-4 rounded-[20px] border border-white/12 bg-[#111111] p-6 ads-mission-glow md:grid-cols-4 md:gap-0 md:divide-x md:divide-white/10 md:p-10">
+          <div className="grid grid-cols-1 gap-4 rounded-[20px] border border-white/12 bg-[#111111] p-6 ads-mission-glow sm:grid-cols-2 md:grid-cols-4 md:gap-0 md:divide-x md:divide-white/10 md:p-10">
             {[
               ["15", "Ani de activitate"],
               ["9000", "Pacienti"],
@@ -1130,7 +1035,7 @@ export default function HomePageClient() {
               ["15 de ani", "Medici cu peste 15 ani de experienta"],
             ].map(([n, t]) => (
               <article key={n} className="px-2 text-center md:px-6 md:text-left">
-                <h3 className="text-[44px] font-bold leading-none tracking-[-0.04em] text-white md:text-[56px] lg:text-[72px]">
+                <h3 className="text-[28px] font-bold leading-none tracking-[-0.04em] text-white sm:text-[36px] md:text-[56px] lg:text-[72px]">
                   {n}
                 </h3>
                 <p className="mx-auto mt-3 max-w-[150px] text-[21px] leading-[1.65] text-white/75 md:mx-0">{t}</p>
@@ -1141,60 +1046,51 @@ export default function HomePageClient() {
       </section>
 
       <section data-anim="section" data-theme="light" className="bg-[#F5F5F5]">
-        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-[120px] md:grid-cols-2 md:px-10 lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
-          <article className="relative isolate z-20 h-[560px] overflow-visible rounded-[24px] bg-[#0A0A0A] p-[40px]">
+        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
+          <article className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]">
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
             </div>
             <div className="relative z-[40] text-[21px] text-white">
               <p>Echipa</p>
             </div>
+            <h3 className="relative z-[30] mt-4 whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] md:absolute md:bottom-[92px] md:left-[36px] md:mt-auto md:pt-0 md:text-[64px]">
+              {"alverna\ndental\nstudio"}
+            </h3>
             <img
               src={teamBannerImage.src}
               alt=""
-              className="pointer-events-none absolute bottom-0 right-[-35px] z-[20] h-[660px] w-auto object-contain"
+              className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(52vw,300px)] w-auto max-w-full object-contain md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
             />
-            <h3 className="absolute bottom-[92px] left-[36px] z-[30] whitespace-pre-line text-[64px] font-bold leading-[0.88] text-white">
-              {"alverna\ndental\nstudio"}
-            </h3>
-            <p className="absolute bottom-[24px] right-[40px] z-[40] text-[21px] text-white">We do it all.</p>
           </article>
 
-          <article className="relative z-10 h-[560px] rounded-[16px] bg-[#0A0A0A] p-[44px]">
+          <article className="relative z-10 min-h-[420px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
             <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
             <div className="relative z-10 flex h-full flex-col">
-              <h3 className="whitespace-pre-line text-[46px] font-semibold leading-[1.05] text-white">
+              <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
                 {"Puterea zambetului\ncare inspira incredere"}
               </h3>
               <div className="mt-8">
-                <p className="text-[40px] font-semibold text-white">
+                <p className="text-[28px] font-semibold text-white md:text-[40px]">
                   4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
                 </p>
-              </div>
-              <div className="mt-auto rounded-[12px] border border-white/10 bg-[#111111] p-4">
-                <p className="text-[21px] leading-[1.3] text-[#f2d16b]">★★★★★</p>
-                <div className="mt-3 flex items-center gap-2">
-                  <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
-                  <span className="text-[21px] text-white">Ion Ionut</span>
-                </div>
               </div>
             </div>
           </article>
 
-          <div className="relative z-10 flex h-[560px] flex-col gap-[6px]">
-            <article className="flex h-[275px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 text-center">
+          <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
+            <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
               <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
                 <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111] text-[32px] font-semibold text-white">100</div>
               </div>
               <p className="mt-4 text-[21px] font-semibold text-white">Scanare 3D</p>
-              <p className="mt-1 text-[21px] text-white/75">We prioritize performance without sacrificing visual appeal or functionality.</p>
             </article>
 
-            <article className="h-[275px] rounded-[16px] bg-[#0A0A0A] p-6">
-              <h3 className="text-[56px] font-bold leading-none text-white">9000</h3>
+            <article className="min-h-[220px] rounded-[16px] bg-[#0A0A0A] p-6 max-md:pr-2 md:h-[275px]">
+              <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
               <p className="mt-2 text-[21px] text-white/80">Pacienti multumiti</p>
               <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
-              <img src={cazA7407760.src} alt="" className="mt-4 h-[110px] w-full rounded-[10px] object-cover" />
+              <img src={cazA7407760.src} alt="" className="mt-4 h-[72px] w-full rounded-[10px] object-cover object-top sm:h-[96px] md:h-[110px]" />
             </article>
           </div>
         </div>
@@ -1204,27 +1100,29 @@ export default function HomePageClient() {
         <div className="mx-auto w-full max-w-[1680px] bg-[#f5f5f5] px-5 py-12 md:px-10 md:py-16 lg:px-[96px] lg:py-[96px]">
           <div className="w-full">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <h2 className="text-[44px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
-              <div className="flex items-center gap-2 md:gap-3">
-                <button
-                  type="button"
-                  onClick={goPrevTarife}
-                  aria-label="Tarife anterioare"
-                  className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
-                >
-                  <span className="text-[21px] leading-none">←</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={goNextTarife}
-                  aria-label="Tarife următoare"
-                  className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
-                >
-                  <span className="text-[21px] leading-none">→</span>
-                </button>
+              <h2 className="text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
+              <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center md:gap-3">
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={goPrevTarife}
+                    aria-label="Tarife anterioare"
+                    className="ads-btn-primary inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full"
+                  >
+                    <span className="text-[21px] leading-none">←</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goNextTarife}
+                    aria-label="Tarife următoare"
+                    className="ads-btn-primary inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full"
+                  >
+                    <span className="text-[21px] leading-none">→</span>
+                  </button>
+                </div>
                 <a
                   href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
-                  className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[21px] font-semibold"
+                  className="ads-btn-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-4 py-2 text-[18px] font-semibold sm:w-auto sm:px-5 sm:text-[21px]"
                 >
                   Programează-te
                 </a>
@@ -1242,7 +1140,7 @@ export default function HomePageClient() {
                 style={{ transform: `translateX(-${activeTarifeIndex * 100}%)` }}
               >
                 {pricingData.map((category) => (
-                  <article key={category.category} className="h-[620px] w-full shrink-0 rounded-[20px] border border-[rgba(10,10,10,0.08)] bg-white p-6 md:p-7 lg:p-8">
+                  <article key={category.category} className="min-h-[480px] w-full shrink-0 rounded-[20px] border border-[rgba(10,10,10,0.08)] bg-white p-6 md:h-[620px] md:p-7 lg:p-8">
                     <h3 className="text-[21px] font-semibold leading-[1.1] text-white">{category.category}</h3>
                     <div className="mt-5 space-y-0">
                       {category.items.slice(0, 7).map((entry, idx) => (
@@ -1281,20 +1179,10 @@ export default function HomePageClient() {
         <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] overflow-visible px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
           <article
             data-theme="light"
-            className="relative order-3 flex h-[560px] flex-col rounded-[16px] bg-[#0A0A0A] p-[32px] text-white md:order-1 md:rounded-l-[16px] md:rounded-r-none"
+            className="relative order-3 flex min-h-[420px] flex-col rounded-[16px] bg-[#0A0A0A] p-6 text-white md:order-1 md:h-[560px] md:rounded-l-[16px] md:rounded-r-none md:p-[32px]"
           >
-            <p className="text-[21px] text-white/80">@alvernaofficial</p>
-            <h3 className="mt-4 text-[46px] font-semibold leading-[1.05] text-white">Puterea zambetului care inspira incredere</h3>
-            <p className="mt-4 text-[21px] text-white/80">Conversion Rate Improvement:</p>
-            <p className="mt-1 text-[40px] font-semibold leading-none text-white">4.2% &gt; 5.9%</p>
-            <div className="absolute bottom-[24px] left-[32px] right-[32px] rounded-[12px] border border-white/10 bg-[#111111] p-4">
-              <p className="text-[21px] leading-[1.3] text-[#f2d16b]">★★★★★</p>
-              <p className="mt-2 text-[21px] text-white/85">Thanks to this redesign, we&apos;ve seen a steady 80% increase in leads.</p>
-              <div className="mt-3 flex items-center gap-2">
-                <img src={heroCardThumb.src} alt="" className="h-8 w-8 rounded-full object-cover" />
-                <span className="text-[21px] text-white">Agata Sril</span>
-              </div>
-            </div>
+            <p className="text-[21px] text-white/80">{CLINIC.instagramHandle}</p>
+            <h3 className="mt-4 text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">Puterea zambetului care inspira incredere</h3>
           </article>
 
           <article className="order-2 relative h-[280px] overflow-hidden rounded-[16px] bg-[#0A0A0A] md:order-2 md:h-[560px] md:rounded-none">
@@ -1305,79 +1193,48 @@ export default function HomePageClient() {
             />
           </article>
 
-          <article className="relative isolate order-1 z-20 h-[560px] overflow-visible rounded-[24px] bg-transparent p-[32px] md:order-3 md:rounded-l-none md:rounded-r-[24px] md:p-[40px]">
+          <article className="relative isolate order-1 z-20 min-h-[360px] overflow-hidden rounded-[24px] bg-transparent p-6 md:order-3 md:h-[560px] md:overflow-visible md:rounded-l-none md:rounded-r-[24px] md:p-[40px]">
             <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A] md:rounded-l-none md:rounded-r-[24px]">
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
             </div>
             <div className="relative z-[40] text-[21px] text-white">
               <p>Echipa</p>
             </div>
+            <p className="relative z-[40] mt-4 text-[18px] font-semibold leading-[1.15] text-white md:absolute md:bottom-[56px] md:left-[36px] md:mt-auto md:max-w-[220px] md:text-[21px]">
+              Laborator dentar
+            </p>
             <img
               src={labDoctorBannerImage.src}
               alt="Echipa Alverna Dental Studio"
-              className="pointer-events-none absolute bottom-0 right-[-35px] z-[20] h-[660px] w-auto object-contain mix-blend-lighten"
+              className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(50vw,280px)] w-auto max-w-full object-contain mix-blend-lighten md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
             />
-            <p className="absolute bottom-[52px] left-[32px] z-[40] max-w-[220px] text-[21px] font-semibold leading-[1.15] text-white md:bottom-[56px] md:left-[36px]">
-              Laborator dentar
-            </p>
-            <p className="absolute bottom-[24px] right-[32px] z-[40] text-[21px] text-white md:right-[40px]">We do it all.</p>
           </article>
-        </div>
-      </section>
-
-      <section data-anim="section" className="bg-[#F5F5F5]">
-        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 items-center gap-10 px-4 pb-[120px] pt-[120px] md:grid-cols-[320px_minmax(0,1fr)] md:gap-16 md:px-8 lg:gap-20 lg:px-[96px]">
-          <div className="flex -translate-y-3 justify-center md:justify-start">
-            <img src={appPromoImage.src} alt="" className="h-[760px] w-[320px] object-contain" />
-          </div>
-          <div>
-            <h2 className="max-w-[720px] text-[40px] font-bold leading-[1.05] tracking-[-0.04em] text-white md:text-[48px] lg:text-[56px]">
-              Descarca aplicatia ads si groaza de dentist va disparea
-            </h2>
-            <p className="mt-8 max-w-[680px] text-[21px] leading-[1.65] text-white">
-              O vizită într-un cabinet stomatologic Cluj, oricât de modern și bine echipat ar fi, nu aduce rezultatele dorite fără un medic stomatolog Cluj pe măsură. Medicii din clinica stomatologică Alverna Dental Studio sunt atenți, dedicați și foarte bine pregătiți, fiecare medic stomatolog Cluj fiind specializat pe anumite servicii de stomatologie. Împreună, ca echipă, putem aborda, eficient și la calitate superioară, orice situație dentară cu care v-ați confrunta.
-            </p>
-            <div className="mt-16 flex flex-col gap-6 md:flex-row md:items-center md:gap-6">
-              <button className="flex h-[56px] min-w-[210px] items-center gap-[10px] rounded-[8px] bg-black px-[18px] text-white transition duration-200 ease-out hover:scale-[1.03]">
-                <span className="text-[21px] leading-none"></span>
-                <span className="flex flex-col items-start leading-none">
-                  <span className="text-[21px] font-medium">Download on the</span>
-                  <span className="mt-[2px] text-[21px] font-semibold">App Store</span>
-                </span>
-              </button>
-              <button className="flex h-[56px] min-w-[210px] items-center gap-[10px] rounded-[8px] bg-black px-[18px] text-white transition duration-200 ease-out hover:scale-[1.03]">
-                <span className="relative h-6 w-6">
-                  <span className="absolute left-[2px] top-[1px] h-0 w-0 border-b-[11px] border-l-[18px] border-t-[11px] border-b-transparent border-l-[#4ade80] border-t-transparent" />
-                  <span className="absolute left-[6px] top-[6px] h-0 w-0 border-b-[6px] border-l-[10px] border-t-[6px] border-b-transparent border-l-[#60a5fa] border-t-transparent opacity-90" />
-                </span>
-                <span className="flex flex-col items-start leading-none">
-                  <span className="text-[21px] font-medium uppercase">Get it on</span>
-                  <span className="mt-[2px] text-[21px] font-semibold">Google Play</span>
-                </span>
-              </button>
-            </div>
-          </div>
         </div>
       </section>
 
       <section data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-[96px]">
-          <div className="flex items-start justify-between">
-            <h2 className="text-[76px] font-semibold leading-[0.9] tracking-[-3px]">
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
+            <h2 className="text-[32px] font-semibold leading-[0.9] tracking-[-3px] sm:text-[48px] md:text-[64px] lg:text-[76px]">
               Cazuri <span className="text-white">mai in detaliu</span>
               <br />
-              <span className="text-white">befor and after</span>
+              <span className="text-white">before and after</span>
             </h2>
-            <button className="mt-8 rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white">Vezi toate</button>
+            <Link
+              href="/cazuri/"
+              className="rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white sm:mt-8"
+            >
+              Vezi toate
+            </Link>
           </div>
           <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-            <article className="relative h-[587px] rounded-l-[18px] bg-black">
+            <article className="relative h-[min(70vw,400px)] rounded-l-[18px] bg-black sm:h-[460px] md:h-[587px]">
               <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat — vedere generală" />
             </article>
-            <article className="relative h-[587px] bg-black">
+            <article className="relative h-[min(70vw,400px)] bg-black sm:h-[460px] md:h-[587px]">
               <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
             </article>
-            <article className="relative h-[587px] rounded-r-[18px] bg-black">
+            <article className="relative h-[min(70vw,400px)] rounded-r-[18px] bg-black sm:h-[460px] md:h-[587px]">
               <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />
             </article>
           </div>
@@ -1387,7 +1244,7 @@ export default function HomePageClient() {
       <section id="contact" ref={contactSectionRef} data-anim="section" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
         <motion.div
           aria-hidden
-          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] [will-change:transform]"
+          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform]"
           animate={{ y: [-20, 20, -20], scale: [1, 1.05, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -1404,7 +1261,7 @@ export default function HomePageClient() {
           <ContactFormCard source="home-page" />
 
           <div className="pt-0 text-white lg:pt-8">
-            <h3 className="max-w-[720px] text-[44px] font-semibold leading-[1.04] tracking-[-0.04em]">Primul pas spre un zâmbet sănătos începe aici.</h3>
+            <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[44px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
             <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
               Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune.
             </p>
@@ -1412,7 +1269,12 @@ export default function HomePageClient() {
               <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
               <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
             </div>
-            <p className="mt-7 text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4">Preferi telefonic? Sună acum</p>
+            <a
+              href={`tel:${CLINIC.phoneTel}`}
+              className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:decoration-white"
+            >
+              Preferi telefonic? Sună acum
+            </a>
           </div>
         </div>
       </section>

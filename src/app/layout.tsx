@@ -84,10 +84,10 @@ export default function RootLayout({
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
       </head>
-      <body className="min-h-screen flex flex-col bg-black text-white">
+      <body className="flex min-h-screen flex-col overflow-x-clip bg-black pb-[calc(12.5rem+env(safe-area-inset-bottom,0px))] text-white max-md:pr-[4.25rem] md:pb-0 md:pr-0">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-5 focus:py-2 focus:text-[21px] focus:font-semibold focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:px-5 focus:py-2 focus:text-[21px] focus:font-semibold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#88a875] ads-btn-lit"
         >
           Sari la conținut
         </a>

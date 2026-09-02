@@ -60,7 +60,7 @@ export default function CookieConsent() {
           <button
             type="button"
             onClick={() => persist("accepted")}
-            className="rounded-full bg-white px-4 py-2 text-[21px] font-semibold text-white transition hover:scale-[1.03]"
+            className="ads-btn-lit rounded-full px-4 py-2 text-[21px] font-semibold transition hover:scale-[1.03]"
           >
             Accept
           </button>

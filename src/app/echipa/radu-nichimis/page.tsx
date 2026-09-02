@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
+import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/seo";
+import { CLINIC } from "@/lib/contact";
 
 const PATH = "/echipa/radu-nichimis/";
 const NAME = "Ast.Univ Dr. Radu Nichimiș";
@@ -77,7 +79,7 @@ export default function RaduNichimisPage() {
                 href="/acreditari-radu-nichimis.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex h-[40px] items-center rounded-full border border-white/20 px-5 text-[21px] font-semibold text-white transition duration-300 hover:bg-white hover:text-white"
+                className="ads-btn-outline-lit inline-flex h-[40px] items-center rounded-full border border-white/20 px-5 text-[21px] font-semibold text-white transition duration-300"
               >
                 Deschide PDF
               </a>
@@ -86,7 +88,7 @@ export default function RaduNichimisPage() {
               <iframe
                 src="/acreditari-radu-nichimis.pdf"
                 title="Acreditări Ast.Univ Radu Nichimiș"
-                className="h-[72vh] min-h-[560px] w-full"
+                className="h-[60vh] min-h-[360px] w-full md:h-[72vh] md:min-h-[560px]"
               />
             </div>
           </div>
@@ -94,13 +96,13 @@ export default function RaduNichimisPage() {
 
         <section className="mt-14 bg-black pb-[90px] pt-[10px] lg:pb-[120px]">
           <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-            <div className="flex items-start justify-between gap-6">
-              <h2 className="text-[42px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[58px] lg:text-[72px]">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
+              <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
                 Cazuri <span className="text-white">mai în detaliu</span>
                 <br />
                 <span className="text-white">before and after</span>
               </h2>
-              <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-[21px] font-semibold text-white">
+              <a href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
                 Vezi toate
               </a>
             </div>
@@ -110,19 +112,19 @@ export default function RaduNichimisPage() {
 
         <section className="bg-black pb-[110px]">
           <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-            <h3 className="text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">Recenzii</h3>
+            <h3 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">Recenzii</h3>
             <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
           </div>
           <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
-            <article className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[26px] text-white">
+            <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
               <div className="flex items-end gap-2">
-                <strong className="text-[52px] font-semibold leading-none tracking-[-0.03em]">4,8</strong>
+                <strong className="text-[36px] font-semibold leading-none tracking-[-0.03em] md:text-[52px]">4,8</strong>
                 <span className="mb-2 text-base opacity-60">/5</span>
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
               </div>
-              <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.65] text-white">
+              <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.65]">
                 <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
-                <p>Număr de telefon: 0376 448 810</p>
+                <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
                 <p>Program: Deschis · Închide la 21</p>
               </div>
               <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
@@ -148,14 +150,14 @@ export default function RaduNichimisPage() {
                 text: "Experiență foarte bună, comunicare clară și echipă prietenoasă. Fiecare pas a fost explicat pe înțelesul meu.",
               },
             ].map((r) => (
-              <article key={r.name} className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[22px] text-white">
+              <article key={r.name} className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[22px]">
                   <div>
-                    <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
-                    <p className="mt-1 text-[21px] text-white">{r.meta}</p>
-                    <p className="mt-1 text-[21px] text-white">{r.time}</p>
+                    <p className="text-[28px] font-semibold leading-[1.05]">{r.name}</p>
+                    <p className="mt-1 text-[21px]">{r.meta}</p>
+                    <p className="mt-1 text-[21px]">{r.time}</p>
                   </div>
-                <p className="mt-6 text-[21px] leading-[1.65] text-white">{r.text}</p>
-                <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em] text-white">★★★★★</p>
+                <p className="mt-6 text-[21px] leading-[1.65]">{r.text}</p>
+                <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>
               </article>
             ))}
           </div>
@@ -163,24 +165,10 @@ export default function RaduNichimisPage() {
 
         <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
           <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
-            <div className="rounded-[24px] bg-white p-8 text-white shadow-[0_12px_30px_rgba(0,0,0,0.18)]">
-              <p className="text-[21px] text-white">@alvernadentalstudio</p>
-              <h3 className="mt-2 text-[44px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
-              <p className="mt-3 text-[21px] leading-[1.65] text-white">Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.</p>
-              <form className="mt-7 grid gap-3">
-                <input className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Nume" />
-                <input className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Telefon" />
-                <input className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Serviciu dorit" />
-                <textarea className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45" placeholder="Mesaj opțional" />
-                <a href="mailto:contact@alvernadental.com" className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
-                  Solicită programare
-                </a>
-                <p className="mt-2 text-center text-[21px] text-white">Nu trimitem spam. Te contactăm doar pentru confirmarea programării.</p>
-              </form>
-            </div>
+            <ContactFormCard source="radu-nichimis" />
 
             <div className="pt-0 text-white lg:pt-8">
-              <h3 className="max-w-[720px] text-[42px] font-semibold leading-[1.04] tracking-[-0.04em]">Primul pas spre un zâmbet sănătos începe aici.</h3>
+              <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
               <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
                 Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune.
               </p>
@@ -188,7 +176,12 @@ export default function RaduNichimisPage() {
                 <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
                 <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
               </div>
-              <p className="mt-7 text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4">Preferi telefonic? Sună acum</p>
+              <a
+                href={`tel:${CLINIC.phoneTel}`}
+                className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:decoration-white"
+              >
+                Preferi telefonic? Sună acum
+              </a>
             </div>
           </div>
         </section>

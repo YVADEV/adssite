@@ -3,6 +3,7 @@
 import Link from "next/link";
 
 import InstagramReelsSection from "@/components/layout/InstagramReelsSection";
+import { CLINIC } from "@/lib/contact";
 import { services } from "@/config/services";
 
 const pageLinks = [
@@ -21,7 +22,7 @@ export default function SiteFooter() {
   return (
     <>
       <InstagramReelsSection />
-    <footer className="flex flex-col bg-white px-4 pb-10 pt-12 text-white md:px-8 lg:px-12">
+    <footer className="flex flex-col bg-[#0f1115] px-4 pb-10 pt-12 text-white md:px-8 lg:px-12">
       <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-10 border-t border-black/10 pt-10 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <section>
           <h3 className="text-[21px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
@@ -67,13 +68,13 @@ export default function SiteFooter() {
         <section>
           <h4 className="text-[21px] font-semibold text-white">Contact</h4>
           <div className="mt-4 space-y-2 text-[21px] leading-[1.6] text-white">
-            <p>Str. Alverna 33, 400469, Cluj-Napoca, Romania</p>
-            <a href="tel:+40748085933">+40 376 448 810</a>
-            <a href="mailto:contact@alvernadental.com" className="block">
-              contact@alvernadental.com
+            <p>{CLINIC.addressShort}</p>
+            <a href={`tel:${CLINIC.phoneTel}`}>{CLINIC.phoneDisplay}</a>
+            <a href={`mailto:${CLINIC.email}`} className="block">
+              {CLINIC.email}
             </a>
-            <a href="https://alvernadental.com" target="_blank" rel="noreferrer">
-              alvernadental.com
+            <a href={CLINIC.website} target="_blank" rel="noreferrer">
+              {CLINIC.websiteDisplay}
             </a>
           </div>
         </section>
@@ -81,12 +82,12 @@ export default function SiteFooter() {
 
       <div className="mx-auto mt-16 w-full max-w-[1720px] shrink-0 px-2">
         <a
-          href="https://www.instagram.com/alvernadentalstudio/?hl=en"
+          href={CLINIC.instagramUrl}
           target="_blank"
           rel="noreferrer"
           className="ads-footer-instagram block w-full text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
         >
-          @alvernadentalstudio
+          {CLINIC.instagramHandle}
         </a>
       </div>
     </footer>

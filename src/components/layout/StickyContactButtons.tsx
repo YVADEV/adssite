@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { CLINIC } from "@/lib/contact";
 
 const stickyIconClass = "h-[24px] w-[24px] shrink-0";
 
@@ -10,10 +11,10 @@ export default function StickyContactButtons() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="fixed bottom-3 right-3 z-[70] flex flex-col gap-3 md:bottom-5 md:right-5"
+      className="fixed bottom-3 right-3 z-[9990] flex flex-col gap-2.5 max-md:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-md:right-[max(0.75rem,env(safe-area-inset-right))] md:bottom-5 md:right-5 md:gap-3"
     >
       <a
-        href="https://wa.me/40748085933"
+        href={CLINIC.whatsappUrl}
         target="_blank"
         rel="noreferrer"
         aria-label="WhatsApp"
@@ -24,7 +25,7 @@ export default function StickyContactButtons() {
         </svg>
       </a>
       <a
-        href="tel:+40748085933"
+        href={`tel:${CLINIC.phoneTel}`}
         aria-label="Sună"
         className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >
@@ -40,7 +41,7 @@ export default function StickyContactButtons() {
         </svg>
       </a>
       <a
-        href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+        href={`mailto:${CLINIC.email}?subject=Solicita%20o%20programare`}
         aria-label="Mail"
         className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >

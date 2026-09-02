@@ -16,7 +16,7 @@ export default function TarifePage() {
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white/70">Transparență totală</p>
           <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
-            <h1 className="text-[52px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[84px] lg:text-[120px]">Tarife</h1>
+            <h1 className="text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[84px] lg:text-[120px]">Tarife</h1>
             <div className="flex flex-wrap gap-2 text-[21px] text-white">
               <span className="rounded-full border border-[rgba(79,127,71,0.35)] px-3 py-1">Prețuri clare</span>
               <span className="rounded-full border border-[rgba(79,127,71,0.35)] px-3 py-1">Fără costuri ascunse</span>
@@ -72,7 +72,7 @@ export default function TarifePage() {
               <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.35)] bg-[rgba(79,127,71,0.08)] p-4">
                 <p className="text-[21px] font-semibold text-white">Solicită un plan personalizat</p>
                 <p className="mt-1 text-[21px] text-white/75">Te contactăm rapid pentru o estimare clară și pașii potriviți cazului tău.</p>
-                <a href="/#contact" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-white px-5 text-[21px] font-semibold text-black transition duration-300 hover:scale-[1.02]">
+                <a href="/#contact" className="ads-btn-lit mt-3 inline-flex min-h-[42px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[17px] font-semibold leading-[1.2] transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-5 sm:text-[21px]">
                   Programează o consultație
                 </a>
               </div>

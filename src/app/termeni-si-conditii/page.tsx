@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { CLINIC } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Termeni și condiții",
@@ -30,7 +31,7 @@ export default function TermsPage() {
                 <a href="mailto:contact@alvernadental.com" className="underline decoration-[#9fc48f]/60 underline-offset-4">
                   contact@alvernadental.com
                 </a>{" "}
-                sau la 0376 448 810.
+                sau la {CLINIC.phoneDisplay}.
               </p>
             </section>
 

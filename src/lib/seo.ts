@@ -5,8 +5,8 @@ export const BUSINESS = {
   legalName: "Alverna Dental Studio",
   description:
     "Clinică stomatologică premium în Cluj-Napoca. Implantologie, ortodonție, estetică dentară, profilaxie, pedodonție și urgențe stomatologice.",
-  phone: "+40376448810",
-  phoneDisplay: "0376 448 810",
+  phone: "+40748085933",
+  phoneDisplay: "+40 748 085 933",
   email: "contact@alvernadental.com",
   street: "Strada Alverna 33",
   city: "Cluj-Napoca",
@@ -24,6 +24,7 @@ export const BUSINESS = {
   logo: `${SITE_URL}/icon`,
   sameAs: [
     "https://www.google.com/maps/place/Alverna+Dental+Studio",
+    "https://www.instagram.com/alvernadentalstudio/",
   ],
 } as const;
 

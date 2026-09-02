@@ -1,6 +1,7 @@
 "use client";
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { CLINIC } from "@/lib/contact";
 
 const trustPoints = ["Zâmbete fericite", "Excelență în stomatologie", "Profesionalism, calitate și promptitudine"];
 
@@ -13,7 +14,7 @@ const reviews = [
   {
     name: "James R.",
     meta: "Google · UK",
-    text: "I came from the UK for treatment and the experience was excellent: clear communication, punctual appointments and a calm, professional team.",
+    text: "Am venit din Marea Britanie pentru tratament și experiența a fost excelentă: comunicare clară, programări punctuale și o echipă calmă și profesionistă.",
   },
   {
     name: "Bianca T.",
@@ -44,13 +45,13 @@ export default function TestimonialePage() {
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="rounded-[28px] border border-black/5 bg-white px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16">
             <p className="text-[21px] font-medium uppercase tracking-[0.12em] text-[#6b6b6b]">Pacienții noștri</p>
-            <h1 className="mt-4 text-[46px] font-extrabold leading-[0.95] tracking-[-0.045em] text-white md:text-[78px] lg:text-[104px]">Testimoniale</h1>
+            <h1 className="mt-4 text-[36px] font-extrabold leading-[0.95] tracking-[-0.045em] text-white md:text-[78px] lg:text-[104px]">Testimoniale</h1>
             <p className="mt-6 max-w-[940px] text-[21px] leading-[1.75] text-[#343434] md:text-[21px]">
               Opiniile pacienților sunt cartea noastră de vizită. La Alverna Dental Studio ne mândrim cu zâmbete frumoase, feedback sincer și experiențe care transformă fiecare vizită într-un moment de încredere.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {trustPoints.map((item) => (
-                <span key={item} className="rounded-full border border-black/10 bg-[#f8f8f8] px-4 py-2 text-[21px] font-medium text-white">
+                <span key={item} className="ads-surface-light-chip rounded-full border border-black/10 px-4 py-2 text-[21px] font-medium">
                   {item}
                 </span>
               ))}
@@ -130,10 +131,10 @@ export default function TestimonialePage() {
               Fă primul pas spre un zâmbet sănătos cu o echipă care pune accent pe confort, claritate și rezultate predictibile.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="/#contact" className="inline-flex h-[44px] items-center rounded-full bg-white px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+              <a href="/#contact" className="ads-btn-lit inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
                 Solicită evaluare
               </a>
-              <a href="tel:+40748085933" className="inline-flex h-[44px] items-center rounded-full border border-white/40 px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+              <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex h-[44px] items-center rounded-full border border-white/40 px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                 Sună acum
               </a>
             </div>
@@ -146,7 +147,7 @@ export default function TestimonialePage() {
               <p className="text-[21px] font-medium text-white">Ai întrebări? Suntem aici pentru tine.</p>
               <div className="flex flex-wrap items-center gap-4 text-[21px] text-[#4a4a4a]">
                 <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
-                <a href="tel:+40748085933">+40 748 085 933</a>
+                <a href={`tel:${CLINIC.phoneTel}`}>{CLINIC.phoneDisplay}</a>
               </div>
             </div>
           </div>

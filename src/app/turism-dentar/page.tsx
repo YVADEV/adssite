@@ -12,7 +12,7 @@ export default function TurismDentarPage() {
             <p className="text-[21px] font-medium leading-[1.25] text-[#5b5b5b]">(turism dentar)</p>
             <div>
               <p className="text-[21px] font-medium text-[#6b6b6b]">🦷 Turism dentar – Alverna Dental Studio</p>
-              <h1 className="mt-3 text-[44px] font-extrabold leading-[0.96] tracking-[-0.045em] text-white md:text-[72px] lg:text-[96px]">Turism dentar</h1>
+              <h1 className="mt-3 text-[36px] font-extrabold leading-[0.96] tracking-[-0.045em] text-white md:text-[72px] lg:text-[96px]">Turism dentar</h1>
               <p className="mt-5 text-[21px] font-medium text-[#232323]">4.8 • Dental clinic • Closed</p>
             </div>
           </div>
@@ -96,13 +96,13 @@ export default function TurismDentarPage() {
               <p className="text-[21px] text-[#666666]">Before and after • rezultate reale</p>
             </div>
             <div className="mt-7 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_1fr]">
-              <article className="relative h-[460px] bg-black md:h-[520px]">
+              <article className="relative h-[min(65vw,380px)] bg-black md:h-[520px]">
                 <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat" />
               </article>
-              <article className="relative h-[460px] bg-black md:h-[520px]">
+              <article className="relative h-[min(65vw,380px)] bg-black md:h-[520px]">
                 <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat" />
               </article>
-              <article className="relative h-[460px] bg-black md:h-[520px]">
+              <article className="relative h-[min(65vw,380px)] bg-black md:h-[520px]">
                 <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat" />
               </article>
             </div>

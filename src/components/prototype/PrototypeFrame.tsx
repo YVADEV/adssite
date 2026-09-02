@@ -1,15 +1,16 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import gsap from "gsap";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
-import { MobileMenuLayout } from "@/components/nav/MobileMenuLayout";
 import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
+import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
+import { useMobileMenu } from "@/hooks/useMobileMenu";
+import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -23,215 +24,82 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const scrolled = useStickyHeaderScroll();
+
+  const {
+    menuOpen,
+    menuVisible,
+    mobileServicesOpen,
+    setMobileServicesOpen,
+    openSubmenuSlug,
+    setOpenSubmenuSlug,
+    closeMenu,
+    toggleMenu,
+  } = useMobileMenu({
+    overlayRef: menuOverlayRef,
+    pageRef: pageContentRef,
+    topLineRef: menuTopLineRef,
+    midLineRef: menuMidLineRef,
+    bottomLineRef: menuBottomLineRef,
+    menuTriggerRef,
+  });
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 4);
-        ticking = false;
-      });
-    };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const overlay = menuOverlayRef.current;
-    const page = pageContentRef.current;
-    const top = menuTopLineRef.current;
-    const mid = menuMidLineRef.current;
-    const bottom = menuBottomLineRef.current;
-    if (!overlay || !page || !top || !mid || !bottom) return;
-
-    const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
-    const menuItems = overlay.querySelectorAll<HTMLElement>("[data-menu-item]");
-    let frame = 0;
-    let tl: gsap.core.Timeline | null = null;
-
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-      gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
-      gsap.set(menuItems, { opacity: 0, y: 40 });
-      setMenuVisible(true);
-      frame = requestAnimationFrame(() => {
-        tl = gsap.timeline({ defaults: { ease } });
-        tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
-          .to(page, { opacity: 0.2, duration: 0.42, ease }, "<")
-          .to(top, { y: 8, rotate: 45, duration: 0.36, ease }, "-=0.34")
-          .to(mid, { opacity: 0, scaleX: 0.35, duration: 0.3, ease }, "<")
-          .to(bottom, { y: -8, rotate: -45, duration: 0.36, ease }, "<")
-          .to(menuItems, { opacity: 1, y: 0, stagger: 0.08, duration: 0.62, ease }, "-=0.16");
-      });
-    } else if (menuVisible) {
-      tl = gsap.timeline({ defaults: { ease } });
-      tl.to(menuItems, { opacity: 0, y: 20, stagger: { each: 0.07, from: "end" }, duration: 0.34, ease })
-        .to(overlay, { opacity: 0, duration: 0.38, ease }, "-=0.08")
-        .to(page, { opacity: 1, duration: 0.38, ease }, "<")
-        .to(top, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .to(mid, { opacity: 1, scaleX: 1, duration: 0.28, ease }, "<")
-        .to(bottom, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .add(() => setMenuVisible(false));
-      document.body.style.overflow = "";
-    } else {
-      gsap.set(overlay, { opacity: 0, pointerEvents: "none" });
-      document.body.style.overflow = "";
-    }
-
-    return () => {
-      cancelAnimationFrame(frame);
-      tl?.kill();
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen, menuVisible]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const overlay = menuOverlayRef.current;
-    if (!overlay) return;
-
-    const focusableSelector =
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    const focusables = () =>
-      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
-
-    const firstFocus = focusables()[0];
-    firstFocus?.focus();
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        setMenuOpen(false);
-        return;
-      }
-      if (e.key !== "Tab") return;
-      const list = focusables();
-      if (list.length === 0) return;
-      const first = list[0];
-      const last = list[list.length - 1];
-      const active = document.activeElement as HTMLElement | null;
-      if (e.shiftKey && active === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      setMobileServicesOpen(false);
-      setOpenSubmenuSlug(null);
-    }
-  }, [menuOpen]);
-
-  const prevMenuOpenRef = useRef(false);
-  useEffect(() => {
-    if (prevMenuOpenRef.current && !menuOpen) {
-      menuTriggerRef.current?.focus({ preventScroll: true });
-    }
-    prevMenuOpenRef.current = menuOpen;
-  }, [menuOpen]);
-
   return (
     <div className="overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
-      <div
-        ref={menuOverlayRef}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Meniu principal"
-        aria-hidden={!menuVisible}
+      <MobileMenuOverlay
         id="mobile-menu"
-        className={`fixed inset-0 z-[8888] bg-[#0f1115] ${menuVisible ? "visible" : "pointer-events-none invisible opacity-0"}`}
+        overlayRef={menuOverlayRef}
+        menuVisible={menuVisible}
+        onClose={closeMenu}
       >
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-[1920px] flex-col overflow-y-auto px-6 py-6 md:px-10">
-          <div className="flex items-center justify-between">
-            <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-            <button type="button" aria-label="Închide meniul" onClick={() => setMenuOpen(false)} className="relative h-10 w-10">
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
-              <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
-            </button>
-          </div>
-          <MobileMenuLayout>
-              {[
-                { href: "/", label: "Acasă" },
-                { href: "/echipa", label: "Echipa" },
-                { href: "/cazuri", label: "Cazuri" },
-              ].map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  data-menu-item
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
-                >
-                  {item.label}
-                </Link>
-              ))}
+        {[
+          { href: "/", label: "Acasă" },
+          { href: "/echipa", label: "Echipa" },
+          { href: "/cazuri", label: "Cazuri" },
+        ].map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            data-menu-item
+            onClick={closeMenu}
+            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+          >
+            {item.label}
+          </Link>
+        ))}
 
-              <MobileMenuNavServices
-                mobileServicesOpen={mobileServicesOpen}
-                setMobileServicesOpen={setMobileServicesOpen}
-                openSubmenuSlug={openSubmenuSlug}
-                setOpenSubmenuSlug={setOpenSubmenuSlug}
-                onCloseMenu={() => setMenuOpen(false)}
-              />
+        <MobileMenuNavServices
+          mobileServicesOpen={mobileServicesOpen}
+          setMobileServicesOpen={setMobileServicesOpen}
+          openSubmenuSlug={openSubmenuSlug}
+          setOpenSubmenuSlug={setOpenSubmenuSlug}
+          onCloseMenu={closeMenu}
+        />
 
-              {[
-                { href: "/tarife", label: "Tarife" },
-                { href: "/contact", label: "Contact" },
-              ].map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  data-menu-item
-                  onClick={() => setMenuOpen(false)}
-                  className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
-                >
-                  {item.label}
-                </Link>
-              ))}
-          </MobileMenuLayout>
-          <div className="flex flex-col gap-4 pt-6 text-white sm:flex-row sm:items-end sm:justify-between">
-            <div className="text-[21px] leading-[1.5]">
-              <a href="tel:+40748085933">+40 748 085 933</a>
-              <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
-            </div>
-            <div className="text-right text-[21px] leading-[1.6]">
-              <div className="flex justify-end gap-5">
-                <a href="/politica-de-confidentialitate">Privacy Policy</a>
-                <a href="/termeni-si-conditii">Terms of Service</a>
-              </div>
-              <p className="mt-1">© Alverna Dental Studio</p>
-            </div>
-          </div>
-        </div>
-      </div>
+        {[
+          { href: "/tarife", label: "Tarife" },
+          { href: "/contact", label: "Contact" },
+        ].map((item) => (
+          <Link
+            key={item.label}
+            href={item.href}
+            data-menu-item
+            onClick={closeMenu}
+            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </MobileMenuOverlay>
       <div ref={pageContentRef} id="main" tabIndex={-1} className="outline-none">
         <header
-          className={`sticky top-0 z-40 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
+          className={`sticky top-0 z-50 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
             scrolled
               ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
               : "bg-[#0f1115]"
@@ -286,7 +154,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-haspopup="dialog"
-              onClick={() => setMenuOpen((prev) => !prev)}
+              onClick={toggleMenu}
               className="relative z-10 hidden h-10 w-10 shrink-0 max-lg:flex flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px]"
             >
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />

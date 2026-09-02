@@ -39,7 +39,7 @@ export default function CazuriPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 flex w-screen -translate-x-1/2 flex-col overflow-hidden border border-white/20 bg-black px-6 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] md:px-12 md:py-10 xl:px-[120px]"
+          className="relative left-1/2 mt-0 flex w-screen max-w-[100vw] -translate-x-1/2 flex-col overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 md:px-12 md:py-10 xl:px-[120px]"
         >
           <div
             aria-hidden
@@ -52,7 +52,7 @@ export default function CazuriPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.55 }}
               transition={reduceMotion ? {} : { duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[640px] whitespace-pre-line text-[52px] font-bold leading-[0.95] tracking-[-2px] text-white md:text-[72px] md:tracking-[-2.8px] lg:max-w-[820px] lg:text-[96px] lg:tracking-[-3.6px]"
+              className="max-w-[640px] whitespace-pre-line text-[36px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[52px] md:text-[72px] md:tracking-[-2.8px] lg:max-w-[820px] lg:text-[96px] lg:tracking-[-3.6px]"
             >
               {"Cazuri reale,\nrezultate\ndocumentate"}
             </motion.h1>
@@ -80,7 +80,7 @@ export default function CazuriPage() {
               key={src}
               src={src}
               alt=""
-              className="h-[664px] w-full rounded-[20px] object-cover"
+              className="h-[min(72vw,420px)] w-full rounded-[20px] object-cover sm:h-[520px] md:h-[664px]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -89,14 +89,14 @@ export default function CazuriPage() {
           ))}
         </section>
 
-        <section className="mx-auto mt-[120px] w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <div className="flex items-start justify-between gap-6">
-            <h2 className="text-[42px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[58px] lg:text-[72px]">
+        <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:mt-24 md:px-8 lg:mt-[120px] lg:px-12">
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
+            <h2 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[42px] md:text-[58px] lg:text-[72px]">
               Cazuri <span className="text-white">mai în detaliu</span>
               <br />
               <span className="text-white">before and after</span>
             </h2>
-            <a href="/cazuri/" className="mt-5 rounded-full bg-white px-6 py-2 text-[21px] font-semibold text-black">
+            <a href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
               Vezi toate
             </a>
           </div>

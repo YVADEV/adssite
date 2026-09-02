@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+import { CLINIC } from "@/lib/contact";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 
@@ -115,12 +117,12 @@ function ServiceHeroContent({
       <div className={`relative z-10 flex h-full w-full flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32 ${className}`}>
         <motion.div {...reveal} className="max-w-[820px]">
           <p className="text-[21px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
-          <h1 className="mt-5 max-w-[980px] text-[44px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[96px]">
+          <h1 className="mt-5 max-w-[980px] text-[36px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[96px]">
             {title}
           </h1>
           <p className="mt-6 max-w-[720px] ads-readable text-white">{intro}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/#contact" className="inline-flex h-[46px] items-center rounded-full bg-white px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+            <a href="/#contact" className="ads-btn-lit inline-flex h-[46px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
               Solicită o evaluare
             </a>
             <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
@@ -164,7 +166,7 @@ export function ServiceHero({
   if (splitVideoLayout && videoSrc) {
     return (
       <section className="relative w-full overflow-hidden bg-black">
-        <div className="relative h-[92vh] min-h-[720px] max-h-[1100px] w-full bg-black">
+        <div className="relative h-[min(92vh,680px)] w-full bg-black md:h-[92vh] md:min-h-[720px] md:max-h-[1100px]">
           <div className="mx-auto grid h-full w-full max-w-[1680px] grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:gap-8 xl:gap-12">
             <div className="relative h-full min-h-0">
               <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} />
@@ -194,7 +196,7 @@ export function ServiceHero({
 
   return (
     <section className="relative w-full overflow-hidden bg-black">
-      <div className="relative h-[78vh] min-h-[600px] max-h-[900px] w-full bg-black">
+      <div className="relative h-[min(78vh,640px)] w-full bg-black md:h-[78vh] md:min-h-[600px] md:max-h-[900px]">
         {videoSrc ? (
           <ServiceHeroVideo
             videoSrc={videoSrc}
@@ -465,13 +467,13 @@ export function ServiceCasesGrid() {
   return (
     <section data-theme="light" className="mt-14 bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[120px]">
       <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-        <div className="flex items-start justify-between gap-6">
-          <h2 className="text-[42px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[58px] lg:text-[72px]">
+        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
+          <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
             Cazuri <span className="text-white">mai în detaliu</span>
             <br />
             <span className="text-white">before and after</span>
           </h2>
-          <a href="/cazuri/" className="mt-5 rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white">
+          <a href="/cazuri/" className="rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white sm:mt-5">
             Vezi toate
           </a>
         </div>
@@ -485,7 +487,7 @@ export function ServiceTestimonials() {
   return (
     <section data-theme="light" className="bg-[#ececec] pb-[110px]">
       <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-        <h3 className="text-[46px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[62px]">
+        <h3 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">
           Recenzii
         </h3>
         <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
@@ -493,14 +495,14 @@ export function ServiceTestimonials() {
       <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
         <article className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[26px]">
           <div className="flex items-end gap-2">
-            <strong className="text-[52px] font-semibold leading-none tracking-[-0.03em]">4,8</strong>
+            <strong className="text-[36px] font-semibold leading-none tracking-[-0.03em] md:text-[52px]">4,8</strong>
             <span className="mb-2 text-base opacity-60">/5</span>
             <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
           </div>
           <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45] text-white">
-            <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
-            <p>Număr de telefon: 0376 448 810</p>
-            <p>Program: Deschis · Închide la 21</p>
+            <p>Adresă: {CLINIC.addressLine}</p>
+            <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
+            <p>Program: {CLINIC.hoursDisplay}</p>
           </div>
           <Image src={alvernaLogo} alt="Alverna Dental Studio" width={210} height={70} className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
         </article>
@@ -535,7 +537,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
     <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] [will-change:transform]"
+        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform]"
         animate={{ y: [-20, 20, -20], scale: [1, 1.05, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -544,14 +546,14 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
         <ContactFormCard source="service-page" />
 
         <div className="pt-0 text-white lg:pt-8">
-          <h3 className="max-w-[720px] text-[42px] font-semibold leading-[1.04] tracking-[-0.04em]">{headline}</h3>
+          <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">{headline}</h3>
           <p className="mt-5 max-w-[680px] text-[21px] leading-[1.55] text-white">{body}</p>
           <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
             <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
             <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
           </div>
           <a
-            href="tel:+40376448810"
+            href={`tel:${CLINIC.phoneTel}`}
             className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:text-white hover:decoration-white"
           >
             Preferi telefonic? Sună acum
@@ -601,18 +603,17 @@ export function ContactFormCard({ source }: { source: string }) {
 
   return (
     <div
-      data-theme="light"
-      className="rounded-[24px] bg-white p-8 text-white shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
+      className="ads-card-lit rounded-[24px] p-8 shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
     >
-      <p className="text-[21px] text-white">@alvernadentalstudio</p>
-      <h3 className="mt-2 text-[44px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
-      <p className="mt-3 text-[21px] leading-[1.45] text-white">
+      <p className="text-[21px] opacity-70">{CLINIC.instagramHandle}</p>
+      <h3 className="mt-2 text-[32px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
+      <p className="mt-3 text-[21px] leading-[1.45] opacity-80">
         Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
       </p>
       {status === "ok" ? (
-        <div role="status" className="mt-7 rounded-[18px] border border-[#4E7044]/30 bg-[#EDF4E9] p-6">
-          <p className="text-[21px] font-semibold text-white">Mulțumim! Mesajul a fost trimis.</p>
-          <p className="mt-2 text-[21px] leading-[1.5] text-white">
+        <div role="status" className="ads-form-success-box mt-7 rounded-[18px] border border-[#4E7044]/30 bg-[#EDF4E9] p-6">
+          <p className="text-[21px] font-semibold">Mulțumim! Mesajul a fost trimis.</p>
+          <p className="mt-2 text-[21px] leading-[1.5]">
             Te contactăm în maxim 24h pentru confirmarea programării.
           </p>
         </div>
@@ -672,8 +673,12 @@ export function ContactFormCard({ source }: { source: string }) {
           >
             {status === "loading" ? "Se trimite…" : "Solicită programare"}
           </button>
-          <p className="mt-2 text-center text-[21px] text-white">
-            Nu trimitem spam. Te contactăm doar pentru confirmarea programării.
+          <p className="mt-2 text-center text-[21px] opacity-75">
+            Prin trimitere, accepți{" "}
+            <Link href="/politica-de-confidentialitate" className="ads-link-accent underline decoration-[#9fc48f]/60 underline-offset-4">
+              Politica de confidențialitate
+            </Link>
+            .
           </p>
         </form>
       )}
@@ -698,7 +703,7 @@ export function ServiceFinalCTA({
         <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a
           href="/#contact"
-          className="mt-7 inline-flex h-[44px] items-center rounded-full bg-white px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]"
+          className="ads-btn-lit mt-7 inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]"
         >
           {buttonLabel}
         </a>

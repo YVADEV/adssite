@@ -25,7 +25,7 @@ export default async function Image() {
       >
         <div
           style={{
-            display: "inline-flex",
+            display: "flex",
             alignItems: "center",
             gap: 14,
             padding: "10px 22px",
@@ -37,12 +37,12 @@ export default async function Image() {
             textTransform: "uppercase",
             color: "#9fc48f",
             fontWeight: 500,
-            width: "fit-content",
+            width: "auto",
           }}
         >
           <span
             style={{
-              display: "inline-block",
+              display: "block",
               width: 10,
               height: 10,
               borderRadius: 999,
@@ -100,8 +100,8 @@ export default async function Image() {
             fontSize: 22,
           }}
         >
-          <span style={{ display: "inline-block" }}>alvernadental.com</span>
-          <span style={{ display: "inline-block" }}>★ 4.8 · 9000+ pacienți</span>
+          <span style={{ display: "block" }}>alvernadental.com</span>
+          <span style={{ display: "block" }}>★ 4.8 · 9000+ pacienți</span>
         </div>
       </div>
     ),

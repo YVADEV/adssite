@@ -26,6 +26,8 @@ export function CaseImage({ src, alt, className, overlayLabel, ...motionProps }:
       <motion.img
         src={src}
         alt={alt ?? ""}
+        loading="lazy"
+        decoding="async"
         className="h-full w-full object-cover"
         whileHover={reduceMotion || !isClickable ? {} : { scale: 1.06 }}
         transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}

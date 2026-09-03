@@ -96,9 +96,16 @@ export default function ContactPage() {
                   Alverna Dental Studio
                 </p>
                 <p className="mt-1 text-[21px] leading-[1.65] text-white">
-                  Str. Alverna 33, 400469
-                  <br />
-                  Cluj-Napoca, România
+                  <a
+                    href={CLINIC.mapsPlaceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline decoration-white/30 underline-offset-4 transition hover:decoration-white"
+                  >
+                    Str. Alverna 33, 400469
+                    <br />
+                    Cluj-Napoca, România
+                  </a>
                 </p>
               </div>
 
@@ -167,8 +174,18 @@ export default function ContactPage() {
                 <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
               </div>
               <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.65]">
-                <p>Adresă: Strada Alverna 33, 400469 Cluj-Napoca</p>
-                <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
+                <p>
+                  Adresă:{" "}
+                  <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                    {CLINIC.addressLine}
+                  </a>
+                </p>
+                <p>
+                  Număr de telefon:{" "}
+                  <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                    {CLINIC.phoneDisplay}
+                  </a>
+                </p>
                 <p>Program: Deschis · Închide la 21</p>
               </div>
               <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />

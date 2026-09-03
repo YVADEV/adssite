@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "motion/react";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
@@ -12,6 +10,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
+import { useSwipeIndex } from "@/hooks/useSwipeIndex";
 import { CaseImage } from "@/components/cazuri/CaseImage";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
@@ -26,7 +25,6 @@ import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
-import labBannerImage from "@/assets/cazuri/lab-dantura-banner.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
@@ -34,38 +32,38 @@ const caseGallery = [
   { src: cazA7408097.src, alt: "Caz implantologie — rezultat final Alverna Dental Studio" },
   { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
   { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
-  { src: cazA7407760.src, alt: "Caz smile design — armonie dentară și facială" },
-  { src: cazA7407944.src, alt: "Caz reabilitare protetică — funcție și estetică" },
+  { src: cazA7407760.src, alt: "Caz reabilitare protetică — funcție și estetică" },
+  { src: cazA7407944.src, alt: "Caz smile design — armonie dentară și facială" },
   { src: cazA7408160.src, alt: "Caz reabilitare complexă — plan de tratament complet" },
 ];
 const reviews = [
   {
     name: "Andreea Nisipeanu",
     meta: "3 recenzii",
-    time: "acum o luna",
-    text: "Recomand cu mare incredere Clinica Alverna Dental! De la prima vizita am fost intampinata cu multa caldura si profesionalism. Clinica este impecabil de curata si dotata cu aparatura foarte moderna. Profesionalismul, atentia la detalii si dedicarea echipei sunt la nivel inalt. Va multumesc!",
+    time: "acum o lună",
+    text: "Recomand cu mare încredere Clinica Alverna Dental! De la prima vizită am fost întâmpinată cu multă căldură și profesionalism. Clinica este impecabil de curată și dotată cu aparatură foarte modernă. Profesionalismul, atenția la detalii și dedicarea echipei sunt la nivel înalt. Vă mulțumesc!",
   },
   {
     name: "Carmen Ilea",
     meta: "4 recenzii",
     time: "acum 2 luni",
-    text: "Am fost impresionata de profesionalismul d-nei dr Andreea Parvu. Este o persoana foarte atenta la detalii, executa cu mare finete toate tipurile de lucrari: obturatii, igienizare. Multumesc! Studioul este foarte curat si dotat cu tehnologie de ultima generatie. Am sa revin cu placere.",
+    text: "Am fost impresionată de profesionalismul d-nei dr Andreea Pârvu. Este o persoană foarte atentă la detalii, execută cu mare finețe toate tipurile de lucrări: obturații, igienizare. Mulțumesc! Studioul este foarte curat și dotat cu tehnologie de ultimă generație. Am să revin cu plăcere.",
   },
   {
-    name: "Denisa Tanase",
+    name: "Denisa Tănase",
     meta: "2 recenzii · O fotografie",
     time: "acum 3 luni",
-    text: "Am avut parte de o experienta buna si usoara. Am fost tratata cu respect si prietenie, mi s-a explicat in detaliu fiecare pas si mi s-a raspuns la fiecare intrebare. Ii multumesc pe aceasta cale doamnei doctor Parvu pentru atentie si profesionalism, la fel si doamnei asistente.",
+    text: "Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas și mi s-a răspuns la fiecare întrebare. Îi mulțumesc pe această cale doamnei doctor Pârvu pentru atenție și profesionalism, la fel și doamnei asistente.",
   },
 ];
 
 const partnerReviewCards = [
-  { name: "Andreea Nisipeanu", rating: "4.8", text: "Recomand cu mare incredere. Profesionalism, caldura si rezultate excelente." },
-  { name: "Carmen Ilea", rating: "5.0", text: "Impresionata de atentie la detalii si de tehnologia moderna din clinica." },
-  { name: "Denisa Tanase", rating: "5.0", text: "Experienta usoara, comunicare clara si echipa foarte prietenoasa." },
-  { name: "Mihai R.", rating: "4.9", text: "Programare rapida, tratament fara stres, recomand cu incredere." },
-  { name: "Bianca L.", rating: "5.0", text: "Totul impecabil, de la consultatie la rezultate finale." },
-  { name: "Radu P.", rating: "4.9", text: "Servicii premium, medici foarte bine pregatiti si empatici." },
+  { id: "andreea-1", name: "Andreea Nisipeanu", rating: "4.8", text: "Recomand cu mare încredere. Profesionalism, căldură și rezultate excelente." },
+  { id: "carmen-1", name: "Carmen Ilea", rating: "5.0", text: "Impresionată de atenție la detalii și de tehnologia modernă din clinică." },
+  { id: "denisa-1", name: "Denisa Tănase", rating: "5.0", text: "Experiență ușoară, comunicare clară și echipă foarte prietenoasă." },
+  { id: "andreea-2", name: "Andreea Nisipeanu", rating: "5.0", text: "Clinica este impecabil de curată și dotată cu aparatură foarte modernă." },
+  { id: "carmen-2", name: "Carmen Ilea", rating: "5.0", text: "Execută cu mare finețe toate tipurile de lucrări. Am să revin cu plăcere." },
+  { id: "denisa-2", name: "Denisa Tănase", rating: "5.0", text: "Mi s-a explicat în detaliu fiecare pas și mi s-a răspuns la fiecare întrebare." },
 ];
 
 export const pricingData = [
@@ -357,27 +355,28 @@ const servicePages = Array.from({ length: Math.ceil(servicesList.length / SERVIC
 );
 
 const advantages = [
-  { value: "1000+", label: "Cazuri complexe", idx: "01" },
-  { value: "100%", label: "Pacienti multumiti", idx: "02" },
+  { value: "1000+", label: "Cazuri complexe" },
+  { value: "100%", label: "Pacienți mulțumiți" },
 ];
 const recommendationClips = ["/cazuri-1.mp4", "/cazuri-2.mp4"];
+const missionPosters = ["/services/exam-male.png", "/services/whitening-2.png", "/services/smile-mirror.png", "/services/exam-female.png"];
 const recommendationClipMeta = [
   {
     date: "24 Jan 2026",
     title: "All on 4",
-    description: "Reabilitare completa cu implanturi, rezultat stabil si estetic.",
+    description: "Reabilitare completă cu implanturi, rezultat stabil și estetic.",
   },
   {
     date: "02 Feb 2026",
     title: "Smile Design",
-    description: "Tratament complex pentru armonie dentara si zambet natural.",
+    description: "Tratament complex pentru armonie dentară și zâmbet natural.",
   },
 ];
 const missionCards = [
-  "Ne ghidam dupa confortul pacientului in fiecare etapa a tratamentului.",
-  "Fiecare decizie clinica este explicata clar si transparent pentru pacient.",
-  "Combinam tehnologia moderna cu grija reala pentru rezultate durabile.",
-  "Planurile de tratament sunt personalizate pentru fiecare caz in parte.",
+  "Ne ghidăm după confortul pacientului în fiecare etapă a tratamentului.",
+  "Fiecare decizie clinică este explicată clar și transparent pentru pacient.",
+  "Combinăm tehnologia modernă cu grijă reală pentru rezultate durabile.",
+  "Planurile de tratament sunt personalizate pentru fiecare caz în parte.",
 ];
 
 function SectionTitle({ title }: { title: string }) {
@@ -386,6 +385,67 @@ function SectionTitle({ title }: { title: string }) {
       <h2 data-anim="text" className="text-[32px] font-extrabold leading-[1.05] tracking-[-0.045em] sm:text-[42px] md:text-[72px] lg:text-[96px]">
         {title}
       </h2>
+    </div>
+  );
+}
+
+function TeamBentoBanner({
+  doctorSrc,
+  doctorAlt,
+  leftHeadline = "alverna\ndental\nstudio",
+}: {
+  doctorSrc: string;
+  doctorAlt: string;
+  leftHeadline?: string;
+}) {
+  return (
+    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
+      <article className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]">
+        <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
+        </div>
+        <div className="relative z-[40] text-[21px] text-white">
+          <p>Echipa</p>
+        </div>
+        <h3 className="relative z-[30] mt-4 whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] md:absolute md:bottom-[92px] md:left-[36px] md:mt-auto md:pt-0 md:text-[64px]">
+          {leftHeadline}
+        </h3>
+        <img
+          src={doctorSrc}
+          alt={doctorAlt}
+          className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(52vw,300px)] w-auto max-w-full object-contain object-bottom md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
+        />
+      </article>
+
+      <article className="relative z-10 min-h-[420px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
+        <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
+        <div className="relative z-10 flex h-full flex-col">
+          <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
+            {"Puterea zâmbetului\ncare inspiră încredere"}
+          </h3>
+          <div className="mt-8">
+            <p className="text-[28px] font-semibold text-white md:text-[40px]">
+              4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
+        <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
+          <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
+            <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111] text-[32px] font-semibold text-white">100</div>
+          </div>
+          <p className="mt-4 text-[21px] font-semibold text-white">Scanare 3D</p>
+        </article>
+
+        <article className="min-h-[220px] rounded-[16px] bg-[#0A0A0A] p-6 max-md:pr-2 md:h-[275px]">
+          <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
+          <p className="mt-2 text-[21px] text-white/80">Pacienți mulțumiți</p>
+          <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
+          <img src={cazA7407760.src} alt="Caz reabilitare protetică — rezultat Alverna Dental Studio" className="mt-4 h-[72px] w-full rounded-[10px] object-cover object-top sm:h-[96px] md:h-[110px]" />
+        </article>
+      </div>
     </div>
   );
 }
@@ -435,76 +495,93 @@ export default function HomePageClient() {
   });
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const ctx = gsap.context(() => {
-      if (prefersReducedMotion) return;
+    let cancelled = false;
+    let revertAnimations: (() => void) | undefined;
 
-      gsap.utils.toArray<HTMLElement>("[data-anim='section']").forEach((section) => {
-        gsap.fromTo(
-          section,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 78%",
+    async function initScrollAnimations() {
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (prefersReducedMotion || cancelled || !rootRef.current) return;
+
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+      if (cancelled || !rootRef.current) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+      const ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>("[data-anim='section']").forEach((section) => {
+          gsap.fromTo(
+            section,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 78%",
+              },
             },
-          },
-        );
-      });
+          );
+        });
 
-      gsap.utils.toArray<HTMLElement>("[data-anim='image']").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0.8, scale: 1.06 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 82%" },
-          },
-        );
-      });
+        gsap.utils.toArray<HTMLElement>("[data-anim='image']").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0.8, scale: 1.06 },
+            {
+              opacity: 1,
+              scale: 1,
+              duration: 1,
+              ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 82%" },
+            },
+          );
+        });
 
-      gsap.utils.toArray<HTMLElement>("[data-anim='text']").forEach((el) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: { trigger: el, start: "top 85%" },
-          },
-        );
-      });
+        gsap.utils.toArray<HTMLElement>("[data-anim='text']").forEach((el) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: { trigger: el, start: "top 85%" },
+            },
+          );
+        });
 
-      gsap.utils.toArray<HTMLElement>("[data-anim-cards]").forEach((group) => {
-        const cards = group.querySelectorAll<HTMLElement>("[data-anim='card']");
-        if (!cards.length) return;
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 24 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            stagger: 0.08,
-            scrollTrigger: { trigger: group, start: "top 82%" },
-          },
-        );
-      });
+        gsap.utils.toArray<HTMLElement>("[data-anim-cards]").forEach((group) => {
+          const cards = group.querySelectorAll<HTMLElement>("[data-anim='card']");
+          if (!cards.length) return;
+          gsap.fromTo(
+            cards,
+            { opacity: 0, y: 24 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              stagger: 0.08,
+              scrollTrigger: { trigger: group, start: "top 82%" },
+            },
+          );
+        });
+      }, rootRef);
 
-    }, rootRef);
+      revertAnimations = () => ctx.revert();
+    }
 
-    return () => ctx.revert();
+    void initScrollAnimations();
+
+    return () => {
+      cancelled = true;
+      revertAnimations?.();
+    };
   }, []);
 
   const totalServicePages = servicePages.length;
@@ -522,6 +599,9 @@ export default function HomePageClient() {
   const goNextTarife = () => {
     setActiveTarifeIndex((prev) => (prev + 1) % totalTarifePages);
   };
+
+  const servicesSwipe = useSwipeIndex(goNextServicePage, goPrevServicePage);
+  const tarifeSwipe = useSwipeIndex(goNextTarife, goPrevTarife);
 
   useEffect(() => {
     const section = footerSectionRef.current;
@@ -749,7 +829,7 @@ export default function HomePageClient() {
           <div data-anim-cards className="grid grid-cols-1 items-end gap-[10px] min-[420px]:grid-cols-2 md:grid-cols-3 md:gap-3 lg:grid-cols-6 lg:gap-2">
             {partnerReviewCards.map((review) => (
               <div
-                key={review.name}
+                key={review.id}
                 data-anim="card"
                 className="ads-surface-light-muted ads-card flex h-[148px] min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#f1f1f1] p-3 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[164px] md:p-4 lg:h-[156px]"
               >
@@ -781,16 +861,16 @@ export default function HomePageClient() {
               Vezi toate cazurile
             </Link>
             <a
-              href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+              href="#contact"
               className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-black px-4 text-center text-[18px] font-semibold text-white transition duration-300 hover:scale-[1.02] min-[480px]:text-[21px]"
             >
-              Programeaza-te
+              Programează-te
             </a>
           </div>
         </div>
         <div className="mx-auto mt-[64px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
           {caseGallery.map(({ src, alt }, i) => (
-            <CaseImage key={src} src={src} alt={alt} data-anim="image" className="h-[min(72vw,380px)] w-full rounded-[28px] object-cover sm:h-[430px] lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
+            <CaseImage key={src} src={src} alt={alt} data-anim="image" className="h-[min(72vw,380px)] w-full rounded-[28px] object-cover sm:h-[430px] lg:h-[560px]" />
           ))}
         </div>
       </section>
@@ -803,6 +883,8 @@ export default function HomePageClient() {
                 src={vdScaun.src}
                 alt="Echipa medicală Alverna Dental Studio în timpul unui tratament"
                 data-anim="image"
+                loading="lazy"
+                decoding="async"
                 className="aspect-[682/1024] h-[min(520px,70vh)] w-full max-w-[440px] object-cover object-[center_38%] md:h-[min(720px,82vh)]"
               />
             </div>
@@ -811,11 +893,12 @@ export default function HomePageClient() {
             </p>
           </div>
           <div className="mt-10 grid min-w-0 grid-cols-1 gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-[815px] xl:gap-[4px]">
-            {advantages.map((a, idx) => (
-              <article key={a.value} className="w-full max-w-[380px] rounded-[18px] bg-[#f5f5f5] p-5 md:max-w-none lg:w-[380px]">
-                <div className="flex items-start justify-between">
-                  <strong className="text-[36px] font-semibold leading-none tracking-[-2px] text-white md:text-[56px]">{a.value}</strong>
-                  <span className="text-[21px] opacity-40">{a.idx}</span>
+            {advantages.map((a, clipIndex) => (
+              <article key={a.value} className="relative w-full max-w-[380px] rounded-[18px] bg-[#f5f5f5] p-5 md:max-w-none lg:w-[380px]">
+                <div>
+                  <strong className="block text-[36px] font-semibold leading-none tracking-[-0.02em] text-white md:text-[56px]">
+                    {a.value}
+                  </strong>
                 </div>
                 <h3 className="mt-3 text-[24px] tracking-[-0.8px] text-white md:text-[34px]">{a.label}</h3>
                 <motion.div
@@ -826,22 +909,22 @@ export default function HomePageClient() {
                 >
                   <LazyVideo
                     ref={(el) => {
-                      recommendationVideoRefs.current[idx] = el;
+                      recommendationVideoRefs.current[clipIndex] = el;
                     }}
-                    src={recommendationClips[idx]}
+                    src={recommendationClips[clipIndex]}
                     poster="/services/smile-mirror.png"
                     className="absolute inset-0 h-full w-full scale-[1.05]"
-                    ariaLabel={`Clip ${recommendationClipMeta[idx].title}`}
+                    ariaLabel={`Clip ${recommendationClipMeta[clipIndex].title}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.68)]" />
-                  {!activeClipControls.has(idx) ? (
+                  {!activeClipControls.has(clipIndex) ? (
                     <motion.button
                       type="button"
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.3, ease: "easeOut" }}
                       onClick={() =>
-                        activateVideoWithSound(recommendationVideoRefs.current[idx], () => {
-                          setActiveClipControls((prev) => new Set(prev).add(idx));
+                        activateVideoWithSound(recommendationVideoRefs.current[clipIndex], () => {
+                          setActiveClipControls((prev) => new Set(prev).add(clipIndex));
                         })
                       }
                       className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(0,0,0,0.6)] backdrop-blur-[2px]"
@@ -851,9 +934,9 @@ export default function HomePageClient() {
                     </motion.button>
                   ) : null}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10 sm:inset-auto sm:bottom-[16px] sm:left-[16px] sm:right-[16px] sm:bg-none sm:p-0 sm:pt-0">
-                    <p className="text-[14px] text-[rgba(255,255,255,0.6)] sm:text-[21px]">{recommendationClipMeta[idx].date}</p>
-                    <h4 className="mt-1 text-[16px] font-semibold leading-[1.2] text-white sm:mt-[6px] sm:text-[21px]">{recommendationClipMeta[idx].title}</h4>
-                    <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:mt-1 sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[idx].description}</p>
+                    <p className="text-[14px] text-[rgba(255,255,255,0.6)] sm:text-[21px]">{recommendationClipMeta[clipIndex].date}</p>
+                    <h4 className="mt-1 text-[16px] font-semibold leading-[1.2] text-white sm:mt-[6px] sm:text-[21px]">{recommendationClipMeta[clipIndex].title}</h4>
+                    <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:mt-1 sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
                   </div>
                 </motion.div>
               </article>
@@ -885,14 +968,14 @@ export default function HomePageClient() {
                     <span className="text-[21px] leading-none">→</span>
                   </button>
                   <a
-                    href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+                    href="#contact"
                     className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[21px] font-semibold"
                   >
                     Programează-te
                   </a>
                 </div>
               </div>
-              <div className="mt-8 w-full max-w-full overflow-hidden">
+              <div className="mt-8 w-full max-w-full overflow-hidden" {...servicesSwipe}>
                 <div
                   className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   style={{ transform: `translateX(-${activeServicesDot * 100}%)` }}
@@ -941,10 +1024,14 @@ export default function HomePageClient() {
                 className="flex min-h-[126px] w-full items-start gap-3 rounded-[32px] bg-[#F5F5F5] p-4 ads-mission-glow md:items-center"
               >
                 <div className="relative h-8 w-8 shrink-0 overflow-hidden rounded-[8px] bg-black">
-                  <LazyVideo
-                    src={recommendationClips[idx % recommendationClips.length]}
-                    poster="/services/smile-mirror.png"
-                    ariaLabel="Clip prezentare"
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={missionPosters[idx % missionPosters.length]}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/35" />
                   <span className="absolute left-1/2 top-1/2 inline-block h-0 w-0 -translate-x-1/2 -translate-y-1/2 border-b-[4px] border-l-[6px] border-t-[4px] border-b-transparent border-l-white border-t-transparent" />
@@ -996,21 +1083,27 @@ export default function HomePageClient() {
               <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
             </div>
             <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65]">
-              <p>Adresă: {CLINIC.addressLine}</p>
-              <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
+              <p>
+                Adresă:{" "}
+                <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                  {CLINIC.addressLine}
+                </a>
+              </p>
+              <p>
+                Număr de telefon:{" "}
+                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                  {CLINIC.phoneDisplay}
+                </a>
+              </p>
               <p>Program:</p>
               <p>{CLINIC.hoursDisplay}</p>
             </div>
             <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto pt-4 h-auto w-[220px] object-contain" />
           </article>
 
-          {reviews.map((r, i) => (
-            <motion.article
+          {reviews.map((r) => (
+            <article
               key={r.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.12, ease: "easeOut" }}
               className="ads-surface-light-muted flex h-full min-h-[313px] flex-col rounded-[18px] p-[24px] ads-mission-glow"
             >
               <div>
@@ -1020,7 +1113,7 @@ export default function HomePageClient() {
               </div>
               <p className="mt-6 text-[21px] leading-[1.5] tracking-[-0.2px]">{r.text}</p>
               <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>
-            </motion.article>
+            </article>
           ))}
         </div>
       </section>
@@ -1032,7 +1125,7 @@ export default function HomePageClient() {
               ["15", "Ani de activitate"],
               ["9000", "Pacienti"],
               ["3000", "Pacienti internationali"],
-              ["15 de ani", "Medici cu peste 15 ani de experienta"],
+              ["15 de ani", "Medici cu peste 15 ani de experiență"],
             ].map(([n, t]) => (
               <article key={n} className="px-2 text-center md:px-6 md:text-left">
                 <h3 className="text-[28px] font-bold leading-none tracking-[-0.04em] text-white sm:text-[36px] md:text-[56px] lg:text-[72px]">
@@ -1046,54 +1139,10 @@ export default function HomePageClient() {
       </section>
 
       <section data-anim="section" data-theme="light" className="bg-[#F5F5F5]">
-        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
-          <article className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]">
-            <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
-            </div>
-            <div className="relative z-[40] text-[21px] text-white">
-              <p>Echipa</p>
-            </div>
-            <h3 className="relative z-[30] mt-4 whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] md:absolute md:bottom-[92px] md:left-[36px] md:mt-auto md:pt-0 md:text-[64px]">
-              {"alverna\ndental\nstudio"}
-            </h3>
-            <img
-              src={teamBannerImage.src}
-              alt="Echipa medicală Alverna Dental Studio"
-              className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(52vw,300px)] w-auto max-w-full object-contain md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
-            />
-          </article>
-
-          <article className="relative z-10 min-h-[420px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
-            <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
-            <div className="relative z-10 flex h-full flex-col">
-              <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
-                {"Puterea zambetului\ncare inspira incredere"}
-              </h3>
-              <div className="mt-8">
-                <p className="text-[28px] font-semibold text-white md:text-[40px]">
-                  4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
-            <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
-              <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
-                <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111] text-[32px] font-semibold text-white">100</div>
-              </div>
-              <p className="mt-4 text-[21px] font-semibold text-white">Scanare 3D</p>
-            </article>
-
-            <article className="min-h-[220px] rounded-[16px] bg-[#0A0A0A] p-6 max-md:pr-2 md:h-[275px]">
-              <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
-              <p className="mt-2 text-[21px] text-white/80">Pacienti multumiti</p>
-              <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
-              <img src={cazA7407760.src} alt="Caz reabilitare protetică — rezultat Alverna Dental Studio" className="mt-4 h-[72px] w-full rounded-[10px] object-cover object-top sm:h-[96px] md:h-[110px]" />
-            </article>
-          </div>
-        </div>
+        <TeamBentoBanner
+          doctorSrc={teamBannerImage.src}
+          doctorAlt="Echipa medicală Alverna Dental Studio"
+        />
       </section>
 
       <section id="tarife" className="relative w-full overflow-hidden bg-[#f5f5f5] pb-14 md:pb-20 lg:pb-[120px]">
@@ -1121,7 +1170,7 @@ export default function HomePageClient() {
                   </button>
                 </div>
                 <a
-                  href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare"
+                  href="#contact"
                   className="ads-btn-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-4 py-2 text-[18px] font-semibold sm:w-auto sm:px-5 sm:text-[21px]"
                 >
                   Programează-te
@@ -1134,7 +1183,7 @@ export default function HomePageClient() {
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Consultatie initiala disponibila</span>
             </div>
 
-            <div className="mt-8 w-full overflow-hidden">
+            <div className="mt-8 w-full overflow-hidden" {...tarifeSwipe}>
               <div
                 className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{ transform: `translateX(-${activeTarifeIndex * 100}%)` }}
@@ -1143,13 +1192,10 @@ export default function HomePageClient() {
                   <article key={category.category} className="min-h-[480px] w-full shrink-0 rounded-[20px] border border-[rgba(10,10,10,0.08)] bg-white p-6 md:h-[620px] md:p-7 lg:p-8">
                     <h3 className="text-[21px] font-semibold leading-[1.1] text-white">{category.category}</h3>
                     <div className="mt-5 space-y-0">
-                      {category.items.slice(0, 7).map((entry, idx) => (
+                      {category.items.slice(0, 7).map((entry) => (
                         <div key={`${category.category}-${entry.name}`} className="group flex items-end gap-3 py-[8px] transition-colors duration-200 hover:bg-[rgba(79,127,71,0.05)]">
                           <p className="text-[21px] font-bold leading-none text-[#303030] md:text-[21px]">
                             {entry.name}
-                            {idx === 0 ? <span className="ml-2 text-[21px] text-white">de la</span> : null}
-                            {idx === 1 ? <span className="ml-2 text-[21px] text-white">cel mai popular</span> : null}
-                            {idx === 2 ? <span className="ml-2 text-[21px] text-white">rapid / fara durere</span> : null}
                           </p>
                           <span className="mb-[6px] flex-1 border-b border-dotted border-[rgba(10,10,10,0.18)]" />
                           <p className="pl-8 text-right text-[21px] font-bold leading-none text-white md:pl-10 md:text-[21px]">{entry.price}</p>
@@ -1157,9 +1203,9 @@ export default function HomePageClient() {
                       ))}
                     </div>
                     <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.2)] bg-[rgba(79,127,71,0.04)] p-4">
-                      <p className="text-[21px] font-semibold text-white">Programeaza-te acum</p>
+                      <p className="text-[21px] font-semibold text-white">Programează-te acum</p>
                       <p className="mt-1 text-[21px] text-white">Primeste o evaluare personalizata</p>
-                      <a href="mailto:contact@alvernadental.com?subject=Solicita%20o%20programare" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[21px] font-semibold text-white">Solicita programare</a>
+                      <a href="#contact" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[21px] font-semibold text-white">Solicita programare</a>
                     </div>
                   </article>
                 ))}
@@ -1175,48 +1221,19 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="echipa" data-anim="section" className="overflow-visible bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
-        <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] overflow-visible px-4 md:grid-cols-[1fr_0.78fr_440px] md:gap-0 md:px-8 lg:px-[96px]">
-          <article
-            data-theme="light"
-            className="relative order-3 flex min-h-[420px] flex-col rounded-[16px] bg-[#0A0A0A] p-6 text-white md:order-1 md:h-[560px] md:rounded-l-[16px] md:rounded-r-none md:p-[32px]"
-          >
-            <p className="text-[21px] text-white/80">{CLINIC.instagramHandle}</p>
-            <h3 className="mt-4 text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">Puterea zambetului care inspira incredere</h3>
-          </article>
-
-          <article className="order-2 relative h-[280px] overflow-hidden rounded-[16px] bg-[#0A0A0A] md:order-2 md:h-[560px] md:rounded-none">
-            <img
-              src={labBannerImage.src}
-              alt="Lucrări protetice din laboratorul dentar Alverna"
-              className="h-full w-full object-contain object-center p-3 md:p-6"
-            />
-          </article>
-
-          <article className="relative isolate order-1 z-20 min-h-[360px] overflow-hidden rounded-[24px] bg-transparent p-6 md:order-3 md:h-[560px] md:overflow-visible md:rounded-l-none md:rounded-r-[24px] md:p-[40px]">
-            <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A] md:rounded-l-none md:rounded-r-[24px]">
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
-            </div>
-            <div className="relative z-[40] text-[21px] text-white">
-              <p>Echipa</p>
-            </div>
-            <p className="relative z-[40] mt-4 text-[18px] font-semibold leading-[1.15] text-white md:absolute md:bottom-[56px] md:left-[36px] md:mt-auto md:max-w-[220px] md:text-[21px]">
-              Laborator dentar
-            </p>
-            <img
-              src={labDoctorBannerImage.src}
-              alt="Echipa Alverna Dental Studio"
-              className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(50vw,280px)] w-auto max-w-full object-contain mix-blend-lighten md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
-            />
-          </article>
-        </div>
+      <section id="echipa" data-anim="section" data-theme="light" className="overflow-visible bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
+        <TeamBentoBanner
+          doctorSrc={labDoctorBannerImage.src}
+          doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
+          leftHeadline={"laborator\ndentar"}
+        />
       </section>
 
       <section data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-[96px]">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
             <h2 className="text-[32px] font-semibold leading-[0.9] tracking-[-3px] sm:text-[48px] md:text-[64px] lg:text-[76px]">
-              Cazuri <span className="text-white">mai in detaliu</span>
+              Cazuri <span className="text-white">mai în detaliu</span>
               <br />
               <span className="text-white">înainte și după</span>
             </h2>
@@ -1242,11 +1259,9 @@ export default function HomePageClient() {
       </section>
 
       <section id="contact" ref={contactSectionRef} data-anim="section" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
-        <motion.div
+        <div
           aria-hidden
-          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform]"
-          animate={{ y: [-20, 20, -20], scale: [1, 1.05, 1] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
         />
         <div
           ref={contactSpotlightRef}

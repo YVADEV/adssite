@@ -2,6 +2,8 @@
 
 import { motion } from "motion/react";
 import { ServiceContactForm } from "@/components/services/ServicePageParts";
+import { useMotionReady } from "@/hooks/useMotionReady";
+import { motionRevealProps } from "@/lib/motion-reveal";
 
 type ServicePageTemplateProps = {
   title: string;
@@ -25,13 +27,6 @@ const benefitItems = [
   "Confort crescut și monitorizare pe toată durata tratamentului.",
 ];
 
-const reveal = {
-  initial: { opacity: 0, y: 28, scale: 0.99 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, amount: 0.18 },
-  transition: { duration: 0.75, ease: "easeOut" as const },
-};
-
 export default function ServicePageTemplate({
   title,
   shortIntro,
@@ -40,6 +35,8 @@ export default function ServicePageTemplate({
   image = "/services/dental-chair.png",
   imageAlt,
 }: ServicePageTemplateProps) {
+  const reveal = motionRevealProps(useMotionReady());
+
   return (
     <main className="bg-[#0A0A0A] pb-24">
       <section className="relative w-full overflow-hidden bg-black">

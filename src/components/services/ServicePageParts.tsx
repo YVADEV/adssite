@@ -5,16 +5,15 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+import { useMotionReady } from "@/hooks/useMotionReady";
+import { motionRevealProps } from "@/lib/motion-reveal";
 import { CLINIC } from "@/lib/contact";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 
-export const reveal = {
-  initial: { opacity: 0, y: 28, scale: 0.99 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, amount: 0.18 },
-  transition: { duration: 0.75, ease: "easeOut" as const },
-} as const;
+function useReveal() {
+  return motionRevealProps(useMotionReady());
+}
 
 function ServiceHeroVideo({
   videoSrc,
@@ -69,7 +68,7 @@ function ServiceHeroVideo({
         muted={withSound ? isMuted : true}
         loop
         playsInline
-        preload="metadata"
+        preload="none"
         poster={image}
         aria-label={imageAlt ?? "Alverna Dental Studio"}
         className={
@@ -112,6 +111,7 @@ function ServiceHeroContent({
   className?: string;
   layout?: "overlay" | "stacked";
 }) {
+  const reveal = useReveal();
   const isStacked = layout === "stacked";
 
   return (
@@ -185,6 +185,7 @@ export function ServiceHero({
   intro,
   chip,
 }: ServiceHeroProps) {
+  const reveal = useReveal();
   const splitVideoLayout = Boolean(videoSrc && videoObjectFit === "contain");
 
   if (splitVideoLayout && videoSrc) {
@@ -252,6 +253,7 @@ export function ServiceHero({
 // QUICK FACTS GRID
 // -----------------------------------------------------------------------------
 export function ServiceQuickFacts({ facts }: { facts: ReadonlyArray<readonly [string, string]> }) {
+  const reveal = useReveal();
   return (
     <section data-theme="light" className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
       <motion.div {...reveal} className="grid grid-cols-1 gap-6 border-y border-black/12 py-7 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
@@ -301,6 +303,7 @@ export function ServiceParagraphSection({
   headingLevel = "h3",
   first,
 }: BaseSectionProps & { body: ReactNode }) {
+  const reveal = useReveal();
   return (
     <motion.article
       {...reveal}
@@ -318,6 +321,7 @@ export function ServiceBulletsSection({
   headingLevel = "h3",
   first,
 }: BaseSectionProps & { items: ReadonlyArray<string> }) {
+  const reveal = useReveal();
   return (
     <motion.article
       {...reveal}
@@ -342,6 +346,8 @@ export function ServiceCardsSection({
   headingLevel = "h3",
   first,
 }: BaseSectionProps & { cards: ReadonlyArray<{ title: string; text: string }> }) {
+  const reveal = useReveal();
+  const motionReady = useMotionReady();
   return (
     <motion.article
       {...reveal}
@@ -352,8 +358,8 @@ export function ServiceCardsSection({
         {cards.map((item, idx) => (
           <motion.article
             key={item.title}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={motionReady ? { opacity: 0, y: 16 } : false}
+            whileInView={motionReady ? { opacity: 1, y: 0 } : undefined}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: idx * 0.08 }}
             className="border-t border-black/12 pt-4"
@@ -373,6 +379,8 @@ export function ServiceStepsSection({
   headingLevel = "h3",
   first,
 }: BaseSectionProps & { steps: ReadonlyArray<{ step: string; title: string; text: string }> }) {
+  const reveal = useReveal();
+  const motionReady = useMotionReady();
   return (
     <motion.article {...reveal} className={`${sectionWrapperClass(first)} border-t border-black/12 pt-10`}>
       <SectionHeading heading={heading} level={headingLevel} />
@@ -380,8 +388,8 @@ export function ServiceStepsSection({
         {steps.map((item, idx) => (
           <motion.article
             key={item.step}
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={motionReady ? { opacity: 0, y: 14 } : false}
+            whileInView={motionReady ? { opacity: 1, y: 0 } : undefined}
             viewport={{ once: true, amount: 0.18 }}
             transition={{ duration: 0.6, delay: idx * 0.08 }}
             className="grid gap-3 py-5 md:grid-cols-[90px_1fr_1.4fr] md:items-start"
@@ -402,6 +410,7 @@ export function ServiceTextBlock({
   headingLevel = "h3",
   first,
 }: BaseSectionProps & { body: ReactNode }) {
+  const reveal = useReveal();
   return (
     <motion.article {...reveal} className={`${sectionWrapperClass(first)} border-t border-black/12 pt-10`}>
       <SectionHeading heading={heading} level={headingLevel} />
@@ -421,6 +430,7 @@ export function ServiceFAQ({
   items: ReadonlyArray<{ q: string; a: string }>;
 }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const reveal = useReveal();
 
   return (
     <motion.article {...reveal} className="mt-14 border-t border-black/12 pt-10">
@@ -477,13 +487,13 @@ const sharedReviews = [
     name: "Carmen Ilea",
     meta: "4 recenzii",
     time: "acum 2 luni",
-    text: "Am fost impresionata de profesionalism, atentie la detalii si de tehnologia moderna din clinica. Voi reveni cu placere.",
+    text: "Am fost impresionată de profesionalism, atenție la detalii și de tehnologia modernă din clinică. Voi reveni cu plăcere.",
   },
   {
-    name: "Denisa Tanase",
+    name: "Denisa Tănase",
     meta: "2 recenzii · O fotografie",
     time: "acum 3 luni",
-    text: "Experienta foarte buna, comunicare clara si echipa prietenoasa. Fiecare pas a fost explicat pe intelesul meu.",
+    text: "Experiență foarte bună, comunicare clară și echipă prietenoasă. Fiecare pas a fost explicat pe înțelesul meu.",
   },
 ] as const;
 
@@ -508,6 +518,7 @@ export function ServiceCasesGrid() {
 }
 
 export function ServiceTestimonials() {
+  const motionReady = useMotionReady();
   return (
     <section data-theme="light" className="bg-[#ececec] pb-[110px]">
       <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
@@ -524,8 +535,18 @@ export function ServiceTestimonials() {
             <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
           </div>
           <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45]">
-            <p>Adresă: {CLINIC.addressLine}</p>
-            <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
+            <p>
+              Adresă:{" "}
+              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                {CLINIC.addressLine}
+              </a>
+            </p>
+            <p>
+              Număr de telefon:{" "}
+              <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                {CLINIC.phoneDisplay}
+              </a>
+            </p>
             <p>Program: {CLINIC.hoursDisplay}</p>
           </div>
           <Image src={alvernaLogo} alt="Alverna Dental Studio" width={210} height={70} className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
@@ -534,8 +555,8 @@ export function ServiceTestimonials() {
         {sharedReviews.map((r, i) => (
           <motion.article
             key={r.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={motionReady ? { opacity: 0, y: 20 } : false}
+            whileInView={motionReady ? { opacity: 1, y: 0 } : undefined}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
             className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[22px]"
@@ -559,11 +580,9 @@ export function ServiceTestimonials() {
 export function ServiceContactForm({ headline, body }: { headline: string; body: string }) {
   return (
     <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
-      <motion.div
+      <div
         aria-hidden
-        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform]"
-        animate={{ y: [-20, 20, -20], scale: [1, 1.05, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
@@ -597,8 +616,13 @@ export function ContactFormCard({ source }: { source: string }) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError(null);
-    setStatus("loading");
     const formData = new FormData(event.currentTarget);
+    if (formData.get("gdpr") !== "on") {
+      setStatus("error");
+      setError("Te rugăm să accepți Politica de confidențialitate.");
+      return;
+    }
+    setStatus("loading");
     const payload = {
       nume: String(formData.get("nume") ?? "").trim(),
       telefon: String(formData.get("telefon") ?? "").trim(),
@@ -690,6 +714,21 @@ export function ContactFormCard({ source }: { source: string }) {
               {error}
             </p>
           ) : null}
+          <label className="mt-1 flex items-start gap-3 text-left text-[18px] leading-[1.45] opacity-90 md:text-[19px]">
+            <input
+              type="checkbox"
+              name="gdpr"
+              required
+              className="mt-1 h-[18px] w-[18px] shrink-0 accent-[#4E7044]"
+            />
+            <span>
+              Am citit și accept{" "}
+              <Link href="/politica-de-confidentialitate" className="ads-link-accent underline decoration-[#9fc48f]/60 underline-offset-4">
+                Politica de confidențialitate
+              </Link>{" "}
+              și sunt de acord cu prelucrarea datelor mele personale.
+            </span>
+          </label>
           <button
             type="submit"
             disabled={status === "loading"}
@@ -697,13 +736,6 @@ export function ContactFormCard({ source }: { source: string }) {
           >
             {status === "loading" ? "Se trimite…" : "Solicită programare"}
           </button>
-          <p className="mt-2 text-center text-[21px] opacity-75">
-            Prin trimitere, accepți{" "}
-            <Link href="/politica-de-confidentialitate" className="ads-link-accent underline decoration-[#9fc48f]/60 underline-offset-4">
-              Politica de confidențialitate
-            </Link>
-            .
-          </p>
         </form>
       )}
     </div>
@@ -719,6 +751,7 @@ export function ServiceFinalCTA({
   body: string;
   buttonLabel?: string;
 }) {
+  const reveal = useReveal();
   return (
     <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
       <motion.div {...reveal} className="relative overflow-hidden rounded-[28px] bg-[#0A0A0A] p-8 text-white md:p-10 lg:p-12">

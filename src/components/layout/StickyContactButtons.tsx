@@ -1,18 +1,12 @@
 "use client";
 
-import { motion } from "motion/react";
 import { CLINIC } from "@/lib/contact";
 
 const stickyIconClass = "h-[24px] w-[24px] shrink-0";
 
 export default function StickyContactButtons() {
   return (
-    <motion.aside
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
-      className="fixed bottom-3 right-3 z-[9990] flex flex-col gap-2.5 max-md:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-md:right-[max(0.75rem,env(safe-area-inset-right))] md:bottom-5 md:right-5 md:gap-3"
-    >
+    <aside className="animate-[sticky-contact-in_0.55s_ease-out_both] fixed bottom-3 right-3 z-[9990] flex flex-col gap-2.5 max-md:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-md:right-[max(0.75rem,env(safe-area-inset-right))] md:bottom-5 md:right-5 md:gap-3">
       <a
         href={CLINIC.whatsappUrl}
         target="_blank"
@@ -57,6 +51,6 @@ export default function StickyContactButtons() {
           <path d="m4 7 8 6 8-6" />
         </svg>
       </a>
-    </motion.aside>
+    </aside>
   );
 }

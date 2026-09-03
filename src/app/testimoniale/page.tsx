@@ -7,34 +7,19 @@ const trustPoints = ["Zâmbete fericite", "Excelență în stomatologie", "Profe
 
 const reviews = [
   {
-    name: "Ana M.",
+    name: "Andreea Nisipeanu",
     meta: "Google · Cluj",
-    text: "Detartraj rapid, fără durere și multă grijă la detalii. Mi-au explicat fiecare etapă înainte să înceapă tratamentul și m-am simțit în siguranță.",
+    text: "Recomand cu mare încredere Clinica Alverna Dental! De la prima vizită am fost întâmpinată cu multă căldură și profesionalism. Clinica este impecabil de curată și dotată cu aparatură foarte modernă. Profesionalismul, atenția la detalii și dedicarea echipei sunt la nivel înalt. Vă mulțumesc!",
   },
   {
-    name: "James R.",
-    meta: "Google · UK",
-    text: "Am venit din Marea Britanie pentru tratament și experiența a fost excelentă: comunicare clară, programări punctuale și o echipă calmă și profesionistă.",
-  },
-  {
-    name: "Bianca T.",
-    meta: "Google · România",
-    text: "Vin de ani de zile la Alverna. Programările sunt respectate, medicii sunt atenți și primesc mereu recomandări utile pentru îngrijirea dinților.",
-  },
-  {
-    name: "Klara S.",
-    meta: "Google · Germania",
-    text: "Servicii moderne, fără presiune de vânzare. Atmosfera este prietenoasă, iar tratamentul a fost fără durere.",
-  },
-  {
-    name: "Radu P.",
+    name: "Carmen Ilea",
     meta: "Google · Cluj",
-    text: "Experiență foarte bună cu Dr. Andreea Pârvu: răbdare, comunicare clară și un plan de tratament explicat pe înțelesul meu.",
+    text: "Am fost impresionată de profesionalismul d-nei dr Andreea Pârvu. Este o persoană foarte atentă la detalii, execută cu mare finețe toate tipurile de lucrări: obturații, igienizare. Studioul este foarte curat și dotat cu tehnologie de ultimă generație. Am să revin cu plăcere.",
   },
   {
-    name: "Ioana C.",
-    meta: "Google · România",
-    text: "Echipa mi-a schimbat complet perspectiva despre mersul la dentist. Totul este calm, clar și orientat pe confortul pacientului.",
+    name: "Denisa Tănase",
+    meta: "Google · Cluj",
+    text: "Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas și mi s-a răspuns la fiecare întrebare. Îi mulțumesc doamnei doctor Pârvu pentru atenție și profesionalism, la fel și doamnei asistente.",
   },
 ];
 
@@ -98,7 +83,7 @@ export default function TestimonialePage() {
               <p className="text-[21px] font-semibold text-[#f2d16b]">4.8/5 ★★★★★</p>
             </div>
             <p className="mt-4 max-w-[900px] text-[21px] leading-[1.7] text-white">
-              Feedback-ul din România, Germania și UK confirmă aceeași experiență: tratamente fără durere, comunicare transparentă, programări respectate și atmosferă profesionistă, fără presiune comercială.
+              Feedback-ul pacienților din Cluj confirmă aceeași experiență: tratamente fără durere, comunicare transparentă, programări respectate și atmosferă profesionistă, fără presiune comercială.
             </p>
           </div>
         </section>

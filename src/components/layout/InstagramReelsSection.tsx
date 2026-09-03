@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 const INSTAGRAM_REELS = [
   "DMUaw_SN-Jb",
   "DZoq3GpgqNM",
@@ -8,16 +12,49 @@ const INSTAGRAM_REELS = [
 ] as const;
 
 function ReelEmbed({ reelId }: { reelId: string }) {
+  const ref = useRef<HTMLLIElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let cancelled = false;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting && !cancelled) {
+            setVisible(true);
+            io.disconnect();
+          }
+        }
+      },
+      { rootMargin: "200px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => {
+      cancelled = true;
+      io.disconnect();
+    };
+  }, []);
+
   return (
-    <li className="min-w-0 list-none">
+    <li ref={ref} className="min-w-0 list-none">
       <div className="instagram-reel-frame shadow-[0_24px_60px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition duration-300 hover:ring-white/22">
-        <iframe
-          title={`Instagram reel ${reelId}`}
-          src={`https://www.instagram.com/reel/${reelId}/embed`}
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        {visible ? (
+          <iframe
+            title={`Instagram reel ${reelId}`}
+            src={`https://www.instagram.com/reel/${reelId}/embed`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        ) : (
+          <div className="flex aspect-[9/16] w-full items-center justify-center bg-[#111] text-[18px] text-white/50">
+            Instagram
+          </div>
+        )}
       </div>
     </li>
   );

@@ -38,11 +38,11 @@ export function MobileMenuNavServices({
       <div
         className={`overflow-hidden transition-[max-height,opacity] duration-300 ${
           mobileServicesOpen
-            ? "pointer-events-auto max-h-[1200px] opacity-100"
+            ? "pointer-events-auto max-h-[min(70vh,720px)] opacity-100"
             : "pointer-events-none max-h-0 opacity-0"
         }`}
       >
-        <div className="pt-2">
+        <div className="max-h-[min(68vh,700px)] overflow-y-auto overscroll-contain pt-2 pr-1">
           {services.map((service) =>
             service.children?.length ? (
               <div key={service.slug}>
@@ -61,7 +61,7 @@ export function MobileMenuNavServices({
                 <div
                   className={`overflow-hidden transition-[max-height,opacity] duration-300 ${
                     openSubmenuSlug === service.slug
-                      ? "max-h-[180px] opacity-100"
+                      ? "max-h-[min(40vh,320px)] opacity-100"
                       : "max-h-0 opacity-0"
                   }`}
                 >

@@ -68,7 +68,9 @@ export default function SiteFooter() {
         <section>
           <h4 className="text-[21px] font-semibold text-white">Contact</h4>
           <div className="mt-4 space-y-2 text-[21px] leading-[1.6] text-white">
-            <p>{CLINIC.addressShort}</p>
+            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="block hover:underline">
+              {CLINIC.addressShort}
+            </a>
             <a href={`tel:${CLINIC.phoneTel}`}>{CLINIC.phoneDisplay}</a>
             <a href={`mailto:${CLINIC.email}`} className="block">
               {CLINIC.email}

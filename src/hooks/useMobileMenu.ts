@@ -20,6 +20,13 @@ export function useMobileMenu(refs: MobileMenuRefs) {
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
   const prevMenuOpenRef = useRef(false);
+  const focusPrevOpenRef = useRef(false);
+  const menuVisibleRef = useRef(false);
+  const skipSubmenuResetRef = useRef(true);
+
+  useEffect(() => {
+    menuVisibleRef.current = menuVisible;
+  }, [menuVisible]);
 
   useEffect(() => {
     const overlay = overlayRef.current;
@@ -33,13 +40,17 @@ export function useMobileMenu(refs: MobileMenuRefs) {
     const menuItems = overlay.querySelectorAll<HTMLElement>("[data-menu-item]");
     let frame = 0;
     let tl: gsap.core.Timeline | null = null;
+    const wasOpen = prevMenuOpenRef.current;
+    const isOpen = menuOpen;
 
-    if (menuOpen) {
+    if (isOpen && !wasOpen) {
       document.body.style.overflow = "hidden";
       document.body.classList.add("menu-open");
       gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
       gsap.set(menuItems, { opacity: 0, y: 40 });
-      setMenuVisible(true);
+      if (!menuVisibleRef.current) {
+        setMenuVisible(true);
+      }
       frame = requestAnimationFrame(() => {
         tl = gsap.timeline({ defaults: { ease } });
         tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
@@ -49,7 +60,7 @@ export function useMobileMenu(refs: MobileMenuRefs) {
           .to(bottom, { y: -8, rotate: -45, duration: 0.36, ease }, "<")
           .to(menuItems, { opacity: 1, y: 0, stagger: 0.08, duration: 0.62, ease }, "-=0.16");
       });
-    } else if (menuVisible) {
+    } else if (!isOpen && wasOpen && menuVisibleRef.current) {
       tl = gsap.timeline({ defaults: { ease } });
       tl.to(menuItems, { opacity: 0, y: 20, stagger: { each: 0.07, from: "end" }, duration: 0.34, ease })
         .to(overlay, { opacity: 0, duration: 0.38, ease }, "-=0.08")
@@ -57,14 +68,18 @@ export function useMobileMenu(refs: MobileMenuRefs) {
         .to(top, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
         .to(mid, { opacity: 1, scaleX: 1, duration: 0.28, ease }, "<")
         .to(bottom, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .add(() => setMenuVisible(false));
+        .add(() => {
+          setMenuVisible(false);
+        });
       document.body.style.overflow = "";
       document.body.classList.remove("menu-open");
-    } else {
+    } else if (!isOpen && !menuVisibleRef.current) {
       gsap.set(overlay, { opacity: 0, pointerEvents: "none" });
       document.body.style.overflow = "";
       document.body.classList.remove("menu-open");
     }
+
+    prevMenuOpenRef.current = isOpen;
 
     return () => {
       cancelAnimationFrame(frame);
@@ -72,7 +87,7 @@ export function useMobileMenu(refs: MobileMenuRefs) {
       document.body.style.overflow = "";
       document.body.classList.remove("menu-open");
     };
-  }, [menuOpen, menuVisible, overlayRef, pageRef, topLineRef, midLineRef, bottomLineRef]);
+  }, [menuOpen, overlayRef, pageRef, topLineRef, midLineRef, bottomLineRef]);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -113,6 +128,10 @@ export function useMobileMenu(refs: MobileMenuRefs) {
   }, [menuOpen, overlayRef]);
 
   useEffect(() => {
+    if (skipSubmenuResetRef.current) {
+      skipSubmenuResetRef.current = false;
+      return;
+    }
     if (!menuOpen) {
       setMobileServicesOpen(false);
       setOpenSubmenuSlug(null);
@@ -120,10 +139,10 @@ export function useMobileMenu(refs: MobileMenuRefs) {
   }, [menuOpen]);
 
   useEffect(() => {
-    if (prevMenuOpenRef.current && !menuOpen) {
+    if (focusPrevOpenRef.current && !menuOpen) {
       menuTriggerRef.current?.focus({ preventScroll: true });
     }
-    prevMenuOpenRef.current = menuOpen;
+    focusPrevOpenRef.current = menuOpen;
   }, [menuOpen, menuTriggerRef]);
 
   return {

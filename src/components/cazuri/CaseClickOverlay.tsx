@@ -1,6 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
+
+import { useMotionReady } from "@/hooks/useMotionReady";
 
 type CaseClickOverlayProps = {
   label?: string;
@@ -9,23 +11,20 @@ type CaseClickOverlayProps = {
 
 export function CaseClickOverlay({ label = "Vezi cazul", compact = false }: CaseClickOverlayProps) {
   const reduceMotion = useReducedMotion();
+  const motionReady = useMotionReady();
+  const animate = motionReady && !reduceMotion;
 
   return (
     <>
-      {!reduceMotion && (
-        <motion.span
+      {animate ? (
+        <span
           aria-hidden
-          className="pointer-events-none absolute inset-0 rounded-[inherit]"
-          animate={{
-            boxShadow: [
-              "inset 0 0 0 1px rgba(255,255,255,0.08)",
-              "inset 0 0 0 1px rgba(255,255,255,0.28)",
-              "inset 0 0 0 1px rgba(255,255,255,0.08)",
-            ],
+          className="pointer-events-none absolute inset-0 animate-[case-ring-pulse_2.6s_ease-in-out_infinite] rounded-[inherit]"
+          style={{
+            boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.08)",
           }}
-          transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
         />
-      )}
+      ) : null}
 
       <span
         aria-hidden
@@ -44,27 +43,23 @@ export function CaseClickOverlay({ label = "Vezi cazul", compact = false }: Case
           }`}
         >
           {label}
-          <motion.span
+          <span
             aria-hidden
-            className="inline-block"
-            animate={reduceMotion ? {} : { x: [0, 4, 0] }}
-            transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+            className={`inline-block ${animate ? "animate-[case-arrow-nudge_1.4s_ease-in-out_infinite]" : ""}`}
           >
             →
-          </motion.span>
+          </span>
         </span>
       </span>
 
-      <motion.span
+      <span
         aria-hidden
         className={`pointer-events-none absolute inline-flex items-center justify-center rounded-full border border-white/40 bg-black/40 font-light text-white backdrop-blur-sm transition-all duration-400 group-hover:rotate-90 group-hover:scale-110 group-hover:border-white/70 group-hover:bg-[#ffffff] group-hover:text-[#0A0A0A] group-focus-visible:rotate-90 group-focus-visible:scale-110 ${
           compact ? "left-2 top-2 h-[18px] w-[18px] text-[21px]" : "left-4 top-4 h-8 w-8 text-[21px]"
-        }`}
-        animate={reduceMotion ? {} : { scale: [1, 1.08, 1] }}
-        transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        } ${animate ? "animate-[case-plus-pulse_2.2s_ease-in-out_infinite]" : ""}`}
       >
         +
-      </motion.span>
+      </span>
     </>
   );
 }

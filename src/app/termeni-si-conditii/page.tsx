@@ -31,7 +31,11 @@ export default function TermsPage() {
                 <a href="mailto:contact@alvernadental.com" className="underline decoration-[#9fc48f]/60 underline-offset-4">
                   contact@alvernadental.com
                 </a>{" "}
-                sau la {CLINIC.phoneDisplay}.
+                sau la{" "}
+                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                  {CLINIC.phoneDisplay}
+                </a>
+                .
               </p>
             </section>
 

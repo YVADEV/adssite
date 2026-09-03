@@ -5,6 +5,9 @@ import StickyContactButtons from "@/components/layout/StickyContactButtons";
 import CookieConsent from "@/components/layout/CookieConsent";
 import { JsonLd, organizationLd, websiteLd } from "@/components/seo/JsonLd";
 import { BUSINESS, SITE_URL } from "@/lib/seo";
+import { isStagingDeploy } from "@/lib/staging";
+
+const staging = isStagingDeploy();
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,17 +54,19 @@ export const metadata: Metadata = {
     title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
     description: BUSINESS.description,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  robots: staging
+    ? { index: false, follow: false, googleBot: { index: false, follow: false } }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      },
   category: "health",
   formatDetection: { telephone: true, address: true, email: true },
 };
@@ -81,6 +86,7 @@ export default function RootLayout({
   return (
     <html lang="ro" data-theme="dark" className={`${geistSans.variable} antialiased`}>
       <head>
+        <link rel="preload" as="image" href="/hero1-poster.jpg" fetchPriority="high" />
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
       </head>

@@ -3,6 +3,7 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { useAutoplayVideo } from "@/components/media/useAutoplayVideo";
+import { prefersReducedMedia } from "@/lib/media-pref";
 
 export type LazyVideoProps = {
   src: string;
@@ -40,13 +41,17 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
     }
   }
   const [shouldLoad, setShouldLoad] = useState(false);
-  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const [saveDataMode, setSaveDataMode] = useState(
+    () => typeof window !== "undefined" && prefersReducedMedia(),
+  );
 
-  useAutoplayVideo(videoRef, shouldLoad && !isReducedMotion);
+  useAutoplayVideo(videoRef, shouldLoad && !isReducedMotion && !saveDataMode);
 
   useEffect(() => {
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setIsReducedMotion(mql.matches);
     const onChange = () => setIsReducedMotion(mql.matches);
     mql.addEventListener("change", onChange);
     return () => mql.removeEventListener("change", onChange);
@@ -54,16 +59,19 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el || isReducedMotion) return;
+    if (!el || isReducedMotion || saveDataMode) return;
 
+    let cancelled = false;
     let delayTimer: ReturnType<typeof setTimeout> | undefined;
 
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && !cancelled) {
             if (loadDelayMs > 0) {
-              delayTimer = setTimeout(() => setShouldLoad(true), loadDelayMs);
+              delayTimer = setTimeout(() => {
+                if (!cancelled) setShouldLoad(true);
+              }, loadDelayMs);
             } else {
               setShouldLoad(true);
             }
@@ -74,10 +82,11 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
     );
     io.observe(el);
     return () => {
+      cancelled = true;
       io.disconnect();
       if (delayTimer) clearTimeout(delayTimer);
     };
-  }, [isReducedMotion, loadDelayMs]);
+  }, [isReducedMotion, loadDelayMs, saveDataMode]);
 
   useEffect(() => {
     if (!shouldLoad) return;
@@ -103,7 +112,7 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
 
   return (
     <div ref={containerRef} className={className} aria-label={ariaLabel}>
-      {!shouldLoad || isReducedMotion ? (
+      {!shouldLoad || isReducedMotion || saveDataMode ? (
         poster ? (
           <img src={poster} alt={ariaLabel ?? ""} className="h-full w-full object-cover" loading="lazy" decoding="async" />
         ) : (

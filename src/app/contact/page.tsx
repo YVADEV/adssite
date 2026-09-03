@@ -62,15 +62,16 @@ export default function ContactPage() {
             <article className="rounded-[18px] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
               <p className="text-[21px] font-semibold tracking-[-0.02em]">Contact</p>
               <p className="mt-2 text-[21px] leading-[1.6] text-[#4a4a4a]">
-                Alverna Dental Studio 1
+                {CLINIC.name}
                 <br />
-                Adresa:
-                <br />
-                Alverna Dental Studio
-                <br />
-                Str. Alverna 33, 400469,
-                <br />
-                Cluj-Napoca, Romania
+                <a
+                  href={CLINIC.mapsPlaceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline decoration-[#4a4a4a]/30 underline-offset-4 transition hover:decoration-[#4a4a4a]"
+                >
+                  {CLINIC.addressLine}
+                </a>
               </p>
             </article>
           </div>
@@ -102,9 +103,7 @@ export default function ContactPage() {
                     rel="noreferrer"
                     className="underline decoration-white/30 underline-offset-4 transition hover:decoration-white"
                   >
-                    Str. Alverna 33, 400469
-                    <br />
-                    Cluj-Napoca, România
+                    {CLINIC.addressLine}
                   </a>
                 </p>
               </div>
@@ -130,7 +129,7 @@ export default function ContactPage() {
 
               <div className="mt-auto flex flex-wrap gap-3 pt-2">
                 <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=46.758115,23.6122138&destination_place_id=ChIJz_1ICEoMSUcR70_NRTusDCQ"
+                  href={CLINIC.mapsDirectionsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="ads-btn-lit inline-flex h-[44px] items-center rounded-full px-5 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]"
@@ -138,7 +137,7 @@ export default function ContactPage() {
                   Deschide ruta
                 </a>
                 <a
-                  href="https://www.google.com/maps/place/Alverna+Dental+Studio/@46.758115,23.6122138,17z/"
+                  href={CLINIC.mapsPlaceUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex h-[44px] items-center rounded-full border border-white/35 bg-white/5 px-5 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10"

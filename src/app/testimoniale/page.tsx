@@ -116,7 +116,7 @@ export default function TestimonialePage() {
               Fă primul pas spre un zâmbet sănătos cu o echipă care pune accent pe confort, claritate și rezultate predictibile.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <a href="/#contact" className="ads-btn-lit inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
+              <a href={CLINIC.formPageHref} className="ads-btn-lit inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
                 Solicită evaluare
               </a>
               <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex h-[44px] items-center rounded-full border border-white/40 px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
@@ -130,9 +130,13 @@ export default function TestimonialePage() {
           <div className="rounded-[24px] border border-black/5 bg-white p-6 md:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <p className="text-[21px] font-medium text-white">Ai întrebări? Suntem aici pentru tine.</p>
-              <div className="flex flex-wrap items-center gap-4 text-[21px] text-[#4a4a4a]">
-                <a href="mailto:contact@alvernadental.com">contact@alvernadental.com</a>
-                <a href={`tel:${CLINIC.phoneTel}`}>{CLINIC.phoneDisplay}</a>
+              <div className="flex flex-col gap-2 text-[21px] text-[#4a4a4a] sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                <a href={`tel:${CLINIC.phoneTel}`} className="block hover:underline">
+                  {CLINIC.phoneDisplay}
+                </a>
+                <a href={`mailto:${CLINIC.email}`} className="block hover:underline">
+                  {CLINIC.email}
+                </a>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -10,6 +11,7 @@ import { motionRevealProps } from "@/lib/motion-reveal";
 import { CLINIC } from "@/lib/contact";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
+import { DEFAULT_CASE_STRIP, type CaseStripItem } from "@/config/case-strips";
 
 function useReveal() {
   return motionRevealProps(useMotionReady());
@@ -497,7 +499,7 @@ const sharedReviews = [
   },
 ] as const;
 
-export function ServiceCasesGrid() {
+export function ServiceCasesGrid({ items = DEFAULT_CASE_STRIP }: { items?: CaseStripItem[] }) {
   return (
     <section data-theme="light" className="mt-14 bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[120px]">
       <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
@@ -511,7 +513,7 @@ export function ServiceCasesGrid() {
             Vezi toate
           </a>
         </div>
-        <CazuriVideoStrip />
+        <CazuriVideoStrip items={items} />
       </div>
     </section>
   );
@@ -610,6 +612,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
 type ContactStatus = "idle" | "loading" | "ok" | "error";
 
 export function ContactFormCard({ source }: { source: string }) {
+  const pathname = usePathname();
   const [status, setStatus] = useState<ContactStatus>("idle");
   const [error, setError] = useState<string | null>(null);
 
@@ -623,6 +626,8 @@ export function ContactFormCard({ source }: { source: string }) {
       return;
     }
     setStatus("loading");
+    const pagePath = pathname || "/";
+    const pageUrl = typeof window !== "undefined" ? window.location.href : pagePath;
     const payload = {
       nume: String(formData.get("nume") ?? "").trim(),
       telefon: String(formData.get("telefon") ?? "").trim(),
@@ -630,6 +635,9 @@ export function ContactFormCard({ source }: { source: string }) {
       serviciu: String(formData.get("serviciu") ?? "").trim(),
       mesaj: String(formData.get("mesaj") ?? "").trim(),
       source,
+      pagePath,
+      pageUrl,
+      pageTitle: typeof document !== "undefined" ? document.title : undefined,
     };
     try {
       const resp = await fetch("/api/contact", {

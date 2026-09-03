@@ -3,6 +3,7 @@ import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
+import { IMPLANT_CASE_STRIP } from "@/config/case-strips";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/seo";
 import { CLINIC } from "@/lib/contact";
@@ -73,24 +74,35 @@ export default function RaduNichimisPage() {
 
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="rounded-[24px] border border-white/15 bg-white/[0.03] p-5 md:p-7">
-            <div className="mb-5 flex items-center justify-between gap-4">
+            <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-[28px] font-semibold tracking-[-0.03em] text-white md:text-[36px]">Acreditări</h2>
               <a
                 href="/acreditari-radu-nichimis.pdf"
                 target="_blank"
-                rel="noreferrer"
-                className="ads-btn-outline-lit inline-flex h-[40px] items-center rounded-full border border-white/20 px-5 text-[21px] font-semibold text-white transition duration-300"
+                rel="noopener noreferrer"
+                className="ads-btn-outline-lit inline-flex min-h-[44px] items-center justify-center rounded-full border border-white/20 px-5 text-[21px] font-semibold text-white transition duration-300"
               >
                 Deschide PDF
               </a>
             </div>
-            <div className="overflow-hidden rounded-[16px] border border-white/10 bg-black">
+            <p className="mb-4 text-[18px] leading-[1.5] text-white/70 md:hidden">
+              Pe telefon, PDF-ul se deschide în viewer-ul nativ pentru o navigare mai ușoară.
+            </p>
+            <div className="hidden overflow-hidden rounded-[16px] border border-white/10 bg-black md:block">
               <iframe
-                src="/acreditari-radu-nichimis.pdf"
+                src="/acreditari-radu-nichimis.pdf#view=FitH"
                 title="Acreditări Ast.Univ Radu Nichimiș"
-                className="h-[60vh] min-h-[360px] w-full md:h-[72vh] md:min-h-[560px]"
+                className="h-[72vh] min-h-[560px] w-full"
               />
             </div>
+            <a
+              href="/acreditari-radu-nichimis.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ads-btn-lit flex min-h-[52px] w-full items-center justify-center rounded-[16px] text-[21px] font-semibold md:hidden"
+            >
+              Vizualizează acreditările (PDF)
+            </a>
           </div>
         </section>
 
@@ -106,7 +118,7 @@ export default function RaduNichimisPage() {
                 Vezi toate
               </a>
             </div>
-            <CazuriVideoStrip />
+            <CazuriVideoStrip items={IMPLANT_CASE_STRIP} />
           </div>
         </section>
 

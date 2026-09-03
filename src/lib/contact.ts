@@ -18,4 +18,8 @@ export const CLINIC = {
     "https://www.google.com/maps/place/Alverna+Dental+Studio/@46.758115,23.6122138,17z/",
   mapsDirectionsUrl:
     "https://www.google.com/maps/dir/?api=1&destination=46.758115,23.6122138&destination_place_id=ChIJz_1ICEoMSUcR70_NRTusDCQ",
+  /** Anchor on pages that embed the form (homepage, servicii, contact). */
+  formAnchor: "#contact",
+  /** Full path for pages without an inline form (tarife, testimoniale). */
+  formPageHref: "/contact#contact",
 } as const;

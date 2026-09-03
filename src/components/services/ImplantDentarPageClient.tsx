@@ -16,6 +16,7 @@ import {
   ServiceContactForm,
   ServiceFinalCTA,
 } from "./ServicePageParts";
+import { IMPLANT_CASE_STRIP } from "@/config/case-strips";
 
 const commonCauses = [
   "Boală parodontală în forme avansate",
@@ -154,7 +155,7 @@ export default function ImplantDentarPageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre implant dentar Cluj" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={IMPLANT_CASE_STRIP} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Recâștigă funcția și estetica zâmbetului tău."

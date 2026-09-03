@@ -3,6 +3,7 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 
 import { useAutoplayVideo } from "@/components/media/useAutoplayVideo";
+import { DEFAULT_CASE_STRIP, type CaseStripItem } from "@/config/case-strips";
 import { prefersReducedMedia } from "@/lib/media-pref";
 
 export type LazyVideoProps = {
@@ -142,32 +143,29 @@ const VIDEO_STRIP_ARTICLE_CLASS =
   "relative h-[min(70vw,400px)] bg-black sm:h-[460px] md:h-[520px]";
 
 /** Shared "Cazuri before/after" 3-video grid — center clip loads last (largest file). */
-export function CazuriVideoStrip() {
+export function CazuriVideoStrip({ items = DEFAULT_CASE_STRIP }: { items?: CaseStripItem[] }) {
+  const strip = items;
+
   return (
     <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-      <article className={`${VIDEO_STRIP_ARTICLE_CLASS} rounded-l-[18px]`}>
-        <LazyVideo
-          src="/cazuri-1.mp4"
-          poster="/services/exam-male.png"
-          ariaLabel="Caz tratat — fațete dentare, vedere generală"
-        />
-      </article>
-      <article className={VIDEO_STRIP_ARTICLE_CLASS}>
-        <LazyVideo
-          src="/cori-angel.mp4"
-          poster="/services/smile-mirror.png"
-          ariaLabel="Caz tratat — restaurare estetică completă"
-          loadDelayMs={400}
-        />
-      </article>
-      <article className={`${VIDEO_STRIP_ARTICLE_CLASS} rounded-r-[18px]`}>
-        <LazyVideo
-          src="/cazuri-2.mp4"
-          poster="/services/whitening-2.png"
-          ariaLabel="Caz tratat — albire profesională și aliniere"
-          loadDelayMs={200}
-        />
-      </article>
+      {strip.map((item, index) => {
+        const rounded =
+          index === 0
+            ? "rounded-l-[18px]"
+            : index === strip.length - 1
+              ? "rounded-r-[18px]"
+              : "";
+        return (
+          <article key={`${item.src}-${index}`} className={`${VIDEO_STRIP_ARTICLE_CLASS} ${rounded}`}>
+            <LazyVideo
+              src={item.src}
+              poster={item.poster}
+              ariaLabel={item.ariaLabel}
+              loadDelayMs={item.loadDelayMs}
+            />
+          </article>
+        );
+      })}
     </div>
   );
 }

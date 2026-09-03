@@ -51,15 +51,6 @@ export function CaseClickOverlay({ label = "Vezi cazul", compact = false }: Case
           </span>
         </span>
       </span>
-
-      <span
-        aria-hidden
-        className={`pointer-events-none absolute inline-flex items-center justify-center rounded-full border border-white/40 bg-black/40 font-light text-white backdrop-blur-sm transition-all duration-400 group-hover:rotate-90 group-hover:scale-110 group-hover:border-white/70 group-hover:bg-[#ffffff] group-hover:text-[#0A0A0A] group-focus-visible:rotate-90 group-focus-visible:scale-110 ${
-          compact ? "left-2 top-2 h-[18px] w-[18px] text-[21px]" : "left-4 top-4 h-8 w-8 text-[21px]"
-        } ${animate ? "animate-[case-plus-pulse_2.2s_ease-in-out_infinite]" : ""}`}
-      >
-        +
-      </span>
     </>
   );
 }

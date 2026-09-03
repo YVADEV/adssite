@@ -258,9 +258,11 @@ export default function EchipaPage() {
             : "mt-6 grid grid-cols-1 justify-center gap-[18px] sm:grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:repeat(5,248px)]";
 
           const gridContent = group.members.map((member, index) => {
+            const profileHref = "href" in member && typeof member.href === "string" ? member.href : null;
+            const isLinked = Boolean(profileHref);
             const cardClassName = isMobileTeamGrid
-              ? "group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] sm:h-[360px]"
-              : "group relative h-[383px] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] lg:w-[248px]";
+              ? `group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] sm:h-[360px] ${isLinked ? "" : "cursor-default"}`
+              : `group relative h-[383px] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] lg:w-[248px] ${isLinked ? "" : "cursor-default"}`;
 
             const labelClassName = isMobileTeamGrid
               ? "absolute right-2 top-2 max-w-[72px] text-right text-[13px] leading-[1.2] text-white sm:right-3 sm:top-3 sm:max-w-[80px] sm:text-[16px]"
@@ -283,13 +285,13 @@ export default function EchipaPage() {
                       transition: { duration: 1.1 },
                     },
                   },
-              whileHover: reduceMotion
-                ? {}
-                : {
+              whileHover: isLinked
+                ? {
                     y: -8,
                     boxShadow: "0 12px 28px rgba(255,255,255,0.12)",
                     borderColor: "rgba(255,255,255,0.35)",
-                  },
+                  }
+                : {},
               transition: { duration: 0.6 },
               className: cardClassName,
             };
@@ -314,7 +316,7 @@ export default function EchipaPage() {
                   className="h-full w-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
-                  whileHover={reduceMotion || isMobileTeamGrid ? {} : { scale: 1.05 }}
+                  whileHover={isLinked && !reduceMotion && !isMobileTeamGrid ? { scale: 1.05 } : {}}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
@@ -323,7 +325,7 @@ export default function EchipaPage() {
                   <h3 className={nameClassName}>{member.name}</h3>
                 ) : (
                   <motion.h3
-                    whileHover={reduceMotion ? {} : { y: -4, color: "#ffffff" }}
+                    whileHover={isLinked && !reduceMotion ? { y: -4, color: "#ffffff" } : {}}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className={nameClassName}
                   >
@@ -333,9 +335,9 @@ export default function EchipaPage() {
               </>
             );
 
-            if ("href" in member && typeof member.href === "string") {
+            if (profileHref) {
               return (
-                <a key={`${group.title}-${member.name}`} href={member.href} className="block">
+                <a key={`${group.title}-${member.name}`} href={profileHref} className="block">
                   <motion.article {...cardProps}>{cardInner}</motion.article>
                 </a>
               );

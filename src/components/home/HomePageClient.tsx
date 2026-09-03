@@ -389,14 +389,25 @@ function SectionTitle({ title }: { title: string }) {
   );
 }
 
+function Scan3DIcon() {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" className="h-9 w-9 text-white" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z" />
+      <path d="M4 7l8 4 8-4M12 11v10" />
+    </svg>
+  );
+}
+
 function TeamBentoBanner({
   doctorSrc,
   doctorAlt,
   leftHeadline = "alverna\ndental\nstudio",
+  showScanCard = true,
 }: {
   doctorSrc: string;
   doctorAlt: string;
   leftHeadline?: string;
+  showScanCard?: boolean;
 }) {
   return (
     <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
@@ -432,12 +443,16 @@ function TeamBentoBanner({
       </article>
 
       <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
-        <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
-          <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
-            <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111] text-[32px] font-semibold text-white">100</div>
-          </div>
-          <p className="mt-4 text-[21px] font-semibold text-white">Scanare 3D</p>
-        </article>
+        {showScanCard ? (
+          <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
+            <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
+              <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111]">
+                <Scan3DIcon />
+              </div>
+            </div>
+            <p className="mt-4 text-[21px] font-semibold text-white">Scanare 3D</p>
+          </article>
+        ) : null}
 
         <article className="min-h-[220px] rounded-[16px] bg-[#0A0A0A] p-6 max-md:pr-2 md:h-[275px]">
           <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
@@ -950,26 +965,28 @@ export default function HomePageClient() {
           <div className="min-w-0">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <h2 className="text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
-                <div className="flex items-center gap-2 md:gap-3">
-                  <button
-                    type="button"
-                    onClick={goPrevServicePage}
-                    aria-label="Servicii anterioare"
-                    className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
-                  >
-                    <span className="text-[21px] leading-none">←</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={goNextServicePage}
-                    aria-label="Servicii următoare"
-                    className="ads-btn-primary inline-flex h-[44px] w-[44px] items-center justify-center rounded-full"
-                  >
-                    <span className="text-[21px] leading-none">→</span>
-                  </button>
+                <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end md:gap-4">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={goPrevServicePage}
+                      aria-label="Servicii anterioare"
+                      className="ads-btn-primary inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full"
+                    >
+                      <span className="text-[21px] leading-none">←</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={goNextServicePage}
+                      aria-label="Servicii următoare"
+                      className="ads-btn-primary inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full"
+                    >
+                      <span className="text-[21px] leading-none">→</span>
+                    </button>
+                  </div>
                   <a
                     href="#contact"
-                    className="ads-btn-primary inline-flex h-[44px] items-center justify-center rounded-full px-5 text-[21px] font-semibold"
+                    className="ads-btn-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-5 text-[18px] font-semibold sm:w-auto sm:text-[21px]"
                   >
                     Programează-te
                   </a>
@@ -1226,6 +1243,7 @@ export default function HomePageClient() {
           doctorSrc={labDoctorBannerImage.src}
           doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
           leftHeadline={"laborator\ndentar"}
+          showScanCard={false}
         />
       </section>
 

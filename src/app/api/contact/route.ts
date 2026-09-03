@@ -11,6 +11,9 @@ type ContactPayload = {
   serviciu?: string;
   mesaj?: string;
   source?: string;
+  pagePath?: string;
+  pageUrl?: string;
+  pageTitle?: string;
 };
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
@@ -53,7 +56,10 @@ export async function POST(request: Request) {
     <p><strong>Serviciu dorit:</strong> ${escape(body.serviciu)}</p>
     <p><strong>Mesaj:</strong><br/>${escape(body.mesaj)}</p>
     <hr/>
-    <p style="font-size:12px;color:#888;">Origine: ${escape(body.source)} · trimis la ${new Date().toISOString()}</p>
+    <p><strong>Pagină origine:</strong> ${escape(body.pagePath)}</p>
+    <p><strong>URL complet:</strong> ${escape(body.pageUrl)}</p>
+    <p><strong>Etichetă formular:</strong> ${escape(body.source)}</p>
+    <p style="font-size:12px;color:#888;">Titlu pagină: ${escape(body.pageTitle)} · trimis la ${new Date().toISOString()}</p>
   `;
 
   if (!RESEND_API_KEY) {

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { CLINIC } from "@/lib/contact";
+
 const INSTAGRAM_REELS = [
   "DMUaw_SN-Jb",
   "DZoq3GpgqNM",
@@ -11,9 +13,25 @@ const INSTAGRAM_REELS = [
   "DWiXYFugDv0",
 ] as const;
 
+function ReelFallback({ reelId }: { reelId: string }) {
+  return (
+    <a
+      href={`https://www.instagram.com/reel/${reelId}/`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex aspect-[9/16] w-full flex-col items-center justify-center gap-3 bg-[#111] px-4 text-center text-white transition hover:bg-[#161616]"
+    >
+      <span className="text-[15px] font-medium text-white/80">Reel Instagram</span>
+      <span className="text-[17px] font-semibold text-[#9fc48f]">Vezi pe Instagram</span>
+      <span className="text-[14px] text-white/50">{CLINIC.instagramHandle}</span>
+    </a>
+  );
+}
+
 function ReelEmbed({ reelId }: { reelId: string }) {
   const ref = useRef<HTMLLIElement>(null);
   const [visible, setVisible] = useState(false);
+  const [embedFailed, setEmbedFailed] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -39,21 +57,29 @@ function ReelEmbed({ reelId }: { reelId: string }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!visible || embedFailed) return;
+    const timer = window.setTimeout(() => setEmbedFailed(true), 12000);
+    return () => window.clearTimeout(timer);
+  }, [visible, embedFailed]);
+
   return (
     <li ref={ref} className="min-w-0 list-none">
       <div className="instagram-reel-frame shadow-[0_24px_60px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition duration-300 hover:ring-white/22">
-        {visible ? (
+        {visible && !embedFailed ? (
           <iframe
             title={`Instagram reel ${reelId}`}
             src={`https://www.instagram.com/reel/${reelId}/embed`}
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            onLoad={() => setEmbedFailed(false)}
+            onError={() => setEmbedFailed(true)}
           />
+        ) : visible && embedFailed ? (
+          <ReelFallback reelId={reelId} />
         ) : (
-          <div className="flex aspect-[9/16] w-full items-center justify-center bg-[#111] text-[18px] text-white/50">
-            Instagram
-          </div>
+          <ReelFallback reelId={reelId} />
         )}
       </div>
     </li>
@@ -70,6 +96,19 @@ export default function InstagramReelsSection() {
         >
           Urmărește activitatea noastră
         </h2>
+        <p className="mx-auto mt-3 max-w-[640px] text-center text-[18px] text-white/60">
+          Reels încărcate la scroll. Dacă embed-ul nu este disponibil, deschide direct profilul nostru.
+        </p>
+        <p className="mt-2 text-center">
+          <a
+            href={CLINIC.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[18px] font-medium text-[#9fc48f] underline decoration-[#9fc48f]/40 underline-offset-4 hover:decoration-[#9fc48f]"
+          >
+            {CLINIC.instagramHandle}
+          </a>
+        </p>
 
         <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:mt-10 md:grid-cols-3 md:gap-5 lg:grid-cols-6 lg:gap-6">
           {INSTAGRAM_REELS.map((reelId) => (

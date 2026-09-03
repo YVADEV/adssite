@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { pricingData } from "@/components/home/HomePageClient";
+import { CLINIC } from "@/lib/contact";
 
 export default function TarifePage() {
   const [activeCategory, setActiveCategory] = useState(pricingData[0]?.category ?? "");
@@ -12,7 +13,7 @@ export default function TarifePage() {
 
   return (
     <PrototypeFrame>
-      <main className="bg-black pb-24 pt-12 text-white md:pt-16 lg:pt-[110px]">
+      <main className="overflow-x-clip bg-black pb-24 pt-12 text-white md:pt-16 lg:pt-[110px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white/70">Transparență totală</p>
           <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
@@ -29,8 +30,8 @@ export default function TarifePage() {
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[420px_minmax(0,1fr)] lg:gap-8">
-            <aside className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
-              <div className="max-h-[620px] space-y-2 overflow-y-auto pr-1">
+            <aside className="rounded-[24px] border border-white/10 bg-white/[0.04] p-3 sm:p-4">
+              <div className="max-h-none space-y-2 overflow-visible lg:max-h-[620px] lg:overflow-y-auto lg:pr-1">
                 {pricingData.map((category) => {
                   const isActive = category.category === activeData.category;
                   return (
@@ -39,7 +40,7 @@ export default function TarifePage() {
                       whileHover={{ y: -1 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       onClick={() => setActiveCategory(category.category)}
-                      className={`grid h-[52px] w-full grid-cols-[1fr_26px] items-center rounded-[12px] border px-4 text-left text-[21px] font-medium transition outline-none ${
+                      className={`grid min-h-[52px] w-full grid-cols-[1fr_26px] items-center rounded-[12px] border px-4 py-3 text-left text-[18px] font-medium transition outline-none sm:text-[21px] ${
                         isActive
                           ? "border-[#4F7F47]/60 bg-[#4F7F47]/15 text-white ring-2 ring-[#4F7F47]/35"
                           : "border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"
@@ -72,7 +73,7 @@ export default function TarifePage() {
               <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.35)] bg-[rgba(79,127,71,0.08)] p-4">
                 <p className="text-[21px] font-semibold text-white">Solicită un plan personalizat</p>
                 <p className="mt-1 text-[21px] text-white/75">Te contactăm rapid pentru o estimare clară și pașii potriviți cazului tău.</p>
-                <a href="/#contact" className="ads-btn-lit mt-3 inline-flex min-h-[42px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[17px] font-semibold leading-[1.2] transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-5 sm:text-[21px]">
+                <a href={CLINIC.formPageHref} className="ads-btn-lit mt-3 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[17px] font-semibold leading-[1.2] transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-5 sm:text-[21px]">
                   Programează o consultație
                 </a>
               </div>

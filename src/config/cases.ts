@@ -77,16 +77,16 @@ export type CaseStudy = {
 
 function storyGalleryFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
   return [
-    { image, label: "Before", alt: `${name} — situație inițială`, objectPosition: "center top" },
+    { image, label: "Înainte", alt: `${name} — situație inițială`, objectPosition: "center top" },
     { image, label: "În clinică", alt: `${name} — documentare în clinică`, objectPosition: "center center" },
-    { image, label: "After", alt: `${name} — rezultat final`, objectPosition: "center 36%" },
+    { image, label: "După", alt: `${name} — rezultat final`, objectPosition: "center 36%" },
   ];
 }
 
 function beforeAfterFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
   return [
-    { image, label: "Before", alt: `${name} — înainte de tratament`, objectPosition: "center top" },
-    { image, label: "After", alt: `${name} — după tratament`, objectPosition: "center 36%" },
+    { image, label: "Înainte", alt: `${name} — înainte de tratament`, objectPosition: "center top" },
+    { image, label: "După", alt: `${name} — după tratament`, objectPosition: "center 36%" },
   ];
 }
 
@@ -103,9 +103,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center center",
     thumbnailSrc: ceciliaHero.src,
     storyImages: [
-      { image: caz1Before, label: "Before", alt: "Situație inițială — înainte de tratament", objectPosition: "center center" },
+      { image: caz1Before, label: "Înainte", alt: "Situație inițială — înainte de tratament", objectPosition: "center center" },
       { image: caz1Proteza, label: "Proteză", alt: "Lucrare protetică All-on-4 Straumann", objectPosition: "center center" },
-      { image: caz1After, label: "After", alt: "Rezultat final — după tratament", objectPosition: "center 36%" },
+      { image: caz1After, label: "După", alt: "Rezultat final — după tratament", objectPosition: "center 36%" },
     ],
     intro:
       "Pacienta noastră a ajuns la noi cu distrucții dentare severe, o situație care afecta nu doar funcționalitatea, ci și calitatea vieții de zi cu zi.",
@@ -117,8 +117,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Rezultatul final nu înseamnă doar un zâmbet nou, ci o transformare completă. Bucuria și încrederea pacientei la finalul tratamentului spun mai mult decât orice descriere.",
     beforeAfterImages: [
-      { image: caz1Before, label: "Before", alt: "Cecilia — înainte de tratament", objectPosition: "center center" },
-      { image: caz1After, label: "After", alt: "Cecilia — după tratament", objectPosition: "center 36%" },
+      { image: caz1Before, label: "Înainte", alt: "Cecilia — înainte de tratament", objectPosition: "center center" },
+      { image: caz1After, label: "După", alt: "Cecilia — după tratament", objectPosition: "center 36%" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză completă a distrucțiilor dentare și stabilirea obiectivelor funcționale și estetice." },
@@ -148,9 +148,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center center",
     thumbnailSrc: danaHero.src,
     storyImages: [
-      { image: danaBefore, label: "Before", alt: "Dana — situație inițială", objectPosition: "center center" },
+      { image: danaBefore, label: "Înainte", alt: "Dana — situație inițială", objectPosition: "center center" },
       { image: danaHug, label: "În clinică", alt: "Dana alături de echipa medicală", objectPosition: "center 38%" },
-      { image: danaHero, label: "After", alt: "Dana — rezultat final", objectPosition: "center 36%" },
+      { image: danaHero, label: "După", alt: "Dana — rezultat final", objectPosition: "center 36%" },
     ],
     intro:
       "Acest caz complex de reabilitare orală completă a fost realizat în cadrul Alverna Dental Studio, printr-o abordare multidisciplinară care a combinat tratamente chirurgicale parodontale și restaurări protetice integral din zirconiu.",
@@ -165,8 +165,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Rezultatul final este un zâmbet complet reabilitat, cu o estetică naturală, funcționalitate optimă și integrare armonioasă a restaurărilor în contextul facial al pacientului.",
     beforeAfterImages: [
-      { image: danaBefore, label: "Before", alt: "Dana — înainte de tratament", objectPosition: "center center" },
-      { image: danaHero, label: "After", alt: "Dana — după tratament", objectPosition: "center 36%" },
+      { image: danaBefore, label: "Înainte", alt: "Dana — înainte de tratament", objectPosition: "center center" },
+      { image: danaHero, label: "După", alt: "Dana — după tratament", objectPosition: "center 36%" },
     ],
     treatmentSteps: [
       {
@@ -212,8 +212,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center center",
     thumbnailSrc: aureliaHero.src,
     storyImages: [
-      { image: aureliaBefore, label: "Before", alt: "Aurelia — situație inițială", objectPosition: "center center" },
-      { image: aureliaHero, label: "After", alt: "Aurelia — rezultat final", objectPosition: "center 36%" },
+      { image: aureliaBefore, label: "Înainte", alt: "Aurelia — situație inițială", objectPosition: "center center" },
+      { image: aureliaHero, label: "După", alt: "Aurelia — rezultat final", objectPosition: "center 36%" },
     ],
     intro:
       "Acest caz de estetică dentară a fost planificat și realizat în Alverna Dental Studio, cu accent pe proporții naturale, culoare echilibrată și integrare armonioasă în fizionomia pacientului.",
@@ -227,8 +227,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Rezultatul final este un zâmbet echilibrat, cu estetică naturală și integrare armonioasă în contextul facial al pacientului.",
     beforeAfterImages: [
-      { image: aureliaBefore, label: "Before", alt: "Aurelia — înainte de tratament", objectPosition: "center center" },
-      { image: aureliaHero, label: "After", alt: "Aurelia — după tratament", objectPosition: "center 36%" },
+      { image: aureliaBefore, label: "Înainte", alt: "Aurelia — înainte de tratament", objectPosition: "center center" },
+      { image: aureliaHero, label: "După", alt: "Aurelia — după tratament", objectPosition: "center 36%" },
     ],
     treatmentSteps: [
       { label: "Evaluare estetică", detail: "Analiză clinică și fotografică pentru stabilirea obiectivelor de formă, culoare și proporție." },
@@ -375,9 +375,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center 32%",
     thumbnailSrc: sergiuHero.src,
     storyImages: [
-      { image: sergiuBefore1, label: "Before", alt: "Sergiu Witberg — situație inițială", objectPosition: "center center" },
+      { image: sergiuBefore1, label: "Înainte", alt: "Sergiu Witberg — situație inițială", objectPosition: "center center" },
       { image: sergiuWithDoctor, label: "În clinică", alt: "Sergiu Witberg alături de echipa Alverna", objectPosition: "center center" },
-      { image: sergiuAfter1, label: "After", alt: "Sergiu Witberg — rezultat final", objectPosition: "center center" },
+      { image: sergiuAfter1, label: "După", alt: "Sergiu Witberg — rezultat final", objectPosition: "center center" },
     ],
     intro:
       "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
@@ -390,8 +390,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
     beforeAfterImages: [
-      { image: sergiuBefore2, label: "Before", alt: "Sergiu Witberg — înainte de tratament", objectPosition: "center center" },
-      { image: sergiuAfter2, label: "After", alt: "Sergiu Witberg — după tratament", objectPosition: "center center" },
+      { image: sergiuBefore2, label: "Înainte", alt: "Sergiu Witberg — înainte de tratament", objectPosition: "center center" },
+      { image: sergiuAfter2, label: "După", alt: "Sergiu Witberg — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată, orientată spre un zâmbet armonios și natural." },
@@ -424,9 +424,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center 42%",
     thumbnailSrc: simonaHero.src,
     storyImages: [
-      { image: simonaBefore1, label: "Before", alt: "Simona — situație inițială", objectPosition: "center center" },
+      { image: simonaBefore1, label: "Înainte", alt: "Simona — situație inițială", objectPosition: "center center" },
       { image: simonaAfter1, label: "În clinică", alt: "Simona — documentare clinică", objectPosition: "center center" },
-      { image: simonaHero, label: "After", alt: "Simona — rezultat final", objectPosition: "center 42%" },
+      { image: simonaHero, label: "După", alt: "Simona — rezultat final", objectPosition: "center 42%" },
     ],
     intro:
       "Simona și-a dorit un zâmbet mai luminos și armonios, păstrând un aspect natural, potrivit trăsăturilor sale.",
@@ -439,8 +439,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Un zâmbet reușit nu înseamnă doar dinți frumoși, ci un rezultat în care pacientul se simte cu adevărat ea însăși.",
     beforeAfterImages: [
-      { image: simonaBefore2, label: "Before", alt: "Simona — înainte de tratament", objectPosition: "center center" },
-      { image: simonaAfter2, label: "After", alt: "Simona — după tratament", objectPosition: "center center" },
+      { image: simonaBefore2, label: "Înainte", alt: "Simona — înainte de tratament", objectPosition: "center center" },
+      { image: simonaAfter2, label: "După", alt: "Simona — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru un zâmbet armonios și natural." },
@@ -472,7 +472,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     storyImages: [
       { image: raduAfter2, label: "În clinică", alt: "Radu — documentare în clinică", objectPosition: "center center" },
       { image: raduAfter1, label: "Detaliu", alt: "Radu — detaliu clinic", objectPosition: "center center" },
-      { image: raduHero, label: "After", alt: "Radu — rezultat final", objectPosition: "center 45%" },
+      { image: raduHero, label: "După", alt: "Radu — rezultat final", objectPosition: "center 45%" },
     ],
     intro:
       "Radu și-a dorit un zâmbet mai armonios și luminos, cu un aspect natural care să se potrivească trăsăturilor sale.",
@@ -486,7 +486,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Radu a obținut la finalul tratamentului.",
     beforeAfterImages: [
       { image: raduAfter1, label: "Documentare clinică", alt: "Radu — documentare clinică", objectPosition: "center center" },
-      { image: raduHero, label: "After", alt: "Radu — rezultat final", objectPosition: "center 45%" },
+      { image: raduHero, label: "După", alt: "Radu — rezultat final", objectPosition: "center 45%" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru un zâmbet armonios, adaptat trăsăturilor pacientului." },
@@ -516,9 +516,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center center",
     thumbnailSrc: carmenAfter1.src,
     storyImages: [
-      { image: carmenBefore1, label: "Before", alt: "Carmen — situație inițială", objectPosition: "center center" },
+      { image: carmenBefore1, label: "Înainte", alt: "Carmen — situație inițială", objectPosition: "center center" },
       { image: carmenAfter2, label: "În clinică", alt: "Carmen — documentare clinică", objectPosition: "center center" },
-      { image: carmenHero, label: "After", alt: "Carmen — rezultat final", objectPosition: "center 42%" },
+      { image: carmenHero, label: "După", alt: "Carmen — rezultat final", objectPosition: "center 42%" },
     ],
     intro:
       "Carmen și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
@@ -531,8 +531,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Carmen a obținut la finalul tratamentului.",
     beforeAfterImages: [
-      { image: carmenBefore2, label: "Before", alt: "Carmen — înainte de tratament", objectPosition: "center center" },
-      { image: carmenAfter1, label: "After", alt: "Carmen — după tratament", objectPosition: "center center" },
+      { image: carmenBefore2, label: "Înainte", alt: "Carmen — înainte de tratament", objectPosition: "center center" },
+      { image: carmenAfter1, label: "După", alt: "Carmen — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru corectarea discolorațiilor și obținerea unui zâmbet uniform." },

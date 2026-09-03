@@ -172,11 +172,11 @@ export default async function CaseDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Before & After */}
+        {/* Înainte / După */}
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
           <p className="text-[21px] font-semibold uppercase tracking-[0.12em] text-white">Rezultat documentat</p>
           <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
-            Before & After
+            Înainte / După
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-10">
             {caz.beforeAfterImages.map((item, i) => (
@@ -204,7 +204,7 @@ export default async function CaseDetailPage({ params }: Props) {
             <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
               Cazuri <span className="text-white">mai în detaliu</span>
               <br />
-              <span className="text-white">before and after</span>
+              <span className="text-white">înainte și după</span>
             </h2>
             <Link href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
               Vezi toate

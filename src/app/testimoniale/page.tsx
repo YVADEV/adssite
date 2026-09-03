@@ -94,7 +94,7 @@ export default function TestimonialePage() {
         <section className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:px-8 lg:mt-10 lg:px-12">
           <div className="rounded-[24px] bg-[#0A0A0A] p-6 text-white md:p-10 lg:p-12">
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <h2 className="text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[48px]">Google Reviews</h2>
+              <h2 className="text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[48px]">Recenzii Google</h2>
               <p className="text-[21px] font-semibold text-[#f2d16b]">4.8/5 ★★★★★</p>
             </div>
             <p className="mt-4 max-w-[900px] text-[21px] leading-[1.7] text-white">

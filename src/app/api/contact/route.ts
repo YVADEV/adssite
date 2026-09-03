@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { CLINIC } from "@/lib/contact";
+
 export const runtime = "nodejs";
 
 type ContactPayload = {
@@ -12,12 +14,13 @@ type ContactPayload = {
 };
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "contact@alvernadental.com";
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "no-reply@alvernadental.com";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? CLINIC.email;
+const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? `Alverna Dental Studio <no-reply@${CLINIC.websiteDisplay}>`;
 
 function isValid(body: ContactPayload) {
   if (!body.nume || body.nume.trim().length < 2) return false;
   if (!body.telefon || body.telefon.trim().length < 6) return false;
+  if (body.email && body.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())) return false;
   return true;
 }
 
@@ -36,7 +39,7 @@ export async function POST(request: Request) {
 
   if (!isValid(body)) {
     return NextResponse.json(
-      { ok: false, error: "Te rugăm să completezi cel puțin numele și un număr de telefon." },
+      { ok: false, error: "Te rugăm să completezi cel puțin numele și un număr de telefon valid." },
       { status: 422 }
     );
   }
@@ -54,9 +57,7 @@ export async function POST(request: Request) {
   `;
 
   if (!RESEND_API_KEY) {
-    // Without a configured provider, just acknowledge and log on the server
-    // so leads can be wired up later by setting RESEND_API_KEY.
-    console.log("[contact] new lead (no provider configured):", { ...body, subject });
+    console.log("[contact] new lead (no provider configured):", { to: TO_EMAIL, ...body, subject });
     return NextResponse.json({ ok: true, queued: true });
   }
 
@@ -72,7 +73,7 @@ export async function POST(request: Request) {
         to: [TO_EMAIL],
         subject,
         html,
-        reply_to: body.email || undefined,
+        reply_to: body.email?.trim() || undefined,
       }),
     });
     if (!resp.ok) {

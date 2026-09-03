@@ -30,13 +30,13 @@ import labBannerImage from "@/assets/cazuri/lab-dantura-banner.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
-const caseImages = [
-  cazA7408097.src,
-  danaHero.src,
-  aureliaHero.src,
-  cazA7407760.src,
-  cazA7407944.src,
-  cazA7408160.src,
+const caseGallery = [
+  { src: cazA7408097.src, alt: "Caz implantologie — rezultat final Alverna Dental Studio" },
+  { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
+  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
+  { src: cazA7407760.src, alt: "Caz smile design — armonie dentară și facială" },
+  { src: cazA7407944.src, alt: "Caz reabilitare protetică — funcție și estetică" },
+  { src: cazA7408160.src, alt: "Caz reabilitare complexă — plan de tratament complet" },
 ];
 const reviews = [
   {
@@ -772,7 +772,7 @@ export default function HomePageClient() {
           La Alverna Dental Studio dispunem de propriul laborator de tehnică dentară, ceea ce ne permite să controlăm îndeaproape calitatea lucrărilor și a materialelor folosite.
         </div>
         <div className="mx-auto mt-4 flex w-full max-w-[1680px] flex-col gap-4 px-4 max-[480px]:items-stretch sm:flex-row sm:flex-wrap sm:items-center sm:justify-between md:px-6 lg:px-8">
-          <p className="min-w-0 text-[21px] text-white">Before / After · Implant + coroană – 3 luni</p>
+          <p className="min-w-0 text-[21px] text-white">Înainte / După · Implant + coroană – 3 luni</p>
           <div className="flex w-full flex-col gap-3 min-[480px]:w-auto min-[480px]:flex-row min-[480px]:items-center">
             <Link
               href="/cazuri/"
@@ -789,8 +789,8 @@ export default function HomePageClient() {
           </div>
         </div>
         <div className="mx-auto mt-[64px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
-          {caseImages.map((src, i) => (
-            <CaseImage key={src} src={src} alt="" data-anim="image" className="h-[min(72vw,380px)] w-full rounded-[28px] object-cover sm:h-[430px] lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
+          {caseGallery.map(({ src, alt }, i) => (
+            <CaseImage key={src} src={src} alt={alt} data-anim="image" className="h-[min(72vw,380px)] w-full rounded-[28px] object-cover sm:h-[430px] lg:h-[560px]" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }} />
           ))}
         </div>
       </section>
@@ -1059,7 +1059,7 @@ export default function HomePageClient() {
             </h3>
             <img
               src={teamBannerImage.src}
-              alt=""
+              alt="Echipa medicală Alverna Dental Studio"
               className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(52vw,300px)] w-auto max-w-full object-contain md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
             />
           </article>
@@ -1090,7 +1090,7 @@ export default function HomePageClient() {
               <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
               <p className="mt-2 text-[21px] text-white/80">Pacienti multumiti</p>
               <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
-              <img src={cazA7407760.src} alt="" className="mt-4 h-[72px] w-full rounded-[10px] object-cover object-top sm:h-[96px] md:h-[110px]" />
+              <img src={cazA7407760.src} alt="Caz reabilitare protetică — rezultat Alverna Dental Studio" className="mt-4 h-[72px] w-full rounded-[10px] object-cover object-top sm:h-[96px] md:h-[110px]" />
             </article>
           </div>
         </div>
@@ -1218,7 +1218,7 @@ export default function HomePageClient() {
             <h2 className="text-[32px] font-semibold leading-[0.9] tracking-[-3px] sm:text-[48px] md:text-[64px] lg:text-[76px]">
               Cazuri <span className="text-white">mai in detaliu</span>
               <br />
-              <span className="text-white">before and after</span>
+              <span className="text-white">înainte și după</span>
             </h2>
             <Link
               href="/cazuri/"

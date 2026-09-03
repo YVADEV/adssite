@@ -52,24 +52,24 @@ export default function ServicePageTemplate({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
-          <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
-            <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
-            {chip}
+          <div className="absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9">
+            <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#9fc48f]" />
+            <span className="min-w-0">{chip}</span>
           </div>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
             <motion.div {...reveal} className="max-w-[1180px]">
-              <p className="text-[21px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
+              <p className="text-[18px] font-medium uppercase tracking-[0.18em] text-white sm:text-[21px]">{kicker}</p>
               <h1 className="mt-5 max-w-[980px] text-[32px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[112px]">
                 {title}
               </h1>
-              <p className="mt-6 max-w-[820px] text-[21px] leading-[1.75] text-white">
+              <p className="mt-6 max-w-[820px] text-[18px] leading-[1.75] text-white sm:text-[21px]">
                 {shortIntro}
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#contact" className="ads-btn-lit inline-flex h-[46px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href="#contact" className="ads-btn-lit inline-flex min-h-[46px] w-full items-center justify-center rounded-full px-5 text-[18px] font-semibold transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-6 sm:text-[21px]">
                   Solicită o evaluare
                 </a>
-                <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+                <a href="/tarife/" className="inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-5 text-[18px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10 sm:w-auto sm:px-6 sm:text-[21px]">
                   Vezi tarife
                 </a>
               </div>

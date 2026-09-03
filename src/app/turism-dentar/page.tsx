@@ -2,6 +2,7 @@
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { LazyVideo } from "@/components/media/LazyVideo";
+import { CLINIC } from "@/lib/contact";
 
 export default function TurismDentarPage() {
   return (
@@ -13,7 +14,7 @@ export default function TurismDentarPage() {
             <div>
               <p className="text-[21px] font-medium text-[#6b6b6b]">🦷 Turism dentar – Alverna Dental Studio</p>
               <h1 className="mt-3 text-[36px] font-extrabold leading-[0.96] tracking-[-0.045em] text-white md:text-[72px] lg:text-[96px]">Turism dentar</h1>
-              <p className="mt-5 text-[21px] font-medium text-[#232323]">4.8 • Dental clinic • Closed</p>
+              <p className="mt-5 text-[21px] font-medium text-[#232323]">4,8 ★ · {CLINIC.hoursDisplay}</p>
             </div>
           </div>
         </section>
@@ -93,7 +94,7 @@ export default function TurismDentarPage() {
           <div className="rounded-[24px] bg-white p-6 md:p-10 lg:p-12">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <h2 className="text-[28px] font-semibold tracking-[-0.02em] text-white md:text-[36px]">Cazuri mai în detaliu</h2>
-              <p className="text-[21px] text-[#666666]">Before and after • rezultate reale</p>
+              <p className="text-[21px] text-[#666666]">Înainte și după · rezultate reale</p>
             </div>
             <div className="mt-7 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_1fr]">
               <article className="relative h-[min(65vw,380px)] bg-black md:h-[520px]">
@@ -116,30 +117,30 @@ export default function TurismDentarPage() {
               <p className="text-[21px] font-medium text-white">4.8/5 • Google</p>
             </div>
             <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-3">
-              <article className="flex min-h-[260px] flex-col rounded-[18px] bg-[#f5f5f5] p-6">
+              <article className="ads-surface-light-muted flex min-h-[260px] flex-col rounded-[18px] p-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-[21px] font-semibold text-white">Andreea Nisipeanu</h3>
-                  <p className="text-[21px] font-semibold text-white">★★★★★</p>
+                  <h3 className="text-[21px] font-semibold">Andreea Nisipeanu</h3>
+                  <p className="text-[21px] font-semibold">★★★★★</p>
                 </div>
                 <p className="mt-1 text-[21px] text-[#767676]">3 recenzii • acum o lună</p>
                 <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
                   Recomand cu mare încredere Clinica Alverna Dental! De la prima vizită am fost întâmpinată cu multă căldură și profesionalism. Clinica este impecabil de curată și dotată cu aparatură foarte modernă.
                 </p>
               </article>
-              <article className="flex min-h-[260px] flex-col rounded-[18px] bg-[#f5f5f5] p-6">
+              <article className="ads-surface-light-muted flex min-h-[260px] flex-col rounded-[18px] p-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-[21px] font-semibold text-white">Carmen Ilea</h3>
-                  <p className="text-[21px] font-semibold text-white">★★★★★</p>
+                  <h3 className="text-[21px] font-semibold">Carmen Ilea</h3>
+                  <p className="text-[21px] font-semibold">★★★★★</p>
                 </div>
                 <p className="mt-1 text-[21px] text-[#767676]">4 recenzii • acum 2 luni</p>
                 <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
                   Am fost impresionată de profesionalismul d-nei dr Andreea Pârvu. Studioul este foarte curat și dotat cu tehnologie de ultimă generație. Am să revin cu plăcere.
                 </p>
               </article>
-              <article className="flex min-h-[260px] flex-col rounded-[18px] bg-[#f5f5f5] p-6">
+              <article className="ads-surface-light-muted flex min-h-[260px] flex-col rounded-[18px] p-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-[21px] font-semibold text-white">Denisa Tănase</h3>
-                  <p className="text-[21px] font-semibold text-white">★★★★★</p>
+                  <h3 className="text-[21px] font-semibold">Denisa Tănase</h3>
+                  <p className="text-[21px] font-semibold">★★★★★</p>
                 </div>
                 <p className="mt-1 text-[21px] text-[#767676]">2 recenzii • acum 3 luni</p>
                 <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">

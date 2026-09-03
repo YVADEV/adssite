@@ -15,17 +15,17 @@ import simonaHero from "@/assets/cazuri/simona/hero.png";
 import raduAfter1 from "@/assets/cazuri/radu/after-1.png";
 import carmenAfter1 from "@/assets/cazuri/carmen/after-1.png";
 
-const caseImages = [
-  cazA7408097.src,
-  danaHero.src,
-  aureliaHero.src,
-  cazA7407944.src,
-  cazA7407760.src,
-  cazA7408160.src,
-  sergiuHero.src,
-  simonaHero.src,
-  raduAfter1.src,
-  carmenAfter1.src,
+const caseGallery = [
+  { src: cazA7408097.src, alt: "Caz implantologie — rezultat final Alverna Dental Studio" },
+  { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
+  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
+  { src: cazA7407944.src, alt: "Caz smile design — armonie dentară și facială" },
+  { src: cazA7407760.src, alt: "Caz reabilitare protetică — funcție și estetică" },
+  { src: cazA7408160.src, alt: "Caz reabilitare complexă — plan de tratament complet" },
+  { src: sergiuHero.src, alt: "Caz Sergiu Witberg — fațete dentare estetice" },
+  { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară" },
+  { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament" },
+  { src: carmenAfter1.src, alt: "Caz Carmen — rezultat final după tratament" },
 ];
 
 export default function CazuriPage() {
@@ -58,7 +58,7 @@ export default function CazuriPage() {
             </motion.h1>
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-[minmax(280px,360px)_1fr] md:gap-10 lg:mt-12 lg:gap-12">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
-                <p className="text-[21px] font-semibold text-white">Before & After</p>
+                <p className="text-[21px] font-semibold text-white">Înainte / După</p>
                 <p className="mt-3 text-[21px] leading-[1.4] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
               </motion.div>
               <motion.p
@@ -75,11 +75,11 @@ export default function CazuriPage() {
         </motion.section>
 
         <section className="mx-auto mt-14 grid w-full max-w-[1680px] grid-cols-1 gap-6 px-4 md:grid-cols-2 md:px-8 lg:mt-[120px] lg:grid-cols-3 lg:gap-[74px] lg:px-12">
-          {caseImages.map((src, i) => (
+          {caseGallery.map(({ src, alt }, i) => (
             <CaseImage
               key={src}
               src={src}
-              alt=""
+              alt={alt}
               className="h-[min(72vw,420px)] w-full rounded-[20px] object-cover sm:h-[520px] md:h-[664px]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export default function CazuriPage() {
             <h2 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[42px] md:text-[58px] lg:text-[72px]">
               Cazuri <span className="text-white">mai în detaliu</span>
               <br />
-              <span className="text-white">before and after</span>
+              <span className="text-white">înainte și după</span>
             </h2>
             <a href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
               Vezi toate

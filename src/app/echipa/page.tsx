@@ -33,7 +33,7 @@ import heroTeamImage from "@/assets/echipa/hero-team.png";
 
 const specialistTeam = [
   { name: "Dr.Radu Nichimiș", image: raduImage.src, href: "/echipa/radu-nichimis/" },
-  { name: "Dr. Andreea Pǎrvu", image: andreeaImage.src },
+  { name: "Dr. Andreea Pârvu", image: andreeaImage.src },
   { name: "Dr. Rareș Gorun", image: raresImage.src },
   { name: "Dr. Laura Grigorean", image: lauraImage.src },
   { name: "Dr. Valentina Nichimiș", image: valentinaImage.src },
@@ -63,7 +63,7 @@ const assistantsTeam = [
 ];
 
 const teamGroups = [
-  { title: "Medici specialisti", members: specialistTeam },
+  { title: "Medici specialiști", members: specialistTeam },
   { title: "Laborator", members: laboratoryTeam },
   { title: "Asistente", members: assistantsTeam },
   { title: "Management", members: managementTeam },

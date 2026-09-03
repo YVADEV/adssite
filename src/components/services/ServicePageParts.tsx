@@ -107,25 +107,49 @@ function ServiceHeroContent({
   title,
   intro,
   className = "",
-}: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro"> & { className?: string }) {
+  layout = "overlay",
+}: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro"> & {
+  className?: string;
+  layout?: "overlay" | "stacked";
+}) {
+  const isStacked = layout === "stacked";
+
   return (
     <>
-      <div className="absolute left-4 top-5 z-10 inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-medium uppercase tracking-[0.16em] text-white backdrop-blur md:left-8 md:top-7 lg:left-12 lg:top-9">
-        <span className="inline-block h-[6px] w-[6px] rounded-full bg-[#9fc48f]" />
-        {chip}
+      <div
+        className={
+          isStacked
+            ? "mb-5 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:text-[21px] lg:absolute lg:left-8 lg:top-7 lg:mb-0 lg:max-w-[min(100%,680px)] lg:px-4 lg:text-[21px] xl:left-12 xl:top-9"
+            : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9"
+        }
+      >
+        <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#9fc48f]" />
+        <span className="min-w-0">{chip}</span>
       </div>
-      <div className={`relative z-10 flex h-full w-full flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32 ${className}`}>
+      <div
+        className={`relative z-10 flex w-full flex-col ${
+          isStacked
+            ? "px-0 pb-0 pt-0 lg:h-full lg:justify-end lg:pb-16 lg:pt-28"
+            : "h-full justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32"
+        } ${className}`}
+      >
         <motion.div {...reveal} className="max-w-[820px]">
-          <p className="text-[21px] font-medium uppercase tracking-[0.18em] text-white">{kicker}</p>
+          <p className="text-[18px] font-medium uppercase tracking-[0.18em] text-white sm:text-[21px]">{kicker}</p>
           <h1 className="mt-5 max-w-[980px] text-[36px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[96px]">
             {title}
           </h1>
           <p className="mt-6 max-w-[720px] ads-readable text-white">{intro}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="/#contact" className="ads-btn-lit inline-flex h-[46px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href="#contact"
+              className="ads-btn-lit inline-flex min-h-[46px] w-full items-center justify-center rounded-full px-5 text-[18px] font-semibold transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-6 sm:text-[21px]"
+            >
               Solicită o evaluare
             </a>
-            <a href="/tarife/" className="inline-flex h-[46px] items-center rounded-full border border-white/35 bg-white/5 px-6 text-[21px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10">
+            <a
+              href="/tarife/"
+              className="inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-5 text-[18px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10 sm:w-auto sm:px-6 sm:text-[21px]"
+            >
               Vezi tarife
             </a>
           </div>
@@ -166,12 +190,12 @@ export function ServiceHero({
   if (splitVideoLayout && videoSrc) {
     return (
       <section className="relative w-full overflow-hidden bg-black">
-        <div className="relative h-[min(92vh,680px)] w-full bg-black md:h-[92vh] md:min-h-[720px] md:max-h-[1100px]">
-          <div className="mx-auto grid h-full w-full max-w-[1680px] grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:gap-8 xl:gap-12">
-            <div className="relative h-full min-h-0">
-              <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} />
+        <div className="relative w-full bg-black lg:h-[92vh] lg:min-h-[720px] lg:max-h-[1100px]">
+          <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 lg:h-full lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:gap-8 xl:gap-12">
+            <div className="relative px-4 pb-8 pt-20 md:px-8 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:justify-end lg:pb-16 lg:pt-28 xl:px-12">
+              <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} layout="stacked" />
             </div>
-            <div className="relative flex h-full min-h-[320px] items-center justify-center px-4 pb-8 pt-24 lg:min-h-0 lg:justify-end lg:px-0 lg:pb-16 lg:pt-28">
+            <div className="relative flex min-h-[320px] items-center justify-center px-4 pb-8 pt-4 lg:min-h-0 lg:justify-end lg:px-0 lg:pb-16 lg:pt-28">
               <motion.div
                 {...reveal}
                 className="relative aspect-[9/16] h-[min(62vh,760px)] w-auto max-w-[360px] rounded-[20px] border border-white/45 ads-btn-glow-lg lg:h-[min(78vh,900px)] lg:max-w-[420px] lg:-translate-x-[157px]"
@@ -471,7 +495,7 @@ export function ServiceCasesGrid() {
           <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
             Cazuri <span className="text-white">mai în detaliu</span>
             <br />
-            <span className="text-white">before and after</span>
+            <span className="text-white">înainte și după</span>
           </h2>
           <a href="/cazuri/" className="rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white sm:mt-5">
             Vezi toate
@@ -493,13 +517,13 @@ export function ServiceTestimonials() {
         <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
       </div>
       <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
-        <article className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[26px]">
+        <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
           <div className="flex items-end gap-2">
             <strong className="text-[36px] font-semibold leading-none tracking-[-0.03em] md:text-[52px]">4,8</strong>
             <span className="mb-2 text-base opacity-60">/5</span>
             <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
           </div>
-          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45] text-white">
+          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45]">
             <p>Adresă: {CLINIC.addressLine}</p>
             <p>Număr de telefon: {CLINIC.phoneDisplay}</p>
             <p>Program: {CLINIC.hoursDisplay}</p>
@@ -514,15 +538,15 @@ export function ServiceTestimonials() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
-            className="flex min-h-[300px] flex-col rounded-[18px] bg-[#f5f5f5] p-[22px]"
+            className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[22px]"
           >
             <div>
-              <p className="text-[28px] font-semibold leading-[1.05] text-white">{r.name}</p>
-              <p className="mt-1 text-[21px] text-white">{r.meta}</p>
-              <p className="mt-1 text-[21px] text-white">{r.time}</p>
+              <p className="text-[28px] font-semibold leading-[1.05]">{r.name}</p>
+              <p className="mt-1 text-[21px] opacity-60">{r.meta}</p>
+              <p className="mt-1 text-[21px] opacity-60">{r.time}</p>
             </div>
-            <p className="mt-6 text-[21px] leading-[1.55] text-white">{r.text}</p>
-            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em] text-white">
+            <p className="mt-6 text-[21px] leading-[1.55]">{r.text}</p>
+            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">
               ★★★★★
             </p>
           </motion.article>
@@ -702,7 +726,7 @@ export function ServiceFinalCTA({
         <h3 className="text-[30px] font-semibold leading-[1.05] tracking-[-0.028em] md:text-[40px]">{title}</h3>
         <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a
-          href="/#contact"
+          href="#contact"
           className="ads-btn-lit mt-7 inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]"
         >
           {buttonLabel}

@@ -100,7 +100,7 @@ export default function RaduNichimisPage() {
               <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
                 Cazuri <span className="text-white">mai în detaliu</span>
                 <br />
-                <span className="text-white">before and after</span>
+                <span className="text-white">înainte și după</span>
               </h2>
               <a href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
                 Vezi toate

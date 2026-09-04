@@ -785,7 +785,7 @@ export default function HomePageClient() {
             : "bg-[#0f1115]"
         }`}
       >
-        <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[18px] font-medium sm:px-4 md:px-6 lg:px-8">
+        <div className="relative mx-auto flex h-full w-full items-center justify-between px-4 text-[18px] font-medium sm:px-5 md:px-6 lg:px-8">
           <SiteLogo />
           <nav
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
@@ -806,7 +806,7 @@ export default function HomePageClient() {
             aria-controls="home-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className="relative z-10 hidden h-12 w-12 max-lg:flex flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f]"
+            className="relative z-10 flex h-12 w-12 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] lg:hidden"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
@@ -817,20 +817,24 @@ export default function HomePageClient() {
 
       <section
         data-anim="section"
-        className="mx-auto mt-0 w-full max-w-[1680px] overflow-visible px-4 pb-[72px] md:px-6 md:pb-[96px] lg:px-8 lg:pb-[140px]"
+        className="mx-auto mt-0 w-full max-w-[1680px] px-4 pb-[72px] md:px-6 md:pb-[96px] lg:px-8 lg:pb-[140px]"
       >
-        <div className="relative left-1/2 h-[calc(100vh-72px)] w-screen max-w-[100vw] -translate-x-1/2 max-md:h-[min(calc(100vh-72px),820px)]">
+        <div className="relative h-[min(calc(100svh-72px),820px)] w-full min-h-[520px] md:h-[calc(100vh-72px)] md:max-h-none">
           <div data-intro="hero-media" className="relative h-full w-full overflow-hidden rounded-[20px] md:rounded-[32px]">
             <HeroIntroVideo />
-            <div data-intro="hero-title" className="absolute left-4 top-4 text-white max-md:max-w-[calc(100%-2rem)] md:left-7 md:top-7 lg:left-9 lg:top-9">
-            <h1 className="max-w-[980px] text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
-            <p className="mt-1 max-w-[560px] text-[22px] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
-            <p className="mt-4 max-w-[700px] text-[18px] font-medium leading-[1.35] text-white md:text-[21px]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/72 via-black/35 to-transparent"
+            />
+            <div data-intro="hero-title" className="absolute left-5 right-5 top-5 text-white md:left-7 md:right-7 md:top-7 lg:left-9 lg:right-9 lg:top-9">
+            <h1 className="max-w-[980px] text-[clamp(32px,9vw,40px)] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
+            <p className="mt-1 max-w-[560px] text-[clamp(18px,5.5vw,22px)] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
+            <p className="mt-4 max-w-[700px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.35] text-white md:text-[21px]">
               Tratamente moderne, medici specializați, rezultate predictibile pentru un zâmbet sănătos și fără stres.
             </p>
           </div>
 
-            <div className="absolute bottom-6 left-4 max-w-[min(280px,calc(100%-2rem))] text-[18px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 md:text-[21px] lg:left-9">
+            <div className="absolute bottom-6 left-5 right-5 max-w-[280px] text-[18px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 md:right-auto md:text-[21px] lg:left-9">
               <p>Implantologie</p>
               <p className="mt-[12px]">Ortodontie</p>
               <p className="mt-[12px]">Invisalign</p>

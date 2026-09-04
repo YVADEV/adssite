@@ -39,10 +39,10 @@ export default function CookieConsent() {
       role="dialog"
       aria-live="polite"
       aria-label="Notificare cookie-uri"
-      className="fixed bottom-3 left-3 right-3 z-[9999] max-w-[640px] rounded-[16px] border border-white/10 bg-[#0f1115]/95 p-4 text-white shadow-[0_18px_50px_rgba(0,0,0,0.5)] backdrop-blur-md sm:bottom-5 sm:left-5"
+      className="fixed bottom-3 left-3 right-[4.75rem] z-[9999] max-w-[640px] rounded-[16px] border border-white/10 bg-[#0f1115]/95 p-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.5)] backdrop-blur-md sm:bottom-5 sm:left-5 sm:right-auto sm:p-4"
     >
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-[18px] leading-[1.5] text-white sm:text-[21px]">
+      <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
+        <p className="text-[15px] leading-[1.45] text-white sm:text-[18px] sm:leading-[1.5] md:text-[21px]">
           Folosim cookie-uri pentru a îmbunătăți experiența pe site și pentru analize anonime. Detalii în{" "}
           <Link href="/politica-de-confidentialitate" className="underline decoration-[#9fc48f]/60 underline-offset-4 hover:text-white">
             Politica de confidențialitate

@@ -105,7 +105,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               : "bg-[#0f1115]"
           }`}
         >
-          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[18px] font-medium sm:px-4 md:px-6 lg:px-8">
+          <div className="relative mx-auto flex h-full w-full items-center justify-between px-4 text-[18px] font-medium sm:px-5 md:px-6 lg:px-8">
             <SiteLogo />
             <nav
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
@@ -155,7 +155,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               aria-controls="mobile-menu"
               aria-haspopup="dialog"
               onClick={toggleMenu}
-              className="relative z-10 hidden h-10 w-10 shrink-0 max-lg:flex flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] sm:h-12 sm:w-12 sm:gap-[6px]"
+              className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px]"
             >
               <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />

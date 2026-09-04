@@ -39,7 +39,7 @@ export default function CazuriPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 flex w-screen max-w-[100vw] -translate-x-1/2 flex-col overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 md:px-12 md:py-10 xl:px-[120px]"
+          className="relative mt-0 flex w-full flex-col overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 md:px-12 md:py-10 xl:px-[120px]"
         >
           <div
             aria-hidden

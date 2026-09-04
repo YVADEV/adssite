@@ -84,6 +84,8 @@
 
 html {
   overflow-x: clip;
+  width: 100%;
+  max-width: 100%;
 }
 
 body {
@@ -93,7 +95,9 @@ body {
   font-size: var(--ads-font-size-body);
   line-height: 1.6;
   overflow-x: clip;
+  width: 100%;
   max-width: 100%;
+  min-width: 0;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
@@ -136,6 +140,8 @@ textarea {
 .ads-page {
   background: var(--ads-bg);
   color: var(--ads-text-primary);
+  min-width: 0;
+  max-width: 100%;
 }
 
 .ads-card {

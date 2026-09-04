@@ -160,7 +160,7 @@ export default function EchipaPage() {
               : "bg-[#0f1115]"
           }`}
         >
-          <div className="relative mx-auto flex h-full w-full items-center justify-between px-3 text-[18px] font-medium sm:px-4 md:px-6 lg:px-8">
+          <div className="relative mx-auto flex h-full w-full items-center justify-between px-4 text-[18px] font-medium sm:px-5 md:px-6 lg:px-8">
           <SiteLogo />
           <nav className="hidden items-center gap-8 text-[18px] text-white lg:flex xl:gap-[80px]">
             <a href="/">Acasă</a>
@@ -195,7 +195,7 @@ export default function EchipaPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative left-1/2 mt-0 grid w-screen max-w-[100vw] -translate-x-1/2 grid-cols-1 gap-8 overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
+          className="relative mt-0 grid w-full grid-cols-1 gap-8 overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
         >
           <motion.div
             aria-hidden

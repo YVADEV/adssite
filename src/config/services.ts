@@ -37,7 +37,18 @@ export const services: ServiceItem[] = [
   { title: "Fațete dentare", slug: "fatete-dentare", href: "/servicii/fatete-dentare/" },
   { title: "Endodonție", slug: "endodontie", href: "/servicii/endodontie/" },
   { title: "Estetică dentară", slug: "estetica-dentara", href: "/servicii/estetica-dentara/" },
-  { title: "Implant dentar", slug: "implant-dentar", href: "/servicii/implant-dentar/" },
+  {
+    title: "Implant dentar",
+    slug: "implant-dentar",
+    href: "/servicii/implant-dentar/",
+    children: [
+      {
+        title: "All-on-4 / All-on-6",
+        slug: "all-on-4-all-on-6",
+        href: "/servicii/implant-dentar/all-on-4-all-on-6/",
+      },
+    ],
+  },
   { title: "Odontologie", slug: "odontologie", href: "/servicii/odontologie/" },
   { title: "Ortodonție", slug: "ortodontie", href: "/servicii/ortodontie/" },
   { title: "Profilaxie", slug: "profilaxie", href: "/servicii/profilaxie/" },

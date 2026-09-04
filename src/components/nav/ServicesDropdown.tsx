@@ -15,10 +15,9 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
   const rootRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
-  const [nestedOpen, setNestedOpen] = useState(false);
+  const [nestedOpenSlug, setNestedOpenSlug] = useState<string | null>(null);
 
   const serviceMap = Object.fromEntries(services.map((service) => [service.slug, service]));
-  const aparatDentar = serviceMap["aparat-dentar"];
   const groupedColumns = [
     ["aparat-dentar", "pedodontie", "dentist-cluj", "odontologie", "urgente-stomatologice", "protetica"],
     ["ortodontie", "profilaxie", "implant-dentar", "chirurgie-dentara", "augmentarea-osoasa"],
@@ -43,7 +42,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     clearTimer();
     closeTimerRef.current = window.setTimeout(() => {
       setOpen(false);
-      setNestedOpen(false);
+      setNestedOpenSlug(null);
     }, 170);
   };
 
@@ -51,14 +50,14 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     const onClickOutside = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) {
         setOpen(false);
-        setNestedOpen(false);
+        setNestedOpenSlug(null);
       }
     };
 
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
-        setNestedOpen(false);
+        setNestedOpenSlug(null);
       }
     };
 
@@ -96,42 +95,43 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
           {groupedColumns.map((column, idx) => (
             <div key={`services-column-${idx}`} className="space-y-2">
               {column.map((item) => {
-                const isAparat = item.slug === "aparat-dentar";
+                const hasChildren = Boolean(item.children?.length);
+                const nestedOpen = nestedOpenSlug === item.slug;
                 return (
                   <div
                     key={item.slug}
                     className="relative"
-                    onMouseEnter={isAparat ? () => setNestedOpen(true) : undefined}
-                    onMouseLeave={isAparat ? () => setNestedOpen(false) : undefined}
+                    onMouseEnter={hasChildren ? () => setNestedOpenSlug(item.slug) : undefined}
+                    onMouseLeave={hasChildren ? () => setNestedOpenSlug(null) : undefined}
                   >
                     <Link
                       href={item.href}
                       aria-current={pathname === item.href ? "page" : undefined}
                       onFocus={
-                        isAparat
+                        hasChildren
                           ? () => {
                               setOpen(true);
-                              setNestedOpen(true);
+                              setNestedOpenSlug(item.slug);
                             }
                           : undefined
                       }
                       className={`flex min-h-[40px] items-center justify-between gap-2 rounded-[10px] px-3 py-2 text-[19px] font-medium leading-[1.35] transition duration-200 ${
-                        pathname === item.href ? "bg-[#4E7044]/15 text-white" : ""
+                        pathname === item.href || pathname.startsWith(`${item.href}`) ? "bg-[#4E7044]/15 text-white" : ""
                       } ${
                         isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[3px] hover:bg-[#edf2eb]"
                       }`}
                     >
                       <span className="min-w-0 flex-1 text-left">{item.title}</span>
-                      {isAparat ? <span className="text-[21px] opacity-60">›</span> : null}
+                      {hasChildren ? <span className="text-[21px] opacity-60">›</span> : null}
                     </Link>
 
-                    {isAparat && aparatDentar?.children?.length ? (
+                    {hasChildren ? (
                       <div
                         className={`overflow-hidden pl-[16px] transition-[max-height,opacity] duration-300 ease-out ${
                           nestedOpen ? "max-h-[160px] opacity-100" : "max-h-0 opacity-0"
                         }`}
                       >
-                        {aparatDentar.children.map((child) => (
+                        {(item.children ?? []).map((child) => (
                           <Link
                             key={child.slug}
                             href={child.href}

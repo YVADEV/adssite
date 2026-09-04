@@ -50,6 +50,7 @@ export const SERVICES: ReadonlyArray<ServiceMeta> = [
   { slug: "pedodontie", path: "/servicii/pedodontie/", name: "Pedodonție", short: "Stomatologie pediatrică prietenoasă și empatică." },
   { slug: "urgente-stomatologice", path: "/servicii/urgente-stomatologice/", name: "Urgențe stomatologice", short: "Intervenție rapidă pentru dureri și traumatisme orale." },
   { slug: "dentist-cluj", path: "/servicii/dentist-cluj/", name: "Dentist Cluj", short: "Stomatologie generală în Cluj-Napoca, cu plan personalizat." },
+  { slug: "all-on-4-all-on-6", path: "/servicii/implant-dentar/all-on-4-all-on-6/", name: "All-on-4 / All-on-6", short: "Dantură fixă pe implanturi, flux 100% digital și laborator propriu." },
   { slug: "spark", path: "/servicii/aparat-dentar/spark/", name: "Aliniatori Spark", short: "Ortodonție invizibilă cu aliniatori transparenți Spark." },
   { slug: "gutiera-de-contentie", path: "/servicii/aparat-dentar/gutiera-de-contentie/", name: "Gutieră de contenție", short: "Menținerea rezultatelor după tratamentul ortodontic." },
 ];

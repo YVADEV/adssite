@@ -122,22 +122,22 @@ function ServiceHeroContent({
         className={
           isStacked
             ? "mb-5 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:text-[21px] lg:absolute lg:left-8 lg:top-7 lg:mb-0 lg:max-w-[min(100%,680px)] lg:px-4 lg:text-[21px] xl:left-12 xl:top-9"
-            : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9"
+            : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[15px] font-medium uppercase leading-tight tracking-[0.12em] text-white backdrop-blur sm:px-4 sm:text-[18px] sm:tracking-[0.14em] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9"
         }
       >
         <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#9fc48f]" />
-        <span className="min-w-0">{chip}</span>
+        <span className="min-w-0 text-wrap">{chip}</span>
       </div>
       <div
         className={`relative z-10 flex w-full flex-col ${
           isStacked
             ? "px-0 pb-0 pt-0 lg:h-full lg:justify-end lg:pb-16 lg:pt-28"
-            : "h-full justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32"
+            : "mt-0 px-4 pb-12 pt-28 md:mt-auto md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32"
         } ${className}`}
       >
         <motion.div {...reveal} className="max-w-[820px]">
-          <p className="text-[18px] font-medium uppercase tracking-[0.18em] text-white sm:text-[21px]">{kicker}</p>
-          <h1 className="mt-5 max-w-[980px] text-[36px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[96px]">
+          <p className="text-[16px] font-medium uppercase tracking-[0.16em] text-white sm:text-[18px] sm:tracking-[0.18em] md:text-[21px]">{kicker}</p>
+          <h1 className="mt-4 max-w-[980px] text-[32px] font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-[36px] md:mt-5 md:text-[76px] md:leading-[0.92] md:tracking-[-0.05em] lg:text-[96px]">
             {title}
           </h1>
           <p className="mt-6 max-w-[720px] ads-readable text-white">{intro}</p>
@@ -223,7 +223,7 @@ export function ServiceHero({
 
   return (
     <section className="relative w-full overflow-hidden bg-black">
-      <div className="relative h-[min(78vh,640px)] w-full bg-black md:h-[78vh] md:min-h-[600px] md:max-h-[900px]">
+      <div className="relative flex min-h-[min(78vh,640px)] w-full flex-col bg-black md:min-h-[min(78vh,820px)]">
         {videoSrc ? (
           <ServiceHeroVideo
             videoSrc={videoSrc}
@@ -462,7 +462,7 @@ export function ServiceFAQ({
                 role="region"
                 aria-labelledby={buttonId}
                 className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
-                  isOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+                  isOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
                 <p className="mt-3 max-w-[1100px] text-[21px] leading-[1.7] text-white">{item.a}</p>

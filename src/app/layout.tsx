@@ -29,6 +29,8 @@ export const metadata: Metadata = {
   keywords: [
     "dentist Cluj",
     "implant dentar Cluj",
+    "All-on-4 Cluj",
+    "All-on-6 Cluj",
     "ortodonție Cluj",
     "stomatologie Cluj",
     "albire dinți Cluj",

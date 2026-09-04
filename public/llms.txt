@@ -1,0 +1,22 @@
+# Alverna Dental Studio
+
+> Clinică stomatologică premium în Cluj-Napoca. Implantologie, ortodonție, estetică dentară, profilaxie, pedodonție și urgențe stomatologice.
+
+Alverna Dental Studio este o clinică stomatologică din Cluj-Napoca (Strada Alverna 33). Tratamentul este planificat digital, iar lucrările protetice sunt realizate în laboratorul propriu al clinicii.
+
+## Pagini principale
+
+- [Acasă](https://quiet-daffodil-0aeb6a.netlify.app/): prezentare clinică, cazuri și programare
+- [Servicii](https://quiet-daffodil-0aeb6a.netlify.app/servicii/): lista completă a tratamentelor
+- [All-on-4 / All-on-6](https://quiet-daffodil-0aeb6a.netlify.app/servicii/implant-dentar/all-on-4-all-on-6/): dantură fixă, flux 100% digital
+- [Implant dentar](https://quiet-daffodil-0aeb6a.netlify.app/servicii/implant-dentar/): implantologie orală
+- [Echipa](https://quiet-daffodil-0aeb6a.netlify.app/echipa/): medici și laborator
+- [Cazuri](https://quiet-daffodil-0aeb6a.netlify.app/cazuri/): rezultate înainte și după
+- [Tarife](https://quiet-daffodil-0aeb6a.netlify.app/tarife/): prețuri transparente
+- [Contact](https://quiet-daffodil-0aeb6a.netlify.app/contact/): programări
+
+## Contact
+
+- Telefon: +40 748 085 933
+- Email: contact@alvernadental.com
+- Adresă: Strada Alverna 33, 400469 Cluj-Napoca

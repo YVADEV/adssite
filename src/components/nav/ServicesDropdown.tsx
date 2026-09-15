@@ -20,7 +20,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
   const serviceMap = Object.fromEntries(services.map((service) => [service.slug, service]));
   const groupedColumns = [
     ["aparat-dentar", "pedodontie", "dentist-cluj", "odontologie", "urgente-stomatologice", "protetica"],
-    ["ortodontie", "profilaxie", "implant-dentar", "chirurgie-dentara", "augmentarea-osoasa"],
+    ["ortodontie", "profilaxie", "implant-dentar", "all-on-x", "chirurgie-dentara", "augmentarea-osoasa"],
     ["estetica-dentara", "fatete-dentare", "coroana-dentara", "endodontie"],
   ]
     .map((group) => group.map((slug) => serviceMap[slug]).filter(Boolean))
@@ -116,7 +116,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                           : undefined
                       }
                       className={`flex min-h-[40px] items-center justify-between gap-2 rounded-[10px] px-3 py-2 text-[19px] font-medium leading-[1.35] transition duration-200 ${
-                        pathname === item.href || pathname.startsWith(`${item.href}`) ? "bg-[#4E7044]/15 text-white" : ""
+                        pathname === item.href || pathname.startsWith(`${item.href}`) ? "bg-[#B6B94C]/15 text-white" : ""
                       } ${
                         isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[3px] hover:bg-[#edf2eb]"
                       }`}
@@ -128,7 +128,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                     {hasChildren ? (
                       <div
                         className={`overflow-hidden pl-[16px] transition-[max-height,opacity] duration-300 ease-out ${
-                          nestedOpen ? "max-h-[160px] opacity-100" : "max-h-0 opacity-0"
+                          nestedOpen ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"
                         }`}
                       >
                         {(item.children ?? []).map((child) => (
@@ -137,7 +137,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                             href={child.href}
                             aria-current={pathname === child.href ? "page" : undefined}
                             className={`mt-1.5 flex min-h-[36px] items-center rounded-[8px] px-3 py-2 text-[18px] font-normal leading-[1.35] transition duration-200 ${
-                              pathname === child.href ? "bg-[#4E7044]/15 text-white" : ""
+                              pathname === child.href ? "bg-[#B6B94C]/15 text-white" : ""
                             } ${
                               isDark ? "text-white hover:translate-x-[2px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[2px] hover:bg-[#edf2eb]"
                             }`}

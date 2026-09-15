@@ -35,8 +35,8 @@
   /* ADS Design Tokens */
   --ads-bg: #0f1115;
   --ads-surface: #1e2024;
-  --ads-primary: #88a875;
-  --ads-secondary: #a3b18a;
+  --ads-primary: #B6B94C;
+  --ads-secondary: #B6B94C;
   --ads-text-primary: #ffffff;
   --ads-text-secondary: #ffffff;
   --ads-divider: rgba(255, 255, 255, 0.08);
@@ -207,7 +207,7 @@ textarea {
 }
 
 .ads-card-lit .ads-link-accent {
-  color: #4e7044;
+  color: #B6B94C;
 }
 
 .ads-card-lit .ads-link-accent:hover {
@@ -215,7 +215,7 @@ textarea {
 }
 
 .ads-form-success-box {
-  color: #2d5a28;
+  color: #6B6E24;
 }
 
 .ads-text-on-light {
@@ -441,21 +441,6 @@ html[data-theme="dark"] [class*="text-white/"] {
   color: #fff !important;
 }
 
-/* Green accent text */
-html[data-theme="dark"] [class*="text-[#9fc48f]"],
-html[data-theme="dark"] [class*="text-[#4F7F47]"],
-html[data-theme="dark"] [class*="text-[#4f7f45]"],
-html[data-theme="dark"] [class*="text-[#5b8b55]"],
-html[data-theme="dark"] [class*="text-[#95d682]"],
-html[data-theme="dark"] [class*="text-[#4E7044]"],
-html[data-theme="dark"] [class*="text-[#3e6538]"],
-html[data-theme="dark"] [class*="text-[#5da56d]"],
-html[data-theme="dark"] [class*="text-[#5aa36c]"],
-html[data-theme="dark"] [class*="text-[#88a875]"],
-html[data-theme="dark"] [class*="text-[#a3b18a]"] {
-  color: #fff !important;
-}
-
 /* Gold / yellow accent text */
 html[data-theme="dark"] [class*="text-[#f5b301]"],
 html[data-theme="dark"] [class*="text-[#d4a017]"],
@@ -530,7 +515,7 @@ a {
 
 /* Accessibility — accessible focus indicator for keyboard users. */
 :where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid #9fc48f;
+  outline: 2px solid #B6B94C;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -582,7 +567,7 @@ a {
 }
 
 .brand {
-  color: #5aa36c;
+  color: #B6B94C;
 }
 
 .nav-list {
@@ -1307,7 +1292,7 @@ a {
 }
 
 .fig-brand {
-  color: #5da56d;
+  color: #B6B94C;
   font-weight: 500;
 }
 

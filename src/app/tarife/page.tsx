@@ -42,7 +42,7 @@ export default function TarifePage() {
                       onClick={() => setActiveCategory(category.category)}
                       className={`grid min-h-[52px] w-full grid-cols-[1fr_26px] items-center rounded-[12px] border px-4 py-3 text-left text-[18px] font-medium transition outline-none sm:text-[21px] ${
                         isActive
-                          ? "border-[#4F7F47]/60 bg-[#4F7F47]/15 text-white ring-2 ring-[#4F7F47]/35"
+                          ? "border-[#B6B94C]/60 bg-[#B6B94C]/15 text-white ring-2 ring-[#B6B94C]/35"
                           : "border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"
                       }`}
                     >

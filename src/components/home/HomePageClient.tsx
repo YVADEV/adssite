@@ -429,7 +429,7 @@ function TeamBentoBanner({
       </article>
 
       <article className="relative z-10 min-h-[420px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
-        <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(78,112,68,0.14),transparent_55%)]" />
+        <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(182,185,76,0.14),transparent_55%)]" />
         <div className="relative z-10 flex h-full flex-col">
           <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
             {"Puterea zâmbetului\ncare inspiră încredere"}
@@ -445,7 +445,7 @@ function TeamBentoBanner({
       <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
         {showScanCard ? (
           <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
-            <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#4E7044]">
+            <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#B6B94C]">
               <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111]">
                 <Scan3DIcon />
               </div>
@@ -806,7 +806,7 @@ export default function HomePageClient() {
             aria-controls="home-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className="relative z-10 flex h-12 w-12 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] lg:hidden"
+            className="relative z-10 flex h-12 w-12 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-[#ffffff]" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
@@ -1106,13 +1106,13 @@ export default function HomePageClient() {
             <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65]">
               <p>
                 Adresă:{" "}
-                <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                   {CLINIC.addressLine}
                 </a>
               </p>
               <p>
                 Număr de telefon:{" "}
-                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
                   {CLINIC.phoneDisplay}
                 </a>
               </p>
@@ -1235,7 +1235,7 @@ export default function HomePageClient() {
 
             <div className="mt-6 flex items-center justify-center gap-4">
               {pricingData.map((_, idx) => (
-                <span key={`tarife-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeTarifeIndex === idx ? "bg-[#88A875]" : "bg-white/30"}`} />
+                <span key={`tarife-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeTarifeIndex === idx ? "bg-[#B6B94C]" : "bg-white/30"}`} />
               ))}
             </div>
           </div>
@@ -1283,14 +1283,14 @@ export default function HomePageClient() {
       <section id="contact" ref={contactSectionRef} data-anim="section" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
         <div
           aria-hidden
-          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
+          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
         />
         <div
           ref={contactSpotlightRef}
           aria-hidden
           className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 [will-change:transform]"
           style={{
-            background: "radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(78,112,68,0.22), transparent 35%)",
+            background: "radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(182,185,76,0.22), transparent 35%)",
           }}
         />
 
@@ -1308,7 +1308,7 @@ export default function HomePageClient() {
             </div>
             <a
               href={`tel:${CLINIC.phoneTel}`}
-              className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:decoration-white"
+              className="mt-7 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
             >
               Preferi telefonic? Sună acum
             </a>

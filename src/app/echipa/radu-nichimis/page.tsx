@@ -137,13 +137,13 @@ export default function RaduNichimisPage() {
               <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.65]">
                 <p>
                   Adresă:{" "}
-                  <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                  <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                     {CLINIC.addressLine}
                   </a>
                 </p>
                 <p>
                   Număr de telefon:{" "}
-                  <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                  <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
                     {CLINIC.phoneDisplay}
                   </a>
                 </p>
@@ -200,7 +200,7 @@ export default function RaduNichimisPage() {
               </div>
               <a
                 href={`tel:${CLINIC.phoneTel}`}
-                className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:decoration-white"
+                className="mt-7 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
               >
                 Preferi telefonic? Sună acum
               </a>

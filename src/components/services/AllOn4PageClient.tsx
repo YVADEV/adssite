@@ -249,7 +249,7 @@ const doctorVideos = [
 function VideoPlaceholder({ name }: { name: string }) {
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-[18px] border border-white/12 bg-[#111]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(78,112,68,0.28),transparent_55%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(182,185,76,0.28),transparent_55%)]" />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-3 text-center sm:gap-3 sm:px-4">
         <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white backdrop-blur sm:h-14 sm:w-14">
           <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" aria-hidden>
@@ -295,7 +295,7 @@ function DoctorVideoBlock({
         <p className="mt-3 text-[18px] leading-[1.65] text-white/85 sm:text-[21px]">{doctor.bio}</p>
         <Link
           href={doctor.href}
-          className="mt-4 inline-flex min-h-[44px] items-center text-[18px] font-semibold text-white underline decoration-[#9fc48f]/70 underline-offset-4"
+          className="mt-4 inline-flex min-h-[44px] items-center text-[18px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4"
         >
           Vezi profil →
         </Link>

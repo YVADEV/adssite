@@ -26,7 +26,7 @@ export default function PrivacyPolicyPage() {
               <p className="mt-2">
                 Alverna Dental Studio, Strada Alverna 33, 400469 Cluj-Napoca, România. Pentru orice solicitare privind
                 datele tale personale ne poți scrie la{" "}
-                <a href="mailto:contact@alvernadental.com" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                <a href="mailto:contact@alvernadental.com" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                   contact@alvernadental.com
                 </a>
                 .

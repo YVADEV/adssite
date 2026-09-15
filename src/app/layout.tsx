@@ -90,7 +90,7 @@ export default function RootLayout({
       <body className="flex min-h-screen min-w-0 flex-col overflow-x-clip bg-black pb-[calc(12.5rem+env(safe-area-inset-bottom,0px))] text-white md:pb-0">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:px-5 focus:py-2 focus:text-[21px] focus:font-semibold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#88a875] ads-btn-lit"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:px-5 focus:py-2 focus:text-[21px] focus:font-semibold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#B6B94C] ads-btn-lit"
         >
           Sari la conținut
         </a>

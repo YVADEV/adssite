@@ -44,7 +44,7 @@ export default function CookieConsent() {
       <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
         <p className="text-[15px] leading-[1.45] text-white sm:text-[18px] sm:leading-[1.5] md:text-[21px]">
           Folosim cookie-uri pentru a îmbunătăți experiența pe site și pentru analize anonime. Detalii în{" "}
-          <Link href="/politica-de-confidentialitate" className="underline decoration-[#9fc48f]/60 underline-offset-4 hover:text-white">
+          <Link href="/politica-de-confidentialitate" className="underline decoration-[#B6B94C]/60 underline-offset-4 hover:text-white">
             Politica de confidențialitate
           </Link>
           .

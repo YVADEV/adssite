@@ -47,7 +47,7 @@ export default function GlobalIntro() {
 
   return (
     <div ref={rootRef} className="fixed inset-0 z-[9999] overflow-hidden bg-black">
-      <div data-intro="glow" className="pointer-events-none absolute left-1/2 top-1/2 h-[46vw] w-[46vw] min-h-[260px] min-w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#4E7044] blur-[140px]" />
+      <div data-intro="glow" className="pointer-events-none absolute left-1/2 top-1/2 h-[46vw] w-[46vw] min-h-[260px] min-w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B6B94C] blur-[140px]" />
       <div data-intro="content" className="relative flex h-full w-full flex-col items-center justify-center px-4 text-center">
         <p data-intro="title" className="text-[32px] font-bold leading-[0.9] tracking-[-0.045em] text-white sm:text-[68px] md:text-[96px] lg:text-[124px]">
           ALVERNA DENTAL

@@ -115,7 +115,7 @@ export default function EndodontiePageClient() {
               <ul className="space-y-2">
                 {symptoms.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-[10px] h-[4px] w-[4px] rounded-full bg-[#4E7044]" />
+                    <span className="mt-[10px] h-[4px] w-[4px] rounded-full bg-[#B6B94C]" />
                     <span>{item}</span>
                   </li>
                 ))}

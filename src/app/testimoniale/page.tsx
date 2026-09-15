@@ -109,7 +109,7 @@ export default function TestimonialePage() {
         </section>
 
         <section className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:px-8 lg:mt-10 lg:px-12">
-          <div className="rounded-[24px] bg-[#4E7044] p-8 text-white md:p-12">
+          <div className="rounded-[24px] bg-[#B6B94C] p-8 text-white md:p-12">
             <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white">Programări</p>
             <h2 className="mt-3 text-[36px] font-semibold leading-[1.02] tracking-[-0.03em] md:text-[56px]">Vrei o experiență stomatologică diferită?</h2>
             <p className="mt-4 max-w-[860px] text-[21px] leading-[1.7] text-white">

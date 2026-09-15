@@ -43,11 +43,16 @@ export const services: ServiceItem[] = [
     href: "/servicii/implant-dentar/",
     children: [
       {
-        title: "All-on-4 / All-on-6",
+        title: "All on X",
         slug: "all-on-4-all-on-6",
         href: "/servicii/implant-dentar/all-on-4-all-on-6/",
       },
     ],
+  },
+  {
+    title: "All on X",
+    slug: "all-on-x",
+    href: "/servicii/implant-dentar/all-on-4-all-on-6/",
   },
   { title: "Odontologie", slug: "odontologie", href: "/servicii/odontologie/" },
   { title: "Ortodonție", slug: "ortodontie", href: "/servicii/ortodontie/" },

@@ -125,7 +125,7 @@ function ServiceHeroContent({
             : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[15px] font-medium uppercase leading-tight tracking-[0.12em] text-white backdrop-blur sm:px-4 sm:text-[18px] sm:tracking-[0.14em] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9"
         }
       >
-        <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#9fc48f]" />
+        <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#B6B94C]" />
         <span className="min-w-0 text-wrap">{chip}</span>
       </div>
       <div
@@ -333,7 +333,7 @@ export function ServiceBulletsSection({
       <ul className="mt-5 space-y-3 text-[21px] leading-[1.75] text-white lg:mt-0">
         {items.map((item) => (
           <li key={item} className="flex gap-3">
-            <span className="mt-[10px] h-[4px] w-[4px] rounded-full bg-[#4E7044]" />
+            <span className="mt-[10px] h-[4px] w-[4px] rounded-full bg-[#B6B94C]" />
             <span>{item}</span>
           </li>
         ))}
@@ -539,13 +539,13 @@ export function ServiceTestimonials() {
           <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45]">
             <p>
               Adresă:{" "}
-              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                 {CLINIC.addressLine}
               </a>
             </p>
             <p>
               Număr de telefon:{" "}
-              <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+              <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
                 {CLINIC.phoneDisplay}
               </a>
             </p>
@@ -584,7 +584,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
     <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#4E7044] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
+        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
@@ -599,7 +599,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
           </div>
           <a
             href={`tel:${CLINIC.phoneTel}`}
-            className="mt-7 inline-block text-[21px] text-white underline decoration-[#9fc48f]/50 underline-offset-4 hover:text-white hover:decoration-white"
+            className="mt-7 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:text-white hover:decoration-white"
           >
             Preferi telefonic? Sună acum
           </a>
@@ -667,7 +667,7 @@ export function ContactFormCard({ source }: { source: string }) {
         Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
       </p>
       {status === "ok" ? (
-        <div role="status" className="ads-form-success-box mt-7 rounded-[18px] border border-[#4E7044]/30 bg-[#EDF4E9] p-6">
+        <div role="status" className="ads-form-success-box mt-7 rounded-[18px] border border-[#B6B94C]/30 bg-[#F4F5E4] p-6">
           <p className="text-[21px] font-semibold">Mulțumim! Mesajul a fost trimis.</p>
           <p className="mt-2 text-[21px] leading-[1.5]">
             Te contactăm în maxim 24h pentru confirmarea programării.
@@ -679,7 +679,7 @@ export function ContactFormCard({ source }: { source: string }) {
           <input
             id="contact-nume"
             name="nume"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Nume"
             required
             autoComplete="name"
@@ -689,7 +689,7 @@ export function ContactFormCard({ source }: { source: string }) {
             id="contact-telefon"
             name="telefon"
             type="tel"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Telefon"
             required
             autoComplete="tel"
@@ -699,7 +699,7 @@ export function ContactFormCard({ source }: { source: string }) {
             id="contact-email"
             name="email"
             type="email"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Email (opțional)"
             autoComplete="email"
           />
@@ -707,14 +707,14 @@ export function ContactFormCard({ source }: { source: string }) {
           <input
             id="contact-serviciu"
             name="serviciu"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Serviciu dorit"
           />
           <label className="sr-only" htmlFor="contact-mesaj">Mesaj</label>
           <textarea
             id="contact-mesaj"
             name="mesaj"
-            className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#4F7F47]/45"
+            className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Mesaj opțional"
           />
           {status === "error" ? (
@@ -727,11 +727,11 @@ export function ContactFormCard({ source }: { source: string }) {
               type="checkbox"
               name="gdpr"
               required
-              className="mt-1 h-[18px] w-[18px] shrink-0 accent-[#4E7044]"
+              className="mt-1 h-[18px] w-[18px] shrink-0 accent-[#B6B94C]"
             />
             <span>
               Am citit și accept{" "}
-              <Link href="/politica-de-confidentialitate" className="ads-link-accent underline decoration-[#9fc48f]/60 underline-offset-4">
+              <Link href="/politica-de-confidentialitate" className="ads-link-accent underline decoration-[#B6B94C]/60 underline-offset-4">
                 Politica de confidențialitate
               </Link>{" "}
               și sunt de acord cu prelucrarea datelor mele personale.
@@ -763,7 +763,7 @@ export function ServiceFinalCTA({
   return (
     <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
       <motion.div {...reveal} className="relative overflow-hidden rounded-[28px] bg-[#0A0A0A] p-8 text-white md:p-10 lg:p-12">
-        <div className="pointer-events-none absolute -right-24 -top-20 h-[220px] w-[220px] rounded-full bg-[#4E7044]/30 blur-[90px]" />
+        <div className="pointer-events-none absolute -right-24 -top-20 h-[220px] w-[220px] rounded-full bg-[#B6B94C]/30 blur-[90px]" />
         <h3 className="text-[30px] font-semibold leading-[1.05] tracking-[-0.028em] md:text-[40px]">{title}</h3>
         <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a

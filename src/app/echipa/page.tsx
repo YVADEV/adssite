@@ -180,7 +180,7 @@ export default function EchipaPage() {
             aria-controls="echipa-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#9fc48f] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px]"
+            className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px]"
           >
             <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />

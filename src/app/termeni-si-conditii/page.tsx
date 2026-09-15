@@ -28,11 +28,11 @@ export default function TermsPage() {
                 Site-ul alvernadental.com este administrat de Alverna Dental Studio, cu sediul în Cluj-Napoca,
                 Strada Alverna 33. Pentru întrebări legate de servicii medicale, programări sau acest document,
                 ne poți contacta la{" "}
-                <a href="mailto:contact@alvernadental.com" className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                <a href="mailto:contact@alvernadental.com" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                   contact@alvernadental.com
                 </a>{" "}
                 sau la{" "}
-                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#9fc48f]/60 underline-offset-4">
+                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
                   {CLINIC.phoneDisplay}
                 </a>
                 .

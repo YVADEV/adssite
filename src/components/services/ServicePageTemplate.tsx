@@ -50,7 +50,7 @@ export default function ServicePageTemplate({
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
           <div className="absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9">
-            <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#9fc48f]" />
+            <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#B6B94C]" />
             <span className="min-w-0">{chip}</span>
           </div>
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
@@ -93,7 +93,7 @@ export default function ServicePageTemplate({
           <ul className="mt-5 space-y-3 text-[21px] leading-[1.7] text-white">
             {recommendationBullets.map((item) => (
               <li key={item} className="flex gap-3">
-                <span className="mt-[10px] h-[5px] w-[5px] rounded-full bg-[#9fc48f]" />
+                <span className="mt-[10px] h-[5px] w-[5px] rounded-full bg-[#B6B94C]" />
                 <span>{item}</span>
               </li>
             ))}

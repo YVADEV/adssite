@@ -18,7 +18,7 @@ export default async function Image() {
           justifyContent: "space-between",
           padding: 64,
           background:
-            "radial-gradient(circle at 80% 20%, rgba(78,112,68,0.55), transparent 55%), linear-gradient(135deg, #0a0a0a 0%, #141414 50%, #0f1115 100%)",
+            "radial-gradient(circle at 80% 20%, rgba(182,185,76,0.55), transparent 55%), linear-gradient(135deg, #0a0a0a 0%, #141414 50%, #0f1115 100%)",
           color: "#ffffff",
           fontFamily: "system-ui, sans-serif",
         }}
@@ -35,7 +35,7 @@ export default async function Image() {
             fontSize: 18,
             letterSpacing: 6,
             textTransform: "uppercase",
-            color: "#9fc48f",
+            color: "#B6B94C",
             fontWeight: 500,
             width: "auto",
           }}
@@ -46,7 +46,7 @@ export default async function Image() {
               width: 10,
               height: 10,
               borderRadius: 999,
-              background: "#9fc48f",
+              background: "#B6B94C",
             }}
           />
           Alverna · Cluj-Napoca

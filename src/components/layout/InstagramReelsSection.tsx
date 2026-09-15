@@ -22,7 +22,7 @@ function ReelFallback({ reelId }: { reelId: string }) {
       className="flex aspect-[9/16] w-full flex-col items-center justify-center gap-3 bg-[#111] px-4 text-center text-white transition hover:bg-[#161616]"
     >
       <span className="text-[15px] font-medium text-white/80">Reel Instagram</span>
-      <span className="text-[17px] font-semibold text-[#9fc48f]">Vezi pe Instagram</span>
+      <span className="text-[17px] font-semibold text-[#B6B94C]">Vezi pe Instagram</span>
       <span className="text-[14px] text-white/50">{CLINIC.instagramHandle}</span>
     </a>
   );
@@ -104,7 +104,7 @@ export default function InstagramReelsSection() {
             href={CLINIC.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[18px] font-medium text-[#9fc48f] underline decoration-[#9fc48f]/40 underline-offset-4 hover:decoration-[#9fc48f]"
+            className="text-[18px] font-medium text-[#B6B94C] underline decoration-[#B6B94C]/40 underline-offset-4 hover:decoration-[#B6B94C]"
           >
             {CLINIC.instagramHandle}
           </a>

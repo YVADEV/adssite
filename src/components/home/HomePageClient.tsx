@@ -25,6 +25,8 @@ import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
+import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
+import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
@@ -359,7 +361,7 @@ const advantages = [
   { value: "100%", label: "Pacienți mulțumiți" },
 ];
 const recommendationClips = ["/cazuri-1.mp4", "/cazuri-2.mp4"];
-const missionPosters = ["/services/exam-male.png", "/services/whitening-2.png", "/services/smile-mirror.png", "/services/exam-female.png"];
+const missionPosters = ["/services/exam-male.png", "/services/whitening-2.png", "/services/smile-mirror.png", "/services/exam-male-2.png"];
 const recommendationClipMeta = [
   {
     date: "24 Jan 2026",
@@ -386,15 +388,6 @@ function SectionTitle({ title }: { title: string }) {
         {title}
       </h2>
     </div>
-  );
-}
-
-function Scan3DIcon() {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-9 w-9 text-white" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M12 3 4 7v10l8 4 8-4V7l-8-4Z" />
-      <path d="M4 7l8 4 8-4M12 11v10" />
-    </svg>
   );
 }
 
@@ -444,21 +437,29 @@ function TeamBentoBanner({
 
       <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
         {showScanCard ? (
-          <article className="flex min-h-[220px] flex-col items-center justify-center rounded-[16px] bg-[#0A0A0A] px-6 py-8 text-center md:h-[275px]">
-            <div className="relative flex h-[118px] w-[118px] items-center justify-center rounded-full border-[10px] border-[#B6B94C]">
-              <div className="flex h-[82px] w-[82px] items-center justify-center rounded-full bg-[#111111]">
-                <Scan3DIcon />
-              </div>
-            </div>
-            <p className="mt-4 text-[21px] font-semibold text-white">Scanare 3D</p>
+          <article className="relative flex min-h-[220px] flex-col overflow-hidden rounded-[16px] bg-[#0A0A0A] md:h-[275px]">
+            <img
+              src={shining3dScanner.src}
+              alt="Scanare 3D intraorală Shining 3D — Alverna Dental Studio"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <p className="relative z-10 mt-auto bg-gradient-to-t from-black/70 to-transparent px-5 pb-4 pt-10 text-[21px] font-semibold text-white">
+              Scanare 3D
+            </p>
           </article>
         ) : null}
 
-        <article className="min-h-[220px] rounded-[16px] bg-[#0A0A0A] p-6 max-md:pr-2 md:h-[275px]">
+        <article className="flex min-h-[220px] flex-col overflow-hidden rounded-[16px] bg-[#0A0A0A] p-6 md:h-[275px]">
           <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
           <p className="mt-2 text-[21px] text-white/80">Pacienți mulțumiți</p>
           <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
-          <img src={cazA7407760.src} alt="Caz reabilitare protetică — rezultat Alverna Dental Studio" className="mt-4 h-[72px] w-full rounded-[10px] object-cover object-top sm:h-[96px] md:h-[110px]" />
+          <div className="mt-4 min-h-0 flex-1 overflow-hidden rounded-[10px]">
+            <img
+              src={cazA7407760Smile.src}
+              alt="Zâmbet pacient — rezultat Alverna Dental Studio"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
         </article>
       </div>
     </div>
@@ -1175,34 +1176,14 @@ export default function HomePageClient() {
       <section id="tarife" className="relative w-full overflow-hidden bg-[#f5f5f5] pb-14 md:pb-20 lg:pb-[120px]">
         <div className="mx-auto w-full max-w-[1680px] bg-[#f5f5f5] px-5 py-12 md:px-10 md:py-16 lg:px-[96px] lg:py-[96px]">
           <div className="w-full">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div className="flex flex-wrap items-end justify-between gap-3">
               <h2 className="text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
-              <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center md:gap-3">
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    onClick={goPrevTarife}
-                    aria-label="Tarife anterioare"
-                    className="ads-btn-primary inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full"
-                  >
-                    <span className="text-[21px] leading-none">←</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={goNextTarife}
-                    aria-label="Tarife următoare"
-                    className="ads-btn-primary inline-flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full"
-                  >
-                    <span className="text-[21px] leading-none">→</span>
-                  </button>
-                </div>
-                <a
-                  href="#contact"
-                  className="ads-btn-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-4 py-2 text-[18px] font-semibold sm:w-auto sm:px-5 sm:text-[21px]"
-                >
-                  Programează-te
-                </a>
-              </div>
+              <a
+                href="#contact"
+                className="ads-btn-primary inline-flex min-h-[44px] items-center justify-center rounded-full px-4 py-2 text-[18px] font-semibold sm:px-5 sm:text-[21px]"
+              >
+                Programează-te
+              </a>
             </div>
             <div className="mt-5 flex flex-wrap gap-2 text-[21px] text-white">
               <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Preturi transparente</span>
@@ -1239,10 +1220,32 @@ export default function HomePageClient() {
               </div>
             </div>
 
-            <div className="mt-6 flex items-center justify-center gap-4">
-              {pricingData.map((_, idx) => (
-                <span key={`tarife-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeTarifeIndex === idx ? "bg-[#B6B94C]" : "bg-white/30"}`} />
-              ))}
+            <div className="mt-6 flex items-center justify-center gap-3 sm:gap-4">
+              <button
+                type="button"
+                onClick={goPrevTarife}
+                aria-label="Tarife anterioare"
+                className="ads-btn-no-glow inline-flex h-11 w-11 shrink-0 items-center justify-center bg-transparent p-0 text-[#B6B94C] transition-opacity hover:opacity-80"
+              >
+                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden>
+                  <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              <div className="flex max-w-[min(100%,520px)] flex-wrap items-center justify-center gap-2 sm:gap-4">
+                {pricingData.map((_, idx) => (
+                  <span key={`tarife-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeTarifeIndex === idx ? "bg-[#B6B94C]" : "bg-white/30"}`} />
+                ))}
+              </div>
+              <button
+                type="button"
+                onClick={goNextTarife}
+                aria-label="Tarife următoare"
+                className="ads-btn-no-glow inline-flex h-11 w-11 shrink-0 items-center justify-center bg-transparent p-0 text-[#B6B94C] transition-opacity hover:opacity-80"
+              >
+                <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden>
+                  <path d="M9 5l7 7-7 7" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>

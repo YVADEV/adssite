@@ -118,6 +118,7 @@ export default function EchipaPage() {
           { href: "/", label: "Acasă" },
           { href: "/echipa", label: "Echipa" },
           { href: "/cazuri", label: "Cazuri" },
+          { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
         ].map((item) => (
           <a
             key={item.label}
@@ -168,6 +169,7 @@ export default function EchipaPage() {
               Echipă
             </a>
             <a href="/cazuri">Cazuri</a>
+            <a href="/servicii/implant-dentar/all-on-4-all-on-6/">All on X</a>
             <ServicesDropdown isDark />
             <a href="/tarife">Tarife</a>
             <a href="/contact">Contact</a>

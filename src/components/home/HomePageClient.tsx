@@ -742,6 +742,7 @@ export default function HomePageClient() {
           { href: "/", label: "Acasă" },
           { href: "/echipa", label: "Echipa" },
           { href: "/cazuri", label: "Cazuri" },
+          { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
         ].map((item) => (
           <Link
             key={item.label}
@@ -789,11 +790,12 @@ export default function HomePageClient() {
           <SiteLogo />
           <nav
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
-            style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
+            style={{ columnGap: "clamp(24px, 4.5vw, 100px)" }}
           >
             <Link className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" aria-current="page">Acasă</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa">Echipa</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri">Cazuri</Link>
+            <Link className="pointer-events-auto whitespace-nowrap opacity-90 transition-opacity duration-200 hover:opacity-100" href="/servicii/implant-dentar/all-on-4-all-on-6/">All on X</Link>
             <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</Link>

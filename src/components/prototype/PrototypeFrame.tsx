@@ -47,7 +47,8 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    return pathname === href || pathname.startsWith(`${href}/`);
+    const normalized = href.replace(/\/$/, "");
+    return pathname === href || pathname === normalized || pathname.startsWith(`${normalized}/`);
   };
 
   return (
@@ -62,6 +63,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           { href: "/", label: "Acasă" },
           { href: "/echipa", label: "Echipa" },
           { href: "/cazuri", label: "Cazuri" },
+          { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
         ].map((item) => (
           <Link
             key={item.label}
@@ -109,18 +111,19 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             <SiteLogo />
             <nav
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
-              style={{ columnGap: "clamp(40px, 7vw, 140px)" }}
+              style={{ columnGap: "clamp(24px, 4.5vw, 100px)" }}
             >
               {[
                 { href: "/", label: "Acasă" },
                 { href: "/echipa", label: "Echipa" },
                 { href: "/cazuri", label: "Cazuri" },
+                { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
               ].map((it) => (
                 <Link
                   key={it.href}
                   href={it.href}
                   aria-current={isActive(it.href) ? "page" : undefined}
-                  className={`pointer-events-auto transition-opacity duration-200 hover:opacity-75 ${
+                  className={`pointer-events-auto whitespace-nowrap transition-opacity duration-200 hover:opacity-75 ${
                     isActive(it.href) ? "underline decoration-2 underline-offset-[10px] opacity-100" : "opacity-90"
                   }`}
                 >

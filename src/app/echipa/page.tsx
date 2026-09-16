@@ -8,6 +8,7 @@ import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
 import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
+import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
@@ -32,7 +33,7 @@ import raresHarmathImage from "@/assets/echipa/rares-harmath.png";
 import heroTeamImage from "@/assets/echipa/hero-team.png";
 
 const specialistTeam = [
-  { name: "Dr.Radu Nichimiș", image: raduImage.src, href: "/echipa/radu-nichimis/" },
+  { name: "Dr. Radu Nichimiș", image: raduImage.src, href: "/echipa/radu-nichimis/" },
   { name: "Dr. Andreea Pârvu", image: andreeaImage.src },
   { name: "Dr. Rareș Gorun", image: raresImage.src },
   { name: "Dr. Laura Grigorean", image: lauraImage.src },
@@ -118,7 +119,7 @@ export default function EchipaPage() {
           { href: "/", label: "Acasă" },
           { href: "/echipa", label: "Echipa" },
           { href: "/cazuri", label: "Cazuri" },
-          { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
         ].map((item) => (
           <a
             key={item.label}
@@ -126,7 +127,7 @@ export default function EchipaPage() {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "All on X" ? "ads-nav-green-glow" : ""
+              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
             }`}
           >
             {item.label}
@@ -149,7 +150,7 @@ export default function EchipaPage() {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "All on X" ? "ads-nav-green-glow" : ""
+              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
             }`}
           >
             {item.label}
@@ -173,7 +174,7 @@ export default function EchipaPage() {
               Echipă
             </a>
             <a href="/cazuri">Cazuri</a>
-            <a href="/servicii/implant-dentar/all-on-4-all-on-6/" className="ads-nav-green-glow">All on X</a>
+            <a href={FIXED_TEETH_HREF} className="ads-nav-green-glow">{FIXED_TEETH_NAV_LABEL}</a>
             <ServicesDropdown isDark />
             <a href="/tarife">Tarife</a>
             <a href="/contact">Contact</a>
@@ -270,10 +271,6 @@ export default function EchipaPage() {
               ? `group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] sm:h-[360px] ${isLinked ? "" : "cursor-default"}`
               : `group relative h-[383px] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] lg:w-[248px] ${isLinked ? "" : "cursor-default"}`;
 
-            const labelClassName = isMobileTeamGrid
-              ? "absolute right-2 top-2 max-w-[72px] text-right text-[13px] leading-[1.2] text-white sm:right-3 sm:top-3 sm:max-w-[80px] sm:text-[16px]"
-              : "absolute right-3 top-3 max-w-[80px] text-right text-[21px] leading-[1.2] text-white";
-
             const nameClassName = isMobileTeamGrid
               ? "absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] text-[15px] font-bold leading-[1.15] text-white sm:bottom-3 sm:left-3 sm:text-[18px]"
               : "absolute bottom-3 left-3 text-[21px] font-bold text-white";
@@ -326,7 +323,6 @@ export default function EchipaPage() {
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                <p className={labelClassName}>{group.title}</p>
                 {isMobileTeamGrid ? (
                   <h3 className={nameClassName}>{member.name}</h3>
                 ) : (

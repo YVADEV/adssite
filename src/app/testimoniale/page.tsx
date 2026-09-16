@@ -83,7 +83,7 @@ export default function TestimonialePage() {
               <p className="text-[21px] font-semibold text-[#f2d16b]">4.8/5 ★★★★★</p>
             </div>
             <p className="mt-4 max-w-[900px] text-[21px] leading-[1.7] text-white">
-              Feedback-ul pacienților din Cluj confirmă aceeași experiență: tratamente fără durere, comunicare transparentă, programări respectate și atmosferă profesionistă, fără presiune comercială.
+              Feedback-ul pacienților din Cluj confirmă aceeași experiență: comunicare clară, programări respectate și o echipă care explică opțiunile de tratament.
             </p>
           </div>
         </section>
@@ -101,7 +101,7 @@ export default function TestimonialePage() {
               <article className="rounded-[18px] border border-black/5 bg-[#f7f7f7] p-6">
                 <h3 className="text-[21px] font-semibold text-white">În timpul și după tratament</h3>
                 <p className="mt-3 text-[21px] leading-[1.7] text-[#404040]">
-                  Aparatură modernă, medici atenți și o echipă care comunică permanent cu tine. Obiectivul este simplu: rezultate excelente și o experiență calmă, fără stres.
+                  Aparatură modernă, medici atenți și o echipă care comunică permanent cu tine. Obiectivul este simplu: rezultate excelente și pași de tratament clari.
                 </p>
               </article>
             </div>

@@ -211,11 +211,11 @@ export default function ContactPage() {
             <div className="pt-0 text-white lg:pt-8">
               <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
               <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-                Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune.
+                Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
               </p>
               <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
                 <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
-                <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
+                <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
               </div>
               <a
                 href={`tel:${CLINIC.phoneTel}`}

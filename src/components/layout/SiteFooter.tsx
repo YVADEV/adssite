@@ -26,6 +26,7 @@ export default function SiteFooter() {
       <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-10 border-t border-black/10 pt-10 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
         <section>
           <h3 className="text-[21px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
+          {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
           <p className="mt-4 max-w-[560px] text-[21px] leading-[1.7] text-white">
             Clinica stomatologică Alverna Dental Studio include cabinete stomatologice modern amenajate și echipate cu
             aparatură de ultimă generație. Astfel, serviciile pe care le oferim sunt de o calitate superioară, iar
@@ -84,7 +85,7 @@ export default function SiteFooter() {
         </section>
       </div>
 
-      <div className="mx-auto mt-16 w-full max-w-[1720px] shrink-0 px-2">
+      <div className="ads-footer-instagram-wrap mx-auto mt-16 w-full max-w-[1720px] shrink-0 px-2">
         <a
           href={CLINIC.instagramUrl}
           target="_blank"

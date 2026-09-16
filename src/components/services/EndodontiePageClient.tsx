@@ -149,7 +149,7 @@ export default function EndodontiePageClient() {
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Primul pas spre un zâmbet sănătos începe aici."
-        body="Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune."
+        body="Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori."
       />
       <ServiceFinalCTA
         title="Aveți nevoie de endodonție în Cluj?"

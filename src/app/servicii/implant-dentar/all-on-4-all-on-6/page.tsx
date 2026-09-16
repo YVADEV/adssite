@@ -5,9 +5,9 @@ import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd"
 import { SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/implant-dentar/all-on-4-all-on-6/";
-const NAME = "All-on-4 / All-on-6";
+const NAME = "Dinți ficși pe implanturi – All-on-4 / All-on-6";
 const DESCRIPTION =
-  "All-on-4 și All-on-6 la Cluj: dantură fixă pe implanturi, planificare digitală și laborator propriu, full digital. Echipă: chirurgie BMF, parodontologie, protetică.";
+  "Dinți ficși pe implanturi la Cluj: All-on-4 și All-on-6, planificare digitală integrată și laborator propriu. Echipă: chirurgie BMF, parodontologie, protetică.";
 
 const faqItems = [
   {
@@ -24,7 +24,7 @@ const faqItems = [
   },
   {
     q: "Care este diferența dintre All-on-4 și All-on-6?",
-    a: "Numărul de implanturi folosite pentru susținerea arcadei. Alegerea depinde de calitatea și cantitatea osului disponibil, stabilită prin evaluarea digitală (CBCT).",
+    a: "Numărul de implanturi folosite pentru susținerea arcadei. Alegerea depinde de calitatea și cantitatea osului disponibil, stabilită prin evaluarea pe baza investigației CBCT și scanării intraorale.",
   },
   {
     q: "Se poate face procedura dacă am pierdut deja mult os?",
@@ -37,7 +37,7 @@ const faqItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "All-on-4 / All-on-6 Cluj — Dantură fixă, flux 100% digital",
+  title: "Dinți ficși pe implanturi Cluj — All-on-4 / All-on-6",
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   keywords: [

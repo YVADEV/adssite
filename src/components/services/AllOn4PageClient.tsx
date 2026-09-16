@@ -37,7 +37,7 @@ const whatIsCards = [
 const digitalFlowCards = [
   {
     title: "Evaluare digitală",
-    text: "Tomografie computerizată 3D (CBCT) și scanare intraorală digitală, pentru o imagine completă a osului, gingiilor și ocluziei.",
+    text: "Evaluare pe baza investigației CBCT și scanării intraorale, pentru o imagine completă a osului, gingiilor și ocluziei.",
   },
   {
     title: "Ședință foto și design digital al zâmbetului",
@@ -68,7 +68,7 @@ const processSteps = [
   {
     step: "01",
     title: "Consultația și evaluarea digitală",
-    text: "CBCT și scanare intraorală, pentru un plan de tratament personalizat.",
+    text: "Evaluare pe baza investigației CBCT și scanării intraorale, pentru un plan de tratament personalizat.",
   },
   {
     step: "02",
@@ -111,8 +111,8 @@ const comparisonRows = [
   ["Stabilitate", "Fixă, nu se mișcă", "Poate aluneca la masticație"],
   ["Planificare", "Digitală, personalizată", "De obicei fără planificare 3D"],
   ["Confecționare lucrare", "Laborator propriu, digital", "Adesea laborator extern"],
-  ["Confort masticator", "Aproape identic cu dinții naturali", "Redus"],
-  ["Îngrijire osoasă", "Previne resorbția osoasă", "Nu previne resorbția"],
+  ["Confort masticator", "Stabilitate și confort masticator crescute față de proteza mobilă", "Redus"],
+  ["Îngrijire osoasă", "Implanturile contribuie la menținerea stimulării osului în zonele tratate", "Nu previne resorbția"],
 ] as const;
 
 const surgicalPrices = [
@@ -139,7 +139,7 @@ const faqItems = [
   },
   {
     q: "Care este diferența dintre All-on-4 și All-on-6?",
-    a: "Numărul de implanturi folosite pentru susținerea arcadei. Alegerea depinde de calitatea și cantitatea osului disponibil, stabilită prin evaluarea digitală (CBCT).",
+    a: "Numărul de implanturi folosite pentru susținerea arcadei. Alegerea depinde de calitatea și cantitatea osului disponibil, stabilită prin evaluarea pe baza investigației CBCT și scanării intraorale.",
   },
   {
     q: "Se poate face procedura dacă am pierdut deja mult os?",
@@ -153,8 +153,8 @@ const faqItems = [
 
 const doctorVideos = [
   {
-    name: "Asist. Univ. Dr. Radu Nichimiș",
-    role: "Specialist Chirurgie Orală și MaxiloFacială",
+    name: "Dr. Radu Nichimiș",
+    role: "Medic specialist Chirurgie Orală și Maxilo-Facială",
     image: raduImage,
     href: "/echipa/radu-nichimis/",
     bio: "Coordonează partea chirurgicală: evaluarea osoasă digitală, planificarea și inserarea implanturilor.",
@@ -177,13 +177,13 @@ const doctorVideos = [
       },
       {
         q: "De ce contează planificarea digitală, mai exact?",
-        a: "Pentru că elimină din ghicit. Vedem structura osoasă tridimensional, nu doar pe o radiografie plată, și asta ne dă o precizie mult mai mare încă din faza de plan.",
+        a: "Planificarea digitală oferă informații tridimensionale utile pentru stabilirea poziției implanturilor. Vedem structura osoasă tridimensional, nu doar pe o radiografie plată, și asta ne dă o precizie mai mare încă din faza de plan.",
       },
     ],
   },
   {
     name: "Dr. Laura Grigorean",
-    role: "Stomatologie generală / Specialist Parodontologie",
+    role: "Medic specialist în Parodontologie",
     image: lauraImage,
     href: "/echipa/",
     bio: "Evaluează și pregătește gingiile și țesuturile de susținere, asigurând un teren sănătos pentru osteointegrare.",
@@ -386,22 +386,19 @@ export default function AllOn4PageClient() {
       <ServiceHero
         image="/services/implant-model-2.png"
         imageAlt="All-on-4 și All-on-6 Cluj — dantură fixă, flux digital, Alverna Dental Studio"
-        chip="Flux 100% digital · laborator propriu"
+        chip="Flux de lucru digital integrat · laborator propriu"
         kicker="Reabilitare orală completă"
         title={
           <>
-            All-on-4 și All-on-6 Cluj
-            <span className="mt-3 block max-w-[920px] text-[20px] font-semibold leading-[1.25] tracking-[-0.03em] text-white sm:text-[22px] md:text-[36px] lg:text-[42px]">
-              dantură fixă, printr-un flux complet digital
-            </span>
+            Dinți ficși pe implanturi – All-on-4 / All-on-6
           </>
         }
-        intro="Dantură fixă pe 4 sau 6 implanturi. Evaluare, planificare și lucrare finală — totul digital, în laboratorul propriu al clinicii."
+        intro="Dantură fixă pe 4 sau 6 implanturi. Evaluare, planificare și lucrare finală într-un flux de lucru digital integrat, în laboratorul propriu al clinicii."
       />
 
       <ServiceQuickFacts
         facts={[
-          ["Abordare", "Flux 100% digital"],
+          ["Abordare", "Flux de lucru digital integrat"],
           ["Laborator", "Propriu, în clinică"],
           ["Echipă", "Chirurgie BMF, parodontologie, protetică"],
           ["Soluție", "Dantură fixă pe 4 sau 6 implanturi"],
@@ -412,10 +409,10 @@ export default function AllOn4PageClient() {
         <IntroAccordion
           items={[
             {
-              title: "Dantură fixă, printr-un flux complet digital",
+              title: "Dantură fixă, printr-un flux de lucru digital integrat",
               content: (
                 <p className="ads-readable max-w-[1100px] text-white">
-                  Pierderea totală sau aproape totală a dinților poate fi rezolvată printr-o arcadă fixă, stabilă, sprijinită pe 4 sau 6 implanturi. La Alverna Dental Studio, întreg parcursul — de la evaluarea inițială până la lucrarea finală — este gestionat digital, iar lucrările protetice sunt realizate în laboratorul propriu al clinicii, echipat integral digital.
+                  Pierderea totală sau aproape totală a dinților poate fi rezolvată printr-o arcadă fixă, stabilă, sprijinită pe 4 sau 6 implanturi. La Alverna Dental Studio, întreg parcursul — de la evaluarea inițială până la lucrarea finală — este gestionat printr-un flux de lucru digital integrat, iar lucrările protetice sunt realizate în laboratorul propriu al clinicii, echipat integral digital.
                 </p>
               ),
             },
@@ -423,7 +420,7 @@ export default function AllOn4PageClient() {
               title: "Echipă multidisciplinară",
               content: (
                 <p className="ads-readable max-w-[1100px] text-white">
-                  Tratamentul este coordonat de o echipă multidisciplinară: chirurgie orală și maxilofacială, parodontologie și protetică dentară. Alegerea între variante — și modul exact în care se planifică fiecare caz — se stabilește individual, în urma evaluării clinice și a scanării 3D.
+                  Tratamentul este coordonat de o echipă multidisciplinară: chirurgie orală și maxilo-facială, parodontologie și protetică dentară. Alegerea între variante — și modul exact în care se planifică fiecare caz — se stabilește individual, în urma evaluării pe baza investigației CBCT și scanării intraorale.
                 </p>
               ),
             },
@@ -441,7 +438,7 @@ export default function AllOn4PageClient() {
               ),
             },
             {
-              title: "Un flux complet digital, de la prima vizită la lucrarea finală",
+              title: "Un flux de lucru digital integrat, de la prima vizită la lucrarea finală",
               content: (
                 <p className="ads-readable max-w-[1100px] text-white">
                   La Alverna Dental Studio, tratamentul All-on-4 / All-on-6 este susținut, în fiecare etapă, de tehnologie digitală. Acest flux digital integrat — clinică și laborator sub același acoperiș — este unul dintre principalele avantaje ale tratamentului.
@@ -645,11 +642,11 @@ export default function AllOn4PageClient() {
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Recăpătați-vă zâmbetul, cu un plan de tratament clar, digital, de la prima vizită."
-        body="Echipa Alverna Dental Studio vă explică fiecare etapă — de la scanarea 3D până la lucrarea realizată în laboratorul propriu."
+        body="Echipa Alverna Dental Studio vă explică fiecare etapă — de la evaluarea pe baza investigației CBCT și scanării intraorale până la lucrarea realizată în laboratorul propriu."
       />
       <ServiceFinalCTA
         title="Programează o consultație pentru All-on-4 / All-on-6"
-        body="Primul pas este o evaluare digitală. Stabilim împreună dacă All-on-4 sau All-on-6 este soluția potrivită, fără presiune și fără termene nerealiste."
+        body="Primul pas este o evaluare pe baza investigației CBCT și scanării intraorale. Stabilim împreună dacă All-on-4 sau All-on-6 este soluția potrivită."
         buttonLabel="Programează o consultație"
       />
     </ServicePageShell>

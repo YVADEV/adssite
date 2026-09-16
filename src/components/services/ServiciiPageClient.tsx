@@ -11,6 +11,7 @@ export default function ServiciiPageClient() {
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_760px]">
             <h1 className="text-[36px] font-semibold leading-[0.9] tracking-[-4px] md:text-[92px] lg:text-[144px] lg:tracking-[-8.64px]">Servicii</h1>
+            {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
             <p className="pt-4 text-[21px] leading-6 tracking-[-0.64px] opacity-70 lg:pt-[28px]">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet este dotat cu aparatură medicală de ultimă generație.
             </p>

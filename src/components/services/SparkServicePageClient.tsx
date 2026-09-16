@@ -103,15 +103,15 @@ export default function SparkServicePageClient() {
         videoWithSound
         image="/services/braces-model.png"
         imageAlt="Aparat dentar Spark transparent"
-        chip="Spark Aligners"
-        kicker="Ortodonție invizibilă"
-        title="Aparat dentar Spark"
-        intro="Gutiera transparentă Spark este o soluție modernă de ortodonție pentru alinierea dinților, creată pentru pacienții care își doresc un tratament discret, confortabil și predictibil."
+        chip="Spark · Angel Aligner"
+        kicker="Alignere transparente"
+        title="Alignere transparente"
+        intro="Spark și Angel Aligner sunt soluții de ortodonție cu gutiere transparente, pentru pacienții care vor un tratament discret și planificat digital. Medicul stabilește sistemul potrivit după evaluare."
       />
 
       <ServiceQuickFacts
         facts={[
-          ["Tratament", "Aparat dentar transparent"],
+          ["Tratament", "Alignere transparente"],
           ["Durată", "Personalizată în funcție de caz"],
           ["Recomandat pentru", "Adulți și adolescenți"],
           ["Rezultat", "Zâmbet aliniat, natural"],
@@ -123,7 +123,20 @@ export default function SparkServicePageClient() {
           first
           headingLevel="h2"
           heading="Ortodonție discretă, fără bracketuri metalice"
-          body="Aparatul dentar Spark folosește gutiere transparente realizate digital, concepute pentru a mișca treptat dinții în poziția corectă. Tratamentul este planificat în detaliu, astfel încât pacientul să înțeleagă etapele și rezultatul estimat încă de la început."
+          body="La Alverna Dental Studio lucrăm cu Spark și Angel Aligner. Gutierele transparente sunt realizate digital și mișcă treptat dinții în poziția corectă. Tratamentul este planificat în detaliu, astfel încât pacientul să înțeleagă etapele încă de la început."
+        />
+        <ServiceCardsSection
+          heading="Spark și Angel Aligner"
+          cards={[
+            {
+              title: "Spark",
+              text: "Sistem de alignere transparente cu planificare digitală. Pachetele și tarifele Spark sunt listate pe pagina de tarife.",
+            },
+            {
+              title: "Angel Aligner",
+              text: "Sistem de alignere transparente folosit în clinică, ales în funcție de cazul clinic. Tariful se comunică după evaluarea ortodontică.",
+            },
+          ]}
         />
         <ServiceBulletsSection heading="Ce presupune tratamentul" items={treatmentItems} />
         <ServiceBulletsSection heading="Cui i se recomandă" items={recommendationItems} />
@@ -136,10 +149,10 @@ export default function SparkServicePageClient() {
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Primul pas spre un zâmbet sănătos începe aici."
-        body="Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune."
+        body="Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori."
       />
       <ServiceFinalCTA
-        title="Vrei să afli dacă Spark este potrivit pentru tine?"
+        title="Vrei să afli dacă alignerele sunt potrivite pentru tine?"
         body="Programează o evaluare ortodontică și primește recomandarea potrivită pentru zâmbetul tău."
       />
     </ServicePageShell>

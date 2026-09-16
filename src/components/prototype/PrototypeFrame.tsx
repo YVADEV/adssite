@@ -11,6 +11,7 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
+import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -63,7 +64,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           { href: "/", label: "Acasă" },
           { href: "/echipa", label: "Echipa" },
           { href: "/cazuri", label: "Cazuri" },
-          { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
         ].map((item) => (
           <Link
             key={item.label}
@@ -71,7 +72,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "All on X" ? "ads-nav-green-glow" : ""
+              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
             }`}
           >
             {item.label}
@@ -96,7 +97,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "All on X" ? "ads-nav-green-glow" : ""
+              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
             }`}
           >
             {item.label}
@@ -121,14 +122,14 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                 { href: "/", label: "Acasă" },
                 { href: "/echipa", label: "Echipa" },
                 { href: "/cazuri", label: "Cazuri" },
-                { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
+                { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
               ].map((it) => (
                 <Link
                   key={it.href}
                   href={it.href}
                   aria-current={isActive(it.href) ? "page" : undefined}
                   className={`pointer-events-auto whitespace-nowrap transition-opacity duration-200 hover:opacity-75 ${
-                    it.label === "All on X" ? "ads-nav-green-glow" : ""
+                    isFixedTeethNav(it.label) ? "ads-nav-green-glow" : ""
                   } ${
                     isActive(it.href) ? "underline decoration-2 underline-offset-[10px] opacity-100" : "opacity-90"
                   }`}

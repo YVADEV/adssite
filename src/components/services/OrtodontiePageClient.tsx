@@ -132,7 +132,7 @@ export default function OrtodontiePageClient() {
         facts={[
           ["Serviciu", "Ortodonție Cluj"],
           ["Focus", "Aliniere dentară + corectare ocluzie"],
-          ["Tehnologii", "Scanare 3D, alignere, ghidaj digital"],
+          ["Tehnologii", "Scanare intraorală 3D, alignere, ghidaj digital"],
           ["Obiectiv", "Zâmbet funcțional, estetic și stabil"],
         ]}
       />

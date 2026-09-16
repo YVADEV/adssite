@@ -43,7 +43,9 @@ export function MobileMenuNavServices({
         }`}
       >
         <div className="max-h-[min(68vh,700px)] overflow-y-auto overscroll-contain pt-2 pr-1">
-          {services.map((service) =>
+          {services
+          .filter((service) => service.slug !== "all-on-x")
+          .map((service) =>
             service.children?.length ? (
               <div key={service.slug}>
                 <button

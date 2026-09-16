@@ -15,7 +15,7 @@ import { CaseImage } from "@/components/cazuri/CaseImage";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
-import { services } from "@/config/services";
+import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav, services } from "@/config/services";
 import { CLINIC } from "@/lib/contact";
 import vdScaun from "@/assets/VDscaun.png";
 import alvernaLogo from "@/assets/alverna-logo.png";
@@ -242,13 +242,7 @@ export const pricingData = [
       { name: "Spark 20 / ambele arcade", price: "15000 RON" },
       { name: "Spark Advanced / ambele arcade", price: "20000 RON" },
       { name: "Plan tratament 3D Spark", price: "1300 RON" },
-      { name: "Plan tratament 3D Clear Correct", price: "1300 RON" },
-      { name: "Clear Correct MINI / 1 arcadă", price: "10000 RON" },
-      { name: "Clear Correct MINI / ambele arcade", price: "16000 RON" },
-      { name: "Clear Correct ONE / 1 arcadă", price: "15000 RON" },
-      { name: "Clear Correct ONE / ambele arcade", price: "20000 RON" },
-      { name: "Clear Correct TWO", price: "22000 RON" },
-      { name: "Clear Correct UNLIMITED", price: "24500 RON" },
+      { name: "Angel Aligner", price: "tarif după evaluare" },
     ],
   },
   {
@@ -332,6 +326,40 @@ export const pricingData = [
   },
 ];
 
+function pricingCategory(name: string) {
+  return pricingData.find((category) => category.category === name);
+}
+
+export const homePricingData = [
+  {
+    category: "Consultație",
+    items: pricingCategory("Consultații primare și de specialitate")?.items.slice(0, 6) ?? [],
+  },
+  {
+    category: "Implantologie",
+    items: pricingCategory("Implantologie")?.items.slice(0, 7) ?? [],
+  },
+  {
+    category: "Dinți ficși / All-on-X",
+    items: pricingCategory("All on 4 / All on 6")?.items ?? [],
+  },
+  {
+    category: "Protetică",
+    items: pricingCategory("Protetică dentară")?.items.slice(0, 7) ?? [],
+  },
+  {
+    category: "Ortodonție / alignere",
+    items: [
+      ...(pricingCategory("Alignere")?.items ?? []),
+      ...(pricingCategory("Ortodonție")?.items.slice(0, 3) ?? []),
+    ].slice(0, 7),
+  },
+  {
+    category: "Igienizare",
+    items: pricingCategory("Profilaxie și prevenție")?.items.slice(0, 6) ?? [],
+  },
+];
+
 const servicesList = [
   "aparat-dentar",
   "pedodontie",
@@ -357,8 +385,8 @@ const servicePages = Array.from({ length: Math.ceil(servicesList.length / SERVIC
 );
 
 const advantages = [
-  { value: "1000+", label: "Cazuri complexe" },
-  { value: "100%", label: "Pacienți mulțumiți" },
+  { value: "All-on-4", label: "Reabilitare pe implanturi" },
+  { value: "Smile Design", label: "Estetică dentară" },
 ];
 const recommendationClips = ["/cazuri-1.mp4", "/cazuri-2.mp4"];
 const missionPosters = ["/services/exam-male.png", "/services/whitening-2.png", "/services/smile-mirror.png", "/services/exam-male-2.png"];
@@ -408,9 +436,6 @@ function TeamBentoBanner({
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
         </div>
-        <div className="relative z-[40] text-[21px] text-white">
-          <p>Echipa</p>
-        </div>
         <h3 className="relative z-[30] mt-4 whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] md:absolute md:bottom-[92px] md:left-[36px] md:mt-auto md:pt-0 md:text-[64px]">
           {leftHeadline}
         </h3>
@@ -444,14 +469,14 @@ function TeamBentoBanner({
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
             <p className="relative z-10 mt-auto bg-gradient-to-t from-black/70 to-transparent px-5 pb-4 pt-10 text-[21px] font-semibold text-white">
-              Scanare 3D
+              Scanare intraorală 3D
             </p>
           </article>
         ) : null}
 
         <article className="flex min-h-[220px] flex-col overflow-hidden rounded-[16px] bg-[#0A0A0A] p-6 md:h-[275px]">
-          <h3 className="text-[36px] font-bold leading-none text-white md:text-[56px]">9000</h3>
-          <p className="mt-2 text-[21px] text-white/80">Pacienți mulțumiți</p>
+          <h3 className="text-[32px] font-bold leading-none text-white md:text-[48px]">Peste 9.000</h3>
+          <p className="mt-2 text-[21px] text-white/80">de pacienți</p>
           <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
           <div className="mt-4 min-h-0 flex-1 overflow-hidden rounded-[10px]">
             <img
@@ -608,7 +633,7 @@ export default function HomePageClient() {
     setActiveServicesDot((prev) => (prev + 1) % totalServicePages);
   };
 
-  const totalTarifePages = pricingData.length;
+  const totalTarifePages = homePricingData.length;
   const goPrevTarife = () => {
     setActiveTarifeIndex((prev) => (prev - 1 + totalTarifePages) % totalTarifePages);
   };
@@ -743,7 +768,7 @@ export default function HomePageClient() {
           { href: "/", label: "Acasă" },
           { href: "/echipa", label: "Echipa" },
           { href: "/cazuri", label: "Cazuri" },
-          { href: "/servicii/implant-dentar/all-on-4-all-on-6/", label: "All on X" },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
         ].map((item) => (
           <Link
             key={item.label}
@@ -751,7 +776,7 @@ export default function HomePageClient() {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "All on X" ? "ads-nav-green-glow" : ""
+              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
             }`}
           >
             {item.label}
@@ -774,7 +799,7 @@ export default function HomePageClient() {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "All on X" ? "ads-nav-green-glow" : ""
+              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
             }`}
           >
             {item.label}
@@ -800,7 +825,7 @@ export default function HomePageClient() {
             <Link className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" aria-current="page">Acasă</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa">Echipa</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri">Cazuri</Link>
-            <Link className="pointer-events-auto ads-nav-green-glow whitespace-nowrap opacity-90 transition-opacity duration-200 hover:opacity-100" href="/servicii/implant-dentar/all-on-4-all-on-6/">All on X</Link>
+            <Link className="pointer-events-auto ads-nav-green-glow whitespace-nowrap opacity-90 transition-opacity duration-200 hover:opacity-100" href={FIXED_TEETH_HREF}>{FIXED_TEETH_NAV_LABEL}</Link>
             <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</Link>
@@ -833,16 +858,22 @@ export default function HomePageClient() {
             <div data-intro="hero-title" className="absolute left-5 right-5 top-5 text-white md:left-7 md:right-7 md:top-7 lg:left-9 lg:right-9 lg:top-9">
             <h1 className="max-w-[980px] text-[clamp(32px,9vw,40px)] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
             <p className="mt-1 max-w-[560px] text-[clamp(18px,5.5vw,22px)] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
-            <p className="mt-4 max-w-[700px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.35] text-white md:text-[21px]">
-              Tratamente moderne, medici specializați, rezultate predictibile pentru un zâmbet sănătos și fără stres.
+            <p className="mt-4 max-w-[720px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.35] text-white md:text-[21px]">
+              Stomatologie multidisciplinară. Implantologie și reabilitare orală complexă.
+            </p>
+            <p className="mt-3 max-w-[720px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.35] text-white md:text-[21px]">
+              Diagnostic, chirurgie, protetică și parodontologie, integrate într-un singur plan de tratament.
+            </p>
+            <p className="mt-4 max-w-[760px] text-[clamp(14px,3.8vw,16px)] font-semibold leading-[1.45] text-white/90 md:text-[18px]">
+              Laborator dentar propriu · Flux digital · Echipă multidisciplinară
             </p>
           </div>
 
             <div className="absolute bottom-6 left-5 right-5 max-w-[280px] text-[18px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 md:right-auto md:text-[21px] lg:left-9">
               <p>Implantologie</p>
-              <p className="mt-[12px]">Ortodontie</p>
-              <p className="mt-[12px]">Invisalign</p>
-              <p className="mt-[12px]">Aparat dentar</p>
+              <p className="mt-[12px]">Ortodonție</p>
+              <p className="mt-[12px]">Spark</p>
+              <p className="mt-[12px]">Angel Aligner</p>
             </div>
 
           </div>
@@ -911,6 +942,7 @@ export default function HomePageClient() {
                 className="aspect-[682/1024] h-[min(520px,70vh)] w-full max-w-[440px] object-cover object-[center_38%] md:h-[min(720px,82vh)]"
               />
             </div>
+            {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
             <p className="max-w-[520px] text-[21px] leading-[1.65] tracking-[-0.64px] text-white">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
             </p>
@@ -1035,7 +1067,7 @@ export default function HomePageClient() {
       <section data-anim="section" className="bg-[#f5f5f5]">
         <div className="mx-auto w-full max-w-[1680px] px-4 pb-16 pt-16 md:px-10 md:pb-[140px] md:pt-[140px] lg:px-[96px]">
           <div className="mb-6 flex justify-end text-[21px] leading-[1.5] text-white sm:mb-8">
-            <span className="break-all sm:break-normal">@alvernadentalstudio</span>
+            <span className="whitespace-nowrap">@alvernadentalstudio</span>
           </div>
           <h2 className="mb-4 text-[32px] font-semibold leading-[1.12] text-white sm:text-[40px] md:text-[48px]">Misiunea Noastră</h2>
           <p className="ads-readable mb-10 text-white md:mb-16">
@@ -1086,7 +1118,7 @@ export default function HomePageClient() {
                 >
                   ▶
                 </button>
-                <span className="text-[21px] font-medium leading-[1.65] text-white">Descopera cabinetul nostru</span>
+                <span className="text-[21px] font-medium leading-[1.65] text-white">Descoperă cabinetul nostru</span>
               </div>
             ) : null}
           </div>
@@ -1145,11 +1177,10 @@ export default function HomePageClient() {
 
       <section data-anim="section" className="px-5 py-16 md:px-10 md:py-20 lg:px-[96px]">
         <div className="mx-auto w-full max-w-[1680px]">
-          <div className="grid grid-cols-1 gap-4 rounded-[20px] border border-white/12 bg-[#111111] p-6 ads-mission-glow sm:grid-cols-2 md:grid-cols-4 md:gap-0 md:divide-x md:divide-white/10 md:p-10">
+          <div className="grid grid-cols-1 gap-4 rounded-[20px] border border-white/12 bg-[#111111] p-6 ads-mission-glow sm:grid-cols-3 md:gap-0 md:divide-x md:divide-white/10 md:p-10">
             {[
               ["15", "Ani de activitate"],
-              ["9000", "Pacienti"],
-              ["3000", "Pacienti internationali"],
+              ["Peste 9.000", "de pacienți"],
               ["15 de ani", "Medici cu peste 15 ani de experiență"],
             ].map(([n, t]) => (
               <article key={n} className="px-2 text-center md:px-6 md:text-left">
@@ -1175,17 +1206,25 @@ export default function HomePageClient() {
           <div className="w-full">
             <div className="flex flex-wrap items-end justify-between gap-3">
               <h2 className="text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
-              <a
-                href="#contact"
-                className="ads-btn-primary inline-flex min-h-[44px] items-center justify-center rounded-full px-4 py-2 text-[18px] font-semibold sm:px-5 sm:text-[21px]"
-              >
-                Programează-te
-              </a>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="#contact"
+                  className="ads-btn-primary inline-flex min-h-[44px] items-center justify-center rounded-full px-4 py-2 text-[18px] font-semibold sm:px-5 sm:text-[21px]"
+                >
+                  Programează-te
+                </a>
+                <Link
+                  href="/tarife/"
+                  className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-black/15 px-4 py-2 text-[18px] font-semibold text-white sm:px-5 sm:text-[21px]"
+                >
+                  Vezi toate tarifele →
+                </Link>
+              </div>
             </div>
             <div className="mt-5 flex flex-wrap gap-2 text-[21px] text-white">
-              <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Preturi transparente</span>
-              <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Fara costuri ascunse</span>
-              <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Consultatie initiala disponibila</span>
+              <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Prețuri transparente</span>
+              <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Fără costuri ascunse</span>
+              <span className="rounded-full border border-[rgba(79,127,71,0.25)] px-3 py-1">Consultație inițială disponibilă</span>
             </div>
 
             <div className="mt-8 w-full overflow-hidden" {...tarifeSwipe}>
@@ -1193,7 +1232,7 @@ export default function HomePageClient() {
                 className="flex w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{ transform: `translateX(-${activeTarifeIndex * 100}%)` }}
               >
-                {pricingData.map((category) => (
+                {homePricingData.map((category) => (
                   <article key={category.category} className="min-h-[480px] w-full shrink-0 rounded-[20px] border border-[rgba(10,10,10,0.08)] bg-white p-6 md:h-[620px] md:p-7 lg:p-8">
                     <h3 className="text-[21px] font-semibold leading-[1.1] text-white">{category.category}</h3>
                     <div className="mt-5 space-y-0">
@@ -1209,8 +1248,8 @@ export default function HomePageClient() {
                     </div>
                     <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.2)] bg-[rgba(79,127,71,0.04)] p-4">
                       <p className="text-[21px] font-semibold text-white">Programează-te acum</p>
-                      <p className="mt-1 text-[21px] text-white">Primeste o evaluare personalizata</p>
-                      <a href="#contact" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[21px] font-semibold text-white">Solicita programare</a>
+                      <p className="mt-1 text-[21px] text-white">Primește o evaluare personalizată</p>
+                      <a href="#contact" className="mt-3 inline-flex h-[42px] items-center rounded-full bg-[#0A0A0A] px-5 text-[21px] font-semibold text-white">Solicită programare</a>
                     </div>
                   </article>
                 ))}
@@ -1229,7 +1268,7 @@ export default function HomePageClient() {
                 </svg>
               </button>
               <div className="flex max-w-[min(100%,520px)] flex-wrap items-center justify-center gap-2 sm:gap-4">
-                {pricingData.map((_, idx) => (
+                {homePricingData.map((_, idx) => (
                   <span key={`tarife-page-dot-${idx}`} className={`h-2 w-2 rounded-full ${activeTarifeIndex === idx ? "bg-[#B6B94C]" : "bg-white/30"}`} />
                 ))}
               </div>
@@ -1249,12 +1288,30 @@ export default function HomePageClient() {
       </section>
 
       <section id="echipa" data-anim="section" data-theme="light" className="overflow-visible bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
-        <TeamBentoBanner
-          doctorSrc={labDoctorBannerImage.src}
-          doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
-          leftHeadline={"laborator\ndentar"}
-          showScanCard={false}
-        />
+        <div className="mx-auto flex w-full max-w-[1680px] flex-col gap-6 px-5 pb-10 md:flex-row md:items-end md:justify-between md:px-10 md:pb-[168px] lg:px-[96px]">
+          <div className="max-w-[820px]">
+            <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.04em] text-white md:text-[52px] lg:text-[64px]">
+              Laborator dentar propriu
+            </h2>
+            <p className="mt-5 text-[18px] leading-[1.7] text-white/85 sm:text-[21px]">
+              Medicul și tehnicianul lucrează în aceeași echipă. Comunicarea directă dintre clinică și laborator permite controlul atent al etapelor protetice, ajustări eficiente și personalizarea fiecărei lucrări.
+            </p>
+          </div>
+          <a
+            href="#laborator-alverna"
+            className="inline-flex min-h-[46px] shrink-0 items-center self-start rounded-full bg-black px-6 text-[18px] font-semibold text-white md:self-end sm:text-[21px]"
+          >
+            Descoperă laboratorul Alverna
+          </a>
+        </div>
+        <div id="laborator-alverna">
+          <TeamBentoBanner
+            doctorSrc={labDoctorBannerImage.src}
+            doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
+            leftHeadline={"laborator\ndentar"}
+            showScanCard={false}
+          />
+        </div>
       </section>
 
       <section data-anim="section" className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
@@ -1306,11 +1363,11 @@ export default function HomePageClient() {
           <div className="pt-0 text-white lg:pt-8">
             <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[44px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
             <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-              Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune.
+              Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
             </p>
             <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
               <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
-              <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
+              <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
             </div>
             <a
               href={`tel:${CLINIC.phoneTel}`}

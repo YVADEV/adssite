@@ -5,9 +5,9 @@ import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd"
 import { SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/aparat-dentar/spark/";
-const NAME = "Aliniatori Spark";
+const NAME = "Alignere transparente";
 const DESCRIPTION =
-  "Aparat dentar Spark în Cluj pentru alinierea discretă a dinților. Gutiere transparente, tratament personalizat și evaluare ortodontică la Alverna Dental Studio.";
+  "Alignere transparente în Cluj: Spark și Angel Aligner. Gutiere discrete, tratament personalizat și evaluare ortodontică la Alverna Dental Studio.";
 
 const faqItems = [
   {
@@ -29,7 +29,7 @@ const faqItems = [
 ];
 
 export const metadata: Metadata = {
-  title: "Aparat dentar Spark Cluj | Gutiere transparente | Alverna Dental Studio",
+  title: "Alignere transparente Cluj | Spark și Angel Aligner | Alverna Dental Studio",
   description: DESCRIPTION,
   alternates: { canonical: PATH },
 };

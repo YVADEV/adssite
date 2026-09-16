@@ -12,7 +12,7 @@ type PageProps = {
 
 const SERVICE_DESCRIPTIONS: Partial<Record<string, string>> = {
   "aparat-dentar":
-    "Aparat dentar la Alverna Dental Studio Cluj: evaluare ortodontică, plan personalizat și opțiuni moderne inclusiv Spark. Consultație clară, fără presiune comercială.",
+    "Alignere transparente la Alverna Dental Studio Cluj: Spark și Angel Aligner, evaluare ortodontică și plan personalizat.",
 };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

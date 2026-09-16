@@ -18,7 +18,7 @@ export const services: ServiceItem[] = [
     href: "/servicii/aparat-dentar/",
     children: [
       {
-        title: "Aparat dentar Spark",
+        title: "Alignere transparente",
         slug: "spark",
         href: "/servicii/aparat-dentar/spark/",
       },
@@ -43,14 +43,14 @@ export const services: ServiceItem[] = [
     href: "/servicii/implant-dentar/",
     children: [
       {
-        title: "All on X",
+        title: "Dinți ficși / All-on-X",
         slug: "all-on-4-all-on-6",
         href: "/servicii/implant-dentar/all-on-4-all-on-6/",
       },
     ],
   },
   {
-    title: "All on X",
+    title: "Dinți ficși / All-on-X",
     slug: "all-on-x",
     href: "/servicii/implant-dentar/all-on-4-all-on-6/",
   },
@@ -60,6 +60,13 @@ export const services: ServiceItem[] = [
   { title: "Protetică", slug: "protetica", href: "/servicii/protetica/" },
   { title: "Urgențe stomatologice", slug: "urgente-stomatologice", href: "/servicii/urgente-stomatologice/" },
 ];
+
+export const FIXED_TEETH_NAV_LABEL = "Dinți ficși / All-on-X";
+export const FIXED_TEETH_HREF = "/servicii/implant-dentar/all-on-4-all-on-6/";
+
+export function isFixedTeethNav(label: string) {
+  return label.includes("All-on-X") || label.includes("Dinți ficși");
+}
 
 export function getServiceBySlug(serviceSlug: string) {
   return services.find((service) => service.slug === serviceSlug);

@@ -9,16 +9,16 @@ import { SITE_URL } from "@/lib/seo";
 import { CLINIC } from "@/lib/contact";
 
 const PATH = "/echipa/radu-nichimis/";
-const NAME = "Ast.Univ Dr. Radu Nichimiș";
+const NAME = "Dr. Radu Nichimiș";
 const DESCRIPTION =
-  "Profil profesional Ast.Univ Dr. Radu Nichimiș, specialist în chirurgie maxilo-facială, cu accent pe planificare digitală, funcționalitate și armonie estetică.";
+  "Profil profesional Dr. Radu Nichimiș, medic specialist Chirurgie Orală și Maxilo-Facială, cu accent pe planificare digitală, funcționalitate și armonie estetică.";
 
 export const metadata: Metadata = {
-  title: "Ast.Univ Radu Nichimiș | Chirurgie maxilo-facială | Alverna Dental Studio",
+  title: "Dr. Radu Nichimiș | Chirurgie Orală și Maxilo-Facială | Alverna Dental Studio",
   description: DESCRIPTION,
   alternates: { canonical: PATH },
   openGraph: {
-    title: "Ast.Univ Dr. Radu Nichimiș — Chirurgie maxilo-facială",
+    title: "Dr. Radu Nichimiș — Medic specialist Chirurgie Orală și Maxilo-Facială",
     description: DESCRIPTION,
     url: PATH,
     type: "profile",
@@ -39,7 +39,7 @@ export default function RaduNichimisPage() {
       <JsonLd
         data={physicianLd({
           name: NAME,
-          jobTitle: "Medic specialist chirurgie maxilo-facială",
+          jobTitle: "Medic specialist Chirurgie Orală și Maxilo-Facială",
           description: DESCRIPTION,
           url,
           medicalSpecialty: "OralAndMaxillofacialSurgery",
@@ -49,7 +49,7 @@ export default function RaduNichimisPage() {
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white">Profil medical</p>
           <h1 className="mt-5 max-w-[1150px] text-[36px] font-extrabold leading-[0.95] tracking-[-0.04em] text-white md:text-[58px] lg:text-[84px]">
-            Dr. Radu Nichimiș - Chirurgie maxilo-facială & excelență academică în Cluj-Napoca
+            Dr. Radu Nichimiș — Medic specialist Chirurgie Orală și Maxilo-Facială
           </h1>
           <div className="mt-8 max-w-[1120px] space-y-5 text-[21px] leading-[1.75] text-white">
             <p>
@@ -91,7 +91,7 @@ export default function RaduNichimisPage() {
             <div className="hidden overflow-hidden rounded-[16px] border border-white/10 bg-black md:block">
               <iframe
                 src="/acreditari-radu-nichimis.pdf#view=FitH"
-                title="Acreditări Ast.Univ Radu Nichimiș"
+                title="Acreditări Dr. Radu Nichimiș"
                 className="h-[72vh] min-h-[560px] w-full"
               />
             </div>
@@ -192,11 +192,11 @@ export default function RaduNichimisPage() {
             <div className="pt-0 text-white lg:pt-8">
               <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
               <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-                Echipa Alverna Dental Studio te ajută să alegi tratamentul potrivit, fără stres și fără presiune.
+                Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
               </p>
               <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
                 <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
-                <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
+                <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
               </div>
               <a
                 href={`tel:${CLINIC.phoneTel}`}

@@ -595,7 +595,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
           <p className="mt-5 max-w-[680px] text-[21px] leading-[1.55] text-white">{body}</p>
           <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
             <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
-            <p className="mt-1 text-[21px] text-white">Peste 9000 de pacienți mulțumiți</p>
+            <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
           </div>
           <a
             href={`tel:${CLINIC.phoneTel}`}
@@ -634,20 +634,67 @@ export function ContactFormCard({ source }: { source: string }) {
       email: String(formData.get("email") ?? "").trim(),
       serviciu: String(formData.get("serviciu") ?? "").trim(),
       mesaj: String(formData.get("mesaj") ?? "").trim(),
+      website: String(formData.get("website") ?? "").trim(),
       source,
       pagePath,
       pageUrl,
       pageTitle: typeof document !== "undefined" ? document.title : undefined,
     };
+    if (payload.website) {
+      setStatus("ok");
+      event.currentTarget.reset();
+      return;
+    }
     try {
+      const formsubmitResp = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CLINIC.email)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Programare nouă · ${payload.nume}`,
+          _template: "table",
+          _captcha: "false",
+          name: payload.nume,
+          telefon: payload.telefon,
+          email: payload.email || CLINIC.email,
+          serviciu: payload.serviciu || "—",
+          mesaj: payload.mesaj || "—",
+          pagina: payload.pageUrl,
+          sursa: payload.source,
+        }),
+      });
+      const formsubmitJson = (await formsubmitResp.json().catch(() => ({ success: false }))) as {
+        success?: boolean | string;
+      };
+      if (formsubmitResp.ok && (formsubmitJson.success === true || formsubmitJson.success === "true")) {
+        setStatus("ok");
+        event.currentTarget.reset();
+        return;
+      }
+
       const resp = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const json = (await resp.json()) as { ok: boolean; error?: string };
-      if (!resp.ok || !json.ok) {
-        throw new Error(json.error ?? "Nu am putut trimite mesajul. Te rugăm să încerci din nou.");
+      const json = (await resp.json().catch(() => ({ ok: false }))) as { ok: boolean; error?: string };
+      if (resp.ok && json.ok) {
+        setStatus("ok");
+        event.currentTarget.reset();
+        return;
+      }
+
+      const netlifyBody = new URLSearchParams();
+      netlifyBody.set("form-name", "contact");
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value) netlifyBody.set(key, value);
+      });
+      const netlifyResp = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: netlifyBody.toString(),
+      });
+      if (!netlifyResp.ok) {
+        throw new Error(json.error ?? "Nu am putut trimite mesajul. Te rugăm să încerci din nou sau să ne suni.");
       }
       setStatus("ok");
       event.currentTarget.reset();
@@ -664,17 +711,21 @@ export function ContactFormCard({ source }: { source: string }) {
       <p className="text-[21px] opacity-70">{CLINIC.instagramHandle}</p>
       <h3 className="mt-2 text-[32px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
       <p className="mt-3 text-[21px] leading-[1.45] opacity-80">
-        Lasă-ne datele tale și te contactăm în maxim 24h pentru confirmare.
+        Lasă-ne datele tale și te contactăm pentru confirmarea programării.
       </p>
       {status === "ok" ? (
         <div role="status" className="ads-form-success-box mt-7 rounded-[18px] border border-[#B6B94C]/30 bg-[#F4F5E4] p-6">
           <p className="text-[21px] font-semibold">Mulțumim! Mesajul a fost trimis.</p>
           <p className="mt-2 text-[21px] leading-[1.5]">
-            Te contactăm în maxim 24h pentru confirmarea programării.
+            Te contactăm pentru confirmarea programării.
           </p>
         </div>
       ) : (
-        <form className="mt-7 grid gap-3" onSubmit={handleSubmit} noValidate>
+        <form className="relative mt-7 grid gap-3" onSubmit={handleSubmit} noValidate>
+          <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+            <label htmlFor="contact-website">Website</label>
+            <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+          </div>
           <label className="sr-only" htmlFor="contact-nume">Nume</label>
           <input
             id="contact-nume"
@@ -772,7 +823,7 @@ export function ServiceFinalCTA({
         >
           {buttonLabel}
         </a>
-        <p className="mt-4 text-[21px] text-white">Te contactăm în maxim 24h pentru confirmare.</p>
+        <p className="mt-4 text-[21px] text-white">Te contactăm pentru confirmarea programării.</p>
       </motion.div>
     </section>
   );

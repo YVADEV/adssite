@@ -20,7 +20,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
   const serviceMap = Object.fromEntries(services.map((service) => [service.slug, service]));
   const groupedColumns = [
     ["aparat-dentar", "pedodontie", "dentist-cluj", "odontologie", "urgente-stomatologice", "protetica"],
-    ["ortodontie", "profilaxie", "implant-dentar", "all-on-x", "chirurgie-dentara", "augmentarea-osoasa"],
+    ["ortodontie", "profilaxie", "implant-dentar", "chirurgie-dentara", "augmentarea-osoasa"],
     ["estetica-dentara", "fatete-dentare", "coroana-dentara", "endodontie"],
   ]
     .map((group) => group.map((slug) => serviceMap[slug]).filter(Boolean))

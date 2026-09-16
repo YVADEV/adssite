@@ -8,6 +8,6 @@ export const alt = "All-on-4 / All-on-6 | Alverna Dental Studio";
 export default async function Image() {
   return renderServiceOg({
     title: "All-on-4 / All-on-6",
-    subtitle: "Dantură fixă, flux 100% digital, laborator propriu.",
+    subtitle: "Dinți ficși pe implanturi, flux de lucru digital integrat, laborator propriu.",
   });
 }

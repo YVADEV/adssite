@@ -822,12 +822,9 @@ export default function HomePageClient() {
         </div>
       </header>
 
-      <section
-        data-anim="section"
-        className="mx-auto mt-0 w-full max-w-[1680px] px-4 pb-[72px] md:px-6 md:pb-[96px] lg:px-8 lg:pb-[140px]"
-      >
+      <section data-anim="section" className="mt-0 w-full pb-[72px] md:pb-[96px] lg:pb-[140px]">
         <div className="relative h-[min(calc(100svh-72px),820px)] w-full min-h-[520px] md:h-[calc(100vh-72px)] md:max-h-none">
-          <div data-intro="hero-media" className="relative h-full w-full overflow-hidden rounded-[20px] md:rounded-[32px]">
+          <div data-intro="hero-media" className="relative h-full w-full overflow-hidden">
             <HeroIntroVideo />
             <div
               aria-hidden
@@ -851,7 +848,7 @@ export default function HomePageClient() {
           </div>
         </div>
 
-        <div data-intro="trust" className="mx-auto mt-10 w-full overflow-hidden pb-[8px] md:mt-[72px]">
+        <div data-intro="trust" className="mx-auto mt-10 w-full max-w-[1680px] overflow-hidden px-4 pb-[8px] md:mt-[72px] md:px-6 lg:px-8">
           <div data-anim-cards className="grid grid-cols-1 items-end gap-[10px] min-[420px]:grid-cols-2 md:grid-cols-3 md:gap-3 lg:grid-cols-6 lg:gap-2">
             {partnerReviewCards.map((review) => (
               <div

@@ -125,7 +125,9 @@ export default function EchipaPage() {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
+              item.label === "All on X" ? "ads-nav-green-glow" : ""
+            }`}
           >
             {item.label}
           </a>
@@ -146,7 +148,9 @@ export default function EchipaPage() {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
+              item.label === "All on X" ? "ads-nav-green-glow" : ""
+            }`}
           >
             {item.label}
           </a>
@@ -169,7 +173,7 @@ export default function EchipaPage() {
               Echipă
             </a>
             <a href="/cazuri">Cazuri</a>
-            <a href="/servicii/implant-dentar/all-on-4-all-on-6/">All on X</a>
+            <a href="/servicii/implant-dentar/all-on-4-all-on-6/" className="ads-nav-green-glow">All on X</a>
             <ServicesDropdown isDark />
             <a href="/tarife">Tarife</a>
             <a href="/contact">Contact</a>

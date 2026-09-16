@@ -70,7 +70,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
+              item.label === "All on X" ? "ads-nav-green-glow" : ""
+            }`}
           >
             {item.label}
           </Link>
@@ -93,7 +95,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
+              item.label === "All on X" ? "ads-nav-green-glow" : ""
+            }`}
           >
             {item.label}
           </Link>
@@ -124,6 +128,8 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                   href={it.href}
                   aria-current={isActive(it.href) ? "page" : undefined}
                   className={`pointer-events-auto whitespace-nowrap transition-opacity duration-200 hover:opacity-75 ${
+                    it.label === "All on X" ? "ads-nav-green-glow" : ""
+                  } ${
                     isActive(it.href) ? "underline decoration-2 underline-offset-[10px] opacity-100" : "opacity-90"
                   }`}
                 >

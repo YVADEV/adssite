@@ -749,7 +749,9 @@ export default function HomePageClient() {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
+              item.label === "All on X" ? "ads-nav-green-glow" : ""
+            }`}
           >
             {item.label}
           </Link>
@@ -770,7 +772,9 @@ export default function HomePageClient() {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className="block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px]"
+            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
+              item.label === "All on X" ? "ads-nav-green-glow" : ""
+            }`}
           >
             {item.label}
           </Link>
@@ -795,7 +799,7 @@ export default function HomePageClient() {
             <Link className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" aria-current="page">Acasă</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa">Echipa</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri">Cazuri</Link>
-            <Link className="pointer-events-auto whitespace-nowrap opacity-90 transition-opacity duration-200 hover:opacity-100" href="/servicii/implant-dentar/all-on-4-all-on-6/">All on X</Link>
+            <Link className="pointer-events-auto ads-nav-green-glow whitespace-nowrap opacity-90 transition-opacity duration-200 hover:opacity-100" href="/servicii/implant-dentar/all-on-4-all-on-6/">All on X</Link>
             <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</Link>

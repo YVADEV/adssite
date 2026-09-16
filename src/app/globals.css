@@ -70,6 +70,8 @@
   --ads-glow-lg: -4px -4px 12px rgba(255, 255, 255, 0.55), 9px 11px 18px rgba(0, 0, 0, 0.08);
   --ads-glow-xl: -5px -5px 14px rgba(255, 255, 255, 0.55), 10px 12px 20px rgba(0, 0, 0, 0.08);
   --ads-glow-hover: -4px -4px 14px rgba(255, 255, 255, 0.62), 9px 11px 20px rgba(0, 0, 0, 0.1);
+  --ads-green-glow: 0 0 14px rgba(182, 185, 76, 0.28), 0 0 28px rgba(182, 185, 76, 0.1);
+  --ads-green-glow-hover: 0 0 20px rgba(182, 185, 76, 0.4), 0 0 40px rgba(182, 185, 76, 0.16);
 
   --background: var(--ads-bg);
   --foreground: var(--ads-text-primary);
@@ -166,12 +168,12 @@ textarea {
   font-size: var(--ads-font-size-body);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: var(--ads-glow-md);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-md);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
 .ads-btn-primary:hover {
-  box-shadow: var(--ads-glow-hover);
+  box-shadow: var(--ads-green-glow-hover), var(--ads-glow-hover);
 }
 
 .ads-btn-primary:active {
@@ -261,7 +263,7 @@ textarea {
 }
 
 .ads-btn-glow-lg {
-  box-shadow: var(--ads-glow-lg);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-lg);
 }
 
 .ads-btn-glow-xl {
@@ -283,7 +285,7 @@ textarea {
   button.rounded-\[12px\]:not(.ads-btn-no-glow),
   a.rounded-\[18px\].inline-flex
 ) {
-  box-shadow: var(--ads-glow-md);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-md);
   transition: box-shadow 0.25s ease, transform 0.25s ease;
 }
 
@@ -301,38 +303,38 @@ textarea {
   button.rounded-\[12px\]:not(.ads-btn-no-glow),
   a.rounded-\[18px\].inline-flex
 ):hover {
-  box-shadow: var(--ads-glow-hover);
+  box-shadow: var(--ads-green-glow-hover), var(--ads-glow-hover);
 }
 
 /* Glow scaled to button height */
 [class*="h-[26px]"]:is(button, a)[class*="rounded"],
 [class*="h-[38px]"]:is(button, a)[class*="rounded"] {
-  box-shadow: var(--ads-glow-xs);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-xs);
 }
 
 [class*="h-[40px]"]:is(button, a)[class*="rounded"],
 [class*="h-[42px]"]:is(button, a)[class*="rounded"] {
-  box-shadow: var(--ads-glow-sm);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-sm);
 }
 
 [class*="h-[44px]"]:is(button, a)[class*="rounded"],
 [class*="h-[46px]"]:is(button, a)[class*="rounded"] {
-  box-shadow: var(--ads-glow-md);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-md);
 }
 
 [class*="h-[52px]"]:is(button, a)[class*="rounded"],
 [class*="h-[54px]"]:is(button, a)[class*="rounded"],
 [class*="h-[56px]"]:is(button, a)[class*="rounded"] {
-  box-shadow: var(--ads-glow-lg);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-lg);
 }
 
 [class*="h-[64px]"]:is(button, a)[class*="rounded"] {
-  box-shadow: var(--ads-glow-xl);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-xl);
 }
 
 button.rounded-full[class*="py-2"],
 a.rounded-full[class*="py-2"] {
-  box-shadow: var(--ads-glow-sm);
+  box-shadow: var(--ads-green-glow), var(--ads-glow-sm);
 }
 
 /* Exclude navigation / accordion / menu controls */
@@ -568,6 +570,10 @@ a {
 
 .brand {
   color: #B6B94C;
+}
+
+.ads-nav-green-glow {
+  text-shadow: 0 0 10px rgba(182, 185, 76, 0.45), 0 0 22px rgba(182, 185, 76, 0.18);
 }
 
 .nav-list {

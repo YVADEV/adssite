@@ -197,6 +197,29 @@ textarea {
   opacity: 0.92;
 }
 
+.ads-btn-emergency-glow {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(196, 92, 82, 0.55) !important;
+  box-shadow: 0 0 16px rgba(196, 92, 82, 0.55), 0 0 36px rgba(196, 92, 82, 0.28) !important;
+  text-shadow: none !important;
+  white-space: nowrap;
+}
+
+.ads-btn-emergency-glow:hover {
+  border-color: rgba(196, 92, 82, 0.9) !important;
+  box-shadow: 0 0 22px rgba(196, 92, 82, 0.7), 0 0 44px rgba(196, 92, 82, 0.32) !important;
+}
+
+.ads-emergency-backglow {
+  background-color: #c45c52 !important;
+  opacity: 0.32;
+}
+
+.ads-nav-emergency-glow {
+  text-shadow: 0 0 10px rgba(196, 92, 82, 0.55), 0 0 22px rgba(196, 92, 82, 0.28);
+}
+
 .ads-card-lit {
   background-color: #ffffff !important;
   color: #0a0a0a !important;

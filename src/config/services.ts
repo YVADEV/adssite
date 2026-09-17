@@ -58,11 +58,14 @@ export const services: ServiceItem[] = [
   { title: "Ortodonție", slug: "ortodontie", href: "/servicii/ortodontie/" },
   { title: "Profilaxie", slug: "profilaxie", href: "/servicii/profilaxie/" },
   { title: "Protetică", slug: "protetica", href: "/servicii/protetica/" },
-  { title: "Urgențe stomatologice", slug: "urgente-stomatologice", href: "/servicii/urgente-stomatologice/" },
+  { title: "Urgențe stomatologice", slug: "urgente-stomatologice", href: "/urgente-stomatologice-cluj/" },
 ];
 
 export const FIXED_TEETH_NAV_LABEL = "Dinți ficși / All-on-X";
 export const FIXED_TEETH_HREF = "/servicii/implant-dentar/all-on-4-all-on-6/";
+
+export const EMERGENCY_NAV_LABEL = "Urgențe";
+export const EMERGENCY_HREF = "/urgente-stomatologice-cluj/";
 
 export function isFixedTeethNav(label: string) {
   return label.includes("All-on-X") || label.includes("Dinți ficși");

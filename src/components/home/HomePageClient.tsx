@@ -16,6 +16,7 @@ import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav, services } from "@/config/services";
+import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 import { CLINIC } from "@/lib/contact";
 import vdScaun from "@/assets/VDscaun.png";
 import alvernaLogo from "@/assets/alverna-logo.png";
@@ -791,6 +792,7 @@ export default function HomePageClient() {
         />
         {[
           { href: "/tarife", label: "Tarife" },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
           { href: "/contact", label: "Contact" },
         ].map((item) => (
           <Link
@@ -799,7 +801,7 @@ export default function HomePageClient() {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
+              item.label === "Urgențe" ? "ads-nav-emergency-glow" : ""
             }`}
           >
             {item.label}
@@ -830,7 +832,9 @@ export default function HomePageClient() {
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife">Tarife</Link>
             <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact">Contact</Link>
           </nav>
-          <button
+          <div className="flex items-center gap-2 sm:gap-3">
+            <EmergencyHeaderButton />
+            <button
             ref={menuTriggerRef}
             type="button"
             aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
@@ -844,6 +848,7 @@ export default function HomePageClient() {
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
             <span ref={menuBottomLineRef} className="h-[2px] w-full bg-[#ffffff]" />
           </button>
+          </div>
         </div>
       </header>
 

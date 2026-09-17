@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export async function generateStaticParams() {
   return services
-    .filter((service) => service.slug !== "all-on-x")
+    .filter((service) => service.slug !== "all-on-x" && service.slug !== "urgente-stomatologice")
     .map((service) => ({ serviceSlug: service.slug }));
 }
 

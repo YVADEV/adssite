@@ -8,6 +8,20 @@ const nextConfig: NextConfig = {
     deviceSizes: [640, 750, 828, 1080, 1200, 1680],
     imageSizes: [32, 48, 64, 96, 128, 256, 384],
   },
+  async redirects() {
+    return [
+      {
+        source: "/servicii/urgente-stomatologice",
+        destination: "/urgente-stomatologice-cluj",
+        permanent: true,
+      },
+      {
+        source: "/servicii/urgente-stomatologice/",
+        destination: "/urgente-stomatologice-cluj",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

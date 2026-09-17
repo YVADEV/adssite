@@ -48,7 +48,7 @@ export const SERVICES: ReadonlyArray<ServiceMeta> = [
   { slug: "augmentarea-osoasa", path: "/servicii/augmentarea-osoasa/", name: "Augmentare osoasă", short: "Sinus lift și augmentări pentru implantologie." },
   { slug: "profilaxie", path: "/servicii/profilaxie/", name: "Profilaxie dentară", short: "Igienizare profesională airflow și consult preventiv." },
   { slug: "pedodontie", path: "/servicii/pedodontie/", name: "Pedodonție", short: "Stomatologie pediatrică prietenoasă și empatică." },
-  { slug: "urgente-stomatologice", path: "/servicii/urgente-stomatologice/", name: "Urgențe stomatologice", short: "Intervenție rapidă pentru dureri și traumatisme orale." },
+  { slug: "urgente-stomatologice", path: "/urgente-stomatologice-cluj/", name: "Urgențe stomatologice 24/7", short: "Urgențe stomatologice 24/7 în Cluj-Napoca, cu programare telefonică prealabilă." },
   { slug: "dentist-cluj", path: "/servicii/dentist-cluj/", name: "Dentist Cluj", short: "Stomatologie generală în Cluj-Napoca, cu plan personalizat." },
   { slug: "all-on-4-all-on-6", path: "/servicii/implant-dentar/all-on-4-all-on-6/", name: "Dinți ficși / All-on-X", short: "Dinți ficși pe implanturi, flux de lucru digital integrat și laborator propriu." },
   { slug: "spark", path: "/servicii/aparat-dentar/spark/", name: "Alignere transparente", short: "Ortodonție cu alignere Spark și Angel Aligner." },

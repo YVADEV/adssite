@@ -12,6 +12,7 @@ import SiteLogo from "@/components/nav/SiteLogo";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
+import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -89,6 +90,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
 
         {[
           { href: "/tarife", label: "Tarife" },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
           { href: "/contact", label: "Contact" },
         ].map((item) => (
           <Link
@@ -97,7 +99,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
+              item.label === "Urgențe" ? "ads-nav-emergency-glow" : ""
             }`}
           >
             {item.label}
@@ -157,7 +159,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
                 Contact
               </Link>
             </nav>
-            <button
+            <div className="flex items-center gap-2 sm:gap-3">
+              <EmergencyHeaderButton />
+              <button
               ref={menuTriggerRef}
               type="button"
               aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
@@ -171,6 +175,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               <span ref={menuMidLineRef} className="h-[2px] w-full bg-[#ffffff]" />
               <span ref={menuBottomLineRef} className="h-[2px] w-full bg-[#ffffff]" />
             </button>
+            </div>
           </div>
         </header>
         {children}

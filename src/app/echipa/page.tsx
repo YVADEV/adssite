@@ -9,6 +9,7 @@ import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
+import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
@@ -142,6 +143,7 @@ export default function EchipaPage() {
         />
         {[
           { href: "/tarife", label: "Tarife" },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
           { href: "/contact", label: "Contact" },
         ].map((item) => (
           <a
@@ -150,7 +152,7 @@ export default function EchipaPage() {
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
+              item.label === "Urgențe" ? "ads-nav-emergency-glow" : ""
             }`}
           >
             {item.label}
@@ -179,7 +181,9 @@ export default function EchipaPage() {
             <a href="/tarife">Tarife</a>
             <a href="/contact">Contact</a>
           </nav>
-          <button
+          <div className="flex items-center gap-2 sm:gap-3">
+            <EmergencyHeaderButton />
+            <button
             ref={menuTriggerRef}
             type="button"
             aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
@@ -193,6 +197,7 @@ export default function EchipaPage() {
             <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
             <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
           </button>
+          </div>
           </div>
         </header>
 

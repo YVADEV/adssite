@@ -12,6 +12,7 @@ const pageLinks = [
   { href: "/servicii", label: "Servicii" },
   { href: "/echipa", label: "Echipa" },
   { href: "/tarife", label: "Tarife" },
+  { href: "/urgente-stomatologice-cluj/", label: "Urgențe 24/7" },
   { href: "/cazuri", label: "Studii de caz" },
   { href: "/testimoniale", label: "Testimoniale" },
   { href: "/contact", label: "Contact" },

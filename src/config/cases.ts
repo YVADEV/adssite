@@ -5,6 +5,9 @@ import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
+import elenaBefore1 from "@/assets/cazuri/elena/before-1.jpg";
+import elenaBefore2 from "@/assets/cazuri/elena/before-2.jpg";
+import elenaBefore3 from "@/assets/cazuri/elena/before-3.jpg";
 import caz1Before from "@/assets/cazuri/caz1-before.png";
 import caz1Proteza from "@/assets/cazuri/caz1-proteza.png";
 import caz1After from "@/assets/cazuri/caz1-after.png";
@@ -331,22 +334,30 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     subtitle: "Reabilitare orală complexă cu abordare multidisciplinară",
     category: "Reabilitare complexă",
     caseNumber: "Caz #6",
+    patientName: "Elena",
     heroImage: cazA7408160,
     heroObjectPosition: "center center",
     thumbnailSrc: cazA7408160.src,
-    storyImages: storyGalleryFromHero(cazA7408160, "Caz reabilitare complexă"),
+    storyImages: [
+      { image: elenaBefore1, label: "Înainte", alt: "Elena — situație inițială", objectPosition: "center top" },
+      { image: elenaBefore2, label: "Înainte", alt: "Elena — situație inițială, detaliu", objectPosition: "center top" },
+      { image: elenaBefore3, label: "Înainte", alt: "Elena — situație inițială, documentare clinică", objectPosition: "center top" },
+    ],
     intro:
-      "Acest caz complex de reabilitare orală a fost coordonat în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
+      "Cazul Elenei, o reabilitare orală complexă coordonată în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
     paragraphs: [
-      "Acest caz complex de reabilitare orală a fost coordonat în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
-      "Pacientul s-a prezentat cu multiple compromitere dentară, afectând atât aspectul zâmbetului, cât și funcția zilnică. După evaluarea completă, echipa medicală a construit un plan personalizat, cu etape clare și obiective măsurabile.",
-      "Tratamentul a inclus intervenții clinice coordonate, cu atenție la proporții, ocluzie și confortul pacientului pe parcursul întregului proces.",
+      "Cazul Elenei, o reabilitare orală complexă coordonată în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
+      "Elena s-a prezentat cu multiple compromitere dentară, afectând atât aspectul zâmbetului, cât și funcția zilnică. După evaluarea completă, echipa medicală a construit un plan personalizat, cu etape clare și obiective măsurabile.",
+      "Tratamentul a inclus intervenții clinice coordonate, cu atenție la proporții, ocluzie și confortul pacientei pe parcursul întregului proces.",
       "Lucrările finale au fost realizate în laboratorul propriu, cu personalizare atentă pentru fiecare detaliu estetic și funcțional.",
       "Rezultatul documentat reflectă o transformare completă: zâmbet reabilitat, funcție îmbunătățită și o experiență clinică orientată spre siguranță și predictibilitate.",
     ],
     closingQuote:
       "Un caz complex transformat în rezultat clar, stabil și natural — prin planificare riguroasă și execuție atentă.",
-    beforeAfterImages: beforeAfterFromHero(cazA7408160, "Reabilitare complexă"),
+    beforeAfterImages: [
+      { image: elenaBefore1, label: "Înainte", alt: "Elena — înainte de tratament", objectPosition: "center top" },
+      { image: cazA7408160, label: "După", alt: "Elena — după tratament", objectPosition: "center 36%" },
+    ],
     treatmentSteps: [
       { label: "Evaluare multidisciplinară", detail: "Analiză clinică completă și stabilirea obiectivelor funcționale și estetice." },
       { label: "Plan etapizat", detail: "Secvențiere clară a intervențiilor, cu verificări intermediare la fiecare etapă." },
@@ -361,7 +372,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     doctor: DEFAULT_CASE_DOCTOR,
     seoDescription:
-      "Caz #6 Alverna Dental Studio: reabilitare orală complexă cu abordare multidisciplinară — documentare clinică completă.",
+      "Caz #6 Alverna Dental Studio: reabilitare orală complexă pentru Elena, cu abordare multidisciplinară — documentare clinică completă.",
   },
   "sergiu-witberg": {
     slug: "sergiu-witberg",

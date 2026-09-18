@@ -21,7 +21,7 @@ const caseGallery = [
   { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
   { src: cazA7407944.src, alt: "Caz smile design — armonie dentară și facială" },
   { src: cazA7407760.src, alt: "Caz reabilitare protetică — funcție și estetică" },
-  { src: cazA7408160.src, alt: "Caz reabilitare complexă — plan de tratament complet" },
+  { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final" },
   { src: sergiuHero.src, alt: "Caz Sergiu Witberg — fațete dentare estetice" },
   { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară" },
   { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament" },

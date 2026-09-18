@@ -726,60 +726,64 @@ export function ContactFormCard({ source }: { source: string }) {
             <label htmlFor="contact-website">Website</label>
             <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
           </div>
-          <label className="grid gap-1.5" htmlFor="contact-nume">
+          <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Nume</span>
             <input
               id="contact-nume"
               name="nume"
-              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
               placeholder="Nume"
               required
               autoComplete="name"
             />
           </label>
-          <label className="grid gap-1.5" htmlFor="contact-telefon">
+          <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Telefon</span>
             <input
               id="contact-telefon"
               name="telefon"
               type="tel"
-              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              inputMode="tel"
+              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
               placeholder="Telefon"
               required
               autoComplete="tel"
             />
           </label>
-          <label className="grid gap-1.5" htmlFor="contact-email">
+          <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Email</span>
             <input
               id="contact-email"
               name="email"
               type="email"
-              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              inputMode="email"
+              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
               placeholder="Email (opțional)"
               autoComplete="email"
             />
           </label>
-          <label className="grid gap-1.5" htmlFor="contact-serviciu">
+          <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Serviciu</span>
             <input
               id="contact-serviciu"
               name="serviciu"
-              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
               placeholder="Serviciu dorit"
+              autoComplete="off"
             />
           </label>
-          <label className="grid gap-1.5" htmlFor="contact-mesaj">
+          <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Mesaj</span>
             <textarea
               id="contact-mesaj"
               name="mesaj"
-              className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              rows={4}
+              className="ads-field min-h-[110px] rounded-[14px] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
               placeholder="Mesaj opțional"
             />
           </label>
           {status === "error" ? (
-            <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px] text-[#a4392b]">
+            <p role="alert" className="ads-form-error rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px]">
               {error}
             </p>
           ) : null}

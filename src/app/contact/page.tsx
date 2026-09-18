@@ -213,13 +213,9 @@ export default function ContactPage() {
               <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
                 Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
               </p>
-              <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
-                <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
-                <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
-              </div>
               <a
                 href={`tel:${CLINIC.phoneTel}`}
-                className="mt-7 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
+                className="mt-8 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
               >
                 Preferi telefonic? Sună acum
               </a>

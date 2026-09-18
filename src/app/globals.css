@@ -38,30 +38,60 @@
   --ads-primary: #B6B94C;
   --ads-secondary: #B6B94C;
   --ads-text-primary: #ffffff;
-  --ads-text-secondary: #ffffff;
+  --ads-text-secondary: rgba(255, 255, 255, 0.72);
   --ads-divider: rgba(255, 255, 255, 0.08);
   --ads-error: #ff3b30;
   --ads-warning: #ff9500;
 
+  --ads-container-width: 1680px;
+  --ads-content-width: 1280px;
+  --ads-text-width: 42rem;
+  --ads-gutter: clamp(20px, 4.2vw, 64px);
+
   --ads-space-xs: 4px;
   --ads-space-s: 8px;
+  --ads-space-sm: 8px;
   --ads-space-m: 16px;
+  --ads-space-md: 16px;
   --ads-space-l: 24px;
+  --ads-space-lg: 24px;
   --ads-space-xl: 32px;
-  --ads-space-2xl: 40px;
+  --ads-space-2xl: 48px;
+  --ads-space-3xl: 80px;
+  --ads-space-section: clamp(80px, 11vw, 160px);
 
-  --ads-radius-sm: 12px;
+  --ads-radius-sm: 10px;
   --ads-radius-md: 16px;
-  --ads-radius-lg: 18px;
+  --ads-radius-lg: 20px;
   --ads-radius-xl: 24px;
+  --ads-radius-pill: 999px;
 
-  --ads-font-size-caption: 21px;
+  --ads-font-display: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --ads-font-heading: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --ads-font-body: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+
+  --ads-font-size-caption: 13px;
   --ads-font-size-body: 21px;
   --ads-font-size-section: 21px;
   --ads-font-size-title: 24px;
   --ads-font-size-large-title: 32px;
+  --ads-text-caption: clamp(12px, 0.85vw, 14px);
+  --ads-text-body: 21px;
+  --ads-text-body-lg: 21px;
+  --ads-text-h3: clamp(28px, 3vw, 36px);
+  --ads-text-h2: clamp(40px, 5vw, 52px);
+  --ads-text-h1: clamp(48px, 6vw, 64px);
+  --ads-text-display: clamp(56px, 7vw, 72px);
+  --ads-text-display-xl: clamp(40px, 8vw, 96px);
 
-  --ads-shadow-card: 0 10px 20px rgba(0, 0, 0, 0.3);
+  --ads-ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ads-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ads-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ads-duration-fast: 180ms;
+  --ads-duration-normal: 280ms;
+  --ads-duration-slow: 700ms;
+
+  --ads-shadow-card: 0 8px 28px rgba(0, 0, 0, 0.12);
 
   /* Mission card / button white glow */
   --ads-glow-xs: -2px -2px 5px rgba(255, 255, 255, 0.55), 3px 4px 7px rgba(0, 0, 0, 0.08);
@@ -88,6 +118,12 @@ html {
   overflow-x: clip;
   width: 100%;
   max-width: 100%;
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: rgba(182, 185, 76, 0.32);
+  color: #fff;
 }
 
 body {
@@ -107,8 +143,23 @@ body {
 .ads-readable {
   font-size: var(--ads-font-size-body);
   line-height: 1.65;
-  max-width: 42rem;
+  max-width: var(--ads-text-width);
   overflow-wrap: break-word;
+}
+
+.ads-container {
+  width: 100%;
+  max-width: var(--ads-container-width);
+  margin-inline: auto;
+  padding-inline: var(--ads-gutter);
+}
+
+.ads-eyebrow {
+  font-size: var(--ads-text-caption);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ads-text-secondary);
 }
 
 .ads-footer-instagram-wrap {
@@ -120,8 +171,7 @@ body {
   width: 100%;
   margin-inline: auto;
   text-align: center;
-  font-size: clamp(22px, 7.5vw, 120px);
-  font-size: clamp(22px, 8.8cqw, 120px);
+  font-size: clamp(20px, 6.4cqw, 56px);
   font-weight: 600;
   line-height: 0.92;
   letter-spacing: -0.045em;
@@ -154,7 +204,7 @@ textarea {
 .ads-card {
   background: var(--ads-surface);
   border-radius: var(--ads-radius-xl);
-  box-shadow: var(--ads-shadow-card);
+  box-shadow: none;
   border: 1px solid var(--ads-divider);
 }
 
@@ -165,26 +215,30 @@ textarea {
 }
 
 .ads-btn-primary {
-  height: 50px;
+  height: 52px;
+  min-height: 48px;
   border: 0;
-  border-radius: var(--ads-radius-lg);
+  border-radius: var(--ads-radius-pill);
   background: var(--ads-primary);
   color: var(--ads-bg);
   font-size: var(--ads-font-size-body);
   font-weight: 600;
   cursor: pointer;
-  box-shadow: var(--ads-green-glow), var(--ads-glow-md);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--ads-green-glow);
+  transition: box-shadow var(--ads-duration-normal) var(--ads-ease-standard),
+    transform var(--ads-duration-fast) var(--ads-ease-standard),
+    opacity var(--ads-duration-fast) var(--ads-ease-standard);
 }
 
 .ads-btn-primary:hover {
-  box-shadow: var(--ads-green-glow-hover), var(--ads-glow-hover);
+  box-shadow: var(--ads-green-glow-hover);
+  transform: translateY(-1px);
 }
 
 .ads-btn-primary:active {
-  transform: scale(0.97);
-  opacity: 0.92;
-  transition: 0.14s ease-out;
+  transform: scale(0.99);
+  opacity: 0.94;
+  transition: var(--ads-duration-fast) var(--ads-ease-exit);
 }
 
 /* Literal light surfaces — bypass dark-theme token conversion */
@@ -194,7 +248,8 @@ textarea {
 }
 
 .ads-btn-lit:hover {
-  opacity: 0.92;
+  opacity: 0.94;
+  transform: translateY(-1px);
 }
 
 .ads-btn-emergency-glow {
@@ -204,6 +259,9 @@ textarea {
   box-shadow: 0 0 16px rgba(196, 92, 82, 0.55), 0 0 36px rgba(196, 92, 82, 0.28) !important;
   text-shadow: none !important;
   white-space: nowrap;
+  transition: box-shadow var(--ads-duration-normal) var(--ads-ease-standard),
+    border-color var(--ads-duration-normal) var(--ads-ease-standard),
+    transform var(--ads-duration-fast) var(--ads-ease-standard);
 }
 
 .ads-btn-emergency-glow:hover {
@@ -269,7 +327,8 @@ textarea {
 
 /* Mission-style white glow — cards */
 .ads-mission-glow {
-  box-shadow: var(--ads-glow-md);
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Mission-style white glow — buttons (size variants) */
@@ -313,8 +372,9 @@ textarea {
   button.rounded-\[12px\]:not(.ads-btn-no-glow),
   a.rounded-\[18px\].inline-flex
 ) {
-  box-shadow: var(--ads-green-glow), var(--ads-glow-md);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: var(--ads-green-glow);
+  transition: box-shadow var(--ads-duration-normal) var(--ads-ease-standard),
+    transform var(--ads-duration-fast) var(--ads-ease-standard);
 }
 
 :is(
@@ -331,7 +391,8 @@ textarea {
   button.rounded-\[12px\]:not(.ads-btn-no-glow),
   a.rounded-\[18px\].inline-flex
 ):hover {
-  box-shadow: var(--ads-green-glow-hover), var(--ads-glow-hover);
+  box-shadow: var(--ads-green-glow-hover);
+  transform: translateY(-1px);
 }
 
 /* Glow scaled to button height */
@@ -395,8 +456,9 @@ button[aria-label*="Deschide meniul"]:not(.ads-btn-glow):hover {
 }
 
 .ads-input {
-  height: 50px;
-  border-radius: 14px;
+  height: 56px;
+  min-height: 48px;
+  border-radius: var(--ads-radius-md);
   border: 1px solid var(--ads-divider);
   background: rgba(26, 29, 34, 0.85);
   color: var(--ads-text-primary);

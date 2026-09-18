@@ -121,8 +121,8 @@ function ServiceHeroContent({
       <div
         className={
           isStacked
-            ? "mb-5 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[16px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[18px] md:text-[21px] lg:absolute lg:left-8 lg:top-7 lg:mb-0 lg:max-w-[min(100%,680px)] lg:px-4 lg:text-[21px] xl:left-12 xl:top-9"
-            : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[15px] font-medium uppercase leading-tight tracking-[0.12em] text-white backdrop-blur sm:px-4 sm:text-[18px] sm:tracking-[0.14em] md:left-8 md:top-7 md:text-[21px] lg:left-12 lg:top-9"
+            ? "mb-5 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[13px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[14px] lg:absolute lg:left-8 lg:top-7 lg:mb-0 lg:max-w-[min(100%,680px)] xl:left-12 xl:top-9"
+            : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[12px] font-medium uppercase leading-tight tracking-[0.12em] text-white backdrop-blur sm:px-4 sm:text-[13px] md:left-8 md:top-7 lg:left-12 lg:top-9"
         }
       >
         <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#B6B94C]" />
@@ -136,21 +136,21 @@ function ServiceHeroContent({
         } ${className}`}
       >
         <motion.div {...reveal} className="max-w-[820px]">
-          <p className="text-[16px] font-medium uppercase tracking-[0.16em] text-white sm:text-[18px] sm:tracking-[0.18em] md:text-[21px]">{kicker}</p>
-          <h1 className="mt-4 max-w-[980px] text-[32px] font-extrabold leading-[1.02] tracking-[-0.04em] text-white sm:text-[36px] md:mt-5 md:text-[76px] md:leading-[0.92] md:tracking-[-0.05em] lg:text-[96px]">
+          <p className="ads-eyebrow text-white opacity-70">{kicker}</p>
+          <h1 className="mt-4 max-w-[980px] text-[clamp(32px,6vw,96px)] font-extrabold leading-[1.02] tracking-[-0.045em] text-white md:mt-5 md:leading-[0.94]">
             {title}
           </h1>
-          <p className="mt-6 max-w-[720px] ads-readable text-white">{intro}</p>
+          <p className="mt-6 max-w-[680px] ads-readable text-white">{intro}</p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href="#contact"
-              className="ads-btn-lit inline-flex min-h-[46px] w-full items-center justify-center rounded-full px-5 text-[18px] font-semibold transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-6 sm:text-[21px]"
+              className="ads-btn-lit inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-200 sm:w-auto sm:text-[21px]"
             >
               Solicită o evaluare
             </a>
             <a
               href="/tarife/"
-              className="inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-5 text-[18px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10 sm:w-auto sm:px-6 sm:text-[21px]"
+              className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 text-[18px] font-semibold text-white backdrop-blur transition duration-200 hover:bg-white/10 sm:w-auto sm:text-[21px]"
             >
               Vezi tarife
             </a>
@@ -223,7 +223,7 @@ export function ServiceHero({
 
   return (
     <section className="relative w-full overflow-hidden bg-black">
-      <div className="relative flex min-h-[min(78vh,640px)] w-full flex-col bg-black md:min-h-[min(78vh,820px)]">
+      <div className="relative flex min-h-[min(86vh,720px)] w-full flex-col bg-black md:min-h-[min(88vh,900px)]">
         {videoSrc ? (
           <ServiceHeroVideo
             videoSrc={videoSrc}
@@ -242,9 +242,9 @@ export function ServiceHero({
             className="object-cover saturate-[0.98] brightness-[0.92]"
           />
         )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/22 via-transparent to-black/48" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/58 via-black/12 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[32%] bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/28 via-transparent to-black/55" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/64 via-black/16 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[36%] bg-gradient-to-t from-black/78 to-transparent" />
         <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} className="mx-auto max-w-[1680px]" />
       </div>
     </section>
@@ -706,7 +706,7 @@ export function ContactFormCard({ source }: { source: string }) {
 
   return (
     <div
-      className="ads-card-lit rounded-[24px] p-8 shadow-[0_12px_30px_rgba(0,0,0,0.18)]"
+      className="ads-card-lit rounded-[24px] p-8"
     >
       <p className="text-[21px] opacity-70">{CLINIC.instagramHandle}</p>
       <h3 className="mt-2 text-[32px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
@@ -721,47 +721,47 @@ export function ContactFormCard({ source }: { source: string }) {
           </p>
         </div>
       ) : (
-        <form className="relative mt-7 grid gap-3" onSubmit={handleSubmit} noValidate>
+        <form className="relative mt-7 grid gap-4" onSubmit={handleSubmit} noValidate>
           <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
             <label htmlFor="contact-website">Website</label>
             <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
           </div>
-          <label className="sr-only" htmlFor="contact-nume">Nume</label>
+          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-nume">Nume</label>
           <input
             id="contact-nume"
             name="nume"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Nume"
             required
             autoComplete="name"
           />
-          <label className="sr-only" htmlFor="contact-telefon">Telefon</label>
+          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-telefon">Telefon</label>
           <input
             id="contact-telefon"
             name="telefon"
             type="tel"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Telefon"
             required
             autoComplete="tel"
           />
-          <label className="sr-only" htmlFor="contact-email">Email</label>
+          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-email">Email</label>
           <input
             id="contact-email"
             name="email"
             type="email"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Email (opțional)"
             autoComplete="email"
           />
-          <label className="sr-only" htmlFor="contact-serviciu">Serviciu</label>
+          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-serviciu">Serviciu</label>
           <input
             id="contact-serviciu"
             name="serviciu"
-            className="h-[52px] rounded-[12px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
             placeholder="Serviciu dorit"
           />
-          <label className="sr-only" htmlFor="contact-mesaj">Mesaj</label>
+          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-mesaj">Mesaj</label>
           <textarea
             id="contact-mesaj"
             name="mesaj"
@@ -842,7 +842,7 @@ export function ServicePageShell({ children }: { children: ReactNode }) {
 
 export function ServiceContentSection({ children }: { children: ReactNode }) {
   return (
-    <section data-theme="light" className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+    <section data-theme="light" className="mx-auto mt-20 w-full max-w-[1680px] px-4 md:mt-28 md:px-8 lg:mt-32 lg:px-12">
       {children}
     </section>
   );

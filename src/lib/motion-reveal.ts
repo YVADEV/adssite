@@ -1,8 +1,8 @@
 export const revealMotion = {
-  initial: { opacity: 0, y: 28, scale: 0.99 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, amount: 0.18 },
-  transition: { duration: 0.75, ease: "easeOut" as const },
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.16 },
+  transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
 } as const;
 
 export function motionRevealProps(ready: boolean) {

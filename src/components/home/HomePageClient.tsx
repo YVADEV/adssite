@@ -362,20 +362,21 @@ export const homePricingData = [
 ];
 
 const servicesList = [
-  "aparat-dentar",
-  "pedodontie",
+  "all-on-x",
+  "implant-dentar",
+  "protetica",
   "augmentarea-osoasa",
   "chirurgie-dentara",
-  "coroana-dentara",
-  "dentist-cluj",
-  "endodontie",
+  "ortodontie",
+  "aparat-dentar",
   "estetica-dentara",
   "fatete-dentare",
-  "implant-dentar",
-  "odontologie",
-  "ortodontie",
+  "endodontie",
   "profilaxie",
-  "protetica",
+  "pedodontie",
+  "coroana-dentara",
+  "odontologie",
+  "dentist-cluj",
   "urgente-stomatologice",
 ]
   .map((slug) => services.find((service) => service.slug === slug))
@@ -412,8 +413,8 @@ const missionCards = [
 
 function SectionTitle({ title }: { title: string }) {
   return (
-    <div className="mx-auto w-full max-w-[1680px] px-4 md:px-6 lg:px-8">
-      <h2 data-anim="text" className="text-[32px] font-extrabold leading-[1.05] tracking-[-0.045em] sm:text-[42px] md:text-[72px] lg:text-[96px]">
+    <div className="ads-container">
+      <h2 data-anim="text" className="text-[clamp(32px,8vw,96px)] font-extrabold leading-[0.98] tracking-[-0.045em]">
         {title}
       </h2>
     </div>
@@ -812,9 +813,9 @@ export default function HomePageClient() {
       <div ref={pageContentRef}>
       <header
         data-intro="nav"
-        className={`sticky top-0 z-50 h-[72px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out ${
+        className={`sticky top-0 z-50 h-[72px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
-            ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+            ? "bg-[#0f1115]/92 shadow-[0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md"
             : "bg-[#0f1115]"
         }`}
       >
@@ -858,39 +859,39 @@ export default function HomePageClient() {
             <HeroIntroVideo />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/72 via-black/35 to-transparent"
+              className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/78 via-black/40 to-transparent"
             />
             <div data-intro="hero-title" className="absolute left-5 right-5 top-5 text-white md:left-7 md:right-7 md:top-7 lg:left-9 lg:right-9 lg:top-9">
             <h1 className="max-w-[980px] text-[clamp(32px,9vw,40px)] font-extrabold leading-[0.92] tracking-[-0.05em] md:text-[84px] lg:text-[128px]">Alverna</h1>
             <p className="mt-1 max-w-[560px] text-[clamp(18px,5.5vw,22px)] font-bold leading-[0.95] tracking-[-0.04em] md:text-[40px] lg:text-[56px]">Dental Studio</p>
-            <p className="mt-4 max-w-[720px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.35] text-white md:text-[21px]">
+            <p className="mt-5 max-w-[640px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.45] text-white md:mt-6 md:text-[21px]">
               Stomatologie multidisciplinară. Implantologie și reabilitare orală complexă.
             </p>
-            <p className="mt-3 max-w-[720px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.35] text-white md:text-[21px]">
+            <p className="mt-3 max-w-[640px] text-[clamp(16px,4.5vw,18px)] font-medium leading-[1.5] text-white opacity-80 md:text-[21px]">
               Diagnostic, chirurgie, protetică și parodontologie, integrate într-un singur plan de tratament.
             </p>
-            <p className="mt-4 max-w-[760px] text-[clamp(14px,3.8vw,16px)] font-semibold leading-[1.45] text-white/90 md:text-[18px]">
+            <p className="mt-4 max-w-[640px] text-[clamp(14px,3.8vw,16px)] font-semibold leading-[1.5] text-white opacity-70 md:text-[18px]">
               Laborator dentar propriu · Flux digital · Echipă multidisciplinară
             </p>
           </div>
 
             <div className="absolute bottom-6 left-5 right-5 max-w-[280px] text-[18px] font-medium leading-[1.65] text-white md:bottom-12 md:left-7 md:right-auto md:text-[21px] lg:left-9">
-              <p>Implantologie</p>
-              <p className="mt-[12px]">Ortodonție</p>
-              <p className="mt-[12px]">Spark</p>
-              <p className="mt-[12px]">Angel Aligner</p>
+              <p className="font-semibold">Implantologie</p>
+              <p className="mt-[12px] opacity-50">Ortodonție</p>
+              <p className="mt-[12px] opacity-50">Spark</p>
+              <p className="mt-[12px] opacity-50">Angel Aligner</p>
             </div>
 
           </div>
         </div>
 
-        <div data-intro="trust" className="mx-auto mt-10 w-full max-w-[1680px] overflow-hidden px-4 pb-[8px] md:mt-[72px] md:px-6 lg:px-8">
-          <div data-anim-cards className="grid grid-cols-1 items-end gap-[10px] min-[420px]:grid-cols-2 md:grid-cols-3 md:gap-3 lg:grid-cols-6 lg:gap-2">
+        <div data-intro="trust" className="ads-container mt-10 overflow-hidden pb-2 md:mt-16">
+          <div data-anim-cards className="grid grid-cols-1 items-end gap-3 min-[420px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-4">
             {partnerReviewCards.map((review) => (
               <div
                 key={review.id}
                 data-anim="card"
-                className="ads-surface-light-muted ads-card flex h-[148px] min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#f1f1f1] p-3 shadow-[-12px_-12px_24px_#ffffff,12px_12px_24px_rgba(0,0,0,0.08)] md:h-[164px] md:p-4 lg:h-[156px]"
+                className="flex h-[148px] min-w-0 flex-col overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.04] p-4 md:h-[164px]"
               >
                 <div className="flex shrink-0 items-center justify-between gap-2">
                   <p className="min-w-0 truncate text-[16px] font-semibold md:text-[21px]">{review.name}</p>
@@ -905,7 +906,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[72px] pt-16 md:pb-[96px] md:pt-24 lg:pb-[72px] lg:pt-[120px]">
+      <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[96px] pt-20 md:pb-[120px] md:pt-28 lg:pb-[140px] lg:pt-[160px]">
         <SectionTitle title="Cazuri" />
         <div className="mx-auto mt-3 w-full max-w-[1680px] px-4 text-[21px] font-normal leading-[1.5] text-white md:px-6 lg:px-8 lg:pl-[708px]">
           La Alverna Dental Studio dispunem de propriul laborator de tehnică dentară, ceea ce ne permite să controlăm îndeaproape calitatea lucrărilor și a materialelor folosite.
@@ -915,13 +916,13 @@ export default function HomePageClient() {
           <div className="flex w-full flex-col gap-3 min-[480px]:w-auto min-[480px]:flex-row min-[480px]:items-center">
             <Link
               href="/cazuri/"
-              className="inline-flex min-h-[42px] items-center justify-center rounded-full border border-black/15 px-4 text-center text-[18px] font-medium text-white transition duration-300 hover:scale-[1.02] min-[480px]:text-[21px]"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-black/15 px-5 text-center text-[18px] font-medium text-white transition duration-200 hover:opacity-80 min-[480px]:text-[21px]"
             >
               Vezi toate cazurile
             </Link>
             <a
               href="#contact"
-              className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-black px-4 text-center text-[18px] font-semibold text-white transition duration-300 hover:scale-[1.02] min-[480px]:text-[21px]"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-black px-5 text-center text-[18px] font-semibold text-white transition duration-200 hover:opacity-90 min-[480px]:text-[21px]"
             >
               Programează-te
             </a>
@@ -929,7 +930,7 @@ export default function HomePageClient() {
         </div>
         <div className="mx-auto mt-[64px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
           {caseGallery.map(({ src, alt }, i) => (
-            <CaseImage key={src} src={src} alt={alt} data-anim="image" className="h-[min(72vw,380px)] w-full rounded-[28px] object-cover sm:h-[430px] lg:h-[560px]" />
+            <CaseImage key={src} src={src} alt={alt} data-anim="image" className="h-[min(78vw,420px)] w-full rounded-[24px] object-cover sm:h-[480px] lg:h-[620px]" />
           ))}
         </div>
       </section>
@@ -965,7 +966,7 @@ export default function HomePageClient() {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   className="relative mt-2 h-[min(72vw,300px)] w-full max-w-[267px] overflow-hidden rounded-[24px] bg-black sm:h-[396px] sm:w-[267px]"
-                  style={{ boxShadow: "-12px -12px 24px #ffffff, 12px 12px 24px rgba(0,0,0,0.08)" }}
+                  style={{ boxShadow: "none" }}
                 >
                   <LazyVideo
                     ref={(el) => {
@@ -1050,9 +1051,15 @@ export default function HomePageClient() {
                           href={service.href}
                           whileHover={{ scale: 1.005 }}
                           transition={{ duration: 0.35, ease: "easeOut" }}
-                          className="grid h-[60px] w-full max-w-full grid-cols-[minmax(0,1fr)_36px] items-center border-b border-[rgba(255,255,255,0.12)] lg:h-[72px]"
+                          className={`grid h-[60px] w-full max-w-full grid-cols-[minmax(0,1fr)_36px] items-center border-b border-[rgba(255,255,255,0.12)] lg:h-[76px] ${
+                            isFixedTeethNav(service.title) || service.slug === "implant-dentar" ? "font-semibold" : ""
+                          }`}
                         >
-                          <span className="truncate pr-4 text-[21px] font-normal text-white md:text-[21px] lg:text-[28px]">{service.title}</span>
+                          <span className={`truncate pr-4 text-white md:text-[21px] ${
+                            isFixedTeethNav(service.title) || service.slug === "implant-dentar"
+                              ? "text-[22px] lg:text-[32px]"
+                              : "text-[21px] font-normal lg:text-[28px]"
+                          }`}>{service.title}</span>
                           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(255,255,255,0.18)] text-[21px] leading-none text-white">+</span>
                         </motion.a>
                       ))}
@@ -1166,7 +1173,7 @@ export default function HomePageClient() {
           {reviews.map((r) => (
             <article
               key={r.name}
-              className="ads-surface-light-muted flex h-full min-h-[313px] flex-col rounded-[18px] p-[24px] ads-mission-glow"
+              className="flex h-full min-h-[313px] flex-col rounded-[18px] border border-white/10 bg-white/[0.04] p-6 md:p-8"
             >
               <div>
                 <p className="text-[24px] font-semibold leading-[1.05] md:text-[32px]">{r.name}</p>
@@ -1182,7 +1189,7 @@ export default function HomePageClient() {
 
       <section data-anim="section" className="px-5 py-16 md:px-10 md:py-20 lg:px-[96px]">
         <div className="mx-auto w-full max-w-[1680px]">
-          <div className="grid grid-cols-1 gap-4 rounded-[20px] border border-white/12 bg-[#111111] p-6 ads-mission-glow sm:grid-cols-3 md:gap-0 md:divide-x md:divide-white/10 md:p-10">
+          <div className="grid grid-cols-1 gap-8 rounded-[24px] border border-white/10 bg-transparent p-6 sm:grid-cols-3 md:gap-0 md:divide-x md:divide-white/10 md:p-12 lg:p-16">
             {[
               ["15", "Ani de activitate"],
               ["Peste 9.000", "de pacienți"],

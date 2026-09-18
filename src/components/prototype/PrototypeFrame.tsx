@@ -108,9 +108,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
       </MobileMenuOverlay>
       <div ref={pageContentRef} id="main" tabIndex={-1} className="outline-none">
         <header
-          className={`sticky top-0 z-50 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
+          className={`sticky top-0 z-50 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] sm:h-[72px] ${
             scrolled
-              ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
+              ? "bg-[#0f1115]/92 shadow-[0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md"
               : "bg-[#0f1115]"
           }`}
         >

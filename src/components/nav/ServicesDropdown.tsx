@@ -87,9 +87,9 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       </button>
 
       <div
-        className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[860px] max-w-[92vw] -translate-x-1/2 rounded-[24px] border px-10 py-8 shadow-[0_16px_40px_rgba(0,0,0,0.14)] backdrop-blur-xl transition-all duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
-          open ? "pointer-events-auto translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-[14px] scale-[0.98] opacity-0"
-        } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.75)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}
+        className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[860px] max-w-[92vw] -translate-x-1/2 rounded-[24px] border px-10 py-8 shadow-[0_20px_50px_rgba(0,0,0,0.22)] backdrop-blur-xl transition-all duration-300 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] ${
+          open ? "pointer-events-auto translate-y-0 scale-100 opacity-100" : "pointer-events-none translate-y-[8px] scale-[0.99] opacity-0"
+        } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.82)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}
       >
         <div className="grid grid-cols-3 gap-x-10">
           {groupedColumns.map((column, idx) => (

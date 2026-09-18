@@ -64,11 +64,12 @@ export default async function CaseDetailPage({ params }: Props) {
             quality={100}
             unoptimized
             sizes="100vw"
-            className="object-contain"
+            className={caz.heroObjectFit === "cover" ? "object-cover" : "object-contain"}
             style={{
               imageRendering: "auto",
               objectPosition: caz.heroObjectPosition ?? "center",
               transform: caz.heroImageScale ? `scale(${caz.heroImageScale})` : undefined,
+              transformOrigin: caz.heroObjectPosition ?? "center center",
             }}
           />
 
@@ -94,13 +95,17 @@ export default async function CaseDetailPage({ params }: Props) {
               {caz.storyImages.map((item, i) => (
                 <figure
                   key={`story-${item.label}-${i}`}
-                  className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-black"
+                  className={`relative w-full overflow-hidden rounded-[20px] border border-white/10 bg-black ${caz.galleryAspectClass ?? "aspect-[4/3]"}`}
                 >
                   <img
                     src={item.image.src}
                     alt={item.alt}
                     className="absolute inset-0 h-full w-full object-cover"
-                    style={{ objectPosition: item.objectPosition ?? "center center" }}
+                    style={{
+                      objectPosition: item.objectPosition ?? "center center",
+                      transform: item.scale ? `scale(${item.scale})` : undefined,
+                      transformOrigin: item.objectPosition ?? "center center",
+                    }}
                   />
                   <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
                     {item.label}
@@ -180,15 +185,19 @@ export default async function CaseDetailPage({ params }: Props) {
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-10">
             {caz.beforeAfterImages.map((item, i) => (
-              <figure
-                key={`before-after-${item.label}-${i}`}
-                className="relative aspect-[4/3] w-full overflow-hidden rounded-[20px] border border-white/10 bg-black"
-              >
+                <figure
+                  key={`before-after-${item.label}-${i}`}
+                  className={`relative w-full overflow-hidden rounded-[20px] border border-white/10 bg-black ${caz.galleryAspectClass ?? "aspect-[4/3]"}`}
+                >
                 <img
                   src={item.image.src}
                   alt={item.alt}
                   className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: item.objectPosition ?? "center center" }}
+                  style={{
+                    objectPosition: item.objectPosition ?? "center center",
+                    transform: item.scale ? `scale(${item.scale})` : undefined,
+                    transformOrigin: item.objectPosition ?? "center center",
+                  }}
                 />
                 <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
                   {item.label}

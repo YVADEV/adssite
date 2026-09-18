@@ -53,6 +53,7 @@ export type CaseStoryImage = {
   label: string;
   alt: string;
   objectPosition?: string;
+  scale?: number;
 };
 
 export type CaseStudy = {
@@ -64,8 +65,10 @@ export type CaseStudy = {
   caseNumber: string;
   patientName?: string;
   heroImage: StaticImageData;
+  heroObjectFit?: "cover" | "contain";
   heroObjectPosition?: string;
   heroImageScale?: number;
+  galleryAspectClass?: string;
   thumbnailSrc: string;
   storyImages: CaseStoryImage[];
   intro: string;
@@ -336,12 +339,15 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     caseNumber: "Caz #6",
     patientName: "Elena",
     heroImage: cazA7408160,
-    heroObjectPosition: "center center",
+    heroObjectFit: "cover",
+    heroObjectPosition: "center 38%",
+    heroImageScale: 1.45,
+    galleryAspectClass: "aspect-[3/4]",
     thumbnailSrc: cazA7408160.src,
     storyImages: [
-      { image: elenaBefore1, label: "Înainte", alt: "Elena — situație inițială", objectPosition: "center top" },
-      { image: elenaBefore2, label: "Înainte", alt: "Elena — situație inițială, detaliu", objectPosition: "center top" },
-      { image: elenaBefore3, label: "Înainte", alt: "Elena — situație inițială, documentare clinică", objectPosition: "center top" },
+      { image: elenaBefore1, label: "Înainte", alt: "Elena — situație inițială", objectPosition: "center 58%" },
+      { image: elenaBefore2, label: "În clinică", alt: "Elena — documentare în clinică", objectPosition: "center 58%" },
+      { image: cazA7408160, label: "După", alt: "Elena — rezultat final", objectPosition: "center 36%", scale: 1.55 },
     ],
     intro:
       "Cazul Elenei, o reabilitare orală complexă coordonată în Alverna Dental Studio, printr-o abordare interdisciplinară care a integrat tratamente estetice, protetice și funcționale.",
@@ -355,8 +361,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Un caz complex transformat în rezultat clar, stabil și natural — prin planificare riguroasă și execuție atentă.",
     beforeAfterImages: [
-      { image: elenaBefore1, label: "Înainte", alt: "Elena — înainte de tratament", objectPosition: "center top" },
-      { image: cazA7408160, label: "După", alt: "Elena — după tratament", objectPosition: "center 36%" },
+      { image: elenaBefore3, label: "Înainte", alt: "Elena — înainte de tratament", objectPosition: "center 58%" },
+      { image: cazA7408160, label: "După", alt: "Elena — după tratament", objectPosition: "center 36%", scale: 1.55 },
     ],
     treatmentSteps: [
       { label: "Evaluare multidisciplinară", detail: "Analiză clinică completă și stabilirea obiectivelor funcționale și estetice." },

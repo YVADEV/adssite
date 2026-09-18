@@ -145,6 +145,12 @@ body {
   line-height: 1.65;
   max-width: var(--ads-text-width);
   overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+h1,
+h2 {
+  text-wrap: balance;
 }
 
 .ads-container {
@@ -236,7 +242,7 @@ textarea {
 }
 
 .ads-btn-primary:active {
-  transform: scale(0.99);
+  transform: scale(0.985);
   opacity: 0.94;
   transition: var(--ads-duration-fast) var(--ads-ease-exit);
 }
@@ -250,6 +256,11 @@ textarea {
 .ads-btn-lit:hover {
   opacity: 0.94;
   transform: translateY(-1px);
+}
+
+.ads-btn-lit:active {
+  transform: scale(0.985);
+  opacity: 0.92;
 }
 
 .ads-btn-emergency-glow {

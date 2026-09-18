@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
 import { CaseTeamBanner } from "@/components/cazuri/CaseTeamBanner";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
@@ -88,6 +89,23 @@ export default async function CaseDetailPage({ params }: Props) {
           </div>
         </section>
 
+        {caz.beforeAfterImages.length >= 2 &&
+        caz.beforeAfterImages[0].image.src !== caz.beforeAfterImages[1].image.src ? (
+          <section className="mx-auto w-full max-w-[1680px] px-4 pt-6 md:px-8 md:pt-10 lg:px-12">
+            <BeforeAfterCompare
+              beforeSrc={caz.beforeAfterImages[0].image.src}
+              afterSrc={caz.beforeAfterImages[1].image.src}
+              beforeAlt={caz.beforeAfterImages[0].alt}
+              afterAlt={caz.beforeAfterImages[1].alt}
+              beforeLabel={caz.beforeAfterImages[0].label}
+              afterLabel={caz.beforeAfterImages[1].label}
+              beforePosition={caz.beforeAfterImages[0].objectPosition}
+              afterPosition={caz.beforeAfterImages[1].objectPosition}
+              className="aspect-[4/3] w-full rounded-[24px] sm:aspect-[16/10]"
+            />
+          </section>
+        ) : null}
+
         {/* Story images — before → proteză → after */}
         {caz.storyImages.length > 0 && (
           <section className="mx-auto w-full max-w-[1680px] px-4 pt-6 md:px-8 md:pt-8 lg:px-12">
@@ -121,8 +139,8 @@ export default async function CaseDetailPage({ params }: Props) {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
             {caz.quickFacts.map((fact) => (
               <div key={fact.label}>
-                <p className="text-[21px] uppercase tracking-[0.12em] text-white">{fact.label}</p>
-                <p className="mt-2 text-[21px] font-semibold leading-[1.35] text-white">{fact.value}</p>
+                <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/50">{fact.label}</p>
+                <p className="mt-2 text-[18px] font-semibold leading-[1.35] text-white md:text-[21px]">{fact.value}</p>
               </div>
             ))}
           </div>
@@ -165,9 +183,9 @@ export default async function CaseDetailPage({ params }: Props) {
             {caz.treatmentSteps.map((step, i) => (
               <article
                 key={step.label}
-                className="rounded-[18px] border border-white/12 bg-white/[0.03] p-5 transition duration-300 hover:border-white/25"
+                className="p-5"
               >
-                <span className="text-[21px] font-semibold uppercase tracking-[0.14em] text-white">
+                <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-3 text-[21px] font-semibold tracking-[-0.02em] text-white">{step.label}</h3>
@@ -177,45 +195,13 @@ export default async function CaseDetailPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Înainte / După */}
-        <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">
-          <p className="text-[21px] font-semibold uppercase tracking-[0.12em] text-white">Rezultat documentat</p>
-          <h2 className="mt-3 text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
-            Înainte / După
-          </h2>
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:gap-10">
-            {caz.beforeAfterImages.map((item, i) => (
-                <figure
-                  key={`before-after-${item.label}-${i}`}
-                  className={`relative w-full overflow-hidden rounded-[20px] border border-white/10 bg-black ${caz.galleryAspectClass ?? "aspect-[4/3]"}`}
-                >
-                <img
-                  src={item.image.src}
-                  alt={item.alt}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{
-                    objectPosition: item.objectPosition ?? "center center",
-                    transform: item.scale ? `scale(${item.scale})` : undefined,
-                    transformOrigin: item.objectPosition ?? "center center",
-                  }}
-                />
-                <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
-                  {item.label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
-
         {/* Video strip */}
         <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:mt-24 md:px-8 lg:mt-[120px] lg:px-12">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
-            <h2 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[36px] md:text-[58px] lg:text-[72px]">
-              Cazuri <span className="text-white">mai în detaliu</span>
-              <br />
-              <span className="text-white">înainte și după</span>
+            <h2 className="text-balance text-[28px] font-semibold leading-[1.02] tracking-[-0.03em] text-white sm:text-[36px] md:text-[48px]">
+              Cazuri mai în detaliu
             </h2>
-            <Link href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
+            <Link href="/cazuri/" className="mt-5 inline-flex min-h-[48px] items-center rounded-full border border-white/20 px-6 text-[18px] font-semibold text-white">
               Vezi toate
             </Link>
           </div>

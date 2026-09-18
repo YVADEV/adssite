@@ -146,13 +146,13 @@ function ServiceHeroContent({
               href="#contact"
               className="ads-btn-lit inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-200 sm:w-auto sm:text-[21px]"
             >
-              Solicită o evaluare
+              Programează o consultație
             </a>
             <a
-              href="/tarife/"
+              href="/cazuri/"
               className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 text-[18px] font-semibold text-white backdrop-blur transition duration-200 hover:bg-white/10 sm:w-auto sm:text-[21px]"
             >
-              Vezi tarife
+              Vezi cazuri reale
             </a>
           </div>
         </motion.div>
@@ -201,7 +201,7 @@ export function ServiceHero({
             <div className="relative flex min-h-[320px] items-center justify-center px-4 pb-8 pt-4 lg:min-h-0 lg:justify-end lg:px-0 lg:pb-16 lg:pt-28">
               <motion.div
                 {...reveal}
-                className="relative aspect-[9/16] h-[min(62vh,760px)] w-auto max-w-[360px] rounded-[20px] border border-white/45 ads-btn-glow-lg lg:h-[min(78vh,900px)] lg:max-w-[420px] lg:-translate-x-[157px]"
+                className="relative aspect-[9/16] h-[min(62vh,760px)] w-auto max-w-[360px] rounded-[20px] border border-white/25 lg:h-[min(78vh,900px)] lg:max-w-[420px] lg:-translate-x-[157px]"
               >
                 <div className="h-full w-full overflow-hidden rounded-[20px]">
                   <ServiceHeroVideo
@@ -726,48 +726,58 @@ export function ContactFormCard({ source }: { source: string }) {
             <label htmlFor="contact-website">Website</label>
             <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
           </div>
-          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-nume">Nume</label>
-          <input
-            id="contact-nume"
-            name="nume"
-            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
-            placeholder="Nume"
-            required
-            autoComplete="name"
-          />
-          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-telefon">Telefon</label>
-          <input
-            id="contact-telefon"
-            name="telefon"
-            type="tel"
-            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
-            placeholder="Telefon"
-            required
-            autoComplete="tel"
-          />
-          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-email">Email</label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
-            placeholder="Email (opțional)"
-            autoComplete="email"
-          />
-          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-serviciu">Serviciu</label>
-          <input
-            id="contact-serviciu"
-            name="serviciu"
-            className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
-            placeholder="Serviciu dorit"
-          />
-          <label className="mb-1 text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60" htmlFor="contact-mesaj">Mesaj</label>
-          <textarea
-            id="contact-mesaj"
-            name="mesaj"
-            className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
-            placeholder="Mesaj opțional"
-          />
+          <label className="grid gap-1.5" htmlFor="contact-nume">
+            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Nume</span>
+            <input
+              id="contact-nume"
+              name="nume"
+              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              placeholder="Nume"
+              required
+              autoComplete="name"
+            />
+          </label>
+          <label className="grid gap-1.5" htmlFor="contact-telefon">
+            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Telefon</span>
+            <input
+              id="contact-telefon"
+              name="telefon"
+              type="tel"
+              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              placeholder="Telefon"
+              required
+              autoComplete="tel"
+            />
+          </label>
+          <label className="grid gap-1.5" htmlFor="contact-email">
+            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Email</span>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              placeholder="Email (opțional)"
+              autoComplete="email"
+            />
+          </label>
+          <label className="grid gap-1.5" htmlFor="contact-serviciu">
+            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Serviciu</span>
+            <input
+              id="contact-serviciu"
+              name="serviciu"
+              className="h-[56px] rounded-[14px] bg-[#F5F5F5] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              placeholder="Serviciu dorit"
+            />
+          </label>
+          <label className="grid gap-1.5" htmlFor="contact-mesaj">
+            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Mesaj</span>
+            <textarea
+              id="contact-mesaj"
+              name="mesaj"
+              className="min-h-[110px] rounded-[12px] bg-[#F5F5F5] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              placeholder="Mesaj opțional"
+            />
+          </label>
           {status === "error" ? (
             <p role="alert" className="rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px] text-[#a4392b]">
               {error}
@@ -791,9 +801,9 @@ export function ContactFormCard({ source }: { source: string }) {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70"
+            className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[21px] font-semibold text-white transition duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {status === "loading" ? "Se trimite…" : "Solicită programare"}
+            {status === "loading" ? "Se trimite…" : "Programează o consultație"}
           </button>
         </form>
       )}
@@ -804,7 +814,7 @@ export function ContactFormCard({ source }: { source: string }) {
 export function ServiceFinalCTA({
   title,
   body,
-  buttonLabel = "Solicită programare",
+  buttonLabel = "Programează o consultație",
 }: {
   title: string;
   body: string;
@@ -819,7 +829,7 @@ export function ServiceFinalCTA({
         <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a
           href="#contact"
-          className="ads-btn-lit mt-7 inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]"
+          className="ads-btn-lit mt-7 inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-200 hover:opacity-90"
         >
           {buttonLabel}
         </a>

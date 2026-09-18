@@ -39,14 +39,10 @@ export default function CazuriPage() {
           whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={reduceMotion ? {} : { duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-0 flex w-full flex-col overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 md:px-12 md:py-10 xl:px-[120px]"
+          className="relative mt-0 flex w-full flex-col overflow-hidden bg-black px-4 py-8 sm:px-6 md:px-12 md:py-10 xl:px-[120px]"
         >
-          <div
-            aria-hidden
-            className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.08)_0%,transparent_72%)]"
-          />
           <div className="relative z-[2] flex flex-col">
-            <p className="mb-3 text-[21px] font-semibold text-white md:mb-4">@alvernadentalstudio</p>
+            <p className="mb-3 text-[16px] font-medium text-white/50 md:mb-4">@alvernadentalstudio</p>
             <motion.h1
               initial={reduceMotion ? false : { opacity: 0, y: 20 }}
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}

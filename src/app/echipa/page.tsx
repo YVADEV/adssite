@@ -203,26 +203,19 @@ export default function EchipaPage() {
 
       <main className="pb-24 md:pb-32 lg:pb-[180px]">
         <motion.section
-          initial={reduceMotion ? false : { opacity: 0, y: 80, scale: 0.96, filter: "blur(18px)" }}
-          whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={reduceMotion ? {} : { duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mt-0 grid w-full grid-cols-1 gap-8 overflow-hidden border border-white/20 bg-black px-4 py-8 shadow-[0_0_35px_rgba(255,255,255,0.16),inset_0_0_20px_rgba(255,255,255,0.04)] sm:px-6 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
+          transition={reduceMotion ? {} : { duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mt-0 grid w-full grid-cols-1 gap-8 overflow-hidden bg-black px-4 py-8 sm:px-6 sm:py-10 md:px-12 md:py-12 lg:grid-cols-[minmax(300px,36%)_minmax(0,1fr)] lg:items-center lg:gap-10 xl:px-[120px]"
         >
-          <motion.div
-            aria-hidden
-            animate={reduceMotion ? {} : { x: [-16, 20, -16], y: [-10, 14, -10] }}
-            transition={reduceMotion ? {} : { duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="pointer-events-none absolute left-1/2 top-[60%] h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0.04)_34%,transparent_72%)] blur-[44px]"
-          />
-
           <div className="relative z-[2] flex flex-col lg:py-4">
-            <p className="mb-[18px] text-[18px] font-semibold text-white md:text-[21px]">@alvernadentalstudio</p>
+            <p className="mb-[18px] text-[16px] font-medium text-white/50 md:text-[18px]">@alvernadentalstudio</p>
             <motion.h1
-              initial={reduceMotion ? false : { opacity: 0, y: 26, filter: "blur(12px)" }}
-              whileInView={reduceMotion ? {} : { opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+              whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.55 }}
-              transition={reduceMotion ? {} : { duration: 1.1, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              transition={reduceMotion ? {} : { duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-[420px] whitespace-pre-line text-[32px] font-bold leading-[0.95] tracking-[-1.8px] md:text-[42px]"
             >
               {"Fă cunoștință\ncu echipa noastră"}
@@ -245,10 +238,10 @@ export default function EchipaPage() {
           </div>
 
           <motion.div
-            initial={reduceMotion ? false : { opacity: 0, y: 50, scale: 0.96, filter: "blur(12px)" }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+            initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={reduceMotion ? {} : { duration: 1.1, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
+            transition={reduceMotion ? {} : { duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-[2] w-full min-w-0 overflow-hidden rounded-[12px] border border-white/15 lg:w-full"
           >
             <motion.img
@@ -284,20 +277,17 @@ export default function EchipaPage() {
               variants: reduceMotion
                 ? undefined
                 : {
-                    hidden: { opacity: 0, y: 50, scale: 0.94, filter: "blur(12px)" },
+                    hidden: { opacity: 0, y: 16 },
                     visible: {
                       opacity: 1,
                       y: 0,
-                      scale: 1,
-                      filter: "blur(0px)",
-                      transition: { duration: 1.1 },
+                      transition: { duration: 0.45 },
                     },
                   },
               whileHover: isLinked
                 ? {
-                    y: -8,
-                    boxShadow: "0 12px 28px rgba(255,255,255,0.12)",
-                    borderColor: "rgba(255,255,255,0.35)",
+                    y: -2,
+                    borderColor: "rgba(255,255,255,0.22)",
                   }
                 : {},
               transition: { duration: 0.6 },
@@ -324,7 +314,7 @@ export default function EchipaPage() {
                   className="h-full w-full object-cover object-top"
                   loading="lazy"
                   decoding="async"
-                  whileHover={isLinked && !reduceMotion && !isMobileTeamGrid ? { scale: 1.05 } : {}}
+                  whileHover={isLinked && !reduceMotion && !isMobileTeamGrid ? {} : {}}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
@@ -332,7 +322,7 @@ export default function EchipaPage() {
                   <h3 className={nameClassName}>{member.name}</h3>
                 ) : (
                   <motion.h3
-                    whileHover={isLinked && !reduceMotion ? { y: -4, color: "#ffffff" } : {}}
+                    whileHover={isLinked && !reduceMotion ? { y: -1 } : {}}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     className={nameClassName}
                   >

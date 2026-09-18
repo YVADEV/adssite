@@ -19,8 +19,8 @@ export function CaseImage({ src, alt, className, overlayLabel, ...motionProps }:
   const shell = (
     <motion.div
       className={`group relative overflow-hidden ${isClickable ? "cursor-pointer" : ""} ${className ?? ""}`}
-      whileHover={reduceMotion || !isClickable ? {} : { y: -2, scale: 1.008 }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={reduceMotion || !isClickable ? {} : { y: -1 }}
+      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       {...motionProps}
     >
       <motion.img
@@ -29,7 +29,7 @@ export function CaseImage({ src, alt, className, overlayLabel, ...motionProps }:
         loading="lazy"
         decoding="async"
         className="h-full w-full object-cover"
-        whileHover={reduceMotion || !isClickable ? {} : { scale: 1.02 }}
+        whileHover={reduceMotion || !isClickable ? {} : {}}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       />
       {isClickable && <CaseClickOverlay label={overlayLabel} />}

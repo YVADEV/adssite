@@ -23,33 +23,44 @@ export default function SiteFooter() {
   return (
     <>
       <InstagramReelsSection />
-    <footer className="flex flex-col bg-[#0f1115] px-4 pb-10 pt-12 text-white md:px-8 lg:px-12">
-      <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-10 border-t border-black/10 pt-10 lg:grid-cols-[1.25fr_1fr_1fr_1fr]">
+    <footer className="flex flex-col bg-[#0f1115] px-4 pb-12 pt-16 text-white md:px-8 md:pt-20 lg:px-12 lg:pb-14">
+      <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-12 border-t border-white/8 pt-12 lg:grid-cols-[1.35fr_0.9fr_1fr_1fr] lg:gap-16">
         <section>
           <h3 className="text-[21px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
           {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
-          <p className="mt-4 max-w-[560px] text-[21px] leading-[1.7] text-white">
+          <p className="mt-4 max-w-[560px] text-[18px] leading-[1.7] text-white/80 md:text-[21px]">
             Clinica stomatologică Alverna Dental Studio include cabinete stomatologice modern amenajate și echipate cu
             aparatură de ultimă generație. Astfel, serviciile pe care le oferim sunt de o calitate superioară, iar
             pacienții noștri se simt mereu bine primiți. Fiecare cabinet stomatologic este pregătit să vă asigure un
             confort sporit, iar experiența și profesionalismul medicilor noștri sunt puse în slujba asigurării unei
             sănătăți dentare excelente!
           </p>
-          <div className="mt-6 flex flex-wrap gap-4 text-[21px] text-white">
-            <Link href="/termeni-si-conditii" className="hover:underline">
+          <div className="mt-8 flex flex-col gap-2 text-[18px] leading-[1.6] text-white md:text-[21px]">
+            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+              {CLINIC.addressShort}
+            </a>
+            <a href={`tel:${CLINIC.phoneTel}`} className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+              {CLINIC.phoneDisplay}
+            </a>
+            <a href={`mailto:${CLINIC.email}`} className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+              {CLINIC.email}
+            </a>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-4 text-[16px] text-white/55">
+            <Link href="/termeni-si-conditii" className="hover:text-white hover:underline">
               Termeni și condiții
             </Link>
-            <Link href="/politica-de-confidentialitate" className="hover:underline">
+            <Link href="/politica-de-confidentialitate" className="hover:text-white hover:underline">
               Politică de confidențialitate
             </Link>
           </div>
         </section>
 
         <section>
-          <h4 className="text-[21px] font-semibold text-white">Pagini</h4>
-          <div className="mt-4 space-y-2 text-[21px] text-white">
+          <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Pagini</h4>
+          <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
             {pageLinks.map((item) => (
-              <Link key={item.label} href={item.href} className="block hover:text-white hover:underline">
+              <Link key={item.label} href={item.href} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {item.label}
               </Link>
             ))}
@@ -57,10 +68,10 @@ export default function SiteFooter() {
         </section>
 
         <section>
-          <h4 className="text-[21px] font-semibold text-white">Servicii</h4>
-          <div className="mt-4 space-y-2 text-[21px] text-white">
+          <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Servicii</h4>
+          <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
             {services.map((service) => (
-              <Link key={service.slug} href={service.href} className="block hover:text-white hover:underline">
+              <Link key={service.slug} href={service.href} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {service.title}
               </Link>
             ))}
@@ -68,19 +79,19 @@ export default function SiteFooter() {
         </section>
 
         <section>
-          <h4 className="text-[21px] font-semibold text-white">Contact</h4>
-          <div className="mt-4 flex flex-col gap-2 text-[21px] leading-[1.6] text-white">
-            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="block hover:underline">
-              {CLINIC.addressShort}
+          <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Programare</h4>
+          <div className="mt-4 flex flex-col gap-3 text-[18px] leading-[1.6] text-white md:text-[21px]">
+            <a href={CLINIC.formPageHref} className="block font-semibold transition-transform duration-200 hover:translate-x-[3px]">
+              Programează o consultație
             </a>
-            <a href={`tel:${CLINIC.phoneTel}`} className="block hover:underline">
-              {CLINIC.phoneDisplay}
+            <a href={`tel:${CLINIC.phoneTel}`} className="block transition-transform duration-200 hover:translate-x-[3px]">
+              Sună acum
             </a>
-            <a href={`mailto:${CLINIC.email}`} className="block hover:underline">
-              {CLINIC.email}
+            <a href="/cazuri/" className="block transition-transform duration-200 hover:translate-x-[3px]">
+              Vezi cazuri reale
             </a>
-            <a href={CLINIC.website} target="_blank" rel="noreferrer" className="block hover:underline">
-              {CLINIC.websiteDisplay}
+            <a href="/tarife/" className="block transition-transform duration-200 hover:translate-x-[3px]">
+              Vezi toate tarifele
             </a>
           </div>
         </section>

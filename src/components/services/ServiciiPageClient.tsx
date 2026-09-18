@@ -19,7 +19,7 @@ export default function ServiciiPageClient() {
         </section>
 
         <section className="mx-auto mt-14 grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:px-8 lg:mt-16 lg:grid-cols-3 lg:gap-6 lg:px-12">
-          {services.map((service, i) => (
+          {services.filter((service) => service.slug !== "all-on-x").map((service, i) => (
             <motion.article
               key={service.slug}
               className="overflow-hidden rounded-[16px] bg-white p-6"
@@ -33,11 +33,11 @@ export default function ServiciiPageClient() {
               <h2 className="mt-3 text-[28px] font-semibold leading-[1.05] tracking-[-0.02em] text-white">{service.title}</h2>
               <p className="mt-3 text-[21px] leading-[1.6] text-[#4a4a4a]">Tratament personalizat, comunicare clară și monitorizare atentă în fiecare etapă.</p>
               <div className="mt-5 flex flex-wrap gap-2">
-                <a href={service.href} className="inline-flex h-[38px] items-center rounded-full bg-[#0A0A0A] px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+                <a href={service.href} className="inline-flex min-h-[44px] items-center rounded-full bg-[#0A0A0A] px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                   Vezi detalii
                 </a>
                 {service.children?.map((child) => (
-                  <a key={child.slug} href={child.href} className="inline-flex h-[38px] items-center rounded-full border border-black/15 px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
+                  <a key={child.slug} href={child.href} className="inline-flex min-h-[44px] items-center rounded-full border border-black/15 px-4 text-[18px] font-medium text-white transition duration-300 hover:scale-[1.02]">
                     {child.title}
                   </a>
                 ))}

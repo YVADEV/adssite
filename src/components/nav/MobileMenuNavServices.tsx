@@ -72,7 +72,7 @@ export function MobileMenuNavServices({
                       key={child.slug}
                       href={child.href}
                       onClick={onCloseMenu}
-                      className="block min-h-[48px] rounded-[10px] px-3 py-3 text-left text-[21px] text-white"
+                      className="block min-h-[48px] rounded-[10px] py-3 pl-6 pr-3 text-left text-[19px] text-white/85"
                     >
                       {child.title}
                     </Link>

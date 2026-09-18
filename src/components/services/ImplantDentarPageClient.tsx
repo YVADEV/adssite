@@ -52,7 +52,7 @@ const implantBenefits = [
 const processSteps = [
   {
     step: "01",
-    title: "Consultație, CBCT și plan personalizat",
+    title: "Consultație, investigația CBCT și plan personalizat",
     text: "Evaluăm clinic și imagistic calitatea osului, starea gingiilor și factorii sistemici pentru a stabili protocolul potrivit.",
   },
   {

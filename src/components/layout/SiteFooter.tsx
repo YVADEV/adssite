@@ -70,7 +70,7 @@ export default function SiteFooter() {
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Servicii</h4>
           <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
-            {services.map((service) => (
+            {services.filter((service) => service.slug !== "all-on-x").map((service) => (
               <Link key={service.slug} href={service.href} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {service.title}
               </Link>

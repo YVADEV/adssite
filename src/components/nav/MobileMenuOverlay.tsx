@@ -30,7 +30,7 @@ export function MobileMenuOverlay({
       <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[1920px] flex-col overflow-y-auto overscroll-contain px-6 py-6 md:px-10">
         <div className="flex items-center justify-between">
           <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-          <button type="button" aria-label="Închide meniul" onClick={onClose} className="relative h-10 w-10">
+          <button type="button" aria-label="Închide meniul" onClick={onClose} className="relative h-11 w-11">
             <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
             <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
           </button>

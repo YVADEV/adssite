@@ -7,7 +7,7 @@ export const CLINIC = {
   phoneDisplay: "+40 748 085 933",
   email: BUSINESS.email,
   addressLine: "Strada Alverna 33, 400469 Cluj-Napoca",
-  addressShort: "Str. Alverna 33, 400469, Cluj-Napoca, Romania",
+  addressShort: "Strada Alverna 33, Cluj-Napoca",
   website: "https://alvernadental.com",
   websiteDisplay: "alvernadental.com",
   instagramHandle: "@alvernadentalstudio",

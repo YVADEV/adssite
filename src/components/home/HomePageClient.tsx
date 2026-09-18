@@ -23,21 +23,15 @@ import vdScaun from "@/assets/VDscaun.png";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import teamBannerImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
 import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.png";
-import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
-import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
 import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
-import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 
 const caseGallery = [
-  { src: cazA7408097.src, alt: "Caz implantologie — rezultat final Alverna Dental Studio" },
   { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
   { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
-  { src: cazA7407760.src, alt: "Caz reabilitare protetică — funcție și estetică" },
-  { src: cazA7407944.src, alt: "Caz smile design — armonie dentară și facială" },
   { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final" },
 ];
 const reviews = [
@@ -59,12 +53,6 @@ const reviews = [
     time: "acum 3 luni",
     text: "Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas și mi s-a răspuns la fiecare întrebare. Îi mulțumesc pe această cale doamnei doctor Pârvu pentru atenție și profesionalism, la fel și doamnei asistente.",
   },
-];
-
-const partnerReviewCards = [
-  { id: "andreea-1", name: "Andreea Nisipeanu", rating: "4.8", text: "Recomand cu mare încredere. Profesionalism, căldură și rezultate excelente." },
-  { id: "carmen-1", name: "Carmen Ilea", rating: "5.0", text: "Impresionată de atenție la detalii și de tehnologia modernă din clinică." },
-  { id: "denisa-1", name: "Denisa Tănase", rating: "5.0", text: "Experiență ușoară, comunicare clară și echipă foarte prietenoasă." },
 ];
 
 export const pricingData = [
@@ -333,45 +321,32 @@ export const homePricingData = [
   {
     category: "Consultație",
     items: (pricingCategory("Consultații primare și de specialitate")?.items ?? []).filter((item) =>
-      [
-        "Consultație stomatologică generală, realizare fișă completă, întocmire plan tratament",
-        "Consultație și diagnostic implantologie, interpretare CT",
-        "Consultație și diagnostic ortodontic",
-      ].includes(item.name),
+      item.name === "Consultație stomatologică generală, realizare fișă completă, întocmire plan tratament",
     ),
   },
   {
     category: "Implantologie",
     items: (pricingCategory("Implantologie")?.items ?? []).filter((item) =>
-      ["Implant INNO", "Implant MegaGen AnyRidge", "Implant Straumann BLT"].includes(item.name),
+      ["Implant INNO", "Implant Straumann BLT"].includes(item.name),
     ),
   },
   {
     category: "Dinți ficși / All-on-X",
     items: (pricingCategory("All on 4 / All on 6")?.items ?? []).filter((item) =>
-      ["All on 4 INNO", "All on 4 Neodent", "All on 4 Straumann", "All on 6 Straumann"].includes(item.name),
+      ["All on 4 INNO", "All on 4 Straumann"].includes(item.name),
     ),
   },
   {
     category: "Coroane",
     items: (pricingCategory("Protetică dentară")?.items ?? []).filter((item) =>
-      [
-        "Coroană metalo-ceramică",
-        "Coroană integral ceramică Emax",
-        "Coroană zirconiu CAD-CAM",
-        "Coroană zirconiu pe implant",
-      ].includes(item.name),
+      item.name === "Coroană zirconiu CAD-CAM",
     ),
   },
   {
     category: "Ortodonție",
     items: [
-      ...(pricingCategory("Ortodonție")?.items ?? []).filter((item) =>
-        ["Aparat fix metalic / arcadă", "Aparat fix ceramic / arcadă"].includes(item.name),
-      ),
-      ...(pricingCategory("Alignere")?.items ?? []).filter((item) =>
-        ["Spark 10 / arcadă", "Spark 10 / ambele arcade"].includes(item.name),
-      ),
+      ...(pricingCategory("Ortodonție")?.items ?? []).filter((item) => item.name === "Aparat fix metalic / arcadă"),
+      ...(pricingCategory("Alignere")?.items ?? []).filter((item) => item.name === "Spark 10 / arcadă"),
     ],
   },
 ];
@@ -435,12 +410,6 @@ const recommendationClipMeta = [
     description: "Tratament complex pentru armonie dentară și zâmbet natural.",
   },
 ];
-const missionCards = [
-  "Ne ghidăm după confortul pacientului în fiecare etapă a tratamentului.",
-  "Fiecare decizie clinică este explicată clar și transparent pentru pacient.",
-  "Combinăm tehnologia modernă cu grijă reală pentru rezultate durabile.",
-  "Planurile de tratament sunt personalizate pentru fiecare caz în parte.",
-];
 
 function SectionTitle({ title }: { title: string }) {
   return (
@@ -457,14 +426,16 @@ function TeamBentoBanner({
   doctorAlt,
   leftHeadline = "alverna\ndental\nstudio",
   showScanCard = true,
+  showSlogan = true,
 }: {
   doctorSrc: string;
   doctorAlt: string;
   leftHeadline?: string;
   showScanCard?: boolean;
+  showSlogan?: boolean;
 }) {
   return (
-    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
+    <div className={`mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:px-[96px] ${showScanCard ? "lg:grid-cols-[440px_1fr_1fr]" : "lg:grid-cols-[440px_1fr]"}`}>
       <article className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]">
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
@@ -479,19 +450,13 @@ function TeamBentoBanner({
         />
       </article>
 
-      <article className="relative z-10 min-h-[420px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
-        <div className="absolute inset-0 rounded-[16px] bg-[radial-gradient(circle_at_24%_22%,rgba(182,185,76,0.14),transparent_55%)]" />
-        <div className="relative z-10 flex h-full flex-col">
+      {showSlogan ? (
+        <article className="relative z-10 min-h-[280px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
           <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
             {"Puterea zâmbetului\ncare inspiră încredere"}
           </h3>
-          <div className="mt-8">
-            <p className="text-[28px] font-semibold text-white md:text-[40px]">
-              4.8 <span className="text-[22px] text-[#f2d16b]">★★★★★</span>
-            </p>
-          </div>
-        </div>
-      </article>
+        </article>
+      ) : null}
 
       <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
         {showScanCard ? (
@@ -507,17 +472,12 @@ function TeamBentoBanner({
           </article>
         ) : null}
 
-        <article className="flex min-h-[220px] flex-col overflow-hidden rounded-[16px] bg-[#0A0A0A] p-6 md:h-[275px]">
-          <h3 className="text-[32px] font-bold leading-none text-white md:text-[48px]">Peste 9.000</h3>
-          <p className="mt-2 text-[21px] text-white/80">de pacienți</p>
-          <p className="mt-2 text-[21px] text-[#f2d16b]">★★★★★</p>
-          <div className="mt-4 min-h-0 flex-1 overflow-hidden rounded-[10px]">
-            <img
-              src={cazA7407760Smile.src}
-              alt="Zâmbet pacient — rezultat Alverna Dental Studio"
-              className="h-full w-full object-cover object-center"
-            />
-          </div>
+        <article className="relative min-h-[220px] flex-1 overflow-hidden rounded-[16px] bg-[#0A0A0A] md:min-h-[275px]">
+          <img
+            src={cazA7407760Smile.src}
+            alt="Zâmbet pacient — rezultat Alverna Dental Studio"
+            className="h-full w-full object-cover object-center"
+          />
         </article>
       </div>
     </div>
@@ -863,7 +823,7 @@ export default function HomePageClient() {
         </div>
       </header>
 
-      <section className="mt-0 w-full pb-[72px] md:pb-[96px] lg:pb-[140px]">
+      <section className="mt-0 w-full">
         <div className="relative h-[min(calc(100svh-72px),820px)] w-full min-h-[560px] md:h-[calc(100dvh-72px)] md:max-h-none">
           <div data-intro="hero-media" className="relative h-full w-full overflow-hidden">
             <HeroIntroVideo />
@@ -901,26 +861,6 @@ export default function HomePageClient() {
             </div>
           </div>
         </div>
-
-        <div data-intro="trust" className="ads-container mt-10 overflow-hidden pb-2 md:mt-16">
-          <div data-anim-cards className="grid grid-cols-1 items-stretch gap-4 min-[420px]:grid-cols-2 lg:grid-cols-3">
-            {partnerReviewCards.map((review) => (
-              <div
-                key={review.id}
-                data-anim="card"
-                className="flex min-h-[132px] min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.03] p-5"
-              >
-                <div className="flex shrink-0 items-center justify-between gap-2">
-                  <p className="min-w-0 truncate text-[16px] font-semibold md:text-[18px]">{review.name}</p>
-                  <p className="shrink-0 whitespace-nowrap text-[16px] font-medium opacity-70 md:text-[18px]">{review.rating} ★</p>
-                </div>
-                <p className="mt-2 min-h-0 flex-1 overflow-hidden text-[16px] leading-[1.4] opacity-80 [display:-webkit-box] [-webkit-line-clamp:3] [-webkit-box-orient:vertical] md:text-[18px]">
-                  {review.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[96px] pt-20 md:pb-[120px] md:pt-28 lg:pb-[140px] lg:pt-[160px]">
@@ -931,36 +871,16 @@ export default function HomePageClient() {
               <p className="text-[18px] font-medium leading-[1.5] text-white md:text-[21px]">
                 {featuredCase.subtitle}
               </p>
-              <p className="mt-3 ads-readable text-[16px] leading-[1.6] text-white/70 md:text-[18px]">
-                La Alverna Dental Studio dispunem de propriul laborator de tehnică dentară, ceea ce ne permite să controlăm îndeaproape calitatea lucrărilor și a materialelor folosite.
+              <p className="mt-3 text-[16px] font-medium leading-[1.4] text-white/70 md:text-[18px]">
+                {featuredCase.doctor.name} · {featuredCase.doctor.role}
               </p>
-              <dl className="mt-5 grid max-w-[520px] grid-cols-1 gap-3 sm:grid-cols-2">
-                <div>
-                  <dt className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/50">Tratament</dt>
-                  <dd className="mt-1 text-[16px] font-medium leading-[1.4] text-white md:text-[18px]">{featuredCase.category}</dd>
-                </div>
-                <div>
-                  <dt className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/50">Echipă</dt>
-                  <dd className="mt-1 text-[16px] font-medium leading-[1.4] text-white md:text-[18px]">
-                    {featuredCase.doctor.name} · {featuredCase.doctor.role}
-                  </dd>
-                </div>
-              </dl>
             </div>
-            <div className="flex w-full flex-col gap-3 min-[480px]:w-auto min-[480px]:flex-row min-[480px]:items-center">
-              <Link
-                href={featuredCase.path}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-black px-5 text-center text-[18px] font-semibold text-white transition duration-200 hover:opacity-90 min-[480px]:text-[21px]"
-              >
-                Vezi cazul →
-              </Link>
-              <Link
-                href="/cazuri/"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-black/15 px-5 text-center text-[18px] font-medium text-white transition duration-200 hover:opacity-80 min-[480px]:text-[21px]"
-              >
-                Vezi cazuri reale
-              </Link>
-            </div>
+            <Link
+              href={featuredCase.path}
+              className="inline-flex min-h-[48px] items-center justify-center self-start rounded-full bg-black px-5 text-center text-[18px] font-semibold text-white transition duration-200 hover:opacity-90 min-[480px]:text-[21px]"
+            >
+              Vezi cazul →
+            </Link>
           </div>
 
           {featuredBefore && featuredAfter ? (
@@ -975,9 +895,9 @@ export default function HomePageClient() {
             />
           ) : null}
         </div>
-        <div className="mx-auto mt-[48px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-2 md:gap-5 md:px-6 lg:grid-cols-3 lg:gap-6 lg:px-8">
+        <div className="mx-auto mt-[48px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-3 md:gap-5 md:px-6 lg:px-8">
           {caseGallery.map(({ src, alt }) => (
-            <CaseImage key={src} src={src} alt={alt} overlayLabel="Vezi cazul" data-anim="image" className="h-[min(78vw,420px)] w-full rounded-[24px] object-cover sm:h-[480px] lg:h-[620px]" />
+            <CaseImage key={src} src={src} alt={alt} overlayLabel="Vezi cazul" data-anim="image" className="h-[min(78vw,380px)] w-full rounded-[24px] object-cover md:h-[420px] lg:h-[520px]" />
           ))}
         </div>
       </section>
@@ -1057,12 +977,6 @@ export default function HomePageClient() {
         <div className="mx-auto w-full max-w-[1680px] overflow-x-hidden rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
-            <a
-              href="#contact"
-              className="ads-btn-primary inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-5 text-[18px] font-semibold sm:w-auto sm:text-[21px]"
-            >
-              Programează o consultație
-            </a>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:mt-14 lg:gap-x-16 lg:gap-y-12">
             {serviceOrientation.map((group) => (
@@ -1079,7 +993,7 @@ export default function HomePageClient() {
                     <Link
                       key={link.href + link.title}
                       href={link.href}
-                      className="flex min-h-[44px] items-center justify-between border-b border-white/10 py-2 text-[18px] font-normal text-white/80 transition duration-200 hover:translate-x-[3px] hover:text-white md:text-[21px]"
+                      className="flex min-h-[44px] items-center justify-between border-b border-white/10 py-2 pl-3 text-[18px] font-normal text-white/80 transition duration-200 hover:translate-x-[3px] hover:text-white md:text-[21px]"
                     >
                       <span>{link.title}</span>
                       <span aria-hidden className="text-[18px] opacity-40">→</span>
@@ -1094,24 +1008,13 @@ export default function HomePageClient() {
 
       <section data-anim="section" className="bg-[#f5f5f5]">
         <div className="mx-auto w-full max-w-[1680px] px-4 pb-16 pt-16 md:px-10 md:pb-[140px] md:pt-[140px] lg:px-[96px]">
-          <div className="mb-6 flex justify-end text-[16px] leading-[1.5] text-white/50 sm:mb-8">
-            <span className="whitespace-nowrap">@alvernadentalstudio</span>
-          </div>
-          <h2 className="mb-4 text-[32px] font-semibold leading-[1.12] text-white sm:text-[40px] md:text-[48px]">Misiunea Noastră</h2>
-          <p className="ads-readable mb-10 text-white md:mb-16">
-            Dacă ar fi să discutăm în termeni filozofici, ne întrebăm adeseori de ce facem ceea ce facem, care este motivul pentru care muncim din greu și petrecem multe ore într-un cabinet stomatologic.
+          <h2 className="mb-5 text-[32px] font-semibold leading-[1.12] text-white sm:text-[40px] md:text-[48px]">Misiunea Noastră</h2>
+          <p className="ads-readable mb-5 text-white">
+            Tratamentul dentar complex funcționează cel mai bine atunci când specialitățile lucrează împreună.
           </p>
-
-          <div className="mb-10 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            {missionCards.map((text, idx) => (
-              <article
-                key={`mission-card-${idx}`}
-                className="flex min-h-[126px] w-full items-start rounded-[24px] p-5 md:items-center"
-              >
-                <p className="min-w-0 flex-1 text-[21px] leading-[1.65] text-white">{text}</p>
-              </article>
-            ))}
-          </div>
+          <p className="ads-readable mb-10 text-white md:mb-16">
+            Ne ghidăm după confortul pacientului. Fiecare decizie clinică este explicată clar. Combinăm tehnologia cu un plan de tratament personalizat.
+          </p>
 
           <div data-anim="image" className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
             <LazyVideo
@@ -1142,9 +1045,6 @@ export default function HomePageClient() {
 
       <section className="bg-[#ececec] pb-16 md:pb-[120px]">
         <SectionTitle title="Recenzii" />
-        <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <p className="text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
-        </div>
         <div className="mx-auto mt-10 grid w-full max-w-[1680px] grid-cols-1 gap-[20px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-12">
           <article
             className="ads-surface-light-muted flex min-h-[313px] flex-col rounded-[18px] p-[30px]"
@@ -1192,11 +1092,10 @@ export default function HomePageClient() {
 
       <section className="px-5 py-16 md:px-10 md:py-20 lg:px-[96px]">
         <div className="mx-auto w-full max-w-[1680px]">
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-3 md:gap-0 md:divide-x md:divide-white/10 md:py-4">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-0 md:divide-x md:divide-white/10 md:py-4">
             {[
               ["15", "Ani de activitate"],
               ["Peste 9.000", "de pacienți"],
-              ["15 de ani", "Medici cu peste 15 ani de experiență"],
             ].map(([n, t]) => (
               <article key={n} className="px-2 text-center md:px-6 md:text-left">
                 <h3 className="text-[28px] font-bold leading-none tracking-[-0.04em] text-white sm:text-[36px] md:text-[56px] lg:text-[72px]">
@@ -1220,20 +1119,12 @@ export default function HomePageClient() {
         <div className="mx-auto w-full max-w-[1680px] bg-[#f5f5f5] px-5 py-12 md:px-10 md:py-16 lg:px-[96px] lg:py-[96px]">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
-            <div className="flex flex-wrap items-center gap-3">
-              <Link
-                href="/tarife/"
-                className="ads-btn-primary inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-[18px] font-semibold sm:text-[21px]"
-              >
-                Vezi toate tarifele
-              </Link>
-              <a
-                href="#contact"
-                className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-black/15 px-5 py-2 text-[18px] font-semibold text-white sm:text-[21px]"
-              >
-                Programează o consultație
-              </a>
-            </div>
+            <Link
+              href="/tarife/"
+              className="ads-btn-primary inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-[18px] font-semibold sm:text-[21px]"
+            >
+              Vezi toate tarifele
+            </Link>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-5 xl:gap-6">
@@ -1279,31 +1170,32 @@ export default function HomePageClient() {
             doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
             leftHeadline={"laborator\ndentar"}
             showScanCard={false}
+            showSlogan={false}
           />
         </div>
       </section>
 
-      <section className="bg-[#ececec] pb-[90px] pt-[10px] lg:pb-[140px]">
+      <section className="bg-[#ececec] pb-16 pt-[10px] lg:pb-[90px]">
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-[96px]">
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
-            <h2 className="text-balance text-[28px] font-semibold leading-[1.02] tracking-[-0.03em] sm:text-[36px] md:text-[48px]">
-              Cazuri mai în detaliu
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
+            <h2 className="text-balance text-[24px] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-[32px] md:text-[40px]">
+              Mai multe cazuri tratate
             </h2>
             <Link
               href="/cazuri/"
-              className="inline-flex min-h-[48px] items-center rounded-full border border-black/15 px-6 text-[18px] font-medium text-white sm:mt-2"
+              className="inline-flex min-h-[48px] items-center rounded-full border border-black/15 px-6 text-[18px] font-medium text-white"
             >
               Vezi cazuri reale
             </Link>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-[1fr_1fr_2fr] lg:mt-12">
-            <article className="relative h-[min(70vw,400px)] rounded-l-[18px] bg-black sm:h-[460px] md:h-[587px]">
+          <div className="mt-6 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-3">
+            <article className="relative h-[min(56vw,280px)] rounded-l-[18px] bg-black sm:h-[320px] md:h-[360px]">
               <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat — vedere generală" />
             </article>
-            <article className="relative h-[min(70vw,400px)] bg-black sm:h-[460px] md:h-[587px]">
+            <article className="relative h-[min(56vw,280px)] bg-black sm:h-[320px] md:h-[360px]">
               <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
             </article>
-            <article className="relative h-[min(70vw,400px)] rounded-r-[18px] bg-black sm:h-[460px] md:h-[587px]">
+            <article className="relative h-[min(56vw,280px)] rounded-r-[18px] bg-black sm:h-[320px] md:h-[360px]">
               <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />
             </article>
           </div>

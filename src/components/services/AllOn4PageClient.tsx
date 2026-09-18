@@ -165,7 +165,7 @@ const doctorVideos = [
       },
       {
         q: "Cum decideți dacă un pacient e candidat pentru această procedură?",
-        a: "Totul pornește de la o evaluare digitală completă — o tomografie 3D și o scanare intraorală. Astea ne arată exact câtă structură osoasă avem disponibilă și ne ajută să planificăm poziția implanturilor înainte de a intra în operație.",
+        a: "Totul pornește de la o evaluare digitală completă — investigația CBCT și scanarea intraorală. Astea ne arată exact câtă structură osoasă avem disponibilă și ne ajută să planificăm poziția implanturilor înainte de a intra în operație.",
       },
       {
         q: "Ce se întâmplă dacă pacientul a pierdut deja mult os?",
@@ -194,7 +194,7 @@ const doctorVideos = [
       },
       {
         q: "Care e, de fapt, principala cauză pentru care pacienții ajung să aibă nevoie de All-on-4/6?",
-        a: "În marea majoritate a cazurilor, boala parodontală netratată. E o afecțiune care distruge treptat osul și gingia din jurul dinților, până la pierderea lor completă.",
+        a: "Boala parodontală avansată este una dintre cauzele importante prin care pacienții pot ajunge la pierderea dinților. E o afecțiune care distruge treptat osul și gingia din jurul dinților, până la pierderea lor completă.",
       },
       {
         q: "Ce evaluați, mai exact, înainte de intervenția chirurgicală?",
@@ -231,7 +231,7 @@ const doctorVideos = [
       },
       {
         q: "Cum arată procesul de scanare pentru lucrarea protetică?",
-        a: "Folosim scanare intraorală digitală, nu amprente clasice. E mult mai confortabil pentru pacient și mult mai precis.",
+        a: "Folosim scanare intraorală digitală, nu amprente clasice. Este mai confortabilă pentru pacient și ne oferă un flux digital precis pentru realizarea lucrării protetice.",
       },
       {
         q: "Ce contează cel mai mult pentru dvs. la o lucrare finală?",
@@ -567,6 +567,13 @@ export default function AllOn4PageClient() {
               title: "Prețul unei intervenții",
               content: (
                 <>
+                  {/*
+                    REQUIRES CLIENT CONFIRMATION — BLOCKER
+                    Contradiction: paragraph below says total cost includes prosthetic work;
+                    heading + table + footnote say displayed All-on-X prices are surgical
+                    (per arch) and prosthesis is quoted in the personalized estimate.
+                    Clinic must confirm inclusions before any wording change.
+                  */}
                   <p className="max-w-[1120px] text-[18px] leading-[1.75] text-white sm:text-[21px]">
                     Costul total include consultația și planificarea digitală, intervenția chirurgicală, implanturile, precum și lucrarea protetică realizată în laboratorul propriu. Variază în funcție de numărul de implanturi (4 sau 6), marca folosită, necesitatea unor proceduri suplimentare (augmentare osoasă, tratamente parodontale) și materialul lucrării finale.
                   </p>

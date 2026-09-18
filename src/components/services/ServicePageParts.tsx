@@ -618,8 +618,28 @@ export function ContactFormCard({ source }: { source: string }) {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "loading" || status === "ok") return;
     setError(null);
     const formData = new FormData(event.currentTarget);
+    const nume = String(formData.get("nume") ?? "").trim();
+    const telefon = String(formData.get("telefon") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const phoneDigits = telefon.replace(/\D/g, "");
+    if (!nume) {
+      setStatus("error");
+      setError("Te rugăm să completezi numele.");
+      return;
+    }
+    if (!telefon || phoneDigits.length < 9 || phoneDigits.length > 15) {
+      setStatus("error");
+      setError("Te rugăm să introduci un număr de telefon valid.");
+      return;
+    }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("error");
+      setError("Te rugăm să introduci un email valid.");
+      return;
+    }
     if (formData.get("gdpr") !== "on") {
       setStatus("error");
       setError("Te rugăm să accepți Politica de confidențialitate.");
@@ -629,9 +649,9 @@ export function ContactFormCard({ source }: { source: string }) {
     const pagePath = pathname || "/";
     const pageUrl = typeof window !== "undefined" ? window.location.href : pagePath;
     const payload = {
-      nume: String(formData.get("nume") ?? "").trim(),
-      telefon: String(formData.get("telefon") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim(),
+      nume,
+      telefon,
+      email,
       serviciu: String(formData.get("serviciu") ?? "").trim(),
       mesaj: String(formData.get("mesaj") ?? "").trim(),
       website: String(formData.get("website") ?? "").trim(),
@@ -715,9 +735,9 @@ export function ContactFormCard({ source }: { source: string }) {
       </p>
       {status === "ok" ? (
         <div role="status" className="ads-form-success-box mt-7 rounded-[18px] border border-[#B6B94C]/30 bg-[#F4F5E4] p-6">
-          <p className="text-[21px] font-semibold">Mulțumim! Mesajul a fost trimis.</p>
+          <p className="text-[21px] font-semibold">Solicitarea a fost trimisă.</p>
           <p className="mt-2 text-[21px] leading-[1.5]">
-            Te contactăm pentru confirmarea programării.
+            Echipa Alverna te va contacta pentru confirmarea programării.
           </p>
         </div>
       ) : (

@@ -83,9 +83,7 @@ export type CaseStudy = {
 
 function storyGalleryFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
   return [
-    { image, label: "Înainte", alt: `${name} — situație inițială`, objectPosition: "center top" },
-    { image, label: "În clinică", alt: `${name} — documentare în clinică`, objectPosition: "center center" },
-    { image, label: "După", alt: `${name} — rezultat final`, objectPosition: "center 36%" },
+    { image, label: "Documentare", alt: `${name} — documentare clinică`, objectPosition: "center 36%" },
   ];
 }
 

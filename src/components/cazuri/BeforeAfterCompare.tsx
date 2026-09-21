@@ -38,19 +38,36 @@ export function BeforeAfterCompare({
     setPos(Math.min(96, Math.max(4, next)));
   }, []);
 
+  const startRef = useRef<{ x: number; y: number; id: number } | null>(null);
+
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    draggingRef.current = true;
-    event.currentTarget.setPointerCapture(event.pointerId);
-    setFromClientX(event.clientX);
+    startRef.current = { x: event.clientX, y: event.clientY, id: event.pointerId };
   };
 
   const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!draggingRef.current) return;
+    const start = startRef.current;
+    if (!start || event.pointerId !== start.id) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (!draggingRef.current) {
+      if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+      if (Math.abs(dy) > Math.abs(dx)) {
+        startRef.current = null;
+        return;
+      }
+      draggingRef.current = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault();
     setFromClientX(event.clientX);
   };
 
   const onPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (draggingRef.current) {
+      setFromClientX(event.clientX);
+    }
     draggingRef.current = false;
+    startRef.current = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
@@ -59,12 +76,12 @@ export function BeforeAfterCompare({
   return (
     <div
       ref={frameRef}
-      className={`relative isolate overflow-hidden bg-black select-none ${className}`}
+      className={`relative isolate overflow-hidden bg-black select-none cursor-ew-resize ${className}`}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
-      style={{ touchAction: "none" }}
+      style={{ touchAction: "pan-y" }}
     >
       <img
         src={afterSrc}
@@ -107,7 +124,7 @@ export function BeforeAfterCompare({
         max={96}
         value={pos}
         onChange={(event) => setPos(Number(event.target.value))}
-        className="absolute inset-0 z-[4] cursor-ew-resize opacity-0"
+        className="sr-only"
         aria-valuetext={`${Math.round(pos)}% înainte`}
       />
 

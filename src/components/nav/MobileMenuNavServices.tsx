@@ -36,6 +36,8 @@ export function MobileMenuNavServices({
         Servicii
       </button>
       <div
+        inert={!mobileServicesOpen}
+        aria-hidden={!mobileServicesOpen}
         className={`overflow-hidden transition-[max-height,opacity] duration-300 ${
           mobileServicesOpen
             ? "pointer-events-auto max-h-[min(70vh,720px)] opacity-100"
@@ -61,6 +63,8 @@ export function MobileMenuNavServices({
                   <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
                 </button>
                 <div
+                  inert={openSubmenuSlug !== service.slug}
+                  aria-hidden={openSubmenuSlug !== service.slug}
                   className={`overflow-hidden transition-[max-height,opacity] duration-300 ${
                     openSubmenuSlug === service.slug
                       ? "max-h-[min(40vh,320px)] opacity-100"

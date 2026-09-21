@@ -87,6 +87,8 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       </button>
 
       <div
+        aria-hidden={!open}
+        inert={!open}
         className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[860px] max-w-[92vw] -translate-x-1/2 rounded-[20px] border px-10 py-8 backdrop-blur-xl transition-all duration-[220ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] ${
           open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-[6px] opacity-0"
         } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.82)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}

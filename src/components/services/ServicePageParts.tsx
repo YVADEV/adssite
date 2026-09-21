@@ -624,7 +624,7 @@ export function ContactFormCard({ source }: { source: string }) {
     const telefon = String(formData.get("telefon") ?? "").trim();
     const email = String(formData.get("email") ?? "").trim();
     const phoneDigits = telefon.replace(/\D/g, "");
-    if (!nume) {
+    if (!nume || nume.length < 2) {
       setStatus("error");
       setError("Te rugăm să completezi numele.");
       return;
@@ -742,7 +742,13 @@ export function ContactFormCard({ source }: { source: string }) {
       ) : (
         <form className="relative mt-7 grid gap-4" onSubmit={handleSubmit} noValidate>
           <div aria-hidden="true" className="hidden">
-            <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+            <input
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
           </div>
           <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Nume</span>

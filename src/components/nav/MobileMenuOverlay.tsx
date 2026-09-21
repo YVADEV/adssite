@@ -24,6 +24,7 @@ export function MobileMenuOverlay({
       aria-modal="true"
       aria-label="Meniu principal"
       aria-hidden={!menuVisible}
+      inert={!menuVisible}
       id={id}
       className={`fixed inset-0 z-[8888] isolate bg-[#0f1115] ${menuVisible ? "visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
     >

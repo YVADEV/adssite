@@ -10,7 +10,7 @@ export default function StickyContactButtons() {
       <a
         href={CLINIC.whatsappUrl}
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         aria-label="WhatsApp"
         className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >

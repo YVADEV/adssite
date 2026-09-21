@@ -199,7 +199,7 @@ export default function AugmentareaOsoasaPageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre augmentarea osoasă" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Primul pas spre un zâmbet sănătos începe aici."

@@ -96,10 +96,7 @@ export default function InstagramReelsSection() {
         >
           Urmărește activitatea noastră
         </h2>
-        <p className="mx-auto mt-3 max-w-[640px] text-center text-[18px] text-white/60">
-          Reels încărcate la scroll. Dacă embed-ul nu este disponibil, deschide direct profilul nostru.
-        </p>
-        <p className="mt-2 text-center">
+        <p className="mt-3 text-center">
           <a
             href={CLINIC.instagramUrl}
             target="_blank"

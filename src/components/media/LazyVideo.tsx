@@ -45,7 +45,7 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
   const [isReducedMotion, setIsReducedMotion] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
-  const [saveDataMode, setSaveDataMode] = useState(
+  const [saveDataMode] = useState(
     () => typeof window !== "undefined" && prefersReducedMedia(),
   );
 

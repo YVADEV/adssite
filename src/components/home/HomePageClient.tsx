@@ -400,13 +400,9 @@ const advantages = [
 const recommendationClips = ["/cazuri-1.mp4", "/cazuri-2.mp4"];
 const recommendationClipMeta = [
   {
-    date: "24 Jan 2026",
-    title: "All on 4",
     description: "Reabilitare completă cu implanturi, rezultat stabil și estetic.",
   },
   {
-    date: "02 Feb 2026",
-    title: "Smile Design",
     description: "Tratament complex pentru armonie dentară și zâmbet natural.",
   },
 ];
@@ -942,7 +938,7 @@ export default function HomePageClient() {
                     src={recommendationClips[clipIndex]}
                     poster="/services/smile-mirror.png"
                     className="absolute inset-0 h-full w-full scale-[1.05]"
-                    ariaLabel={`Clip ${recommendationClipMeta[clipIndex].title}`}
+                    ariaLabel={`Clip ${advantages[clipIndex].label}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.68)]" />
                   {!activeClipControls.has(clipIndex) ? (
@@ -962,9 +958,7 @@ export default function HomePageClient() {
                     </motion.button>
                   ) : null}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10 sm:inset-auto sm:bottom-[16px] sm:left-[16px] sm:right-[16px] sm:bg-none sm:p-0 sm:pt-0">
-                    <p className="text-[14px] text-[rgba(255,255,255,0.6)] sm:text-[21px]">{recommendationClipMeta[clipIndex].date}</p>
-                    <h4 className="mt-1 text-[16px] font-semibold leading-[1.2] text-white sm:mt-[6px] sm:text-[21px]">{recommendationClipMeta[clipIndex].title}</h4>
-                    <p className="mt-0.5 line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:mt-1 sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
+                    <p className="line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
                   </div>
                 </motion.div>
               </article>
@@ -1025,19 +1019,19 @@ export default function HomePageClient() {
               className="h-full w-full object-cover"
             />
             {!cabinetVideoActive ? (
-              <div className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4">
-                <button
-                  type="button"
-                  onClick={() =>
-                    activateVideoWithSound(cabinetVideoRef.current, () => setCabinetVideoActive(true))
-                  }
-                  className="ads-btn-lit flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[21px] sm:h-16 sm:w-16 sm:text-[28px]"
-                  aria-label="Redă video cu sunet"
-                >
+              <button
+                type="button"
+                onClick={() =>
+                  activateVideoWithSound(cabinetVideoRef.current, () => setCabinetVideoActive(true))
+                }
+                className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4"
+                aria-label="Redă video: Descoperă cabinetul nostru"
+              >
+                <span className="ads-btn-lit flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[21px] sm:h-16 sm:w-16 sm:text-[28px]" aria-hidden>
                   ▶
-                </button>
+                </span>
                 <span className="text-[21px] font-medium leading-[1.65] text-white">Descoperă cabinetul nostru</span>
-              </div>
+              </button>
             ) : null}
           </div>
         </div>
@@ -1057,7 +1051,7 @@ export default function HomePageClient() {
             <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65]">
               <p>
                 Adresă:{" "}
-                <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
+                <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                   {CLINIC.addressLine}
                 </a>
               </p>
@@ -1081,7 +1075,6 @@ export default function HomePageClient() {
               <div>
                 <p className="text-[24px] font-semibold leading-[1.05] md:text-[32px]">{r.name}</p>
                 <p className="mt-1 text-[21px] opacity-60">{r.meta}</p>
-                <p className="mt-1 text-[21px] opacity-60">{r.time}</p>
               </div>
               <p className="mt-6 text-[21px] leading-[1.5] tracking-[-0.2px]">{r.text}</p>
               <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>

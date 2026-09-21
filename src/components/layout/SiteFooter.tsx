@@ -36,7 +36,7 @@ export default function SiteFooter() {
             sănătăți dentare excelente!
           </p>
           <div className="mt-8 flex flex-col gap-2 text-[18px] leading-[1.6] text-white md:text-[21px]">
-            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
               {CLINIC.addressShort}
             </a>
             <a href={`tel:${CLINIC.phoneTel}`} className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
@@ -101,7 +101,7 @@ export default function SiteFooter() {
         <a
           href={CLINIC.instagramUrl}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="ads-footer-instagram block w-full text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
         >
           {CLINIC.instagramHandle}

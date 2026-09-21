@@ -171,7 +171,7 @@ export default function OdontologiePageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre odontologie" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Tratează la timp, păstrează-ți dinții sănătoși."

@@ -66,7 +66,6 @@ export function BeforeAfterCompare({
       onPointerCancel={onPointerUp}
       style={{ touchAction: "none" }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={afterSrc}
         alt={afterAlt}
@@ -74,7 +73,6 @@ export function BeforeAfterCompare({
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: afterPosition }}
       />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={beforeSrc}
         alt={beforeAlt}

@@ -139,7 +139,7 @@ export default function PedodontiePageClient() {
         <ServiceFAQ heading="Întrebări frecvente" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Primul pas spre un zâmbet sănătos începe aici."

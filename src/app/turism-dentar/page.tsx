@@ -122,7 +122,7 @@ export default function TurismDentarPage() {
                   <h3 className="text-[21px] font-semibold">Andreea Nisipeanu</h3>
                   <p className="text-[21px] font-semibold">★★★★★</p>
                 </div>
-                <p className="mt-1 text-[21px] text-[#767676]">3 recenzii • acum o lună</p>
+                <p className="mt-1 text-[21px] text-[#767676]">3 recenzii</p>
                 <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
                   Recomand cu mare încredere Clinica Alverna Dental! De la prima vizită am fost întâmpinată cu multă căldură și profesionalism. Clinica este impecabil de curată și dotată cu aparatură foarte modernă.
                 </p>
@@ -132,7 +132,7 @@ export default function TurismDentarPage() {
                   <h3 className="text-[21px] font-semibold">Carmen Ilea</h3>
                   <p className="text-[21px] font-semibold">★★★★★</p>
                 </div>
-                <p className="mt-1 text-[21px] text-[#767676]">4 recenzii • acum 2 luni</p>
+                <p className="mt-1 text-[21px] text-[#767676]">4 recenzii</p>
                 <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
                   Am fost impresionată de profesionalismul d-nei dr Andreea Pârvu. Studioul este foarte curat și dotat cu tehnologie de ultimă generație. Am să revin cu plăcere.
                 </p>
@@ -142,7 +142,7 @@ export default function TurismDentarPage() {
                   <h3 className="text-[21px] font-semibold">Denisa Tănase</h3>
                   <p className="text-[21px] font-semibold">★★★★★</p>
                 </div>
-                <p className="mt-1 text-[21px] text-[#767676]">2 recenzii • acum 3 luni</p>
+                <p className="mt-1 text-[21px] text-[#767676]">2 recenzii</p>
                 <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
                   Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas, iar atenția la detalii a fost excelentă.
                 </p>

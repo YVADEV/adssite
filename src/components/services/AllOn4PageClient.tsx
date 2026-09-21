@@ -244,13 +244,7 @@ const doctorVideos = [
 function VideoPlaceholder({ name }: { name: string }) {
   return (
     <div className="relative aspect-video w-full overflow-hidden rounded-[18px] border border-white/12 bg-[#111]">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(182,185,76,0.28),transparent_55%)]" />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-3 text-center sm:gap-3 sm:px-4">
-        <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/30 bg-black/45 text-white backdrop-blur sm:h-14 sm:w-14">
-          <svg viewBox="0 0 24 24" className="ml-0.5 h-6 w-6" aria-hidden>
-            <path fill="currentColor" d="M8.5 6.8v10.4L18 12 8.5 6.8Z" />
-          </svg>
-        </span>
         <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[16px] sm:tracking-[0.14em]">
           Clip video — în curând
         </p>

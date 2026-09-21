@@ -509,11 +509,11 @@ export function ServiceCasesGrid({ items = DEFAULT_CASE_STRIP }: { items?: CaseS
             <br />
             <span className="text-white">înainte și după</span>
           </h2>
-          <a href="/cazuri/" className="rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white sm:mt-5">
+          <a href="/cazuri/" className="inline-flex min-h-[44px] items-center rounded-full bg-black px-6 py-2 text-[21px] font-semibold text-white sm:mt-5">
             Vezi toate
           </a>
         </div>
-        <CazuriVideoStrip items={items} />
+        {items.length > 0 ? <CazuriVideoStrip items={items} /> : null}
       </div>
     </section>
   );
@@ -539,7 +539,7 @@ export function ServiceTestimonials() {
           <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45]">
             <p>
               Adresă:{" "}
-              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
+              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                 {CLINIC.addressLine}
               </a>
             </p>
@@ -566,7 +566,6 @@ export function ServiceTestimonials() {
             <div>
               <p className="text-[28px] font-semibold leading-[1.05]">{r.name}</p>
               <p className="mt-1 text-[21px] opacity-60">{r.meta}</p>
-              <p className="mt-1 text-[21px] opacity-60">{r.time}</p>
             </div>
             <p className="mt-6 text-[21px] leading-[1.55]">{r.text}</p>
             <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">
@@ -718,9 +717,9 @@ export function ContactFormCard({ source }: { source: string }) {
       }
       setStatus("ok");
       event.currentTarget.reset();
-    } catch (err) {
+    } catch {
       setStatus("error");
-      setError(err instanceof Error ? err.message : "Eroare necunoscută");
+      setError("Nu am putut trimite solicitarea. Te rugăm să încerci din nou sau să ne suni.");
     }
   }
 
@@ -742,9 +741,8 @@ export function ContactFormCard({ source }: { source: string }) {
         </div>
       ) : (
         <form className="relative mt-7 grid gap-4" onSubmit={handleSubmit} noValidate>
-          <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
-            <label htmlFor="contact-website">Website</label>
-            <input id="contact-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+          <div aria-hidden="true" className="hidden">
+            <input name="website" type="text" tabIndex={-1} autoComplete="off" />
           </div>
           <label className="grid gap-1.5">
             <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Nume</span>
@@ -755,6 +753,8 @@ export function ContactFormCard({ source }: { source: string }) {
               placeholder="Nume"
               required
               autoComplete="name"
+              aria-invalid={status === "error"}
+              aria-describedby={status === "error" ? "contact-form-error" : undefined}
             />
           </label>
           <label className="grid gap-1.5">
@@ -768,6 +768,8 @@ export function ContactFormCard({ source }: { source: string }) {
               placeholder="Telefon"
               required
               autoComplete="tel"
+              aria-invalid={status === "error"}
+              aria-describedby={status === "error" ? "contact-form-error" : undefined}
             />
           </label>
           <label className="grid gap-1.5">
@@ -803,7 +805,7 @@ export function ContactFormCard({ source }: { source: string }) {
             />
           </label>
           {status === "error" ? (
-            <p role="alert" className="ads-form-error rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px]">
+            <p id="contact-form-error" role="alert" className="ads-form-error rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px]">
               {error}
             </p>
           ) : null}

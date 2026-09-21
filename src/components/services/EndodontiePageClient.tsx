@@ -145,7 +145,7 @@ export default function EndodontiePageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre endodonție" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Primul pas spre un zâmbet sănătos începe aici."

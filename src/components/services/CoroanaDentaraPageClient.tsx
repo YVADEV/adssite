@@ -151,7 +151,7 @@ export default function CoroanaDentaraPageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre coroana dentară" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Redobândește zâmbetul și încrederea."

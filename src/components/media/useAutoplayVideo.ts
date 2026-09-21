@@ -23,5 +23,5 @@ export function useAutoplayVideo(
       video.removeEventListener("loadeddata", play);
       video.removeEventListener("canplay", play);
     };
-  }, [enabled]);
+  }, [enabled, videoRef]);
 }

@@ -54,7 +54,6 @@ export function HeroIntroVideo() {
 
   return (
     <div data-anim="image" className="absolute inset-0 h-full w-full overflow-hidden">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/hero1-poster.jpg"
         alt="Alverna Dental Studio — clinică modernă din Cluj"

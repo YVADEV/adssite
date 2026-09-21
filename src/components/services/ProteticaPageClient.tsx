@@ -150,7 +150,7 @@ export default function ProteticaPageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre protetică dentară" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Refă-ți zâmbetul cu soluții protetice moderne."

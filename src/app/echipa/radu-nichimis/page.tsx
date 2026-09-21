@@ -137,7 +137,7 @@ export default function RaduNichimisPage() {
               <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.65]">
                 <p>
                   Adresă:{" "}
-                  <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
+                  <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
                     {CLINIC.addressLine}
                   </a>
                 </p>
@@ -176,7 +176,6 @@ export default function RaduNichimisPage() {
                   <div>
                     <p className="text-[28px] font-semibold leading-[1.05]">{r.name}</p>
                     <p className="mt-1 text-[21px]">{r.meta}</p>
-                    <p className="mt-1 text-[21px]">{r.time}</p>
                   </div>
                 <p className="mt-6 text-[21px] leading-[1.65]">{r.text}</p>
                 <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>

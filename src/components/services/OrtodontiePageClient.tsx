@@ -153,7 +153,7 @@ export default function OrtodontiePageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre ortodonție" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Un zâmbet aliniat schimbă funcția și încrederea."

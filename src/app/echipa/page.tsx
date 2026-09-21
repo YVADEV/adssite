@@ -65,7 +65,7 @@ const assistantsTeam = [
 ];
 
 const teamGroups = [
-  { title: "Medici specialiști", members: specialistTeam },
+  { title: "Echipa medicală Alverna", members: specialistTeam },
   { title: "Laborator", members: laboratoryTeam },
   { title: "Asistente", members: assistantsTeam },
   { title: "Management", members: managementTeam },

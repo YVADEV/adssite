@@ -144,7 +144,7 @@ export default function ProfilaxiePageClient() {
         <ServiceFAQ heading="Întrebări frecvente despre profilaxie dentară" items={faqItems} />
       </ServiceContentSection>
 
-      <ServiceCasesGrid />
+      <ServiceCasesGrid items={[]} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Prevenția corectă îți păstrează zâmbetul sănătos."

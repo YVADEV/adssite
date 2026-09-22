@@ -8,15 +8,12 @@ import { motion } from "motion/react";
 import {
   ServicePageShell,
   ServiceHero,
-  ServiceQuickFacts,
-  ServiceContentSection,
   ServiceFAQ,
-  ServiceCasesGrid,
   ServiceTestimonials,
   ServiceContactForm,
   ServiceFinalCTA,
 } from "./ServicePageParts";
-import { IMPLANT_CASE_STRIP } from "@/config/case-strips";
+import { CASE_STUDIES } from "@/config/cases";
 import { useMotionReady } from "@/hooks/useMotionReady";
 import { motionRevealProps } from "@/lib/motion-reveal";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
@@ -63,6 +60,53 @@ const recommendedFor = [
   "Pacienți cu dinți rămași puternic compromiși, care urmează să fie extrași",
   "Pacienți care doresc o soluție fixă, cu un plan de tratament clar, stabilit digital încă de la evaluarea inițială",
 ];
+
+const whyAlverna = [
+  {
+    title: "Echipă multidisciplinară",
+    text: "Tratamentul este coordonat de o echipă multidisciplinară: chirurgie orală și maxilo-facială, parodontologie și protetică dentară.",
+  },
+  {
+    title: "Planificare digitală 3D",
+    text: "Evaluare pe baza investigației CBCT și scanării intraorale. Poziționarea implanturilor este stabilită pe baza datelor 3D, nu estimată vizual.",
+  },
+  {
+    title: "Sisteme consacrate internațional",
+    text: "Lucrăm cu sisteme de implant consacrate internațional. Alegerea sistemului se face de către medic, în funcție de calitatea și cantitatea osului disponibil.",
+  },
+  {
+    title: "Chirurgie și protetică integrate",
+    text: "Trei specialități, un singur plan digital — de la inserarea implanturilor până la lucrarea finală realizată în laboratorul propriu.",
+  },
+  {
+    title: "Laborator dentar propriu",
+    text: "Spre deosebire de clinicile care trimit lucrările la laboratoare externe, Alverna Dental Studio dispune de propriul laborator de tehnică dentară, complet echipat digital (scanare, design CAD, frezare/printare CAM).",
+  },
+  {
+    title: "Cazuri reale documentate",
+    text: "Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate documentate.",
+  },
+] as const;
+
+const anatomySteps = [
+  {
+    step: "1",
+    title: "Implanturi",
+    text: "4 sau 6 implanturi, poziționate strategic astfel încât să valorifice cât mai bine osul disponibil.",
+  },
+  {
+    step: "2",
+    title: "Lucrare protetică",
+    text: "De la amprenta digitală până la lucrarea finală, fără amprente clasice incomode.",
+  },
+  {
+    step: "3",
+    title: "Arcada fixă",
+    text: "O dantură fixă, stabilă, sprijinită pe implanturi, confecționată în laboratorul propriu al clinicii.",
+  },
+] as const;
+
+const featuredCases = [CASE_STUDIES.implantologie, CASE_STUDIES.dana, CASE_STUDIES["reabilitare-complexa"]];
 
 const processSteps = [
   {
@@ -241,16 +285,17 @@ const doctorVideos = [
   },
 ] as const;
 
-function VideoPlaceholder({ name }: { name: string }) {
+function CompactSection({
+  children,
+  id,
+}: {
+  children: ReactNode;
+  id?: string;
+}) {
   return (
-    <div className="relative aspect-video w-full overflow-hidden rounded-[18px] border border-white/12 bg-[#111]">
-      <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-3 text-center sm:gap-3 sm:px-4">
-        <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-[16px] sm:tracking-[0.14em]">
-          Clip video — în curând
-        </p>
-        <p className="max-w-[280px] px-1 text-[14px] leading-[1.4] text-white/55 sm:text-[16px] sm:leading-[1.45]">{name}</p>
-      </div>
-    </div>
+    <section id={id} data-theme="light" className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:mt-10 md:px-8 lg:px-12">
+      {children}
+    </section>
   );
 }
 
@@ -271,7 +316,7 @@ function IntroAccordion({
         const panelId = `${idPrefix}-panel-${index}`;
         const buttonId = `${idPrefix}-button-${index}`;
         return (
-          <article key={item.title} className="py-5">
+          <article key={item.title} className="py-3">
             <button
               id={buttonId}
               type="button"
@@ -280,10 +325,10 @@ function IntroAccordion({
               onClick={() => setOpenIndex((prev) => (prev === index ? null : index))}
               className="ads-btn-no-glow flex w-full items-start justify-between gap-4 text-left"
             >
-              <h2 className="text-[24px] font-semibold leading-[1.2] tracking-[-0.03em] text-white sm:text-[28px] md:text-[32px] md:leading-[1.12]">
+              <h2 className="text-[19px] font-semibold leading-[1.25] tracking-[-0.02em] text-white sm:text-[21px]">
                 {item.title}
               </h2>
-              <span aria-hidden className="pt-1 text-[24px] leading-none text-white">
+              <span aria-hidden className="pt-0.5 text-[18px] leading-none text-white">
                 {isOpen ? "−" : "+"}
               </span>
             </button>
@@ -311,48 +356,43 @@ function DoctorVideoBlock({
 }: {
   doctor: (typeof doctorVideos)[number];
 }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <article className="grid gap-6 border-t border-white/10 pt-10 min-[900px]:grid-cols-[minmax(240px,0.85fr)_minmax(0,1.25fr)] lg:gap-12">
-      <div className="min-w-0">
-        <div className="overflow-hidden rounded-[20px] border border-white/10">
-          <Image
-            src={doctor.image}
-            alt={doctor.name}
-            className="aspect-[4/5] h-auto w-full object-cover object-top"
-            sizes="(max-width: 900px) 100vw, 420px"
-          />
-        </div>
-        <div className="mt-4">
-          <VideoPlaceholder name={doctor.name} />
-        </div>
+    <article className="flex h-full flex-col overflow-hidden rounded-[14px] border border-white/10 bg-white/[0.03]">
+      <div className="overflow-hidden">
+        <Image
+          src={doctor.image}
+          alt={doctor.name}
+          className="aspect-square h-auto w-full object-cover object-top"
+          sizes="(max-width: 1024px) 100vw, 280px"
+        />
       </div>
-      <div className="min-w-0">
-        <p className="text-[14px] font-medium uppercase leading-snug tracking-[0.12em] text-white/60 sm:text-[16px] sm:tracking-[0.14em]">{doctor.role}</p>
-        <h3 className="mt-2 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white sm:text-[28px] md:text-[34px]">
+      <div className="flex flex-1 flex-col p-3.5">
+        <p className="text-[11px] font-medium uppercase leading-snug tracking-[0.1em] text-white/55">{doctor.role}</p>
+        <h3 className="mt-1 text-[19px] font-semibold leading-[1.2] tracking-[-0.02em] text-white">
           {doctor.name}
         </h3>
-        <p className="mt-3 text-[18px] leading-[1.65] text-white/85 sm:text-[21px]">{doctor.bio}</p>
+        <p className="mt-2 text-[17px] leading-[1.5] text-white/80">{doctor.bio}</p>
         <Link
           href={doctor.href}
-          className="mt-4 inline-flex min-h-[44px] items-center text-[18px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4"
+          className="mt-2 inline-flex min-h-[36px] items-center text-[17px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4"
         >
           Vezi profil →
         </Link>
-        <div className="mt-6 divide-y divide-white/10 border-t border-white/10">
+        <div className="mt-3 divide-y divide-white/10 border-t border-white/10">
           {doctor.questions.map((item, index) => {
             const isOpen = openIndex === index;
             return (
-              <div key={item.q} className="py-4">
+              <div key={item.q} className="py-2">
                 <button
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpenIndex((prev) => (prev === index ? null : index))}
-                  className="ads-btn-no-glow flex w-full items-start justify-between gap-3 text-left sm:gap-4"
+                  className="ads-btn-no-glow flex w-full items-start justify-between gap-2 text-left"
                 >
-                  <span className="min-w-0 flex-1 text-[17px] font-semibold leading-[1.4] text-white sm:text-[19px] sm:leading-[1.35]">{item.q}</span>
-                  <span aria-hidden className="shrink-0 pt-1 text-[21px] text-white/70">
+                  <span className="min-w-0 flex-1 text-[17px] font-semibold leading-[1.35] text-white">{item.q}</span>
+                  <span aria-hidden className="shrink-0 text-[16px] text-white/70">
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
@@ -361,7 +401,7 @@ function DoctorVideoBlock({
                     isOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="mt-3 text-[17px] leading-[1.7] text-white/80 sm:text-[19px]">{item.a}</p>
+                  <p className="mt-2 text-[17px] leading-[1.55] text-white/75">{item.a}</p>
                 </div>
               </div>
             );
@@ -372,11 +412,129 @@ function DoctorVideoBlock({
   );
 }
 
+function ComparisonBlock() {
+  return (
+    <>
+      <div className="space-y-4 md:hidden">
+        {comparisonRows.map(([aspect, allOn, mobile]) => (
+          <article key={aspect} className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
+            <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-white/60">{aspect}</p>
+            <p className="mt-2 text-[17px] leading-[1.5] text-white">
+              <span className="block text-[11px] uppercase tracking-[0.08em] text-white/50">All-on-4 / All-on-6</span>
+              {allOn}
+            </p>
+            <p className="mt-2 text-[17px] leading-[1.5] text-white/75">
+              <span className="block text-[11px] uppercase tracking-[0.08em] text-white/50">Proteză mobilă</span>
+              {mobile}
+            </p>
+          </article>
+        ))}
+      </div>
+      <div className="hidden overflow-x-auto md:block">
+        <table className="w-full min-w-[560px] border-collapse text-left text-[17px] text-white">
+          <thead>
+            <tr className="border-b border-white/15">
+              <th className="py-2 pr-3 font-semibold">Aspect</th>
+              <th className="py-2 pr-3 font-semibold">All-on-4 / All-on-6</th>
+              <th className="py-2 font-semibold">Proteză mobilă clasică</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map(([aspect, allOn, mobile]) => (
+              <tr key={aspect} className="border-b border-white/10">
+                <td className="py-2 pr-3 font-semibold align-top">{aspect}</td>
+                <td className="py-2 pr-3 align-top text-white/85">{allOn}</td>
+                <td className="py-2 align-top text-white/70">{mobile}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+function PriceBlock() {
+  return (
+    <>
+      {/*
+        REQUIRES CLIENT CONFIRMATION — BLOCKER
+        Contradiction: paragraph below says total cost includes prosthetic work;
+        heading + table + footnote say displayed All-on-X prices are surgical
+        (per arch) and prosthesis is quoted in the personalized estimate.
+        Clinic must confirm inclusions before any wording change.
+      */}
+      <p className="w-full text-[18px] leading-[1.6] text-white">
+        Costul total include consultația și planificarea digitală, intervenția chirurgicală, implanturile, precum și lucrarea protetică realizată în laboratorul propriu. Variază în funcție de numărul de implanturi (4 sau 6), marca folosită, necesitatea unor proceduri suplimentare (augmentare osoasă, tratamente parodontale) și materialul lucrării finale.
+      </p>
+      <h3 className="mt-5 text-[20px] font-semibold leading-[1.2] text-white">Preț orientativ — intervenție chirurgicală</h3>
+      <p className="mt-1.5 text-[17px] leading-[1.5] text-white/70">
+        Tarife per arcadă, conform listei clinicii. Devizul final, inclusiv lucrarea protetică, se stabilește după evaluarea digitală.
+      </p>
+      <div className="mt-5 space-y-3 md:hidden">
+        {[
+          { name: "Consultație + evaluare digitală", detail: "Consultație și diagnostic implantologie, interpretare CT", price: "180 RON" },
+          { name: "Ședință foto + design digital al zâmbetului", detail: "Fotografii, simulare digitală a rezultatului", price: "inclusă în evaluare" },
+          ...surgicalPrices,
+        ].map((row) => (
+          <article key={row.name} className="rounded-[12px] border border-white/10 bg-white/[0.04] p-3.5">
+            <p className="text-[18px] font-semibold leading-[1.35] text-white">{row.name}</p>
+            <p className="mt-1.5 text-[17px] leading-[1.5] text-white/70">{row.detail}</p>
+            <p className="mt-2 text-[18px] font-semibold text-white">{row.price}</p>
+          </article>
+        ))}
+      </div>
+      <div className="mt-5 hidden overflow-x-auto md:block">
+        <table className="w-full min-w-[560px] border-collapse text-left text-[17px] text-white">
+          <thead>
+            <tr className="border-b border-white/15">
+              <th className="py-2 pr-3 font-semibold">Etapă</th>
+              <th className="py-2 pr-3 font-semibold">Ce include</th>
+              <th className="py-2 font-semibold">Preț</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="border-b border-white/10">
+              <td className="py-2 pr-3 align-top">Consultație + evaluare digitală</td>
+              <td className="py-2 pr-3 align-top text-white/80">Consultație și diagnostic implantologie, interpretare CT</td>
+              <td className="py-2 align-top font-semibold">180 RON</td>
+            </tr>
+            <tr className="border-b border-white/10">
+              <td className="py-2 pr-3 align-top">Ședință foto + design digital al zâmbetului</td>
+              <td className="py-2 pr-3 align-top text-white/80">Fotografii, simulare digitală a rezultatului</td>
+              <td className="py-2 align-top font-semibold">inclusă în evaluare</td>
+            </tr>
+            {surgicalPrices.map((row) => (
+              <tr key={row.name} className="border-b border-white/10">
+                <td className="py-2 pr-3 align-top">{row.name}</td>
+                <td className="py-2 pr-3 align-top text-white/80">{row.detail}</td>
+                <td className="py-2 align-top font-semibold">{row.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="mt-3 text-[17px] leading-[1.5] text-white/65">
+        Lucrarea protetică (provizorie și finală) este confecționată în laboratorul propriu; costul se comunică în devizul personalizat. Nu include eventuale proceduri suplimentare (augmentare osoasă, tratamente parodontale).
+      </p>
+      <p className="mt-2 text-[17px] leading-[1.55] text-white">
+        La Alverna Dental Studio este disponibilă și plata în rate, prin parteneriatele cu Star BT și Tbi Bank.
+      </p>
+      <a
+        href="#contact"
+        className="ads-btn-lit mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-5 text-[16px] font-semibold transition duration-300 sm:w-auto"
+      >
+        Solicită un deviz personalizat
+      </a>
+    </>
+  );
+}
+
 export default function AllOn4PageClient() {
   const reveal = motionRevealProps(useMotionReady());
 
   return (
-    <ServicePageShell>
+    <ServicePageShell className="all-on-x-page">
       <ServiceHero
         image="/services/implant-model-2.png"
         imageAlt="All-on-4 și All-on-6 Cluj — dantură fixă, flux digital, Alverna Dental Studio"
@@ -388,258 +546,279 @@ export default function AllOn4PageClient() {
           </>
         }
         intro="Dantură fixă pe 4 sau 6 implanturi. Evaluare, planificare și lucrare finală într-un flux de lucru digital integrat, în laboratorul propriu al clinicii."
-      />
-
-      <ServiceQuickFacts
-        facts={[
-          ["Abordare", "Flux de lucru digital integrat"],
-          ["Laborator", "Propriu, în clinică"],
-          ["Echipă", "Chirurgie BMF, parodontologie, protetică"],
-          ["Soluție", "Dantură fixă pe 4 sau 6 implanturi"],
+        secondaryCta={{ href: "#cazuri-all-on", label: "Vezi cazuri înainte și după" }}
+        compact
+        benefitChips={[
+          "Flux de lucru digital integrat",
+          "Laborator propriu, în clinică",
+          "Chirurgie BMF, parodontologie, protetică",
         ]}
       />
 
-      <ServiceContentSection>
-        <IntroAccordion
-          items={[
-            {
-              title: "Dantură fixă, printr-un flux de lucru digital integrat",
-              content: (
-                <p className="ads-readable max-w-[1100px] text-white">
-                  Pierderea totală sau aproape totală a dinților poate fi rezolvată printr-o arcadă fixă, stabilă, sprijinită pe 4 sau 6 implanturi. La Alverna Dental Studio, întreg parcursul — de la evaluarea inițială până la lucrarea finală — este gestionat printr-un flux de lucru digital integrat, iar lucrările protetice sunt realizate în laboratorul propriu al clinicii, echipat integral digital.
-                </p>
-              ),
-            },
-            {
-              title: "Echipă multidisciplinară",
-              content: (
-                <p className="ads-readable max-w-[1100px] text-white">
-                  Tratamentul este coordonat de o echipă multidisciplinară: chirurgie orală și maxilo-facială, parodontologie și protetică dentară. Alegerea între variante — și modul exact în care se planifică fiecare caz — se stabilește individual, în urma evaluării pe baza investigației CBCT și scanării intraorale.
-                </p>
-              ),
-            },
-            {
-              title: "Ce este All-on-4 / All-on-6?",
-              content: (
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  {whatIsCards.map((item) => (
-                    <article key={item.title} className="border-t border-black/12 pt-4">
-                      <h3 className="text-[21px] font-semibold text-white">{item.title}</h3>
-                      <p className="mt-2 text-[21px] leading-[1.65] text-white">{item.text}</p>
-                    </article>
-                  ))}
-                </div>
-              ),
-            },
-            {
-              title: "Un flux de lucru digital integrat, de la prima vizită la lucrarea finală",
-              content: (
-                <p className="ads-readable max-w-[1100px] text-white">
-                  La Alverna Dental Studio, tratamentul All-on-4 / All-on-6 este susținut, în fiecare etapă, de tehnologie digitală. Acest flux digital integrat — clinică și laborator sub același acoperiș — este unul dintre principalele avantaje ale tratamentului.
-                </p>
-              ),
-            },
-            {
-              title: "Etapele fluxului digital",
-              content: (
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-                  {digitalFlowCards.map((item) => (
-                    <article key={item.title} className="border-t border-black/12 pt-4">
-                      <h3 className="text-[21px] font-semibold text-white">{item.title}</h3>
-                      <p className="mt-2 text-[21px] leading-[1.65] text-white">{item.text}</p>
-                    </article>
-                  ))}
-                </div>
-              ),
-            },
-            {
-              title: "Pentru cine este recomandată",
-              content: (
-                <ul className="space-y-3 text-[21px] leading-[1.75] text-white">
-                  {recommendedFor.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-[10px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#B6B94C]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              ),
-            },
-            {
-              title: "Etapele tratamentului",
-              content: (
-                <div className="divide-y divide-black/10">
-                  {processSteps.map((item) => (
-                    <article
-                      key={item.step}
-                      className="grid gap-3 py-5 md:grid-cols-[90px_1fr_1.4fr] md:items-start"
-                    >
-                      <p className="text-[30px] font-semibold leading-none tracking-[-0.03em] text-white">{item.step}</p>
-                      <p className="text-[21px] font-semibold leading-[1.2] text-white">{item.title}</p>
-                      <p className="text-[21px] leading-[1.65] text-white">{item.text}</p>
-                    </article>
-                  ))}
-                </div>
-              ),
-            },
-            {
-              title: "Durata tratamentului",
-              content: (
-                <p className="max-w-[1120px] text-[21px] leading-[1.75] text-white">
-                  Durata exactă a fiecărei etape variază de la caz la caz și se comunică pacientului după evaluare. Nu lucrăm cu promisiuni de tip „totul într-o zi” — planul este stabilit digital, individual.
-                </p>
-              ),
-            },
-          ]}
-        />
-      </ServiceContentSection>
+      <CompactSection>
+        <motion.article {...reveal} className="grid gap-5 pt-2 lg:grid-cols-[minmax(200px,0.8fr)_minmax(0,1.4fr)] lg:gap-10">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Soluția modernă</p>
+            <h2 className="mt-3 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+              Ce este All-on-4 / All-on-6?
+            </h2>
+          </div>
+          <div>
+            <p className="ads-readable text-white">
+              Pierderea totală sau aproape totală a dinților poate fi rezolvată printr-o arcadă fixă, stabilă, sprijinită pe 4 sau 6 implanturi. La Alverna Dental Studio, întreg parcursul — de la evaluarea inițială până la lucrarea finală — este gestionat printr-un flux de lucru digital integrat, iar lucrările protetice sunt realizate în laboratorul propriu al clinicii, echipat integral digital.
+            </p>
+            <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
+              {whatIsCards.map((item) => (
+                <article key={item.title} className="border-t border-black/12 pt-3">
+                  <h3 className="text-[18px] font-semibold text-white">{item.title}</h3>
+                  <p className="mt-1.5 text-[17px] leading-[1.55] text-white/85">{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </motion.article>
+      </CompactSection>
 
-      <section id="echipa-all-on" className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+      <CompactSection>
         <motion.div {...reveal}>
-          <p className="text-[18px] font-medium uppercase tracking-[0.16em] text-white/60">Interviu clinic</p>
-          <h2 className="mt-3 max-w-[920px] text-[28px] font-semibold leading-[1.12] tracking-[-0.03em] text-white sm:text-[32px] md:text-[44px] md:leading-[1.03]">
-            Echipa care se ocupă de procedura dvs.
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">De ce Alverna</p>
+          <h2 className="mt-3 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+            De ce Alverna pentru dinți ficși pe implanturi
           </h2>
-          <p className="mt-4 max-w-[820px] text-[18px] leading-[1.7] text-white/80 sm:text-[21px]">
+          <p className="mt-4 ads-readable text-white">
+            La Alverna Dental Studio, tratamentul All-on-4 / All-on-6 este susținut, în fiecare etapă, de tehnologie digitală. Acest flux digital integrat — clinică și laborator sub același acoperiș — este unul dintre principalele avantaje ale tratamentului.
+          </p>
+          <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {whyAlverna.map((item, index) => (
+              <article key={item.title} className="rounded-[12px] border border-white/10 bg-white/[0.04] p-3.5">
+                <span className="mb-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#B6B94C]/20 text-[11px] font-semibold text-[#B6B94C]">
+                  {index + 1}
+                </span>
+                <h3 className="text-[17px] font-semibold leading-[1.3] text-white">{item.title}</h3>
+                <p className="mt-1.5 text-[17px] leading-[1.5] text-white/80">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </motion.div>
+      </CompactSection>
+
+      <CompactSection id="cazuri-all-on">
+        <motion.div {...reveal}>
+          <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Cazuri reale</p>
+              <h2 className="mt-1.5 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+                Cazuri reale ale pacienților noștri
+              </h2>
+            </div>
+            <Link
+              href="/cazuri/"
+              className="inline-flex min-h-[36px] items-center rounded-full border border-white/25 px-4 text-[17px] font-semibold text-white"
+            >
+              Vezi toate
+            </Link>
+          </div>
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {featuredCases.map((caz) => (
+              <Link
+                key={caz.slug}
+                href={caz.path}
+                className="group overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B6B94C]"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-black">
+                  <Image
+                    src={caz.heroImage}
+                    alt={caz.patientName ? `${caz.patientName} — ${caz.category}` : caz.category}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                    style={{ objectPosition: caz.heroObjectPosition ?? "center" }}
+                  />
+                </div>
+                <div className="p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/50">{caz.caseNumber}</p>
+                  <h3 className="mt-1 text-[17px] font-semibold leading-[1.3] text-white">
+                    {caz.patientName ?? caz.category}
+                  </h3>
+                  <p className="mt-1 line-clamp-2 text-[16px] leading-[1.45] text-white/70">{caz.subtitle}</p>
+                  <span className="mt-2 inline-flex items-center text-[16px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4">
+                    Vezi cazul →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      </CompactSection>
+
+      <CompactSection>
+        <motion.div {...reveal} className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] border border-white/10 bg-black">
+            <Image
+              src="/services/implant-model-2.png"
+              alt="Dantură fixă pe implanturi — All-on-4 / All-on-6"
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-center"
+            />
+          </div>
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Cum este construit</p>
+            <h2 className="mt-1.5 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+              Ce este, exact, o dantură fixă pe implanturi?
+            </h2>
+            <p className="mt-3 text-[18px] leading-[1.55] text-white/85">
+              Pacientul spune adesea „implant”, dar se gândește la întreaga arcadă. All-on-4 / All-on-6 înseamnă implanturi plus lucrarea protetică fixă, planificate digital și realizate în laboratorul propriu.
+            </p>
+            <ol className="mt-4 space-y-3">
+              {anatomySteps.map((item) => (
+                <li key={item.step} className="flex gap-3 border-t border-white/10 pt-3">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#B6B94C]/20 text-[12px] font-semibold text-[#B6B94C]">{item.step}</span>
+                  <div>
+                    <p className="text-[17px] font-semibold text-white">{item.title}</p>
+                    <p className="mt-0.5 text-[17px] leading-[1.5] text-white/80">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </motion.div>
+      </CompactSection>
+
+      <CompactSection>
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+          <motion.article {...reveal}>
+            <h2 className="text-[22px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[26px]">
+              Cui i se recomandă
+            </h2>
+            <ul className="mt-4 space-y-2 text-[17px] leading-[1.55] text-white/90">
+              {recommendedFor.map((item) => (
+                <li key={item} className="flex gap-2">
+                  <span className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-full bg-[#B6B94C]" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.article>
+          <motion.article {...reveal}>
+            <h2 className="text-[22px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[26px]">
+              Față de proteza mobilă
+            </h2>
+            <p className="mt-3 text-[17px] leading-[1.55] text-white/80">
+              Alegerea între variante — și modul exact în care se planifică fiecare caz — se stabilește individual, în urma evaluării pe baza investigației CBCT și scanării intraorale.
+            </p>
+            <div className="mt-4">
+              <ComparisonBlock />
+            </div>
+          </motion.article>
+        </div>
+      </CompactSection>
+
+      <CompactSection>
+        <motion.div {...reveal}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Proces medical planificat</p>
+          <h2 className="mt-3 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+            Etapele tratamentului
+          </h2>
+          <p className="mt-4 ads-readable text-white">
+            Durata exactă a fiecărei etape variază de la caz la caz și se comunică pacientului după evaluare. Nu lucrăm cu promisiuni de tip „totul într-o zi” — planul este stabilit digital, individual.
+          </p>
+          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+            {processSteps.map((item) => (
+              <article key={item.step} className="text-center">
+                <p className="mx-auto flex h-7 w-7 items-center justify-center rounded-full border border-[#B6B94C]/40 text-[11px] font-semibold text-[#B6B94C]">{item.step}</p>
+                <p className="mt-2 text-[15px] font-semibold leading-[1.3] text-white">{item.title}</p>
+              </article>
+            ))}
+          </div>
+        </motion.div>
+      </CompactSection>
+
+      <CompactSection>
+        <div className="grid gap-3 lg:grid-cols-2">
+          <motion.article {...reveal} className="rounded-[12px] border border-white/10 bg-white/[0.04] p-4">
+            <h2 className="text-[20px] font-semibold leading-[1.2] text-white md:text-[22px]">
+              Dacă s-a pierdut deja os
+            </h2>
+            <p className="mt-2 text-[17px] leading-[1.55] text-white/80">
+              Depinde de fiecare caz — se stabilește după evaluarea digitală. În unele situații poate fi necesară o augmentare osoasă prealabilă. Planificarea digitală permite să vedem din timp dacă se poate lucra cu osul existent.
+            </p>
+          </motion.article>
+          <motion.article {...reveal} className="rounded-[12px] border border-white/10 bg-white/[0.04] p-4">
+            <h2 className="text-[20px] font-semibold leading-[1.2] text-white md:text-[22px]">
+              Sisteme de implant
+            </h2>
+            <p className="mt-2 text-[17px] leading-[1.55] text-white/80">
+              Lucrăm cu sisteme de implant consacrate internațional. Alegerea (INNO, Neodent sau Straumann) o face medicul, în funcție de indicația clinică — nu este o comparație de produse pe care pacientul trebuie să o decidă singur.
+            </p>
+          </motion.article>
+        </div>
+      </CompactSection>
+
+      <CompactSection id="echipa-all-on">
+        <motion.div {...reveal}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Echipa medicală</p>
+          <h2 className="mt-1.5 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+            Medicii care se ocupă de caz
+          </h2>
+          <p className="mt-2 text-[17px] leading-[1.55] text-white/75">
             Trei specialități, un singur plan digital. Clipurile video vor fi publicate aici — până atunci, găsiți întrebările și răspunsurile fiecărui medic.
           </p>
-          <div className="mt-4 space-y-16">
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
             {doctorVideos.map((doctor) => (
               <DoctorVideoBlock key={doctor.name} doctor={doctor} />
             ))}
           </div>
         </motion.div>
-      </section>
+      </CompactSection>
 
-      <ServiceContentSection>
+      <CompactSection>
+        <motion.article {...reveal} className="grid items-start gap-8 lg:grid-cols-[minmax(260px,0.9fr)_minmax(0,1.4fr)] lg:gap-14">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Laborator propriu</p>
+            <h2 className="mt-3 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+              Laborator digital, în clinică
+            </h2>
+          </div>
+          <p className="ads-readable text-white">
+            {digitalFlowCards.find((item) => item.title.startsWith("Laborator"))?.text}
+          </p>
+        </motion.article>
+      </CompactSection>
+
+      <CompactSection>
+        <motion.div {...reveal} id="tarife-all-on">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Cost</p>
+          <h2 className="mt-3 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+            Prețul unei intervenții
+          </h2>
+          <div className="mt-8">
+            <PriceBlock />
+          </div>
+        </motion.div>
+      </CompactSection>
+
+      <CompactSection>
         <IntroAccordion
-          idPrefix="all-on-after"
           items={[
             {
-              title: "Avantajele All-on-4 / All-on-6 față de proteza mobilă",
+              title: "Etapele fluxului digital",
               content: (
-                <>
-                  <div className="space-y-4 md:hidden">
-                    {comparisonRows.map(([aspect, allOn, mobile]) => (
-                      <article key={aspect} className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-                        <p className="text-[16px] font-semibold uppercase tracking-[0.08em] text-white/60">{aspect}</p>
-                        <p className="mt-3 text-[18px] leading-[1.5] text-white">
-                          <span className="block text-[14px] uppercase tracking-[0.08em] text-white/50">All-on-4 / All-on-6</span>
-                          {allOn}
-                        </p>
-                        <p className="mt-3 text-[18px] leading-[1.5] text-white/75">
-                          <span className="block text-[14px] uppercase tracking-[0.08em] text-white/50">Proteză mobilă</span>
-                          {mobile}
-                        </p>
-                      </article>
-                    ))}
-                  </div>
-                  <div className="hidden overflow-x-auto md:block">
-                    <table className="w-full min-w-[640px] border-collapse text-left text-[18px] text-white md:text-[21px]">
-                      <thead>
-                        <tr className="border-b border-white/15">
-                          <th className="py-4 pr-4 font-semibold">Aspect</th>
-                          <th className="py-4 pr-4 font-semibold">All-on-4 / All-on-6</th>
-                          <th className="py-4 font-semibold">Proteză mobilă clasică</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {comparisonRows.map(([aspect, allOn, mobile]) => (
-                          <tr key={aspect} className="border-b border-white/10">
-                            <td className="py-4 pr-4 font-semibold align-top">{aspect}</td>
-                            <td className="py-4 pr-4 align-top text-white/85">{allOn}</td>
-                            <td className="py-4 align-top text-white/70">{mobile}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </>
-              ),
-            },
-            {
-              title: "Prețul unei intervenții",
-              content: (
-                <>
-                  {/*
-                    REQUIRES CLIENT CONFIRMATION — BLOCKER
-                    Contradiction: paragraph below says total cost includes prosthetic work;
-                    heading + table + footnote say displayed All-on-X prices are surgical
-                    (per arch) and prosthesis is quoted in the personalized estimate.
-                    Clinic must confirm inclusions before any wording change.
-                  */}
-                  <p className="max-w-[1120px] text-[18px] leading-[1.75] text-white sm:text-[21px]">
-                    Costul total include consultația și planificarea digitală, intervenția chirurgicală, implanturile, precum și lucrarea protetică realizată în laboratorul propriu. Variază în funcție de numărul de implanturi (4 sau 6), marca folosită, necesitatea unor proceduri suplimentare (augmentare osoasă, tratamente parodontale) și materialul lucrării finale.
-                  </p>
-                  <h3 className="mt-8 text-[22px] font-semibold leading-[1.2] text-white md:text-[28px]">Preț orientativ — intervenție chirurgicală</h3>
-                  <p className="mt-2 text-[16px] leading-[1.6] text-white/70 sm:text-[18px]">
-                    Tarife per arcadă, conform listei clinicii. Devizul final, inclusiv lucrarea protetică, se stabilește după evaluarea digitală.
-                  </p>
-                  <div className="mt-5 space-y-3 md:hidden">
-                    {[
-                      { name: "Consultație + evaluare digitală", detail: "Consultație și diagnostic implantologie, interpretare CT", price: "180 RON" },
-                      { name: "Ședință foto + design digital al zâmbetului", detail: "Fotografii, simulare digitală a rezultatului", price: "inclusă în evaluare" },
-                      ...surgicalPrices,
-                    ].map((row) => (
-                      <article key={row.name} className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-                        <p className="text-[17px] font-semibold leading-[1.35] text-white">{row.name}</p>
-                        <p className="mt-2 text-[16px] leading-[1.5] text-white/70">{row.detail}</p>
-                        <p className="mt-3 text-[17px] font-semibold text-white">{row.price}</p>
-                      </article>
-                    ))}
-                  </div>
-                  <div className="mt-5 hidden overflow-x-auto md:block">
-                    <table className="w-full min-w-[560px] border-collapse text-left text-[18px] text-white md:text-[21px]">
-                      <thead>
-                        <tr className="border-b border-white/15">
-                          <th className="py-4 pr-4 font-semibold">Etapă</th>
-                          <th className="py-4 pr-4 font-semibold">Ce include</th>
-                          <th className="py-4 font-semibold">Preț</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr className="border-b border-white/10">
-                          <td className="py-4 pr-4 align-top">Consultație + evaluare digitală</td>
-                          <td className="py-4 pr-4 align-top text-white/80">Consultație și diagnostic implantologie, interpretare CT</td>
-                          <td className="py-4 align-top font-semibold">180 RON</td>
-                        </tr>
-                        <tr className="border-b border-white/10">
-                          <td className="py-4 pr-4 align-top">Ședință foto + design digital al zâmbetului</td>
-                          <td className="py-4 pr-4 align-top text-white/80">Fotografii, simulare digitală a rezultatului</td>
-                          <td className="py-4 align-top font-semibold">inclusă în evaluare</td>
-                        </tr>
-                        {surgicalPrices.map((row) => (
-                          <tr key={row.name} className="border-b border-white/10">
-                            <td className="py-4 pr-4 align-top">{row.name}</td>
-                            <td className="py-4 pr-4 align-top text-white/80">{row.detail}</td>
-                            <td className="py-4 align-top font-semibold">{row.price}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  <p className="mt-4 text-[16px] leading-[1.6] text-white/65 sm:text-[18px]">
-                    Lucrarea protetică (provizorie și finală) este confecționată în laboratorul propriu; costul se comunică în devizul personalizat. Nu include eventuale proceduri suplimentare (augmentare osoasă, tratamente parodontale).
-                  </p>
-                  <p className="mt-4 text-[18px] leading-[1.7] text-white sm:text-[21px]">
-                    La Alverna Dental Studio este disponibilă și plata în rate, prin parteneriatele cu Star BT și Tbi Bank.
-                  </p>
-                  <a
-                    href="#contact"
-                    className="ads-btn-lit mt-6 inline-flex min-h-[46px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-300 hover:scale-[1.02] sm:w-auto sm:text-[21px]"
-                  >
-                    Solicită un deviz personalizat
-                  </a>
-                </>
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  {digitalFlowCards.map((item) => (
+                    <article key={item.title} className="border-t border-black/12 pt-3">
+                      <h3 className="text-[17px] font-semibold text-white">{item.title}</h3>
+                      <p className="mt-1.5 text-[17px] leading-[1.5] text-white/80">{item.text}</p>
+                    </article>
+                  ))}
+                </div>
               ),
             },
           ]}
         />
+        <ServiceFAQ heading="Întrebări frecvente" items={faqItems} compact />
+      </CompactSection>
 
-        <ServiceFAQ heading="Întrebări frecvente" items={faqItems} />
-      </ServiceContentSection>
-
-      <ServiceCasesGrid items={IMPLANT_CASE_STRIP} />
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Recăpătați-vă zâmbetul, cu un plan de tratament clar, digital, de la prima vizită."

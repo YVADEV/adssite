@@ -190,6 +190,12 @@ h2 {
   }
 }
 
+.all-on-x-page .ads-readable {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: none;
+}
+
 input:not([type="checkbox"]):not([type="radio"]),
 select,
 textarea {

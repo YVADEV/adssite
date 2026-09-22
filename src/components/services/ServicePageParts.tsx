@@ -107,9 +107,12 @@ function ServiceHeroContent({
   kicker,
   title,
   intro,
+  secondaryCta,
+  compact = false,
+  benefitChips,
   className = "",
   layout = "overlay",
-}: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro"> & {
+}: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro" | "secondaryCta" | "compact" | "benefitChips"> & {
   className?: string;
   layout?: "overlay" | "stacked";
 }) {
@@ -132,29 +135,63 @@ function ServiceHeroContent({
         className={`relative z-10 flex w-full flex-col ${
           isStacked
             ? "px-0 pb-0 pt-0 lg:h-full lg:justify-end lg:pb-16 lg:pt-28"
-            : "mt-0 px-4 pb-12 pt-28 md:mt-auto md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32"
+            : compact
+              ? "mt-0 px-4 pb-8 pt-24 md:mt-auto md:px-8 md:pb-10 md:pt-24 lg:px-12"
+              : "mt-0 px-4 pb-12 pt-28 md:mt-auto md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32"
         } ${className}`}
       >
-        <motion.div {...reveal} className="max-w-[820px]">
+        <motion.div {...reveal} className={compact ? "w-full max-w-none" : "max-w-[820px]"}>
           <p className="ads-eyebrow text-white opacity-70">{kicker}</p>
-          <h1 className="mt-4 max-w-[980px] text-[clamp(32px,6vw,96px)] font-extrabold leading-[1.02] tracking-[-0.045em] text-white md:mt-5 md:leading-[0.94]">
+          <h1
+            className={
+              compact
+                ? "mt-2 w-full max-w-none text-[clamp(32px,4.2vw,48px)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white"
+                : "mt-4 max-w-[980px] text-[clamp(32px,6vw,96px)] font-extrabold leading-[1.02] tracking-[-0.045em] text-white md:mt-5 md:leading-[0.94]"
+            }
+          >
             {title}
           </h1>
-          <p className="mt-6 max-w-[680px] ads-readable text-white">{intro}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <p
+            className={
+              compact
+                ? "mt-3 w-full max-w-none text-[16px] leading-[1.55] text-white/90 md:text-[18px]"
+                : "mt-6 max-w-[680px] ads-readable text-white"
+            }
+          >
+            {intro}
+          </p>
+          <div className={`flex flex-col gap-2.5 sm:flex-row sm:flex-wrap ${compact ? "mt-5" : "mt-8 gap-3"}`}>
             <a
               href="#contact"
-              className="ads-btn-lit inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-200 sm:w-auto sm:text-[21px]"
+              className={
+                compact
+                  ? "ads-btn-lit inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-6 text-[16px] font-semibold transition duration-200 sm:w-auto"
+                  : "ads-btn-lit inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-200 sm:w-auto sm:text-[21px]"
+              }
             >
               Programează o consultație
             </a>
             <a
-              href="/cazuri/"
-              className="inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 text-[18px] font-semibold text-white backdrop-blur transition duration-200 hover:bg-white/10 sm:w-auto sm:text-[21px]"
+              href={secondaryCta?.href ?? "/cazuri/"}
+              className={
+                compact
+                  ? "inline-flex min-h-[48px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 text-[16px] font-semibold text-white backdrop-blur transition duration-200 hover:bg-white/10 sm:w-auto"
+                  : "inline-flex min-h-[52px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-6 text-[18px] font-semibold text-white backdrop-blur transition duration-200 hover:bg-white/10 sm:w-auto sm:text-[21px]"
+              }
             >
-              Vezi cazuri reale
+              {secondaryCta?.label ?? "Vezi cazuri reale"}
             </a>
           </div>
+          {compact && benefitChips && benefitChips.length > 0 ? (
+            <ul className="mt-5 flex flex-col gap-1.5 sm:flex-row sm:flex-wrap sm:gap-x-5 sm:gap-y-1.5">
+              {benefitChips.map((item) => (
+                <li key={item} className="flex items-center gap-2 text-[14px] leading-[1.4] text-white/85 md:text-[15px]">
+                  <span aria-hidden className="h-[7px] w-[7px] shrink-0 rounded-full bg-[#B6B94C]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </motion.div>
       </div>
     </>
@@ -174,6 +211,9 @@ export type ServiceHeroProps = {
   title: ReactNode;
   intro: ReactNode;
   chip: string;
+  secondaryCta?: { href: string; label: string };
+  compact?: boolean;
+  benefitChips?: ReadonlyArray<string>;
 };
 
 export function ServiceHero({
@@ -186,6 +226,9 @@ export function ServiceHero({
   title,
   intro,
   chip,
+  secondaryCta,
+  compact = false,
+  benefitChips,
 }: ServiceHeroProps) {
   const reveal = useReveal();
   const splitVideoLayout = Boolean(videoSrc && videoObjectFit === "contain");
@@ -196,7 +239,7 @@ export function ServiceHero({
         <div className="relative w-full bg-black lg:h-[92vh] lg:min-h-[720px] lg:max-h-[1100px]">
           <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 lg:h-full lg:grid-cols-[minmax(0,1fr)_minmax(280px,42%)] lg:gap-8 xl:gap-12">
             <div className="relative px-4 pb-8 pt-20 md:px-8 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:justify-end lg:pb-16 lg:pt-28 xl:px-12">
-              <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} layout="stacked" />
+              <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} secondaryCta={secondaryCta} compact={compact} benefitChips={benefitChips} layout="stacked" />
             </div>
             <div className="relative flex min-h-[320px] items-center justify-center px-4 pb-8 pt-4 lg:min-h-0 lg:justify-end lg:px-0 lg:pb-16 lg:pt-28">
               <motion.div
@@ -223,7 +266,7 @@ export function ServiceHero({
 
   return (
     <section className="relative w-full overflow-hidden bg-black">
-      <div className="relative flex min-h-[min(86vh,720px)] w-full flex-col bg-black md:min-h-[min(88vh,900px)]">
+      <div className={`relative flex w-full flex-col bg-black ${compact ? "min-h-[min(64vh,520px)] md:min-h-[min(68vh,560px)]" : "min-h-[min(86vh,720px)] md:min-h-[min(88vh,900px)]"}`}>
         {videoSrc ? (
           <ServiceHeroVideo
             videoSrc={videoSrc}
@@ -245,7 +288,7 @@ export function ServiceHero({
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/28 via-transparent to-black/55" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/64 via-black/16 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[36%] bg-gradient-to-t from-black/78 to-transparent" />
-        <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} className="mx-auto max-w-[1680px]" />
+        <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} secondaryCta={secondaryCta} compact={compact} benefitChips={benefitChips} className={compact ? "mx-auto w-full max-w-[1680px]" : "mx-auto max-w-[1120px]"} />
       </div>
     </section>
   );
@@ -427,23 +470,29 @@ export function ServiceTextBlock({
 export function ServiceFAQ({
   heading,
   items,
+  compact = false,
 }: {
   heading: string;
   items: ReadonlyArray<{ q: string; a: string }>;
+  compact?: boolean;
 }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const reveal = useReveal();
 
   return (
-    <motion.article {...reveal} className="mt-14 border-t border-black/12 pt-10">
-      <SectionHeading heading={heading} level="h3" />
-      <div className="mt-7 divide-y divide-black/10">
+    <motion.article {...reveal} className={compact ? "mt-8 border-t border-black/12 pt-6" : "mt-14 border-t border-black/12 pt-10"}>
+      {compact ? (
+        <h3 className="text-[26px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[32px]">{heading}</h3>
+      ) : (
+        <SectionHeading heading={heading} level="h3" />
+      )}
+      <div className={compact ? "mt-4 divide-y divide-black/10" : "mt-7 divide-y divide-black/10"}>
         {items.map((item, index) => {
           const isOpen = openFaq === index;
           const panelId = `faq-panel-${index}`;
           const buttonId = `faq-button-${index}`;
           return (
-            <article key={item.q} className="py-5">
+            <article key={item.q} className={compact ? "py-3" : "py-5"}>
               <button
                 id={buttonId}
                 type="button"
@@ -452,8 +501,8 @@ export function ServiceFAQ({
                 onClick={() => setOpenFaq((prev) => (prev === index ? null : index))}
                 className="ads-btn-no-glow flex w-full items-start justify-between gap-4 text-left"
               >
-                <h4 className="text-[21px] font-semibold leading-[1.35] text-white">{item.q}</h4>
-                <span aria-hidden className="pt-1 text-[21px] text-white">
+                <h4 className={compact ? "text-[18px] font-semibold leading-[1.35] text-white" : "text-[21px] font-semibold leading-[1.35] text-white"}>{item.q}</h4>
+                <span aria-hidden className={compact ? "pt-0.5 text-[18px] text-white" : "pt-1 text-[21px] text-white"}>
                   {isOpen ? "−" : "+"}
                 </span>
               </button>
@@ -465,7 +514,7 @@ export function ServiceFAQ({
                   isOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
-                <p className="mt-3 max-w-[1100px] text-[21px] leading-[1.7] text-white">{item.a}</p>
+                <p className={compact ? "mt-2 w-full text-[17px] leading-[1.6] text-white/85" : "mt-3 max-w-[1100px] text-[21px] leading-[1.7] text-white"}>{item.a}</p>
               </div>
             </article>
           );
@@ -874,9 +923,9 @@ export function ServiceFinalCTA({
 // -----------------------------------------------------------------------------
 // PAGE SHELL
 // -----------------------------------------------------------------------------
-export function ServicePageShell({ children }: { children: ReactNode }) {
+export function ServicePageShell({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <main data-theme="light" className="bg-[#0A0A0A] pb-24">
+    <main data-theme="light" className={`bg-[#0A0A0A] pb-24 ${className}`}>
       {children}
     </main>
   );

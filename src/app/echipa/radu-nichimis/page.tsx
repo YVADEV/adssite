@@ -125,7 +125,11 @@ export default function RaduNichimisPage() {
         <section className="bg-black pb-[110px]">
           <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
             <h3 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">Recenzii</h3>
-            <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
+            <p className="mt-3 text-[21px] font-semibold text-white">
+              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
+                Scor mediu Google: 4.8 ⭐
+              </a>
+            </p>
           </div>
           <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
             <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
@@ -147,7 +151,7 @@ export default function RaduNichimisPage() {
                     {CLINIC.phoneDisplay}
                   </a>
                 </p>
-                <p>Program: Deschis · Închide la 21</p>
+                <p>Program: {CLINIC.hoursDisplay}</p>
               </div>
               <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
             </article>

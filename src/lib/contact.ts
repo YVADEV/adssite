@@ -13,7 +13,9 @@ export const CLINIC = {
   instagramHandle: "@alvernadentalstudio",
   instagramUrl: "https://www.instagram.com/alvernadentalstudio/",
   whatsappUrl: "https://wa.me/40748085933",
-  hoursDisplay: "Deschis · Închide la 21",
+  /** Mirrors BUSINESS.openingHours in seo.ts — Saturday still needs clinic confirmation. */
+  hoursDisplay: "Luni–Vineri 09:00–21:00 · Sâmbătă 09:00–15:00",
+  mailtoSubject: "Solicită o programare",
   mapsPlaceUrl:
     "https://www.google.com/maps/place/Alverna+Dental+Studio/@46.758115,23.6122138,17z/",
   mapsDirectionsUrl:

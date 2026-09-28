@@ -4,6 +4,8 @@ import { motion, useReducedMotion } from "motion/react";
 import { CaseImage } from "@/components/cazuri/CaseImage";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
+import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
+import { CLINIC } from "@/lib/contact";
 import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
@@ -86,18 +88,19 @@ export default function CazuriPage() {
         </section>
 
         <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:mt-24 md:px-8 lg:mt-[120px] lg:px-12">
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-start">
-            <h2 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[42px] md:text-[58px] lg:text-[72px]">
-              Cazuri <span className="text-white">mai în detaliu</span>
-              <br />
-              <span className="text-white">înainte și după</span>
-            </h2>
-            <a href="/cazuri/" className="ads-btn-lit mt-5 rounded-full px-6 py-2 text-[21px] font-semibold">
-              Vezi toate
-            </a>
-          </div>
+          <h2 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white sm:text-[42px] md:text-[58px] lg:text-[72px]">
+            Cazuri <span className="text-white">mai în detaliu</span>
+            <br />
+            <span className="text-white">înainte și după</span>
+          </h2>
           <CazuriVideoStrip />
         </section>
+
+        <ServiceFinalCTA
+          href={CLINIC.formPageHref}
+          title="Vrei un rezultat documentat ca acestea?"
+          body="Primul pas este o consultație. Evaluăm cazul tău și îți explicăm pașii posibili, fără presiune."
+        />
       </main>
     </PrototypeFrame>
   );

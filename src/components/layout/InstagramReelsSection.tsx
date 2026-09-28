@@ -32,6 +32,7 @@ function ReelEmbed({ reelId }: { reelId: string }) {
   const ref = useRef<HTMLLIElement>(null);
   const [visible, setVisible] = useState(false);
   const [embedFailed, setEmbedFailed] = useState(false);
+  const loadedRef = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -58,8 +59,10 @@ function ReelEmbed({ reelId }: { reelId: string }) {
   }, []);
 
   useEffect(() => {
-    if (!visible || embedFailed) return;
-    const timer = window.setTimeout(() => setEmbedFailed(true), 12000);
+    if (!visible || embedFailed || loadedRef.current) return;
+    const timer = window.setTimeout(() => {
+      if (!loadedRef.current) setEmbedFailed(true);
+    }, 12000);
     return () => window.clearTimeout(timer);
   }, [visible, embedFailed]);
 
@@ -73,7 +76,10 @@ function ReelEmbed({ reelId }: { reelId: string }) {
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            onLoad={() => setEmbedFailed(false)}
+            onLoad={() => {
+              loadedRef.current = true;
+              setEmbedFailed(false);
+            }}
             onError={() => setEmbedFailed(true)}
           />
         ) : visible && embedFailed ? (

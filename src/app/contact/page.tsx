@@ -57,7 +57,7 @@ export default function ContactPage() {
             </article>
             <article className="rounded-[18px] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
               <p className="text-[21px] font-semibold tracking-[-0.02em]">Programări</p>
-              <p className="mt-2 text-[21px] leading-[1.6] text-[#4a4a4a]">Doriți o programare la una dintre clinicile noastre? Completați formularul!</p>
+              <p className="mt-2 text-[21px] leading-[1.6] text-[#4a4a4a]">Doriți o programare la clinica noastră? Completați formularul!</p>
             </article>
             <article className="rounded-[18px] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
               <p className="text-[21px] font-semibold tracking-[-0.02em]">Contact</p>
@@ -185,7 +185,7 @@ export default function ContactPage() {
                     {CLINIC.phoneDisplay}
                   </a>
                 </p>
-                <p>Program: Deschis · Închide la 21</p>
+                <p>Program: {CLINIC.hoursDisplay}</p>
               </div>
               <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
             </article>

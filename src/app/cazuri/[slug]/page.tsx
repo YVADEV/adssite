@@ -8,6 +8,8 @@ import { CaseTeamBanner } from "@/components/cazuri/CaseTeamBanner";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
 import { CASE_STUDIES, getCaseStudy } from "@/config/cases";
+import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
+import { CLINIC } from "@/lib/contact";
 import { SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -172,6 +174,12 @@ export default async function CaseDetailPage({ params }: Props) {
         </section>
 
         <CaseTeamBanner />
+
+        <ServiceFinalCTA
+          href={CLINIC.formPageHref}
+          title="Vrei un plan pentru cazul tău?"
+          body="Rezultatul de mai sus pornește de la o evaluare clinică. Programează o consultație pentru a discuta dacă o abordare similară ți se potrivește."
+        />
 
         {/* Treatment steps */}
         <section className="mx-auto mt-14 w-full max-w-[1680px] px-4 md:px-8 lg:mt-[120px] lg:px-12">

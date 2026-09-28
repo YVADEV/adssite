@@ -16,19 +16,9 @@ export function HeroIntroVideo() {
     if (prefersReducedMedia()) return;
 
     const preferred = heroVideoSrc();
-    if (preferred.includes("hero1-mobile")) {
-      fetch(preferred, { method: "HEAD" })
-        .then((res) => {
-          if (!cancelled) setVideoSrc(res.ok ? preferred : HERO_VIDEO_FALLBACK);
-        })
-        .catch(() => {
-          if (!cancelled) setVideoSrc(HERO_VIDEO_FALLBACK);
-        });
-    } else {
-      requestAnimationFrame(() => {
-        if (!cancelled) setVideoSrc(preferred);
-      });
-    }
+    requestAnimationFrame(() => {
+      if (!cancelled) setVideoSrc(preferred);
+    });
 
     const start = () => {
       if (!cancelled) setShouldLoadVideo(true);
@@ -36,15 +26,24 @@ export function HeroIntroVideo() {
 
     let idleId: number | undefined;
     let timerId: number | undefined;
+    const afterLoad = () => {
+      if (cancelled) return;
+      if (typeof window.requestIdleCallback === "function") {
+        idleId = window.requestIdleCallback(start, { timeout: 2000 });
+      } else {
+        timerId = window.setTimeout(start, 800);
+      }
+    };
 
-    if (typeof window.requestIdleCallback === "function") {
-      idleId = window.requestIdleCallback(start, { timeout: 1200 });
+    if (document.readyState === "complete") {
+      afterLoad();
     } else {
-      timerId = window.setTimeout(start, 600);
+      window.addEventListener("load", afterLoad, { once: true });
     }
 
     return () => {
       cancelled = true;
+      window.removeEventListener("load", afterLoad);
       if (idleId !== undefined) window.cancelIdleCallback(idleId);
       if (timerId !== undefined) window.clearTimeout(timerId);
     };

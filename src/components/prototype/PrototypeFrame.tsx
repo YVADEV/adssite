@@ -54,7 +54,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
   };
 
   return (
-    <div className="overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
+    <div className="min-w-0 bg-[#0f1115] text-white [scroll-behavior:smooth]">
       <MobileMenuOverlay
         id="mobile-menu"
         overlayRef={menuOverlayRef}

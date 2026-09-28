@@ -7,12 +7,26 @@ export default function GlobalIntro() {
   const [hidden, setHidden] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
+  const dismiss = () => {
+    try {
+      window.sessionStorage.setItem("alverna_intro_seen", "1");
+    } catch {
+      // ignore
+    }
+    setHidden(true);
+  };
+
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const seen = window.sessionStorage.getItem("alverna_intro_seen") === "1";
+    let seen = false;
+    try {
+      seen = window.sessionStorage.getItem("alverna_intro_seen") === "1";
+    } catch {
+      seen = false;
+    }
     if (prefersReducedMotion || seen) {
       setHidden(true);
       return;
@@ -34,19 +48,34 @@ export default function GlobalIntro() {
       .to("[data-intro='content']", { opacity: 0, scale: 1.08, duration: 0.72 })
       .to(root, { opacity: 0, duration: 0.6 }, "-=0.2")
       .add(() => {
-        window.sessionStorage.setItem("alverna_intro_seen", "1");
-        setHidden(true);
+        dismiss();
       });
+
+    const failSafe = window.setTimeout(dismiss, 4500);
 
     return () => {
       tl.kill();
+      window.clearTimeout(failSafe);
     };
   }, []);
 
   if (hidden) return null;
 
   return (
-    <div ref={rootRef} className="fixed inset-0 z-[9999] overflow-hidden bg-black">
+    <div
+      ref={rootRef}
+      className="fixed inset-0 z-[9999] overflow-hidden bg-black"
+      role="dialog"
+      aria-label="Introducere Alverna Dental Studio"
+      tabIndex={0}
+      onClick={dismiss}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" || event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          dismiss();
+        }
+      }}
+    >
       <div data-intro="glow" className="pointer-events-none absolute left-1/2 top-1/2 h-[46vw] w-[46vw] min-h-[260px] min-w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B6B94C] blur-[140px]" />
       <div data-intro="content" className="relative flex h-full w-full flex-col items-center justify-center px-4 text-center">
         <p data-intro="title" className="text-[32px] font-bold leading-[0.9] tracking-[-0.045em] text-white sm:text-[68px] md:text-[96px] lg:text-[124px]">

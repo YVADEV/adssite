@@ -13,7 +13,7 @@ export default function TarifePage() {
 
   return (
     <PrototypeFrame>
-      <main className="overflow-x-clip bg-black pb-24 pt-12 text-white md:pt-16 lg:pt-[110px]">
+      <main className="min-w-0 bg-black pb-24 pt-12 text-white md:pt-16 lg:pt-[110px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white/70">Transparență totală</p>
           <div className="mt-4 flex flex-wrap items-end justify-between gap-4">

@@ -15,7 +15,6 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
   const rootRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
-  const [nestedOpenSlug, setNestedOpenSlug] = useState<string | null>(null);
 
   const serviceMap = Object.fromEntries(services.map((service) => [service.slug, service]));
   const groupedColumns = [
@@ -42,7 +41,6 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     clearTimer();
     closeTimerRef.current = window.setTimeout(() => {
       setOpen(false);
-      setNestedOpenSlug(null);
     }, 170);
   };
 
@@ -50,14 +48,12 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     const onClickOutside = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) {
         setOpen(false);
-        setNestedOpenSlug(null);
       }
     };
 
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
-        setNestedOpenSlug(null);
       }
     };
 
@@ -89,8 +85,8 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       <div
         aria-hidden={!open}
         inert={!open}
-        className={`absolute left-1/2 top-[calc(100%+14px)] z-[120] w-[860px] max-w-[92vw] -translate-x-1/2 rounded-[20px] border px-10 py-8 backdrop-blur-xl transition-all duration-[220ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] ${
-          open ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-[6px] opacity-0"
+        className={`fixed left-1/2 top-[4.75rem] z-[120] w-[min(860px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-[20px] border px-6 py-6 backdrop-blur-xl transition-all duration-[220ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] sm:px-10 sm:py-8 ${
+          open ? "pointer-events-auto -translate-x-1/2 translate-y-0 opacity-100" : "pointer-events-none -translate-x-1/2 translate-y-[6px] opacity-0"
         } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.82)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}
       >
         <div className="grid grid-cols-3 gap-x-10">
@@ -98,25 +94,12 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
             <div key={`services-column-${idx}`} className="space-y-2">
               {column.map((item) => {
                 const hasChildren = Boolean(item.children?.length);
-                const nestedOpen = nestedOpenSlug === item.slug;
                 return (
-                  <div
-                    key={item.slug}
-                    className="relative"
-                    onMouseEnter={hasChildren ? () => setNestedOpenSlug(item.slug) : undefined}
-                    onMouseLeave={hasChildren ? () => setNestedOpenSlug(null) : undefined}
-                  >
+                  <div key={item.slug} className="relative">
                     <Link
                       href={item.href}
                       aria-current={pathname === item.href ? "page" : undefined}
-                      onFocus={
-                        hasChildren
-                          ? () => {
-                              setOpen(true);
-                              setNestedOpenSlug(item.slug);
-                            }
-                          : undefined
-                      }
+                      onFocus={handleOpen}
                       className={`flex min-h-[40px] items-center justify-between gap-2 rounded-[10px] px-3 py-2 text-[19px] font-medium leading-[1.35] transition duration-200 ${
                         pathname === item.href || pathname.startsWith(`${item.href}`) ? "bg-[#B6B94C]/15 text-white" : ""
                       } ${
@@ -124,15 +107,10 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
                       }`}
                     >
                       <span className="min-w-0 flex-1 text-left">{item.title}</span>
-                      {hasChildren ? <span className="text-[21px] opacity-60">›</span> : null}
                     </Link>
 
                     {hasChildren ? (
-                      <div
-                        className={`overflow-hidden pl-[16px] transition-[max-height,opacity] duration-300 ease-out ${
-                          nestedOpen ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"
-                        }`}
-                      >
+                      <div className="pl-[16px]">
                         {(item.children ?? []).map((child) => (
                           <Link
                             key={child.slug}

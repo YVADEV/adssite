@@ -251,14 +251,14 @@ export const pricingData = [
     ],
   },
   {
-    category: "All on 4 / All on 6",
+    category: "All-on-4 / All-on-6",
     items: [
-      { name: "All on 4 INNO", price: "2000 EURO" },
-      { name: "All on 4 Neodent", price: "3000 EURO" },
-      { name: "All on 4 Straumann", price: "5000 EURO" },
-      { name: "All on 6 INNO", price: "3500 EURO" },
-      { name: "All on 6 Neodent", price: "4000 EURO" },
-      { name: "All on 6 Straumann", price: "6000 EURO" },
+      { name: "All-on-4 INNO", price: "2000 EURO" },
+      { name: "All-on-4 Neodent", price: "3000 EURO" },
+      { name: "All-on-4 Straumann", price: "5000 EURO" },
+      { name: "All-on-6 INNO", price: "3500 EURO" },
+      { name: "All-on-6 Neodent", price: "4000 EURO" },
+      { name: "All-on-6 Straumann", price: "6000 EURO" },
     ],
   },
   {
@@ -332,8 +332,8 @@ export const homePricingData = [
   },
   {
     category: "Dinți ficși / All-on-X",
-    items: (pricingCategory("All on 4 / All on 6")?.items ?? []).filter((item) =>
-      ["All on 4 INNO", "All on 4 Straumann"].includes(item.name),
+    items: (pricingCategory("All-on-4 / All-on-6")?.items ?? []).filter((item) =>
+      ["All-on-4 INNO", "All-on-4 Straumann"].includes(item.name),
     ),
   },
   {
@@ -556,6 +556,7 @@ export default function HomePageClient() {
         });
 
         gsap.utils.toArray<HTMLElement>("[data-anim='image']").forEach((el) => {
+          if (el.dataset.intro === "hero-media") return;
           gsap.fromTo(
             el,
             { opacity: 0.85, scale: 1.03 },
@@ -725,7 +726,7 @@ export default function HomePageClient() {
   }, []);
 
   return (
-    <div ref={rootRef} className="ads-page overflow-x-clip bg-[#0f1115] text-white [scroll-behavior:smooth]">
+    <div ref={rootRef} className="ads-page min-w-0 bg-[#0f1115] text-white [scroll-behavior:smooth]">
       <MobileMenuOverlay
         id="home-mobile-menu"
         overlayRef={menuOverlayRef}
@@ -916,9 +917,9 @@ export default function HomePageClient() {
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
             </p>
           </div>
-          <div className="mt-10 grid min-w-0 grid-cols-1 gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-[815px] xl:gap-[4px]">
+          <div className="mt-10 grid min-w-0 grid-cols-1 gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-auto xl:w-full xl:max-w-[764px] xl:gap-[4px]">
             {advantages.map((a, clipIndex) => (
-              <article key={a.value} className="relative w-full max-w-[380px] rounded-[18px] bg-[#f5f5f5] p-5 md:max-w-none lg:w-[380px]">
+              <article key={a.value} className="relative min-w-0 w-full rounded-[18px] bg-[#f5f5f5] p-5">
                 <div>
                   <strong className="block text-[36px] font-semibold leading-none tracking-[-0.02em] text-white md:text-[56px]">
                     {a.value}
@@ -968,7 +969,7 @@ export default function HomePageClient() {
       </section>
 
       <section id="servicii" className="overflow-hidden bg-[#121212] pb-0">
-        <div className="mx-auto w-full max-w-[1680px] overflow-x-hidden rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
+        <div className="mx-auto w-full max-w-[1680px] min-w-0 rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
           </div>
@@ -1150,12 +1151,6 @@ export default function HomePageClient() {
               Medicul și tehnicianul lucrează în aceeași echipă. Comunicarea directă dintre clinică și laborator permite controlul atent al etapelor protetice, ajustări eficiente și personalizarea fiecărei lucrări.
             </p>
           </div>
-          <a
-            href="#laborator-alverna"
-            className="inline-flex min-h-[46px] shrink-0 items-center self-start rounded-full border border-black/15 px-6 text-[18px] font-semibold text-white md:self-end sm:text-[21px]"
-          >
-            Descoperă laboratorul Alverna
-          </a>
         </div>
         <div id="laborator-alverna">
           <TeamBentoBanner
@@ -1195,7 +1190,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="contact" ref={contactSectionRef} data-anim="section" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
+      <section id="contact" ref={contactSectionRef} data-anim="section" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
         <div
           aria-hidden
           className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"

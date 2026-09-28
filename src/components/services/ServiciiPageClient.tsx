@@ -3,16 +3,18 @@
 import { motion } from "motion/react";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { services } from "@/config/services";
+import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
+import { CLINIC } from "@/lib/contact";
 
 export default function ServiciiPageClient() {
   return (
     <PrototypeFrame>
       <main className="bg-[#ececec] pb-16 pt-16 md:pt-24 lg:pt-[140px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_760px]">
-            <h1 className="text-[36px] font-semibold leading-[0.9] tracking-[-4px] md:text-[92px] lg:text-[144px] lg:tracking-[-8.64px]">Servicii</h1>
+          <div className="grid min-w-0 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,760px)]">
+            <h1 className="min-w-0 text-[36px] font-semibold leading-[0.9] tracking-[-4px] md:text-[92px] lg:text-[144px] lg:tracking-[-8.64px]">Servicii</h1>
             {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
-            <p className="pt-4 text-[21px] leading-6 tracking-[-0.64px] opacity-70 lg:pt-[28px]">
+            <p className="min-w-0 max-w-full pt-4 text-[21px] leading-6 tracking-[-0.64px] opacity-70 lg:pt-[28px]">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet este dotat cu aparatură medicală de ultimă generație.
             </p>
           </div>
@@ -30,14 +32,14 @@ export default function ServiciiPageClient() {
               whileHover={{ scale: 1.005 }}
             >
               <p className="text-[21px] font-medium uppercase tracking-[0.12em] text-[#6b6b6b]">Serviciu</p>
-              <h2 className="mt-3 text-[28px] font-semibold leading-[1.05] tracking-[-0.02em] text-white">{service.title}</h2>
+              <h2 className="mt-3 text-[28px] font-semibold leading-[1.05] tracking-[-0.02em] text-[#0A0A0A]">{service.title}</h2>
               <p className="mt-3 text-[21px] leading-[1.6] text-[#4a4a4a]">Tratament personalizat, comunicare clară și monitorizare atentă în fiecare etapă.</p>
               <div className="mt-5 flex flex-wrap gap-2">
                 <a href={service.href} className="inline-flex min-h-[44px] items-center rounded-full bg-[#0A0A0A] px-4 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                   Vezi detalii
                 </a>
                 {service.children?.map((child) => (
-                  <a key={child.slug} href={child.href} className="inline-flex min-h-[44px] items-center rounded-full border border-black/15 px-4 text-[18px] font-medium text-white transition duration-300 hover:scale-[1.02]">
+                  <a key={child.slug} href={child.href} className="inline-flex min-h-[44px] items-center rounded-full border border-black/15 px-4 text-[18px] font-medium text-[#0A0A0A] transition duration-300 hover:scale-[1.02]">
                     {child.title}
                   </a>
                 ))}
@@ -45,6 +47,12 @@ export default function ServiciiPageClient() {
             </motion.article>
           ))}
         </section>
+
+        <ServiceFinalCTA
+          href={CLINIC.formPageHref}
+          title="Nu ești sigur ce serviciu ți se potrivește?"
+          body="Programează o consultație. După evaluare, îți explicăm opțiunile potrivite cazului tău."
+        />
       </main>
     </PrototypeFrame>
   );

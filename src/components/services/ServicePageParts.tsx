@@ -506,16 +506,17 @@ export function ServiceFAQ({
                   {isOpen ? "−" : "+"}
                 </span>
               </button>
-              <div
-                id={panelId}
-                role="region"
-                aria-labelledby={buttonId}
-                className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
-                  isOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <p className={compact ? "mt-2 w-full text-[17px] leading-[1.6] text-white/85" : "mt-3 max-w-[1100px] text-[21px] leading-[1.7] text-white"}>{item.a}</p>
-              </div>
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  hidden={!isOpen}
+                  inert={!isOpen}
+                >
+                  {isOpen ? (
+                    <p className={compact ? "mt-2 w-full text-[17px] leading-[1.6] text-white/85" : "mt-3 max-w-[1100px] text-[21px] leading-[1.7] text-white"}>{item.a}</p>
+                  ) : null}
+                </div>
             </article>
           );
         })}
@@ -576,7 +577,11 @@ export function ServiceTestimonials() {
         <h3 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">
           Recenzii
         </h3>
-        <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
+        <p className="mt-3 text-[21px] font-semibold text-white">
+          <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
+            Scor mediu Google: 4.8 ⭐
+          </a>
+        </p>
       </div>
       <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
         <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
@@ -629,7 +634,7 @@ export function ServiceTestimonials() {
 
 export function ServiceContactForm({ headline, body }: { headline: string; body: string }) {
   return (
-    <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
+    <section id="contact" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
       <div
         aria-hidden
         className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
@@ -663,10 +668,12 @@ export function ContactFormCard({ source }: { source: string }) {
   const pathname = usePathname();
   const [status, setStatus] = useState<ContactStatus>("idle");
   const [error, setError] = useState<string | null>(null);
+  const submittingRef = useRef(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (status === "loading" || status === "ok") return;
+    if (submittingRef.current || status === "loading" || status === "ok") return;
+    submittingRef.current = true;
     setError(null);
     const formData = new FormData(event.currentTarget);
     const nume = String(formData.get("nume") ?? "").trim();
@@ -674,21 +681,25 @@ export function ContactFormCard({ source }: { source: string }) {
     const email = String(formData.get("email") ?? "").trim();
     const phoneDigits = telefon.replace(/\D/g, "");
     if (!nume || nume.length < 2) {
+      submittingRef.current = false;
       setStatus("error");
       setError("Te rugăm să completezi numele.");
       return;
     }
     if (!telefon || phoneDigits.length < 9 || phoneDigits.length > 15) {
+      submittingRef.current = false;
       setStatus("error");
       setError("Te rugăm să introduci un număr de telefon valid.");
       return;
     }
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      submittingRef.current = false;
       setStatus("error");
       setError("Te rugăm să introduci un email valid.");
       return;
     }
     if (formData.get("gdpr") !== "on") {
+      submittingRef.current = false;
       setStatus("error");
       setError("Te rugăm să accepți Politica de confidențialitate.");
       return;
@@ -767,6 +778,7 @@ export function ContactFormCard({ source }: { source: string }) {
       setStatus("ok");
       event.currentTarget.reset();
     } catch {
+      submittingRef.current = false;
       setStatus("error");
       setError("Nu am putut trimite solicitarea. Te rugăm să încerci din nou sau să ne suni.");
     }
@@ -896,21 +908,26 @@ export function ServiceFinalCTA({
   title,
   body,
   buttonLabel = "Programează o consultație",
+  href = "#contact",
 }: {
   title: string;
   body: string;
   buttonLabel?: string;
+  href?: string;
 }) {
   const reveal = useReveal();
   return (
     <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-      <motion.div {...reveal} className="relative overflow-hidden rounded-[28px] bg-[#0A0A0A] p-8 text-white md:p-10 lg:p-12">
+      <motion.div
+        {...reveal}
+        className="relative overflow-hidden rounded-[28px] border border-white/12 bg-[#0A0A0A] p-8 text-white md:p-10 lg:p-12"
+      >
         <div className="pointer-events-none absolute -right-24 -top-20 h-[220px] w-[220px] rounded-full bg-[#B6B94C]/30 blur-[90px]" />
         <h3 className="text-[30px] font-semibold leading-[1.05] tracking-[-0.028em] md:text-[40px]">{title}</h3>
         <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a
-          href="#contact"
-          className="ads-btn-lit mt-7 inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-200 hover:opacity-90"
+          href={href}
+          className="ads-btn-lit mt-7 inline-flex min-h-[48px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-200 hover:opacity-90"
         >
           {buttonLabel}
         </a>

@@ -336,6 +336,8 @@ function IntroAccordion({
               id={panelId}
               role="region"
               aria-labelledby={buttonId}
+              hidden={!isOpen}
+              inert={!isOpen}
               className={`grid transition-[grid-template-rows] duration-300 ease-out ${
                 isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
               }`}
@@ -396,12 +398,8 @@ function DoctorVideoBlock({
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
-                <div
-                  className={`overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
-                    isOpen ? "max-h-[640px] opacity-100" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <p className="mt-2 text-[17px] leading-[1.55] text-white/75">{item.a}</p>
+                <div hidden={!isOpen} inert={!isOpen}>
+                  {isOpen ? <p className="mt-2 text-[17px] leading-[1.55] text-white/75">{item.a}</p> : null}
                 </div>
               </div>
             );
@@ -458,18 +456,17 @@ function PriceBlock() {
   return (
     <>
       {/*
-        REQUIRES CLIENT CONFIRMATION — BLOCKER
-        Contradiction: paragraph below says total cost includes prosthetic work;
-        heading + table + footnote say displayed All-on-X prices are surgical
-        (per arch) and prosthesis is quoted in the personalized estimate.
-        Clinic must confirm inclusions before any wording change.
+        CLINIC VALIDATION REQUIRED — ALL-ON-X PRICING
+        Public copy is aligned to the table labels (orientative per-arch surgical
+        tariffs from the clinic list). Do not claim the listed amounts include
+        prosthesis until the clinic confirms inclusions.
       */}
       <p className="w-full text-[18px] leading-[1.6] text-white">
-        Costul total include consultația și planificarea digitală, intervenția chirurgicală, implanturile, precum și lucrarea protetică realizată în laboratorul propriu. Variază în funcție de numărul de implanturi (4 sau 6), marca folosită, necesitatea unor proceduri suplimentare (augmentare osoasă, tratamente parodontale) și materialul lucrării finale.
+        Costul final se stabilește după evaluarea digitală. Variază în funcție de numărul de implanturi (4 sau 6), marca folosită, necesitatea unor proceduri suplimentare (augmentare osoasă, tratamente parodontale) și materialul lucrării finale.
       </p>
       <h3 className="mt-5 text-[20px] font-semibold leading-[1.2] text-white">Preț orientativ — intervenție chirurgicală</h3>
       <p className="mt-1.5 text-[17px] leading-[1.5] text-white/70">
-        Tarife per arcadă, conform listei clinicii. Devizul final, inclusiv lucrarea protetică, se stabilește după evaluarea digitală.
+        Tarife per arcadă, conform listei clinicii. Devizul personalizat se comunică după evaluare.
       </p>
       <div className="mt-5 space-y-3 md:hidden">
         {[
@@ -723,11 +720,12 @@ export default function AllOn4PageClient() {
           <p className="mt-4 ads-readable text-white">
             Durata exactă a fiecărei etape variază de la caz la caz și se comunică pacientului după evaluare. Nu lucrăm cu promisiuni de tip „totul într-o zi” — planul este stabilit digital, individual.
           </p>
-          <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((item) => (
-              <article key={item.step} className="text-center">
-                <p className="mx-auto flex h-7 w-7 items-center justify-center rounded-full border border-[#B6B94C]/40 text-[11px] font-semibold text-[#B6B94C]">{item.step}</p>
-                <p className="mt-2 text-[15px] font-semibold leading-[1.3] text-white">{item.title}</p>
+              <article key={item.step} className="rounded-[12px] border border-white/10 bg-white/[0.04] p-3.5 text-left">
+                <p className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#B6B94C]/40 text-[11px] font-semibold text-[#B6B94C]">{item.step}</p>
+                <p className="mt-2 text-[16px] font-semibold leading-[1.3] text-white">{item.title}</p>
+                <p className="mt-1.5 text-[15px] leading-[1.5] text-white/75">{item.text}</p>
               </article>
             ))}
           </div>
@@ -762,7 +760,7 @@ export default function AllOn4PageClient() {
             Medicii care se ocupă de caz
           </h2>
           <p className="mt-2 text-[17px] leading-[1.55] text-white/75">
-            Trei specialități, un singur plan digital. Clipurile video vor fi publicate aici — până atunci, găsiți întrebările și răspunsurile fiecărui medic.
+            Trei specialități, un singur plan digital. Fiecare medic răspunde mai jos la întrebările frecvente despre etapa lui din tratament.
           </p>
           <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
             {doctorVideos.map((doctor) => (

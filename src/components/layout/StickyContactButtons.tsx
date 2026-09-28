@@ -35,7 +35,7 @@ export default function StickyContactButtons() {
         </svg>
       </a>
       <a
-        href={`mailto:${CLINIC.email}?subject=Solicita%20o%20programare`}
+        href={`mailto:${CLINIC.email}?subject=${encodeURIComponent(CLINIC.mailtoSubject)}`}
         aria-label="Mail"
         className="ads-btn-glow-lg inline-flex h-[56px] w-[56px] items-center justify-center rounded-[18px] border border-white/45 bg-transparent text-white transition duration-200 hover:bg-white/10"
       >

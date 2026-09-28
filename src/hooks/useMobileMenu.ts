@@ -84,8 +84,10 @@ export function useMobileMenu(refs: MobileMenuRefs) {
     return () => {
       cancelAnimationFrame(frame);
       tl?.kill();
-      document.body.style.overflow = "";
-      document.body.classList.remove("menu-open");
+      if (!menuOpen) {
+        document.body.style.overflow = "";
+        document.body.classList.remove("menu-open");
+      }
     };
   }, [menuOpen, overlayRef, pageRef, topLineRef, midLineRef, bottomLineRef]);
 

@@ -12,6 +12,8 @@ import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/conf
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
+import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
+import { CLINIC } from "@/lib/contact";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
 import andreeaImage from "@/assets/echipa/andreea-parvu.png";
 import raresImage from "@/assets/echipa/rares-gorun.png";
@@ -109,7 +111,7 @@ export default function EchipaPage() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-black text-white">
+    <div className="min-h-screen min-w-0 bg-black text-white">
       <MobileMenuOverlay
         id="echipa-mobile-menu"
         overlayRef={menuOverlayRef}
@@ -228,7 +230,7 @@ export default function EchipaPage() {
               transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 max-w-[420px] text-[18px] leading-[1.6] text-white md:text-[21px] lg:mt-8"
             >
-              Personalul de la Alverna Dental Studio este atent, dedicat şi bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiţii de calitate superioară şi de eficienţă, orice situație dentară.
+              Personalul de la Alverna Dental Studio este atent, dedicat și bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiții de calitate superioară și de eficiență, orice situație dentară.
               <br />
               <br />
               <span className="font-semibold text-white">Interacțiune de calitate</span>
@@ -260,14 +262,14 @@ export default function EchipaPage() {
         {teamGroups.map((group) => {
           const gridClassName = isMobileTeamGrid
             ? "mt-6 grid grid-cols-2 justify-items-stretch gap-3 sm:gap-[18px] md:grid-cols-3"
-            : "mt-6 grid grid-cols-1 justify-center gap-[18px] sm:grid-cols-2 md:grid-cols-3 lg:[grid-template-columns:repeat(5,248px)]";
+              : "mt-6 grid grid-cols-1 justify-center gap-[18px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5";
 
           const gridContent = group.members.map((member, index) => {
             const profileHref = "href" in member && typeof member.href === "string" ? member.href : null;
             const isLinked = Boolean(profileHref);
             const cardClassName = isMobileTeamGrid
               ? `group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] sm:h-[360px] ${isLinked ? "" : "cursor-default"}`
-              : `group relative h-[383px] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] lg:w-[248px] ${isLinked ? "" : "cursor-default"}`;
+              : `group relative h-[383px] w-full min-w-0 overflow-hidden rounded-[14px] border border-white/15 bg-[#111] ${isLinked ? "" : "cursor-default"}`;
 
             const nameClassName = isMobileTeamGrid
               ? "absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] text-[15px] font-bold leading-[1.15] text-white sm:bottom-3 sm:left-3 sm:text-[18px]"
@@ -386,6 +388,12 @@ export default function EchipaPage() {
             </section>
           );
         })}
+
+        <ServiceFinalCTA
+          href={CLINIC.formPageHref}
+          title="Programează o consultație"
+          body="Completează formularul și te contactăm pentru confirmarea programării."
+        />
       </main>
       <SiteFooter />
       </div>

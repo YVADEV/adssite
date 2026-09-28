@@ -162,7 +162,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Acest caz complex de reabilitare orală completă a fost realizat în cadrul Alverna Dental Studio, printr-o abordare multidisciplinară care a combinat tratamente chirurgicale parodontale și restaurări protetice integral din zirconiu.",
       "Pacientul s-a prezentat cu multiple probleme estetice și funcționale, inclusiv uzură dentară, disproporții gingivale și restaurări vechi neadaptate. În urma unei evaluări clinice și radiologice complete, a fost stabilit un plan de tratament personalizat, orientat către restabilirea armoniei zâmbetului și a funcției masticatorii.",
       "Prima etapă a inclus gingivoplastii realizate la nivelul dinților frontali și laterali, realizate de Dr. Laura Grigoreanu, cu scopul de a remodela conturul gingival și de a crea un cadru estetic ideal pentru viitoarele restaurări. Intervențiile chirurgicale au permis obținerea unor proporții dento-gingivale echilibrate și a unui zâmbet mai armonios.",
-      "După vindecarea țesuturilor, s-a trecut la etapa protetică, unde Dr. Andreea Parvu a conceput reabilitarea totală cu restaurări integral din zirconiu, material ales pentru rezistența sa excepțională, biocompatibilitate și aspectul natural pe care îl oferă. Fiecare lucrare a fost proiectată și personalizată pentru a respecta trăsăturile faciale, ocluzia și cerințele estetice ale pacientului.",
+      "După vindecarea țesuturilor, s-a trecut la etapa protetică, unde Dr. Andreea Pârvu a conceput reabilitarea totală cu restaurări integral din zirconiu, material ales pentru rezistența sa excepțională, biocompatibilitate și aspectul natural pe care îl oferă. Fiecare lucrare a fost proiectată și personalizată pentru a respecta trăsăturile faciale, ocluzia și cerințele estetice ale pacientului.",
       "Un avantaj important al acestui caz a fost colaborarea directă dintre medic și tehnicianul dentar, toate restaurările fiind realizate în laboratorul propriu Alverna Dental Studio, sub directa îndrumare a lui Rares Harmath, technician dentar cu o vastă experiență internațională, ceea ce a permis un control riguros asupra fiecărei etape de lucru și obținerea unui rezultat predictibil.",
       "Rezultatul final este un zâmbet complet reabilitat, cu o estetică naturală, funcționalitate optimă și integrare armonioasă a restaurărilor în contextul facial al pacientului. Acest caz evidențiază importanța unei abordări interdisciplinare, în care chirurgia parodontală și protetica modernă lucrează împreună pentru a oferi rezultate durabile și personalizate.",
     ],
@@ -186,7 +186,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       {
         label: "Reabilitare zirconiu",
         detail:
-          "Restaurări integrale din zirconiu, concepute de Dr. Andreea Parvu, personalizate pentru trăsăturile faciale, ocluzie și cerințele estetice.",
+          "Restaurări integrale din zirconiu, concepute de Dr. Andreea Pârvu, personalizate pentru trăsăturile faciale, ocluzie și cerințele estetice.",
       },
       {
         label: "Laborator propriu",
@@ -398,9 +398,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
     paragraphs: [
       "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
-      "În urma evaluării clinice și a unei planificări personalizate, Dr. Andreea Parvu a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța fiecărui dinte au fost alese cu atenție pentru a corecta imperfecțiunile existente și pentru a obține o integrare firească în ansamblul facial.",
+      "În urma evaluării clinice și a unei planificări personalizate, Dr. Andreea Pârvu a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța fiecărui dinte au fost alese cu atenție pentru a corecta imperfecțiunile existente și pentru a obține o integrare firească în ansamblul facial.",
       "Rezultatul este un zâmbet luminos și echilibrat, cu o estetică naturală, adaptată personalității pacientului. Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
-      "Tratament realizat de Dr. Andreea Parvu, în cadrul Alverna Dental Studio.",
+      "Tratament realizat de Dr. Andreea Pârvu, în cadrul Alverna Dental Studio.",
     ],
     closingQuote:
       "Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
@@ -410,19 +410,19 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată, orientată spre un zâmbet armonios și natural." },
-      { label: "Fațete dentare", detail: "Reabilitare estetică realizată de Dr. Andreea Parvu, cu selecție atentă a formei, proporțiilor și nuanței." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică realizată de Dr. Andreea Pârvu, cu selecție atentă a formei, proporțiilor și nuanței." },
       { label: "Integrare facială", detail: "Corectarea imperfecțiunilor existente și adaptarea lucrărilor la fizionomia pacientului." },
       { label: "Rezultat final", detail: "Zâmbet luminos, echilibrat și autentic — estetică naturală adaptată personalității pacientului." },
     ],
     quickFacts: [
       { label: "Pacient", value: "Sergiu Witberg" },
       { label: "Tip caz", value: "Fațete dentare" },
-      { label: "Medic", value: "Dr. Andreea Parvu" },
+      { label: "Medic", value: "Dr. Andreea Pârvu" },
       { label: "Clinică", value: "Alverna Dental Studio" },
     ],
     doctor: {
       ...DEFAULT_CASE_DOCTOR,
-      name: "Dr. Andreea Parvu",
+      name: "Dr. Andreea Pârvu",
     },
     seoDescription:
       "Caz #7 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Sergiu Witberg — armonie, naturalețe și un zâmbet care îl reprezintă.",

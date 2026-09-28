@@ -19,8 +19,6 @@ type MobileMenuNavServicesProps = {
 export function MobileMenuNavServices({
   mobileServicesOpen,
   setMobileServicesOpen,
-  openSubmenuSlug,
-  setOpenSubmenuSlug,
   onCloseMenu,
 }: MobileMenuNavServicesProps) {
   return (
@@ -47,53 +45,27 @@ export function MobileMenuNavServices({
         <div className="max-h-[min(68vh,700px)] overflow-y-auto overscroll-contain pt-2 pr-1">
           {services
           .filter((service) => service.slug !== "all-on-x")
-          .map((service) =>
-            service.children?.length ? (
-              <div key={service.slug}>
-                <button
-                  type="button"
-                  aria-label={`Deschide submeniul ${service.title}`}
-                  aria-expanded={openSubmenuSlug === service.slug}
-                  onClick={() =>
-                    setOpenSubmenuSlug((prev) => (prev === service.slug ? null : service.slug))
-                  }
-                  className="ads-btn-no-glow flex min-h-[48px] w-full items-center justify-start gap-2 rounded-[10px] px-2 text-left text-[21px] font-semibold text-white"
-                >
-                  <span>{service.title}</span>
-                  <span>{openSubmenuSlug === service.slug ? "−" : "+"}</span>
-                </button>
-                <div
-                  inert={openSubmenuSlug !== service.slug}
-                  aria-hidden={openSubmenuSlug !== service.slug}
-                  className={`overflow-hidden transition-[max-height,opacity] duration-300 ${
-                    openSubmenuSlug === service.slug
-                      ? "max-h-[min(40vh,320px)] opacity-100"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  {(service.children ?? []).map((child) => (
-                    <Link
-                      key={child.slug}
-                      href={child.href}
-                      onClick={onCloseMenu}
-                      className="block min-h-[48px] rounded-[10px] py-3 pl-6 pr-3 text-left text-[19px] text-white/85"
-                    >
-                      {child.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ) : (
+          .map((service) => (
+            <div key={service.slug}>
               <Link
-                key={service.slug}
                 href={service.href}
                 onClick={onCloseMenu}
                 className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[21px] font-medium text-white"
               >
                 {service.title}
               </Link>
-            ),
-          )}
+              {(service.children ?? []).map((child) => (
+                <Link
+                  key={child.slug}
+                  href={child.href}
+                  onClick={onCloseMenu}
+                  className="block min-h-[44px] rounded-[10px] py-2 pl-6 pr-3 text-left text-[19px] text-white/85"
+                >
+                  {child.title}
+                </Link>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </>

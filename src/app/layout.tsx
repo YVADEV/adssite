@@ -10,6 +10,8 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -83,7 +85,6 @@ export default function RootLayout({
   return (
     <html lang="ro" data-theme="dark" className={`${geistSans.variable} antialiased`}>
       <head>
-        <link rel="preload" as="image" href="/hero1-poster.jpg" fetchPriority="high" />
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
       </head>

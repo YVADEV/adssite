@@ -47,10 +47,10 @@ export default function SiteFooter() {
             </a>
           </div>
           <div className="mt-6 flex flex-wrap gap-4 text-[16px] text-white/55">
-            <Link href="/termeni-si-conditii" className="hover:text-white hover:underline">
+            <Link href="/termeni-si-conditii" prefetch={false} className="hover:text-white hover:underline">
               Termeni și condiții
             </Link>
-            <Link href="/politica-de-confidentialitate" className="hover:text-white hover:underline">
+            <Link href="/politica-de-confidentialitate" prefetch={false} className="hover:text-white hover:underline">
               Politică de confidențialitate
             </Link>
           </div>
@@ -60,7 +60,7 @@ export default function SiteFooter() {
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Pagini</h4>
           <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
             {pageLinks.map((item) => (
-              <Link key={item.label} href={item.href} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
+              <Link key={item.label} href={item.href} prefetch={false} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {item.label}
               </Link>
             ))}
@@ -71,7 +71,7 @@ export default function SiteFooter() {
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Servicii</h4>
           <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
             {services.filter((service) => service.slug !== "all-on-x").map((service) => (
-              <Link key={service.slug} href={service.href} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
+              <Link key={service.slug} href={service.href} prefetch={false} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {service.title}
               </Link>
             ))}

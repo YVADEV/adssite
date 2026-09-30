@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useAutoplayVideo } from "@/components/media/useAutoplayVideo";
-import { heroVideoSrc, HERO_VIDEO_FALLBACK, prefersReducedMedia } from "@/lib/media-pref";
+import { heroVideoSrc, HERO_VIDEO_FALLBACK, isMobileViewport, prefersReducedMedia } from "@/lib/media-pref";
 
 export function HeroIntroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -13,7 +13,7 @@ export function HeroIntroVideo() {
   useEffect(() => {
     let cancelled = false;
 
-    if (prefersReducedMedia()) return;
+    if (prefersReducedMedia() || isMobileViewport()) return;
 
     const preferred = heroVideoSrc();
     requestAnimationFrame(() => {
@@ -53,13 +53,19 @@ export function HeroIntroVideo() {
 
   return (
     <div data-anim="image" className="absolute inset-0 h-full w-full overflow-hidden">
-      <img
-        src="/hero1-poster.jpg"
-        alt="Alverna Dental Studio — clinică modernă din Cluj"
-        fetchPriority="high"
-        decoding="async"
-        className="absolute inset-0 h-full w-full object-cover object-center"
-      />
+      <picture>
+        <source media="(max-width: 768px)" srcSet="/hero1-poster-640.jpg" type="image/jpeg" />
+        <source media="(max-width: 1280px)" srcSet="/hero1-poster-1280.jpg" type="image/jpeg" />
+        <img
+          src="/hero1-poster-1920.jpg"
+          width={1920}
+          height={1080}
+          alt="Alverna Dental Studio — clinică modernă din Cluj"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover object-center"
+        />
+      </picture>
       {shouldLoadVideo ? (
         <video
           ref={videoRef}
@@ -68,7 +74,7 @@ export function HeroIntroVideo() {
           loop
           playsInline
           preload="none"
-          poster="/hero1-poster.jpg"
+          poster="/hero1-poster-1280.jpg"
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover object-center"
         >

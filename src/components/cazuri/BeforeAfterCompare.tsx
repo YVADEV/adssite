@@ -83,23 +83,33 @@ export function BeforeAfterCompare({
       onPointerCancel={onPointerUp}
       style={{ touchAction: "pan-y" }}
     >
+      {afterSrc ? (
       <img
         src={afterSrc}
         alt={afterAlt}
         draggable={false}
+        loading="lazy"
+        decoding="async"
+        fetchPriority="low"
         className="absolute inset-0 h-full w-full object-cover"
         style={{ objectPosition: afterPosition }}
       />
+      ) : null}
+      {beforeSrc ? (
       <img
         src={beforeSrc}
         alt={beforeAlt}
         draggable={false}
+        loading="lazy"
+        decoding="async"
+        fetchPriority="low"
         className="absolute inset-0 h-full w-full object-cover"
         style={{
           objectPosition: beforePosition,
           clipPath: `inset(0 ${100 - pos}% 0 0)`,
         }}
       />
+      ) : null}
 
       <div
         aria-hidden

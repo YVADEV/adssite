@@ -11,13 +11,17 @@ export default function SiteLogo({ className = "" }: SiteLogoProps) {
   return (
     <Link
       href="/"
+      prefetch={false}
       aria-label="Alverna Dental Studio — Acasă"
       className={`relative z-10 inline-flex shrink-0 items-center transition duration-200 hover:opacity-80 ${className}`}
     >
       <Image
         src={navLogo}
         alt="Alverna Dental Studio"
-        priority
+        width={140}
+        height={34}
+        sizes="140px"
+        loading="eager"
         className="h-[26px] w-auto object-contain sm:h-[30px] lg:h-[34px]"
       />
     </Link>

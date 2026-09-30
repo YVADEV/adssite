@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { motion } from "motion/react";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
-import { pricingData } from "@/components/home/HomePageClient";
+import { pricingData } from "@/config/pricing";
 import { CLINIC } from "@/lib/contact";
 
 export default function TarifePage() {

@@ -115,7 +115,7 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
     <div ref={containerRef} className={className} aria-label={ariaLabel}>
       {!shouldLoad || isReducedMotion || saveDataMode ? (
         poster ? (
-          <img src={poster} alt={ariaLabel ?? ""} className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img src={poster} alt={ariaLabel ?? ""} className="h-full w-full object-cover" loading="lazy" decoding="async" fetchPriority="low" />
         ) : (
           <div className="h-full w-full bg-black/40" aria-hidden />
         )

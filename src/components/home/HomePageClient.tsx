@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
 import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
@@ -11,23 +11,31 @@ import SiteLogo from "@/components/nav/SiteLogo";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
-import { CaseImage } from "@/components/cazuri/CaseImage";
+import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
+import { GoogleMark } from "@/components/ui/GoogleMark";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
-import { ContactFormCard } from "@/components/services/ServicePageParts";
-import { CASE_STUDIES } from "@/config/cases";
 import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 import { CLINIC } from "@/lib/contact";
-import vdScaun from "@/assets/VDscaun.png";
+import { pricingData } from "@/config/pricing";
+import { useIdleMedia } from "@/hooks/useIdleMedia";
+import vdScaun from "@/assets/VDscaun.jpg";
 import alvernaLogo from "@/assets/alverna-logo.png";
-import teamBannerImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
-import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.png";
-import danaHero from "@/assets/cazuri/dana-hero.png";
-import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
+import teamBannerImage from "@/assets/cazuri/Banner/andreea-banner.jpg";
+import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.jpg";
+import danaHero from "@/assets/cazuri/dana-hero.jpg";
+import aureliaHero from "@/assets/cazuri/aurelia-hero.jpg";
 import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
 import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
-import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
+import cazA7408160 from "@/assets/cazuri/elena-hero.jpg";
+import caz1Before from "@/assets/cazuri/caz1-before.jpg";
+import caz1After from "@/assets/cazuri/caz1-after.jpg";
+
+const ContactFormCard = dynamic(
+  () => import("@/components/contact/ContactFormCard").then((m) => ({ default: m.ContactFormCard })),
+  { ssr: true },
+);
 
 const caseGallery = [
   { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
@@ -52,264 +60,6 @@ const reviews = [
     meta: "2 recenzii · O fotografie",
     time: "acum 3 luni",
     text: "Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas și mi s-a răspuns la fiecare întrebare. Îi mulțumesc pe această cale doamnei doctor Pârvu pentru atenție și profesionalism, la fel și doamnei asistente.",
-  },
-];
-
-export const pricingData = [
-  {
-    category: "Estetică dentară",
-    items: [
-      { name: "Albire profesională endodontică (internă / dinte)", price: "300 RON" },
-      { name: "Albire profesională în cabinet Opalescence H2O2 40%", price: "750 RON" },
-      { name: "Albire profesională în cabinet Bleach’n Smile H2O2 35%", price: "960 RON" },
-      { name: "Albire profesională cu lampa Philips Zoom H2O2 6%", price: "1700 RON" },
-      { name: "Aplicare bijuterii dentare pe suprafața smalțului", price: "220 RON" },
-      { name: "Albire laser", price: "1200 RON" },
-    ],
-  },
-  {
-    category: "Estetică facială",
-    items: [
-      { name: "Injectări cu Acid Hyaluronic Juvederm Ultra 3", price: "1450 RON" },
-      { name: "Injectări cu Acid Hyaluronic Juvederm Ultra Smile", price: "1300 RON" },
-      { name: "Botox (3 zone)", price: "1500 RON" },
-      { name: "Gummi line botox (zâmbet gingival)", price: "750 RON" },
-    ],
-  },
-  {
-    category: "Consultații primare și de specialitate",
-    items: [
-      { name: "Consultație stomatologică generală, realizare fișă completă, întocmire plan tratament", price: "150 RON" },
-      { name: "Consultație și diagnostic parodontologic, status parodontal", price: "250 RON" },
-      { name: "Consultație și diagnostic implantologie, interpretare CT", price: "180 RON" },
-      { name: "Realizarea modelului documentar", price: "120 RON" },
-      { name: "Consultație și diagnostic ortodontic", price: "250 RON" },
-      { name: "Consultație pediatrică", price: "200 RON" },
-    ],
-  },
-  {
-    category: "Profilaxie și prevenție",
-    items: [
-      { name: "Periaj profesional", price: "80 RON" },
-      { name: "Detartraj ultrasonic supragingival", price: "200 RON" },
-      { name: "Fluorizare / tratament desensibilizare / dinte", price: "30 RON" },
-      { name: "Airflow", price: "200 RON" },
-      { name: "Airflow cu particule de glicină", price: "250 RON" },
-      { name: "Ședință completă igienizare (Detartraj + Periaj + Airflow)", price: "380 RON" },
-      { name: "Igienizare pe implante cu îndepărtarea lucrării", price: "500 RON" },
-      { name: "Igienizare pedodontică", price: "250 RON" },
-      { name: "Sigilare șanțuri și fosete dinți temporari / dinte", price: "180 RON" },
-      { name: "Sigilare șanțuri și fosete dinți permanenți / dinte", price: "250 RON" },
-    ],
-  },
-  {
-    category: "Tratamente odontale / obturații",
-    items: [
-      { name: "Obturație ionomer", price: "140 - 170 RON" },
-      { name: "Coafaj cu Hidroxid de Ca", price: "90 RON" },
-      { name: "Obturație EQUIA", price: "260 RON" },
-      { name: "Coafaj cu MTA", price: "140 RON" },
-      { name: "Aplicare sistem de izolare – Diga", price: "50 RON" },
-      { name: "Obturație fizionomică compozit mică", price: "380 RON" },
-      { name: "Obturație fizionomică compozit medie", price: "430 RON" },
-      { name: "Obturație fizionomică compozit mare", price: "470 RON" },
-      { name: "Obturație dinți frontali", price: "490 RON" },
-      { name: "Obturație Biodentine", price: "360 RON" },
-      { name: "Reconstrucție cu compozit fotopolimerizabil", price: "250 RON" },
-      { name: "Refacere fațetă vestibulară – compozit foto", price: "550 RON" },
-      { name: "Obturație colet", price: "250 RON" },
-      { name: "Obturație ZOE", price: "120 RON" },
-    ],
-  },
-  {
-    category: "Tratamente laser",
-    items: [
-      { name: "Biomodulare / ședință", price: "250 RON" },
-      { name: "Tratament de desensibilizare", price: "200 RON" },
-      { name: "Igienizare laser", price: "1250 RON" },
-      { name: "DSR asistat laser / dinte / implant", price: "250 RON" },
-      { name: "DSR asistat laser / hemiarcadă", price: "900 RON" },
-      { name: "Frenectomie laser", price: "750 RON" },
-      { name: "Decapușonare / dinte", price: "250 RON" },
-      { name: "Gingivectomie / dinte", price: "250 RON" },
-      { name: "Gingivoplastie / dinte", price: "275 RON" },
-      { name: "Tratament laser periimplantită", price: "500 RON" },
-      { name: "Stimularea vindecării gingivale / ședință", price: "200 RON" },
-      { name: "Excizii formațiuni endoorale", price: "600 RON" },
-      { name: "Tratament inflamația sinusului maxilar", price: "300 RON" },
-      { name: "Tratament ATM", price: "300 RON" },
-      { name: "Tratamentul durerilor postextracționale", price: "300 RON" },
-    ],
-  },
-  {
-    category: "Pedodonție",
-    items: [
-      { name: "Pachet anual pedodonție", price: "990 RON" },
-      { name: "Ședință de acomodare", price: "150 RON" },
-      { name: "Sigilare șanțuri și fosete dinți temporari / dinte", price: "180 RON" },
-      { name: "Fluorizare ambele arcade", price: "200 RON" },
-      { name: "Obturație glassionomer", price: "200 RON" },
-      { name: "Obturație compozit", price: "200 RON" },
-      { name: "Aplicare pansament devitalizant", price: "180 RON" },
-      { name: "Aplicare pansament calmant", price: "180 RON" },
-      { name: "Aplicare pansament antiseptic", price: "180 RON" },
-      { name: "Pulpectomie vitală dinți temporari", price: "200 RON" },
-      { name: "Pulpectomie devitală dinți temporari", price: "250 RON" },
-      { name: "Pulpotomie dinte temporar", price: "250 RON" },
-      { name: "Coroniță pedodontică", price: "375 RON" },
-      { name: "Tratament endodontic dinte temporar", price: "350 RON" },
-      { name: "Obturație canal dinți temporari", price: "200 RON" },
-      { name: "Extracție dinte temporar monoradicular", price: "280 RON" },
-      { name: "Extracție dinte temporar pluriradicular", price: "300 RON" },
-    ],
-  },
-  {
-    category: "Endodonție",
-    items: [
-      { name: "Tratament canal monoradicular", price: "350 RON" },
-      { name: "Obturație endodontică monoradicular", price: "250 RON" },
-      { name: "Tratament canal premolar", price: "430 RON" },
-      { name: "Obturație endodontică premolar", price: "300 RON" },
-      { name: "Tratament canal pluriradicular", price: "470 RON" },
-      { name: "Tratament canal molar de minte", price: "590 RON" },
-      { name: "Reparare perforații radiculare cu MTA / bioceramică", price: "180 RON" },
-      { name: "Retratament monoradicular", price: "410 RON" },
-      { name: "Retratament pluriradicular", price: "650 RON" },
-      { name: "Retratament molar de minte", price: "750 RON" },
-      { name: "Pivot fibră de sticlă", price: "300 RON" },
-    ],
-  },
-  {
-    category: "Protetică dentară",
-    items: [
-      { name: "Coroană provizorie acrilică", price: "100 RON" },
-      { name: "Coroană PMMA CAD-CAM", price: "350 RON" },
-      { name: "Coroană metalică", price: "300 RON" },
-      { name: "Coroană metalo-ceramică", price: "1200 RON" },
-      { name: "Coroană integral ceramică Emax", price: "1800 RON" },
-      { name: "Coroană zirconiu CAD-CAM", price: "1700 - 2500 RON" },
-      { name: "Inlay / Onlay compozit", price: "800 RON" },
-      { name: "Incrustație ceramică", price: "1400 RON" },
-      { name: "Gutieră bruxism", price: "400 RON" },
-      { name: "Proteză acrilică totală / arcadă", price: "2500 - 3100 RON" },
-      { name: "Proteză elastică", price: "3200 - 3800 RON" },
-      { name: "Structură Ibar compozit", price: "15000 RON" },
-      { name: "Structură Ibar zirconiu", price: "25000 RON" },
-      { name: "Proteză scheletată", price: "de la 3900 RON" },
-      { name: "Coroană metalo-ceramică pe implant", price: "1750 RON" },
-      { name: "Coroană zirconiu pe implant", price: "2250 RON" },
-      { name: "Coroană metalo-ceramică pe implant înșurubată", price: "400 EURO" },
-    ],
-  },
-  {
-    category: "Ortodonție",
-    items: [
-      { name: "Aparat monomaxilar mobilizabil", price: "1200 RON" },
-      { name: "Aparat bimaxilar funcțional", price: "1200 RON" },
-      { name: "Aparat fix metalic / arcadă", price: "3000 RON" },
-      { name: "Aparat fix metalic / ambele arcade", price: "6000 RON" },
-      { name: "Aparat fix ceramic / arcadă", price: "4000 RON" },
-      { name: "Aparat fix ceramic / ambele arcade", price: "8000 RON" },
-      { name: "Aparat fix safir / arcadă", price: "4500 RON" },
-      { name: "Aparat fix safir / ambele arcade", price: "9000 RON" },
-      { name: "Disjunctor", price: "1500 RON" },
-      { name: "Disjunctor pe implant", price: "5500 RON" },
-      { name: "Activare aparat fix metalic / arcadă", price: "150 RON" },
-      { name: "Activare aparat fix fizionomic / arcadă", price: "200 RON" },
-      { name: "Contenție fixă", price: "300 RON" },
-      { name: "Contenție gutieră / placă Howley", price: "400 RON" },
-    ],
-  },
-  {
-    category: "Alignere",
-    items: [
-      { name: "Spark 10 / arcadă", price: "6000 RON" },
-      { name: "Spark 10 / ambele arcade", price: "10000 RON" },
-      { name: "Spark 20 / arcadă", price: "11500 RON" },
-      { name: "Spark 20 / ambele arcade", price: "15000 RON" },
-      { name: "Spark Advanced / ambele arcade", price: "20000 RON" },
-      { name: "Plan tratament 3D Spark", price: "1300 RON" },
-      { name: "Angel Aligner", price: "tarif după evaluare" },
-    ],
-  },
-  {
-    category: "Implantologie",
-    items: [
-      { name: "Implant INNO", price: "400 EURO" },
-      { name: "Implant MegaGen AnyRidge", price: "500 EURO" },
-      { name: "Implant Neodent Acqua", price: "500 EURO" },
-      { name: "MIS Seven", price: "500 EURO" },
-      { name: "MIS C1", price: "600 EURO" },
-      { name: "Implant Straumann BLT", price: "700 EURO" },
-      { name: "Implant Straumann BLX", price: "900 EURO" },
-      { name: "Sinus lift extern fără biomateriale", price: "3000 RON" },
-      { name: "Sinus lift intern fără biomateriale", price: "1500 RON" },
-      { name: "Ridge split fără biomateriale", price: "1300 RON" },
-      { name: "Adiție os fără biomateriale", price: "1500 RON" },
-      { name: "Recoltare os autolog", price: "1100 RON" },
-      { name: "PRF", price: "660 RON" },
-    ],
-  },
-  {
-    category: "All-on-4 / All-on-6",
-    items: [
-      { name: "All-on-4 INNO", price: "2000 EURO" },
-      { name: "All-on-4 Neodent", price: "3000 EURO" },
-      { name: "All-on-4 Straumann", price: "5000 EURO" },
-      { name: "All-on-6 INNO", price: "3500 EURO" },
-      { name: "All-on-6 Neodent", price: "4000 EURO" },
-      { name: "All-on-6 Straumann", price: "6000 EURO" },
-    ],
-  },
-  {
-    category: "Chirurgie dento-alveolară",
-    items: [
-      { name: "Extracție dinte temporar", price: "120 RON" },
-      { name: "Extracție dinte monoradicular", price: "280 RON" },
-      { name: "Extracție dinte pluriradicular", price: "300 RON" },
-      { name: "Extracție molar de minte erupt", price: "450 RON" },
-      { name: "Extracție dinte parodontotic", price: "220 RON" },
-      { name: "Extracție cu alveolotomie", price: "350 RON" },
-      { name: "Extracție rest radicular", price: "230 RON" },
-      { name: "Odontectomie incluzie maxilar", price: "600 RON" },
-      { name: "Odontectomie incluzie mandibulă", price: "700 RON" },
-      { name: "Chistectomie <2cm", price: "450 RON" },
-      { name: "Chistectomie >2cm", price: "650 RON" },
-    ],
-  },
-  {
-    category: "Chirurgie endodontică / preprotetică",
-    items: [
-      { name: "Rezecție apicală monoradicular", price: "500 RON" },
-      { name: "Rezecție apicală pluriradicular", price: "600 RON" },
-      { name: "Rezecție apicală + obturație retro monoradicular", price: "700 RON" },
-      { name: "Rezecție apicală + obturație retro pluriradicular", price: "800 RON" },
-      { name: "Chiuretaj apico-periapical", price: "400 RON" },
-      { name: "Premolarizare", price: "400 RON" },
-      { name: "Incizie și drenaj abces", price: "280 RON" },
-      { name: "Frenectomie / Frenoplastie / Bride", price: "300 RON" },
-      { name: "Vestibuloplastie", price: "500 RON" },
-    ],
-  },
-  {
-    category: "Chirurgie maxilo-facială",
-    items: [
-      { name: "Excizie formațiune tumorală piele", price: "420 RON" },
-      { name: "Excizie formațiune tumorală mucoasă", price: "420 RON" },
-      { name: "Excizie chist sebaceu / fibrolipom", price: "385 RON" },
-      { name: "Excizie cicatrici piele", price: "520 RON" },
-      { name: "Lip repositioning", price: "1440 RON" },
-      { name: "Corticotomii per dinte", price: "380 RON" },
-      { name: "Corticotomii per segment", price: "500 RON" },
-      { name: "Reducere și imobilizare fracturi proces alveolar", price: "500 RON" },
-      { name: "Reducere și imobilizare fracturi mandibulă / maxilar", price: "1500 RON" },
-      { name: "Reducere și imobilizare fracturi oase nazale", price: "960 RON" },
-      { name: "Incizie și drenaj abces submandibular", price: "960 RON" },
-      { name: "Biopsie os", price: "480 RON" },
-      { name: "Tratament urgență trigemeni", price: "240 RON" },
-      { name: "Bichectomie unilaterală", price: "1500 RON" },
-      { name: "Bichectomie bilaterală", price: "2900 RON" },
-    ],
   },
 ];
 
@@ -351,9 +101,21 @@ export const homePricingData = [
   },
 ];
 
-const featuredCase = CASE_STUDIES.implantologie;
-const featuredBefore = featuredCase.beforeAfterImages[0];
-const featuredAfter = featuredCase.beforeAfterImages[1];
+const featuredCase = {
+  path: "/cazuri/implantologie/",
+  subtitle: "Reabilitare totală prin sistemul All-on-4 Straumann",
+  doctor: { name: "Dr. Andreea Pârvu", role: "Protetică dentară" },
+};
+const featuredBefore = {
+  image: caz1Before,
+  alt: "Cecilia — înainte de tratament",
+  objectPosition: "center center",
+};
+const featuredAfter = {
+  image: caz1After,
+  alt: "Cecilia — după tratament",
+  objectPosition: "center 36%",
+};
 
 const serviceOrientation = [
   {
@@ -423,15 +185,17 @@ function TeamBentoBanner({
   leftHeadline = "alverna\ndental\nstudio",
   showScanCard = true,
   showSlogan = true,
+  loadImages = true,
 }: {
   doctorSrc: string;
   doctorAlt: string;
   leftHeadline?: string;
   showScanCard?: boolean;
   showSlogan?: boolean;
+  loadImages?: boolean;
 }) {
   return (
-    <div className={`mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:px-[96px] ${showScanCard ? "lg:grid-cols-[440px_1fr_1fr]" : "lg:grid-cols-[440px_1fr]"}`}>
+    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
       <article className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]">
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
@@ -439,11 +203,16 @@ function TeamBentoBanner({
         <h3 className="relative z-[30] mt-4 whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] md:absolute md:bottom-[92px] md:left-[36px] md:mt-auto md:pt-0 md:text-[64px]">
           {leftHeadline}
         </h3>
+        {loadImages ? (
         <img
           src={doctorSrc}
           alt={doctorAlt}
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
           className="pointer-events-none relative z-[10] mx-auto mt-4 h-[min(52vw,300px)] w-auto max-w-full object-contain object-bottom md:absolute md:bottom-0 md:right-[-35px] md:mx-0 md:mt-0 md:h-[660px]"
         />
+        ) : null}
       </article>
 
       {showSlogan ? (
@@ -457,23 +226,42 @@ function TeamBentoBanner({
       <div className="relative z-10 flex min-h-[420px] flex-col gap-[6px] lg:h-[560px]">
         {showScanCard ? (
           <article className="relative flex min-h-[220px] flex-col overflow-hidden rounded-[16px] bg-[#0A0A0A] md:h-[275px]">
+            {loadImages ? (
             <img
               src={shining3dScanner.src}
               alt="Scanare 3D intraorală Shining 3D — Alverna Dental Studio"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
+            ) : null}
             <p className="relative z-10 mt-auto bg-gradient-to-t from-black/70 to-transparent px-5 pb-4 pt-10 text-[21px] font-semibold text-white">
               Scanare intraorală 3D
             </p>
           </article>
-        ) : null}
+        ) : (
+          <article className="relative flex min-h-[220px] flex-col justify-end rounded-[16px] bg-[#0A0A0A] p-6 md:h-[275px] md:p-8">
+            <h3 className="text-[28px] font-semibold leading-[1.05] tracking-[-0.03em] text-white md:text-[36px]">
+              Laborator propriu
+            </h3>
+            <p className="mt-3 text-[18px] leading-[1.4] text-white/80 md:text-[21px]">
+              Medicul și tehnicianul lucrează în aceeași echipă.
+            </p>
+          </article>
+        )}
 
-        <article className="relative min-h-[220px] flex-1 overflow-hidden rounded-[16px] bg-[#0A0A0A] md:min-h-[275px]">
+        <article className="relative min-h-[220px] flex-1 overflow-hidden rounded-[16px] bg-[#0A0A0A] md:min-h-[275px] md:h-[275px]">
+          {loadImages ? (
           <img
             src={cazA7407760Smile.src}
             alt="Zâmbet pacient — rezultat Alverna Dental Studio"
-            className="h-full w-full object-cover object-center"
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            className="h-full w-full object-cover object-[center_42%]"
           />
+          ) : null}
         </article>
       </div>
     </div>
@@ -497,6 +285,7 @@ export default function HomePageClient() {
   const recommendationVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [activeClipControls, setActiveClipControls] = useState<Set<number>>(() => new Set());
   const scrolled = useStickyHeaderScroll();
+  const belowFoldMedia = useIdleMedia();
 
   function activateVideoWithSound(video: HTMLVideoElement | null, onActivated?: () => void) {
     if (!video) return;
@@ -529,6 +318,7 @@ export default function HomePageClient() {
     async function initScrollAnimations() {
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (prefersReducedMotion || cancelled || !rootRef.current) return;
+      if (window.matchMedia("(max-width: 768px)").matches) return;
 
       const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
         import("gsap"),
@@ -556,7 +346,7 @@ export default function HomePageClient() {
         });
 
         gsap.utils.toArray<HTMLElement>("[data-anim='image']").forEach((el) => {
-          if (el.dataset.intro === "hero-media") return;
+          if (el.closest("[data-intro='hero-media']")) return;
           gsap.fromTo(
             el,
             { opacity: 0.85, scale: 1.03 },
@@ -742,6 +532,7 @@ export default function HomePageClient() {
           <Link
             key={item.label}
             href={item.href}
+            prefetch={false}
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
@@ -766,6 +557,7 @@ export default function HomePageClient() {
           <Link
             key={item.label}
             href={item.href}
+            prefetch={false}
             data-menu-item
             onClick={closeMenu}
             className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
@@ -849,6 +641,7 @@ export default function HomePageClient() {
                   </a>
                   <Link
                     href="/cazuri/"
+                    prefetch={false}
                     className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[16px] font-semibold text-white transition duration-200 hover:bg-white/10 sm:text-[18px]"
                   >
                     Vezi cazuri reale
@@ -882,8 +675,8 @@ export default function HomePageClient() {
 
           {featuredBefore && featuredAfter ? (
             <BeforeAfterCompare
-              beforeSrc={featuredBefore.image.src}
-              afterSrc={featuredAfter.image.src}
+              beforeSrc={belowFoldMedia ? featuredBefore.image.src : ""}
+              afterSrc={belowFoldMedia ? featuredAfter.image.src : ""}
               beforeAlt={featuredBefore.alt}
               afterAlt={featuredAfter.alt}
               beforePosition={featuredBefore.objectPosition}
@@ -893,9 +686,39 @@ export default function HomePageClient() {
           ) : null}
         </div>
         <div className="mx-auto mt-[48px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-3 md:gap-5 md:px-6 lg:px-8">
-          {caseGallery.map(({ src, alt }) => (
-            <CaseImage key={src} src={src} alt={alt} overlayLabel="Vezi cazul" data-anim="image" className="h-[min(78vw,380px)] w-full rounded-[24px] object-cover md:h-[420px] lg:h-[520px]" />
-          ))}
+          {caseGallery.map(({ src, alt }) => {
+            const href = src.includes("dana-hero")
+              ? "/cazuri/dana/"
+              : src.includes("aurelia-hero")
+                ? "/cazuri/estetica-dentara/"
+                : "/cazuri/reabilitare-complexa/";
+            return (
+              <Link
+                key={src}
+                href={href}
+                prefetch={false}
+                aria-label="Vezi cazul în detaliu"
+                className="block rounded-[24px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black/40"
+              >
+                <div
+                  data-anim="image"
+                  className="group relative h-[min(78vw,380px)] w-full overflow-hidden rounded-[24px] md:h-[420px] lg:h-[520px]"
+                >
+                  {belowFoldMedia ? (
+                  <img
+                    src={src}
+                    alt={alt}
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    className="h-full w-full object-cover"
+                  />
+                  ) : null}
+                  <CaseClickOverlay label="Vezi cazul" />
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -903,14 +726,23 @@ export default function HomePageClient() {
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-[auto_1fr] lg:gap-10">
             <div className="overflow-hidden rounded-[12px]">
+              {belowFoldMedia ? (
               <img
                 src={vdScaun.src}
                 alt="Echipa medicală Alverna Dental Studio în timpul unui tratament"
                 data-anim="image"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
                 className="aspect-[682/1024] h-[min(520px,70vh)] w-full max-w-[440px] object-cover object-[center_38%] md:h-[min(720px,82vh)]"
               />
+              ) : (
+                <div
+                  data-anim="image"
+                  className="aspect-[682/1024] h-[min(520px,70vh)] w-full max-w-[440px] bg-black/20 md:h-[min(720px,82vh)]"
+                  aria-hidden
+                />
+              )}
             </div>
             {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
             <p className="max-w-[520px] text-[21px] leading-[1.65] tracking-[-0.64px] text-white">
@@ -928,42 +760,37 @@ export default function HomePageClient() {
                 <h3 className="mt-3 text-[20px] tracking-[-0.04em] text-white md:whitespace-nowrap md:text-[22px] xl:text-[24px]">
                   {a.label}
                 </h3>
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative mt-auto aspect-[267/396] w-full overflow-hidden rounded-[24px] bg-black"
-                  style={{ boxShadow: "none" }}
+                <div
+                  className="relative mt-auto aspect-[267/396] w-full overflow-hidden rounded-[24px] bg-black transition duration-300 hover:scale-[1.02]"
                 >
                   <LazyVideo
                     ref={(el) => {
                       recommendationVideoRefs.current[clipIndex] = el;
                     }}
                     src={recommendationClips[clipIndex]}
-                    poster="/services/smile-mirror.png"
+                    poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined}
                     className="absolute inset-0 h-full w-full scale-[1.05]"
                     ariaLabel={`Clip ${advantages[clipIndex].label}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.68)]" />
                   {!activeClipControls.has(clipIndex) ? (
-                    <motion.button
+                    <button
                       type="button"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
                       onClick={() =>
                         activateVideoWithSound(recommendationVideoRefs.current[clipIndex], () => {
                           setActiveClipControls((prev) => new Set(prev).add(clipIndex));
                         })
                       }
-                      className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(0,0,0,0.6)] backdrop-blur-[2px]"
+                      className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(0,0,0,0.6)] backdrop-blur-[2px] transition duration-300 hover:scale-110"
                       aria-label="Redă clip cu sunet"
                     >
                       <span className="ml-[2px] inline-block h-0 w-0 border-b-[10px] border-l-[16px] border-t-[10px] border-b-transparent border-l-white border-t-transparent" />
-                    </motion.button>
+                    </button>
                   ) : null}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10 sm:inset-auto sm:bottom-[16px] sm:left-[16px] sm:right-[16px] sm:bg-none sm:p-0 sm:pt-0">
                     <p className="line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
                   </div>
-                </motion.div>
+                </div>
               </article>
             ))}
           </div>
@@ -980,6 +807,7 @@ export default function HomePageClient() {
               <article key={group.title} className="min-w-0 border-t border-white/12 pt-6">
                 <Link
                   href={group.href}
+                  prefetch={false}
                   className="group inline-flex items-center gap-2 text-[24px] font-semibold leading-[1.1] tracking-[-0.03em] text-white md:text-[32px]"
                 >
                   <span>{group.title}</span>
@@ -990,6 +818,7 @@ export default function HomePageClient() {
                     <Link
                       key={link.href + link.title}
                       href={link.href}
+                      prefetch={false}
                       className="flex min-h-[44px] items-center justify-between border-b border-white/10 py-2 pl-3 text-[18px] font-normal text-white/80 transition duration-200 hover:translate-x-[3px] hover:text-white md:text-[21px]"
                     >
                       <span>{link.title}</span>
@@ -1017,7 +846,7 @@ export default function HomePageClient() {
             <LazyVideo
               ref={cabinetVideoRef}
               src="/hero.mp4"
-              poster="/services/smile-mirror.png"
+              poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined}
               ariaLabel="Descoperă cabinetul Alverna Dental Studio"
               className="h-full w-full object-cover"
             />
@@ -1049,7 +878,7 @@ export default function HomePageClient() {
             <div className="flex items-end gap-2">
               <strong className="text-[40px] font-semibold leading-none tracking-[-3.36px] md:text-[56px]">4,8</strong>
               <span className="mb-2 text-base opacity-60">/5</span>
-              <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
+              <GoogleMark />
             </div>
             <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65]">
               <p>
@@ -1067,7 +896,18 @@ export default function HomePageClient() {
               <p>Program:</p>
               <p>{CLINIC.hoursDisplay}</p>
             </div>
-            <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto pt-4 h-auto w-[220px] object-contain" />
+            {belowFoldMedia ? (
+            <img
+              src={alvernaLogo.src}
+              alt="Alverna logo"
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              width={220}
+              height={73}
+              className="mx-auto mt-auto pt-4 h-auto w-[220px] object-contain"
+            />
+            ) : null}
           </article>
 
           {reviews.map((r) => (
@@ -1108,6 +948,7 @@ export default function HomePageClient() {
         <TeamBentoBanner
           doctorSrc={teamBannerImage.src}
           doctorAlt="Echipa medicală Alverna Dental Studio"
+          loadImages={belowFoldMedia}
         />
       </section>
 
@@ -1160,7 +1001,7 @@ export default function HomePageClient() {
             doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
             leftHeadline={"laborator\ndentar"}
             showScanCard={false}
-            showSlogan={false}
+            loadImages={belowFoldMedia}
           />
         </div>
       </section>
@@ -1180,13 +1021,13 @@ export default function HomePageClient() {
           </div>
           <div className="mt-6 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-3">
             <article className="relative h-[min(56vw,280px)] rounded-l-[18px] bg-black sm:h-[320px] md:h-[360px]">
-              <LazyVideo src="/cazuri-1.mp4" poster="/services/exam-male.png" ariaLabel="Caz tratat — vedere generală" />
+              <LazyVideo src="/cazuri-1.mp4" poster={belowFoldMedia ? "/services/exam-male.png" : undefined} ariaLabel="Caz tratat — vedere generală" />
             </article>
             <article className="relative h-[min(56vw,280px)] bg-black sm:h-[320px] md:h-[360px]">
-              <LazyVideo src="/cori-angel.mp4" poster="/services/smile-mirror.png" ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
+              <LazyVideo src="/cori-angel.mp4" poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined} ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
             </article>
             <article className="relative h-[min(56vw,280px)] rounded-r-[18px] bg-black sm:h-[320px] md:h-[360px]">
-              <LazyVideo src="/cazuri-2.mp4" poster="/services/whitening-2.png" ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />
+              <LazyVideo src="/cazuri-2.mp4" poster={belowFoldMedia ? "/services/whitening-2.png" : undefined} ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />
             </article>
           </div>
         </div>
@@ -1195,7 +1036,7 @@ export default function HomePageClient() {
       <section id="contact" ref={contactSectionRef} data-anim="section" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
         <div
           aria-hidden
-          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 [will-change:transform] animate-[contact-glow-drift_10s_ease-in-out_infinite]"
+          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
         />
         <div
           ref={contactSpotlightRef}

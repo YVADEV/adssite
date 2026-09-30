@@ -36,7 +36,7 @@ export function MobileMenuOverlay({
             <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
           </button>
         </div>
-        <MobileMenuLayout>{children}</MobileMenuLayout>
+        <MobileMenuLayout showPhoto={menuVisible}>{children}</MobileMenuLayout>
         <MobileMenuFooter />
       </div>
     </div>

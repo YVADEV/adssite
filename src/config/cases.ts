@@ -577,7 +577,11 @@ export const IMAGE_TO_CASE_SLUG: Record<string, string> = Object.fromEntries(
 
 export function getCaseHrefForImage(src: string): string | null {
   const slug = IMAGE_TO_CASE_SLUG[src];
-  return slug ? CASE_STUDIES[slug].path : null;
+  if (slug) return CASE_STUDIES[slug].path;
+  if (src.includes("dana-hero")) return CASE_STUDIES.dana.path;
+  if (src.includes("aurelia-hero")) return CASE_STUDIES["estetica-dentara"].path;
+  if (src.includes("elena-hero") || src.includes("A7408160")) return CASE_STUDIES["reabilitare-complexa"].path;
+  return null;
 }
 
 export function getCaseStudy(slug: string): CaseStudy | undefined {

@@ -29,34 +29,9 @@ function ReelFallback({ reelId }: { reelId: string }) {
 }
 
 function ReelEmbed({ reelId }: { reelId: string }) {
-  const ref = useRef<HTMLLIElement>(null);
   const [visible, setVisible] = useState(false);
   const [embedFailed, setEmbedFailed] = useState(false);
   const loadedRef = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    let cancelled = false;
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting && !cancelled) {
-            setVisible(true);
-            io.disconnect();
-          }
-        }
-      },
-      { rootMargin: "200px", threshold: 0.01 },
-    );
-    io.observe(el);
-    return () => {
-      cancelled = true;
-      io.disconnect();
-    };
-  }, []);
 
   useEffect(() => {
     if (!visible || embedFailed || loadedRef.current) return;
@@ -67,7 +42,7 @@ function ReelEmbed({ reelId }: { reelId: string }) {
   }, [visible, embedFailed]);
 
   return (
-    <li ref={ref} className="min-w-0 list-none">
+    <li className="min-w-0 list-none">
       <div className="instagram-reel-frame ring-1 ring-white/8 transition duration-300 hover:ring-white/16">
         {visible && !embedFailed ? (
           <iframe
@@ -85,7 +60,14 @@ function ReelEmbed({ reelId }: { reelId: string }) {
         ) : visible && embedFailed ? (
           <ReelFallback reelId={reelId} />
         ) : (
-          <ReelFallback reelId={reelId} />
+          <button
+            type="button"
+            className="h-full w-full"
+            onClick={() => setVisible(true)}
+            aria-label="Încarcă reel Instagram"
+          >
+            <ReelFallback reelId={reelId} />
+          </button>
         )}
       </div>
     </li>

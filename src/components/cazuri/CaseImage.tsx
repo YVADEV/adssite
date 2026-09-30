@@ -3,17 +3,16 @@
 import Link from "next/link";
 import { motion, useReducedMotion, type HTMLMotionProps } from "motion/react";
 import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
-import { getCaseHrefForImage } from "@/config/cases";
 
 type CaseImageProps = Omit<HTMLMotionProps<"div">, "children"> & {
   src: string;
   alt?: string;
   overlayLabel?: string;
+  href?: string | null;
 };
 
-export function CaseImage({ src, alt, className, overlayLabel, ...motionProps }: CaseImageProps) {
+export function CaseImage({ src, alt, className, overlayLabel, href, ...motionProps }: CaseImageProps) {
   const reduceMotion = useReducedMotion();
-  const href = getCaseHrefForImage(src);
   const isClickable = Boolean(href);
 
   const shell = (

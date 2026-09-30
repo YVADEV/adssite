@@ -6,7 +6,7 @@ const stickyIconClass = "h-[24px] w-[24px] shrink-0";
 
 export default function StickyContactButtons() {
   return (
-    <aside className="animate-[sticky-contact-in_0.55s_ease-out_both] fixed bottom-3 right-3 z-[9990] flex flex-col gap-2.5 max-md:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-md:right-[max(0.75rem,env(safe-area-inset-right))] md:bottom-5 md:right-5 md:gap-3">
+    <aside className="fixed bottom-3 right-3 z-[9990] flex flex-col gap-2.5 max-md:bottom-[max(0.75rem,env(safe-area-inset-bottom))] max-md:right-[max(0.75rem,env(safe-area-inset-right))] md:bottom-5 md:right-5 md:gap-3">
       <a
         href={CLINIC.whatsappUrl}
         target="_blank"

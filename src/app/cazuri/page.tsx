@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { CaseImage } from "@/components/cazuri/CaseImage";
+import { getCaseHrefForImage } from "@/config/cases";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
@@ -78,6 +79,7 @@ export default function CazuriPage() {
               key={src}
               src={src}
               alt={alt}
+              href={getCaseHrefForImage(src)}
               className="h-[min(72vw,420px)] w-full rounded-[20px] object-cover sm:h-[520px] md:h-[664px]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}

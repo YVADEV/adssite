@@ -49,6 +49,7 @@ export function MobileMenuNavServices({
             <div key={service.slug}>
               <Link
                 href={service.href}
+                prefetch={false}
                 onClick={onCloseMenu}
                 className="block min-h-[48px] rounded-[10px] px-2 py-3 text-left text-[21px] font-medium text-white"
               >
@@ -58,6 +59,7 @@ export function MobileMenuNavServices({
                 <Link
                   key={child.slug}
                   href={child.href}
+                  prefetch={false}
                   onClick={onCloseMenu}
                   className="block min-h-[44px] rounded-[10px] py-2 pl-6 pr-3 text-left text-[19px] text-white/85"
                 >

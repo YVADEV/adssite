@@ -917,19 +917,21 @@ export default function HomePageClient() {
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
             </p>
           </div>
-          <div className="mt-10 grid min-w-0 grid-cols-1 gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-auto xl:w-full xl:max-w-[764px] xl:gap-[4px]">
+          <div className="mt-10 grid min-w-0 grid-cols-1 items-stretch gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-auto xl:w-full xl:max-w-[820px] xl:gap-[8px]">
             {advantages.map((a, clipIndex) => (
-              <article key={a.value} className="relative min-w-0 w-full rounded-[18px] bg-[#f5f5f5] p-5">
+              <article key={a.value} className="relative flex min-w-0 w-full flex-col rounded-[18px] bg-[#f5f5f5] p-5">
                 <div>
                   <strong className="block text-[36px] font-semibold leading-none tracking-[-0.02em] text-white md:text-[56px]">
                     {a.value}
                   </strong>
                 </div>
-                <h3 className="mt-3 text-[24px] tracking-[-0.8px] text-white md:text-[34px]">{a.label}</h3>
+                <h3 className="mt-3 text-[20px] tracking-[-0.04em] text-white md:whitespace-nowrap md:text-[22px] xl:text-[24px]">
+                  {a.label}
+                </h3>
                 <motion.div
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative mt-2 h-[min(72vw,300px)] w-full max-w-[267px] overflow-hidden rounded-[24px] bg-black sm:h-[396px] sm:w-[267px]"
+                  className="relative mt-auto aspect-[267/396] w-full overflow-hidden rounded-[24px] bg-black"
                   style={{ boxShadow: "none" }}
                 >
                   <LazyVideo

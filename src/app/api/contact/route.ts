@@ -6,6 +6,8 @@ export const runtime = "nodejs";
 
 type ContactPayload = {
   nume?: string;
+  prenume?: string;
+  numeComplet?: string;
   telefon?: string;
   email?: string;
   serviciu?: string;
@@ -24,6 +26,7 @@ const FROM_EMAIL =
 
 function isValid(body: ContactPayload) {
   if (!body.nume || body.nume.trim().length < 2) return false;
+  if (!body.prenume || body.prenume.trim().length < 2) return false;
   if (!body.telefon || body.telefon.trim().length < 6) return false;
   if (body.email && body.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())) return false;
   return true;
@@ -40,6 +43,7 @@ function buildMessage(body: ContactPayload, subject: string) {
     html: `
     <h2>Solicitare programare</h2>
     <p><strong>Nume:</strong> ${escape(body.nume)}</p>
+    <p><strong>Prenume:</strong> ${escape(body.prenume)}</p>
     <p><strong>Telefon:</strong> ${escape(body.telefon)}</p>
     <p><strong>Email:</strong> ${escape(body.email)}</p>
     <p><strong>Serviciu dorit:</strong> ${escape(body.serviciu)}</p>
@@ -51,7 +55,9 @@ function buildMessage(body: ContactPayload, subject: string) {
     <p style="font-size:12px;color:#888;">Titlu pagină: ${escape(body.pageTitle)} · trimis la ${new Date().toISOString()}</p>
   `,
     fields: {
-      name: body.nume?.trim() ?? "",
+      name: (body.numeComplet ?? `${body.prenume ?? ""} ${body.nume ?? ""}`).trim(),
+      nume: body.nume?.trim() ?? "",
+      prenume: body.prenume?.trim() ?? "",
       telefon: body.telefon?.trim() ?? "",
       email: body.email?.trim() || "nespecificat@alvernadental.com",
       serviciu: body.serviciu?.trim() || "—",
@@ -100,6 +106,8 @@ async function sendWithFormSubmit(
       _template: "table",
       _captcha: "false",
       name: fields.name,
+      nume: fields.nume,
+      prenume: fields.prenume,
       telefon: fields.telefon,
       email: fields.email,
       serviciu: fields.serviciu,
@@ -138,14 +146,27 @@ export async function POST(request: Request) {
 
   if (!isValid(body)) {
     return NextResponse.json(
-      { ok: false, error: "Te rugăm să completezi cel puțin numele și un număr de telefon valid." },
+      { ok: false, error: "Te rugăm să completezi numele, prenumele și un număr de telefon valid." },
       { status: 422 },
     );
   }
 
-  const subject = `Programare nouă · ${body.nume?.trim() ?? "(fără nume)"}`;
+  const fullName = (body.numeComplet ?? `${body.prenume ?? ""} ${body.nume ?? ""}`).trim();
+  const subject = `Programare nouă · ${fullName || "(fără nume)"}`;
   const { html, fields } = buildMessage(body, subject);
   const replyTo = body.email?.trim() || undefined;
+
+  if (process.env.NODE_ENV === "development" && !RESEND_API_KEY) {
+    console.info("[contact] localhost — formular primit (emailul nu se trimite în development)", {
+      nume: body.nume,
+      prenume: body.prenume,
+      telefon: body.telefon,
+      email: body.email || "—",
+      serviciu: body.serviciu || "—",
+      source: body.source,
+    });
+    return NextResponse.json({ ok: true });
+  }
 
   try {
     const sent = RESEND_API_KEY

@@ -1,10 +1,43 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
-import InstagramReelsSection from "@/components/layout/InstagramReelsSection";
 import { CLINIC } from "@/lib/contact";
 import { services } from "@/config/services";
+
+const InstagramReelsSection = dynamic(() => import("@/components/layout/InstagramReelsSection"), {
+  ssr: false,
+});
+
+function DeferredInstagram() {
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setReady(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "120px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  return (
+    <div ref={rootRef} className="min-h-[28rem]">
+      {ready ? <InstagramReelsSection /> : null}
+    </div>
+  );
+}
 
 const pageLinks = [
   { href: "/", label: "Acasă" },
@@ -22,7 +55,7 @@ const pageLinks = [
 export default function SiteFooter() {
   return (
     <>
-      <InstagramReelsSection />
+      <DeferredInstagram />
     <footer className="flex flex-col bg-[#0f1115] px-4 pb-12 pt-16 text-white md:px-8 md:pt-20 lg:px-12 lg:pb-14">
       <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-12 border-t border-white/8 pt-12 lg:grid-cols-[1.35fr_0.9fr_1fr_1fr] lg:gap-16">
         <section>
@@ -35,22 +68,22 @@ export default function SiteFooter() {
             confort sporit, iar experiența și profesionalismul medicilor noștri sunt puse în slujba asigurării unei
             sănătăți dentare excelente!
           </p>
-          <div className="mt-8 flex flex-col gap-2 text-[18px] leading-[1.6] text-white md:text-[21px]">
-            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+          <div className="mt-8 flex flex-col text-[18px] leading-[1.6] text-white md:text-[21px]">
+            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:underline">
               {CLINIC.addressShort}
             </a>
-            <a href={`tel:${CLINIC.phoneTel}`} className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+            <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:underline">
               {CLINIC.phoneDisplay}
             </a>
-            <a href={`mailto:${CLINIC.email}`} className="block transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+            <a href={`mailto:${CLINIC.email}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:underline">
               {CLINIC.email}
             </a>
           </div>
-          <div className="mt-6 flex flex-wrap gap-4 text-[16px] text-white/55">
-            <Link href="/termeni-si-conditii" prefetch={false} className="hover:text-white hover:underline">
+          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[16px] text-white/55">
+            <Link href="/termeni-si-conditii" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
               Termeni și condiții
             </Link>
-            <Link href="/politica-de-confidentialitate" prefetch={false} className="hover:text-white hover:underline">
+            <Link href="/politica-de-confidentialitate" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
               Politică de confidențialitate
             </Link>
           </div>
@@ -58,9 +91,9 @@ export default function SiteFooter() {
 
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Pagini</h4>
-          <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
+          <div className="mt-4 flex flex-col text-[18px] text-white/85 md:text-[21px]">
             {pageLinks.map((item) => (
-              <Link key={item.label} href={item.href} prefetch={false} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
+              <Link key={item.label} href={item.href} prefetch={false} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {item.label}
               </Link>
             ))}
@@ -69,9 +102,9 @@ export default function SiteFooter() {
 
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Servicii</h4>
-          <div className="mt-4 space-y-2 text-[18px] text-white/85 md:text-[21px]">
+          <div className="mt-4 flex flex-col text-[18px] text-white/85 md:text-[21px]">
             {services.filter((service) => service.slug !== "all-on-x").map((service) => (
-              <Link key={service.slug} href={service.href} prefetch={false} className="block transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
+              <Link key={service.slug} href={service.href} prefetch={false} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
                 {service.title}
               </Link>
             ))}
@@ -80,17 +113,17 @@ export default function SiteFooter() {
 
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Programare</h4>
-          <div className="mt-4 flex flex-col gap-3 text-[18px] leading-[1.6] text-white md:text-[21px]">
-            <a href={CLINIC.formPageHref} className="block font-semibold transition-transform duration-200 hover:translate-x-[3px]">
+          <div className="mt-4 flex flex-col text-[18px] leading-[1.6] text-white md:text-[21px]">
+            <a href={CLINIC.formPageHref} className="inline-flex min-h-[44px] items-center font-semibold transition-transform duration-200 hover:translate-x-[3px]">
               Programează o consultație
             </a>
-            <a href={`tel:${CLINIC.phoneTel}`} className="block transition-transform duration-200 hover:translate-x-[3px]">
+            <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px]">
               Sună acum
             </a>
-            <a href="/cazuri/" className="block transition-transform duration-200 hover:translate-x-[3px]">
+            <a href="/cazuri/" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px]">
               Vezi cazuri reale
             </a>
-            <a href="/tarife/" className="block transition-transform duration-200 hover:translate-x-[3px]">
+            <a href="/tarife/" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px]">
               Vezi toate tarifele
             </a>
           </div>
@@ -102,7 +135,7 @@ export default function SiteFooter() {
           href={CLINIC.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="ads-footer-instagram block w-full text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
+          className="ads-footer-instagram flex min-h-[44px] w-full items-center justify-center text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
         >
           {CLINIC.instagramHandle}
         </a>

@@ -8,8 +8,9 @@ import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
 import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
-import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
+import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
+import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
@@ -129,9 +130,7 @@ export default function EchipaPage() {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              isFixedTeethNav(item.label) ? "ads-nav-green-glow" : ""
-            }`}
+            className={mobileMenuClassForLabel(item.label)}
           >
             {item.label}
           </a>
@@ -153,9 +152,7 @@ export default function EchipaPage() {
             href={item.href}
             data-menu-item
             onClick={closeMenu}
-            className={`block text-left text-[clamp(42px,8vw,96px)] font-extrabold leading-[0.95] tracking-[-0.035em] text-white transition duration-250 hover:translate-y-[-2px] ${
-              item.label === "Urgențe" ? "ads-nav-emergency-glow" : ""
-            }`}
+            className={mobileMenuClassForLabel(item.label)}
           >
             {item.label}
           </a>
@@ -193,11 +190,11 @@ export default function EchipaPage() {
             aria-controls="echipa-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className="relative z-10 flex h-10 w-10 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px]"
+            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px] ${menuOpen ? "pointer-events-none" : ""}`}
           >
-            <span ref={menuTopLineRef} className="h-[2px] w-full bg-white" />
-            <span ref={menuMidLineRef} className="h-[2px] w-full bg-white" />
-            <span ref={menuBottomLineRef} className="h-[2px] w-full bg-white" />
+            <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-white" />
+            <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-white" />
+            <span ref={menuBottomLineRef} className="ads-menu-line ads-menu-line-bottom h-[2px] w-full bg-white" />
           </button>
           </div>
           </div>

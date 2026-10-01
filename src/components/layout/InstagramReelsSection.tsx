@@ -13,63 +13,63 @@ const INSTAGRAM_REELS = [
   "DWiXYFugDv0",
 ] as const;
 
-function ReelFallback({ reelId }: { reelId: string }) {
-  return (
-    <a
-      href={`https://www.instagram.com/reel/${reelId}/`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex aspect-[9/16] w-full flex-col items-center justify-center gap-3 bg-[#111] px-4 text-center text-white transition hover:bg-[#161616]"
-    >
-      <span className="text-[15px] font-medium text-white/80">Reel Instagram</span>
-      <span className="text-[17px] font-semibold text-[#B6B94C]">Vezi pe Instagram</span>
-      <span className="text-[14px] text-white/50">{CLINIC.instagramHandle}</span>
-    </a>
-  );
-}
-
-function ReelEmbed({ reelId }: { reelId: string }) {
-  const [visible, setVisible] = useState(false);
-  const [embedFailed, setEmbedFailed] = useState(false);
-  const loadedRef = useRef(false);
+function ReelCard({ reelId }: { reelId: string }) {
+  const rootRef = useRef<HTMLLIElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const [frameReady, setFrameReady] = useState(false);
 
   useEffect(() => {
-    if (!visible || embedFailed || loadedRef.current) return;
-    const timer = window.setTimeout(() => {
-      if (!loadedRef.current) setEmbedFailed(true);
-    }, 12000);
-    return () => window.clearTimeout(timer);
-  }, [visible, embedFailed]);
+    const el = rootRef.current;
+    if (!el) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoad(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "160px", threshold: 0.01 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const embedSrc = `https://www.instagram.com/reel/${reelId}/embed/?cr=1&v=14`;
+  const reelUrl = `https://www.instagram.com/reel/${reelId}/`;
 
   return (
-    <li className="min-w-0 list-none">
-      <div className="instagram-reel-frame ring-1 ring-white/8 transition duration-300 hover:ring-white/16">
-        {visible && !embedFailed ? (
+    <li ref={rootRef} className="min-w-0 list-none">
+      <div className="instagram-reel-frame ring-1 ring-white/8">
+        {shouldLoad ? (
           <iframe
-            title={`Instagram reel ${reelId}`}
-            src={`https://www.instagram.com/reel/${reelId}/embed`}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title={`Reel Instagram ${reelId}`}
+            src={embedSrc}
+            loading="eager"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
             allowFullScreen
-            onLoad={() => {
-              loadedRef.current = true;
-              setEmbedFailed(false);
-            }}
-            onError={() => setEmbedFailed(true)}
+            referrerPolicy="strict-origin-when-cross-origin"
+            onLoad={() => setFrameReady(true)}
           />
-        ) : visible && embedFailed ? (
-          <ReelFallback reelId={reelId} />
-        ) : (
-          <button
-            type="button"
-            className="h-full w-full"
-            onClick={() => setVisible(true)}
-            aria-label="Încarcă reel Instagram"
-          >
-            <ReelFallback reelId={reelId} />
-          </button>
-        )}
+        ) : null}
+
+        {!frameReady ? (
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-[#111] px-4">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#0f1115]" aria-hidden>
+              <span className="ml-[3px] inline-block h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-current" />
+            </span>
+            <span className="text-[15px] font-medium text-white/80">Se încarcă clipul…</span>
+          </div>
+        ) : null}
       </div>
+      <a
+        href={reelUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 inline-flex min-h-[44px] w-full items-center justify-center text-center text-[14px] font-medium text-white/70 underline decoration-white/25 underline-offset-4 hover:text-white"
+      >
+        Deschide pe Instagram
+      </a>
     </li>
   );
 }
@@ -89,7 +89,7 @@ export default function InstagramReelsSection() {
             href={CLINIC.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[18px] font-medium text-[#B6B94C] underline decoration-[#B6B94C]/40 underline-offset-4 hover:decoration-[#B6B94C]"
+            className="inline-flex min-h-[44px] items-center text-[18px] font-medium text-[#B6B94C] underline decoration-[#B6B94C]/40 underline-offset-4 hover:decoration-[#B6B94C]"
           >
             {CLINIC.instagramHandle}
           </a>
@@ -97,7 +97,7 @@ export default function InstagramReelsSection() {
 
         <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:mt-10 md:grid-cols-3 md:gap-5 lg:grid-cols-6 lg:gap-6">
           {INSTAGRAM_REELS.map((reelId) => (
-            <ReelEmbed key={reelId} reelId={reelId} />
+            <ReelCard key={reelId} reelId={reelId} />
           ))}
         </ul>
       </div>

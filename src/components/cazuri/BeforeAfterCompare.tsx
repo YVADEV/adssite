@@ -42,6 +42,11 @@ export function BeforeAfterCompare({
 
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     startRef.current = { x: event.clientX, y: event.clientY, id: event.pointerId };
+    setFromClientX(event.clientX);
+    if (event.pointerType !== "touch") {
+      draggingRef.current = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
   };
 
   const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {

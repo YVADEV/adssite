@@ -26,17 +26,23 @@ export function MobileMenuOverlay({
       aria-hidden={!menuVisible}
       inert={!menuVisible}
       id={id}
-      className={`fixed inset-0 z-[8888] isolate bg-[#0f1115] ${menuVisible ? "visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
+      className={`fixed inset-0 z-[10050] isolate bg-[#0f1115] transition-opacity duration-150 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        menuVisible ? "opacity-100" : "invisible pointer-events-none opacity-0"
+      }`}
     >
-      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[1920px] flex-col overflow-y-auto overscroll-contain px-6 py-6 md:px-10">
-        <div className="flex items-center justify-between">
-          <span className="text-[22px] font-bold tracking-[-0.03em] text-white">alverna®</span>
-          <button type="button" aria-label="Închide meniul" onClick={onClose} className="relative h-11 w-11">
-            <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#ffffff]" />
-            <span className="absolute left-1/2 top-1/2 h-[2px] w-7 -translate-x-1/2 -translate-y-1/2 -rotate-45 bg-[#ffffff]" />
+      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[480px] flex-col overflow-y-auto overscroll-contain px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]">
+        <div className="flex items-center justify-end pb-2">
+          <button
+            type="button"
+            aria-label="Închide meniul"
+            onClick={onClose}
+            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5"
+          >
+            <span className="absolute h-[2px] w-4 rotate-45 bg-white" />
+            <span className="absolute h-[2px] w-4 -rotate-45 bg-white" />
           </button>
         </div>
-        <MobileMenuLayout showPhoto={menuVisible}>{children}</MobileMenuLayout>
+        <MobileMenuLayout>{children}</MobileMenuLayout>
         <MobileMenuFooter />
       </div>
     </div>

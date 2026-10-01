@@ -12,6 +12,7 @@ type ServicePageTemplateProps = {
   chip?: string;
   image?: string;
   imageAlt?: string;
+  subLinks?: { title: string; href: string }[];
 };
 
 const recommendationBullets = [
@@ -34,6 +35,7 @@ export default function ServicePageTemplate({
   chip = "Echipa Alverna Dental Studio",
   image = "/services/dental-chair.png",
   imageAlt,
+  subLinks = [],
 }: ServicePageTemplateProps) {
   const reveal = motionRevealProps(useMotionReady());
 
@@ -70,6 +72,19 @@ export default function ServicePageTemplate({
                   Vezi tarife
                 </a>
               </div>
+              {subLinks.length > 0 ? (
+                <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
+                  {subLinks.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="ads-btn-green-glow-sm inline-flex min-h-[44px] w-full items-center justify-center rounded-full px-5 text-[16px] font-semibold sm:w-auto"
+                    >
+                      {link.title}
+                    </a>
+                  ))}
+                </div>
+              ) : null}
             </motion.div>
           </div>
         </div>

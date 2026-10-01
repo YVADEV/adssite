@@ -323,7 +323,7 @@ function IntroAccordion({
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => setOpenIndex((prev) => (prev === index ? null : index))}
-              className="ads-btn-no-glow flex w-full items-start justify-between gap-4 text-left"
+              className="ads-btn-no-glow flex min-h-[44px] w-full items-center justify-between gap-4 text-left"
             >
               <h2 className="text-[19px] font-semibold leading-[1.25] tracking-[-0.02em] text-white sm:text-[21px]">
                 {item.title}
@@ -378,7 +378,7 @@ function DoctorVideoBlock({
         <p className="mt-2 text-[17px] leading-[1.5] text-white/80">{doctor.bio}</p>
         <Link
           href={doctor.href}
-          className="mt-2 inline-flex min-h-[36px] items-center text-[17px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4"
+          className="mt-2 inline-flex min-h-[44px] items-center text-[17px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4"
         >
           Vezi profil →
         </Link>
@@ -391,7 +391,7 @@ function DoctorVideoBlock({
                   type="button"
                   aria-expanded={isOpen}
                   onClick={() => setOpenIndex((prev) => (prev === index ? null : index))}
-                  className="ads-btn-no-glow flex w-full items-start justify-between gap-2 text-left"
+                  className="ads-btn-no-glow flex min-h-[44px] w-full items-center justify-between gap-2 text-left"
                 >
                   <span className="min-w-0 flex-1 text-[17px] font-semibold leading-[1.35] text-white">{item.q}</span>
                   <span aria-hidden className="shrink-0 text-[16px] text-white/70">
@@ -610,7 +610,7 @@ export default function AllOn4PageClient() {
             </div>
             <Link
               href="/cazuri/"
-              className="inline-flex min-h-[36px] items-center rounded-full border border-white/25 px-4 text-[17px] font-semibold text-white"
+              className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 px-4 text-[17px] font-semibold text-white"
             >
               Vezi toate
             </Link>

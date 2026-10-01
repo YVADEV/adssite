@@ -34,7 +34,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export async function generateStaticParams() {
   return services
-    .filter((service) => service.slug !== "all-on-x" && service.slug !== "urgente-stomatologice")
+    .filter(
+      (service) =>
+        service.slug !== "all-on-x" &&
+        service.slug !== "urgente-stomatologice" &&
+        service.slug !== "aparat-dentar",
+    )
     .map((service) => ({ serviceSlug: service.slug }));
 }
 
@@ -48,6 +53,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       <ServicePageTemplate
         title={service.title}
         shortIntro={`Serviciul de ${service.title.toLowerCase()} este realizat în clinică cu protocoale moderne, atenție la detalii și comunicare clară cu pacientul, pentru o experiență predictibilă și confortabilă.`}
+        subLinks={service.children}
       />
     </PrototypeFrame>
   );

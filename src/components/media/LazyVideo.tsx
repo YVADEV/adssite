@@ -79,7 +79,7 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
           }
         }
       },
-      { rootMargin: "120px", threshold: 0.01 }
+      { rootMargin: "0px", threshold: 0.12 }
     );
     io.observe(el);
     return () => {
@@ -126,7 +126,7 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
           muted
           loop={loop}
           playsInline
-          preload="metadata"
+          preload="none"
           poster={poster}
           aria-label={ariaLabel}
           className="h-full w-full object-cover"

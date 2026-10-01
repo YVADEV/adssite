@@ -3,22 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { services } from "@/config/services";
+import { services, type ServiceItem } from "@/config/services";
 
 type ServicesDropdownProps = {
   isDark?: boolean;
 };
+
+const ITEM_CLASS =
+  "ads-btn-green-glow-sm inline-flex h-11 w-full shrink-0 items-center rounded-full px-4 text-[15px] font-medium leading-none tracking-[-0.02em] text-white";
 
 export default function ServicesDropdown({ isDark = false }: ServicesDropdownProps) {
   const pathname = usePathname();
   const isServicesActive = pathname.startsWith("/servicii");
   const rootRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number | null>(null);
+  const accordionTimerRef = useRef<number | null>(null);
   const [open, setOpen] = useState(false);
+  const [accordionSlug, setAccordionSlug] = useState<string | null>(null);
 
   const serviceMap = Object.fromEntries(services.map((service) => [service.slug, service]));
   const groupedColumns = [
-    ["implant-dentar", "chirurgie-dentara", "augmentarea-osoasa", "protetica"],
+    ["implant-dentar", "all-on-x", "chirurgie-dentara", "augmentarea-osoasa", "protetica"],
     ["ortodontie", "aparat-dentar", "estetica-dentara", "fatete-dentare", "coroana-dentara"],
     ["profilaxie", "endodontie", "odontologie", "pedodontie", "urgente-stomatologice", "dentist-cluj"],
   ]
@@ -32,6 +37,25 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     }
   };
 
+  const clearAccordionTimer = () => {
+    if (accordionTimerRef.current !== null) {
+      window.clearTimeout(accordionTimerRef.current);
+      accordionTimerRef.current = null;
+    }
+  };
+
+  const openAccordion = (slug: string) => {
+    clearAccordionTimer();
+    setAccordionSlug(slug);
+  };
+
+  const closeAccordionWithDelay = () => {
+    clearAccordionTimer();
+    accordionTimerRef.current = window.setTimeout(() => {
+      setAccordionSlug(null);
+    }, 120);
+  };
+
   const handleOpen = () => {
     clearTimer();
     setOpen(true);
@@ -41,19 +65,22 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     clearTimer();
     closeTimerRef.current = window.setTimeout(() => {
       setOpen(false);
-    }, 170);
+      setAccordionSlug(null);
+    }, 180);
   };
 
   useEffect(() => {
     const onClickOutside = (event: MouseEvent) => {
       if (!rootRef.current?.contains(event.target as Node)) {
         setOpen(false);
+        setAccordionSlug(null);
       }
     };
 
     const onEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
+        setAccordionSlug(null);
       }
     };
 
@@ -63,8 +90,86 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       document.removeEventListener("mousedown", onClickOutside);
       document.removeEventListener("keydown", onEscape);
       clearTimer();
+      clearAccordionTimer();
     };
   }, []);
+
+  function renderItem(item: ServiceItem) {
+    const children = item.children ?? [];
+    const hasAccordion = children.length > 0 && item.slug === "aparat-dentar";
+    const accordionOpen = accordionSlug === item.slug;
+
+    if (!hasAccordion) {
+      return (
+        <Link
+          href={item.href}
+          prefetch={false}
+          role="menuitem"
+          aria-current={pathname === item.href ? "page" : undefined}
+          onMouseEnter={() => {
+            handleOpen();
+            closeAccordionWithDelay();
+          }}
+          onFocus={handleOpen}
+          className={ITEM_CLASS}
+        >
+          <span className="min-w-0 truncate">{item.title}</span>
+        </Link>
+      );
+    }
+
+    return (
+      <div
+        className="flex flex-col gap-2"
+        onMouseEnter={() => {
+          handleOpen();
+          openAccordion(item.slug);
+        }}
+        onMouseLeave={closeAccordionWithDelay}
+      >
+        <div className={`${ITEM_CLASS} justify-between gap-2`}>
+          <Link
+            href={item.href}
+            prefetch={false}
+            role="menuitem"
+            aria-current={pathname === item.href ? "page" : undefined}
+            onFocus={() => {
+              handleOpen();
+              openAccordion(item.slug);
+            }}
+            className="flex min-h-11 min-w-0 flex-1 items-center truncate"
+          >
+            {item.title}
+          </Link>
+          <span aria-hidden className="pr-0.5 text-[15px] font-normal opacity-55">
+            {accordionOpen ? "−" : "+"}
+          </span>
+        </div>
+        <div
+          id="servicii-aparat-dentar-submenu"
+          role="region"
+          aria-label="Alignere și gutieră"
+          hidden={!accordionOpen}
+          className={`flex flex-col gap-2 overflow-hidden rounded-[18px] border border-[#B6B94C]/45 bg-[#101218] p-2 ${
+            accordionOpen ? "" : "hidden"
+          }`}
+        >
+          {children.map((child) => (
+            <Link
+              key={child.slug}
+              href={child.href}
+              prefetch={false}
+              role="menuitem"
+              aria-current={pathname === child.href ? "page" : undefined}
+              className={`${ITEM_CLASS} h-10 bg-white/[0.06] text-[14px]`}
+            >
+              <span className="min-w-0 truncate">{child.title}</span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={rootRef} className="relative hidden lg:block" onMouseEnter={handleOpen} onMouseLeave={handleCloseWithDelay}>
@@ -83,53 +188,22 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       </button>
 
       <div
+        role="menu"
+        data-open={open ? "true" : "false"}
         aria-hidden={!open}
         inert={!open}
-        className={`fixed left-1/2 top-[4.75rem] z-[120] w-[min(860px,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] rounded-[20px] border px-6 py-6 backdrop-blur-xl transition-all duration-[220ms] [transition-timing-function:cubic-bezier(0.16,1,0.3,1)] sm:px-10 sm:py-8 ${
-          open ? "pointer-events-auto -translate-x-1/2 translate-y-0 opacity-100" : "pointer-events-none -translate-x-1/2 translate-y-[6px] opacity-0"
-        } ${isDark ? "border-white/10 bg-[rgba(9,9,9,0.82)] text-white" : "border-black/10 bg-[rgba(245,245,245,0.85)] text-white"}`}
+        className={`ads-services-panel fixed left-1/2 top-[80px] z-[120] w-[920px] max-w-[calc(100vw-64px)] origin-top rounded-[28px] border border-white/[0.08] bg-[rgba(12,14,18,0.88)] p-6 backdrop-blur-2xl transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          open
+            ? "pointer-events-auto -translate-x-1/2 translate-y-0 opacity-100"
+            : "pointer-events-none -translate-x-1/2 translate-y-2 opacity-0"
+        }`}
       >
-        <div className="grid grid-cols-3 gap-x-10">
+        <div className="grid grid-cols-3 gap-x-5">
           {groupedColumns.map((column, idx) => (
-            <div key={`services-column-${idx}`} className="space-y-2">
-              {column.map((item) => {
-                const hasChildren = Boolean(item.children?.length);
-                return (
-                  <div key={item.slug} className="relative">
-                    <Link
-                      href={item.href}
-                      aria-current={pathname === item.href ? "page" : undefined}
-                      onFocus={handleOpen}
-                      className={`flex min-h-[40px] items-center justify-between gap-2 rounded-[10px] px-3 py-2 text-[19px] font-medium leading-[1.35] transition duration-200 ${
-                        pathname === item.href || pathname.startsWith(`${item.href}`) ? "bg-[#B6B94C]/15 text-white" : ""
-                      } ${
-                        isDark ? "text-white hover:translate-x-[3px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[3px] hover:bg-[#edf2eb]"
-                      }`}
-                    >
-                      <span className="min-w-0 flex-1 text-left">{item.title}</span>
-                    </Link>
-
-                    {hasChildren ? (
-                      <div className="pl-[16px]">
-                        {(item.children ?? []).map((child) => (
-                          <Link
-                            key={child.slug}
-                            href={child.href}
-                            aria-current={pathname === child.href ? "page" : undefined}
-                            className={`mt-1.5 flex min-h-[36px] items-center rounded-[8px] px-3 py-2 text-[18px] font-normal leading-[1.35] transition duration-200 ${
-                              pathname === child.href ? "bg-[#B6B94C]/15 text-white" : ""
-                            } ${
-                              isDark ? "text-white hover:translate-x-[2px] hover:bg-white/10 hover:text-white" : "ads-text-on-light hover:translate-x-[2px] hover:bg-[#edf2eb]"
-                            }`}
-                          >
-                            {child.title}
-                          </Link>
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                );
-              })}
+            <div key={`services-column-${idx}`} className="ads-services-col flex flex-col gap-2.5">
+              {column.map((item) => (
+                <div key={item.slug}>{renderItem(item)}</div>
+              ))}
             </div>
           ))}
         </div>

@@ -39,6 +39,7 @@ export default function CookieConsent() {
       role="dialog"
       aria-live="polite"
       aria-label="Notificare cookie-uri"
+      data-ads-cookie-consent
       className="fixed bottom-3 left-3 right-[4.75rem] z-[9999] max-w-[640px] rounded-[16px] border border-white/10 bg-[#0f1115]/95 p-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.5)] backdrop-blur-md sm:bottom-5 sm:left-5 sm:right-auto sm:p-4"
     >
       <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">

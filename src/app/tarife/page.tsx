@@ -13,14 +13,31 @@ export default function TarifePage() {
 
   return (
     <PrototypeFrame>
-      <main className="min-w-0 bg-black pb-24 pt-12 text-white md:pt-16 lg:pt-[110px]">
-        <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white/70">Transparență totală</p>
-          <div className="mt-4 flex flex-wrap items-end justify-between gap-4">
-            <h1 className="text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[84px] lg:text-[120px]">Tarife</h1>
+      <main className="min-w-0 bg-black pb-24 text-white">
+        <section className="relative w-full overflow-hidden bg-black">
+          <div className="relative aspect-[1024/585] w-full md:aspect-auto md:h-[min(68vh,640px)] lg:h-[min(74vh,760px)]">
+            <img
+              src="/tarife-hero.jpg"
+              alt="Echipa Alverna Dental Studio"
+              width={1024}
+              height={585}
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/80 via-black/35 to-transparent md:h-[38%]" />
+            <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-8 pt-24 md:px-8 md:pb-12 lg:px-12 lg:pb-16">
+              <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-white/80 sm:text-[18px] md:text-[21px]">
+                Transparență totală
+              </p>
+              <h1 className="mt-2 text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[84px] lg:text-[120px]">
+                Tarife
+              </h1>
+            </div>
           </div>
+        </section>
 
-          <p className="mt-4 max-w-[960px] text-[21px] leading-[1.65] text-white/75">
+        <section className="mx-auto w-full max-w-[1680px] px-4 pt-8 md:px-8 md:pt-12 lg:px-12">
+          <p className="max-w-[960px] text-[18px] leading-[1.65] text-white/75 sm:text-[21px]">
             Aceleași tarife ale clinicii, organizate pe categorii. Selectează categoria dorită pentru a vedea toate procedurile și prețurile disponibile.
           </p>
 

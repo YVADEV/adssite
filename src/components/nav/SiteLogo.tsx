@@ -13,7 +13,7 @@ export default function SiteLogo({ className = "" }: SiteLogoProps) {
       href="/"
       prefetch={false}
       aria-label="Alverna Dental Studio — Acasă"
-      className={`relative z-10 inline-flex shrink-0 items-center transition duration-200 hover:opacity-80 ${className}`}
+      className={`relative z-10 inline-flex min-h-11 min-w-11 shrink-0 items-center transition duration-200 hover:opacity-80 ${className}`}
     >
       <Image
         src={navLogo}

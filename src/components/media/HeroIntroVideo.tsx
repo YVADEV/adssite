@@ -62,7 +62,7 @@ export function HeroIntroVideo() {
           height={1080}
           alt="Alverna Dental Studio — clinică modernă din Cluj"
           fetchPriority="high"
-          decoding="async"
+          decoding="sync"
           className="absolute inset-0 h-full w-full object-cover object-center"
         />
       </picture>

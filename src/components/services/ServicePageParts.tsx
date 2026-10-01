@@ -500,7 +500,7 @@ export function ServiceFAQ({
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenFaq((prev) => (prev === index ? null : index))}
-                className="ads-btn-no-glow flex w-full items-start justify-between gap-4 text-left"
+                className="ads-btn-no-glow flex min-h-[44px] w-full items-center justify-between gap-4 text-left"
               >
                 <h4 className={compact ? "text-[18px] font-semibold leading-[1.35] text-white" : "text-[21px] font-semibold leading-[1.35] text-white"}>{item.q}</h4>
                 <span aria-hidden className={compact ? "pt-0.5 text-[18px] text-white" : "pt-1 text-[21px] text-white"}>
@@ -579,7 +579,7 @@ export function ServiceTestimonials() {
           Recenzii
         </h3>
         <p className="mt-3 text-[21px] font-semibold text-white">
-          <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
+          <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center underline decoration-[#B6B94C]/60 underline-offset-4">
             Scor mediu Google: 4.8 ⭐
           </a>
         </p>
@@ -653,7 +653,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
           </div>
           <a
             href={`tel:${CLINIC.phoneTel}`}
-            className="mt-7 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:text-white hover:decoration-white"
+            className="mt-7 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:text-white hover:decoration-white"
           >
             Preferi telefonic? Sună acum
           </a>

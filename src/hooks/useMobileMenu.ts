@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type RefObject } from "react";
-import gsap from "gsap";
 
 type MobileMenuRefs = {
   overlayRef: RefObject<HTMLDivElement | null>;
@@ -13,83 +12,30 @@ type MobileMenuRefs = {
 };
 
 export function useMobileMenu(refs: MobileMenuRefs) {
-  const { overlayRef, pageRef, topLineRef, midLineRef, bottomLineRef, menuTriggerRef } = refs;
+  const { overlayRef, menuTriggerRef } = refs;
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [menuVisible, setMenuVisible] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
-  const prevMenuOpenRef = useRef(false);
   const focusPrevOpenRef = useRef(false);
-  const menuVisibleRef = useRef(false);
   const skipSubmenuResetRef = useRef(true);
 
   useEffect(() => {
-    menuVisibleRef.current = menuVisible;
-  }, [menuVisible]);
-
-  useEffect(() => {
-    const overlay = overlayRef.current;
-    const page = pageRef.current;
-    const top = topLineRef.current;
-    const mid = midLineRef.current;
-    const bottom = bottomLineRef.current;
-    if (!overlay || !page || !top || !mid || !bottom) return;
-
-    const ease = "cubic-bezier(0.16, 1, 0.3, 1)";
-    const menuItems = overlay.querySelectorAll<HTMLElement>("[data-menu-item]");
-    let frame = 0;
-    let tl: gsap.core.Timeline | null = null;
-    const wasOpen = prevMenuOpenRef.current;
-    const isOpen = menuOpen;
-
-    if (isOpen && !wasOpen) {
+    if (menuOpen) {
       document.body.style.overflow = "hidden";
       document.body.classList.add("menu-open");
-      gsap.set(overlay, { opacity: 0, scale: 0.98, pointerEvents: "auto" });
-      gsap.set(menuItems, { opacity: 0, y: 40 });
-      if (!menuVisibleRef.current) {
-        setMenuVisible(true);
-      }
-      frame = requestAnimationFrame(() => {
-        tl = gsap.timeline({ defaults: { ease } });
-        tl.to(overlay, { opacity: 1, scale: 1, duration: 0.42, ease })
-          .to(page, { opacity: 0, duration: 0.42, ease }, "<")
-          .to(top, { y: 8, rotate: 45, duration: 0.36, ease }, "-=0.34")
-          .to(mid, { opacity: 0, scaleX: 0.35, duration: 0.3, ease }, "<")
-          .to(bottom, { y: -8, rotate: -45, duration: 0.36, ease }, "<")
-          .to(menuItems, { opacity: 1, y: 0, stagger: 0.08, duration: 0.62, ease }, "-=0.16");
-      });
-    } else if (!isOpen && wasOpen && menuVisibleRef.current) {
-      tl = gsap.timeline({ defaults: { ease } });
-      tl.to(menuItems, { opacity: 0, y: 20, stagger: { each: 0.07, from: "end" }, duration: 0.34, ease })
-        .to(overlay, { opacity: 0, duration: 0.38, ease }, "-=0.08")
-        .to(page, { opacity: 1, duration: 0.38, ease }, "<")
-        .to(top, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .to(mid, { opacity: 1, scaleX: 1, duration: 0.28, ease }, "<")
-        .to(bottom, { y: 0, rotate: 0, duration: 0.32, ease }, "<")
-        .add(() => {
-          setMenuVisible(false);
-        });
-      document.body.style.overflow = "";
-      document.body.classList.remove("menu-open");
-    } else if (!isOpen && !menuVisibleRef.current) {
-      gsap.set(overlay, { opacity: 0, pointerEvents: "none" });
-      document.body.style.overflow = "";
-      document.body.classList.remove("menu-open");
+      return;
     }
+    document.body.style.overflow = "";
+    document.body.classList.remove("menu-open");
+  }, [menuOpen]);
 
-    prevMenuOpenRef.current = isOpen;
-
+  useEffect(() => {
     return () => {
-      cancelAnimationFrame(frame);
-      tl?.kill();
-      if (!menuOpen) {
-        document.body.style.overflow = "";
-        document.body.classList.remove("menu-open");
-      }
+      document.body.style.overflow = "";
+      document.body.classList.remove("menu-open");
     };
-  }, [menuOpen, overlayRef, pageRef, topLineRef, midLineRef, bottomLineRef]);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -97,10 +43,8 @@ export function useMobileMenu(refs: MobileMenuRefs) {
     const overlay = overlayRef.current;
     if (!overlay) return;
 
-    const focusableSelector =
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    const focusables = () =>
-      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
+    const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const focusables = () => Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
 
     focusables()[0]?.focus();
 
@@ -150,7 +94,7 @@ export function useMobileMenu(refs: MobileMenuRefs) {
   return {
     menuOpen,
     setMenuOpen,
-    menuVisible,
+    menuVisible: menuOpen,
     mobileServicesOpen,
     setMobileServicesOpen,
     openSubmenuSlug,

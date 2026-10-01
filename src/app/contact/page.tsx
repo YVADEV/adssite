@@ -37,13 +37,31 @@ const reviews = [
 export default function ContactPage() {
   return (
     <PrototypeFrame>
-      <main className="bg-black pb-24 pt-16 text-white md:pt-20 lg:pt-[130px]">
-        <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <p className="text-[21px] uppercase tracking-[0.14em] text-white">Contact</p>
-          <h1 className="mt-4 text-[40px] font-extrabold leading-[0.9] tracking-[-0.05em] md:text-[78px] lg:text-[116px]">
-            Contact
-          </h1>
-          <p className="mt-6 max-w-[1050px] text-[21px] leading-[1.65] text-white md:text-[21px] md:leading-[1.65]">
+      <main className="min-w-0 bg-black pb-24 text-white">
+        <section className="relative w-full overflow-hidden bg-black">
+          <div className="relative aspect-[1024/456] w-full">
+            <img
+              src="/contact-hero.jpg"
+              alt="Echipa Alverna Dental Studio"
+              width={1024}
+              height={456}
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-black/80 via-black/35 to-transparent md:h-[38%]" />
+            <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-8 pt-24 md:px-8 md:pb-12 lg:px-12 lg:pb-16">
+              <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-white/80 sm:text-[18px] md:text-[21px]">
+                Alverna Dental Studio
+              </p>
+              <h1 className="mt-2 text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[84px] lg:text-[120px]">
+                Contact
+              </h1>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-[1680px] px-4 pt-8 md:px-8 md:pt-12 lg:px-12">
+          <p className="max-w-[1050px] text-[18px] leading-[1.65] text-white/75 sm:text-[21px]">
             Promisiunea noastră față de dumneavoastră este aceea că echipa Alverna Dental Studio își va folosi experiența
             și pasiunea pentru a face diferența între „câteva plombe” și zâmbetul perfect!
           </p>
@@ -110,18 +128,14 @@ export default function ContactPage() {
 
               <div>
                 <p className="text-[21px] uppercase tracking-[0.14em] text-white">Program</p>
-                <p className="mt-2 text-[21px] leading-[1.65] text-white">
-                  Luni – Vineri: 09:00 – 21:00
-                  <br />
-                  Sâmbătă: 09:00 – 14:00
-                </p>
+                <p className="mt-2 text-[21px] leading-[1.65] text-white">{CLINIC.hoursDisplay}</p>
               </div>
 
               <div>
                 <p className="text-[21px] uppercase tracking-[0.14em] text-white">Telefon</p>
                 <a
                   href={`tel:${CLINIC.phoneTel}`}
-                  className="mt-2 inline-block text-[21px] font-semibold text-white underline decoration-white/30 underline-offset-4 transition hover:decoration-white"
+                  className="mt-2 inline-flex min-h-[44px] items-center text-[21px] font-semibold text-white underline decoration-white/30 underline-offset-4 transition hover:decoration-white"
                 >
                   {CLINIC.phoneDisplay}
                 </a>
@@ -214,7 +228,7 @@ export default function ContactPage() {
               </p>
               <a
                 href={`tel:${CLINIC.phoneTel}`}
-                className="mt-8 inline-block text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
+                className="mt-8 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
               >
                 Preferi telefonic? Sună acum
               </a>

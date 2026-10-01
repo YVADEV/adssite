@@ -51,7 +51,7 @@ export const SERVICES: ReadonlyArray<ServiceMeta> = [
   { slug: "urgente-stomatologice", path: "/urgente-stomatologice-cluj/", name: "Urgențe stomatologice 24/7", short: "Urgențe stomatologice 24/7 în Cluj-Napoca, cu programare telefonică prealabilă." },
   { slug: "dentist-cluj", path: "/servicii/dentist-cluj/", name: "Dentist Cluj", short: "Stomatologie generală în Cluj-Napoca, cu plan personalizat." },
   { slug: "all-on-4-all-on-6", path: "/servicii/implant-dentar/all-on-4-all-on-6/", name: "Dinți ficși / All-on-X", short: "Dinți ficși pe implanturi, flux de lucru digital integrat și laborator propriu." },
-  { slug: "aparat-dentar", path: "/servicii/aparat-dentar/", name: "Aparat dentar", short: "Alignere transparente Spark și Angel Aligner, evaluare ortodontică." },
+  { slug: "aparat-dentar", path: "/servicii/aparat-dentar/", name: "Aparat dentar", short: "Aparat dentar fix metalic, ceramic, safir, lingual și alignere transparente." },
   { slug: "spark", path: "/servicii/aparat-dentar/spark/", name: "Alignere transparente", short: "Ortodonție cu alignere Spark și Angel Aligner." },
   { slug: "gutiera-de-contentie", path: "/servicii/aparat-dentar/gutiera-de-contentie/", name: "Gutieră de contenție", short: "Menținerea rezultatelor după tratamentul ortodontic." },
 ];

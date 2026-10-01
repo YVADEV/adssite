@@ -5,30 +5,42 @@ type MobileMenuFooterProps = {
 };
 
 export function MobileMenuFooter({ className = "" }: MobileMenuFooterProps) {
+  const mailto = `mailto:${CLINIC.email}?subject=${encodeURIComponent(CLINIC.mailtoSubject)}`;
+
   return (
-    <div
-      className={`relative z-20 mt-auto shrink-0 border-t border-white/10 bg-[#0f1115] pt-6 ${className}`}
-    >
-      <div className="flex flex-col gap-4 text-white sm:flex-row sm:items-end sm:justify-between">
-        <div className="flex flex-col gap-2 text-[18px] leading-[1.5] sm:text-[21px]">
-          <a href={`tel:${CLINIC.phoneTel}`} className="block hover:opacity-80">
-            {CLINIC.phoneDisplay}
-          </a>
-          <a href={`mailto:${CLINIC.email}`} className="block hover:opacity-80">
-            {CLINIC.email}
-          </a>
-        </div>
-        <div className="text-left text-[16px] leading-[1.6] sm:text-right sm:text-[21px]">
-          <div className="flex flex-wrap gap-x-5 gap-y-1 sm:justify-end">
-            <a href="/politica-de-confidentialitate" className="hover:opacity-80">
-              Politica de confidențialitate
-            </a>
-            <a href="/termeni-si-conditii" className="hover:opacity-80">
-              Termeni și condiții
-            </a>
-          </div>
-          <p className="mt-1 opacity-80">© Alverna Dental Studio</p>
-        </div>
+    <div className={`mt-auto shrink-0 border-t border-white/10 pt-5 ${className}`}>
+      <p className="mb-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-white/45">Contact</p>
+      <div className="flex flex-col gap-1 text-[17px] font-medium text-white">
+        <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center">
+          {CLINIC.phoneDisplay}
+        </a>
+        <a href={mailto} className="inline-flex min-h-[44px] items-center">
+          {CLINIC.email}
+        </a>
+        <a
+          href={CLINIC.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-[44px] items-center"
+        >
+          WhatsApp
+        </a>
+        <a
+          href={CLINIC.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex min-h-[44px] items-center"
+        >
+          Instagram {CLINIC.instagramHandle}
+        </a>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[13px] text-white/45">
+        <a href="/politica-de-confidentialitate" className="inline-flex min-h-[44px] items-center">
+          Confidențialitate
+        </a>
+        <a href="/termeni-si-conditii" className="inline-flex min-h-[44px] items-center">
+          Termeni
+        </a>
       </div>
     </div>
   );

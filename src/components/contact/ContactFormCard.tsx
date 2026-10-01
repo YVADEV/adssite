@@ -292,12 +292,12 @@ export function ContactFormCard({ source }: { source: string }) {
               {error}
             </p>
           ) : null}
-          <label className="mt-1 flex items-start gap-3 text-left text-[18px] leading-[1.45] opacity-90 md:text-[19px]">
+          <label className="mt-1 flex min-h-[44px] items-start gap-3 text-left text-[18px] leading-[1.45] opacity-90 md:text-[19px]">
             <input
               type="checkbox"
               name="gdpr"
               required
-              className="mt-1 h-[18px] w-[18px] shrink-0 accent-[#B6B94C]"
+              className="mt-1 h-6 w-6 shrink-0 accent-[#B6B94C]"
             />
             <span>
               Am citit și accept{" "}

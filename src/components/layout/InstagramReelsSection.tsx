@@ -39,7 +39,7 @@ function ReelCard({ reelId }: { reelId: string }) {
   const reelUrl = `https://www.instagram.com/reel/${reelId}/`;
 
   return (
-    <li ref={rootRef} className="min-w-0 list-none">
+    <li ref={rootRef} className="w-[min(70vw,260px)] shrink-0 snap-start list-none md:w-auto md:shrink md:snap-none">
       <div className="instagram-reel-frame ring-1 ring-white/8">
         {shouldLoad ? (
           <iframe
@@ -95,7 +95,7 @@ export default function InstagramReelsSection() {
           </a>
         </p>
 
-        <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-4 md:mt-10 md:grid-cols-3 md:gap-5 lg:grid-cols-6 lg:gap-6">
+        <ul className="instagram-reels-track mt-8 flex min-w-0 w-full max-w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-1 md:mt-10 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:pb-0 lg:grid-cols-6 lg:gap-6">
           {INSTAGRAM_REELS.map((reelId) => (
             <ReelCard key={reelId} reelId={reelId} />
           ))}

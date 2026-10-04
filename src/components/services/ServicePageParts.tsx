@@ -638,7 +638,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
     <section id="contact" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
+        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:right-0 max-md:h-[280px] max-md:w-[280px] max-md:scale-100 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
       />
 
       <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">

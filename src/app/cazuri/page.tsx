@@ -80,7 +80,7 @@ export default function CazuriPage() {
               src={src}
               alt={alt}
               href={getCaseHrefForImage(src)}
-              className="h-[min(72vw,420px)] w-full rounded-[20px] object-cover sm:h-[520px] md:h-[664px]"
+              className="h-[min(72vw,420px)] w-full rounded-[20px] object-cover md:h-[664px]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}

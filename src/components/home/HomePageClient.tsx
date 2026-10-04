@@ -190,6 +190,7 @@ function TeamBentoBanner({
   showSlogan = true,
   loadImages = true,
   overflowPhoto = false,
+  slogan = "Puterea zâmbetului\ncare inspiră încredere",
 }: {
   doctorSrc: string;
   doctorAlt: string;
@@ -198,13 +199,12 @@ function TeamBentoBanner({
   showSlogan?: boolean;
   loadImages?: boolean;
   overflowPhoto?: boolean;
+  slogan?: string;
 }) {
   return (
     <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
       <article
-        className={`relative isolate z-20 flex min-h-[420px] flex-col rounded-[24px] bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px] ${
-          overflowPhoto ? "overflow-visible" : "overflow-hidden md:overflow-visible"
-        }`}
+        className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]"
       >
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
@@ -227,7 +227,7 @@ function TeamBentoBanner({
           fetchPriority="low"
           className={
             overflowPhoto
-              ? "pointer-events-none absolute bottom-0 right-[-36px] z-[10] h-full w-auto object-contain object-[right_bottom] md:right-[-64px] lg:right-[-80px]"
+              ? "pointer-events-none z-[10] max-md:absolute max-md:inset-0 max-md:h-full max-md:w-full max-md:object-cover max-md:object-[center_12%] md:absolute md:bottom-0 md:right-[-64px] md:h-full md:w-auto md:object-contain md:object-[right_bottom] lg:right-[-80px]"
               : "pointer-events-none z-[10] max-md:absolute max-md:inset-0 max-md:h-full max-md:w-full max-md:object-cover max-md:object-[center_12%] md:absolute md:bottom-0 md:right-[-35px] md:h-[660px] md:w-auto md:object-contain md:object-bottom"
           }
         />
@@ -237,7 +237,7 @@ function TeamBentoBanner({
       {showSlogan ? (
         <article className="relative z-10 min-h-[280px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
           <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
-            {"Puterea zâmbetului\ncare inspiră încredere"}
+            {slogan}
           </h3>
         </article>
       ) : null}
@@ -265,7 +265,7 @@ function TeamBentoBanner({
               Laborator propriu
             </h3>
             <p className="mt-3 text-[18px] leading-[1.4] text-white/80 md:text-[21px]">
-              Medicul și tehnicianul lucrează în aceeași echipă.
+              Controlul atent al etapelor protetice.
             </p>
           </article>
         )}
@@ -851,7 +851,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="echipa" data-anim="section" data-theme="light" className="overflow-visible bg-[#ececec] pb-[90px] pt-0 lg:pb-[140px]">
+      <section id="echipa" data-anim="section" data-theme="light" className="overflow-hidden bg-[#ececec] pb-[90px] pt-0 md:overflow-visible lg:pb-[140px]">
         <div className="relative z-30 mx-auto flex w-full max-w-[1680px] flex-col gap-6 bg-[#ececec] px-5 pb-6 pt-6 md:flex-row md:items-end md:justify-between md:px-10 md:pb-8 md:pt-8 lg:px-[96px]">
           <div className="max-w-[820px]">
             <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.04em] text-white md:text-[52px] lg:text-[64px]">
@@ -862,7 +862,7 @@ export default function HomePageClient() {
             </p>
           </div>
         </div>
-        <div id="laborator-alverna" className="overflow-visible">
+        <div id="laborator-alverna" className="overflow-hidden md:overflow-visible">
           <TeamBentoBanner
             doctorSrc={labDoctorBannerImage.src}
             doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
@@ -870,6 +870,7 @@ export default function HomePageClient() {
             showScanCard={false}
             loadImages={belowFoldMedia}
             overflowPhoto
+            slogan={"Medicul și tehnicianul\nlucrează în aceeași echipă."}
           />
         </div>
       </section>
@@ -888,13 +889,13 @@ export default function HomePageClient() {
             </Link>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-[3px] overflow-hidden rounded-[18px] md:grid-cols-3">
-            <article className="relative h-[min(56vw,280px)] rounded-l-[18px] bg-black sm:h-[320px] md:h-[360px]">
+            <article className="relative h-[min(56vw,280px)] rounded-l-[18px] bg-black md:h-[360px]">
               <LazyVideo src="/cazuri-1.mp4" poster={belowFoldMedia ? "/services/exam-male.png" : undefined} ariaLabel="Caz tratat — vedere generală" />
             </article>
-            <article className="relative h-[min(56vw,280px)] bg-black sm:h-[320px] md:h-[360px]">
+            <article className="relative h-[min(56vw,280px)] bg-black md:h-[360px]">
               <LazyVideo src="/cori-angel.mp4" poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined} ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
             </article>
-            <article className="relative h-[min(56vw,280px)] rounded-r-[18px] bg-black sm:h-[320px] md:h-[360px]">
+            <article className="relative h-[min(56vw,280px)] rounded-r-[18px] bg-black md:h-[360px]">
               <LazyVideo src="/cazuri-2.mp4" poster={belowFoldMedia ? "/services/whitening-2.png" : undefined} ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />
             </article>
           </div>
@@ -904,7 +905,7 @@ export default function HomePageClient() {
       <section id="contact" ref={contactSectionRef} data-anim="section" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
         <div
           aria-hidden
-          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:scale-75 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
+          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:right-0 max-md:h-[280px] max-md:w-[280px] max-md:scale-100 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
         />
         <div
           ref={contactSpotlightRef}

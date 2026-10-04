@@ -44,7 +44,7 @@ export function MobileMenuNavServices({
         aria-hidden={!mobileServicesOpen}
         className={`overflow-hidden transition-[max-height,opacity] duration-200 ${
           mobileServicesOpen
-            ? "pointer-events-auto max-h-[min(52vh,560px)] opacity-100"
+            ? "pointer-events-auto max-h-[min(40vh,360px)] opacity-100"
             : "pointer-events-none max-h-0 opacity-0"
         }`}
       >

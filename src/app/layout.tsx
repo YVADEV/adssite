@@ -83,12 +83,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ro" data-theme="dark" className={`${geistSans.variable} antialiased`}>
+    <html lang="ro" data-theme="dark" className={`${geistSans.variable} max-md:overflow-x-clip antialiased`}>
       <head>
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
       </head>
-      <body className="flex min-h-screen min-w-0 flex-col bg-black pb-[calc(12.5rem+env(safe-area-inset-bottom,0px))] text-white md:pb-0">
+      <body className="flex min-h-screen min-w-0 max-w-full flex-col overflow-x-clip bg-black pb-[calc(12.5rem+env(safe-area-inset-bottom,0px))] text-white md:overflow-x-visible md:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:px-5 focus:py-2 focus:text-[21px] focus:font-semibold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#B6B94C] ads-btn-lit"

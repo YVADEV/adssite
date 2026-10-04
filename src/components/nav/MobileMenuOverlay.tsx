@@ -30,13 +30,13 @@ export function MobileMenuOverlay({
         menuVisible ? "opacity-100" : "invisible pointer-events-none opacity-0"
       }`}
     >
-      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[480px] flex-col overflow-y-auto overscroll-contain px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))]">
-        <div className="flex items-center justify-end pb-2">
+      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[480px] flex-col overflow-hidden px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))]">
+        <div className="flex shrink-0 items-center justify-end pb-2">
           <button
             type="button"
             aria-label="Închide meniul"
             onClick={onClose}
-            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5"
+            className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-white/10"
           >
             <span className="absolute h-[2px] w-4 rotate-45 bg-white" />
             <span className="absolute h-[2px] w-4 -rotate-45 bg-white" />

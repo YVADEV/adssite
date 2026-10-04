@@ -265,7 +265,7 @@ export default function EchipaPage() {
             const profileHref = "href" in member && typeof member.href === "string" ? member.href : null;
             const isLinked = Boolean(profileHref);
             const cardClassName = isMobileTeamGrid
-              ? `group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] sm:h-[360px] ${isLinked ? "" : "cursor-default"}`
+              ? `group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] md:h-[360px] ${isLinked ? "" : "cursor-default"}`
               : `group relative h-[383px] w-full min-w-0 overflow-hidden rounded-[14px] border border-white/15 bg-[#111] ${isLinked ? "" : "cursor-default"}`;
 
             const nameClassName = isMobileTeamGrid

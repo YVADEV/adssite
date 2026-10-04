@@ -140,7 +140,7 @@ export const LazyVideo = forwardRef<HTMLVideoElement, LazyVideoProps>(function L
 
 /** Shared video strip article height — responsive, desktop unchanged at md+. */
 const VIDEO_STRIP_ARTICLE_CLASS =
-  "relative h-[min(70vw,400px)] bg-black sm:h-[460px] md:h-[520px]";
+  "relative h-[min(70vw,400px)] bg-black md:h-[520px]";
 
 /** Shared "Cazuri before/after" 3-video grid — center clip loads last (largest file). */
 export function CazuriVideoStrip({ items = DEFAULT_CASE_STRIP }: { items?: CaseStripItem[] }) {

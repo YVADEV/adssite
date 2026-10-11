@@ -17,7 +17,7 @@ import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
+import { mobileMenuClassForLabel, mobileMenuIndex, mobileMenuNumClass } from "@/components/nav/mobileMenuStyles";
 import { CLINIC } from "@/lib/contact";
 import { pricingData } from "@/config/pricing";
 import { useIdleMedia } from "@/hooks/useIdleMedia";
@@ -396,10 +396,10 @@ export default function HomePageClient() {
         onClose={closeMenu}
       >
         {[
-          { href: "/", label: "Acasă" },
-          { href: "/echipa", label: "Echipa" },
-          { href: "/cazuri", label: "Cazuri" },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
+          { href: "/", label: "Acasă", n: 1 },
+          { href: "/echipa", label: "Echipa", n: 2 },
+          { href: "/cazuri", label: "Cazuri", n: 3 },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL, n: 4 },
         ].map((item) => (
           <Link
             key={item.label}
@@ -409,7 +409,8 @@ export default function HomePageClient() {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            {item.label}
+            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
+            <span>{item.label}</span>
           </Link>
         ))}
         <MobileMenuNavServices
@@ -420,9 +421,9 @@ export default function HomePageClient() {
           onCloseMenu={closeMenu}
         />
         {[
-          { href: "/tarife", label: "Tarife" },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
-          { href: "/contact", label: "Contact" },
+          { href: "/tarife", label: "Tarife", n: 6 },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe", n: 7 },
+          { href: "/contact", label: "Contact", n: 8 },
         ].map((item) => (
           <Link
             key={item.label}
@@ -432,7 +433,8 @@ export default function HomePageClient() {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            {item.label}
+            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
+            <span>{item.label}</span>
           </Link>
         ))}
       </MobileMenuOverlay>
@@ -484,37 +486,37 @@ export default function HomePageClient() {
         <div className="relative md:h-[calc(100dvh-72px)] md:min-h-[560px]">
           <div
             data-intro="hero-media"
-            className="relative h-[min(52svh,420px)] w-full min-h-[280px] overflow-hidden md:absolute md:inset-0 md:h-full md:min-h-0 md:max-h-none"
+            className="relative h-[min(54svh,440px)] w-full min-h-[280px] overflow-hidden md:absolute md:inset-0 md:h-full md:min-h-0 md:max-h-none"
           >
             <HeroIntroVideo />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent"
             />
-            <div className="pointer-events-none absolute inset-0 flex items-end justify-start px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] md:hidden">
-              <a
-                href="#contact"
-                className="ads-btn-lit pointer-events-auto inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold"
-              >
-                Programează o consultație
-              </a>
-            </div>
           </div>
           <div
             data-intro="hero-title"
-            className="px-5 py-6 text-white md:absolute md:inset-0 md:flex md:flex-col md:items-start md:justify-end md:px-7 md:py-8 lg:px-9 lg:py-10"
+            className="ads-hero-editorial relative z-[2] -mt-8 bg-[#0f1115] px-5 pb-8 pt-7 text-white md:absolute md:inset-0 md:z-auto md:mt-0 md:flex md:flex-col md:items-start md:justify-end md:bg-transparent md:px-7 md:py-8 lg:px-9 lg:py-10"
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
-              <h1 className="mt-3 max-w-[18ch] text-balance text-[clamp(32px,7vw,40px)] font-extrabold leading-[0.98] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)]">
+              <h1 className="mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)] md:leading-[0.98]">
                 Implantologie și reabilitare orală complexă
               </h1>
-              <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.5] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)]">
+              <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.55] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)] md:leading-[1.5]">
                 Diagnostic, chirurgie, protetică și parodontologie integrate într-un singur plan de tratament.
               </p>
               <p className="mt-3 max-w-[52ch] text-[14px] font-medium leading-[1.5] text-white/65 md:mt-4 md:text-[clamp(14px,2vw,18px)]">
                 Laborator dentar propriu • Flux digital • Echipă multidisciplinară
               </p>
+              <div className="ads-hero-cta mt-6 md:hidden">
+                <a
+                  href="#contact"
+                  className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold"
+                >
+                  Programează o consultație
+                </a>
+              </div>
               <div className="mt-7 hidden max-w-[520px] items-center gap-3 md:flex">
                 <a
                   href="#contact"

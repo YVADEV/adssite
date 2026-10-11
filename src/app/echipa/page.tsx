@@ -10,7 +10,7 @@ import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
+import { mobileMenuClassForLabel, mobileMenuIndex, mobileMenuNumClass } from "@/components/nav/mobileMenuStyles";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
@@ -120,10 +120,10 @@ export default function EchipaPage() {
         onClose={closeMenu}
       >
         {[
-          { href: "/", label: "Acasă" },
-          { href: "/echipa", label: "Echipa" },
-          { href: "/cazuri", label: "Cazuri" },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
+          { href: "/", label: "Acasă", n: 1 },
+          { href: "/echipa", label: "Echipa", n: 2 },
+          { href: "/cazuri", label: "Cazuri", n: 3 },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL, n: 4 },
         ].map((item) => (
           <a
             key={item.label}
@@ -132,7 +132,8 @@ export default function EchipaPage() {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            {item.label}
+            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
+            <span>{item.label}</span>
           </a>
         ))}
         <MobileMenuNavServices
@@ -143,9 +144,9 @@ export default function EchipaPage() {
           onCloseMenu={closeMenu}
         />
         {[
-          { href: "/tarife", label: "Tarife" },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
-          { href: "/contact", label: "Contact" },
+          { href: "/tarife", label: "Tarife", n: 6 },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe", n: 7 },
+          { href: "/contact", label: "Contact", n: 8 },
         ].map((item) => (
           <a
             key={item.label}
@@ -154,7 +155,8 @@ export default function EchipaPage() {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            {item.label}
+            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
+            <span>{item.label}</span>
           </a>
         ))}
       </MobileMenuOverlay>
@@ -192,9 +194,9 @@ export default function EchipaPage() {
             onClick={toggleMenu}
             className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
           >
-            <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-white" />
-            <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-white" />
-            <span ref={menuBottomLineRef} className="ads-menu-line ads-menu-line-bottom h-[2px] w-full bg-white" />
+            <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-[#ffffff]" />
+            <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-[#ffffff]" />
+            <span ref={menuBottomLineRef} className="ads-menu-line ads-menu-line-bottom h-[2px] w-full bg-[#ffffff]" />
           </button>
           </div>
           </div>

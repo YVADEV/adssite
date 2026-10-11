@@ -13,7 +13,7 @@ import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
+import { mobileMenuClassForLabel, mobileMenuIndex, mobileMenuNumClass } from "@/components/nav/mobileMenuStyles";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -63,10 +63,10 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         onClose={closeMenu}
       >
         {[
-          { href: "/", label: "Acasă" },
-          { href: "/echipa", label: "Echipa" },
-          { href: "/cazuri", label: "Cazuri" },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
+          { href: "/", label: "Acasă", n: 1 },
+          { href: "/echipa", label: "Echipa", n: 2 },
+          { href: "/cazuri", label: "Cazuri", n: 3 },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL, n: 4 },
         ].map((item) => (
           <Link
             key={item.label}
@@ -75,7 +75,8 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            {item.label}
+            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
+            <span>{item.label}</span>
           </Link>
         ))}
 
@@ -88,9 +89,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         />
 
         {[
-          { href: "/tarife", label: "Tarife" },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
-          { href: "/contact", label: "Contact" },
+          { href: "/tarife", label: "Tarife", n: 6 },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe", n: 7 },
+          { href: "/contact", label: "Contact", n: 8 },
         ].map((item) => (
           <Link
             key={item.label}
@@ -99,7 +100,8 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            {item.label}
+            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
+            <span>{item.label}</span>
           </Link>
         ))}
       </MobileMenuOverlay>

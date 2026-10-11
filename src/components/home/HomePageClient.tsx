@@ -481,40 +481,54 @@ export default function HomePageClient() {
       </header>
 
       <section className="mt-0 w-full">
-        <div className="relative h-[min(calc(100svh-72px-env(safe-area-inset-top,0px)),820px)] w-full min-h-[520px] md:h-[calc(100dvh-72px)] md:min-h-[560px] md:max-h-none">
-          <div data-intro="hero-media" className="relative h-full w-full overflow-hidden">
+        <div className="relative md:h-[calc(100dvh-72px)] md:min-h-[560px]">
+          <div
+            data-intro="hero-media"
+            className="relative h-[min(calc(100svh-72px-env(safe-area-inset-top,0px)),820px)] w-full min-h-[520px] overflow-hidden md:absolute md:inset-0 md:h-full md:min-h-0"
+          >
             <HeroIntroVideo />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent"
             />
-            <div data-intro="hero-title" className="pointer-events-none absolute inset-0 flex flex-col items-start justify-start px-5 pb-6 pt-5 text-white md:justify-end md:px-7 md:py-8 lg:px-9 lg:py-10">
-              <div className="pointer-events-auto max-w-[720px]">
-                <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
-                <h1 className="mt-3 max-w-[18ch] text-balance text-[clamp(32px,7vw,40px)] font-extrabold leading-[0.98] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)]">
-                  Implantologie și reabilitare orală complexă
-                </h1>
-                <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.5] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)]">
-                  Diagnostic, chirurgie, protetică și parodontologie integrate într-un singur plan de tratament.
-                </p>
-                <p className="mt-3 max-w-[52ch] text-[14px] font-medium leading-[1.5] text-white/65 md:mt-4 md:text-[clamp(14px,2vw,18px)]">
-                  Laborator dentar propriu • Flux digital • Echipă multidisciplinară
-                </p>
-                <div className="mt-5 flex max-w-[520px] flex-col items-start gap-3 md:mt-7 sm:flex-row sm:items-center">
-                  <a
-                    href="#contact"
-                    className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold md:text-[18px]"
-                  >
-                    Programează o consultație
-                  </a>
-                  <Link
-                    href="/cazuri/"
-                    prefetch={false}
-                    className="hidden min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[16px] font-semibold text-white transition duration-200 hover:bg-white/10 md:inline-flex md:text-[18px]"
-                  >
-                    Vezi cazuri reale
-                  </Link>
-                </div>
+            <div className="pointer-events-none absolute inset-0 flex items-end justify-start px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] md:hidden">
+              <a
+                href="#contact"
+                className="ads-btn-lit pointer-events-auto inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold"
+              >
+                Programează o consultație
+              </a>
+            </div>
+          </div>
+          <div
+            data-intro="hero-title"
+            className="px-5 py-8 text-white md:absolute md:inset-0 md:flex md:flex-col md:items-start md:justify-end md:px-7 md:py-8 lg:px-9 lg:py-10"
+          >
+            <div className="max-w-[720px]">
+              <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
+              <h1 className="mt-3 max-w-[18ch] text-balance text-[clamp(32px,7vw,40px)] font-extrabold leading-[0.98] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)]">
+                Implantologie și reabilitare orală complexă
+              </h1>
+              <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.5] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)]">
+                Diagnostic, chirurgie, protetică și parodontologie integrate într-un singur plan de tratament.
+              </p>
+              <p className="mt-3 max-w-[52ch] text-[14px] font-medium leading-[1.5] text-white/65 md:mt-4 md:text-[clamp(14px,2vw,18px)]">
+                Laborator dentar propriu • Flux digital • Echipă multidisciplinară
+              </p>
+              <div className="mt-7 hidden max-w-[520px] items-center gap-3 md:flex">
+                <a
+                  href="#contact"
+                  className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[18px] font-semibold"
+                >
+                  Programează o consultație
+                </a>
+                <Link
+                  href="/cazuri/"
+                  prefetch={false}
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[18px] font-semibold text-white transition duration-200 hover:bg-white/10"
+                >
+                  Vezi cazuri reale
+                </Link>
               </div>
             </div>
           </div>

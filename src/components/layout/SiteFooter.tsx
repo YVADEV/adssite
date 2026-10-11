@@ -61,21 +61,21 @@ export default function SiteFooter() {
         <section>
           <h3 className="text-[21px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
           {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
-          <p className="mt-4 max-w-[560px] text-[18px] leading-[1.7] text-white/80 md:text-[21px]">
+          <p className="mt-4 max-w-[560px] text-[16px] leading-[1.65] text-white/80 md:text-[21px] md:leading-[1.7]">
             Clinica stomatologică Alverna Dental Studio include cabinete stomatologice modern amenajate și echipate cu
             aparatură de ultimă generație. Astfel, serviciile pe care le oferim sunt de o calitate superioară, iar
             pacienții noștri se simt mereu bine primiți. Fiecare cabinet stomatologic este pregătit să vă asigure un
             confort sporit, iar experiența și profesionalismul medicilor noștri sunt puse în slujba asigurării unei
             sănătăți dentare excelente!
           </p>
-          <div className="mt-8 flex flex-col text-[18px] leading-[1.6] text-white md:text-[21px]">
-            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+          <div className="mt-8 flex flex-col text-[16px] leading-[1.55] text-white md:text-[21px] md:leading-[1.6]">
+            <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:underline md:hover:translate-x-[3px]">
               {CLINIC.addressShort}
             </a>
-            <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+            <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:underline md:hover:translate-x-[3px]">
               {CLINIC.phoneDisplay}
             </a>
-            <a href={`mailto:${CLINIC.email}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:underline">
+            <a href={`mailto:${CLINIC.email}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:underline md:hover:translate-x-[3px]">
               {CLINIC.email}
             </a>
           </div>
@@ -91,9 +91,9 @@ export default function SiteFooter() {
 
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Pagini</h4>
-          <div className="mt-4 flex flex-col text-[18px] text-white/85 md:text-[21px]">
+          <div className="mt-4 flex flex-col text-[16px] text-white/85 md:text-[21px]">
             {pageLinks.map((item) => (
-              <Link key={item.label} href={item.href} prefetch={false} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
+              <Link key={item.label} href={item.href} prefetch={false} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:text-white md:hover:translate-x-[3px]">
                 {item.label}
               </Link>
             ))}
@@ -102,9 +102,9 @@ export default function SiteFooter() {
 
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Servicii</h4>
-          <div className="mt-4 flex flex-col text-[18px] text-white/85 md:text-[21px]">
+          <div className="mt-4 flex flex-col text-[16px] text-white/85 md:text-[21px]">
             {services.filter((service) => service.slug !== "all-on-x").map((service) => (
-              <Link key={service.slug} href={service.href} prefetch={false} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px] hover:text-white">
+              <Link key={service.slug} href={service.href} prefetch={false} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:text-white md:hover:translate-x-[3px]">
                 {service.title}
               </Link>
             ))}
@@ -113,17 +113,17 @@ export default function SiteFooter() {
 
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Programare</h4>
-          <div className="mt-4 flex flex-col text-[18px] leading-[1.6] text-white md:text-[21px]">
-            <a href={CLINIC.formPageHref} className="inline-flex min-h-[44px] items-center font-semibold transition-transform duration-200 hover:translate-x-[3px]">
+          <div className="mt-4 flex flex-col text-[16px] leading-[1.55] text-white md:text-[21px] md:leading-[1.6]">
+            <a href={CLINIC.formPageHref} className="inline-flex min-h-[44px] items-center font-semibold transition-transform duration-200 md:hover:translate-x-[3px]">
               Programează o consultație
             </a>
-            <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px]">
+            <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 md:hover:translate-x-[3px]">
               Sună acum
             </a>
-            <a href="/cazuri/" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px]">
+            <a href="/cazuri/" className="inline-flex min-h-[44px] items-center transition-transform duration-200 md:hover:translate-x-[3px]">
               Vezi cazuri reale
             </a>
-            <a href="/tarife/" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:translate-x-[3px]">
+            <a href="/tarife/" className="inline-flex min-h-[44px] items-center transition-transform duration-200 md:hover:translate-x-[3px]">
               Vezi toate tarifele
             </a>
           </div>

@@ -408,6 +408,7 @@ export default function HomePageClient() {
             data-menu-item
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
+            aria-current={item.href === "/" ? "page" : undefined}
           >
             <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
@@ -496,7 +497,7 @@ export default function HomePageClient() {
           </div>
           <div
             data-intro="hero-title"
-            className="ads-hero-editorial relative z-[2] -mt-8 bg-[#0f1115] px-5 pb-8 pt-7 text-white md:absolute md:inset-0 md:z-auto md:mt-0 md:flex md:flex-col md:items-start md:justify-end md:bg-transparent md:px-7 md:py-8 lg:px-9 lg:py-10"
+            className="ads-hero-editorial relative z-[2] -mt-9 bg-[#0f1115] px-5 pb-8 pt-6 text-white md:absolute md:inset-0 md:z-auto md:mt-0 md:flex md:flex-col md:items-start md:justify-end md:bg-transparent md:px-7 md:py-8 lg:px-9 lg:py-10"
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>

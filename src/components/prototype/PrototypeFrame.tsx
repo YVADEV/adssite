@@ -74,6 +74,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             data-menu-item
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
+            aria-current={isActive(item.href) ? "page" : undefined}
           >
             <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
@@ -99,6 +100,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             data-menu-item
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
+            aria-current={isActive(item.href) ? "page" : undefined}
           >
             <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>

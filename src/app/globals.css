@@ -911,7 +911,21 @@ body {
   }
 
   .ads-hero-editorial {
-    box-shadow: 0 -24px 40px rgba(15, 17, 21, 0.35);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+  }
+
+  .ads-btn-lit:hover {
+    transform: none;
+  }
+
+  .ads-menu-index-row[aria-current="page"] {
+    color: #b6b94c;
+  }
+
+  .ads-menu-index-row[aria-current="page"] .ads-menu-num,
+  .ads-menu-index-row[aria-current="page"] span:first-child {
+    color: #b6b94c;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -931,15 +945,15 @@ body {
       animation: ads-menu-item-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(1) { animation-delay: 40ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(2) { animation-delay: 70ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(3) { animation-delay: 100ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(4) { animation-delay: 130ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(5) { animation-delay: 160ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(6) { animation-delay: 190ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(7) { animation-delay: 220ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(8) { animation-delay: 250ms; }
-    .ads-menu-overlay-open .ads-menu-index > *:nth-child(9) { animation-delay: 280ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(1) { animation-delay: 30ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(2) { animation-delay: 50ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(3) { animation-delay: 70ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(4) { animation-delay: 90ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(5) { animation-delay: 110ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(6) { animation-delay: 130ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(7) { animation-delay: 150ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(8) { animation-delay: 170ms; }
+    .ads-menu-overlay-open .ads-menu-index > *:nth-child(9) { animation-delay: 190ms; }
   }
 
   .ads-btn-lit,

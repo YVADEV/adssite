@@ -139,7 +139,7 @@ export function HeroIntroVideo() {
           alt="Alverna Dental Studio — clinică modernă din Cluj"
           fetchPriority="high"
           decoding="sync"
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[center_38%] md:object-center"
         />
       </picture>
       {shouldLoadVideo ? (
@@ -151,7 +151,7 @@ export function HeroIntroVideo() {
           playsInline
           preload="none"
           aria-hidden
-          className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-300 ${
+          className={`absolute inset-0 h-full w-full object-cover object-[center_38%] transition-opacity duration-300 md:object-center ${
             isPlaying ? "opacity-100" : "opacity-0"
           }`}
         >

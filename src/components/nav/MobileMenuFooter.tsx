@@ -4,41 +4,38 @@ type MobileMenuFooterProps = {
   className?: string;
 };
 
-export function MobileMenuFooter({ className = "" }: MobileMenuFooterProps) {
-  const mailto = `mailto:${CLINIC.email}?subject=${encodeURIComponent(CLINIC.mailtoSubject)}`;
-
+function InstagramIcon() {
   return (
-    <div className={`relative z-20 mt-0 shrink-0 border-t border-white/10 bg-[#0f1115] pt-4 ${className}`}>
-      <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40">Contact</p>
-      <div className="grid grid-cols-2 gap-x-3 text-[15px] font-medium text-white">
-        <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center">
+    <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="1.7">
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function MobileMenuFooter({ className = "" }: MobileMenuFooterProps) {
+  return (
+    <div className={`relative z-20 mt-0 shrink-0 border-t border-white/10 bg-[#0f1115] pt-2.5 ${className}`}>
+      <div className="flex items-center justify-between gap-3">
+        <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-10 items-center text-[14px] font-medium text-white">
           {CLINIC.phoneDisplay}
-        </a>
-        <a
-          href={CLINIC.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] items-center"
-        >
-          WhatsApp
-        </a>
-        <a href={mailto} className="col-span-2 inline-flex min-h-[44px] items-center truncate">
-          {CLINIC.email}
         </a>
         <a
           href={CLINIC.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="col-span-2 inline-flex min-h-[44px] items-center truncate"
+          aria-label={`Instagram ${CLINIC.instagramHandle}`}
+          className="inline-flex h-11 w-11 items-center justify-center text-white/80 hover:text-[color:var(--ads-accent)]"
         >
-          Instagram {CLINIC.instagramHandle}
+          <InstagramIcon />
         </a>
       </div>
-      <div className="mt-1 flex flex-wrap gap-x-4 text-[13px] text-white/45">
-        <a href="/politica-de-confidentialitate" className="inline-flex min-h-[40px] items-center">
-          Confidențialitate
+      <div className="flex flex-wrap items-center justify-end gap-x-4 text-[12px] text-white/50">
+        <a href="/politica-de-confidentialitate" className="inline-flex min-h-9 items-center">
+          Politica de confidențialitate
         </a>
-        <a href="/termeni-si-conditii" className="inline-flex min-h-[40px] items-center">
+        <a href="/termeni-si-conditii" className="inline-flex min-h-9 items-center">
           Termeni
         </a>
       </div>

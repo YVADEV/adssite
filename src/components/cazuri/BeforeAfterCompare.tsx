@@ -145,8 +145,9 @@ export function BeforeAfterCompare({
 
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/2 z-[5] flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/50 bg-black/55 text-white max-md:h-12 max-md:w-12 max-md:border-[#B6B94C]/70"
-        style={{ left: `${pos}%` }}
+        data-ads-ba-handle
+        className="pointer-events-none absolute top-1/2 z-[5] flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-black/55 text-white max-md:h-12 max-md:w-12"
+        style={{ left: `${pos}%`, borderColor: "var(--ads-accent)" }}
       >
         <span className="translate-y-px text-[16px] leading-none tracking-tight">‹ ›</span>
       </div>

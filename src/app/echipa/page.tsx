@@ -118,6 +118,13 @@ export default function EchipaPage() {
         overlayRef={menuOverlayRef}
         menuVisible={menuVisible}
         onClose={closeMenu}
+        servicesOpen={mobileServicesOpen}
+        onServicesBack={() => {
+          setOpenSubmenuSlug(null);
+          setMobileServicesOpen(false);
+        }}
+        openSubmenuSlug={openSubmenuSlug}
+        setOpenSubmenuSlug={setOpenSubmenuSlug}
       >
         {[
           { href: "/", label: "Acasă", n: 1 },
@@ -131,17 +138,17 @@ export default function EchipaPage() {
             data-menu-item
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
+            aria-current={item.href === "/echipa" ? "page" : undefined}
           >
             <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </a>
         ))}
         <MobileMenuNavServices
+          panelId="echipa-mobile-menu-services"
           mobileServicesOpen={mobileServicesOpen}
           setMobileServicesOpen={setMobileServicesOpen}
-          openSubmenuSlug={openSubmenuSlug}
           setOpenSubmenuSlug={setOpenSubmenuSlug}
-          onCloseMenu={closeMenu}
         />
         {[
           { href: "/tarife", label: "Tarife", n: 6 },
@@ -192,7 +199,7 @@ export default function EchipaPage() {
             aria-controls="echipa-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
+            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--ads-accent)] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
           >
             <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-[#ffffff]" />
             <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-[#ffffff]" />

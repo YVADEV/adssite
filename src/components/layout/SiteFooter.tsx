@@ -114,7 +114,7 @@ export default function SiteFooter() {
         <section>
           <h4 className="text-[16px] font-semibold uppercase tracking-[0.12em] text-white/55">Programare</h4>
           <div className="mt-4 flex flex-col text-[16px] leading-[1.55] text-white md:text-[21px] md:leading-[1.6]">
-            <a href={CLINIC.formPageHref} className="inline-flex min-h-[44px] items-center font-semibold transition-transform duration-200 md:hover:translate-x-[3px]">
+            <a href={CLINIC.formPageHref} className="ads-accent-text inline-flex min-h-[44px] items-center font-semibold transition-transform duration-200 md:hover:translate-x-[3px]">
               Programează o consultație
             </a>
             <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex min-h-[44px] items-center transition-transform duration-200 md:hover:translate-x-[3px]">

@@ -19,6 +19,11 @@ export function useMobileMenu(refs: MobileMenuRefs) {
   const [openSubmenuSlug, setOpenSubmenuSlug] = useState<string | null>(null);
   const focusPrevOpenRef = useRef(false);
   const skipSubmenuResetRef = useRef(true);
+  const servicesOpenRef = useRef(false);
+
+  useEffect(() => {
+    servicesOpenRef.current = mobileServicesOpen;
+  }, [mobileServicesOpen]);
 
   useEffect(() => {
     if (menuOpen) {
@@ -44,13 +49,19 @@ export function useMobileMenu(refs: MobileMenuRefs) {
     if (!overlay) return;
 
     const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-    const focusables = () => Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector));
+    const focusables = () =>
+      Array.from(overlay.querySelectorAll<HTMLElement>(focusableSelector)).filter((el) => !el.closest("[inert]"));
 
     focusables()[0]?.focus();
 
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
+        if (servicesOpenRef.current) {
+          setOpenSubmenuSlug(null);
+          setMobileServicesOpen(false);
+          return;
+        }
         setMenuOpen(false);
         return;
       }

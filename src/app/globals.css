@@ -39,6 +39,10 @@
   --ads-surface: #1e2024;
   --ads-primary: #B6B94C;
   --ads-secondary: #B6B94C;
+  --ads-accent: var(--ads-primary);
+  --ads-accent-hover: color-mix(in srgb, var(--ads-primary) 82%, #ffffff 18%);
+  --ads-accent-muted: color-mix(in srgb, var(--ads-primary) 42%, transparent);
+  --ads-accent-soft: color-mix(in srgb, var(--ads-primary) 16%, transparent);
   --ads-text-primary: #ffffff;
   --ads-text-secondary: rgba(255, 255, 255, 0.72);
   --ads-divider: rgba(255, 255, 255, 0.08);
@@ -123,8 +127,13 @@ html {
 }
 
 ::selection {
-  background: rgba(182, 185, 76, 0.32);
+  background: color-mix(in srgb, var(--ads-accent) 32%, transparent);
   color: #fff;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--ads-accent);
 }
 
 body {
@@ -251,7 +260,7 @@ textarea {
   min-height: 48px;
   border: 0;
   border-radius: var(--ads-radius-pill);
-  background: var(--ads-primary);
+  background: var(--ads-accent);
   color: var(--ads-bg);
   font-size: var(--ads-font-size-body);
   font-weight: 600;
@@ -449,6 +458,43 @@ button[aria-expanded="true"] .ads-menu-line-bottom {
 
 .ads-menu-overlay-open {
   opacity: 1;
+}
+
+.ads-menu-pane {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ads-menu-pane-main.is-away {
+  transform: translateX(-8%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ads-menu-pane-services {
+  transform: translateX(10%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ads-menu-pane-services.is-in {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ads-site-header nav a[aria-current="page"] {
+  text-decoration-color: var(--ads-accent);
+}
+
+.ads-accent-text {
+  color: var(--ads-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ads-menu-overlay,
+  .ads-menu-pane {
+    transition: none;
+  }
 }
 
 @keyframes ads-menu-item-in {
@@ -920,12 +966,12 @@ body {
   }
 
   .ads-menu-index-row[aria-current="page"] {
-    color: #b6b94c;
+    color: var(--ads-accent);
   }
 
   .ads-menu-index-row[aria-current="page"] .ads-menu-num,
   .ads-menu-index-row[aria-current="page"] span:first-child {
-    color: #b6b94c;
+    color: var(--ads-accent);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -1136,7 +1182,7 @@ a {
 
 /* Accessibility — accessible focus indicator for keyboard users. */
 :where(a, button, [role="button"], input, select, textarea, [tabindex]):focus-visible {
-  outline: 2px solid #B6B94C;
+  outline: 2px solid var(--ads-accent);
   outline-offset: 3px;
   border-radius: 4px;
 }

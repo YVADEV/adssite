@@ -168,6 +168,23 @@ h2 {
   color: var(--ads-text-secondary);
 }
 
+.ads-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.ads-site-header-bar {
+  position: relative;
+  display: flex;
+  height: 72px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .ads-footer-instagram-wrap {
   container-type: inline-size;
 }
@@ -814,7 +831,6 @@ body {
   html,
   body {
     max-width: 100%;
-    overflow-x: clip;
     overscroll-behavior-x: none;
   }
 
@@ -826,6 +842,21 @@ body {
   main {
     max-width: 100%;
     overflow-x: clip;
+  }
+
+  .ads-eyebrow {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+
+  .ads-page p,
+  main p {
+    text-wrap: pretty;
+  }
+
+  header .ads-btn-emergency-glow {
+    font-size: 14px;
+    padding-inline: 12px;
   }
 
   .instagram-reels-track {

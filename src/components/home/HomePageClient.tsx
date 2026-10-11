@@ -26,6 +26,7 @@ import alvernaLogo from "@/assets/alverna-logo.png";
 import teamBannerImage from "@/assets/cazuri/Banner/andreea-banner.webp";
 import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.webp";
 import danaHero from "@/assets/cazuri/dana-hero.jpg";
+import danaBefore from "@/assets/cazuri/dana-before.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.jpg";
 import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
 import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
@@ -202,13 +203,14 @@ function TeamBentoBanner({
   slogan?: string;
 }) {
   return (
-    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
+    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 pt-[72px] md:grid-cols-2 md:px-10 md:pb-[120px] md:pt-0 lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
       <article
-        className="relative isolate z-20 flex min-h-[420px] flex-col overflow-hidden rounded-[24px] bg-[#0A0A0A] p-6 md:overflow-visible md:p-[40px] lg:h-[560px]"
+        className="relative isolate z-20 flex min-h-[420px] flex-col overflow-visible rounded-[24px] bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px]"
       >
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
         </div>
+        {leftHeadline ? (
         <h3
           className={`z-[30] whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] ${
             overflowPhoto
@@ -218,6 +220,7 @@ function TeamBentoBanner({
         >
           {leftHeadline}
         </h3>
+        ) : null}
         {loadImages ? (
         <img
           src={doctorSrc}
@@ -227,8 +230,8 @@ function TeamBentoBanner({
           fetchPriority="low"
           className={
             overflowPhoto
-              ? "pointer-events-none z-[10] max-md:absolute max-md:inset-0 max-md:h-full max-md:w-full max-md:object-cover max-md:object-[center_12%] md:absolute md:bottom-0 md:right-[-64px] md:h-full md:w-auto md:object-contain md:object-[right_bottom] lg:right-[-80px]"
-              : "pointer-events-none z-[10] max-md:absolute max-md:inset-0 max-md:h-full max-md:w-full max-md:object-cover max-md:object-[center_12%] md:absolute md:bottom-0 md:right-[-35px] md:h-[660px] md:w-auto md:object-contain md:object-bottom"
+              ? "pointer-events-none z-[10] max-md:absolute max-md:-top-[18%] max-md:bottom-0 max-md:left-1/2 max-md:h-[118%] max-md:w-auto max-md:max-w-[92%] max-md:-translate-x-1/2 max-md:object-contain max-md:object-bottom md:absolute md:bottom-0 md:right-[-64px] md:h-full md:w-auto md:object-contain md:object-[right_bottom] lg:right-[-80px]"
+              : "pointer-events-none z-[10] max-md:absolute max-md:-top-[18%] max-md:bottom-0 max-md:left-1/2 max-md:h-[118%] max-md:w-auto max-md:max-w-[92%] max-md:-translate-x-1/2 max-md:object-contain max-md:object-bottom md:absolute md:bottom-0 md:right-[-35px] md:h-[660px] md:w-auto md:object-contain md:object-bottom"
           }
         />
         ) : null}
@@ -236,7 +239,7 @@ function TeamBentoBanner({
 
       {showSlogan ? (
         <article className="relative z-10 min-h-[280px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
-          <h3 className="whitespace-pre-line text-[28px] font-semibold leading-[1.05] text-white md:text-[46px]">
+          <h3 className="whitespace-pre-line text-[32px] font-semibold leading-[1.05] text-white md:text-[46px]">
             {slogan}
           </h3>
         </article>
@@ -437,13 +440,13 @@ export default function HomePageClient() {
       <div ref={pageContentRef}>
       <header
         data-intro="nav"
-        className={`sticky top-0 z-50 h-[72px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`ads-site-header w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled
             ? "bg-[#0f1115]/92 shadow-[0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md"
             : "bg-[#0f1115]"
         }`}
       >
-        <div className="relative mx-auto flex h-full w-full items-center justify-between px-4 text-[18px] font-medium sm:px-5 md:px-6 lg:px-8">
+        <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[18px] lg:px-8">
           <SiteLogo />
           <nav
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
@@ -467,7 +470,7 @@ export default function HomePageClient() {
             aria-controls="home-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className={`relative z-10 flex h-12 w-12 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
+            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
           >
             <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-[#ffffff]" />
             <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-[#ffffff]" />
@@ -478,36 +481,36 @@ export default function HomePageClient() {
       </header>
 
       <section className="mt-0 w-full">
-        <div className="relative h-[min(calc(100svh-72px),820px)] w-full min-h-[560px] md:h-[calc(100dvh-72px)] md:max-h-none">
+        <div className="relative h-[min(calc(100svh-72px-env(safe-area-inset-top,0px)),820px)] w-full min-h-[520px] md:h-[calc(100dvh-72px)] md:min-h-[560px] md:max-h-none">
           <div data-intro="hero-media" className="relative h-full w-full overflow-hidden">
             <HeroIntroVideo />
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent"
             />
-            <div data-intro="hero-title" className="absolute inset-0 flex flex-col items-start justify-end px-5 py-6 text-white md:px-7 md:py-8 lg:px-9 lg:py-10">
-              <div className="max-w-[720px]">
+            <div data-intro="hero-title" className="pointer-events-none absolute inset-0 flex flex-col items-start justify-start px-5 pb-6 pt-5 text-white md:justify-end md:px-7 md:py-8 lg:px-9 lg:py-10">
+              <div className="pointer-events-auto max-w-[720px]">
                 <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
-                <h1 className="mt-4 max-w-[18ch] text-balance text-[clamp(32px,7vw,72px)] font-extrabold leading-[0.98] tracking-[-0.045em] md:mt-5">
+                <h1 className="mt-3 max-w-[18ch] text-balance text-[clamp(32px,7vw,40px)] font-extrabold leading-[0.98] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)]">
                   Implantologie și reabilitare orală complexă
                 </h1>
-                <p className="mt-5 max-w-[52ch] text-[clamp(16px,2.4vw,21px)] font-medium leading-[1.5] text-pretty text-white/90 md:mt-6">
+                <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.5] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)]">
                   Diagnostic, chirurgie, protetică și parodontologie integrate într-un singur plan de tratament.
                 </p>
-                <p className="mt-4 max-w-[52ch] text-[clamp(14px,2vw,18px)] font-medium leading-[1.5] text-white/65">
+                <p className="mt-3 max-w-[52ch] text-[14px] font-medium leading-[1.5] text-white/65 md:mt-4 md:text-[clamp(14px,2vw,18px)]">
                   Laborator dentar propriu • Flux digital • Echipă multidisciplinară
                 </p>
-                <div className="mt-7 flex max-w-[520px] flex-col items-start gap-3 sm:flex-row sm:items-center">
+                <div className="mt-5 flex max-w-[520px] flex-col items-start gap-3 md:mt-7 sm:flex-row sm:items-center">
                   <a
                     href="#contact"
-                    className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold sm:text-[18px]"
+                    className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold md:text-[18px]"
                   >
                     Programează o consultație
                   </a>
                   <Link
                     href="/cazuri/"
                     prefetch={false}
-                    className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[16px] font-semibold text-white transition duration-200 hover:bg-white/10 sm:text-[18px]"
+                    className="hidden min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[16px] font-semibold text-white transition duration-200 hover:bg-white/10 md:inline-flex md:text-[18px]"
                   >
                     Vezi cazuri reale
                   </Link>
@@ -549,8 +552,32 @@ export default function HomePageClient() {
               className="mt-10 aspect-[4/3] w-full rounded-[24px] sm:aspect-[16/10] lg:aspect-[21/10]"
             />
           ) : null}
+          <div className="mt-8 md:hidden">
+            <p className="text-[18px] font-medium leading-[1.5] text-white">
+              Reabilitare dentară totală din zirconiu cu tratamente chirurgicale parodontale
+            </p>
+            <p className="mt-3 text-[16px] font-medium leading-[1.4] text-white/70">
+              Dr. Andreea Pârvu · Protetică dentară
+            </p>
+            <BeforeAfterCompare
+              beforeSrc={belowFoldMedia ? danaBefore.src : ""}
+              afterSrc={belowFoldMedia ? danaHero.src : ""}
+              beforeAlt="Dana — înainte de tratament"
+              afterAlt="Dana — după tratament"
+              beforePosition="center center"
+              afterPosition="center 36%"
+              className="mt-6 aspect-[4/3] w-full rounded-[24px]"
+            />
+            <Link
+              href="/cazuri/dana/"
+              prefetch={false}
+              className="mt-5 inline-flex min-h-[48px] items-center justify-center rounded-full bg-black px-5 text-[18px] font-semibold text-white"
+            >
+              Vezi cazul →
+            </Link>
+          </div>
         </div>
-        <div className="mx-auto mt-[48px] grid w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid-cols-3 md:gap-5 md:px-6 lg:px-8">
+        <div className="mx-auto mt-[48px] hidden w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid md:grid-cols-3 md:gap-5 md:px-6 lg:px-8">
           {caseGallery.map(({ src, alt }) => {
             const href = src.includes("dana-hero")
               ? "/cazuri/dana/"
@@ -653,7 +680,7 @@ export default function HomePageClient() {
                     </button>
                   ) : null}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10 sm:inset-auto sm:bottom-[16px] sm:left-[16px] sm:right-[16px] sm:bg-none sm:p-0 sm:pt-0">
-                    <p className="line-clamp-2 text-[14px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
+                    <p className="line-clamp-2 text-[16px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
                   </div>
                 </div>
               </article>
@@ -811,7 +838,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section data-anim="section" data-theme="light" className="bg-[#F5F5F5]">
+      <section data-anim="section" data-theme="light" className="overflow-x-clip bg-[#F5F5F5] md:overflow-visible">
         <TeamBentoBanner
           doctorSrc={teamBannerImage.src}
           doctorAlt="Echipa medicală Alverna Dental Studio"
@@ -851,7 +878,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="echipa" data-anim="section" data-theme="light" className="overflow-hidden bg-[#ececec] pb-[90px] pt-0 md:overflow-visible lg:pb-[140px]">
+      <section id="echipa" data-anim="section" data-theme="light" className="overflow-x-clip bg-[#ececec] pb-[90px] pt-0 md:overflow-visible lg:pb-[140px]">
         <div className="relative z-30 mx-auto flex w-full max-w-[1680px] flex-col gap-6 bg-[#ececec] px-5 pb-6 pt-6 md:flex-row md:items-end md:justify-between md:px-10 md:pb-8 md:pt-8 lg:px-[96px]">
           <div className="max-w-[820px]">
             <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.04em] text-white md:text-[52px] lg:text-[64px]">
@@ -862,11 +889,11 @@ export default function HomePageClient() {
             </p>
           </div>
         </div>
-        <div id="laborator-alverna" className="overflow-hidden md:overflow-visible">
+        <div id="laborator-alverna" className="overflow-x-clip md:overflow-visible">
           <TeamBentoBanner
             doctorSrc={labDoctorBannerImage.src}
             doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
-            leftHeadline={"laborator\ndentar"}
+            leftHeadline=""
             showScanCard={false}
             loadImages={belowFoldMedia}
             overflowPhoto
@@ -878,7 +905,7 @@ export default function HomePageClient() {
       <section className="bg-[#ececec] pb-16 pt-[10px] lg:pb-[90px]">
         <div className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-[96px]">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <h2 className="text-balance text-[24px] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-[32px] md:text-[40px]">
+            <h2 className="text-balance text-[32px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[40px]">
               Mai multe cazuri tratate
             </h2>
             <Link

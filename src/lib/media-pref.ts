@@ -18,7 +18,7 @@ export function prefersReducedMedia(): boolean {
 
 export function isMobileViewport(): boolean {
   if (typeof window === "undefined") return false;
-  return window.matchMedia("(max-width: 768px)").matches;
+  return window.matchMedia("(max-width: 767px)").matches;
 }
 
 /** Fallback when a lighter mobile file is unavailable. */

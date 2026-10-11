@@ -161,13 +161,13 @@ export default function EchipaPage() {
 
       <div ref={pageContentRef} id="main" tabIndex={-1} className="outline-none">
         <header
-          className={`sticky top-0 z-50 h-[68px] w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out sm:h-[72px] ${
+          className={`ads-site-header w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out ${
             scrolled
               ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
               : "bg-[#0f1115]"
           }`}
         >
-          <div className="relative mx-auto flex h-full w-full items-center justify-between px-4 text-[18px] font-medium sm:px-5 md:px-6 lg:px-8">
+          <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[18px] lg:px-8">
           <SiteLogo />
           <nav className="hidden items-center gap-8 text-[18px] text-white lg:flex xl:gap-[80px]">
             <a href="/">Acasă</a>
@@ -190,7 +190,7 @@ export default function EchipaPage() {
             aria-controls="echipa-mobile-menu"
             aria-haspopup="dialog"
             onClick={toggleMenu}
-            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[5px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden sm:h-12 sm:w-12 sm:gap-[6px] ${menuOpen ? "pointer-events-none" : ""}`}
+            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#B6B94C] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
           >
             <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-white" />
             <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-white" />

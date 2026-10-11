@@ -58,7 +58,7 @@ export default async function CaseDetailPage({ params }: Props) {
       />
       <main className="bg-black pb-20 pt-0 text-white">
         {/* Hero — full-bleed patient photo */}
-        <section className="relative h-[min(calc(100vh-40px),640px)] w-full overflow-hidden bg-black md:min-h-[700px] md:h-[calc(100vh-40px)]">
+        <section className="relative h-[min(52svh,420px)] w-full overflow-hidden bg-black md:h-[calc(100vh-40px)] md:min-h-[700px]">
           <Image
             src={caz.heroImage}
             alt={titleLines.join(" ")}
@@ -84,7 +84,7 @@ export default async function CaseDetailPage({ params }: Props) {
               ← Înapoi la cazuri
             </Link>
             {caz.patientName && (
-              <p className="absolute bottom-20 left-4 max-w-[calc(100%-2rem)] text-[36px] font-semibold leading-[0.95] tracking-[-0.02em] text-white sm:text-[56px] md:bottom-36 md:left-10 md:text-[80px] lg:bottom-44 lg:left-12 lg:text-[100px]">
+              <p className="absolute bottom-8 left-4 max-w-[calc(100%-2rem)] text-[32px] font-semibold leading-[0.95] tracking-[-0.02em] text-white sm:text-[40px] md:bottom-36 md:left-10 md:text-[80px] lg:bottom-44 lg:left-12 lg:text-[100px]">
                 {caz.patientName}
               </p>
             )}
@@ -127,7 +127,7 @@ export default async function CaseDetailPage({ params }: Props) {
                       transformOrigin: item.objectPosition ?? "center center",
                     }}
                   />
-                  <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[21px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+                  <figcaption className="absolute bottom-4 left-4 rounded-full border border-white/25 bg-black/50 px-4 py-1.5 text-[13px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm md:text-[21px]">
                     {item.label}
                   </figcaption>
                 </figure>
@@ -156,7 +156,7 @@ export default async function CaseDetailPage({ params }: Props) {
               <h2 className="mt-3 max-w-[900px] text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[48px]">
                 Povestea cazului
               </h2>
-              <div className="mt-8 max-w-[820px] space-y-6 text-[21px] leading-[1.8] text-white">
+              <div className="mt-8 max-w-[820px] space-y-5 text-[16px] leading-[1.6] text-white md:space-y-6 md:text-[21px] md:leading-[1.8]">
                 {caz.paragraphs.map((p, i) => (
                   <p key={`paragraph-${i}`}>{p}</p>
                 ))}

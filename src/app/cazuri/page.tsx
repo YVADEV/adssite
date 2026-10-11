@@ -57,15 +57,15 @@ export default function CazuriPage() {
             </motion.h1>
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-[minmax(280px,360px)_1fr] md:gap-10 lg:mt-12 lg:gap-12">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
-                <p className="text-[21px] font-semibold text-white">Înainte / După</p>
-                <p className="mt-3 text-[21px] leading-[1.4] text-white">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
+                <p className="text-[16px] font-semibold text-white md:text-[21px]">Înainte / După</p>
+                <p className="mt-3 text-[16px] leading-[1.5] text-white md:text-[21px] md:leading-[1.4]">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
               </motion.div>
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-[520px] text-[21px] leading-[1.65] text-white lg:max-w-[620px]"
+                className="max-w-[520px] text-[16px] leading-[1.6] text-white md:text-[21px] md:leading-[1.65] lg:max-w-[620px]"
               >
                 Fiecare caz este analizat complet, cu pași explicați și obiective clare. Accent pe funcționalitate, estetică și confort pe termen lung.
               </motion.p>

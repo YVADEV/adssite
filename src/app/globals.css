@@ -844,19 +844,43 @@ body {
     overflow-x: clip;
   }
 
+  .ads-site-header-bar {
+    height: 64px;
+  }
+
   .ads-eyebrow {
     font-size: 12px;
     line-height: 1.35;
+    letter-spacing: 0.14em;
   }
 
   .ads-page p,
   main p {
     text-wrap: pretty;
+    line-height: 1.55;
+  }
+
+  .ads-page h1,
+  main h1 {
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .ads-page h2,
+  main h2 {
+    line-height: 1.08;
+    letter-spacing: -0.03em;
   }
 
   header .ads-btn-emergency-glow {
     font-size: 14px;
+    min-height: 44px;
     padding-inline: 12px;
+  }
+
+  .ads-btn-lit,
+  .ads-btn-primary {
+    font-size: 16px;
   }
 
   .instagram-reels-track {

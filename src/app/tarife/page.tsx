@@ -37,7 +37,7 @@ export default function TarifePage() {
         </section>
 
         <section className="mx-auto w-full max-w-[1680px] px-4 pt-8 md:px-8 md:pt-12 lg:px-12">
-          <p className="max-w-[960px] text-[18px] leading-[1.65] text-white/75 sm:text-[21px]">
+          <p className="max-w-[960px] text-[16px] leading-[1.6] text-white/75 md:text-[21px] md:leading-[1.65]">
             Aceleași tarife ale clinicii, organizate pe categorii. Selectează categoria dorită pentru a vedea toate procedurile și prețurile disponibile.
           </p>
 
@@ -75,9 +75,9 @@ export default function TarifePage() {
               <div className="mt-5 max-h-[620px] space-y-0 overflow-y-auto pr-2">
                 {activeData.items.map((entry) => (
                   <div key={`${activeData.category}-${entry.name}`} className="group flex items-end gap-3 border-b border-white/10 py-[10px]">
-                    <p className="text-[21px] leading-[1.65] text-white">{entry.name}</p>
+                    <p className="min-w-0 text-[16px] leading-[1.5] text-white md:text-[21px] md:leading-[1.65]">{entry.name}</p>
                     <span className="mb-[6px] flex-1 border-b border-dotted border-white/25" />
-                    <p className="shrink-0 text-right text-[21px] font-semibold text-white">{entry.price}</p>
+                    <p className="shrink-0 text-right text-[16px] font-semibold tabular-nums text-white md:text-[21px]">{entry.price}</p>
                   </div>
                 ))}
               </div>

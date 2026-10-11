@@ -484,7 +484,7 @@ export default function HomePageClient() {
         <div className="relative md:h-[calc(100dvh-72px)] md:min-h-[560px]">
           <div
             data-intro="hero-media"
-            className="relative h-[min(calc(100svh-72px-env(safe-area-inset-top,0px)),820px)] w-full min-h-[520px] overflow-hidden md:absolute md:inset-0 md:h-full md:min-h-0"
+            className="relative h-[min(52svh,420px)] w-full min-h-[280px] overflow-hidden md:absolute md:inset-0 md:h-full md:min-h-0 md:max-h-none"
           >
             <HeroIntroVideo />
             <div
@@ -502,7 +502,7 @@ export default function HomePageClient() {
           </div>
           <div
             data-intro="hero-title"
-            className="px-5 py-8 text-white md:absolute md:inset-0 md:flex md:flex-col md:items-start md:justify-end md:px-7 md:py-8 lg:px-9 lg:py-10"
+            className="px-5 py-6 text-white md:absolute md:inset-0 md:flex md:flex-col md:items-start md:justify-end md:px-7 md:py-8 lg:px-9 lg:py-10"
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
@@ -538,7 +538,8 @@ export default function HomePageClient() {
       <section id="cazuri" data-anim="section" className="bg-[#ececec] pb-[96px] pt-20 md:pb-[120px] md:pt-28 lg:pb-[140px] lg:pt-[160px]">
         <SectionTitle title="Cazuri" />
         <div className="mx-auto mt-4 w-full max-w-[1680px] px-4 md:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col">
+            <div className="order-2 mt-4 flex flex-col gap-4 md:order-1 md:mt-0 md:gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-[640px]">
               <p className="text-[18px] font-medium leading-[1.5] text-white md:text-[21px]">
                 {featuredCase.subtitle}
@@ -553,7 +554,7 @@ export default function HomePageClient() {
             >
               Vezi cazul →
             </Link>
-          </div>
+            </div>
 
           {featuredBefore && featuredAfter ? (
             <BeforeAfterCompare
@@ -563,16 +564,11 @@ export default function HomePageClient() {
               afterAlt={featuredAfter.alt}
               beforePosition={featuredBefore.objectPosition}
               afterPosition={featuredAfter.objectPosition}
-              className="mt-10 aspect-[4/3] w-full rounded-[24px] sm:aspect-[16/10] lg:aspect-[21/10]"
+              className="order-1 mt-4 aspect-[4/3] w-full rounded-[24px] md:order-2 md:mt-10 sm:aspect-[16/10] lg:aspect-[21/10]"
             />
           ) : null}
-          <div className="mt-8 md:hidden">
-            <p className="text-[18px] font-medium leading-[1.5] text-white">
-              Reabilitare dentară totală din zirconiu cu tratamente chirurgicale parodontale
-            </p>
-            <p className="mt-3 text-[16px] font-medium leading-[1.4] text-white/70">
-              Dr. Andreea Pârvu · Protetică dentară
-            </p>
+          </div>
+          <div className="mt-8 flex flex-col md:hidden">
             <BeforeAfterCompare
               beforeSrc={belowFoldMedia ? danaBefore.src : ""}
               afterSrc={belowFoldMedia ? danaHero.src : ""}
@@ -580,12 +576,18 @@ export default function HomePageClient() {
               afterAlt="Dana — după tratament"
               beforePosition="center center"
               afterPosition="center 36%"
-              className="mt-6 aspect-[4/3] w-full rounded-[24px]"
+              className="order-1 aspect-[4/3] w-full rounded-[24px]"
             />
+            <p className="order-2 mt-4 text-[18px] font-medium leading-[1.5] text-white">
+              Reabilitare dentară totală din zirconiu cu tratamente chirurgicale parodontale
+            </p>
+            <p className="order-3 mt-2 text-[16px] font-medium leading-[1.4] text-white/70">
+              Dr. Andreea Pârvu · Protetică dentară
+            </p>
             <Link
               href="/cazuri/dana/"
               prefetch={false}
-              className="mt-5 inline-flex min-h-[48px] items-center justify-center rounded-full bg-black px-5 text-[18px] font-semibold text-white"
+              className="order-4 mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full bg-black px-5 text-[16px] font-semibold text-white"
             >
               Vezi cazul →
             </Link>

@@ -550,6 +550,10 @@ html[data-theme="dark"] .ads-card-lit select,
 .ads-card-lit textarea,
 .ads-card-lit select {
   appearance: none;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   color-scheme: light;
   background-color: #f3f3f3 !important;
   background-image: none !important;

@@ -173,7 +173,7 @@ export function ContactFormCard({ source }: { source: string }) {
 
   return (
     <div
-      className="ads-card-lit rounded-[20px] p-5 md:rounded-[24px] md:p-8"
+      className="ads-card-lit min-w-0 overflow-hidden rounded-[20px] p-5 md:rounded-[24px] md:p-8"
     >
       <p className="text-[14px] opacity-70 md:text-[21px]">{CLINIC.instagramHandle}</p>
       <h3 className="mt-2 text-[26px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
@@ -202,7 +202,7 @@ export function ContactFormCard({ source }: { source: string }) {
           ) : null}
         </div>
       ) : (
-        <form className="relative mt-5 grid gap-3 md:mt-7 md:gap-4" onSubmit={handleSubmit} noValidate>
+        <form className="relative mt-5 grid min-w-0 gap-3 md:mt-7 md:gap-4" onSubmit={handleSubmit} noValidate>
           <input type="hidden" name="form-name" value="contact" />
           <div aria-hidden="true" className="hidden">
             <input
@@ -213,13 +213,13 @@ export function ContactFormCard({ source }: { source: string }) {
               aria-hidden="true"
             />
           </div>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-1 md:gap-4">
-            <label className="grid gap-1">
+          <div className="grid min-w-0 grid-cols-2 gap-2 md:grid-cols-1 md:gap-4">
+            <label className="grid min-w-0 gap-1">
               <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Nume</span>
               <input
                 id="contact-nume"
                 name="nume"
-                className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+                className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
                 placeholder="Nume"
                 required
                 autoComplete="family-name"
@@ -227,12 +227,12 @@ export function ContactFormCard({ source }: { source: string }) {
                 aria-describedby={status === "error" ? "contact-form-error" : undefined}
               />
             </label>
-            <label className="grid gap-1">
+            <label className="grid min-w-0 gap-1">
               <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Prenume</span>
               <input
                 id="contact-prenume"
                 name="prenume"
-                className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+                className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
                 placeholder="Prenume"
                 required
                 autoComplete="given-name"
@@ -248,7 +248,7 @@ export function ContactFormCard({ source }: { source: string }) {
               name="telefon"
               type="tel"
               inputMode="tel"
-              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+              className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
               placeholder="Telefon"
               required
               autoComplete="tel"

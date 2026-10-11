@@ -13,6 +13,7 @@ import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
 import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
 import { GoogleMark } from "@/components/ui/GoogleMark";
+import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
@@ -503,7 +504,7 @@ export default function HomePageClient() {
           </div>
           <div
             data-intro="hero-title"
-            className="ads-hero-editorial relative z-[2] -mt-9 bg-[#0f1115] px-5 pb-8 pt-6 text-white md:absolute md:inset-0 md:z-auto md:mt-0 md:flex md:flex-col md:items-start md:justify-end md:bg-transparent md:px-7 md:py-8 lg:px-9 lg:py-10"
+            className="ads-hero-editorial relative z-[2] -mt-9 bg-[#0f1115] px-5 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] pt-6 text-white md:absolute md:inset-0 md:z-auto md:mt-0 md:flex md:flex-col md:items-start md:justify-end md:bg-transparent md:px-7 md:py-8 md:pb-8 lg:px-9 lg:py-10"
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
@@ -790,7 +791,23 @@ export default function HomePageClient() {
 
       <section className="bg-[#ececec] pb-16 md:pb-[120px]">
         <SectionTitle title="Recenzii" />
-        <div className="mx-auto mt-10 grid w-full max-w-[1680px] grid-cols-1 gap-[20px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-12">
+        <div className="mx-auto mt-8 max-w-[1680px] px-4 md:hidden">
+          <GoogleReviewsMobile
+            reviews={reviews}
+            logo={
+              belowFoldMedia ? (
+                <img
+                  src={alvernaLogo.src}
+                  alt="Alverna logo"
+                  width={160}
+                  height={53}
+                  className="mt-3 h-auto w-[160px] object-contain"
+                />
+              ) : null
+            }
+          />
+        </div>
+        <div className="mx-auto mt-10 hidden w-full max-w-[1680px] grid-cols-1 gap-[20px] px-4 md:grid md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-12">
           <article
             className="ads-surface-light-muted flex min-h-[313px] flex-col rounded-[18px] p-[30px]"
           >

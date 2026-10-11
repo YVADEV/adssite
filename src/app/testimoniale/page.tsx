@@ -2,6 +2,7 @@
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CLINIC } from "@/lib/contact";
+import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
 
 const trustPoints = ["Zâmbete fericite", "Excelență în stomatologie", "Profesionalism, calitate și promptitudine"];
 
@@ -61,7 +62,10 @@ export default function TestimonialePage() {
             <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-[#3f3f3f]">
               Fiecare tratament este explicat înainte de a începe, astfel încât pacientul să se simtă confortabil și în control. Empatia, răbdarea și comunicarea clară definesc fiecare interacțiune în clinică.
             </p>
-            <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 md:hidden">
+              <GoogleReviewsMobile reviews={reviews} />
+            </div>
+            <div className="mt-8 hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
               {reviews.map((review) => (
                 <article key={review.name + review.meta} className="flex min-h-[230px] flex-col rounded-[18px] border border-black/5 bg-[#f7f7f7] p-6 transition duration-300 hover:-translate-y-[2px]">
                   <div className="flex items-center justify-between">
@@ -77,19 +81,19 @@ export default function TestimonialePage() {
         </section>
 
         <section className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:px-8 lg:mt-10 lg:px-12">
-          <div className="rounded-[24px] bg-[#0A0A0A] p-6 text-white md:p-10 lg:p-12">
+          <div className="rounded-[24px] bg-[#0A0A0A] p-5 text-white md:p-10 lg:p-12">
             <div className="flex flex-wrap items-end justify-between gap-4">
-              <h2 className="text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[48px]">Recenzii Google</h2>
+              <h2 className="text-[26px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[48px]">Recenzii Google</h2>
               <a
                 href={CLINIC.mapsPlaceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[21px] font-semibold text-[#f2d16b] underline decoration-[#f2d16b]/50 underline-offset-4"
+                className="text-[16px] font-semibold text-[color:var(--ads-accent)] underline decoration-[color:var(--ads-accent)]/50 underline-offset-4 md:text-[21px]"
               >
                 4.8/5 ★★★★★
               </a>
             </div>
-            <p className="mt-4 max-w-[900px] text-[21px] leading-[1.7] text-white">
+            <p className="mt-3 max-w-[900px] text-[15px] leading-[1.6] text-white md:mt-4 md:text-[21px] md:leading-[1.7]">
               Feedback-ul pacienților din Cluj confirmă aceeași experiență: comunicare clară, programări respectate și o echipă care explică opțiunile de tratament.
             </p>
           </div>

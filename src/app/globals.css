@@ -124,6 +124,7 @@ html {
   width: 100%;
   max-width: 100%;
   scroll-behavior: smooth;
+  scroll-padding-bottom: var(--ads-mobile-bottom-h, 0px);
 }
 
 ::selection {
@@ -421,7 +422,8 @@ textarea {
 }
 
 body.menu-open [data-ads-sticky-contact],
-body.menu-open [data-ads-cookie-consent] {
+body.menu-open [data-ads-cookie-consent],
+body.menu-open [data-ads-mobile-bottom] {
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;

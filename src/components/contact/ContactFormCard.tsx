@@ -13,6 +13,7 @@ export function ContactFormCard({ source }: { source: string }) {
   const [status, setStatus] = useState<ContactStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [viaEmailApp, setViaEmailApp] = useState(false);
+  const [showExtraFields, setShowExtraFields] = useState(false);
   const submittingRef = useRef(false);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -172,11 +173,11 @@ export function ContactFormCard({ source }: { source: string }) {
 
   return (
     <div
-      className="ads-card-lit rounded-[24px] p-8"
+      className="ads-card-lit rounded-[20px] p-5 md:rounded-[24px] md:p-8"
     >
-      <p className="text-[21px] opacity-70">{CLINIC.instagramHandle}</p>
-      <h3 className="mt-2 text-[32px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
-      <p className="mt-3 text-[21px] leading-[1.45] opacity-80">
+      <p className="text-[14px] opacity-70 md:text-[21px]">{CLINIC.instagramHandle}</p>
+      <h3 className="mt-2 text-[26px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
+      <p className="mt-2 text-[15px] leading-[1.45] opacity-80 md:mt-3 md:text-[21px]">
         Lasă-ne datele tale și te contactăm pentru confirmarea programării.
       </p>
       {process.env.NODE_ENV === "development" ? (
@@ -201,7 +202,7 @@ export function ContactFormCard({ source }: { source: string }) {
           ) : null}
         </div>
       ) : (
-        <form className="relative mt-7 grid gap-4" onSubmit={handleSubmit} noValidate>
+        <form className="relative mt-5 grid gap-3 md:mt-7 md:gap-4" onSubmit={handleSubmit} noValidate>
           <input type="hidden" name="form-name" value="contact" />
           <div aria-hidden="true" className="hidden">
             <input
@@ -212,13 +213,13 @@ export function ContactFormCard({ source }: { source: string }) {
               aria-hidden="true"
             />
           </div>
-          <div className="grid grid-cols-1 gap-4">
-            <label className="grid gap-1.5">
-              <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Nume</span>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-1 md:gap-4">
+            <label className="grid gap-1">
+              <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Nume</span>
               <input
                 id="contact-nume"
                 name="nume"
-                className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+                className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
                 placeholder="Nume"
                 required
                 autoComplete="family-name"
@@ -226,12 +227,12 @@ export function ContactFormCard({ source }: { source: string }) {
                 aria-describedby={status === "error" ? "contact-form-error" : undefined}
               />
             </label>
-            <label className="grid gap-1.5">
-              <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Prenume</span>
+            <label className="grid gap-1">
+              <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Prenume</span>
               <input
                 id="contact-prenume"
                 name="prenume"
-                className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+                className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
                 placeholder="Prenume"
                 required
                 autoComplete="given-name"
@@ -240,14 +241,14 @@ export function ContactFormCard({ source }: { source: string }) {
               />
             </label>
           </div>
-          <label className="grid gap-1.5">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Telefon</span>
+          <label className="grid gap-1">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Telefon</span>
             <input
               id="contact-telefon"
               name="telefon"
               type="tel"
               inputMode="tel"
-              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
               placeholder="Telefon"
               required
               autoComplete="tel"
@@ -255,49 +256,60 @@ export function ContactFormCard({ source }: { source: string }) {
               aria-describedby={status === "error" ? "contact-form-error" : undefined}
             />
           </label>
-          <label className="grid gap-1.5">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Email</span>
+          {!showExtraFields ? (
+            <button
+              type="button"
+              className="min-h-11 text-left text-[14px] font-medium text-[#0a0a0a] underline decoration-[color:var(--ads-accent)]/60 underline-offset-4 md:hidden"
+              onClick={() => setShowExtraFields(true)}
+            >
+              Detalii suplimentare
+            </button>
+          ) : null}
+          <div className={`grid gap-3 md:grid md:gap-4 ${showExtraFields ? "grid" : "max-md:hidden"}`}>
+          <label className="grid gap-1">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Email</span>
             <input
               id="contact-email"
               name="email"
               type="email"
               inputMode="email"
-              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
               placeholder="Email (opțional)"
               autoComplete="email"
             />
           </label>
-          <label className="grid gap-1.5">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Serviciu</span>
+          <label className="grid gap-1">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Serviciu</span>
             <input
               id="contact-serviciu"
               name="serviciu"
-              className="ads-field h-[56px] rounded-[14px] px-4 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
               placeholder="Serviciu dorit"
               autoComplete="off"
             />
           </label>
-          <label className="grid gap-1.5">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.08em] opacity-60">Mesaj</span>
+          <label className="grid gap-1">
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Mesaj</span>
             <textarea
               id="contact-mesaj"
               name="mesaj"
               rows={4}
-              className="ads-field min-h-[110px] rounded-[14px] px-4 py-3 text-[21px] outline-none transition focus:ring-2 focus:ring-[#B6B94C]/45"
+              className="ads-field min-h-[88px] rounded-[12px] px-3 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:min-h-[110px] md:rounded-[14px] md:px-4 md:text-[21px]"
               placeholder="Mesaj opțional"
             />
           </label>
+          </div>
           {status === "error" ? (
-            <p id="contact-form-error" role="alert" className="ads-form-error rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[21px]">
+            <p id="contact-form-error" role="alert" className="ads-form-error rounded-[10px] border border-[#a4392b]/40 bg-[#fdecea] px-4 py-2 text-[16px] md:text-[21px]">
               {error}
             </p>
           ) : null}
-          <label className="mt-1 flex min-h-[44px] items-start gap-3 text-left text-[18px] leading-[1.45] opacity-90 md:text-[19px]">
+          <label className="mt-1 flex min-h-[44px] items-start gap-3 text-left text-[14px] leading-[1.45] opacity-90 md:text-[19px]">
             <input
               type="checkbox"
               name="gdpr"
               required
-              className="mt-1 h-6 w-6 shrink-0 accent-[#B6B94C]"
+              className="mt-1 h-5 w-5 shrink-0 accent-[color:var(--ads-accent)] md:h-6 md:w-6"
             />
             <span>
               Am citit și accept{" "}
@@ -310,7 +322,7 @@ export function ContactFormCard({ source }: { source: string }) {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="mt-2 inline-flex h-[54px] w-full items-center justify-center rounded-full bg-black text-[21px] font-semibold text-white transition duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
+            className="mt-1 inline-flex h-12 w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70 md:mt-2 md:h-[54px] md:text-[21px]"
           >
             {status === "loading" ? "Se trimite…" : "Programează o consultație"}
           </button>

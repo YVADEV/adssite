@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import StickyContactButtons from "@/components/layout/StickyContactButtons";
 import CookieConsent from "@/components/layout/CookieConsent";
+import MobileBottomStack from "@/components/layout/MobileBottomStack";
 import { JsonLd, organizationLd, websiteLd } from "@/components/seo/JsonLd";
 import { BUSINESS, SITE_URL } from "@/lib/seo";
 
@@ -89,7 +90,7 @@ export default function RootLayout({
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
       </head>
-      <body className="flex min-h-screen min-w-0 max-w-full flex-col bg-black pb-[calc(6.5rem+env(safe-area-inset-bottom,0px))] text-white md:pb-0">
+      <body className="flex min-h-screen min-w-0 max-w-full flex-col bg-black pb-[var(--ads-mobile-bottom-h,0px)] text-white md:pb-0">
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:px-5 focus:py-2 focus:text-[21px] focus:font-semibold focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#B6B94C] ads-btn-lit"
@@ -97,8 +98,10 @@ export default function RootLayout({
           Sari la conținut
         </a>
         {children}
-        <StickyContactButtons />
-        <CookieConsent />
+        <MobileBottomStack>
+          <CookieConsent />
+          <StickyContactButtons />
+        </MobileBottomStack>
       </body>
     </html>
   );

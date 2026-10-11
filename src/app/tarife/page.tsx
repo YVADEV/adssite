@@ -41,9 +41,9 @@ export default function TarifePage() {
             Aceleași tarife ale clinicii, organizate pe categorii. Selectează categoria dorită pentru a vedea toate procedurile și prețurile disponibile.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-[420px_minmax(0,1fr)] lg:gap-8">
-            <aside className="rounded-[24px] border border-white/10 bg-white/[0.04] p-3 sm:p-4">
-              <div className="max-h-none space-y-2 overflow-visible lg:max-h-[620px] lg:overflow-y-auto lg:pr-1">
+          <div className="mt-8 grid grid-cols-1 gap-5 md:mt-10 md:gap-6 lg:grid-cols-[420px_minmax(0,1fr)] lg:gap-8">
+            <aside className="max-md:-mx-4 max-md:px-4 md:rounded-[24px] md:border md:border-white/10 md:bg-white/[0.04] md:p-3 lg:p-4">
+              <div className="flex gap-2 overflow-x-auto pb-1 max-md:[scrollbar-width:thin] md:max-h-none md:flex-col md:space-y-2 md:overflow-visible md:pb-0 lg:max-h-[620px] lg:overflow-y-auto lg:pr-1">
                 {pricingData.map((category) => {
                   const isActive = category.category === activeData.category;
                   return (
@@ -52,39 +52,39 @@ export default function TarifePage() {
                       whileHover={{ y: -1 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
                       onClick={() => setActiveCategory(category.category)}
-                      className={`grid min-h-[52px] w-full grid-cols-[1fr_26px] items-center rounded-[12px] border px-4 py-3 text-left text-[18px] font-medium transition outline-none sm:text-[21px] ${
+                      className={`grid min-h-11 shrink-0 grid-cols-[1fr_auto] items-center rounded-full border px-4 py-2 text-left text-[14px] font-medium transition outline-none md:min-h-[52px] md:w-full md:grid-cols-[1fr_26px] md:rounded-[12px] md:py-3 md:text-[18px] lg:text-[21px] ${
                         isActive
-                          ? "border-[#B6B94C]/60 bg-[#B6B94C]/15 text-white ring-2 ring-[#B6B94C]/35"
+                          ? "border-[color:var(--ads-accent)]/60 bg-[color:var(--ads-accent)]/15 text-white ring-2 ring-[color:var(--ads-accent)]/35"
                           : "border-white/10 bg-white/5 text-white hover:border-white/20 hover:bg-white/10"
                       }`}
                     >
-                      <span className="truncate pr-2">{category.category}</span>
-                      <span className={`text-[21px] leading-none ${isActive ? "text-[#8fd17f]" : "text-white/50"}`}>+</span>
+                      <span className="whitespace-nowrap pr-2 md:truncate">{category.category}</span>
+                      <span className={`hidden text-[21px] leading-none md:inline ${isActive ? "text-[color:var(--ads-accent)]" : "text-white/50"}`}>+</span>
                     </motion.button>
                   );
                 })}
               </div>
             </aside>
 
-            <article className="rounded-[24px] border border-white/10 bg-white/[0.04] p-5 md:p-6 lg:p-7">
-              <div className="border-b border-white/10 pb-5">
-                <h2 className="text-[30px] font-semibold leading-[1.05] tracking-[-0.03em] text-white md:text-[36px]">{activeData.category}</h2>
-                <p className="mt-2 text-[21px] text-white/65">{activeData.items.length} proceduri disponibile</p>
+            <article className="rounded-[18px] border border-white/10 bg-white/[0.04] p-4 md:rounded-[24px] md:p-6 lg:p-7">
+              <div className="border-b border-white/10 pb-3 md:pb-5">
+                <h2 className="text-[22px] font-semibold leading-[1.1] tracking-[-0.03em] text-white md:text-[36px]">{activeData.category}</h2>
+                <p className="mt-1 text-[14px] text-white/65 md:mt-2 md:text-[21px]">{activeData.items.length} proceduri disponibile</p>
               </div>
 
-              <div className="mt-5 max-h-[620px] space-y-0 overflow-y-auto pr-2">
+              <div className="mt-2 max-h-none space-y-0 overflow-visible md:mt-5 md:max-h-[620px] md:overflow-y-auto md:pr-2">
                 {activeData.items.map((entry) => (
-                  <div key={`${activeData.category}-${entry.name}`} className="group flex items-end gap-3 border-b border-white/10 py-[10px]">
-                    <p className="min-w-0 text-[16px] leading-[1.5] text-white md:text-[21px] md:leading-[1.65]">{entry.name}</p>
+                  <div key={`${activeData.category}-${entry.name}`} className="group flex items-end gap-3 border-b border-white/10 py-2 md:py-[10px]">
+                    <p className="min-w-0 text-[15px] leading-[1.45] text-white md:text-[21px] md:leading-[1.65]">{entry.name}</p>
                     <span className="mb-[6px] flex-1 border-b border-dotted border-white/25" />
-                    <p className="shrink-0 text-right text-[16px] font-semibold tabular-nums text-white md:text-[21px]">{entry.price}</p>
+                    <p className="shrink-0 text-right text-[15px] font-semibold tabular-nums text-white md:text-[21px]">{entry.price}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 rounded-[16px] border border-[rgba(79,127,71,0.35)] bg-[rgba(79,127,71,0.08)] p-4">
-                <p className="text-[21px] font-semibold text-white">Solicită un plan personalizat</p>
-                <p className="mt-1 text-[21px] text-white/75">Te contactăm rapid pentru o estimare clară și pașii potriviți cazului tău.</p>
+              <div className="mt-5 rounded-[16px] border border-[color:var(--ads-accent)]/35 bg-[color:var(--ads-accent)]/8 p-4 md:mt-6">
+                <p className="text-[16px] font-semibold text-white md:text-[21px]">Solicită un plan personalizat</p>
+                <p className="mt-1 text-[14px] text-white/75 md:text-[21px]">Te contactăm rapid pentru o estimare clară și pașii potriviți cazului tău.</p>
                 <a href={CLINIC.formPageHref} className="ads-btn-lit mt-3 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[17px] font-semibold leading-[1.2] transition duration-200 hover:opacity-90 sm:w-auto sm:px-5 sm:text-[21px]">
                   Programează o consultație
                 </a>
@@ -92,18 +92,18 @@ export default function TarifePage() {
             </article>
           </div>
 
-          <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[21px] uppercase tracking-[0.1em] text-white/60">Consultație</p>
-              <p className="mt-2 text-[21px] font-semibold leading-none text-white">de la 150 RON</p>
+          <div className="mt-6 grid grid-cols-1 gap-3 md:mt-8 md:grid-cols-3 md:gap-4">
+            <div className="rounded-[14px] border border-white/10 bg-white/[0.04] p-3 md:rounded-[16px] md:p-4">
+              <p className="text-[12px] uppercase tracking-[0.1em] text-white/60 md:text-[21px]">Consultație</p>
+              <p className="mt-1 text-[16px] font-semibold leading-none text-white md:mt-2 md:text-[21px]">de la 150 RON</p>
             </div>
-            <div className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[21px] uppercase tracking-[0.1em] text-white/60">Implantologie</p>
-              <p className="mt-2 text-[21px] font-semibold leading-none text-white">de la 400 EURO</p>
+            <div className="rounded-[14px] border border-white/10 bg-white/[0.04] p-3 md:rounded-[16px] md:p-4">
+              <p className="text-[12px] uppercase tracking-[0.1em] text-white/60 md:text-[21px]">Implantologie</p>
+              <p className="mt-1 text-[16px] font-semibold leading-none text-white md:mt-2 md:text-[21px]">de la 400 EURO</p>
             </div>
-            <div className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-              <p className="text-[21px] uppercase tracking-[0.1em] text-white/60">Alignere</p>
-              <p className="mt-2 text-[21px] font-semibold leading-none text-white">de la 6000 RON</p>
+            <div className="rounded-[14px] border border-white/10 bg-white/[0.04] p-3 md:rounded-[16px] md:p-4">
+              <p className="text-[12px] uppercase tracking-[0.1em] text-white/60 md:text-[21px]">Alignere</p>
+              <p className="mt-1 text-[16px] font-semibold leading-none text-white md:mt-2 md:text-[21px]">de la 6000 RON</p>
             </div>
           </div>
         </section>

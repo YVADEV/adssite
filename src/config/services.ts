@@ -11,6 +11,25 @@ export type ServiceItem = {
   children?: ServiceChild[];
 };
 
+/** Hero stills already used on each service page — reused on the listing, not new assets. */
+export const serviceListingImages: Record<string, { src: string; objectPosition?: string }> = {
+  "aparat-dentar": { src: "/services/braces-model.png", objectPosition: "center 40%" },
+  pedodontie: { src: "/services/pediatric-baby.png", objectPosition: "center top" },
+  "augmentarea-osoasa": { src: "/services/implant-model-1.png", objectPosition: "center 45%" },
+  "chirurgie-dentara": { src: "/services/exam-male-2.png", objectPosition: "center 30%" },
+  "coroana-dentara": { src: "/services/lab-hands-model.png", objectPosition: "center 40%" },
+  "dentist-cluj": { src: "/services/dental-chair.png", objectPosition: "center 40%" },
+  "fatete-dentare": { src: "/services/smile-mirror.png", objectPosition: "center 35%" },
+  endodontie: { src: "/services/computer-xray.png", objectPosition: "center 40%" },
+  "estetica-dentara": { src: "/services/whitening-1.png", objectPosition: "center 40%" },
+  "implant-dentar": { src: "/services/implant-model-2.png", objectPosition: "center 40%" },
+  odontologie: { src: "/services/exam-male.png", objectPosition: "center 30%" },
+  ortodontie: { src: "/services/braces-model.png", objectPosition: "center 40%" },
+  profilaxie: { src: "/services/doctor-portrait.png", objectPosition: "center top" },
+  protetica: { src: "/services/lab-hands-model.png", objectPosition: "center 40%" },
+  "urgente-stomatologice": { src: "/services/dental-chair.png", objectPosition: "center 40%" },
+};
+
 export const services: ServiceItem[] = [
   {
     title: "Aparat dentar",

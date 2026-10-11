@@ -3,6 +3,7 @@ import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
+import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
 
 export const metadata: Metadata = {
   title: "Contact | Alverna Dental Studio Cluj",
@@ -67,19 +68,19 @@ export default function ContactPage() {
           </p>
         </section>
 
-        <section className="mx-auto mt-10 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <article className="rounded-[18px] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-              <p className="text-[21px] font-semibold tracking-[-0.02em]">Suport telefonic și online</p>
-              <p className="mt-2 text-[21px] leading-[1.6] text-[#4a4a4a]">Vă răspundem cu drag la toate întrebările! Contactați-ne acum!</p>
+        <section className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:mt-10 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+            <article className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:rounded-[18px] md:p-6">
+              <p className="text-[16px] font-semibold tracking-[-0.02em] md:text-[21px]">Suport telefonic și online</p>
+              <p className="mt-2 text-[14px] leading-[1.55] text-[#4a4a4a] md:text-[21px] md:leading-[1.6]">Vă răspundem cu drag la toate întrebările! Contactați-ne acum!</p>
             </article>
-            <article className="rounded-[18px] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-              <p className="text-[21px] font-semibold tracking-[-0.02em]">Programări</p>
-              <p className="mt-2 text-[21px] leading-[1.6] text-[#4a4a4a]">Doriți o programare la clinica noastră? Completați formularul!</p>
+            <article className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:rounded-[18px] md:p-6">
+              <p className="text-[16px] font-semibold tracking-[-0.02em] md:text-[21px]">Programări</p>
+              <p className="mt-2 text-[14px] leading-[1.55] text-[#4a4a4a] md:text-[21px] md:leading-[1.6]">Doriți o programare la clinica noastră? Completați formularul!</p>
             </article>
-            <article className="rounded-[18px] bg-white p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
-              <p className="text-[21px] font-semibold tracking-[-0.02em]">Contact</p>
-              <p className="mt-2 text-[21px] leading-[1.6] text-[#4a4a4a]">
+            <article className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:rounded-[18px] md:p-6">
+              <p className="text-[16px] font-semibold tracking-[-0.02em] md:text-[21px]">Contact</p>
+              <p className="mt-2 text-[14px] leading-[1.55] text-[#4a4a4a] md:text-[21px] md:leading-[1.6]">
                 {CLINIC.name}
                 <br />
                 <a
@@ -174,12 +175,18 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="bg-black pb-[110px] pt-[100px]">
+        <section className="bg-black pb-16 pt-12 md:pb-[110px] md:pt-[100px]">
           <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-            <h3 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">Recenzii</h3>
-            <p className="mt-3 text-[21px] font-semibold text-white">Scor mediu: 4.8 ⭐</p>
+            <h3 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">Recenzii</h3>
+            <p className="mt-2 text-[16px] font-semibold text-white md:mt-3 md:text-[21px]">Scor mediu: 4.8 ⭐</p>
           </div>
-          <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
+          <div className="mx-auto mt-6 px-4 md:hidden">
+            <GoogleReviewsMobile
+              reviews={reviews}
+              logo={<img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-3 h-auto w-[160px] object-contain" />}
+            />
+          </div>
+          <div className="mx-auto mt-8 hidden w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
             <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
               <div className="flex items-end gap-2">
                 <strong className="text-[36px] font-semibold leading-none tracking-[-0.03em] md:text-[52px]">4,8</strong>
@@ -217,7 +224,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
+        <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-12 md:py-[120px]">
           <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
             <ContactFormCard source="contact-page" />
 

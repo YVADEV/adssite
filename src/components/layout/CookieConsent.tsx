@@ -40,28 +40,28 @@ export default function CookieConsent() {
       aria-live="polite"
       aria-label="Notificare cookie-uri"
       data-ads-cookie-consent
-      className="fixed bottom-3 left-3 right-[4.75rem] z-[9999] max-w-[640px] rounded-[16px] border border-white/10 bg-[#0f1115]/95 p-3 text-white shadow-[0_18px_50px_rgba(0,0,0,0.5)] backdrop-blur-md sm:bottom-5 sm:left-5 sm:right-auto sm:p-4"
+      className="pointer-events-auto z-[9999] mx-3 mb-2 rounded-[14px] border border-white/10 bg-[#0f1115]/95 p-2.5 text-white shadow-[0_18px_50px_rgba(0,0,0,0.5)] backdrop-blur-md max-md:relative max-md:inset-auto md:fixed md:bottom-5 md:left-5 md:right-auto md:mx-0 md:mb-0 md:max-w-[640px] md:rounded-[16px] md:p-4"
     >
-      <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
-        <p className="text-[15px] leading-[1.45] text-white sm:text-[18px] sm:leading-[1.5] md:text-[21px]">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between md:gap-3">
+        <p className="text-[13px] leading-[1.4] text-white md:text-[21px] md:leading-[1.5]">
           Folosim cookie-uri pentru a îmbunătăți experiența pe site și pentru analize anonime. Detalii în{" "}
-          <Link href="/politica-de-confidentialitate/" prefetch={false} className="underline decoration-[#B6B94C]/60 underline-offset-4 hover:text-white">
+          <Link href="/politica-de-confidentialitate/" prefetch={false} className="underline decoration-[color:var(--ads-accent)]/60 underline-offset-4 hover:text-white">
             Politica de confidențialitate
           </Link>
           .
         </p>
-        <div className="flex w-full shrink-0 flex-col gap-2 sm:w-auto sm:flex-row">
+        <div className="flex w-full shrink-0 flex-row gap-2 md:w-auto">
           <button
             type="button"
             onClick={() => persist("rejected")}
-            className="min-h-[44px] rounded-full border border-white/25 px-4 py-2 text-[18px] font-semibold text-white transition hover:bg-white/5 sm:text-[21px]"
+            className="min-h-11 flex-1 rounded-full border border-white/25 px-3 py-2 text-[14px] font-semibold text-white transition hover:bg-white/5 md:min-h-[44px] md:flex-none md:px-4 md:text-[21px]"
           >
             Doar esențiale
           </button>
           <button
             type="button"
             onClick={() => persist("accepted")}
-            className="ads-btn-lit min-h-[44px] rounded-full px-4 py-2 text-[18px] font-semibold transition hover:scale-[1.03] sm:text-[21px]"
+            className="ads-btn-lit min-h-11 flex-1 rounded-full px-3 py-2 text-[14px] font-semibold transition md:min-h-[44px] md:flex-none md:px-4 md:text-[21px] md:hover:scale-[1.03]"
           >
             Accept
           </button>

@@ -115,38 +115,48 @@ function ServiceHeroContent({
   layout = "overlay",
 }: Pick<ServiceHeroProps, "chip" | "kicker" | "title" | "intro" | "secondaryCta" | "compact" | "benefitChips"> & {
   className?: string;
-  layout?: "overlay" | "stacked";
+  layout?: "overlay" | "stacked" | "mobile-stack";
 }) {
   const reveal = useReveal();
   const isStacked = layout === "stacked";
+  const isMobileStack = layout === "mobile-stack";
+
+  const chipEl = (
+    <div
+      className={
+        isMobileStack
+          ? "relative z-10 mb-3 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] font-medium uppercase leading-snug tracking-[0.1em] text-white md:absolute md:left-8 md:top-7 md:mb-0 md:max-w-[calc(100%-4rem)] md:border-white/25 md:bg-black/50 md:text-[13px] md:backdrop-blur lg:left-12 lg:top-9"
+          : isStacked
+          ? "mb-5 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[13px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[14px] lg:absolute lg:left-8 lg:top-7 lg:mb-0 lg:max-w-[min(100%,680px)] xl:left-12 xl:top-9"
+          : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[12px] font-medium uppercase leading-tight tracking-[0.12em] text-white backdrop-blur sm:px-4 sm:text-[13px] md:left-8 md:top-7 lg:left-12 lg:top-9"
+      }
+    >
+      <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#B6B94C]" />
+      <span className="min-w-0 text-wrap">{chip}</span>
+    </div>
+  );
 
   return (
     <>
-      <div
-        className={
-          isStacked
-            ? "mb-5 inline-flex w-fit max-w-full items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[13px] font-medium uppercase tracking-[0.14em] text-white backdrop-blur sm:px-4 sm:text-[14px] lg:absolute lg:left-8 lg:top-7 lg:mb-0 lg:max-w-[min(100%,680px)] xl:left-12 xl:top-9"
-            : "absolute left-4 top-5 z-10 inline-flex max-w-[calc(100%-2rem)] items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[12px] font-medium uppercase leading-tight tracking-[0.12em] text-white backdrop-blur sm:px-4 sm:text-[13px] md:left-8 md:top-7 lg:left-12 lg:top-9"
-        }
-      >
-        <span className="inline-block h-[6px] w-[6px] shrink-0 rounded-full bg-[#B6B94C]" />
-        <span className="min-w-0 text-wrap">{chip}</span>
-      </div>
+      {isMobileStack ? null : chipEl}
       <div
         className={`relative z-10 flex w-full flex-col ${
-          isStacked
+          isMobileStack
+            ? "-mt-8 rounded-t-[20px] bg-[#0f1115] px-5 pb-[calc(1.25rem+var(--ads-mobile-bottom-h,72px))] pt-5 md:mt-auto md:h-full md:justify-end md:rounded-none md:bg-transparent md:px-8 md:pb-10 md:pt-24 lg:px-12"
+            : isStacked
             ? "px-0 pb-0 pt-0 lg:h-full lg:justify-end lg:pb-16 lg:pt-28"
             : compact
               ? "mt-0 px-4 pb-8 pt-24 md:mt-auto md:px-8 md:pb-10 md:pt-24 lg:px-12"
               : "mt-0 px-4 pb-12 pt-28 md:mt-auto md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32"
         } ${className}`}
       >
-        <motion.div {...reveal} className={compact ? "w-full max-w-none" : "max-w-[820px]"}>
+        {isMobileStack ? chipEl : null}
+        <motion.div {...reveal} className={compact ? "w-full min-w-0 max-w-none" : "max-w-[820px]"}>
           <p className="ads-eyebrow text-white opacity-70">{kicker}</p>
           <h1
             className={
               compact
-                ? "mt-2 w-full max-w-none text-[clamp(32px,4.2vw,48px)] font-extrabold leading-[1.08] tracking-[-0.04em] text-white"
+                ? "mt-2 w-full max-w-none text-[28px] font-extrabold leading-[1.12] tracking-[-0.04em] text-white md:text-[clamp(32px,4.2vw,48px)] md:leading-[1.08]"
                 : "mt-4 max-w-[980px] text-[clamp(32px,6vw,96px)] font-extrabold leading-[1.02] tracking-[-0.045em] text-white md:mt-5 md:leading-[0.94]"
             }
           >
@@ -161,7 +171,7 @@ function ServiceHeroContent({
           >
             {intro}
           </p>
-          <div className={`flex flex-col gap-2.5 sm:flex-row sm:flex-wrap ${compact ? "mt-5" : "mt-8 gap-3"}`}>
+          <div className={`ads-hero-cta flex flex-col gap-2.5 sm:flex-row sm:flex-wrap ${compact ? "mt-5" : "mt-8 gap-3"}`}>
             <a
               href="#contact"
               className={
@@ -215,6 +225,7 @@ export type ServiceHeroProps = {
   secondaryCta?: { href: string; label: string };
   compact?: boolean;
   benefitChips?: ReadonlyArray<string>;
+  stackOnMobile?: boolean;
 };
 
 export function ServiceHero({
@@ -230,6 +241,7 @@ export function ServiceHero({
   secondaryCta,
   compact = false,
   benefitChips,
+  stackOnMobile = false,
 }: ServiceHeroProps) {
   const reveal = useReveal();
   const splitVideoLayout = Boolean(videoSrc && videoObjectFit === "contain");
@@ -267,29 +279,58 @@ export function ServiceHero({
 
   return (
     <section className="relative w-full overflow-hidden bg-black">
-      <div className={`relative flex w-full flex-col bg-black ${compact ? "min-h-[min(64vh,520px)] md:min-h-[min(68vh,560px)]" : "min-h-[min(86vh,720px)] md:min-h-[min(88vh,900px)]"}`}>
-        {videoSrc ? (
-          <ServiceHeroVideo
-            videoSrc={videoSrc}
-            videoObjectFit={videoObjectFit}
-            image={image}
-            imageAlt={imageAlt}
-            withSound={videoWithSound}
-          />
-        ) : (
-          <Image
-            src={image ?? "/services/braces-model.png"}
-            alt={imageAlt ?? "Alverna Dental Studio"}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover saturate-[0.98] brightness-[0.92]"
-          />
-        )}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/28 via-transparent to-black/55" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/64 via-black/16 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[36%] bg-gradient-to-t from-black/78 to-transparent" />
-        <ServiceHeroContent chip={chip} kicker={kicker} title={title} intro={intro} secondaryCta={secondaryCta} compact={compact} benefitChips={benefitChips} className={compact ? "mx-auto w-full max-w-[1680px]" : "mx-auto max-w-[1120px]"} />
+      <div
+        className={`relative flex w-full flex-col bg-black ${
+          stackOnMobile
+            ? "min-h-0 md:min-h-[min(68vh,560px)]"
+            : compact
+              ? "min-h-[min(64vh,520px)] md:min-h-[min(68vh,560px)]"
+              : "min-h-[min(86vh,720px)] md:min-h-[min(88vh,900px)]"
+        }`}
+      >
+        <div
+          className={
+            stackOnMobile
+              ? "relative h-[min(38svh,280px)] min-h-[200px] w-full overflow-hidden md:absolute md:inset-0 md:h-auto md:min-h-full"
+              : "contents"
+          }
+        >
+          {videoSrc ? (
+            <ServiceHeroVideo
+              videoSrc={videoSrc}
+              videoObjectFit={videoObjectFit}
+              image={image}
+              imageAlt={imageAlt}
+              withSound={videoWithSound}
+            />
+          ) : (
+            <Image
+              src={image ?? "/services/braces-model.png"}
+              alt={imageAlt ?? "Alverna Dental Studio"}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover saturate-[0.98] brightness-[0.92]"
+            />
+          )}
+          {stackOnMobile ? (
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/50 to-transparent md:hidden" />
+          ) : null}
+        </div>
+        <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b from-black/28 via-transparent to-black/55 ${stackOnMobile ? "max-md:hidden" : ""}`} />
+        <div className={`pointer-events-none absolute inset-0 bg-gradient-to-r from-black/64 via-black/16 to-transparent ${stackOnMobile ? "max-md:hidden" : ""}`} />
+        <div className={`pointer-events-none absolute inset-x-0 bottom-0 h-[36%] bg-gradient-to-t from-black/78 to-transparent ${stackOnMobile ? "max-md:hidden" : ""}`} />
+        <ServiceHeroContent
+          chip={chip}
+          kicker={kicker}
+          title={title}
+          intro={intro}
+          secondaryCta={secondaryCta}
+          compact={compact}
+          benefitChips={benefitChips}
+          layout={stackOnMobile ? "mobile-stack" : "overlay"}
+          className={compact ? "mx-auto w-full max-w-[1680px]" : "mx-auto max-w-[1120px]"}
+        />
       </div>
     </section>
   );

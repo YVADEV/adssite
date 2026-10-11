@@ -293,7 +293,7 @@ function CompactSection({
   id?: string;
 }) {
   return (
-    <section id={id} data-theme="light" className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:mt-10 md:px-8 lg:px-12">
+    <section id={id} data-theme="light" className="mx-auto mt-6 w-full min-w-0 max-w-[1680px] px-4 md:mt-10 md:px-8 lg:px-12">
       {children}
     </section>
   );
@@ -545,6 +545,7 @@ export default function AllOn4PageClient() {
         intro="Dantură fixă pe 4 sau 6 implanturi. Evaluare, planificare și lucrare finală într-un flux de lucru digital integrat, în laboratorul propriu al clinicii."
         secondaryCta={{ href: "#cazuri-all-on", label: "Vezi cazuri înainte și după" }}
         compact
+        stackOnMobile
         benefitChips={[
           "Flux de lucru digital integrat",
           "Laborator propriu, în clinică",

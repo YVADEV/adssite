@@ -176,8 +176,8 @@ function ServiceHeroContent({
               href="#contact"
               className={
                 compact
-                  ? "ads-btn-lit inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-6 text-[16px] font-semibold transition duration-200 sm:w-auto"
-                  : "ads-btn-lit inline-flex min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-200 sm:w-auto sm:text-[21px]"
+                  ? "ads-btn-lit hidden min-h-[48px] w-full items-center justify-center rounded-full px-6 text-[16px] font-semibold transition duration-200 md:inline-flex sm:w-auto"
+                  : "ads-btn-lit hidden min-h-[52px] w-full items-center justify-center rounded-full px-6 text-[18px] font-semibold transition duration-200 md:inline-flex sm:w-auto sm:text-[21px]"
               }
             >
               Programează o consultație
@@ -729,7 +729,7 @@ export function ServiceFinalCTA({
         <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">{body}</p>
         <a
           href={href}
-          className="ads-btn-lit mt-7 inline-flex min-h-[48px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-200 hover:opacity-90"
+          className="ads-btn-lit mt-7 hidden min-h-[48px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-200 hover:opacity-90 md:inline-flex"
         >
           {buttonLabel}
         </a>

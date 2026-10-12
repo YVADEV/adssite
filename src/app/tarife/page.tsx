@@ -156,7 +156,7 @@ export default function TarifePage() {
               <div className="mt-5 rounded-[16px] border border-[color:var(--ads-accent)]/35 bg-[color:var(--ads-accent)]/8 p-4 md:mt-6">
                 <p className="text-[16px] font-semibold text-white md:text-[21px]">Solicită un plan personalizat</p>
                 <p className="mt-1 text-[14px] leading-[1.45] text-white/75 md:text-[21px]">Te contactăm rapid pentru o estimare clară și pașii potriviți cazului tău.</p>
-                <a href={CLINIC.formPageHref} className="ads-btn-lit mt-3 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[16px] font-semibold leading-[1.2] transition duration-200 hover:opacity-90 md:w-auto md:px-5 md:text-[21px]">
+                <a href={CLINIC.formPageHref} className="ads-btn-lit mt-3 hidden min-h-[48px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[16px] font-semibold leading-[1.2] transition duration-200 hover:opacity-90 md:inline-flex md:w-auto md:px-5 md:text-[21px]">
                   Programează o consultație
                 </a>
               </div>

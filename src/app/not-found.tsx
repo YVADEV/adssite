@@ -18,7 +18,7 @@ export default function NotFound() {
         </Link>
         <Link
           href={CLINIC.formPageHref}
-          className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/25 px-6 text-[21px] font-semibold text-white"
+          className="hidden min-h-[48px] items-center justify-center rounded-full border border-white/25 px-6 text-[21px] font-semibold text-white md:inline-flex"
         >
           Programează o consultație
         </Link>

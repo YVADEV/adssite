@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
 import { CLINIC } from "@/lib/contact";
@@ -55,27 +54,6 @@ const dockIconLinkClass =
 
 export default function StickyContactButtons() {
   const pathname = usePathname();
-  const [showBookingDock, setShowBookingDock] = useState(pathname !== "/");
-  const rootRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const heroCta = document.querySelector(".ads-hero-cta");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!heroCta || reduceMotion || pathname !== "/") {
-      setShowBookingDock(true);
-      return;
-    }
-
-    setShowBookingDock(false);
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        setShowBookingDock(!entry.isIntersecting);
-      },
-      { threshold: 0.15, rootMargin: "-72px 0px 0px 0px" },
-    );
-    io.observe(heroCta);
-    return () => io.disconnect();
-  }, [pathname]);
 
   const mailHref = `mailto:${CLINIC.email}?subject=${encodeURIComponent(CLINIC.mailtoSubject)}`;
   const bookHref = pathname === "/" ? "#contact" : CLINIC.formPageHref;
@@ -96,14 +74,12 @@ export default function StickyContactButtons() {
 
   return (
     <aside
-      ref={rootRef}
       data-ads-sticky-contact
       className="pointer-events-auto max-md:relative max-md:inset-auto md:fixed md:bottom-5 md:right-5 md:z-[9990]"
     >
       <div className="hidden flex-col gap-3 md:flex">{actions}</div>
 
-      {showBookingDock ? (
-        <div className="border-t border-white/10 bg-[#0f1115]/95 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-md md:hidden">
+      <div className="border-t border-white/10 bg-[#0f1115]/95 px-3 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-2 backdrop-blur-md md:hidden">
           <div className="flex items-center gap-2">
             <a
               href={bookHref}
@@ -124,8 +100,7 @@ export default function StickyContactButtons() {
               <WhatsAppIcon className={dockIconClass} />
             </a>
           </div>
-        </div>
-      ) : null}
+      </div>
     </aside>
   );
 }

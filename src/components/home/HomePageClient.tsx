@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
@@ -11,7 +11,6 @@ import SiteLogo from "@/components/nav/SiteLogo";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
-import { CaseClickOverlay } from "@/components/cazuri/CaseClickOverlay";
 import { GoogleMark } from "@/components/ui/GoogleMark";
 import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
@@ -28,23 +27,14 @@ import teamBannerImage from "@/assets/cazuri/Banner/andreea-banner.webp";
 import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.webp";
 import danaHero from "@/assets/cazuri/dana-hero.jpg";
 import danaBefore from "@/assets/cazuri/dana-before.png";
-import aureliaHero from "@/assets/cazuri/aurelia-hero.jpg";
 import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
 import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
-import cazA7408160 from "@/assets/cazuri/elena-hero.jpg";
-import caz1Before from "@/assets/cazuri/caz1-before.jpg";
-import caz1After from "@/assets/cazuri/caz1-after.jpg";
 
 const ContactFormCard = dynamic(
   () => import("@/components/contact/ContactFormCard").then((m) => ({ default: m.ContactFormCard })),
   { ssr: true },
 );
 
-const caseGallery = [
-  { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
-  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
-  { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final" },
-];
 const reviews = [
   {
     name: "Andreea Nisipeanu",
@@ -105,18 +95,18 @@ export const homePricingData = [
 ];
 
 const featuredCase = {
-  path: "/cazuri/implantologie/",
-  subtitle: "Reabilitare totală prin sistemul All-on-4 Straumann",
+  path: "/cazuri/dana/",
+  subtitle: "Reabilitare dentară totală din zirconiu cu tratamente chirurgicale parodontale",
   doctor: { name: "Dr. Andreea Pârvu", role: "Protetică dentară" },
 };
 const featuredBefore = {
-  image: caz1Before,
-  alt: "Cecilia — înainte de tratament",
+  image: danaBefore,
+  alt: "Dana — înainte de tratament",
   objectPosition: "center center",
 };
 const featuredAfter = {
-  image: caz1After,
-  alt: "Cecilia — după tratament",
+  image: danaHero,
+  alt: "Dana — după tratament",
   objectPosition: "center 36%",
 };
 
@@ -161,7 +151,7 @@ const serviceOrientation = [
 ];
 
 const advantages = [
-  { value: "All-on-4", label: "Reabilitare pe implanturi" },
+  { value: "All-on-X", label: "Reabilitare pe implanturi" },
   { value: "Smile Design", label: "Estetică dentară" },
 ];
 const recommendationClips = ["/cazuri-1.mp4", "/cazuri-2.mp4"];
@@ -204,7 +194,7 @@ function TeamBentoBanner({
   slogan?: string;
 }) {
   return (
-    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 pt-[72px] md:grid-cols-2 md:px-10 md:pb-[120px] md:pt-0 lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
+    <div className={`mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px] ${overflowPhoto ? "pt-[140px] md:pt-[120px]" : "pt-[72px] md:pt-0"}`}>
       <article
         className="relative isolate z-20 flex min-h-[420px] flex-col overflow-visible rounded-[24px] bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px]"
       >
@@ -223,18 +213,25 @@ function TeamBentoBanner({
         </h3>
         ) : null}
         {loadImages ? (
-        <img
-          src={doctorSrc}
-          alt={doctorAlt}
-          loading="lazy"
-          decoding="async"
-          fetchPriority="low"
-          className={
-            overflowPhoto
-              ? "pointer-events-none z-[10] max-md:absolute max-md:-top-[18%] max-md:bottom-0 max-md:left-1/2 max-md:h-[118%] max-md:w-auto max-md:max-w-[92%] max-md:-translate-x-1/2 max-md:object-contain max-md:object-bottom md:absolute md:bottom-0 md:right-[-64px] md:h-full md:w-auto md:object-contain md:object-[right_bottom] lg:right-[-80px]"
-              : "pointer-events-none z-[10] max-md:absolute max-md:-top-[18%] max-md:bottom-0 max-md:left-1/2 max-md:h-[118%] max-md:w-auto max-md:max-w-[92%] max-md:-translate-x-1/2 max-md:object-contain max-md:object-bottom md:absolute md:bottom-0 md:right-[-35px] md:h-[660px] md:w-auto md:object-contain md:object-bottom"
-          }
-        />
+          overflowPhoto ? (
+            <img
+              src={doctorSrc}
+              alt={doctorAlt}
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              className="pointer-events-none absolute left-1/2 z-[10] h-[128%] w-auto max-w-none -translate-x-1/2 -top-[28%] md:h-[124%] md:-top-[24%]"
+            />
+          ) : (
+            <img
+              src={doctorSrc}
+              alt={doctorAlt}
+              loading="lazy"
+              decoding="async"
+              fetchPriority="low"
+              className="pointer-events-none absolute bottom-0 left-1/2 z-[10] h-[118%] w-auto max-w-[96%] -translate-x-1/2 -scale-x-100 object-contain object-bottom max-md:-top-[16%] md:h-[740px] md:max-w-none"
+            />
+          )
         ) : null}
       </article>
 
@@ -301,18 +298,8 @@ export default function HomePageClient() {
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const contactSectionRef = useRef<HTMLElement>(null);
   const contactSpotlightRef = useRef<HTMLDivElement>(null);
-  const [cabinetVideoActive, setCabinetVideoActive] = useState(false);
-  const cabinetVideoRef = useRef<HTMLVideoElement>(null);
-  const recommendationVideoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-  const [activeClipControls, setActiveClipControls] = useState<Set<number>>(() => new Set());
   const scrolled = useStickyHeaderScroll();
   const belowFoldMedia = useIdleMedia();
-
-  function activateVideoWithSound(video: HTMLVideoElement | null, onActivated?: () => void) {
-    if (!video) return;
-    video.muted = false;
-    void video.play().then(() => onActivated?.()).catch(() => undefined);
-  }
 
   const {
     menuOpen,
@@ -517,14 +504,6 @@ export default function HomePageClient() {
               <p className="mt-3 max-w-[52ch] text-[14px] font-medium leading-[1.5] text-white/65 md:mt-4 md:text-[clamp(14px,2vw,18px)]">
                 Laborator dentar propriu • Flux digital • Echipă multidisciplinară
               </p>
-              <div className="ads-hero-cta mt-6 md:hidden">
-                <a
-                  href="#contact"
-                  className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[16px] font-semibold"
-                >
-                  Programează o consultație
-                </a>
-              </div>
               <div className="mt-7 hidden max-w-[520px] items-center gap-3 md:flex">
                 <a
                   href="#contact"
@@ -578,65 +557,6 @@ export default function HomePageClient() {
             />
           ) : null}
           </div>
-          <div className="mt-8 flex flex-col md:hidden">
-            <BeforeAfterCompare
-              beforeSrc={belowFoldMedia ? danaBefore.src : ""}
-              afterSrc={belowFoldMedia ? danaHero.src : ""}
-              beforeAlt="Dana — înainte de tratament"
-              afterAlt="Dana — după tratament"
-              beforePosition="center center"
-              afterPosition="center 36%"
-              className="order-1 aspect-[4/3] w-full rounded-[24px]"
-            />
-            <p className="order-2 mt-4 text-[18px] font-medium leading-[1.5] text-white">
-              Reabilitare dentară totală din zirconiu cu tratamente chirurgicale parodontale
-            </p>
-            <p className="order-3 mt-2 text-[16px] font-medium leading-[1.4] text-white/70">
-              Dr. Andreea Pârvu · Protetică dentară
-            </p>
-            <Link
-              href="/cazuri/dana/"
-              prefetch={false}
-              className="order-4 mt-4 inline-flex min-h-[48px] items-center justify-center rounded-full bg-black px-5 text-[16px] font-semibold text-white"
-            >
-              Vezi cazul →
-            </Link>
-          </div>
-        </div>
-        <div className="mx-auto mt-[48px] hidden w-full max-w-[1680px] grid-cols-1 gap-4 px-4 md:grid md:grid-cols-3 md:gap-5 md:px-6 lg:px-8">
-          {caseGallery.map(({ src, alt }) => {
-            const href = src.includes("dana-hero")
-              ? "/cazuri/dana/"
-              : src.includes("aurelia-hero")
-                ? "/cazuri/estetica-dentara/"
-                : "/cazuri/reabilitare-complexa/";
-            return (
-              <Link
-                key={src}
-                href={href}
-                prefetch={false}
-                aria-label="Vezi cazul în detaliu"
-                className="block rounded-[24px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black/40"
-              >
-                <div
-                  data-anim="image"
-                  className="group relative h-[min(78vw,380px)] w-full overflow-hidden rounded-[24px] md:h-[420px] lg:h-[520px]"
-                >
-                  {belowFoldMedia ? (
-                  <img
-                    src={src}
-                    alt={alt}
-                    loading="lazy"
-                    decoding="async"
-                    fetchPriority="low"
-                    className="h-full w-full object-cover"
-                  />
-                  ) : null}
-                  <CaseClickOverlay label="Vezi cazul" />
-                </div>
-              </Link>
-            );
-          })}
         </div>
       </section>
 
@@ -682,29 +602,12 @@ export default function HomePageClient() {
                   className="relative mt-auto aspect-[267/396] w-full overflow-hidden rounded-[24px] bg-black transition duration-300 hover:scale-[1.02]"
                 >
                   <LazyVideo
-                    ref={(el) => {
-                      recommendationVideoRefs.current[clipIndex] = el;
-                    }}
                     src={recommendationClips[clipIndex]}
                     poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined}
                     className="absolute inset-0 h-full w-full scale-[1.05]"
                     ariaLabel={`Clip ${advantages[clipIndex].label}`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[rgba(0,0,0,0.68)]" />
-                  {!activeClipControls.has(clipIndex) ? (
-                    <button
-                      type="button"
-                      onClick={() =>
-                        activateVideoWithSound(recommendationVideoRefs.current[clipIndex], () => {
-                          setActiveClipControls((prev) => new Set(prev).add(clipIndex));
-                        })
-                      }
-                      className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[rgba(0,0,0,0.6)] backdrop-blur-[2px] transition duration-300 hover:scale-110"
-                      aria-label="Redă clip cu sunet"
-                    >
-                      <span className="ml-[2px] inline-block h-0 w-0 border-b-[10px] border-l-[16px] border-t-[10px] border-b-transparent border-l-white border-t-transparent" />
-                    </button>
-                  ) : null}
                   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-3 pb-3 pt-10 sm:inset-auto sm:bottom-[16px] sm:left-[16px] sm:right-[16px] sm:bg-none sm:p-0 sm:pt-0">
                     <p className="line-clamp-2 text-[16px] leading-[1.35] text-[rgba(255,255,255,0.8)] sm:line-clamp-none sm:text-[21px] sm:leading-[1.4]">{recommendationClipMeta[clipIndex].description}</p>
                   </div>
@@ -764,27 +667,11 @@ export default function HomePageClient() {
 
           <div data-anim="image" className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
             <LazyVideo
-              ref={cabinetVideoRef}
               src="/hero.mp4"
               poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined}
               ariaLabel="Descoperă cabinetul Alverna Dental Studio"
               className="h-full w-full object-cover"
             />
-            {!cabinetVideoActive ? (
-              <button
-                type="button"
-                onClick={() =>
-                  activateVideoWithSound(cabinetVideoRef.current, () => setCabinetVideoActive(true))
-                }
-                className="absolute left-1/2 top-1/2 flex max-w-[90%] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-3 px-4 text-center sm:flex-row sm:gap-4"
-                aria-label="Redă video: Descoperă cabinetul nostru"
-              >
-                <span className="ads-btn-lit flex h-14 w-14 shrink-0 items-center justify-center rounded-full text-[21px] sm:h-16 sm:w-16 sm:text-[28px]" aria-hidden>
-                  ▶
-                </span>
-                <span className="text-[21px] font-medium leading-[1.65] text-white">Descoperă cabinetul nostru</span>
-              </button>
-            ) : null}
           </div>
         </div>
       </section>
@@ -894,7 +781,7 @@ export default function HomePageClient() {
             <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
             <Link
               href="/tarife/"
-              className="ads-btn-primary inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-[18px] font-semibold sm:text-[21px]"
+              className="ads-btn-primary ads-btn-tarife-mobile inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-[18px] font-semibold sm:text-[21px]"
             >
               Vezi toate tarifele
             </Link>
@@ -920,7 +807,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="echipa" data-anim="section" data-theme="light" className="overflow-x-clip bg-[#ececec] pb-[90px] pt-0 md:overflow-visible lg:pb-[140px]">
+      <section id="echipa" data-anim="section" data-theme="light" className="overflow-visible bg-[#ececec] pb-[90px] pt-0 lg:pb-[140px]">
         <div className="relative z-30 mx-auto flex w-full max-w-[1680px] flex-col gap-6 bg-[#ececec] px-5 pb-6 pt-6 md:flex-row md:items-end md:justify-between md:px-10 md:pb-8 md:pt-8 lg:px-[96px]">
           <div className="max-w-[820px]">
             <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.04em] text-white md:text-[52px] lg:text-[64px]">
@@ -931,7 +818,7 @@ export default function HomePageClient() {
             </p>
           </div>
         </div>
-        <div id="laborator-alverna" className="overflow-x-clip md:overflow-visible">
+        <div id="laborator-alverna" className="overflow-visible">
           <TeamBentoBanner
             doctorSrc={labDoctorBannerImage.src}
             doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"

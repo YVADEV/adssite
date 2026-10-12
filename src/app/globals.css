@@ -290,6 +290,16 @@ textarea {
   transition: var(--ads-duration-fast) var(--ads-ease-exit);
 }
 
+@media (max-width: 767px) {
+  a.ads-btn-tarife-mobile,
+  a.ads-btn-tarife-mobile:hover,
+  a.ads-btn-tarife-mobile:active {
+    background: #000000 !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+  }
+}
+
 /* Literal light surfaces — bypass dark-theme token conversion */
 .ads-btn-lit {
   background-color: #ffffff !important;

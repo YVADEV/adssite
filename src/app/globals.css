@@ -924,10 +924,16 @@ html[data-theme="dark"] [class*="text-[#"] {
   color: #fff !important;
 }
 
-@media (max-width: 767px) {
-  .ads-hero-title-lime {
-    color: #b6b94c !important;
-  }
+/* Titles stay lime on mobile and desktop, including headings that the rule above would paint white. */
+html[data-theme="dark"] :is(h1, h2, h3),
+html[data-theme="dark"] .ads-title-lime,
+html[data-theme="dark"] .ads-hero-title-lime,
+html[data-theme="dark"] :is(h1, h2, h3, .ads-title-lime, .ads-hero-title-lime)[class] {
+  color: #b6b94c !important;
+}
+
+html[data-theme="dark"] :is(h1, h2, h3).ads-title-white[class] {
+  color: #fff !important;
 }
 
 html[data-theme="dark"] [class*="border-black"] {

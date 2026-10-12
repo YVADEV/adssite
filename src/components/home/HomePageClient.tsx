@@ -203,7 +203,7 @@ function TeamBentoBanner({
         </div>
         {leftHeadline ? (
         <h3
-          className={`z-[30] whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] ${
+          className={`ads-title-white z-[30] whitespace-pre-line text-[32px] font-bold leading-[0.88] text-white sm:text-[40px] ${
             overflowPhoto
               ? "absolute bottom-6 left-6 mt-0 max-w-[8ch] pt-0 md:bottom-[36px] md:left-[36px] md:text-[48px] lg:text-[56px]"
               : "relative mt-4 md:absolute md:bottom-[92px] md:left-[36px] md:mt-auto md:pt-0 md:text-[64px]"
@@ -237,7 +237,7 @@ function TeamBentoBanner({
 
       {showSlogan ? (
         <article className="relative z-10 min-h-[280px] rounded-[16px] bg-[#0A0A0A] p-6 md:p-[44px] lg:h-[560px]">
-          <h3 className="whitespace-pre-line text-[32px] font-semibold leading-[1.05] text-white md:text-[46px]">
+          <h3 className="ads-title-white whitespace-pre-line text-[32px] font-semibold leading-[1.05] text-white md:text-[46px]">
             {slogan}
           </h3>
         </article>
@@ -495,7 +495,7 @@ export default function HomePageClient() {
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
-              <h1 className="ads-hero-title-lime mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)] md:leading-[0.98] md:text-white">
+              <h1 className="ads-hero-title-lime mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)] md:leading-[0.98]">
                 Implantologie și reabilitare orală complexă
               </h1>
               <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.55] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)] md:leading-[1.5]">
@@ -591,7 +591,7 @@ export default function HomePageClient() {
             {advantages.map((a, clipIndex) => (
               <article key={a.value} className="relative flex min-w-0 w-full flex-col rounded-[18px] bg-[#f5f5f5] p-5">
                 <div>
-                  <strong className="block text-[36px] font-semibold leading-none tracking-[-0.02em] text-white md:text-[56px]">
+                  <strong className="ads-title-lime block text-[36px] font-semibold leading-none tracking-[-0.02em] text-white md:text-[56px]">
                     {a.value}
                   </strong>
                 </div>
@@ -629,7 +629,7 @@ export default function HomePageClient() {
                 <Link
                   href={group.href}
                   prefetch={false}
-                  className="group inline-flex min-h-[44px] items-center gap-2 text-[24px] font-semibold leading-[1.1] tracking-[-0.03em] text-white md:text-[32px]"
+                  className="ads-title-lime group inline-flex min-h-[44px] items-center gap-2 text-[24px] font-semibold leading-[1.1] tracking-[-0.03em] text-white md:text-[32px]"
                 >
                   <span>{group.title}</span>
                   <span aria-hidden className="translate-y-px text-[20px] opacity-50 transition-transform duration-200 group-hover:translate-x-[3px]">→</span>

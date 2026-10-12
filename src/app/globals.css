@@ -924,6 +924,12 @@ html[data-theme="dark"] [class*="text-[#"] {
   color: #fff !important;
 }
 
+@media (max-width: 767px) {
+  .ads-hero-title-lime {
+    color: #b6b94c !important;
+  }
+}
+
 html[data-theme="dark"] [class*="border-black"] {
   border-color: rgba(255, 255, 255, 0.28) !important;
 }

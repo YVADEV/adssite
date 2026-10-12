@@ -220,7 +220,7 @@ function TeamBentoBanner({
               loading="lazy"
               decoding="async"
               fetchPriority="low"
-              className="pointer-events-none absolute left-1/2 z-[10] h-[128%] w-auto max-w-none -translate-x-1/2 -top-[28%] md:h-[124%] md:-top-[24%]"
+              className="pointer-events-none absolute right-0 z-[10] h-[128%] w-auto max-w-none -top-[28%] md:right-[-6%] md:h-[124%] md:-top-[24%]"
             />
           ) : (
             <img
@@ -495,7 +495,7 @@ export default function HomePageClient() {
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
-              <h1 className="mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)] md:leading-[0.98]">
+              <h1 className="ads-hero-title-lime mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)] md:leading-[0.98] md:text-white">
                 Implantologie și reabilitare orală complexă
               </h1>
               <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.55] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)] md:leading-[1.5]">

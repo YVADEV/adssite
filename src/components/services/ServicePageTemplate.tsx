@@ -40,7 +40,7 @@ export default function ServicePageTemplate({
   const reveal = motionRevealProps(useMotionReady());
 
   return (
-    <main className="bg-[#0A0A0A] pb-24">
+    <main className="ads-service-page bg-[#0A0A0A] pb-24">
       <section className="relative w-full overflow-hidden bg-black">
         <div className="relative h-[min(78vh,640px)] w-full md:h-[78vh] md:min-h-[600px] md:max-h-[900px]">
           <img

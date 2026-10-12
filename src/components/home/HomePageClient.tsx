@@ -486,7 +486,7 @@ export default function HomePageClient() {
             <HeroIntroVideo />
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent"
+              className="pointer-events-none absolute inset-0 hidden bg-gradient-to-tr from-black/80 via-black/40 to-transparent md:block"
             />
           </div>
           <div

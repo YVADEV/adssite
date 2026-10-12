@@ -99,7 +99,7 @@ function CallButton({ label = "Sună acum" }: { label?: string }) {
 
 export default function Urgente24PageClient() {
   return (
-    <main className="bg-[#0A0A0A] pb-24 text-white">
+    <main className="ads-service-page bg-[#0A0A0A] pb-24 text-white">
       <section className="relative overflow-hidden px-4 pb-14 pt-10 md:px-8 md:pb-20 md:pt-16 lg:px-12">
         <div
           aria-hidden

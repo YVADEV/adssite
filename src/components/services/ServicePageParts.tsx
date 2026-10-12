@@ -744,7 +744,7 @@ export function ServiceFinalCTA({
 // -----------------------------------------------------------------------------
 export function ServicePageShell({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <main data-theme="light" className={`bg-[#0A0A0A] pb-24 ${className}`}>
+    <main data-theme="light" className={`ads-service-page bg-[#0A0A0A] pb-24 ${className}`}>
       {children}
     </main>
   );

@@ -12,7 +12,7 @@ const listingBlurb = "Tratament personalizat, comunicare clară și monitorizare
 export default function ServiciiPageClient() {
   return (
     <PrototypeFrame>
-      <main className="bg-[#ececec] pb-16 pt-16 max-md:bg-[#0f1115] max-md:text-white md:pt-24 lg:pt-[140px]">
+      <main className="ads-service-page bg-[#ececec] pb-16 pt-16 max-md:bg-[#0f1115] max-md:text-white md:pt-24 lg:pt-[140px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="grid min-w-0 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,760px)]">
             <h1 className="min-w-0 text-[36px] font-semibold leading-[0.9] tracking-[-4px] md:text-[92px] lg:text-[144px] lg:tracking-[-8.64px]">Servicii</h1>

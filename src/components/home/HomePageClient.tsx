@@ -194,9 +194,9 @@ function TeamBentoBanner({
   slogan?: string;
 }) {
   return (
-    <div className={`mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px] ${overflowPhoto ? "pt-[180px] md:pt-[250px]" : "pt-[72px] md:pt-0"}`}>
+    <div className="mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 pt-[180px] md:grid-cols-2 md:px-10 md:pb-[120px] md:pt-[250px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px]">
       <article
-        className={`relative isolate z-20 flex min-h-[420px] flex-col overflow-visible bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px] ${overflowPhoto ? "" : "rounded-[24px]"}`}
+        className="relative isolate z-20 flex min-h-[420px] flex-col overflow-visible bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px]"
       >
         <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
@@ -220,7 +220,7 @@ function TeamBentoBanner({
               loading="lazy"
               decoding="async"
               fetchPriority="low"
-              className="pointer-events-none absolute right-0 z-[10] h-[142%] w-auto max-w-none -top-[42%] md:right-[-6%] md:h-[138%] md:-top-[38%]"
+              className="pointer-events-none absolute left-1/2 z-[10] h-[142%] w-auto max-w-none -translate-x-1/2 -scale-x-100 -top-[42%] md:h-[138%] md:-top-[38%]"
             />
           ) : (
             <img
@@ -229,7 +229,7 @@ function TeamBentoBanner({
               loading="lazy"
               decoding="async"
               fetchPriority="low"
-              className="pointer-events-none absolute bottom-0 left-1/2 z-[10] h-[118%] w-auto max-w-[96%] -translate-x-1/2 -scale-x-100 object-contain object-bottom max-md:-top-[16%] md:h-[740px] md:max-w-none"
+              className="pointer-events-none absolute left-1/2 z-[10] h-[142%] w-auto max-w-none -translate-x-1/2 -scale-x-100 -top-[42%] md:h-[138%] md:-top-[38%]"
             />
           )
         ) : null}
@@ -767,7 +767,7 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section data-anim="section" data-theme="light" className="overflow-x-clip bg-[#F5F5F5] md:overflow-visible">
+      <section data-anim="section" data-theme="light" className="overflow-visible bg-[#F5F5F5]">
         <TeamBentoBanner
           doctorSrc={teamBannerImage.src}
           doctorAlt="Echipa medicală Alverna Dental Studio"

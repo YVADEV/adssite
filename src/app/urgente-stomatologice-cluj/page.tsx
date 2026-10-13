@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import Urgente24PageClient from "@/components/services/Urgente24PageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/urgente-stomatologice-cluj/";
 const NAME = "Urgențe stomatologice 24/7 în Cluj-Napoca";
@@ -36,18 +36,11 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: {
-    absolute: "Urgențe Stomatologice 24/7 Cluj-Napoca | Alverna Dental Studio",
-  },
+export const metadata: Metadata = pageMetadata({
+  title: "Urgențe Stomatologice 24/7 Cluj-Napoca | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-  openGraph: {
-    title: "Urgențe Stomatologice 24/7 Cluj-Napoca | Alverna Dental Studio",
-    description: DESCRIPTION,
-    url: `${SITE_URL}${PATH}`,
-  },
-};
+  path: PATH,
+});
 
 export default function UrgenteStomatologiceClujPage() {
   const url = `${SITE_URL}${PATH}`;

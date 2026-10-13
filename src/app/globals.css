@@ -2438,6 +2438,15 @@ a {
   }
 }
 
+.ads-honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-\[sticky-contact-in_0\.55s_ease-out_both\],
   .animate-\[case-ring-pulse_2\.6s_ease-in-out_infinite\],

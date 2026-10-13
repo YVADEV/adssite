@@ -30,6 +30,9 @@ export default function CookieConsent() {
       // ignore — banner will re-appear on next visit
     }
     setVisible(false);
+    if (choice === "accepted") {
+      window.dispatchEvent(new Event("ads-consent"));
+    }
   }
 
   if (!visible) return null;

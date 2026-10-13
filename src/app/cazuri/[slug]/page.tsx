@@ -10,7 +10,7 @@ import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
 import { CASE_STUDIES, getCaseStudy } from "@/config/cases";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,18 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const titleLine = caz.title.replace("\n", " ");
 
-  return {
+  return pageMetadata({
     title: `${caz.caseNumber} · ${titleLine} | Alverna Dental Studio`,
     description: caz.seoDescription,
-    alternates: { canonical: caz.path },
-    openGraph: {
-      title: `${caz.caseNumber} · ${titleLine}`,
-      description: caz.seoDescription,
-      url: caz.path,
-      type: "article",
-      images: [{ url: caz.heroImage.src }],
-    },
-  };
+    path: caz.path,
+    type: "article",
+    images: [caz.heroImage.src],
+  });
 }
 
 export default async function CaseDetailPage({ params }: Props) {

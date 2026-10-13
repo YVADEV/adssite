@@ -2,18 +2,18 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import AparatDentarPageClient from "@/components/services/AparatDentarPageClient";
 import { JsonLd, breadcrumbLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/aparat-dentar/";
 const NAME = "Aparat dentar";
 const DESCRIPTION =
   "Tipuri de aparat dentar în Cluj la Alverna Dental Studio: aparat dentar fix metalic, ceramic, safir, lingual și alignere transparente. Tipul potrivit se stabilește după consultația ortodontică.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Aparat dentar Cluj | Tipuri de aparat | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-};
+  path: PATH,
+});
 
 export default function AparatDentarPage() {
   const url = `${SITE_URL}${PATH}`;

@@ -1,4 +1,7 @@
 import type { MetadataRoute } from "next";
+import { headers } from "next/headers";
+
+import { SITE_URL } from "@/lib/seo";
 
 const AI_CRAWLERS = [
   "*",
@@ -16,11 +19,27 @@ const AI_CRAWLERS = [
   "meta-externalagent",
 ] as const;
 
-export default function robots(): MetadataRoute.Robots {
+export const dynamic = "force-dynamic";
+
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const host = (await headers()).get("host") ?? "";
+  const onNetlifyPreview = host.endsWith(".netlify.app");
+
+  if (onNetlifyPreview) {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    };
+  }
+
   return {
     rules: AI_CRAWLERS.map((userAgent) => ({
       userAgent,
       allow: "/",
     })),
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL,
   };
 }

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import AugmentareaOsoasaPageClient from "@/components/services/AugmentareaOsoasaPageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/augmentarea-osoasa/";
 const NAME = "Augmentare osoasă";
@@ -36,11 +36,11 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Augmentare osoasă Cluj | Adiție de os | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-};
+  path: PATH,
+});
 
 export default function AugmentareaOsoasaPage() {
   const url = `${SITE_URL}${PATH}`;

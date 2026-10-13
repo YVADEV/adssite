@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import ServicePageTemplate from "@/components/services/ServicePageTemplate";
 import { getServiceBySlug, services } from "@/config/services";
+import { pageMetadata } from "@/lib/seo";
 
 export const runtime = "nodejs";
 
@@ -25,11 +26,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     SERVICE_DESCRIPTIONS[serviceSlug] ??
     `Serviciul de ${service.title.toLowerCase()} la Alverna Dental Studio Cluj: protocoale moderne, comunicare clară și plan de tratament personalizat pentru confort și rezultate predictibile.`;
 
-  return {
+  return pageMetadata({
     title: `${service.title} Cluj | Alverna Dental Studio`,
     description,
-    alternates: { canonical: path },
-  };
+    path,
+  });
 }
 
 export async function generateStaticParams() {

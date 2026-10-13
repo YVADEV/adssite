@@ -229,7 +229,7 @@ const doctorVideos = [
     name: "Dr. Laura Grigorean",
     role: "Medic specialist în Parodontologie",
     image: lauraImage,
-    href: "/echipa/",
+    href: "/echipa/laura-grigorean/",
     bio: "Evaluează și pregătește gingiile și țesuturile de susținere, asigurând un teren sănătos pentru osteointegrare.",
     questions: [
       {
@@ -258,7 +258,7 @@ const doctorVideos = [
     name: "Dr. Andreea Pârvu",
     role: "Stomatologie generală și protetică",
     image: andreeaImage,
-    href: "/echipa/",
+    href: "/echipa/andreea-parvu/",
     bio: "Coordonează planificarea protetică digitală și lucrarea finală, realizată în laboratorul propriu al clinicii.",
     questions: [
       {
@@ -296,60 +296,6 @@ function CompactSection({
     <section id={id} data-theme="light" className="mx-auto mt-6 w-full min-w-0 max-w-[1680px] px-4 md:mt-10 md:px-8 lg:px-12">
       {children}
     </section>
-  );
-}
-
-function IntroAccordion({
-  items,
-  idPrefix = "all-on-intro",
-}: {
-  items: ReadonlyArray<{ title: string; content: ReactNode }>;
-  idPrefix?: string;
-}) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const reveal = motionRevealProps(useMotionReady());
-
-  return (
-    <motion.div {...reveal} className="divide-y divide-black/10 border-t border-black/12">
-      {items.map((item, index) => {
-        const isOpen = openIndex === index;
-        const panelId = `${idPrefix}-panel-${index}`;
-        const buttonId = `${idPrefix}-button-${index}`;
-        return (
-          <article key={item.title} className="py-3">
-            <button
-              id={buttonId}
-              type="button"
-              aria-expanded={isOpen}
-              aria-controls={panelId}
-              onClick={() => setOpenIndex((prev) => (prev === index ? null : index))}
-              className="ads-btn-no-glow flex min-h-[44px] w-full items-center justify-between gap-4 text-left"
-            >
-              <h2 className="text-[19px] font-semibold leading-[1.25] tracking-[-0.02em] text-white sm:text-[21px]">
-                {item.title}
-              </h2>
-              <span aria-hidden className="pt-0.5 text-[18px] leading-none text-white">
-                {isOpen ? "−" : "+"}
-              </span>
-            </button>
-            <div
-              id={panelId}
-              role="region"
-              aria-labelledby={buttonId}
-              hidden={!isOpen}
-              inert={!isOpen}
-              className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-              }`}
-            >
-              <div className="min-h-0 overflow-hidden">
-                <div className="pt-4 pb-2">{item.content}</div>
-              </div>
-            </div>
-          </article>
-        );
-      })}
-    </motion.div>
   );
 }
 
@@ -617,7 +563,7 @@ export default function AllOn4PageClient() {
             </Link>
           </div>
           <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {featuredCases.map((caz) => (
+            {featuredCases.map((caz, index) => (
               <Link
                 key={caz.slug}
                 href={caz.path}
@@ -634,7 +580,7 @@ export default function AllOn4PageClient() {
                   />
                 </div>
                 <div className="p-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/50">{caz.caseNumber}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/50">Caz {index + 1}</p>
                   <h3 className="mt-1 text-[17px] font-semibold leading-[1.3] text-white">
                     {caz.patientName ?? caz.category}
                   </h3>
@@ -653,8 +599,8 @@ export default function AllOn4PageClient() {
         <motion.div {...reveal} className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
           <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] border border-white/10 bg-black">
             <Image
-              src="/services/implant-model-2.png"
-              alt="Dantură fixă pe implanturi — All-on-4 / All-on-6"
+              src="/services/implant-model-1.png"
+              alt="Model de implanturi pentru o arcadă fixă All-on-4 / All-on-6"
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
@@ -798,24 +744,23 @@ export default function AllOn4PageClient() {
       </CompactSection>
 
       <CompactSection>
-        <IntroAccordion
-          items={[
-            {
-              title: "Etapele fluxului digital",
-              content: (
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                  {digitalFlowCards.map((item) => (
-                    <article key={item.title} className="border-t border-black/12 pt-3">
-                      <h3 className="text-[17px] font-semibold text-white">{item.title}</h3>
-                      <p className="mt-1.5 text-[17px] leading-[1.5] text-white/80">{item.text}</p>
-                    </article>
-                  ))}
-                </div>
-              ),
-            },
-          ]}
-        />
-        <ServiceFAQ heading="Întrebări frecvente" items={faqItems} compact />
+        <motion.div {...reveal}>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Flux digital</p>
+          <h2 className="mt-3 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+            Etapele fluxului digital
+          </h2>
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {digitalFlowCards.map((item) => (
+              <article key={item.title} className="border-t border-white/10 pt-3">
+                <h3 className="text-[17px] font-semibold text-white">{item.title}</h3>
+                <p className="mt-1.5 text-[17px] leading-[1.5] text-white/80">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </motion.div>
+        <div className="mt-10">
+          <ServiceFAQ heading="Întrebări frecvente" items={faqItems} compact />
+        </div>
       </CompactSection>
 
       <ServiceTestimonials />

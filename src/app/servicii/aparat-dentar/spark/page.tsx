@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import SparkServicePageClient from "@/components/services/SparkServicePageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/aparat-dentar/spark/";
 const NAME = "Alignere transparente";
@@ -28,11 +28,11 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Alignere transparente Cluj | Spark și Angel Aligner | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-};
+  path: PATH,
+});
 
 export default function SparkPage() {
   const url = `${SITE_URL}${PATH}`;

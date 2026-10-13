@@ -5,6 +5,7 @@ import StickyContactButtons from "@/components/layout/StickyContactButtons";
 import CookieConsent from "@/components/layout/CookieConsent";
 import MobileBottomStack from "@/components/layout/MobileBottomStack";
 import { JsonLd, organizationLd, websiteLd } from "@/components/seo/JsonLd";
+import SiteAnalytics from "@/components/seo/SiteAnalytics";
 import { BUSINESS, SITE_URL } from "@/lib/seo";
 
 const geistSans = Geist({
@@ -26,27 +27,14 @@ export const metadata: Metadata = {
   authors: [{ name: BUSINESS.name, url: SITE_URL }],
   creator: BUSINESS.name,
   publisher: BUSINESS.name,
-  keywords: [
-    "dentist Cluj",
-    "implant dentar Cluj",
-    "All-on-4 Cluj",
-    "All-on-6 Cluj",
-    "ortodonție Cluj",
-    "stomatologie Cluj",
-    "albire dinți Cluj",
-    "fațete dentare Cluj",
-    "estetică dentară Cluj",
-    "clinică stomatologică Cluj",
-    "Alverna Dental Studio",
-  ],
   alternates: {
-    canonical: "/",
-    languages: { "ro-RO": "/" },
+    canonical: `${SITE_URL}/`,
+    languages: { "ro-RO": `${SITE_URL}/` },
   },
   openGraph: {
     type: "website",
     locale: "ro_RO",
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     siteName: BUSINESS.name,
     title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
     description: BUSINESS.description,
@@ -97,6 +85,7 @@ export default function RootLayout({
         >
           Sari la conținut
         </a>
+        <SiteAnalytics />
         {children}
         <MobileBottomStack>
           <CookieConsent />

@@ -58,7 +58,7 @@ function ReelCard({ reelId }: { reelId: string }) {
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#0f1115]" aria-hidden>
               <span className="ml-[3px] inline-block h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-current" />
             </span>
-            <span className="text-[15px] font-medium text-white/80">Se încarcă clipul…</span>
+            <span className="sr-only">Se încarcă clipul</span>
           </div>
         ) : null}
       </div>

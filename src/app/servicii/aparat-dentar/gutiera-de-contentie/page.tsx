@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import GutieraContentiePageClient from "@/components/services/GutieraContentiePageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/aparat-dentar/gutiera-de-contentie/";
 const NAME = "Gutieră de contenție";
@@ -28,11 +28,11 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Gutiera de contenție Cluj | Menținerea alinierii dentare | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-};
+  path: PATH,
+});
 
 export default function GutieraContentiePage() {
   const url = `${SITE_URL}${PATH}`;

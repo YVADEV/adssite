@@ -24,7 +24,7 @@ export function CaseImage({ src, alt, className, overlayLabel, href, ...motionPr
     >
       <motion.img
         src={src}
-        alt={alt ?? ""}
+        alt={alt || (href ? "" : "Caz stomatologic Alverna Dental Studio")}
         loading="lazy"
         decoding="async"
         className="h-full w-full object-cover"

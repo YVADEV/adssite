@@ -38,15 +38,15 @@ import heroTeamImage from "@/assets/echipa/hero-team.png";
 
 const specialistTeam = [
   { name: "Dr. Radu Nichimiș", image: raduImage.src, href: "/echipa/radu-nichimis/" },
-  { name: "Dr. Andreea Pârvu", image: andreeaImage.src },
+  { name: "Dr. Andreea Pârvu", image: andreeaImage.src, href: "/echipa/andreea-parvu/" },
   { name: "Dr. Rareș Gorun", image: raresImage.src },
-  { name: "Dr. Laura Grigorean", image: lauraImage.src },
+  { name: "Dr. Laura Grigorean", image: lauraImage.src, href: "/echipa/laura-grigorean/" },
   { name: "Dr. Valentina Nichimiș", image: valentinaImage.src },
   { name: "Dr. Andreea Ronea", image: andreeaRoneaImage.src },
   { name: "Dr. Bogdan Holici", image: bogdanImage.src },
   { name: "Dr. Andreea Crișan", image: andreeaCrisanImage.src },
   { name: "Dr. Raul Mureșan", image: raulImage.src },
-  { name: "Dr. Corina Holici", image: corinaImage.src },
+  { name: "Dr. Corina Holici", image: corinaImage.src, href: "/echipa/corina-holici/" },
 ];
 
 const laboratoryTeam = [

@@ -1,13 +1,12 @@
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Politica de confidențialitate",
-  description:
-    "Cum colectează, folosește și protejează Alverna Dental Studio datele tale personale, conform GDPR și legislației române.",
-  alternates: { canonical: "/politica-de-confidentialitate/" },
-  robots: { index: true, follow: true },
-};
+  description: "Cum colectează, folosește și protejează Alverna Dental Studio datele tale personale, conform GDPR și legislației române.",
+  path: "/politica-de-confidentialitate/",
+});
 
 export default function PrivacyPolicyPage() {
   return (

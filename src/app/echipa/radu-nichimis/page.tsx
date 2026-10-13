@@ -5,7 +5,7 @@ import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { IMPLANT_CASE_STRIP } from "@/config/case-strips";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 import { CLINIC } from "@/lib/contact";
 
 const PATH = "/echipa/radu-nichimis/";
@@ -13,17 +13,12 @@ const NAME = "Dr. Radu Nichimiș";
 const DESCRIPTION =
   "Profil profesional Dr. Radu Nichimiș, medic specialist Chirurgie Orală și Maxilo-Facială, cu accent pe planificare digitală, funcționalitate și armonie estetică.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Dr. Radu Nichimiș | Chirurgie Orală și Maxilo-Facială | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-  openGraph: {
-    title: "Dr. Radu Nichimiș — Medic specialist Chirurgie Orală și Maxilo-Facială",
-    description: DESCRIPTION,
-    url: PATH,
-    type: "profile",
-  },
-};
+  path: PATH,
+  type: "profile",
+});
 
 export default function RaduNichimisPage() {
   const url = `${SITE_URL}${PATH}`;

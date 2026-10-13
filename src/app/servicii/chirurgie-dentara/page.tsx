@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import ChirurgieDentaraPageClient from "@/components/services/ChirurgieDentaraPageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/chirurgie-dentara/";
 const NAME = "Chirurgie dentară";
@@ -36,11 +36,11 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Chirurgie dentară Cluj | Intervenții orale complexe | Alverna Dental Studio",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-};
+  path: PATH,
+});
 
 export default function ChirurgieDentaraPage() {
   const url = `${SITE_URL}${PATH}`;

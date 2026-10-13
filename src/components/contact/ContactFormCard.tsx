@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 
+import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { CLINIC } from "@/lib/contact";
 
 type ContactStatus = "idle" | "loading" | "ok" | "error";
@@ -15,6 +16,14 @@ export function ContactFormCard({ source }: { source: string }) {
   const [viaEmailApp, setViaEmailApp] = useState(false);
   const [showExtraFields, setShowExtraFields] = useState(false);
   const submittingRef = useRef(false);
+  const formStartedRef = useRef(false);
+  const honeypotRef = useRef<HTMLInputElement>(null);
+
+  function markFormStart() {
+    if (formStartedRef.current) return;
+    formStartedRef.current = true;
+    trackEvent(ANALYTICS_EVENTS.formStart, { form_id: "contact", form_source: source });
+  }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -83,8 +92,10 @@ export function ContactFormCard({ source }: { source: string }) {
     }
 
     const markOk = () => {
+      trackEvent(ANALYTICS_EVENTS.formSubmit, { form_id: "contact", form_source: source });
       setStatus("ok");
       event.currentTarget.reset();
+      formStartedRef.current = false;
     };
 
     try {
@@ -202,15 +213,25 @@ export function ContactFormCard({ source }: { source: string }) {
           ) : null}
         </div>
       ) : (
-        <form className="relative mt-5 grid min-w-0 gap-3 md:mt-7 md:gap-4" onSubmit={handleSubmit} noValidate>
+        <form
+          className="relative mt-5 grid min-w-0 gap-3 md:mt-7 md:gap-4"
+          onSubmit={handleSubmit}
+          onFocusCapture={markFormStart}
+          noValidate
+        >
           <input type="hidden" name="form-name" value="contact" />
-          <div aria-hidden="true" className="hidden">
+          <div className="ads-honeypot" aria-hidden="true">
+            <label htmlFor="contact-website">Website</label>
             <input
+              ref={honeypotRef}
+              id="contact-website"
               name="website"
               type="text"
               tabIndex={-1}
               autoComplete="off"
               aria-hidden="true"
+              readOnly
+              defaultValue=""
             />
           </div>
           <div className="grid min-w-0 grid-cols-2 gap-2 md:grid-cols-1 md:gap-4">

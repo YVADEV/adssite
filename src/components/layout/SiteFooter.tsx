@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { CLINIC } from "@/lib/contact";
 import { services } from "@/config/services";
@@ -53,9 +54,12 @@ const pageLinks = [
 ];
 
 export default function SiteFooter() {
+  const pathname = usePathname();
+  const showReels = pathname === "/";
+
   return (
     <>
-      <DeferredInstagram />
+      {showReels ? <DeferredInstagram /> : null}
     <footer className="flex flex-col bg-[#0f1115] px-4 pb-12 pt-16 text-white md:px-8 md:pt-20 lg:px-12 lg:pb-14">
       <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-12 border-t border-white/8 pt-12 lg:grid-cols-[1.35fr_0.9fr_1fr_1fr] lg:gap-16">
         <section>

@@ -1,4 +1,56 @@
+import type { Metadata } from "next";
+
 export const SITE_URL = "https://alvernadental.com";
+
+export function absoluteUrl(path: string) {
+  if (path.startsWith("http://") || path.startsWith("https://")) return path;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const withSlash = normalized === "/" || normalized.endsWith("/") ? normalized : `${normalized}/`;
+  return `${SITE_URL}${withSlash}`;
+}
+
+/** Document title, social tags and canonical stay on the same page URL. */
+export function pageMetadata({
+  title,
+  description,
+  path,
+  type = "website",
+  images,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  type?: "website" | "article" | "profile";
+  images?: string[];
+}): Metadata {
+  const url = absoluteUrl(path);
+  const fullTitle = title.includes(BUSINESS.name) ? title : `${title} | ${BUSINESS.name}`;
+  const imageEntries = images?.map((image) => ({ url: image }));
+
+  return {
+    title: { absolute: fullTitle },
+    description,
+    alternates: {
+      canonical: url,
+      languages: { "ro-RO": url },
+    },
+    openGraph: {
+      type,
+      locale: "ro_RO",
+      url,
+      siteName: BUSINESS.name,
+      title: fullTitle,
+      description,
+      ...(imageEntries ? { images: imageEntries } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description,
+      ...(imageEntries ? { images } : {}),
+    },
+  };
+}
 
 export const BUSINESS = {
   name: "Alverna Dental Studio",
@@ -61,6 +113,9 @@ export const STATIC_ROUTES = [
   "/servicii/",
   "/echipa/",
   "/echipa/radu-nichimis/",
+  "/echipa/laura-grigorean/",
+  "/echipa/andreea-parvu/",
+  "/echipa/corina-holici/",
   "/cazuri/",
   "/tarife/",
   "/testimoniale/",

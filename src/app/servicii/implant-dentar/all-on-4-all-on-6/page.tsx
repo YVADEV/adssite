@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import AllOn4PageClient from "@/components/services/AllOn4PageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { SITE_URL } from "@/lib/seo";
+import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/implant-dentar/all-on-4-all-on-6/";
 const NAME = "Dinți ficși pe implanturi – All-on-4 / All-on-6";
@@ -36,18 +36,11 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Dinți ficși pe implanturi Cluj — All-on-4 / All-on-6",
   description: DESCRIPTION,
-  alternates: { canonical: PATH },
-  keywords: [
-    "All-on-4 Cluj",
-    "All-on-6 Cluj",
-    "dantură fixă Cluj",
-    "implanturi All-on-4",
-    "laborator digital stomatologie",
-  ],
-};
+  path: PATH,
+});
 
 export default function AllOn4AllOn6Page() {
   const url = `${SITE_URL}${PATH}`;

@@ -582,10 +582,14 @@ export default function HomePageClient() {
                 />
               )}
             </div>
-            {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
-            <p className="max-w-[520px] text-[21px] leading-[1.65] tracking-[-0.64px] text-white">
-              Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
-            </p>
+            <div className="max-w-[520px]">
+              <h2 className="text-[28px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[36px]">
+                Clinică stomatologică modernă
+              </h2>
+              <p className="mt-4 text-[21px] leading-[1.65] tracking-[-0.64px] text-white">
+                Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
+              </p>
+            </div>
           </div>
           <div className="mt-10 grid min-w-0 grid-cols-1 items-stretch gap-[8px] md:grid-cols-2 lg:mt-[-140px] xl:mt-[-310px] xl:ml-auto xl:w-full xl:max-w-[820px] xl:gap-[8px]">
             {advantages.map((a, clipIndex) => (
@@ -603,7 +607,13 @@ export default function HomePageClient() {
                 >
                   <LazyVideo
                     src={recommendationClips[clipIndex]}
-                    poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined}
+                    poster={
+                      belowFoldMedia
+                        ? clipIndex === 0
+                          ? "/services/implant-model-1.png"
+                          : "/services/whitening-1.png"
+                        : undefined
+                    }
                     className="absolute inset-0 h-full w-full scale-[1.05]"
                     ariaLabel={`Clip ${advantages[clipIndex].label}`}
                   />
@@ -668,7 +678,7 @@ export default function HomePageClient() {
           <div data-anim="image" className="relative h-[min(420px,70vw)] min-h-[240px] w-full overflow-hidden rounded-[24px]">
             <LazyVideo
               src="/hero.mp4"
-              poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined}
+              poster={belowFoldMedia ? "/services/dental-chair.png" : undefined}
               ariaLabel="Descoperă cabinetul Alverna Dental Studio"
               className="h-full w-full object-cover"
             />
@@ -849,7 +859,7 @@ export default function HomePageClient() {
               <LazyVideo src="/cazuri-1.mp4" poster={belowFoldMedia ? "/services/exam-male.png" : undefined} ariaLabel="Caz tratat — vedere generală" />
             </article>
             <article className="relative h-[min(56vw,280px)] bg-black md:h-[360px]">
-              <LazyVideo src="/cori-angel.mp4" poster={belowFoldMedia ? "/services/smile-mirror.jpg" : undefined} ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
+              <LazyVideo src="/cori-angel.mp4" poster={belowFoldMedia ? "/services/lab-hands-model.png" : undefined} ariaLabel="Caz tratat — restaurare completă" loadDelayMs={400} />
             </article>
             <article className="relative h-[min(56vw,280px)] rounded-r-[18px] bg-black md:h-[360px]">
               <LazyVideo src="/cazuri-2.mp4" poster={belowFoldMedia ? "/services/whitening-2.png" : undefined} ariaLabel="Caz tratat — albire și aliniere" loadDelayMs={200} />

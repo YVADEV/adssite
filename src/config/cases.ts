@@ -15,7 +15,7 @@ import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import danaBefore from "@/assets/cazuri/dana-before.png";
 import danaHug from "@/assets/cazuri/dana-hug.png";
-import andreeaParvuImage from "@/assets/cazuri/Banner/Andreea de folosit 2.png";
+import andreeaParvuImage from "@/assets/cazuri/Banner/andreea-parvu-banner.png";
 import sergiuHero from "@/assets/cazuri/sergiu-witberg/hero.png";
 import sergiuBefore1 from "@/assets/cazuri/sergiu-witberg/before-1.png";
 import sergiuBefore2 from "@/assets/cazuri/sergiu-witberg/before-2.png";

@@ -13,7 +13,7 @@ export const CLINIC = {
   instagramHandle: "@alvernadentalstudio",
   instagramUrl: "https://www.instagram.com/alvernadentalstudio/",
   whatsappUrl: "https://wa.me/40748085933",
-  /** Mirrors BUSINESS.openingHours in seo.ts — Saturday still needs clinic confirmation. */
+  /** Single schedule string. Schema hours in seo.ts use the same Saturday close (15:00). */
   hoursDisplay: "Luni–Vineri 09:00–21:00 · Sâmbătă 09:00–15:00",
   mailtoSubject: "Solicită o programare",
   mapsPlaceUrl:

@@ -984,7 +984,7 @@ body {
   .ads-page,
   main {
     max-width: 100%;
-    overflow-x: clip;
+    overflow: visible;
   }
 
   .ads-site-header-bar {

@@ -194,11 +194,11 @@ function TeamBentoBanner({
   slogan?: string;
 }) {
   return (
-    <div className={`mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px] ${overflowPhoto ? "pt-[140px] md:pt-[120px]" : "pt-[72px] md:pt-0"}`}>
+    <div className={`mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-[6px] px-5 pb-16 md:grid-cols-2 md:px-10 md:pb-[120px] lg:grid-cols-[440px_1fr_1fr] lg:px-[96px] ${overflowPhoto ? "pt-[180px] md:pt-[250px]" : "pt-[72px] md:pt-0"}`}>
       <article
-        className="relative isolate z-20 flex min-h-[420px] flex-col overflow-visible rounded-[24px] bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px]"
+        className={`relative isolate z-20 flex min-h-[420px] flex-col overflow-visible bg-[#0A0A0A] p-6 md:p-[40px] lg:h-[560px] ${overflowPhoto ? "" : "rounded-[24px]"}`}
       >
-        <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px]">
+        <div className="absolute inset-0 z-[1] overflow-hidden rounded-[24px] bg-[#0A0A0A]">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.2)_0%,rgba(0,0,0,0.55)_100%)]" />
         </div>
         {leftHeadline ? (
@@ -220,7 +220,7 @@ function TeamBentoBanner({
               loading="lazy"
               decoding="async"
               fetchPriority="low"
-              className="pointer-events-none absolute right-0 z-[10] h-[128%] w-auto max-w-none -top-[28%] md:right-[-6%] md:h-[124%] md:-top-[24%]"
+              className="pointer-events-none absolute right-0 z-[10] h-[142%] w-auto max-w-none -top-[42%] md:right-[-6%] md:h-[138%] md:-top-[38%]"
             />
           ) : (
             <img

@@ -4,7 +4,7 @@ import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
-import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
+import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact | Alverna Dental Studio Cluj",
@@ -52,7 +52,7 @@ export default function ContactPage() {
               <p className="text-[14px] font-medium uppercase tracking-[0.16em] text-white/80 sm:text-[18px] md:text-[21px]">
                 Alverna Dental Studio
               </p>
-              <h1 className="mt-2 text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[84px] lg:text-[120px]">
+              <h1 className="mt-2 text-[40px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[56px] md:leading-[1.06] md:tracking-[-0.03em] lg:text-[64px]">
                 Contact
               </h1>
             </div>
@@ -62,7 +62,7 @@ export default function ContactPage() {
         <section className="mx-auto w-full max-w-[1680px] px-4 pt-8 md:px-8 md:pt-12 lg:px-12">
           <p className="max-w-[1050px] text-[18px] leading-[1.65] text-white/75 sm:text-[21px]">
             Promisiunea noastră față de dumneavoastră este aceea că echipa Alverna Dental Studio își va folosi experiența
-            și pasiunea pentru a face diferența între „câteva plombe” și zâmbetul perfect!
+            și pasiunea pentru un plan de tratament explicat, nu doar pentru o lucrare izolată.
           </p>
         </section>
 
@@ -178,47 +178,11 @@ export default function ContactPage() {
             <h3 className="text-[28px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">Recenzii</h3>
             <p className="mt-2 text-[16px] font-semibold text-white md:mt-3 md:text-[21px]">Scor mediu: 4.8 ⭐</p>
           </div>
-          <div className="mx-auto mt-6 px-4 md:hidden">
-            <GoogleReviewsMobile
+          <div className="mx-auto mt-6 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+            <GoogleReviews
               reviews={reviews}
-              logo={<img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-3 h-auto w-[160px] object-contain" />}
+              logo={<img src={alvernaLogo.src} alt="Alverna logo" className="mt-3 h-auto w-[160px] object-contain" />}
             />
-          </div>
-          <div className="mx-auto mt-8 hidden w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
-            <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
-              <div className="flex items-end gap-2">
-                <strong className="text-[36px] font-semibold leading-none tracking-[-0.03em] md:text-[52px]">4,8</strong>
-                <span className="mb-2 text-base opacity-60">/5</span>
-                <img src="https://www.google.com/favicon.ico" alt="Google" className="mb-2 h-6 w-6" />
-              </div>
-              <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.65]">
-                <p>
-                  Adresă:{" "}
-                  <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
-                    {CLINIC.addressLine}
-                  </a>
-                </p>
-                <p>
-                  Număr de telefon:{" "}
-                  <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
-                    {CLINIC.phoneDisplay}
-                  </a>
-                </p>
-                <p>Program: {CLINIC.hoursDisplay}</p>
-              </div>
-              <img src={alvernaLogo.src} alt="Alverna logo" className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
-            </article>
-
-            {reviews.map((r) => (
-              <article key={r.name} className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[22px]">
-                  <div>
-                    <p className="text-[28px] font-semibold leading-[1.05]">{r.name}</p>
-                    <p className="mt-1 text-[21px]">{r.meta}</p>
-                  </div>
-                <p className="mt-6 text-[21px] leading-[1.65]">{r.text}</p>
-                <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>
-              </article>
-            ))}
           </div>
         </section>
 

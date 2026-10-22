@@ -74,7 +74,7 @@ export default function PedodontiePageClient() {
             Vă stăm la dispoziție cu servicii de stomatologie copii / pedodonție de la apariția primului dințișor de lapte, până la dezvoltarea obiceiurilor de igienă dentară.
             <br />
             <br />
-            Medicii specialiști Alverna Dental Studio sunt alături de copilul dvs. în fiecare etapă, cu accent pe prevenție, confort și experiențe pozitive la dentist.
+            Echipa Alverna Dental Studio este alături de copil în fiecare etapă, cu accent pe prevenție și pe o vizită explicată pe înțelesul lui.
           </>
         }
       />
@@ -93,7 +93,7 @@ export default function PedodontiePageClient() {
           first
           headingLevel="h2"
           heading="Pedodonție: servicii de stomatologie copii Cluj"
-          body="Mersul la stomatolog ar trebui să fie un obicei firesc și o experiență pozitivă pentru orice copil. În clinicile Alverna Dental Studio, dispunem de personal medical cu experiență în interacțiunea cu cei mici, astfel încât fiecare vizită să fie un prilej de învățare pentru copil și părinte."
+          body="Mersul la stomatolog ar trebui să fie un obicei firesc și o experiență pozitivă pentru orice copil. La Alverna Dental Studio, personalul medical are experiență în interacțiunea cu cei mici, astfel încât fiecare vizită să fie un prilej de învățare pentru copil și părinte."
         />
         <ServiceTextBlock
           heading="Dentiția temporară: dințișorii de lapte sunt importanți"

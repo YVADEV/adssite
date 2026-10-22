@@ -27,7 +27,7 @@ const duties = [
 const strengths = [
   {
     title: "Echipă dedicată",
-    text: "Medici specialiști cu experiență, orientați spre bunăstarea pacientului.",
+    text: "Echipă medicală cu experiență, orientată spre bunăstarea pacientului.",
   },
   {
     title: "Tehnologie modernă",
@@ -111,7 +111,7 @@ export default function DentistClujPageClient() {
           first
           headingLevel="h2"
           heading="De ce Alverna Dental Studio?"
-          body="Echipa noastră este formată din medici specialiști cu experiență, orientați spre rezultate estetice și funcționale de lungă durată. Fiecare pacient beneficiază de explicații detaliate, astfel încât să înțeleagă pe deplin diagnosticul și importanța planului de tratament."
+          body="Echipa medicală explică diagnosticul și planul de tratament. Titulatura fiecărui medic este cea afișată pe pagina lui de profil."
         />
         <ServiceBulletsSection heading="Îndatoririle unui medic dentist" items={duties} />
         <ServiceStepsSection heading="Cum funcționează întregul proces" steps={processSteps} />

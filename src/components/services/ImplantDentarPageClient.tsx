@@ -141,7 +141,7 @@ export default function ImplantDentarPageClient() {
           first
           headingLevel="h2"
           heading="O intervenție esențială"
-          body="Implantul dentar este cea mai performantă formă de protetică pentru edentații parțiale sau totale. Structura din titan se integrează în os și înlocuiește rădăcina naturală, oferind un suport stabil pentru coroană, punte sau proteză. Pe lângă componenta estetică, tratamentul menține masticația eficientă, susține structura facială și reduce riscul complicațiilor asociate pierderii dentare."
+          body="Implantul dentar este o lucrare protetică pentru edentații parțiale sau totale. Structura din titan se integrează în os și înlocuiește rădăcina naturală, oferind un suport pentru coroană, punte sau proteză. Tratamentul urmărește masticația și stabilitatea lucrării; planul se stabilește după evaluare."
         />
         <ServiceBulletsSection heading="Cauze frecvente ale pierderii dinților" items={commonCauses} />
         <ServiceCardsSection heading="Efectele edentației" cards={edentatiaEffects} />

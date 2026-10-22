@@ -134,12 +134,23 @@ export default function SiteFooter() {
         </section>
       </div>
 
-      <div className="ads-footer-instagram-wrap mx-auto mt-16 w-full max-w-[1720px] shrink-0 px-2">
+      <div className="ads-footer-instagram-wrap mx-auto mt-16 flex w-full max-w-[1720px] shrink-0 items-center justify-center gap-5 px-2 md:gap-8">
+        <a
+          href={CLINIC.facebookUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook Alverna Dental Studio"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
+        >
+          <svg aria-hidden viewBox="0 0 24 24" className="h-[clamp(28px,5.2cqw,48px)] w-[clamp(28px,5.2cqw,48px)] fill-current">
+            <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22C18.34 21.24 22 17.08 22 12.06z" />
+          </svg>
+        </a>
         <a
           href={CLINIC.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="ads-footer-instagram flex min-h-[44px] w-full items-center justify-center text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
+          className="ads-footer-instagram flex min-h-[44px] items-center justify-center text-center text-white transition-all duration-[400ms] ease-out hover:-translate-y-[2px] hover:text-white"
         >
           {CLINIC.instagramHandle}
         </a>

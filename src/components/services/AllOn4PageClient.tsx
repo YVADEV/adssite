@@ -46,7 +46,7 @@ const digitalFlowCards = [
   },
   {
     title: "Laborator propriu, full digital",
-    text: "Spre deosebire de clinicile care trimit lucrările la laboratoare externe, Alverna Dental Studio dispune de propriul laborator de tehnică dentară, complet echipat digital (scanare, design CAD, frezare/printare CAM). Asta înseamnă control direct asupra calității, comunicare rapidă între medic și tehnician, și un timp de lucru redus.",
+    text: "Alverna Dental Studio are laborator propriu de tehnică dentară. Medicul și tehnicianul lucrează în aceeași clinică, pe baza scanării și a proiectării digitale.",
   },
   {
     title: "Lucrare protetică digitală",
@@ -80,7 +80,7 @@ const whyAlverna = [
   },
   {
     title: "Laborator dentar propriu",
-    text: "Spre deosebire de clinicile care trimit lucrările la laboratoare externe, Alverna Dental Studio dispune de propriul laborator de tehnică dentară, complet echipat digital (scanare, design CAD, frezare/printare CAM).",
+    text: "Alverna Dental Studio are laborator propriu de tehnică dentară. Medicul și tehnicianul lucrează în aceeași clinică, pe baza scanării și a proiectării digitale.",
   },
   {
     title: "Cazuri reale documentate",

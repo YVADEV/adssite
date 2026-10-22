@@ -2,11 +2,7 @@
 
 import type { Dispatch, SetStateAction } from "react";
 
-import {
-  mobileMenuIndex,
-  mobileMenuItemClass,
-  mobileMenuNumClass,
-} from "@/components/nav/mobileMenuStyles";
+import { mobileMenuItemClass } from "@/components/nav/mobileMenuStyles";
 
 type MobileMenuNavServicesProps = {
   panelId: string;
@@ -33,15 +29,9 @@ export function MobileMenuNavServices({
         setOpenSubmenuSlug(null);
         setMobileServicesOpen(true);
       }}
-      className={`${mobileMenuItemClass} justify-between ${mobileServicesOpen ? "text-[color:var(--ads-accent)]" : ""}`}
+      className={`${mobileMenuItemClass} ${mobileServicesOpen ? "text-[color:var(--ads-accent)]" : ""}`}
     >
-      <span className="flex min-w-0 items-center gap-3">
-        <span className={mobileMenuNumClass}>{mobileMenuIndex(5)}</span>
-        <span>Servicii</span>
-      </span>
-      <span aria-hidden className="text-[16px] font-normal text-white/40">
-        →
-      </span>
+      Servicii
     </button>
   );
 }

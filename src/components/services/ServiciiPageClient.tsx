@@ -15,7 +15,7 @@ export default function ServiciiPageClient() {
       <main className="ads-service-page bg-[#ececec] pb-16 pt-16 max-md:bg-[#0f1115] max-md:text-white md:pt-24 lg:pt-[140px]">
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="grid min-w-0 grid-cols-1 xl:grid-cols-[minmax(0,1fr)_minmax(0,760px)]">
-            <h1 className="min-w-0 text-[36px] font-semibold leading-[0.9] tracking-[-4px] md:text-[92px] lg:text-[144px] lg:tracking-[-8.64px]">Servicii</h1>
+            <h1 className="min-w-0 text-[36px] font-semibold leading-[0.9] tracking-[-4px] md:text-[56px] md:leading-[1.06] md:tracking-[-0.03em] lg:text-[68px]">Servicii</h1>
             {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
             <p className="min-w-0 max-w-full pt-4 text-[16px] leading-[1.55] tracking-[-0.64px] opacity-70 md:text-[21px] md:leading-6 lg:pt-[28px]">
               Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet este dotat cu aparatură medicală de ultimă generație.

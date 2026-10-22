@@ -7,13 +7,6 @@ export const mobileMenuEmergencyClass =
 export const mobileMenuOutlineClass =
   "flex min-h-12 w-full items-center border-b border-white/8 py-0 text-left text-[16px] font-medium leading-[1.3] tracking-[-0.02em] text-white/80 transition-colors duration-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--ads-accent)]";
 
-export const mobileMenuNumClass =
-  "ads-menu-num w-7 shrink-0 pt-[1px] text-[11px] font-medium tabular-nums tracking-[0.18em] text-white/38 group-hover:text-[color:var(--ads-accent)]";
-
-export function mobileMenuIndex(n: number) {
-  return String(n).padStart(2, "0");
-}
-
 export function mobileMenuClassForLabel(label: string) {
   return label === "Urgențe" ? mobileMenuEmergencyClass : mobileMenuItemClass;
 }

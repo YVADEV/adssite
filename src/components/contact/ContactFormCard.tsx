@@ -13,7 +13,6 @@ export function ContactFormCard({ source }: { source: string }) {
   const pathname = usePathname();
   const [status, setStatus] = useState<ContactStatus>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [viaEmailApp, setViaEmailApp] = useState(false);
   const [showExtraFields, setShowExtraFields] = useState(false);
   const submittingRef = useRef(false);
   const formStartedRef = useRef(false);
@@ -30,7 +29,6 @@ export function ContactFormCard({ source }: { source: string }) {
     if (submittingRef.current || status === "loading" || status === "ok") return;
     submittingRef.current = true;
     setError(null);
-    setViaEmailApp(false);
     const formData = new FormData(event.currentTarget);
     const nume = String(formData.get("nume") ?? "").trim();
     const prenume = String(formData.get("prenume") ?? "").trim();
@@ -68,6 +66,7 @@ export function ContactFormCard({ source }: { source: string }) {
       return;
     }
     setStatus("loading");
+    const form = event.currentTarget;
     const pagePath = pathname || "/";
     const pageUrl = typeof window !== "undefined" ? window.location.href : pagePath;
     const numeComplet = `${prenume} ${nume}`.trim();
@@ -87,134 +86,84 @@ export function ContactFormCard({ source }: { source: string }) {
     };
     if (payload.website) {
       setStatus("ok");
-      event.currentTarget.reset();
+      form.reset();
       return;
     }
 
     const markOk = () => {
       trackEvent(ANALYTICS_EVENTS.formSubmit, { form_id: "contact", form_source: source });
       setStatus("ok");
-      event.currentTarget.reset();
+      form.reset();
       formStartedRef.current = false;
     };
 
     try {
+      formData.set("form-name", "contact");
+      formData.set("nume", nume);
+      formData.set("prenume", prenume);
+      formData.set("numeComplet", numeComplet);
+      formData.set("telefon", telefon);
+      formData.set("email", email);
+      formData.set("source", source);
+      formData.set("pagePath", pagePath);
+      formData.set("pageUrl", pageUrl);
+      formData.set("pageTitle", typeof document !== "undefined" ? document.title : "");
+      const params = new URLSearchParams();
+      formData.forEach((value, key) => {
+        if (key === "website") return;
+        if (typeof value === "string") params.append(key, value);
+      });
+      const formsResp = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params.toString(),
+      });
+      if (formsResp.ok) {
+        submittingRef.current = false;
+        markOk();
+        return;
+      }
+
       const resp = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const json = (await resp.json().catch(() => ({ ok: false }))) as { ok: boolean };
+      const json = (await resp.json().catch(() => ({ ok: false, error: "" }))) as { ok?: boolean; error?: string };
       if (resp.ok && json.ok) {
+        submittingRef.current = false;
         markOk();
         return;
       }
+      submittingRef.current = false;
+      setStatus("error");
+      setError(json.error || "Nu am putut trimite mesajul. Te rugăm să încerci din nou sau să ne suni.");
     } catch {
-      /* continuă cu următoarele canale */
+      submittingRef.current = false;
+      setStatus("error");
+      setError("Nu am putut trimite mesajul. Verifică conexiunea sau sună-ne.");
     }
-
-    try {
-      const formsubmitResp = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CLINIC.email)}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          _subject: `Programare nouă · ${payload.numeComplet}`,
-          _template: "table",
-          _captcha: "false",
-          name: payload.numeComplet,
-          nume: payload.nume,
-          prenume: payload.prenume,
-          telefon: payload.telefon,
-          email: payload.email || "nespecificat@alvernadental.com",
-          serviciu: payload.serviciu || "—",
-          mesaj: payload.mesaj || "—",
-          pagina: payload.pageUrl,
-          sursa: payload.source,
-        }),
-      });
-      const formsubmitJson = (await formsubmitResp.json().catch(() => ({ success: false }))) as {
-        success?: boolean | string;
-      };
-      if (formsubmitResp.ok && (formsubmitJson.success === true || formsubmitJson.success === "true")) {
-        markOk();
-        return;
-      }
-    } catch {
-      /* FormSubmit e adesea indisponibil pentru acest inbox */
-    }
-
-    try {
-      const netlifyBody = new URLSearchParams();
-      netlifyBody.set("form-name", "contact");
-      Object.entries(payload).forEach(([key, value]) => {
-        if (value) netlifyBody.set(key, value);
-      });
-      const netlifyResp = await fetch("/__forms.html", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: netlifyBody.toString(),
-      });
-      if (netlifyResp.ok) {
-        markOk();
-        return;
-      }
-    } catch {
-      /* pe localhost Next.js nu procesează Netlify Forms */
-    }
-
-    const mailtoBody = [
-      `Nume: ${payload.nume}`,
-      `Prenume: ${payload.prenume}`,
-      `Telefon: ${payload.telefon}`,
-      `Email: ${payload.email || "—"}`,
-      `Serviciu: ${payload.serviciu || "—"}`,
-      `Mesaj: ${payload.mesaj || "—"}`,
-      `Pagină: ${payload.pageUrl}`,
-    ].join("\n");
-    const mailto = `mailto:${CLINIC.email}?subject=${encodeURIComponent(`Programare nouă · ${payload.numeComplet}`)}&body=${encodeURIComponent(mailtoBody)}`;
-    const trigger = document.createElement("a");
-    trigger.href = mailto;
-    trigger.style.display = "none";
-    document.body.appendChild(trigger);
-    trigger.click();
-    trigger.remove();
-    setViaEmailApp(true);
-    markOk();
   }
 
   return (
     <div
-      className="ads-card-lit min-w-0 overflow-hidden rounded-[20px] p-5 md:rounded-[24px] md:p-8"
+      className="ads-card-lit min-w-0 overflow-hidden rounded-[20px] p-5"
     >
-      <p className="text-[14px] opacity-70 md:text-[21px]">{CLINIC.instagramHandle}</p>
-      <h3 className="mt-2 text-[26px] font-semibold leading-[0.95] tracking-[-0.04em] md:text-[44px]">Solicită o programare</h3>
-      <p className="mt-2 text-[15px] leading-[1.45] opacity-80 md:mt-3 md:text-[21px]">
+      <p className="text-[14px] opacity-70">{CLINIC.instagramHandle}</p>
+      <h3 className="mt-2 text-[26px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
+      <p className="mt-2 text-[15px] leading-[1.45] opacity-80">
         Lasă-ne datele tale și te contactăm pentru confirmarea programării.
       </p>
-      {process.env.NODE_ENV === "development" ? (
-        <p className="mt-3 text-[18px] leading-[1.45] opacity-70">
-          Ești pe localhost: formularul merge, dar emailul nu pleacă către clinică.
-        </p>
-      ) : null}
       {status === "ok" ? (
         <div role="status" className="ads-form-success-box mt-7 rounded-[18px] border border-[#B6B94C]/30 bg-[#F4F5E4] p-6">
-          <p className="text-[21px] font-semibold">
-            {process.env.NODE_ENV === "development" ? "Solicitarea a fost înregistrată pe localhost." : "Solicitarea a fost trimisă."}
-          </p>
+          <p className="text-[21px] font-semibold">Solicitarea a fost trimisă.</p>
           <p className="mt-2 text-[21px] leading-[1.5]">
-            {process.env.NODE_ENV === "development"
-              ? "În development emailul nu se trimite către clinică. Pe site-ul live, după configurarea trimiterii, echipa va putea primi programările."
-              : "Echipa Alverna te va contacta pentru confirmarea programării."}
+            Echipa Alverna te va contacta pentru confirmarea programării.
           </p>
-          {viaEmailApp ? (
-            <p className="mt-2 text-[18px] leading-[1.5] opacity-80">
-              Am pregătit un email către {CLINIC.email}. Dacă nu s-a deschis aplicația de mail, scrie-ne acolo sau sună la {CLINIC.phoneDisplay}.
-            </p>
-          ) : null}
         </div>
       ) : (
         <form
-          className="relative mt-5 grid min-w-0 gap-3 md:mt-7 md:gap-4"
+          className="relative mt-5 grid min-w-0 gap-3"
           onSubmit={handleSubmit}
           onFocusCapture={markFormStart}
           noValidate
@@ -234,13 +183,13 @@ export function ContactFormCard({ source }: { source: string }) {
               defaultValue=""
             />
           </div>
-          <div className="grid min-w-0 grid-cols-2 gap-2 md:grid-cols-1 md:gap-4">
+          <div className="grid min-w-0 grid-cols-2 gap-2">
             <label className="grid min-w-0 gap-1">
-              <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Nume</span>
+              <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60">Nume</span>
               <input
                 id="contact-nume"
                 name="nume"
-                className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+                className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45"
                 placeholder="Nume"
                 required
                 autoComplete="family-name"
@@ -249,11 +198,11 @@ export function ContactFormCard({ source }: { source: string }) {
               />
             </label>
             <label className="grid min-w-0 gap-1">
-              <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Prenume</span>
+              <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60">Prenume</span>
               <input
                 id="contact-prenume"
                 name="prenume"
-                className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+                className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45"
                 placeholder="Prenume"
                 required
                 autoComplete="given-name"
@@ -263,13 +212,13 @@ export function ContactFormCard({ source }: { source: string }) {
             </label>
           </div>
           <label className="grid gap-1">
-            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Telefon</span>
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60">Telefon</span>
             <input
               id="contact-telefon"
               name="telefon"
               type="tel"
               inputMode="tel"
-              className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+              className="ads-field h-12 w-full min-w-0 max-w-full rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45"
               placeholder="Telefon"
               required
               autoComplete="tel"
@@ -280,42 +229,42 @@ export function ContactFormCard({ source }: { source: string }) {
           {!showExtraFields ? (
             <button
               type="button"
-              className="min-h-11 text-left text-[14px] font-medium text-[#0a0a0a] underline decoration-[color:var(--ads-accent)]/60 underline-offset-4 md:hidden"
+              className="min-h-11 text-left text-[14px] font-medium underline decoration-[color:var(--ads-accent)]/60 underline-offset-4"
               onClick={() => setShowExtraFields(true)}
             >
               Detalii suplimentare
             </button>
           ) : null}
-          <div className={`grid gap-3 md:grid md:gap-4 ${showExtraFields ? "grid" : "max-md:hidden"}`}>
+          <div className={showExtraFields ? "grid gap-3" : "hidden"}>
           <label className="grid gap-1">
-            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Email</span>
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60">Email</span>
             <input
               id="contact-email"
               name="email"
               type="email"
               inputMode="email"
-              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45"
               placeholder="Email (opțional)"
               autoComplete="email"
             />
           </label>
           <label className="grid gap-1">
-            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Serviciu</span>
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60">Serviciu</span>
             <input
               id="contact-serviciu"
               name="serviciu"
-              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:h-[56px] md:rounded-[14px] md:px-4 md:text-[21px]"
+              className="ads-field h-12 rounded-[12px] px-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45"
               placeholder="Serviciu dorit"
               autoComplete="off"
             />
           </label>
           <label className="grid gap-1">
-            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60 md:text-[13px]">Mesaj</span>
+            <span className="text-[12px] font-semibold uppercase tracking-[0.08em] opacity-60">Mesaj</span>
             <textarea
               id="contact-mesaj"
               name="mesaj"
               rows={4}
-              className="ads-field min-h-[88px] rounded-[12px] px-3 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45 md:min-h-[110px] md:rounded-[14px] md:px-4 md:text-[21px]"
+              className="ads-field min-h-[88px] rounded-[12px] px-3 py-3 text-[16px] outline-none transition focus:ring-2 focus:ring-[color:var(--ads-accent)]/45"
               placeholder="Mesaj opțional"
             />
           </label>
@@ -325,7 +274,7 @@ export function ContactFormCard({ source }: { source: string }) {
               {error}
             </p>
           ) : null}
-          <label className="mt-1 flex min-h-[44px] items-start gap-3 text-left text-[14px] leading-[1.45] opacity-90 md:text-[19px]">
+          <label className="mt-1 flex min-h-[44px] items-start gap-3 text-left text-[14px] leading-[1.45] opacity-90">
             <input
               type="checkbox"
               name="gdpr"
@@ -343,7 +292,7 @@ export function ContactFormCard({ source }: { source: string }) {
           <button
             type="submit"
             disabled={status === "loading"}
-            className="mt-1 inline-flex h-12 w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70 md:mt-2 md:h-[54px] md:text-[21px]"
+            className="mt-1 inline-flex h-12 w-full items-center justify-center rounded-full bg-black text-[16px] font-semibold text-white transition duration-200 hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {status === "loading" ? "Se trimite…" : "Programează o consultație"}
           </button>

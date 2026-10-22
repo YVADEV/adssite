@@ -77,6 +77,7 @@ export const BUSINESS = {
   sameAs: [
     "https://www.google.com/maps/place/Alverna+Dental+Studio",
     "https://www.instagram.com/alvernadentalstudio/",
+    "https://www.facebook.com/AlvernaDentalStudio/",
   ],
 } as const;
 

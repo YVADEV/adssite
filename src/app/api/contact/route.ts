@@ -20,7 +20,13 @@ type ContactPayload = {
 };
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? CLINIC.email;
+const TO_EMAILS = Array.from(
+  new Set(
+    [process.env.CONTACT_TO_EMAIL ?? CLINIC.email, "info.hds33@gmail.com"]
+      .map((email) => email.trim())
+      .filter(Boolean),
+  ),
+);
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? "Alverna Dental Studio <beth.t@example.com>";
 
@@ -77,7 +83,7 @@ async function sendWithResend(subject: string, html: string, replyTo: string | u
     },
     body: JSON.stringify({
       from: FROM_EMAIL,
-      to: [TO_EMAIL],
+      to: TO_EMAILS,
       subject,
       html,
       reply_to: replyTo,
@@ -94,12 +100,16 @@ async function sendWithResend(subject: string, html: string, replyTo: string | u
 async function sendWithFormSubmit(
   subject: string,
   fields: ReturnType<typeof buildMessage>["fields"],
+  origin: string,
+  toEmail: string,
 ) {
-  const resp = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(TO_EMAIL)}`, {
+  const resp = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(toEmail)}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
+      Origin: origin,
+      Referer: `${origin}/contact`,
     },
     body: JSON.stringify({
       _subject: subject,
@@ -156,22 +166,14 @@ export async function POST(request: Request) {
   const { html, fields } = buildMessage(body, subject);
   const replyTo = body.email?.trim() || undefined;
 
-  if (process.env.NODE_ENV === "development" && !RESEND_API_KEY) {
-    console.info("[contact] localhost — formular primit (emailul nu se trimite în development)", {
-      nume: body.nume,
-      prenume: body.prenume,
-      telefon: body.telefon,
-      email: body.email || "—",
-      serviciu: body.serviciu || "—",
-      source: body.source,
-    });
-    return NextResponse.json({ ok: true });
-  }
+  const host = request.headers.get("x-forwarded-host") || request.headers.get("host") || "quiet-daffodil-0aeb6a.netlify.app";
+  const proto = host.includes("localhost") || host.startsWith("127.") ? "http" : "https";
+  const origin = `${proto}://${host}`;
 
   try {
     const sent = RESEND_API_KEY
       ? await sendWithResend(subject, html, replyTo)
-      : await sendWithFormSubmit(subject, fields);
+      : (await Promise.all(TO_EMAILS.map((email) => sendWithFormSubmit(subject, fields, origin, email)))).every(Boolean);
 
     if (!sent) {
       return NextResponse.json(

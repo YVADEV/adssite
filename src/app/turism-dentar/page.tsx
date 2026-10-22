@@ -2,7 +2,26 @@
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { LazyVideo } from "@/components/media/LazyVideo";
+import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { CLINIC } from "@/lib/contact";
+
+const tourismReviews = [
+  {
+    name: "Andreea Nisipeanu",
+    meta: "3 recenzii",
+    text: "Recomand cu mare încredere Clinica Alverna Dental! De la prima vizită am fost întâmpinată cu multă căldură și profesionalism. Clinica este impecabil de curată și dotată cu aparatură foarte modernă.",
+  },
+  {
+    name: "Carmen Ilea",
+    meta: "4 recenzii",
+    text: "Am fost impresionată de profesionalismul d-nei dr Andreea Pârvu. Studioul este foarte curat și dotat cu tehnologie de ultimă generație. Am să revin cu plăcere.",
+  },
+  {
+    name: "Denisa Tănase",
+    meta: "2 recenzii",
+    text: "Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas, iar atenția la detalii a fost excelentă.",
+  },
+];
 
 export default function TurismDentarPage() {
   return (
@@ -13,7 +32,7 @@ export default function TurismDentarPage() {
             <p className="text-[21px] font-medium leading-[1.25] text-[#5b5b5b]">(turism dentar)</p>
             <div>
               <p className="text-[21px] font-medium text-[#6b6b6b]">🦷 Turism dentar – Alverna Dental Studio</p>
-              <h1 className="mt-3 text-[36px] font-extrabold leading-[0.96] tracking-[-0.045em] text-white md:text-[72px] lg:text-[96px]">Turism dentar</h1>
+              <h1 className="mt-3 text-[36px] font-extrabold leading-[0.96] tracking-[-0.045em] text-white md:text-[52px] md:leading-[1.08] md:tracking-[-0.03em] lg:text-[64px]">Turism dentar</h1>
               <p className="mt-5 text-[21px] font-medium text-[#232323]">4,8 ★ · {CLINIC.hoursDisplay}</p>
             </div>
           </div>
@@ -33,7 +52,7 @@ export default function TurismDentarPage() {
             <h2 className="text-[28px] font-semibold tracking-[-0.02em] text-white md:text-[36px]">🧭 Viziunea</h2>
             <div className="mt-5 space-y-4 text-[21px] leading-[1.65] text-[#2e2e2e]">
               <p>
-                Echipa este formată din medici specialiști dedicați, care tratează pacienții cu atenție și profesionalism. Accentul este pus pe respectarea unor standarde ridicate de calitate în toate serviciile oferite.
+                Echipa medicală tratează pacienții în clinica din Strada Alverna 33. Titulatura fiecărui medic este cea de pe pagina lui de profil.
               </p>
               <p>
                 Clinica recunoaște faptul că accesul la servicii dentare de calitate poate fi dificil chiar și în țări dezvoltate, motiv pentru care oferă soluții accesibile pentru pacienți internaționali.
@@ -116,37 +135,8 @@ export default function TurismDentarPage() {
               <h2 className="text-[28px] font-semibold tracking-[-0.02em] text-white md:text-[36px]">Recenzii Google</h2>
               <p className="text-[21px] font-medium text-white">4.8/5 • Google</p>
             </div>
-            <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-3">
-              <article className="ads-surface-light-muted flex min-h-[260px] flex-col rounded-[18px] p-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[21px] font-semibold">Andreea Nisipeanu</h3>
-                  <p className="text-[21px] font-semibold">★★★★★</p>
-                </div>
-                <p className="mt-1 text-[21px] text-[#767676]">3 recenzii</p>
-                <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
-                  Recomand cu mare încredere Clinica Alverna Dental! De la prima vizită am fost întâmpinată cu multă căldură și profesionalism. Clinica este impecabil de curată și dotată cu aparatură foarte modernă.
-                </p>
-              </article>
-              <article className="ads-surface-light-muted flex min-h-[260px] flex-col rounded-[18px] p-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[21px] font-semibold">Carmen Ilea</h3>
-                  <p className="text-[21px] font-semibold">★★★★★</p>
-                </div>
-                <p className="mt-1 text-[21px] text-[#767676]">4 recenzii</p>
-                <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
-                  Am fost impresionată de profesionalismul d-nei dr Andreea Pârvu. Studioul este foarte curat și dotat cu tehnologie de ultimă generație. Am să revin cu plăcere.
-                </p>
-              </article>
-              <article className="ads-surface-light-muted flex min-h-[260px] flex-col rounded-[18px] p-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[21px] font-semibold">Denisa Tănase</h3>
-                  <p className="text-[21px] font-semibold">★★★★★</p>
-                </div>
-                <p className="mt-1 text-[21px] text-[#767676]">2 recenzii</p>
-                <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">
-                  Am avut parte de o experiență bună și ușoară. Am fost tratată cu respect și prietenie, mi s-a explicat în detaliu fiecare pas, iar atenția la detalii a fost excelentă.
-                </p>
-              </article>
+            <div className="mt-7">
+              <GoogleReviews reviews={tourismReviews} />
             </div>
           </div>
         </section>

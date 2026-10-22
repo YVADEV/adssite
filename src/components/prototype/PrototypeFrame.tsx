@@ -13,7 +13,7 @@ import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel, mobileMenuIndex, mobileMenuNumClass } from "@/components/nav/mobileMenuStyles";
+import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -70,10 +70,10 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         setOpenSubmenuSlug={setOpenSubmenuSlug}
       >
         {[
-          { href: "/", label: "Acasă", n: 1 },
-          { href: "/echipa", label: "Echipa", n: 2 },
-          { href: "/cazuri", label: "Cazuri", n: 3 },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL, n: 4 },
+          { href: "/", label: "Acasă" },
+          { href: "/echipa", label: "Echipa" },
+          { href: "/cazuri", label: "Cazuri" },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
         ].map((item) => (
           <Link
             key={item.label}
@@ -83,7 +83,6 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             className={mobileMenuClassForLabel(item.label)}
             aria-current={isActive(item.href) ? "page" : undefined}
           >
-            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </Link>
         ))}
@@ -96,9 +95,9 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
         />
 
         {[
-          { href: "/tarife", label: "Tarife", n: 6 },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe", n: 7 },
-          { href: "/contact", label: "Contact", n: 8 },
+          { href: "/tarife", label: "Tarife" },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
+          { href: "/contact", label: "Contact" },
         ].map((item) => (
           <Link
             key={item.label}
@@ -108,7 +107,6 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
             className={mobileMenuClassForLabel(item.label)}
             aria-current={isActive(item.href) ? "page" : undefined}
           >
-            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </Link>
         ))}
@@ -121,7 +119,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
               : "bg-[#0f1115]"
           }`}
         >
-          <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[18px] lg:px-8">
+          <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
             <SiteLogo />
             <nav
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"

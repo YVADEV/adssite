@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
+import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { ContactFormCard } from "@/components/services/ServicePageParts";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/andreea-parvu.png";
@@ -52,7 +53,7 @@ export default function AndreeaParvuPage() {
           />
           <div>
             <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white">Profil medical</p>
-            <h1 className="mt-5 max-w-[1150px] text-[36px] font-extrabold leading-[0.95] tracking-[-0.04em] text-white md:text-[58px] lg:text-[72px]">
+            <h1 className="mt-5 max-w-[18ch] text-[36px] font-extrabold leading-[0.95] tracking-[-0.04em] text-white md:text-[48px] md:leading-[1.08] md:tracking-[-0.03em] lg:text-[60px]">
               {NAME} — {ROLE}
             </h1>
             <div className="mt-8 max-w-[1120px] space-y-5 text-[21px] leading-[1.75] text-white">
@@ -71,6 +72,7 @@ export default function AndreeaParvuPage() {
             </div>
           </div>
         </section>
+        <DoctorReviews />
         <section id="contact" className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <ContactFormCard source="andreea-parvu" />
         </section>

@@ -180,7 +180,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
         aria-haspopup="menu"
         aria-current={isServicesActive ? "page" : undefined}
         onFocus={handleOpen}
-        className={`text-[18px] font-medium tracking-[-0.01em] transition duration-200 ${
+        className={`text-[15px] font-medium tracking-[-0.01em] transition duration-200 ${
           isServicesActive ? "underline decoration-2 underline-offset-[10px]" : ""
         } ${isDark ? "text-white hover:text-white" : "text-white hover:text-white"}`}
       >

@@ -124,7 +124,7 @@ export default function FateteDentarePageClient() {
         chip="Fațete premium cu aspect natural"
         kicker="Estetică și protetică dentară"
         title="Fațete dentare"
-        intro="Doriți un zâmbet perfect? La Alverna Dental Studio Cluj oferim servicii premium de aplicare fațete dentare, pentru corectarea imperfecțiunilor de culoare, formă și aliniere vizuală, cu rezultate naturale și durabile."
+        intro="La Alverna Dental Studio, fațetele dentare se planifică împreună cu medicul, cu probe de formă și culoare. Rezultatul depinde de situația dinților și de planul stabilit la consultație."
       />
 
       <ServiceQuickFacts
@@ -153,7 +153,7 @@ export default function FateteDentarePageClient() {
         body="Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori."
       />
       <ServiceFinalCTA
-        title="Vrei un zâmbet perfect cu fațete dentare?"
+        title="Programează o consultație pentru fațete dentare"
         body="Programează o consultație la Alverna Dental Studio și află ce soluție personalizată de fațete dentare este potrivită pentru tine."
       />
     </ServicePageShell>

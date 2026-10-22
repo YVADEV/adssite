@@ -11,13 +11,12 @@ import SiteLogo from "@/components/nav/SiteLogo";
 import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
-import { GoogleMark } from "@/components/ui/GoogleMark";
-import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
+import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
 import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel, mobileMenuIndex, mobileMenuNumClass } from "@/components/nav/mobileMenuStyles";
+import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
 import { CLINIC } from "@/lib/contact";
 import { pricingData } from "@/config/pricing";
 import { useIdleMedia } from "@/hooks/useIdleMedia";
@@ -25,8 +24,17 @@ import vdScaun from "@/assets/VDscaun.jpg";
 import alvernaLogo from "@/assets/alverna-logo.png";
 import teamBannerImage from "@/assets/cazuri/Banner/andreea-banner.webp";
 import labDoctorBannerImage from "@/assets/cazuri/lab-doctor-banner.webp";
-import danaHero from "@/assets/cazuri/dana-hero.jpg";
-import danaBefore from "@/assets/cazuri/dana-before.png";
+import andreeaSignature from "@/assets/signatures/andreea-parvu.png";
+import paulaSignature from "@/assets/signatures/paula-bodocan.png";
+import partnerMegagen from "@/assets/partners/megagen.png";
+import partnerStraumann from "@/assets/partners/straumann.png";
+import partnerGym from "@/assets/partners/18gym.png";
+import partnerSafe from "@/assets/partners/safe-security.png";
+import partnerReteaua from "@/assets/partners/reteaua-privata.png";
+import partnerAngel from "@/assets/partners/angel-aligner.png";
+import partnerSpark from "@/assets/partners/spark.png";
+import danaSmileBefore from "@/assets/cazuri/dana-smile-before.jpg";
+import danaSmileAfter from "@/assets/cazuri/dana-smile-after.jpg";
 import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
 import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
 
@@ -100,15 +108,25 @@ const featuredCase = {
   doctor: { name: "Dr. Andreea Pârvu", role: "Protetică dentară" },
 };
 const featuredBefore = {
-  image: danaBefore,
+  image: danaSmileBefore,
   alt: "Dana — înainte de tratament",
   objectPosition: "center center",
 };
 const featuredAfter = {
-  image: danaHero,
+  image: danaSmileAfter,
   alt: "Dana — după tratament",
-  objectPosition: "center 36%",
+  objectPosition: "center center",
 };
+
+const partnerLogos = [
+  { src: partnerMegagen.src, alt: "Megagen", className: "h-7 w-auto object-contain md:h-11" },
+  { src: partnerStraumann.src, alt: "Straumann Group", className: "h-[18px] w-auto object-contain brightness-0 invert opacity-90 md:h-7" },
+  { src: partnerGym.src, alt: "18 Gym", className: "h-6 w-auto object-contain md:h-9" },
+  { src: partnerSafe.src, alt: "Safe Security GT", className: "h-11 w-auto object-contain md:h-14" },
+  { src: partnerReteaua.src, alt: "Rețeaua Privată de Sănătate", className: "h-5 w-auto object-contain md:h-7" },
+  { src: partnerAngel.src, alt: "Angel Aligner", className: "h-6 w-auto object-contain md:h-9" },
+  { src: partnerSpark.src, alt: "Spark", className: "h-7 w-auto object-contain md:h-11" },
+];
 
 const serviceOrientation = [
   {
@@ -135,8 +153,8 @@ const serviceOrientation = [
     links: [
       { title: "Ortodonție", href: "/servicii/ortodontie/" },
       { title: "Aparat dentar", href: "/servicii/aparat-dentar/" },
-      { title: "Alignere transparente", href: "/servicii/aparat-dentar/spark/", nested: true },
-      { title: "Gutieră de contenție", href: "/servicii/aparat-dentar/gutiera-de-contentie/", nested: true },
+      { title: "Alignere transparente", href: "/servicii/aparat-dentar/spark/" },
+      { title: "Gutieră de contenție", href: "/servicii/aparat-dentar/gutiera-de-contentie/" },
     ],
   },
   {
@@ -167,7 +185,7 @@ const recommendationClipMeta = [
 function SectionTitle({ title }: { title: string }) {
   return (
     <div className="ads-container">
-      <h2 data-anim="text" className="text-balance text-[clamp(32px,8vw,96px)] font-extrabold leading-[0.98] tracking-[-0.045em]">
+      <h2 data-anim="text" className="text-balance text-[clamp(32px,8vw,96px)] font-extrabold leading-[0.98] tracking-[-0.045em] md:text-[clamp(2.5rem,3.2vw,3.25rem)] md:leading-[1.1] md:tracking-[-0.025em]">
         {title}
       </h2>
     </div>
@@ -177,7 +195,10 @@ function SectionTitle({ title }: { title: string }) {
 function TeamBentoBanner({
   doctorSrc,
   doctorAlt,
-  leftHeadline = "alverna\ndental\nstudio",
+  leftHeadline = "",
+  signatureSrc,
+  signatureAlt,
+  signatureCentered = false,
   showScanCard = true,
   showSlogan = true,
   loadImages = true,
@@ -187,6 +208,9 @@ function TeamBentoBanner({
   doctorSrc: string;
   doctorAlt: string;
   leftHeadline?: string;
+  signatureSrc?: string;
+  signatureAlt?: string;
+  signatureCentered?: boolean;
   showScanCard?: boolean;
   showSlogan?: boolean;
   loadImages?: boolean;
@@ -213,25 +237,27 @@ function TeamBentoBanner({
         </h3>
         ) : null}
         {loadImages ? (
-          overflowPhoto ? (
-            <img
-              src={doctorSrc}
-              alt={doctorAlt}
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-              className="pointer-events-none absolute left-1/2 z-[10] h-[142%] w-auto max-w-none -translate-x-1/2 -scale-x-100 -top-[42%] md:h-[138%] md:-top-[38%]"
-            />
-          ) : (
-            <img
-              src={doctorSrc}
-              alt={doctorAlt}
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-              className="pointer-events-none absolute left-1/2 z-[10] h-[142%] w-auto max-w-none -translate-x-1/2 -scale-x-100 -top-[42%] md:h-[138%] md:-top-[38%]"
-            />
-          )
+          <img
+            src={doctorSrc}
+            alt={doctorAlt}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
+            className="pointer-events-none absolute left-1/2 z-[10] h-[142%] w-auto max-w-none -translate-x-1/2 -scale-x-100 -top-[42%] md:h-[138%] md:-top-[38%]"
+          />
+        ) : null}
+        {loadImages && signatureSrc ? (
+          <img
+            src={signatureSrc}
+            alt={signatureAlt ?? ""}
+            loading="lazy"
+            decoding="async"
+            className={
+              signatureCentered
+                ? "pointer-events-none absolute bottom-6 left-1/2 z-[30] h-auto w-[min(86%,340px)] -translate-x-1/2 object-contain md:bottom-8"
+                : "pointer-events-none absolute bottom-5 right-5 z-[30] h-auto w-[min(68%,250px)] object-contain md:bottom-7 md:right-7 md:w-[min(72%,280px)]"
+            }
+          />
         ) : null}
       </article>
 
@@ -391,10 +417,10 @@ export default function HomePageClient() {
         setOpenSubmenuSlug={setOpenSubmenuSlug}
       >
         {[
-          { href: "/", label: "Acasă", n: 1 },
-          { href: "/echipa", label: "Echipa", n: 2 },
-          { href: "/cazuri", label: "Cazuri", n: 3 },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL, n: 4 },
+          { href: "/", label: "Acasă" },
+          { href: "/echipa", label: "Echipa" },
+          { href: "/cazuri", label: "Cazuri" },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
         ].map((item) => (
           <Link
             key={item.label}
@@ -405,7 +431,6 @@ export default function HomePageClient() {
             className={mobileMenuClassForLabel(item.label)}
             aria-current={item.href === "/" ? "page" : undefined}
           >
-            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </Link>
         ))}
@@ -416,9 +441,9 @@ export default function HomePageClient() {
           setOpenSubmenuSlug={setOpenSubmenuSlug}
         />
         {[
-          { href: "/tarife", label: "Tarife", n: 6 },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe", n: 7 },
-          { href: "/contact", label: "Contact", n: 8 },
+          { href: "/tarife", label: "Tarife" },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
+          { href: "/contact", label: "Contact" },
         ].map((item) => (
           <Link
             key={item.label}
@@ -428,7 +453,6 @@ export default function HomePageClient() {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </Link>
         ))}
@@ -443,7 +467,7 @@ export default function HomePageClient() {
             : "bg-[#0f1115]"
         }`}
       >
-        <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[18px] lg:px-8">
+        <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
           <SiteLogo />
           <nav
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
@@ -495,10 +519,10 @@ export default function HomePageClient() {
           >
             <div className="max-w-[720px]">
               <p className="ads-eyebrow text-white/70">Stomatologie multidisciplinară în Cluj-Napoca</p>
-              <h1 className="ads-hero-title-lime mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-5 md:text-[clamp(32px,7vw,72px)] md:leading-[0.98]">
+              <h1 className="ads-hero-title-lime mt-3 max-w-[18ch] text-balance text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[1.02] tracking-[-0.045em] md:mt-4 md:text-[clamp(3.5rem,4.2vw,4.25rem)] md:leading-[1.05] md:tracking-[-0.035em]">
                 Implantologie și reabilitare orală complexă
               </h1>
-              <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.55] text-pretty text-white/90 md:mt-6 md:text-[clamp(16px,2.4vw,21px)] md:leading-[1.5]">
+              <p className="mt-4 max-w-[52ch] text-[16px] font-medium leading-[1.55] text-pretty text-white/90 md:mt-5 md:text-[clamp(1.05rem,1.15vw,1.125rem)] md:leading-[1.5]">
                 Diagnostic, chirurgie, protetică și parodontologie integrate într-un singur plan de tratament.
               </p>
               <p className="mt-3 max-w-[52ch] text-[14px] font-medium leading-[1.5] text-white/65 md:mt-4 md:text-[clamp(14px,2vw,18px)]">
@@ -507,20 +531,37 @@ export default function HomePageClient() {
               <div className="mt-7 hidden max-w-[520px] items-center gap-3 md:flex">
                 <a
                   href="#contact"
-                  className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[18px] font-semibold"
+                  className="ads-btn-lit inline-flex min-h-[52px] items-center justify-center rounded-full px-6 text-[15px] font-semibold"
                 >
                   Programează o consultație
                 </a>
                 <Link
                   href="/cazuri/"
                   prefetch={false}
-                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[18px] font-semibold text-white transition duration-200 hover:bg-white/10"
+                  className="inline-flex min-h-[52px] items-center justify-center rounded-full border border-white/30 px-6 text-[15px] font-semibold text-white transition duration-200 hover:bg-white/10"
                 >
                   Vezi cazuri reale
                 </Link>
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section aria-label="Parteneri" className="border-y border-white/10 bg-[#0f1115]">
+        <div className="ads-partners-marquee">
+          <ul className="ads-partners-track">
+            {[0, 1].map((copy) =>
+              partnerLogos.map((partner) => (
+                <li
+                  key={`${copy}-${partner.alt}`}
+                  {...(copy === 1 ? { "data-marquee-clone": "", "aria-hidden": true } : {})}
+                >
+                  <img src={partner.src} alt={copy === 1 ? "" : partner.alt} className={partner.className} />
+                </li>
+              )),
+            )}
+          </ul>
         </div>
       </section>
 
@@ -631,7 +672,7 @@ export default function HomePageClient() {
       <section id="servicii" className="overflow-hidden bg-[#121212] pb-0">
         <div className="mx-auto w-full max-w-[1680px] min-w-0 rounded-[24px] bg-[#121212] px-5 py-12 text-white md:px-10 md:py-16 lg:px-24 lg:py-24">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Servicii</h2>
+            <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[clamp(2.5rem,3.2vw,3.25rem)] md:leading-[1.1] md:tracking-[-0.025em]">Servicii</h2>
           </div>
           <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:mt-14 lg:gap-x-16 lg:gap-y-12">
             {serviceOrientation.map((group) => (
@@ -650,9 +691,7 @@ export default function HomePageClient() {
                       key={link.href + link.title}
                       href={link.href}
                       prefetch={false}
-                      className={`flex min-h-[44px] items-center justify-between border-b border-white/10 py-2 text-[18px] font-normal text-white/80 transition duration-200 hover:translate-x-[3px] hover:text-white md:text-[21px] ${
-                        "nested" in link && link.nested ? "pl-7 text-white/65" : "pl-3"
-                      }`}
+                      className="flex min-h-[44px] items-center justify-between border-b border-white/10 py-2 pl-3 text-[18px] font-normal text-white/80 transition duration-200 hover:translate-x-[3px] hover:text-white md:text-[21px]"
                     >
                       <span>{link.title}</span>
                       <span aria-hidden className="text-[18px] opacity-40">→</span>
@@ -688,8 +727,8 @@ export default function HomePageClient() {
 
       <section className="bg-[#ececec] pb-16 md:pb-[120px]">
         <SectionTitle title="Recenzii" />
-        <div className="mx-auto mt-8 max-w-[1680px] px-4 md:hidden">
-          <GoogleReviewsMobile
+        <div className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+          <GoogleReviews
             reviews={reviews}
             logo={
               belowFoldMedia ? (
@@ -703,59 +742,6 @@ export default function HomePageClient() {
               ) : null
             }
           />
-        </div>
-        <div className="mx-auto mt-10 hidden w-full max-w-[1680px] grid-cols-1 gap-[20px] px-4 md:grid md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:px-12">
-          <article
-            className="ads-surface-light-muted flex min-h-[313px] flex-col rounded-[18px] p-[30px]"
-          >
-            <div className="flex items-end gap-2">
-              <strong className="text-[40px] font-semibold leading-none tracking-[-3.36px] md:text-[56px]">4,8</strong>
-              <span className="mb-2 text-base opacity-60">/5</span>
-              <GoogleMark />
-            </div>
-            <div className="mx-auto mt-[55px] w-full max-w-[270px] space-y-2 text-justify text-[21px] leading-[1.65]">
-              <p>
-                Adresă:{" "}
-                <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
-                  {CLINIC.addressLine}
-                </a>
-              </p>
-              <p>
-                Număr de telefon:{" "}
-                <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
-                  {CLINIC.phoneDisplay}
-                </a>
-              </p>
-              <p>Program:</p>
-              <p>{CLINIC.hoursDisplay}</p>
-            </div>
-            {belowFoldMedia ? (
-            <img
-              src={alvernaLogo.src}
-              alt="Alverna logo"
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-              width={220}
-              height={73}
-              className="mx-auto mt-auto pt-4 h-auto w-[220px] object-contain"
-            />
-            ) : null}
-          </article>
-
-          {reviews.map((r) => (
-            <article
-              key={r.name}
-              className="flex h-full min-h-[313px] flex-col rounded-[18px] border border-white/10 bg-white/[0.04] p-6 md:p-8"
-            >
-              <div>
-                <p className="text-[24px] font-semibold leading-[1.05] md:text-[32px]">{r.name}</p>
-                <p className="mt-1 text-[21px] opacity-60">{r.meta}</p>
-              </div>
-              <p className="mt-6 text-[21px] leading-[1.5] tracking-[-0.2px]">{r.text}</p>
-              <p className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">★★★★★</p>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -780,7 +766,10 @@ export default function HomePageClient() {
       <section data-anim="section" data-theme="light" className="overflow-visible bg-[#F5F5F5]">
         <TeamBentoBanner
           doctorSrc={teamBannerImage.src}
-          doctorAlt="Echipa medicală Alverna Dental Studio"
+          doctorAlt="Dr. Andreea Pârvu"
+          signatureSrc={andreeaSignature.src}
+          signatureAlt="Semnătura Dr. Andreea Pârvu"
+          signatureCentered
           loadImages={belowFoldMedia}
         />
       </section>
@@ -788,10 +777,10 @@ export default function HomePageClient() {
       <section id="tarife" className="relative w-full overflow-hidden bg-[#f5f5f5] pb-14 md:pb-20 lg:pb-[120px]">
         <div className="mx-auto w-full max-w-[1680px] bg-[#f5f5f5] px-5 py-12 md:px-10 md:py-16 lg:px-[96px] lg:py-[96px]">
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[72px] lg:text-[96px]">Tarife</h2>
+            <h2 className="text-balance text-[32px] font-bold leading-[0.95] tracking-[-0.05em] text-white md:text-[clamp(2.5rem,3.2vw,3.25rem)] md:leading-[1.1] md:tracking-[-0.025em]">Tarife</h2>
             <Link
               href="/tarife/"
-              className="ads-btn-primary ads-btn-tarife-mobile inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-[18px] font-semibold sm:text-[21px]"
+              className="ads-btn-primary ads-btn-tarife-mobile inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2 text-[18px] font-semibold sm:text-[21px] md:text-[15px]"
             >
               Vezi toate tarifele
             </Link>
@@ -831,7 +820,10 @@ export default function HomePageClient() {
         <div id="laborator-alverna" className="overflow-visible">
           <TeamBentoBanner
             doctorSrc={labDoctorBannerImage.src}
-            doctorAlt="Echipa laboratorului dentar Alverna Dental Studio"
+            doctorAlt="Td. Paula Bodocan"
+            signatureSrc={paulaSignature.src}
+            signatureAlt="Semnătura Td. Paula Bodocan"
+            signatureCentered
             leftHeadline=""
             showScanCard={false}
             loadImages={belowFoldMedia}

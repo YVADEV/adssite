@@ -2,7 +2,7 @@
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CLINIC } from "@/lib/contact";
-import { GoogleReviewsMobile } from "@/components/reviews/GoogleReviewsMobile";
+import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 
 const trustPoints = ["Zâmbete fericite", "Excelență în stomatologie", "Profesionalism, calitate și promptitudine"];
 
@@ -31,7 +31,7 @@ export default function TestimonialePage() {
         <section className="mx-auto w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="rounded-[28px] border border-black/5 bg-white px-6 py-10 md:px-10 md:py-14 lg:px-14 lg:py-16">
             <p className="text-[21px] font-medium uppercase tracking-[0.12em] text-[#6b6b6b]">Pacienții noștri</p>
-            <h1 className="mt-4 text-[36px] font-extrabold leading-[0.95] tracking-[-0.045em] text-white md:text-[78px] lg:text-[104px]">Testimoniale</h1>
+            <h1 className="mt-4 text-[36px] font-extrabold leading-[0.95] tracking-[-0.045em] text-white md:text-[52px] md:leading-[1.08] md:tracking-[-0.03em] lg:text-[64px]">Testimoniale</h1>
             <p className="mt-6 max-w-[940px] text-[21px] leading-[1.75] text-[#343434] md:text-[21px]">
               Opiniile pacienților sunt cartea noastră de vizită. La Alverna Dental Studio ne mândrim cu zâmbete frumoase, feedback sincer și experiențe care transformă fiecare vizită într-un moment de încredere.
             </p>
@@ -62,20 +62,8 @@ export default function TestimonialePage() {
             <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-[#3f3f3f]">
               Fiecare tratament este explicat înainte de a începe, astfel încât pacientul să se simtă confortabil și în control. Empatia, răbdarea și comunicarea clară definesc fiecare interacțiune în clinică.
             </p>
-            <div className="mt-6 md:hidden">
-              <GoogleReviewsMobile reviews={reviews} />
-            </div>
-            <div className="mt-8 hidden grid-cols-1 gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
-              {reviews.map((review) => (
-                <article key={review.name + review.meta} className="flex min-h-[230px] flex-col rounded-[18px] border border-black/5 bg-[#f7f7f7] p-6 transition duration-300 hover:-translate-y-[2px]">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-[21px] font-semibold text-white">{review.name}</h3>
-                    <span className="text-[21px] font-semibold text-white">★★★★★</span>
-                  </div>
-                  <p className="mt-1 text-[21px] text-white">{review.meta}</p>
-                  <p className="mt-4 text-[21px] leading-[1.65] text-[#3f3f3f]">{review.text}</p>
-                </article>
-              ))}
+            <div className="mt-6">
+              <GoogleReviews reviews={reviews} />
             </div>
           </div>
         </section>
@@ -90,7 +78,7 @@ export default function TestimonialePage() {
                 rel="noopener noreferrer"
                 className="text-[16px] font-semibold text-[color:var(--ads-accent)] underline decoration-[color:var(--ads-accent)]/50 underline-offset-4 md:text-[21px]"
               >
-                4.8/5 ★★★★★
+                4,8 / 5
               </a>
             </div>
             <p className="mt-3 max-w-[900px] text-[15px] leading-[1.6] text-white md:mt-4 md:text-[21px] md:leading-[1.7]">

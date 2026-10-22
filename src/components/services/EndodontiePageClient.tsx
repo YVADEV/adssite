@@ -89,7 +89,7 @@ export default function EndodontiePageClient() {
         chip="Tratamente de canal moderne"
         kicker="Endodonție"
         title="Endodonție Cluj"
-        intro="Tratamentul de endodonție (tratament de canal) elimină infecția de la nivelul rădăcinii și camerei pulpare, având ca obiectiv păstrarea dintelui natural și prevenirea complicațiilor. În clinicile Alverna Dental Studio din Cluj, intervențiile sunt realizate cu aparatură modernă și protocoale precise."
+        intro="Tratamentul de endodonție (tratament de canal) elimină infecția de la nivelul rădăcinii și camerei pulpare, având ca obiectiv păstrarea dintelui natural și prevenirea complicațiilor. La Alverna Dental Studio, intervențiile sunt realizate cu aparatură modernă și protocoale precise."
       />
 
       <ServiceQuickFacts
@@ -97,7 +97,7 @@ export default function EndodontiePageClient() {
           ["Serviciu", "Endodonție / tratament de canal"],
           ["Obiectiv", "Eliminarea infecției și salvarea dintelui"],
           ["Indicație", "Inflamație sau infecție pulpară"],
-          ["Rezultat", "Dinte funcțional, fără durere"],
+          ["Rezultat", "Obiectivul este păstrarea dintelui"],
         ]}
       />
 

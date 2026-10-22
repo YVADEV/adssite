@@ -5,7 +5,8 @@
     <title>Alverna Dental Studio — contact</title>
   </head>
   <body>
-    <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="website" hidden>
+    <form name="contact" method="POST" action="/__forms.html" data-netlify="true" data-netlify-honeypot="website" hidden>
+      <input type="hidden" name="form-name" value="contact" />
       <input type="text" name="nume" />
       <input type="text" name="prenume" />
       <input type="text" name="numeComplet" />
@@ -17,6 +18,7 @@
       <input type="text" name="pagePath" />
       <input type="text" name="pageUrl" />
       <input type="text" name="pageTitle" />
+      <input type="text" name="gdpr" />
       <input type="text" name="website" />
     </form>
   </body>

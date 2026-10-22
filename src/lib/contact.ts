@@ -12,6 +12,7 @@ export const CLINIC = {
   websiteDisplay: "alvernadental.com",
   instagramHandle: "@alvernadentalstudio",
   instagramUrl: "https://www.instagram.com/alvernadentalstudio/",
+  facebookUrl: "https://www.facebook.com/AlvernaDentalStudio/?locale=ro_RO",
   whatsappUrl: "https://wa.me/40748085933",
   /** Single schedule string. Schema hours in seo.ts use the same Saturday close (15:00). */
   hoursDisplay: "Luni–Vineri 09:00–21:00 · Sâmbătă 09:00–15:00",

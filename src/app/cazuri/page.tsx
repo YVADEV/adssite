@@ -7,28 +7,32 @@ import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
-import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
+import ceciliaPortrait from "@/assets/cazuri/cecilia-portrait.jpg";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
-import sergiuHero from "@/assets/cazuri/sergiu-witberg/hero.png";
+import sergiuSmileAfter from "@/assets/cazuri/sergiu-witberg/smile-after.jpg";
 import simonaHero from "@/assets/cazuri/simona/hero.png";
 import raduAfter1 from "@/assets/cazuri/radu/after-1.png";
 import carmenAfter1 from "@/assets/cazuri/carmen/after-1.png";
+import carmenPopPortrait from "@/assets/cazuri/carmen-pop/portrait.jpg";
+import gabrielaPortraitAfter from "@/assets/cazuri/gabriela-apati/portrait-after.jpg";
 
 const caseGallery = [
-  { src: cazA7408097.src, alt: "Caz implantologie — rezultat final Alverna Dental Studio" },
+  { src: ceciliaPortrait.src, alt: "Caz Cecilia — reabilitare totală All-on-4 Straumann" },
   { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
   { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
   { src: cazA7407944.src, alt: "Caz smile design — armonie dentară și facială" },
   { src: cazA7407760.src, alt: "Caz reabilitare protetică — funcție și estetică" },
   { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final" },
-  { src: sergiuHero.src, alt: "Caz Sergiu Witberg — fațete dentare estetice" },
+  { src: sergiuSmileAfter.src, alt: "Caz Sergiu Wittenberger — fațete dentare estetice" },
   { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară" },
   { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament" },
   { src: carmenAfter1.src, alt: "Caz Carmen — rezultat final după tratament" },
+  { src: carmenPopPortrait.src, alt: "Caz Carmen Pop — fațete dentare estetice" },
+  { src: gabrielaPortraitAfter.src, alt: "Caz Gabriela Apati — fațete dentare estetice" },
 ];
 
 export default function CazuriPage() {
@@ -51,7 +55,7 @@ export default function CazuriPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.55 }}
               transition={reduceMotion ? {} : { duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[640px] whitespace-pre-line text-[36px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[52px] md:text-[72px] md:tracking-[-2.8px] lg:max-w-[820px] lg:text-[96px] lg:tracking-[-3.6px]"
+              className="max-w-[640px] whitespace-pre-line text-[36px] font-bold leading-[0.95] tracking-[-2px] text-white sm:text-[52px] md:text-[56px] md:leading-[1.08] md:tracking-[-0.03em] lg:max-w-[820px] lg:text-[64px]"
             >
               {"Cazuri reale,\nrezultate\ndocumentate"}
             </motion.h1>

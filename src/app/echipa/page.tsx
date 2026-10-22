@@ -10,7 +10,7 @@ import { useMobileMenu } from "@/hooks/useMobileMenu";
 import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel, mobileMenuIndex, mobileMenuNumClass } from "@/components/nav/mobileMenuStyles";
+import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteLogo from "@/components/nav/SiteLogo";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
@@ -22,7 +22,6 @@ import lauraImage from "@/assets/echipa/laura-grigorean.png";
 import valentinaImage from "@/assets/echipa/valentina-nichimis.png";
 import andreeaRoneaImage from "@/assets/echipa/andreea-ronea.png";
 import bogdanImage from "@/assets/echipa/bogdan-holici.png";
-import andreeaCrisanImage from "@/assets/echipa/andreea-crisan.png";
 import raulImage from "@/assets/echipa/raul-muresan.png";
 import corinaImage from "@/assets/echipa/corina-holici.png";
 import narcisaImage from "@/assets/echipa/narcisa-moca.png";
@@ -41,12 +40,11 @@ const specialistTeam = [
   { name: "Dr. Andreea Pârvu", image: andreeaImage.src, href: "/echipa/andreea-parvu/" },
   { name: "Dr. Rareș Gorun", image: raresImage.src },
   { name: "Dr. Laura Grigorean", image: lauraImage.src, href: "/echipa/laura-grigorean/" },
-  { name: "Dr. Valentina Nichimiș", image: valentinaImage.src },
+  { name: "Dr. Corina Holici", image: corinaImage.src, href: "/echipa/corina-holici/", imageClassName: "-scale-x-100" },
   { name: "Dr. Andreea Ronea", image: andreeaRoneaImage.src },
   { name: "Dr. Bogdan Holici", image: bogdanImage.src },
-  { name: "Dr. Andreea Crișan", image: andreeaCrisanImage.src },
   { name: "Dr. Raul Mureșan", image: raulImage.src },
-  { name: "Dr. Corina Holici", image: corinaImage.src, href: "/echipa/corina-holici/" },
+  { name: "Dr. Valentina Nichimiș", image: valentinaImage.src },
 ];
 
 const laboratoryTeam = [
@@ -127,10 +125,10 @@ export default function EchipaPage() {
         setOpenSubmenuSlug={setOpenSubmenuSlug}
       >
         {[
-          { href: "/", label: "Acasă", n: 1 },
-          { href: "/echipa", label: "Echipa", n: 2 },
-          { href: "/cazuri", label: "Cazuri", n: 3 },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL, n: 4 },
+          { href: "/", label: "Acasă" },
+          { href: "/echipa", label: "Echipa" },
+          { href: "/cazuri", label: "Cazuri" },
+          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
         ].map((item) => (
           <a
             key={item.label}
@@ -140,7 +138,6 @@ export default function EchipaPage() {
             className={mobileMenuClassForLabel(item.label)}
             aria-current={item.href === "/echipa" ? "page" : undefined}
           >
-            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </a>
         ))}
@@ -151,9 +148,9 @@ export default function EchipaPage() {
           setOpenSubmenuSlug={setOpenSubmenuSlug}
         />
         {[
-          { href: "/tarife", label: "Tarife", n: 6 },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe", n: 7 },
-          { href: "/contact", label: "Contact", n: 8 },
+          { href: "/tarife", label: "Tarife" },
+          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
+          { href: "/contact", label: "Contact" },
         ].map((item) => (
           <a
             key={item.label}
@@ -162,7 +159,6 @@ export default function EchipaPage() {
             onClick={closeMenu}
             className={mobileMenuClassForLabel(item.label)}
           >
-            <span className={mobileMenuNumClass}>{mobileMenuIndex(item.n)}</span>
             <span>{item.label}</span>
           </a>
         ))}
@@ -176,9 +172,9 @@ export default function EchipaPage() {
               : "bg-[#0f1115]"
           }`}
         >
-          <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[18px] lg:px-8">
+          <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
           <SiteLogo />
-          <nav className="hidden items-center gap-8 text-[18px] text-white lg:flex xl:gap-[80px]">
+          <nav className="hidden items-center gap-8 text-[15px] text-white lg:flex xl:gap-[80px]">
             <a href="/">Acasă</a>
             <a href="/echipa" className="text-white">
               Echipă
@@ -278,8 +274,8 @@ export default function EchipaPage() {
               : `group relative h-[383px] w-full min-w-0 overflow-hidden rounded-[14px] border border-white/15 bg-[#111] ${isLinked ? "" : "cursor-default"}`;
 
             const nameClassName = isMobileTeamGrid
-              ? "absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] text-[15px] font-bold leading-[1.15] text-white sm:bottom-3 sm:left-3 sm:text-[18px]"
-              : "absolute bottom-3 left-3 text-[21px] font-bold text-white";
+              ? "ads-title-white absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] text-[15px] font-bold leading-[1.15] text-white sm:bottom-3 sm:left-3 sm:text-[18px]"
+              : "ads-title-white absolute bottom-3 left-3 text-[21px] font-bold text-white";
 
             const desktopCardProps = {
               variants: reduceMotion
@@ -314,8 +310,12 @@ export default function EchipaPage() {
 
             const cardProps = isMobileTeamGrid ? mobileCardProps : desktopCardProps;
 
+            const imageClassName =
+              "imageClassName" in member && typeof member.imageClassName === "string" ? member.imageClassName : "";
+
             const cardInner = (
               <>
+                <div className={`h-full w-full ${imageClassName}`}>
                 <motion.img
                   src={member.image}
                   alt={member.name}
@@ -325,6 +325,7 @@ export default function EchipaPage() {
                   whileHover={isLinked && !reduceMotion && !isMobileTeamGrid ? {} : {}}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 />
+                </div>
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
                 {isMobileTeamGrid ? (
                   <h3 className={nameClassName}>{member.name}</h3>

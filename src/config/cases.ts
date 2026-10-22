@@ -8,20 +8,22 @@ import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 import elenaBefore1 from "@/assets/cazuri/elena/before-1.jpg";
 import elenaBefore2 from "@/assets/cazuri/elena/before-2.jpg";
 import elenaBefore3 from "@/assets/cazuri/elena/before-3.jpg";
-import caz1Before from "@/assets/cazuri/caz1-before.png";
-import caz1Proteza from "@/assets/cazuri/caz1-proteza.png";
-import caz1After from "@/assets/cazuri/caz1-after.png";
-import ceciliaHero from "@/assets/cazuri/cecilia-hero.jpg";
+import ceciliaPortrait from "@/assets/cazuri/cecilia-portrait.jpg";
+import ceciliaSmileBefore from "@/assets/cazuri/cecilia-smile-before.jpg";
+import ceciliaSmileAfter from "@/assets/cazuri/cecilia-smile-after.jpg";
+import ceciliaClinicBefore from "@/assets/cazuri/cecilia-clinic-before.jpg";
+import ceciliaClinicAfter from "@/assets/cazuri/cecilia-clinic-after.jpg";
 import danaHero from "@/assets/cazuri/dana-hero.png";
 import danaBefore from "@/assets/cazuri/dana-before.png";
+import danaSmileBefore from "@/assets/cazuri/dana-smile-before.jpg";
+import danaSmileAfter from "@/assets/cazuri/dana-smile-after.jpg";
 import danaHug from "@/assets/cazuri/dana-hug.png";
 import andreeaParvuImage from "@/assets/cazuri/Banner/andreea-parvu-banner.png";
-import sergiuHero from "@/assets/cazuri/sergiu-witberg/hero.png";
-import sergiuBefore1 from "@/assets/cazuri/sergiu-witberg/before-1.png";
-import sergiuBefore2 from "@/assets/cazuri/sergiu-witberg/before-2.png";
-import sergiuWithDoctor from "@/assets/cazuri/sergiu-witberg/with-doctor.png";
-import sergiuAfter1 from "@/assets/cazuri/sergiu-witberg/after-1.png";
-import sergiuAfter2 from "@/assets/cazuri/sergiu-witberg/after-2.png";
+import sergiuSmileBefore from "@/assets/cazuri/sergiu-witberg/smile-before.jpg";
+import sergiuWithAndreea from "@/assets/cazuri/sergiu-witberg/with-andreea.jpg";
+import sergiuWorkSide from "@/assets/cazuri/sergiu-witberg/work-side.jpg";
+import sergiuWorkFront from "@/assets/cazuri/sergiu-witberg/work-front.jpg";
+import sergiuSmileAfter from "@/assets/cazuri/sergiu-witberg/smile-after.jpg";
 import simonaHero from "@/assets/cazuri/simona/hero.png";
 import simonaBefore1 from "@/assets/cazuri/simona/before-1.png";
 import simonaBefore2 from "@/assets/cazuri/simona/before-2.png";
@@ -35,6 +37,14 @@ import carmenBefore1 from "@/assets/cazuri/carmen/before-1.png";
 import carmenBefore2 from "@/assets/cazuri/carmen/before-2.png";
 import carmenAfter1 from "@/assets/cazuri/carmen/after-1.png";
 import carmenAfter2 from "@/assets/cazuri/carmen/after-2.png";
+import carmenPopSmileBefore from "@/assets/cazuri/carmen-pop/smile-before.jpg";
+import carmenPopSmileAfter from "@/assets/cazuri/carmen-pop/smile-after.jpg";
+import carmenPopPortraitSide from "@/assets/cazuri/carmen-pop/portrait-side.jpg";
+import carmenPopPortrait from "@/assets/cazuri/carmen-pop/portrait.jpg";
+import gabrielaPortraitBefore from "@/assets/cazuri/gabriela-apati/portrait-before.jpg";
+import gabrielaPortraitAfter from "@/assets/cazuri/gabriela-apati/portrait-after.jpg";
+import gabrielaClinicBefore from "@/assets/cazuri/gabriela-apati/clinic-before.jpg";
+import gabrielaClinicAfter from "@/assets/cazuri/gabriela-apati/clinic-after.jpg";
 
 export type CaseDoctor = {
   name: string;
@@ -103,13 +113,14 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     category: "All-on-4 Straumann",
     caseNumber: "Caz #1",
     patientName: "Cecilia",
-    heroImage: ceciliaHero,
-    heroObjectPosition: "center center",
-    thumbnailSrc: ceciliaHero.src,
+    heroImage: ceciliaPortrait,
+    heroObjectFit: "cover",
+    heroObjectPosition: "center 18%",
+    thumbnailSrc: ceciliaPortrait.src,
     storyImages: [
-      { image: caz1Before, label: "Înainte", alt: "Situație inițială — înainte de tratament", objectPosition: "center center" },
-      { image: caz1Proteza, label: "Proteză", alt: "Lucrare protetică All-on-4 Straumann", objectPosition: "center center" },
-      { image: caz1After, label: "După", alt: "Rezultat final — după tratament", objectPosition: "center 36%" },
+      { image: ceciliaClinicBefore, label: "Înainte", alt: "Cecilia — situație inițială", objectPosition: "center center" },
+      { image: ceciliaClinicAfter, label: "Clinic", alt: "Cecilia — documentare clinică după tratament", objectPosition: "center center" },
+      { image: ceciliaPortrait, label: "După", alt: "Cecilia — rezultat final", objectPosition: "center 18%" },
     ],
     intro:
       "Pacienta noastră a ajuns la noi cu distrucții dentare severe, o situație care afecta nu doar funcționalitatea, ci și calitatea vieții de zi cu zi.",
@@ -121,8 +132,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Rezultatul final nu înseamnă doar un zâmbet nou, ci o transformare completă. Bucuria și încrederea pacientei la finalul tratamentului spun mai mult decât orice descriere.",
     beforeAfterImages: [
-      { image: caz1Before, label: "Înainte", alt: "Cecilia — înainte de tratament", objectPosition: "center center" },
-      { image: caz1After, label: "După", alt: "Cecilia — după tratament", objectPosition: "center 36%" },
+      { image: ceciliaSmileBefore, label: "Înainte", alt: "Cecilia — înainte de tratament", objectPosition: "center center" },
+      { image: ceciliaSmileAfter, label: "După", alt: "Cecilia — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză completă a distrucțiilor dentare și stabilirea obiectivelor funcționale și estetice." },
@@ -169,8 +180,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Rezultatul final este un zâmbet complet reabilitat, cu o estetică naturală, funcționalitate optimă și integrare armonioasă a restaurărilor în contextul facial al pacientului.",
     beforeAfterImages: [
-      { image: danaBefore, label: "Înainte", alt: "Dana — înainte de tratament", objectPosition: "center center" },
-      { image: danaHero, label: "După", alt: "Dana — după tratament", objectPosition: "center 36%" },
+      { image: danaSmileBefore, label: "Înainte", alt: "Dana — înainte de tratament", objectPosition: "center center" },
+      { image: danaSmileAfter, label: "După", alt: "Dana — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
       {
@@ -385,14 +396,17 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     subtitle: "Reabilitare estetică prin fațete dentare",
     category: "Estetică dentară · Fațete dentare",
     caseNumber: "Caz #7",
-    patientName: "Sergiu Witberg",
-    heroImage: sergiuHero,
-    heroObjectPosition: "center 32%",
-    thumbnailSrc: sergiuHero.src,
+    patientName: "Sergiu Wittenberger",
+    heroImage: sergiuSmileAfter,
+    heroObjectFit: "cover",
+    heroObjectPosition: "center center",
+    thumbnailSrc: sergiuSmileAfter.src,
     storyImages: [
-      { image: sergiuBefore1, label: "Înainte", alt: "Sergiu Witberg — situație inițială", objectPosition: "center center" },
-      { image: sergiuWithDoctor, label: "În clinică", alt: "Sergiu Witberg alături de echipa Alverna", objectPosition: "center center" },
-      { image: sergiuAfter1, label: "După", alt: "Sergiu Witberg — rezultat final", objectPosition: "center center" },
+      { image: sergiuSmileBefore, label: "Înainte", alt: "Sergiu Wittenberger — situație inițială", objectPosition: "center center" },
+      { image: sergiuWithAndreea, label: "În clinică", alt: "Sergiu Wittenberger alături de Dr. Andreea Pârvu", objectPosition: "center 30%" },
+      { image: sergiuSmileAfter, label: "După", alt: "Sergiu Wittenberger — rezultat final", objectPosition: "center center" },
+      { image: sergiuWorkSide, label: "Lucrare", alt: "Lucrarea protetică a lui Sergiu Wittenberger", objectPosition: "center center" },
+      { image: sergiuWorkFront, label: "Lucrare", alt: "Lucrarea protetică a lui Sergiu Wittenberger, vedere frontală", objectPosition: "center center" },
     ],
     intro:
       "Sergiu și-a dorit un zâmbet mai armonios, păstrând în același timp un aspect natural și potrivit fizionomiei sale.",
@@ -405,8 +419,8 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     closingQuote:
       "Pentru noi, un tratament estetic reușit nu înseamnă doar dinți frumoși, ci un zâmbet în care pacientul se simte cu adevărat el însuși.",
     beforeAfterImages: [
-      { image: sergiuBefore2, label: "Înainte", alt: "Sergiu Witberg — înainte de tratament", objectPosition: "center center" },
-      { image: sergiuAfter2, label: "După", alt: "Sergiu Witberg — după tratament", objectPosition: "center center" },
+      { image: sergiuSmileBefore, label: "Înainte", alt: "Sergiu Wittenberger — înainte de tratament", objectPosition: "center center" },
+      { image: sergiuSmileAfter, label: "După", alt: "Sergiu Wittenberger — după tratament", objectPosition: "center center" },
     ],
     treatmentSteps: [
       { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată, orientată spre un zâmbet armonios și natural." },
@@ -415,7 +429,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       { label: "Rezultat final", detail: "Zâmbet luminos, echilibrat și autentic — estetică naturală adaptată personalității pacientului." },
     ],
     quickFacts: [
-      { label: "Pacient", value: "Sergiu Witberg" },
+      { label: "Pacient", value: "Sergiu Wittenberger" },
       { label: "Tip caz", value: "Fațete dentare" },
       { label: "Medic", value: "Dr. Andreea Pârvu" },
       { label: "Clinică", value: "Alverna Dental Studio" },
@@ -425,7 +439,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       name: "Dr. Andreea Pârvu",
     },
     seoDescription:
-      "Caz #7 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Sergiu Witberg — armonie, naturalețe și un zâmbet care îl reprezintă.",
+      "Caz #7 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Sergiu Wittenberger — armonie, naturalețe și un zâmbet care îl reprezintă.",
   },
   simona: {
     slug: "simona",
@@ -564,6 +578,101 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     doctor: DEFAULT_CASE_DOCTOR,
     seoDescription:
       "Caz #10 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Carmen — zâmbet transformat, rezultat luminos.",
+  },
+  "carmen-pop": {
+    slug: "carmen-pop",
+    path: "/cazuri/carmen-pop/",
+    title: "Zâmbet transformat.\nRezultat luminos.",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
+    caseNumber: "Caz #11",
+    patientName: "Carmen Pop",
+    heroImage: carmenPopPortrait,
+    heroObjectFit: "cover",
+    heroObjectPosition: "center 22%",
+    thumbnailSrc: carmenPopPortrait.src,
+    storyImages: [
+      { image: carmenPopSmileBefore, label: "Înainte", alt: "Carmen Pop — situație inițială", objectPosition: "center center" },
+      { image: carmenPopPortraitSide, label: "Portret", alt: "Carmen Pop — portret după tratament", objectPosition: "center 22%" },
+      { image: carmenPopPortrait, label: "După", alt: "Carmen Pop — rezultat final", objectPosition: "center 22%" },
+    ],
+    intro:
+      "Carmen Pop și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+    paragraphs: [
+      "Carmen Pop și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+      "În urma evaluării clinice și a planificării personalizate, echipa Alverna Dental Studio a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța dinților au fost alese cu atenție pentru a corecta discolorațiile și imperfecțiunile existente.",
+      "Rezultatul este un zâmbet echilibrat, luminos și integrat natural în fizionomie — documentat clinic before & after.",
+      "Tratament realizat în cadrul Alverna Dental Studio.",
+    ],
+    closingQuote:
+      "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Carmen Pop a obținut la finalul tratamentului.",
+    beforeAfterImages: [
+      { image: carmenPopSmileBefore, label: "Înainte", alt: "Carmen Pop — înainte de tratament", objectPosition: "center center" },
+      { image: carmenPopSmileAfter, label: "După", alt: "Carmen Pop — după tratament", objectPosition: "center center" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru corectarea discolorațiilor și obținerea unui zâmbet uniform." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică cu selecție atentă a formei, proporțiilor și nuanței fiecărui dinte." },
+      { label: "Integrare facială", detail: "Adaptarea lucrărilor la fizionomie, pentru un rezultat natural și echilibrat." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, uniform și autentic — documentat clinic la finalul tratamentului." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Carmen Pop" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Obiectiv", value: "Zâmbet luminos" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #11 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Carmen Pop — zâmbet transformat, rezultat luminos.",
+  },
+  "gabriela-apati": {
+    slug: "gabriela-apati",
+    path: "/cazuri/gabriela-apati/",
+    title: "Zâmbet transformat.\nRezultat luminos.",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
+    caseNumber: "Caz #12",
+    patientName: "Gabriela Apati",
+    heroImage: gabrielaPortraitAfter,
+    heroObjectFit: "cover",
+    heroObjectPosition: "center 22%",
+    thumbnailSrc: gabrielaPortraitAfter.src,
+    storyImages: [
+      { image: gabrielaPortraitBefore, label: "Înainte", alt: "Gabriela Apati — situație inițială", objectPosition: "center center" },
+      { image: gabrielaClinicBefore, label: "Clinic", alt: "Gabriela Apati — documentare clinică înainte de tratament", objectPosition: "center center" },
+      { image: gabrielaClinicAfter, label: "Clinic", alt: "Gabriela Apati — documentare clinică după tratament", objectPosition: "center center" },
+      { image: gabrielaPortraitAfter, label: "După", alt: "Gabriela Apati — rezultat final", objectPosition: "center 22%" },
+    ],
+    intro:
+      "Gabriela Apati și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+    paragraphs: [
+      "Gabriela Apati și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+      "În urma evaluării clinice și a planificării personalizate, echipa Alverna Dental Studio a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța dinților au fost alese cu atenție pentru a corecta discolorațiile și imperfecțiunile existente.",
+      "Rezultatul este un zâmbet echilibrat, luminos și integrat natural în fizionomie — documentat clinic before & after.",
+      "Tratament realizat în cadrul Alverna Dental Studio.",
+    ],
+    closingQuote:
+      "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Gabriela Apati a obținut la finalul tratamentului.",
+    beforeAfterImages: [
+      { image: gabrielaPortraitBefore, label: "Înainte", alt: "Gabriela Apati — înainte de tratament", objectPosition: "center center" },
+      { image: gabrielaPortraitAfter, label: "După", alt: "Gabriela Apati — după tratament", objectPosition: "center center" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru corectarea discolorațiilor și obținerea unui zâmbet uniform." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică cu selecție atentă a formei, proporțiilor și nuanței fiecărui dinte." },
+      { label: "Integrare facială", detail: "Adaptarea lucrărilor la fizionomie, pentru un rezultat natural și echilibrat." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, uniform și autentic — documentat clinic la finalul tratamentului." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Gabriela Apati" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Obiectiv", value: "Zâmbet luminos" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #12 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Gabriela Apati — zâmbet transformat, rezultat luminos.",
   },
 };
 

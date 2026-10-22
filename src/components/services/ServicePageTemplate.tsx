@@ -58,7 +58,7 @@ export default function ServicePageTemplate({
           <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col justify-end px-4 pb-12 pt-24 md:px-8 md:pb-16 md:pt-28 lg:px-12 lg:pb-20 lg:pt-32">
             <motion.div {...reveal} className="max-w-[1180px]">
               <p className="text-[18px] font-medium uppercase tracking-[0.18em] text-white sm:text-[21px]">{kicker}</p>
-              <h1 className="mt-5 max-w-[980px] text-[32px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[76px] lg:text-[112px]">
+              <h1 className="mt-5 max-w-[980px] text-[32px] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:text-[52px] md:leading-[1.06] md:tracking-[-0.03em] lg:text-[64px]">
                 {title}
               </h1>
               <p className="mt-6 max-w-[820px] text-[18px] leading-[1.75] text-white sm:text-[21px]">

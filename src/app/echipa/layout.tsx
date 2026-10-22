@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 const PATH = "/echipa/";
 const DESCRIPTION =
-  "Cunoaște echipa Alverna Dental Studio: medici specialiști, laborator propriu, asistente și management. Experiență în implantologie, ortodonție, estetică și chirurgie dentară.";
+  "Cunoaște echipa Alverna Dental Studio: medici, laborator propriu, asistente și management. Experiență în implantologie, ortodonție, estetică și chirurgie dentară.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Echipa medicală | Medici stomatologi Cluj",

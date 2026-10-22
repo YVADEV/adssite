@@ -9,7 +9,7 @@ import { useMotionReady } from "@/hooks/useMotionReady";
 import { motionRevealProps } from "@/lib/motion-reveal";
 import { CLINIC } from "@/lib/contact";
 import alvernaLogo from "@/assets/alverna-logo.png";
-import { GoogleMark } from "@/components/ui/GoogleMark";
+import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { DEFAULT_CASE_STRIP, type CaseStripItem } from "@/config/case-strips";
 import { ContactFormCard } from "@/components/contact/ContactFormCard";
@@ -612,63 +612,18 @@ export function ServiceCasesGrid({ items = DEFAULT_CASE_STRIP }: { items?: CaseS
 }
 
 export function ServiceTestimonials() {
-  const motionReady = useMotionReady();
   return (
-    <section data-theme="light" className="bg-[#ececec] pb-[110px]">
+    <section data-theme="light" className="bg-[#ececec] pb-16 md:pb-[110px]">
       <div className="mx-auto mt-2 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
         <h3 className="text-[32px] font-semibold leading-[0.92] tracking-[-0.03em] text-white md:text-[46px] lg:text-[62px]">
           Recenzii
         </h3>
-        <p className="mt-3 text-[21px] font-semibold text-white">
-          <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center underline decoration-[#B6B94C]/60 underline-offset-4">
-            Scor mediu Google: 4.8 ⭐
-          </a>
-        </p>
       </div>
-      <div className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-[8px] px-4 md:grid-cols-2 md:px-8 lg:grid-cols-4 lg:gap-[6px] lg:px-12">
-        <article className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[26px]">
-          <div className="flex items-end gap-2">
-            <strong className="text-[36px] font-semibold leading-none tracking-[-0.03em] md:text-[52px]">4,8</strong>
-            <span className="mb-2 text-base opacity-60">/5</span>
-            <GoogleMark />
-          </div>
-          <div className="mx-auto mt-[40px] w-full max-w-[270px] space-y-2 text-[21px] leading-[1.45]">
-            <p>
-              Adresă:{" "}
-              <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-[#B6B94C]/60 underline-offset-4">
-                {CLINIC.addressLine}
-              </a>
-            </p>
-            <p>
-              Număr de telefon:{" "}
-              <a href={`tel:${CLINIC.phoneTel}`} className="underline decoration-[#B6B94C]/60 underline-offset-4">
-                {CLINIC.phoneDisplay}
-              </a>
-            </p>
-            <p>Program: {CLINIC.hoursDisplay}</p>
-          </div>
-          <Image src={alvernaLogo} alt="Alverna Dental Studio" width={210} height={70} className="mx-auto mt-auto h-auto w-[210px] object-contain pt-4" />
-        </article>
-
-        {sharedReviews.map((r, i) => (
-          <motion.article
-            key={r.name}
-            initial={motionReady ? { opacity: 0, y: 20 } : false}
-            whileInView={motionReady ? { opacity: 1, y: 0 } : undefined}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
-            className="ads-surface-light-muted flex min-h-[300px] flex-col rounded-[18px] p-[22px]"
-          >
-            <div>
-              <p className="text-[28px] font-semibold leading-[1.05]">{r.name}</p>
-              <p className="mt-1 text-[21px] opacity-60">{r.meta}</p>
-            </div>
-            <p className="mt-6 text-[21px] leading-[1.55]">{r.text}</p>
-            <p aria-label="5 din 5 stele" className="mt-auto pt-4 text-[21px] leading-none tracking-[0.08em]">
-              ★★★★★
-            </p>
-          </motion.article>
-        ))}
+      <div className="mx-auto mt-6 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+        <GoogleReviews
+          reviews={sharedReviews}
+          logo={<Image src={alvernaLogo} alt="Alverna Dental Studio" width={160} height={53} className="mt-3 h-auto w-[160px] object-contain" />}
+        />
       </div>
     </section>
   );
@@ -689,7 +644,7 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
           <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">{headline}</h3>
           <p className="mt-5 max-w-[680px] text-[21px] leading-[1.55] text-white">{body}</p>
           <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
-            <p className="text-[21px] font-semibold text-white">4.8 ★★★★★</p>
+            <p className="text-[21px] font-semibold text-white">4,8 / 5</p>
             <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
           </div>
           <a

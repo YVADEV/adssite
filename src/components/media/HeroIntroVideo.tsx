@@ -4,10 +4,26 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import { heroVideoSrc, HERO_VIDEO_FALLBACK, prefersReducedMedia } from "@/lib/media-pref";
 
-export function HeroIntroVideo() {
+type HeroIntroVideoProps = {
+  src?: string;
+  posterMobile?: string;
+  posterTablet?: string;
+  posterDesktop?: string;
+  alt?: string;
+  coverBottom?: boolean;
+};
+
+export function HeroIntroVideo({
+  src,
+  posterMobile = "/hero1-poster-640.jpg",
+  posterTablet = "/hero1-poster-1280.jpg",
+  posterDesktop = "/hero1-poster-1920.jpg",
+  alt = "Alverna Dental Studio — clinică modernă din Cluj",
+  coverBottom = false,
+}: HeroIntroVideoProps = {}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-  const [videoSrc, setVideoSrc] = useState(HERO_VIDEO_FALLBACK);
+  const [videoSrc, setVideoSrc] = useState(src ?? HERO_VIDEO_FALLBACK);
   const [needsManualPlay, setNeedsManualPlay] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const autoplayAllowedRef = useRef(true);
@@ -41,7 +57,7 @@ export function HeroIntroVideo() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     autoplayAllowedRef.current = !reducedMotion && !prefersReducedMedia();
 
-    const preferred = heroVideoSrc();
+    const preferred = src ?? heroVideoSrc();
     requestAnimationFrame(() => {
       if (!cancelled) setVideoSrc(preferred);
     });
@@ -80,7 +96,7 @@ export function HeroIntroVideo() {
       if (idleId !== undefined) window.cancelIdleCallback(idleId);
       if (timerId !== undefined) window.clearTimeout(timerId);
     };
-  }, []);
+  }, [src]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -127,19 +143,23 @@ export function HeroIntroVideo() {
     tryPlay();
   };
 
+  const frameClass = coverBottom
+    ? "absolute inset-x-0 top-0 h-[118%] w-full object-cover object-center"
+    : "absolute inset-0 h-full w-full object-cover object-[center_38%] md:object-center";
+
   return (
     <div data-anim="image" className="absolute inset-0 h-full w-full overflow-hidden">
       <picture>
-        <source media="(max-width: 767px)" srcSet="/hero1-poster-640.jpg" type="image/jpeg" />
-        <source media="(max-width: 1280px)" srcSet="/hero1-poster-1280.jpg" type="image/jpeg" />
+        <source media="(max-width: 767px)" srcSet={posterMobile} type="image/jpeg" />
+        <source media="(max-width: 1280px)" srcSet={posterTablet} type="image/jpeg" />
         <img
-          src="/hero1-poster-1920.jpg"
+          src={posterDesktop}
           width={1920}
           height={1080}
-          alt="Alverna Dental Studio — clinică modernă din Cluj"
+          alt={alt}
           fetchPriority="high"
           decoding="sync"
-          className="absolute inset-0 h-full w-full object-cover object-[center_38%] md:object-center"
+          className={frameClass}
         />
       </picture>
       {shouldLoadVideo ? (
@@ -151,7 +171,7 @@ export function HeroIntroVideo() {
           playsInline
           preload="none"
           aria-hidden
-          className={`absolute inset-0 h-full w-full object-cover object-[center_38%] transition-opacity duration-300 md:object-center ${
+          className={`${frameClass} transition-opacity duration-300 ${
             isPlaying ? "opacity-100" : "opacity-0"
           }`}
         >

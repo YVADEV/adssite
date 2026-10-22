@@ -7,7 +7,7 @@ import { pageMetadata, SITE_URL } from "@/lib/seo";
 const PATH = "/servicii/dentist-cluj/";
 const NAME = "Dentist Cluj";
 const DESCRIPTION =
-  "Cauți un dentist în Cluj? La Alverna Dental Studio beneficiezi de medici specialiști, tehnologie modernă, planuri personalizate și tratamente stomatologice la standarde înalte.";
+  "Cauți un dentist în Cluj? La Alverna Dental Studio, echipa medicală lucrează cu planuri personalizate, în clinica din Strada Alverna 33.";
 
 const faqItems = [
   {

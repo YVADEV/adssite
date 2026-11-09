@@ -58,7 +58,7 @@ export function MobileMenuFooter({ className = "" }: MobileMenuFooterProps) {
           Politica de confidențialitate
         </a>
         <a href="/termeni-si-conditii" className="inline-flex min-h-9 items-center">
-          Termeni
+          Termeni și condiții
         </a>
       </div>
     </div>

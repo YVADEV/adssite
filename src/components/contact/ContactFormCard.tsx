@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics";
 import { CLINIC } from "@/lib/contact";
 
+/** Inquiry-only contact form. Does not create iStoma appointments. */
 type ContactStatus = "idle" | "loading" | "ok" | "error";
 
 export function ContactFormCard({ source }: { source: string }) {

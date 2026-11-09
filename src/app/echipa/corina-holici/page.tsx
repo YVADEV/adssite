@@ -3,11 +3,10 @@ import Image from "next/image";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { AccreditationGallery } from "@/components/echipa/AccreditationGallery";
 import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
-import { ContactFormCard } from "@/components/services/ServicePageParts";
+import { BookingSection } from "@/components/booking/BookingSection";
 import { CORINA_ACCREDITATIONS } from "@/config/accreditations";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/corina-holici.png";
-import { CLINIC } from "@/lib/contact";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/echipa/corina-holici/";
@@ -72,25 +71,7 @@ export default function CorinaHoliciPage() {
         <AccreditationGallery images={CORINA_ACCREDITATIONS} name={NAME} pdfHref={PDF} />
         <DoctorReviews />
 
-        <section id="contact" className="relative mt-14 w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
-          <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
-            <ContactFormCard source="corina-holici" />
-            <div className="pt-0 text-white lg:pt-8">
-              <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">
-                Primul pas spre un zâmbet sănătos începe aici.
-              </h3>
-              <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-                Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
-              </p>
-              <a
-                href={`tel:${CLINIC.phoneTel}`}
-                className="mt-7 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
-              >
-                Preferi telefonic? Sună acum
-              </a>
-            </div>
-          </div>
-        </section>
+        <BookingSection source="corina-holici" />
       </main>
     </PrototypeFrame>
   );

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 
 import { CLINIC } from "@/lib/contact";
+import { clinicNotificationSubject } from "@/lib/email/clinic-notification";
+import { clinicNotificationRecipients, sendClinicNotificationEmail } from "@/lib/email/send-clinic-notification";
 
 export const runtime = "nodejs";
 
@@ -20,15 +22,6 @@ type ContactPayload = {
 };
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const TO_EMAILS = Array.from(
-  new Set(
-    [process.env.CONTACT_TO_EMAIL ?? CLINIC.email, "info.hds33@gmail.com"]
-      .map((email) => email.trim())
-      .filter(Boolean),
-  ),
-);
-const FROM_EMAIL =
-  process.env.CONTACT_FROM_EMAIL ?? "Alverna Dental Studio <beth.t@example.com>";
 
 function isValid(body: ContactPayload) {
   if (!body.nume || body.nume.trim().length < 2) return false;
@@ -38,71 +31,25 @@ function isValid(body: ContactPayload) {
   return true;
 }
 
-function escape(value: string | undefined) {
-  if (!value) return "—";
-  return value.replace(/[<>]/g, (c) => (c === "<" ? "&lt;" : "&gt;"));
-}
-
-function buildMessage(body: ContactPayload, subject: string) {
+function notificationFields(body: ContactPayload) {
+  const fullName = (body.numeComplet ?? `${body.prenume ?? ""} ${body.nume ?? ""}`).trim();
   return {
-    subject,
-    html: `
-    <h2>Solicitare programare</h2>
-    <p><strong>Nume:</strong> ${escape(body.nume)}</p>
-    <p><strong>Prenume:</strong> ${escape(body.prenume)}</p>
-    <p><strong>Telefon:</strong> ${escape(body.telefon)}</p>
-    <p><strong>Email:</strong> ${escape(body.email)}</p>
-    <p><strong>Serviciu dorit:</strong> ${escape(body.serviciu)}</p>
-    <p><strong>Mesaj:</strong><br/>${escape(body.mesaj)}</p>
-    <hr/>
-    <p><strong>Pagină origine:</strong> ${escape(body.pagePath)}</p>
-    <p><strong>URL complet:</strong> ${escape(body.pageUrl)}</p>
-    <p><strong>Etichetă formular:</strong> ${escape(body.source)}</p>
-    <p style="font-size:12px;color:#888;">Titlu pagină: ${escape(body.pageTitle)} · trimis la ${new Date().toISOString()}</p>
-  `,
-    fields: {
-      name: (body.numeComplet ?? `${body.prenume ?? ""} ${body.nume ?? ""}`).trim(),
-      nume: body.nume?.trim() ?? "",
-      prenume: body.prenume?.trim() ?? "",
-      telefon: body.telefon?.trim() ?? "",
-      email: body.email?.trim() || "nespecificat@alvernadental.com",
-      serviciu: body.serviciu?.trim() || "—",
-      mesaj: body.mesaj?.trim() || "—",
-      pagina: body.pageUrl?.trim() || body.pagePath?.trim() || "—",
-      sursa: body.source?.trim() || "—",
-    },
+    fullName,
+    phone: body.telefon?.trim(),
+    email: body.email?.trim(),
+    service: body.serviciu?.trim(),
+    message: body.mesaj?.trim(),
+    source: body.source?.trim(),
+    pageUrl: body.pageUrl?.trim() || body.pagePath?.trim(),
   };
 }
 
-async function sendWithResend(subject: string, html: string, replyTo: string | undefined) {
-  const resp = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${RESEND_API_KEY}`,
-    },
-    body: JSON.stringify({
-      from: FROM_EMAIL,
-      to: TO_EMAILS,
-      subject,
-      html,
-      reply_to: replyTo,
-    }),
-  });
-  if (!resp.ok) {
-    const txt = await resp.text();
-    console.error("[contact] Resend error", resp.status, txt);
-    return false;
-  }
-  return true;
-}
-
 async function sendWithFormSubmit(
-  subject: string,
-  fields: ReturnType<typeof buildMessage>["fields"],
+  fields: ReturnType<typeof notificationFields>,
   origin: string,
-  toEmail: string,
 ) {
+  const toEmail = clinicNotificationRecipients()[0];
+  if (!toEmail) return false;
   const resp = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(toEmail)}`, {
     method: "POST",
     headers: {
@@ -112,18 +59,16 @@ async function sendWithFormSubmit(
       Referer: `${origin}/contact`,
     },
     body: JSON.stringify({
-      _subject: subject,
+      _subject: clinicNotificationSubject(fields),
       _template: "table",
       _captcha: "false",
-      name: fields.name,
-      nume: fields.nume,
-      prenume: fields.prenume,
-      telefon: fields.telefon,
-      email: fields.email,
-      serviciu: fields.serviciu,
-      mesaj: fields.mesaj,
-      pagina: fields.pagina,
-      sursa: fields.sursa,
+      name: fields.fullName,
+      telefon: fields.phone,
+      email: fields.email || CLINIC.email,
+      serviciu: fields.service ?? "",
+      mesaj: fields.message ?? "",
+      pagina: fields.pageUrl ?? "",
+      sursa: fields.source ?? "",
     }),
   });
   const raw = await resp.text();
@@ -161,19 +106,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const fullName = (body.numeComplet ?? `${body.prenume ?? ""} ${body.nume ?? ""}`).trim();
-  const subject = `Programare nouă · ${fullName || "(fără nume)"}`;
-  const { html, fields } = buildMessage(body, subject);
-  const replyTo = body.email?.trim() || undefined;
-
+  const fields = notificationFields(body);
   const host = request.headers.get("x-forwarded-host") || request.headers.get("host") || "quiet-daffodil-0aeb6a.netlify.app";
   const proto = host.includes("localhost") || host.startsWith("127.") ? "http" : "https";
   const origin = `${proto}://${host}`;
 
   try {
     const sent = RESEND_API_KEY
-      ? await sendWithResend(subject, html, replyTo)
-      : (await Promise.all(TO_EMAILS.map((email) => sendWithFormSubmit(subject, fields, origin, email)))).every(Boolean);
+      ? await sendClinicNotificationEmail(fields)
+      : await sendWithFormSubmit(fields, origin);
 
     if (!sent) {
       return NextResponse.json(

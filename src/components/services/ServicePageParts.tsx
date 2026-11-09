@@ -12,7 +12,7 @@ import alvernaLogo from "@/assets/alverna-logo.png";
 import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { DEFAULT_CASE_STRIP, type CaseStripItem } from "@/config/case-strips";
-import { ContactFormCard } from "@/components/contact/ContactFormCard";
+import { BookingSection } from "@/components/booking/BookingSection";
 
 function useReveal() {
   return motionRevealProps(useMotionReady());
@@ -631,15 +631,9 @@ export function ServiceTestimonials() {
 
 export function ServiceContactForm({ headline, body }: { headline: string; body: string }) {
   return (
-    <section id="contact" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:right-0 max-md:h-[280px] max-md:w-[280px] max-md:scale-100 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
-      />
-
-      <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
-        <ContactFormCard source="service-page" />
-
+    <BookingSection
+      source="service-page"
+      aside={
         <div className="pt-0 text-white lg:pt-8">
           <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">{headline}</h3>
           <p className="mt-5 max-w-[680px] text-[21px] leading-[1.55] text-white">{body}</p>
@@ -649,13 +643,13 @@ export function ServiceContactForm({ headline, body }: { headline: string; body:
           </div>
           <a
             href={`tel:${CLINIC.phoneTel}`}
-            className="mt-7 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:text-white hover:decoration-white"
+            className="mt-7 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-white/40 underline-offset-4 hover:decoration-white"
           >
             Preferi telefonic? Sună acum
           </a>
         </div>
-      </div>
-    </section>
+      }
+    />
   );
 }
 

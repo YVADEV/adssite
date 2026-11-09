@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { AccreditationGallery } from "@/components/echipa/AccreditationGallery";
 import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
-import { ContactFormCard } from "@/components/services/ServicePageParts";
+import { BookingSection } from "@/components/booking/BookingSection";
 import { RADU_ACCREDITATIONS } from "@/config/accreditations";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
-import { CLINIC } from "@/lib/contact";
 
 const PATH = "/echipa/radu-nichimis/";
 const NAME = "Dr. Radu Nichimiș";
@@ -70,28 +69,7 @@ export default function RaduNichimisPage() {
         <AccreditationGallery images={RADU_ACCREDITATIONS} name={NAME} pdfHref="/acreditari-radu-nichimis.pdf" />
         <DoctorReviews />
 
-        <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-20 md:py-[120px]">
-          <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
-            <ContactFormCard source="radu-nichimis" />
-
-            <div className="pt-0 text-white lg:pt-8">
-              <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
-              <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-                Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
-              </p>
-              <div className="mt-8 inline-block rounded-[16px] border border-white/20 bg-white/5 px-5 py-4">
-                <p className="text-[21px] font-semibold text-white">4,8 / 5</p>
-                <p className="mt-1 text-[21px] text-white">Peste 9.000 de pacienți</p>
-              </div>
-              <a
-                href={`tel:${CLINIC.phoneTel}`}
-                className="mt-7 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
-              >
-                Preferi telefonic? Sună acum
-              </a>
-            </div>
-          </div>
-        </section>
+        <BookingSection source="radu-nichimis" />
       </main>
     </PrototypeFrame>
   );

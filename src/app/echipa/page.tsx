@@ -42,9 +42,9 @@ const specialistTeam = [
   { name: "Dr. Laura Grigorean", image: lauraImage.src, href: "/echipa/laura-grigorean/" },
   { name: "Dr. Corina Holici", image: corinaImage.src, href: "/echipa/corina-holici/", imageClassName: "-scale-x-100" },
   { name: "Dr. Andreea Ronea", image: andreeaRoneaImage.src },
-  { name: "Dr. Bogdan Holici", image: bogdanImage.src },
   { name: "Dr. Raul Mureșan", image: raulImage.src },
   { name: "Dr. Valentina Nichimiș", image: valentinaImage.src },
+  { name: "Dr. Bogdan Holici", image: bogdanImage.src },
 ];
 
 const laboratoryTeam = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import ServicesDropdown from "@/components/nav/ServicesDropdown";
@@ -17,7 +17,6 @@ import { LazyVideo } from "@/components/media/LazyVideo";
 import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
-import { CLINIC } from "@/lib/contact";
 import { pricingData } from "@/config/pricing";
 import { useIdleMedia } from "@/hooks/useIdleMedia";
 import vdScaun from "@/assets/VDscaun.jpg";
@@ -38,8 +37,8 @@ import danaSmileAfter from "@/assets/cazuri/dana-smile-after.jpg";
 import cazA7407760Smile from "@/assets/cazuri/A7407760-smile.png";
 import shining3dScanner from "@/assets/shining-3d-scanner.jpg";
 
-const ContactFormCard = dynamic(
-  () => import("@/components/contact/ContactFormCard").then((m) => ({ default: m.ContactFormCard })),
+const BookingSection = dynamic(
+  () => import("@/components/booking/BookingSection").then((m) => ({ default: m.BookingSection })),
   { ssr: true },
 );
 
@@ -322,8 +321,7 @@ export default function HomePageClient() {
   const menuMidLineRef = useRef<HTMLSpanElement>(null);
   const menuBottomLineRef = useRef<HTMLSpanElement>(null);
   const menuTriggerRef = useRef<HTMLButtonElement>(null);
-  const contactSectionRef = useRef<HTMLElement>(null);
-  const contactSpotlightRef = useRef<HTMLDivElement>(null);
+  const contactSectionRef = useRef<HTMLDivElement>(null);
   const scrolled = useStickyHeaderScroll();
   const belowFoldMedia = useIdleMedia();
 
@@ -344,62 +342,6 @@ export default function HomePageClient() {
     bottomLineRef: menuBottomLineRef,
     menuTriggerRef,
   });
-
-  useEffect(() => {
-    const section = contactSectionRef.current;
-    const spotlight = contactSpotlightRef.current;
-    if (!section || !spotlight) return;
-
-    const media = window.matchMedia("(pointer: fine) and (min-width: 768px)");
-    if (!media.matches) {
-      spotlight.style.opacity = "0";
-      return;
-    }
-
-    let frame = 0;
-    let running = false;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-
-    const render = () => {
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-      spotlight.style.setProperty("--x", `${currentX}px`);
-      spotlight.style.setProperty("--y", `${currentY}px`);
-
-      if (Math.abs(targetX - currentX) > 0.2 || Math.abs(targetY - currentY) > 0.2) {
-        frame = requestAnimationFrame(render);
-      } else {
-        running = false;
-      }
-    };
-
-    const onMove = (event: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      targetX = Math.max(0, Math.min(rect.width, event.clientX - rect.left));
-      targetY = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
-      spotlight.style.opacity = "1";
-      if (!running) {
-        running = true;
-        frame = requestAnimationFrame(render);
-      }
-    };
-
-    const onLeave = () => {
-      spotlight.style.opacity = "0";
-    };
-
-    section.addEventListener("mousemove", onMove);
-    section.addEventListener("mouseleave", onLeave);
-
-    return () => {
-      section.removeEventListener("mousemove", onMove);
-      section.removeEventListener("mouseleave", onLeave);
-      cancelAnimationFrame(frame);
-    };
-  }, []);
 
   return (
     <div ref={rootRef} className="ads-page min-w-0 bg-[#0f1115] text-white [scroll-behavior:smooth]">
@@ -860,37 +802,9 @@ export default function HomePageClient() {
         </div>
       </section>
 
-      <section id="contact" ref={contactSectionRef} data-anim="section" className="relative isolate w-full overflow-hidden bg-[#0A0A0A] py-20 [contain:paint] md:py-[120px]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-[-120px] top-1/2 z-0 h-[600px] w-[600px] -translate-y-1/2 rounded-full bg-[#B6B94C] opacity-45 blur-[120px] max-md:right-0 max-md:h-[280px] max-md:w-[280px] max-md:scale-100 max-md:opacity-30 max-md:animate-none [will-change:transform] md:animate-[contact-glow-drift_10s_ease-in-out_infinite]"
-        />
-        <div
-          ref={contactSpotlightRef}
-          aria-hidden
-          className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 [will-change:transform]"
-          style={{
-            background: "radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(182,185,76,0.22), transparent 35%)",
-          }}
-        />
-
-        <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-[96px]">
-          <ContactFormCard source="home-page" />
-
-          <div className="pt-0 text-white lg:pt-8">
-            <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[44px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
-            <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-              Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
-            </p>
-            <a
-              href={`tel:${CLINIC.phoneTel}`}
-              className="mt-7 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
-            >
-              Preferi telefonic? Sună acum
-            </a>
-          </div>
-        </div>
-      </section>
+      <div ref={contactSectionRef} data-anim="section">
+        <BookingSection source="home-page" />
+      </div>
 
       <footer>
         <SiteFooter />

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
-import { ContactFormCard } from "@/components/services/ServicePageParts";
+import { BookingSection } from "@/components/booking/BookingSection";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/andreea-parvu.png";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
@@ -73,9 +73,7 @@ export default function AndreeaParvuPage() {
           </div>
         </section>
         <DoctorReviews />
-        <section id="contact" className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <ContactFormCard source="andreea-parvu" />
-        </section>
+        <BookingSection source="andreea-parvu" />
       </main>
     </PrototypeFrame>
   );

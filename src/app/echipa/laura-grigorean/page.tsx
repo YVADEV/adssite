@@ -3,7 +3,7 @@ import Image from "next/image";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { AccreditationGallery } from "@/components/echipa/AccreditationGallery";
 import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
-import { ContactFormCard } from "@/components/services/ServicePageParts";
+import { BookingSection } from "@/components/booking/BookingSection";
 import { LAURA_ACCREDITATIONS } from "@/config/accreditations";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/laura-grigorean.png";
@@ -80,9 +80,7 @@ export default function LauraGrigoreanPage() {
         <AccreditationGallery images={LAURA_ACCREDITATIONS} name={NAME} pdfHref={PDF} />
         <DoctorReviews />
 
-        <section id="contact" className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-          <ContactFormCard source="laura-grigorean" />
-        </section>
+        <BookingSection source="laura-grigorean" />
       </main>
     </PrototypeFrame>
   );

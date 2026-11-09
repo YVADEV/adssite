@@ -8,7 +8,7 @@ import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
 import ceciliaPortrait from "@/assets/cazuri/cecilia-portrait.jpg";
-import danaHero from "@/assets/cazuri/dana-hero.png";
+import danaCardCover from "@/assets/cazuri/dana-card-cover.jpg";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
@@ -18,21 +18,25 @@ import simonaHero from "@/assets/cazuri/simona/hero.png";
 import raduAfter1 from "@/assets/cazuri/radu/after-1.png";
 import carmenAfter1 from "@/assets/cazuri/carmen/after-1.png";
 import carmenPopPortrait from "@/assets/cazuri/carmen-pop/portrait.jpg";
-import gabrielaPortraitAfter from "@/assets/cazuri/gabriela-apati/portrait-after.jpg";
+import gabrielaCardCover from "@/assets/cazuri/gabriela-apati/card-cover.jpg";
+import ioanaPortraitAfter from "@/assets/cazuri/ioana-mosut/portrait-after.jpg";
+import bereczCardCover from "@/assets/cazuri/berecz/card-cover.jpg";
 
 const caseGallery = [
-  { src: ceciliaPortrait.src, alt: "Caz Cecilia — reabilitare totală All-on-4 Straumann" },
-  { src: danaHero.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu" },
-  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete" },
-  { src: cazA7407944.src, alt: "Caz smile design — armonie dentară și facială" },
-  { src: cazA7407760.src, alt: "Caz reabilitare protetică — funcție și estetică" },
-  { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final" },
-  { src: sergiuSmileAfter.src, alt: "Caz Sergiu Wittenberger — fațete dentare estetice" },
-  { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară" },
-  { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament" },
-  { src: carmenAfter1.src, alt: "Caz Carmen — rezultat final după tratament" },
-  { src: carmenPopPortrait.src, alt: "Caz Carmen Pop — fațete dentare estetice" },
-  { src: gabrielaPortraitAfter.src, alt: "Caz Gabriela Apati — fațete dentare estetice" },
+  { src: ceciliaPortrait.src, alt: "Caz Cecilia — reabilitare totală All-on-4 Straumann", name: "Cecilia" },
+  { src: danaCardCover.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu", name: "Dana" },
+  { src: carmenPopPortrait.src, alt: "Caz Carmen Pop — fațete dentare estetice", name: "Carmen Pop" },
+  { src: gabrielaCardCover.src, alt: "Caz Gabriela Apati — fațete dentare estetice", name: "Gabriela Apati" },
+  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete", name: "Aurelia" },
+  { src: ioanaPortraitAfter.src, alt: "Caz Ioana Mosut — reabilitare prin fațete dentare", name: "Ioana Mosut" },
+  { src: bereczCardCover.src, alt: "Caz Berecz — reabilitare protetică", name: "Berecz" },
+  { src: cazA7407944.src, alt: "Caz Laszlo — smile design", name: "Laszlo" },
+  { src: cazA7407760.src, alt: "Caz Laura — reabilitare protetică", name: "Laura" },
+  { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final", name: "Elena" },
+  { src: sergiuSmileAfter.src, alt: "Caz Sergiu Wittenberger — fațete dentare estetice", name: "Sergiu Wittenberger" },
+  { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară", name: "Simona" },
+  { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament", name: "Radu" },
+  { src: carmenAfter1.src, alt: "Caz Carmen — rezultat final după tratament", name: "Carmen" },
 ];
 
 export default function CazuriPage() {
@@ -78,11 +82,12 @@ export default function CazuriPage() {
         </motion.section>
 
         <section className="mx-auto mt-14 grid w-full max-w-[1680px] grid-cols-1 gap-6 px-4 md:grid-cols-2 md:px-8 lg:mt-[120px] lg:grid-cols-3 lg:gap-[74px] lg:px-12">
-          {caseGallery.map(({ src, alt }, i) => (
+          {caseGallery.map(({ src, alt, name }, i) => (
             <CaseImage
               key={src}
               src={src}
               alt={alt}
+              overlayLabel={name}
               href={getCaseHrefForImage(src)}
               className="h-[min(72vw,420px)] w-full rounded-[20px] object-cover md:h-[664px]"
               initial={{ opacity: 0, y: 24 }}

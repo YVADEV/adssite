@@ -614,6 +614,42 @@ button[aria-expanded="true"] .ads-menu-line-bottom {
   color-scheme: light;
 }
 
+.ads-booking-calendar {
+  color-scheme: light;
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+}
+
+html[data-theme="dark"] .ads-booking-calendar,
+html[data-theme="dark"] .ads-booking-calendar :is(p, span, button) {
+  color: #0a0a0a !important;
+}
+
+html[data-theme="dark"] .ads-booking-calendar .ads-booking-weekday,
+.ads-booking-calendar .ads-booking-weekday {
+  color: #6b6b6b !important;
+}
+
+.ads-booking-calendar .ads-booking-day,
+html[data-theme="dark"] .ads-booking-calendar .ads-booking-day {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+}
+
+.ads-booking-calendar .ads-booking-day.is-selected,
+html[data-theme="dark"] .ads-booking-calendar .ads-booking-day.is-selected {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 2px #b6b94c;
+}
+
+.ads-booking-calendar .ads-booking-day.is-muted,
+html[data-theme="dark"] .ads-booking-calendar .ads-booking-day.is-muted {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  opacity: 0.28;
+}
+
 html[data-theme="dark"] .ads-card-lit,
 html[data-theme="dark"] .ads-card-lit [class*="text-[#"],
 html[data-theme="dark"] .ads-card-lit [class*="text-white/"] {

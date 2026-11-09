@@ -106,7 +106,7 @@ const anatomySteps = [
   },
 ] as const;
 
-const featuredCases = [CASE_STUDIES.implantologie, CASE_STUDIES.dana, CASE_STUDIES["reabilitare-complexa"]];
+const featuredCases = [CASE_STUDIES.implantologie, CASE_STUDIES["estetica-dentara"], CASE_STUDIES["reabilitare-complexa"]];
 
 const processSteps = [
   {
@@ -546,55 +546,6 @@ export default function AllOn4PageClient() {
         </motion.div>
       </CompactSection>
 
-      <CompactSection id="cazuri-all-on">
-        <motion.div {...reveal}>
-          <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
-            <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Cazuri reale</p>
-              <h2 className="mt-1.5 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
-                Cazuri reale ale pacienților noștri
-              </h2>
-            </div>
-            <Link
-              href="/cazuri/"
-              className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 px-4 text-[17px] font-semibold text-white"
-            >
-              Vezi toate
-            </Link>
-          </div>
-          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
-            {featuredCases.map((caz, index) => (
-              <Link
-                key={caz.slug}
-                href={caz.path}
-                className="group overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B6B94C]"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-black">
-                  <Image
-                    src={caz.heroImage}
-                    alt={caz.patientName ? `${caz.patientName} — ${caz.category}` : caz.category}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition duration-300 group-hover:scale-[1.02]"
-                    style={{ objectPosition: caz.heroObjectPosition ?? "center" }}
-                  />
-                </div>
-                <div className="p-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/50">Caz {index + 1}</p>
-                  <h3 className="mt-1 text-[17px] font-semibold leading-[1.3] text-white">
-                    {caz.patientName ?? caz.category}
-                  </h3>
-                  <p className="mt-1 line-clamp-2 text-[16px] leading-[1.45] text-white/70">{caz.subtitle}</p>
-                  <span className="mt-2 inline-flex items-center text-[16px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4">
-                    Vezi cazul →
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      </CompactSection>
-
       <CompactSection>
         <motion.div {...reveal} className="grid items-center gap-6 lg:grid-cols-2 lg:gap-10">
           <div className="relative aspect-[4/3] overflow-hidden rounded-[14px] border border-white/10 bg-black">
@@ -761,6 +712,55 @@ export default function AllOn4PageClient() {
         <div className="mt-10">
           <ServiceFAQ heading="Întrebări frecvente" items={faqItems} compact />
         </div>
+      </CompactSection>
+
+      <CompactSection id="cazuri-all-on">
+        <motion.div {...reveal}>
+          <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/55">Cazuri reale</p>
+              <h2 className="mt-1.5 text-[24px] font-semibold leading-[1.15] tracking-[-0.03em] text-white md:text-[30px]">
+                Cazuri reale ale pacienților noștri
+              </h2>
+            </div>
+            <Link
+              href="/cazuri/"
+              className="inline-flex min-h-[44px] items-center rounded-full border border-white/25 px-4 text-[17px] font-semibold text-white"
+            >
+              Vezi toate
+            </Link>
+          </div>
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
+            {featuredCases.map((caz, index) => (
+              <Link
+                key={caz.slug}
+                href={caz.path}
+                className="group overflow-hidden rounded-[12px] border border-white/10 bg-white/[0.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#B6B94C]"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-black">
+                  <Image
+                    src={caz.heroImage}
+                    alt={caz.patientName ? `${caz.patientName} — ${caz.category}` : caz.category}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                    style={{ objectPosition: caz.heroObjectPosition ?? "center" }}
+                  />
+                </div>
+                <div className="p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/50">Caz {index + 1}</p>
+                  <h3 className="mt-1 text-[17px] font-semibold leading-[1.3] text-white">
+                    {caz.patientName ?? caz.category}
+                  </h3>
+                  <p className="mt-1 line-clamp-2 text-[16px] leading-[1.45] text-white/70">{caz.subtitle}</p>
+                  <span className="mt-2 inline-flex items-center text-[16px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4">
+                    Vezi cazul →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
       </CompactSection>
 
       <ServiceTestimonials />

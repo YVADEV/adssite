@@ -2,7 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
-import { ContactFormCard } from "@/components/services/ServicePageParts";
+import { BookingSection } from "@/components/booking/BookingSection";
 import { CLINIC } from "@/lib/contact";
 import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 
@@ -186,24 +186,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section id="contact" className="relative w-full overflow-hidden bg-[#0A0A0A] py-12 md:py-[120px]">
-          <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 gap-12 px-4 md:px-8 lg:grid-cols-[430px_1fr] lg:gap-20 lg:px-12">
-            <ContactFormCard source="contact-page" />
-
-            <div className="pt-0 text-white lg:pt-8">
-              <h3 className="max-w-[720px] text-[32px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[42px]">Primul pas spre un zâmbet sănătos începe aici.</h3>
-              <p className="mt-5 max-w-[680px] text-[21px] leading-[1.65] text-white">
-                Echipa Alverna Dental Studio te ajută să înțelegi opțiunile de tratament și pașii următori.
-              </p>
-              <a
-                href={`tel:${CLINIC.phoneTel}`}
-                className="mt-8 inline-flex min-h-[44px] items-center text-[21px] text-white underline decoration-[#B6B94C]/50 underline-offset-4 hover:decoration-white"
-              >
-                Preferi telefonic? Sună acum
-              </a>
-            </div>
-          </div>
-        </section>
+        <BookingSection source="contact-page" />
       </main>
     </PrototypeFrame>
   );

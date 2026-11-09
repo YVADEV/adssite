@@ -41,7 +41,7 @@ export function CaseImage({ src, alt, className, overlayLabel, href, ...motionPr
     <Link
       href={href}
       className="block rounded-[inherit] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black/40"
-      aria-label="Vezi cazul în detaliu"
+      aria-label={overlayLabel ? overlayLabel : "Vezi cazul în detaliu"}
     >
       {shell}
     </Link>

@@ -3,7 +3,17 @@ import cazA7408097 from "@/assets/cazuri/A7408097 2.png";
 import aureliaBefore from "@/assets/cazuri/aurelia-before.png";
 import aureliaHero from "@/assets/cazuri/aurelia-hero.png";
 import cazA7407944 from "@/assets/cazuri/A7407944 2.png";
+import laszloSmileBefore from "@/assets/cazuri/laszlo/smile-before.jpg";
+import laszloSmileAfter from "@/assets/cazuri/laszlo/smile-after.jpg";
+import laszloClinicBefore1 from "@/assets/cazuri/laszlo/clinic-before-1.jpg";
+import laszloClinicBefore2 from "@/assets/cazuri/laszlo/clinic-before-2.jpg";
+import laszloClinicAfter1 from "@/assets/cazuri/laszlo/clinic-after-1.jpg";
+import laszloClinicAfter2 from "@/assets/cazuri/laszlo/clinic-after-2.jpg";
 import cazA7407760 from "@/assets/cazuri/A7407760 2.png";
+import lauraSmileBefore from "@/assets/cazuri/laura/smile-before.jpg";
+import lauraSmileAfter from "@/assets/cazuri/laura/smile-after.jpg";
+import lauraPortraitBefore from "@/assets/cazuri/laura/portrait-before.jpg";
+import lauraWithAndreea from "@/assets/cazuri/laura/with-andreea.jpg";
 import cazA7408160 from "@/assets/cazuri/A7408160-2 2.png";
 import elenaBefore1 from "@/assets/cazuri/elena/before-1.jpg";
 import elenaBefore2 from "@/assets/cazuri/elena/before-2.jpg";
@@ -14,6 +24,7 @@ import ceciliaSmileAfter from "@/assets/cazuri/cecilia-smile-after.jpg";
 import ceciliaClinicBefore from "@/assets/cazuri/cecilia-clinic-before.jpg";
 import ceciliaClinicAfter from "@/assets/cazuri/cecilia-clinic-after.jpg";
 import danaHero from "@/assets/cazuri/dana-hero.png";
+import danaCardCover from "@/assets/cazuri/dana-card-cover.jpg";
 import danaBefore from "@/assets/cazuri/dana-before.png";
 import danaSmileBefore from "@/assets/cazuri/dana-smile-before.jpg";
 import danaSmileAfter from "@/assets/cazuri/dana-smile-after.jpg";
@@ -43,8 +54,28 @@ import carmenPopPortraitSide from "@/assets/cazuri/carmen-pop/portrait-side.jpg"
 import carmenPopPortrait from "@/assets/cazuri/carmen-pop/portrait.jpg";
 import gabrielaPortraitBefore from "@/assets/cazuri/gabriela-apati/portrait-before.jpg";
 import gabrielaPortraitAfter from "@/assets/cazuri/gabriela-apati/portrait-after.jpg";
+import gabrielaCardCover from "@/assets/cazuri/gabriela-apati/card-cover.jpg";
 import gabrielaClinicBefore from "@/assets/cazuri/gabriela-apati/clinic-before.jpg";
 import gabrielaClinicAfter from "@/assets/cazuri/gabriela-apati/clinic-after.jpg";
+import ioanaSmileBefore from "@/assets/cazuri/ioana-mosut/smile-before.jpg";
+import ioanaSmileAfter from "@/assets/cazuri/ioana-mosut/smile-after.jpg";
+import ioanaPortraitBefore from "@/assets/cazuri/ioana-mosut/portrait-before.jpg";
+import ioanaRetractorBefore from "@/assets/cazuri/ioana-mosut/retractor-before.jpg";
+import ioanaClinicBefore from "@/assets/cazuri/ioana-mosut/clinic-before.jpg";
+import ioanaClinicAfter from "@/assets/cazuri/ioana-mosut/clinic-after.jpg";
+import ioanaWithTeam from "@/assets/cazuri/ioana-mosut/with-team.jpg";
+import ioanaPortraitAfter from "@/assets/cazuri/ioana-mosut/portrait-after.jpg";
+import ioanaSmileSide1 from "@/assets/cazuri/ioana-mosut/smile-side-1.jpg";
+import ioanaSmileSide2 from "@/assets/cazuri/ioana-mosut/smile-side-2.jpg";
+import bereczSmileBefore from "@/assets/cazuri/berecz/smile-before.jpg";
+import bereczSmileAfter from "@/assets/cazuri/berecz/smile-after.jpg";
+import bereczCardCover from "@/assets/cazuri/berecz/card-cover.jpg";
+import bereczPortraitBefore from "@/assets/cazuri/berecz/portrait-before.jpg";
+import bereczWithAndreea from "@/assets/cazuri/berecz/with-andreea.jpg";
+import bereczWorkFront from "@/assets/cazuri/berecz/work-front.jpg";
+import bereczWorkHands from "@/assets/cazuri/berecz/work-hands.jpg";
+import bereczWorkArches from "@/assets/cazuri/berecz/work-arches.jpg";
+import bereczWorkDetail from "@/assets/cazuri/berecz/work-detail.png";
 
 export type CaseDoctor = {
   name: string;
@@ -90,19 +121,6 @@ export type CaseStudy = {
   doctor: CaseDoctor;
   seoDescription: string;
 };
-
-function storyGalleryFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
-  return [
-    { image, label: "Documentare", alt: `${name} — documentare clinică`, objectPosition: "center 36%" },
-  ];
-}
-
-function beforeAfterFromHero(image: StaticImageData, name: string): CaseStoryImage[] {
-  return [
-    { image, label: "Înainte", alt: `${name} — înainte de tratament`, objectPosition: "center top" },
-    { image, label: "După", alt: `${name} — după tratament`, objectPosition: "center 36%" },
-  ];
-}
 
 export const CASE_STUDIES: Record<string, CaseStudy> = {
   implantologie: {
@@ -268,10 +286,17 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     subtitle: "Design de zâmbet personalizat pentru proporții, simetrie și expresie naturală",
     category: "Smile design",
     caseNumber: "Caz #4",
+    patientName: "Laszlo",
     heroImage: cazA7407944,
+    heroObjectFit: "cover",
     heroObjectPosition: "center center",
     thumbnailSrc: cazA7407944.src,
-    storyImages: storyGalleryFromHero(cazA7407944, "Caz smile design"),
+    storyImages: [
+      { image: laszloClinicBefore1, label: "Înainte", alt: "Laszlo — situație inițială", objectPosition: "center center" },
+      { image: laszloClinicBefore2, label: "Înainte", alt: "Laszlo — documentare clinică înainte", objectPosition: "center center" },
+      { image: laszloClinicAfter1, label: "După", alt: "Laszlo — rezultat clinic", objectPosition: "center center" },
+      { image: laszloClinicAfter2, label: "După", alt: "Laszlo — rezultat clinic, vedere frontală", objectPosition: "center center" },
+    ],
     intro:
       "Acest caz de smile design a fost abordat în Alverna Dental Studio printr-o planificare estetică detaliată, orientată către un zâmbet echilibrat, funcțional și natural.",
     paragraphs: [
@@ -283,7 +308,10 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     closingQuote:
       "Smile design-ul a transformat nu doar aspectul dinților, ci întreaga expresie a zâmbetului — natural, echilibrat și autentic.",
-    beforeAfterImages: beforeAfterFromHero(cazA7407944, "Smile design"),
+    beforeAfterImages: [
+      { image: laszloSmileBefore, label: "Înainte", alt: "Laszlo — înainte de tratament", objectPosition: "center center" },
+      { image: laszloSmileAfter, label: "După", alt: "Laszlo — după tratament", objectPosition: "center center" },
+    ],
     treatmentSteps: [
       { label: "Analiză facială", detail: "Evaluare a proporțiilor, simetriei și liniei zâmbetului în contextul trăsăturilor faciale." },
       { label: "Design digital", detail: "Planificare estetică a formei, dimensiunii și poziției dinților pentru un rezultat predictibil." },
@@ -307,10 +335,16 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     subtitle: "Reabilitare protetică complexă pentru confort masticator și aspect natural",
     category: "Protetică dentară",
     caseNumber: "Caz #5",
-    heroImage: cazA7407760,
+    patientName: "Laura",
+    heroImage: lauraSmileAfter,
+    heroObjectFit: "cover",
     heroObjectPosition: "center center",
-    thumbnailSrc: cazA7407760.src,
-    storyImages: storyGalleryFromHero(cazA7407760, "Caz reabilitare protetică"),
+    thumbnailSrc: lauraSmileAfter.src,
+    storyImages: [
+      { image: lauraPortraitBefore, label: "Înainte", alt: "Laura — situație inițială", objectPosition: "center 22%" },
+      { image: lauraWithAndreea, label: "În clinică", alt: "Laura alături de Dr. Andreea Pârvu", objectPosition: "center 30%" },
+      { image: lauraSmileAfter, label: "După", alt: "Laura — rezultat final", objectPosition: "center center" },
+    ],
     intro:
       "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată și predictibilă.",
     paragraphs: [
@@ -322,7 +356,10 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     closingQuote:
       "Rezultatul final combină funcție, confort și estetică — un zâmbet reconstruit cu grijă, pas cu pas.",
-    beforeAfterImages: beforeAfterFromHero(cazA7407760, "Reabilitare protetică"),
+    beforeAfterImages: [
+      { image: lauraSmileBefore, label: "Înainte", alt: "Laura — înainte de tratament", objectPosition: "center center" },
+      { image: lauraSmileAfter, label: "După", alt: "Laura — după tratament", objectPosition: "center center" },
+    ],
     treatmentSteps: [
       { label: "Diagnostic", detail: "Evaluare completă a situației clinice, cu stabilirea priorităților funcționale și estetice." },
       { label: "Plan protetic", detail: "Definirea etapelor de tratament și a soluțiilor materiale pentru durabilitate." },
@@ -674,6 +711,110 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     seoDescription:
       "Caz #12 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Gabriela Apati — zâmbet transformat, rezultat luminos.",
   },
+  "ioana-mosut": {
+    slug: "ioana-mosut",
+    path: "/cazuri/ioana-mosut/",
+    title: "Zâmbet transformat.\nRezultat luminos.",
+    subtitle: "Reabilitare estetică prin fațete dentare",
+    category: "Estetică dentară · Fațete dentare",
+    caseNumber: "Caz #13",
+    patientName: "Ioana Mosut",
+    heroImage: ioanaPortraitAfter,
+    heroObjectFit: "cover",
+    heroObjectPosition: "center 18%",
+    thumbnailSrc: ioanaPortraitAfter.src,
+    storyImages: [
+      { image: ioanaPortraitBefore, label: "Înainte", alt: "Ioana Mosut — situație inițială", objectPosition: "center 18%" },
+      { image: ioanaRetractorBefore, label: "Înainte", alt: "Ioana Mosut — documentare clinică înainte de tratament", objectPosition: "center 40%" },
+      { image: ioanaClinicBefore, label: "Clinic", alt: "Ioana Mosut — documentare intraorală înainte de tratament", objectPosition: "center center" },
+      { image: ioanaClinicAfter, label: "Clinic", alt: "Ioana Mosut — documentare intraorală după tratament", objectPosition: "center center" },
+      { image: ioanaWithTeam, label: "În clinică", alt: "Ioana Mosut alături de echipa Alverna Dental Studio", objectPosition: "center 30%" },
+      { image: ioanaSmileSide1, label: "După", alt: "Ioana Mosut — rezultat final, profil", objectPosition: "center center" },
+      { image: ioanaSmileSide2, label: "După", alt: "Ioana Mosut — rezultat final, detaliu zâmbet", objectPosition: "center center" },
+      { image: ioanaPortraitAfter, label: "După", alt: "Ioana Mosut — rezultat final", objectPosition: "center 18%" },
+    ],
+    intro:
+      "Ioana Mosut și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+    paragraphs: [
+      "Ioana Mosut și-a dorit un zâmbet mai luminos și uniform, păstrând un aspect natural, potrivit trăsăturilor sale.",
+      "În urma evaluării clinice și a planificării personalizate, echipa Alverna Dental Studio a realizat o reabilitare estetică prin fațete dentare. Forma, proporțiile și nuanța dinților au fost alese cu atenție pentru a corecta discolorațiile și imperfecțiunile existente.",
+      "Rezultatul este un zâmbet echilibrat, luminos și integrat natural în fizionomie — documentat clinic before & after.",
+      "Tratament realizat în cadrul Alverna Dental Studio.",
+    ],
+    closingQuote:
+      "Un zâmbet reușit trebuie să arate natural și să inspire încredere — exact ceea ce Ioana Mosut a obținut la finalul tratamentului.",
+    beforeAfterImages: [
+      { image: ioanaSmileBefore, label: "Înainte", alt: "Ioana Mosut — înainte de tratament", objectPosition: "center 22%" },
+      { image: ioanaSmileAfter, label: "După", alt: "Ioana Mosut — după tratament", objectPosition: "center 22%" },
+    ],
+    treatmentSteps: [
+      { label: "Evaluare clinică", detail: "Analiză estetică și planificare personalizată pentru corectarea discolorațiilor și obținerea unui zâmbet uniform." },
+      { label: "Fațete dentare", detail: "Reabilitare estetică cu selecție atentă a formei, proporțiilor și nuanței fiecărui dinte." },
+      { label: "Integrare facială", detail: "Adaptarea lucrărilor la fizionomie, pentru un rezultat natural și echilibrat." },
+      { label: "Rezultat final", detail: "Zâmbet luminos, uniform și autentic — documentat clinic la finalul tratamentului." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Ioana Mosut" },
+      { label: "Tip caz", value: "Fațete dentare" },
+      { label: "Obiectiv", value: "Zâmbet luminos" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #13 Alverna Dental Studio: reabilitare estetică prin fațete dentare pentru Ioana Mosut — zâmbet transformat, rezultat luminos.",
+  },
+  berecz: {
+    slug: "berecz",
+    path: "/cazuri/berecz/",
+    title: "Funcție restabilită.\nEstetică integrată.",
+    subtitle: "Reabilitare protetică complexă pentru confort masticator și aspect natural",
+    category: "Protetică dentară",
+    caseNumber: "Caz #14",
+    patientName: "Berecz",
+    heroImage: bereczSmileAfter,
+    heroObjectFit: "cover",
+    heroObjectPosition: "center 18%",
+    thumbnailSrc: bereczSmileAfter.src,
+    storyImages: [
+      { image: bereczPortraitBefore, label: "Înainte", alt: "Berecz — situație inițială", objectPosition: "center 18%" },
+      { image: bereczWorkFront, label: "Lucrare", alt: "Berecz — lucrarea protetică", objectPosition: "center 70%" },
+      { image: bereczWorkDetail, label: "Lucrare", alt: "Berecz — detaliu lucrare protetică", objectPosition: "center 78%" },
+      { image: bereczWorkHands, label: "Lucrare", alt: "Berecz — lucrare protetică, vedere de aproape", objectPosition: "center 70%" },
+      { image: bereczWorkArches, label: "Lucrare", alt: "Berecz — lucrări protetice superioară și inferioară", objectPosition: "center 70%" },
+      { image: bereczWithAndreea, label: "În clinică", alt: "Berecz alături de Dr. Andreea Pârvu", objectPosition: "center 22%" },
+      { image: bereczSmileAfter, label: "După", alt: "Berecz — rezultat final", objectPosition: "center 18%" },
+    ],
+    intro:
+      "Cazul Berecz, o reabilitare protetică realizată în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului.",
+    paragraphs: [
+      "Cazul Berecz, o reabilitare protetică realizată în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului.",
+      "Pacientul s-a prezentat cu pierderi dentare și o situație care compromitea atât estetica, cât și confortul la masticație. Evaluarea clinică a permis stabilirea unui plan etapizat, orientat spre stabilitate și durabilitate.",
+      "Tratamentul a inclus pregătirea structurilor, selecția materialelor potrivite și realizarea lucrărilor protetice cu atenție la ocluzie și integrare gingivală.",
+      "Colaborarea directă între medic și tehnicianul dentar, în laboratorul propriu, a asigurat control constant asupra fiecărei etape și un rezultat final coerent.",
+      "La finalul tratamentului, pacientul a obținut un zâmbet funcțional, confortabil și estetic, cu îmbunătățire clară a calității vieții de zi cu zi.",
+    ],
+    closingQuote:
+      "Rezultatul final combină funcție, confort și estetică — un zâmbet reconstruit cu grijă, pas cu pas.",
+    beforeAfterImages: [
+      { image: bereczSmileBefore, label: "Înainte", alt: "Berecz — înainte de tratament", objectPosition: "center 18%" },
+      { image: bereczSmileAfter, label: "După", alt: "Berecz — după tratament", objectPosition: "center 18%" },
+    ],
+    treatmentSteps: [
+      { label: "Diagnostic", detail: "Evaluare completă a situației clinice, cu stabilirea priorităților funcționale și estetice." },
+      { label: "Plan protetic", detail: "Definirea etapelor de tratament și a soluțiilor materiale pentru durabilitate." },
+      { label: "Lucrări intermediare", detail: "Etape clinice progresive, cu verificări ale ocluziei și confortului pacientului." },
+      { label: "Proteză finală", detail: "Restaurări finale personalizate, integrate armonios în zâmbet și fizionomie." },
+    ],
+    quickFacts: [
+      { label: "Pacient", value: "Berecz" },
+      { label: "Tip caz", value: "Reabilitare protetică" },
+      { label: "Obiectiv", value: "Funcție și estetică" },
+      { label: "Clinică", value: "Alverna Dental Studio" },
+    ],
+    doctor: DEFAULT_CASE_DOCTOR,
+    seoDescription:
+      "Caz #14 Alverna Dental Studio: reabilitare protetică complexă pentru Berecz — funcție restabilită, estetică integrată.",
+  },
 };
 
 /** Maps image src → case slug for clickable images site-wide. */
@@ -681,7 +822,27 @@ export const IMAGE_TO_CASE_SLUG: Record<string, string> = Object.fromEntries(
   Object.values(CASE_STUDIES).flatMap((c) => [
     [c.thumbnailSrc, c.slug],
     [c.heroImage.src, c.slug],
-  ]).concat([[cazA7408097.src, "implantologie"], [raduAfter1.src, "radu"], [carmenAfter1.src, "carmen"]]),
+  ]).concat([
+    [cazA7408097.src, "implantologie"],
+    [raduAfter1.src, "radu"],
+    [carmenAfter1.src, "carmen"],
+    [danaCardCover.src, "dana"],
+    [gabrielaCardCover.src, "gabriela-apati"],
+    [cazA7407760.src, "reabilitare-protetica"],
+    [lauraSmileBefore.src, "reabilitare-protetica"],
+    [lauraPortraitBefore.src, "reabilitare-protetica"],
+    [lauraWithAndreea.src, "reabilitare-protetica"],
+    [laszloSmileBefore.src, "smile-design"],
+    [laszloSmileAfter.src, "smile-design"],
+    [ioanaSmileBefore.src, "ioana-mosut"],
+    [ioanaSmileAfter.src, "ioana-mosut"],
+    [ioanaPortraitBefore.src, "ioana-mosut"],
+    [ioanaWithTeam.src, "ioana-mosut"],
+    [bereczSmileBefore.src, "berecz"],
+    [bereczPortraitBefore.src, "berecz"],
+    [bereczWithAndreea.src, "berecz"],
+    [bereczCardCover.src, "berecz"],
+  ]),
 );
 
 export function getCaseHrefForImage(src: string): string | null {

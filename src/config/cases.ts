@@ -375,7 +375,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     quickFacts: [
       { label: "Tip caz", value: "Reabilitare protetică" },
       { label: "Obiectiv", value: "Funcție și estetică" },
-      { label: "Abordare", value: "Etapizată" }
+      { label: "Abordare", value: "Etapizată" },
       { label: "Laborator", value: "Alverna Dental Studio" },
     ],
     doctor: DEFAULT_CASE_DOCTOR,

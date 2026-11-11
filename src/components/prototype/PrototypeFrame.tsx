@@ -14,6 +14,7 @@ import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
 import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL, isFixedTeethNav } from "@/config/services";
 import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
 import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
+import { CaseBackLink } from "@/components/cazuri/CaseBackLink";
 
 type PrototypeFrameProps = {
   children: ReactNode;
@@ -53,6 +54,7 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
     const normalized = href.replace(/\/$/, "");
     return pathname === href || pathname === normalized || pathname.startsWith(`${normalized}/`);
   };
+  const isCaseDetail = pathname.replace(/\/$/, "").startsWith("/cazuri/");
 
   return (
     <div className="min-w-0 bg-[#0f1115] text-white [scroll-behavior:smooth]">
@@ -120,7 +122,10 @@ export default function PrototypeFrame({ children }: PrototypeFrameProps) {
           }`}
         >
           <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
-            <SiteLogo />
+            <div className="flex min-w-0 items-center gap-3">
+              <SiteLogo />
+              {isCaseDetail ? <CaseBackLink /> : null}
+            </div>
             <nav
               className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
               style={{ columnGap: "clamp(24px, 4.5vw, 100px)" }}

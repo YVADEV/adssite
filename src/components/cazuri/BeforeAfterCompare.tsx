@@ -149,7 +149,24 @@ export function BeforeAfterCompare({
         className="pointer-events-none absolute top-1/2 z-[5] flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border bg-black/55 text-white max-md:h-12 max-md:w-12"
         style={{ left: `${pos}%`, borderColor: "var(--ads-accent)" }}
       >
-        <span className="translate-y-px text-[16px] leading-none tracking-tight">‹ ›</span>
+        <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden>
+          <path
+            d="M9 7 L5 12 L9 17"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15 7 L19 12 L15 17"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </div>
   );

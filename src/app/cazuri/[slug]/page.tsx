@@ -7,7 +7,6 @@ import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
 import { CaseTeamBanner } from "@/components/cazuri/CaseTeamBanner";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
-import { CaseBackLink } from "@/components/cazuri/CaseBackLink";
 import { CASE_STUDIES, caseDisplayName, getCaseStudy } from "@/config/cases";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
@@ -53,7 +52,6 @@ export default async function CaseDetailPage({ params }: Props) {
         ])}
       />
       <main className="bg-black pb-20 pt-0 text-white">
-        <CaseBackLink />
         {/* Hero — full-bleed patient photo */}
         <section className="relative h-[min(52svh,420px)] w-full overflow-hidden bg-black md:h-[calc(100vh-40px)] md:min-h-[700px]">
           <Image

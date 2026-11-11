@@ -112,11 +112,11 @@ export default function TestimonialePage() {
             <p className="text-[21px] font-medium uppercase tracking-[0.14em] text-white">Programări</p>
             <h2 className="mt-3 text-[36px] font-semibold leading-[1.02] tracking-[-0.03em] md:text-[56px]">Vrei o experiență stomatologică diferită?</h2>
             <p className="mt-4 max-w-[860px] text-[21px] leading-[1.7] text-white">
-              Fă primul pas spre un zâmbet sănătos cu o echipă care pune accent pe confort, claritate și rezultate predictibile.
+              Fă primul pas spre un zâmbet sănătos cu o echipă care pune accent pe confort, claritate și un plan de tratament explicat.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href={CLINIC.formPageHref} className="ads-btn-lit inline-flex h-[44px] items-center rounded-full px-6 text-[21px] font-semibold transition duration-300 hover:scale-[1.02]">
-                Solicită evaluare
+                Programează o consultație
               </a>
               <a href={`tel:${CLINIC.phoneTel}`} className="inline-flex h-[44px] items-center rounded-full border border-white/40 px-6 text-[21px] font-semibold text-white transition duration-300 hover:scale-[1.02]">
                 Sună acum

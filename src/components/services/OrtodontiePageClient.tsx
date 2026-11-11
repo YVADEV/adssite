@@ -149,7 +149,7 @@ export default function OrtodontiePageClient() {
         <ServiceStepsSection heading="Etapele tratamentului ortodontic" steps={processSteps} />
         <ServiceBulletsSection heading="Principalele tratamente în ortodonție" items={treatmentTypes} />
         <ServiceBulletsSection heading="Tratamente ortodontice pentru copii" items={childTimeline} />
-        <ServiceCardsSection heading="Tehnologie și tratamente de ultimă generație" cards={technologies} />
+        <ServiceCardsSection heading="Tehnologie și opțiuni de tratament" cards={technologies} />
         <ServiceFAQ heading="Întrebări frecvente despre ortodonție" items={faqItems} />
       </ServiceContentSection>
 

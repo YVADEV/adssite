@@ -151,7 +151,7 @@ export function ContactFormCard({ source }: { source: string }) {
       className="ads-card-lit min-w-0 overflow-hidden rounded-[20px] p-5"
     >
       <p className="text-[14px] opacity-70">{CLINIC.instagramHandle}</p>
-      <h3 className="mt-2 text-[26px] font-semibold leading-[0.95] tracking-[-0.04em]">Solicită o programare</h3>
+      <h3 className="mt-2 text-[26px] font-semibold leading-[0.95] tracking-[-0.04em]">Doriți o programare?</h3>
       <p className="mt-2 text-[15px] leading-[1.45] opacity-80">
         Lasă-ne datele tale și te contactăm pentru confirmarea programării.
       </p>

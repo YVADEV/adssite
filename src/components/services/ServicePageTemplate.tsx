@@ -66,7 +66,7 @@ export default function ServicePageTemplate({
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                 <a href="#contact" className="ads-btn-lit inline-flex min-h-[46px] w-full items-center justify-center rounded-full px-5 text-[18px] font-semibold transition duration-300 hover:scale-[1.02] sm:w-auto sm:px-6 sm:text-[21px]">
-                  Solicită o evaluare
+                  Programează o consultație
                 </a>
                 <a href="/tarife/" className="inline-flex min-h-[46px] w-full items-center justify-center rounded-full border border-white/35 bg-white/5 px-5 text-[18px] font-semibold text-white backdrop-blur transition duration-300 hover:bg-white/10 sm:w-auto sm:px-6 sm:text-[21px]">
                   Vezi tarife
@@ -94,7 +94,7 @@ export default function ServicePageTemplate({
         <motion.div {...reveal} className="rounded-[24px] border border-white/10 bg-white/[0.04] p-6 md:p-10 lg:p-12">
           <h2 className="text-[32px] font-semibold leading-[1.05] tracking-[-0.03em] text-white md:text-[44px]">Ce presupune tratamentul</h2>
           <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">
-            În cadrul consultației inițiale, evaluăm situația clinică, discutăm obiectivele pacientului și stabilim un plan de tratament clar. Fiecare etapă este explicată pe înțelesul tău, cu accent pe siguranță, confort și rezultate predictibile.
+            În cadrul consultației inițiale, evaluăm situația clinică, discutăm obiectivele pacientului și stabilim un plan de tratament clar. Fiecare etapă este explicată pe înțelesul tău, cu accent pe siguranță și confort.
           </p>
           <p className="mt-4 max-w-[980px] text-[21px] leading-[1.7] text-white">
             Echipa noastră urmărește evoluția cazului pe tot parcursul intervenției, iar recomandările post-tratament sunt personalizate pentru a menține rezultatele în timp.

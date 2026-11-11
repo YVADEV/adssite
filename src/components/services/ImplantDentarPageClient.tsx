@@ -159,7 +159,7 @@ export default function ImplantDentarPageClient() {
       <ServiceTestimonials />
       <ServiceContactForm
         headline="Recâștigă funcția și estetica zâmbetului tău."
-        body="Echipa Alverna Dental Studio te ghidează pas cu pas, de la consultație până la finalizarea lucrării protetice, într-un protocol sigur și predictibil."
+        body="Echipa Alverna Dental Studio te ghidează pas cu pas, de la consultație până la finalizarea lucrării protetice."
       />
       <ServiceFinalCTA
         title="Doriți un implant dentar Cluj la standarde premium?"

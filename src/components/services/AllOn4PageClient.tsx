@@ -13,7 +13,7 @@ import {
   ServiceContactForm,
   ServiceFinalCTA,
 } from "./ServicePageParts";
-import { CASE_STUDIES } from "@/config/cases";
+import { CASE_STUDIES, caseDisplayName } from "@/config/cases";
 import { useMotionReady } from "@/hooks/useMotionReady";
 import { motionRevealProps } from "@/lib/motion-reveal";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
@@ -27,7 +27,7 @@ const whatIsCards = [
   },
   {
     title: "All-on-6",
-    text: "Folosește 6 implanturi, pentru o distribuție suplimentară a forțelor de masticație, recomandată în funcție de calitatea osului și de solicitarea mecanică estimată.",
+    text: "Numărul și poziția implanturilor nu se aleg după un pachet comercial, ci sunt stabilite de medic în urma evaluării clinice și imagistice.",
   },
 ];
 
@@ -467,7 +467,7 @@ function PriceBlock() {
         href="#contact"
         className="ads-btn-lit mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-5 text-[16px] font-semibold transition duration-300 sm:w-auto"
       >
-        Solicită un deviz personalizat
+        Programează o consultație
       </a>
     </>
   );
@@ -740,7 +740,7 @@ export default function AllOn4PageClient() {
                 <div className="relative aspect-[16/10] overflow-hidden bg-black">
                   <Image
                     src={caz.heroImage}
-                    alt={caz.patientName ? `${caz.patientName} — ${caz.category}` : caz.category}
+                    alt={caz.patientName ? `${caseDisplayName(caz.patientName)} — ${caz.category}` : caz.category}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition duration-300 group-hover:scale-[1.02]"
@@ -750,11 +750,11 @@ export default function AllOn4PageClient() {
                 <div className="p-3">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/50">Caz {index + 1}</p>
                   <h3 className="mt-1 text-[17px] font-semibold leading-[1.3] text-white">
-                    {caz.patientName ?? caz.category}
+                    {caseDisplayName(caz.patientName) || caz.category}
                   </h3>
                   <p className="mt-1 line-clamp-2 text-[16px] leading-[1.45] text-white/70">{caz.subtitle}</p>
                   <span className="mt-2 inline-flex items-center text-[16px] font-semibold text-white underline decoration-[#B6B94C]/70 underline-offset-4">
-                    Vezi cazul →
+                    Vezi cazul
                   </span>
                 </div>
               </Link>

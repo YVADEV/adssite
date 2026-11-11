@@ -123,7 +123,7 @@ export default function ProteticaPageClient() {
         chip="Precizie digitală · estetică naturală"
         kicker="Reabilitare orală estetică și funcțională"
         title="Protetică dentară"
-        intro="La Alverna Dental Studio Cluj oferim tratamente de protetică dentară la standarde înalte, pentru reconstrucția esteticii și funcționalității danturii. Lucrările sunt planificate personalizat, cu tehnologii digitale moderne și materiale biocompatibile de calitate superioară."
+        intro="La Alverna Dental Studio Cluj oferim tratamente de protetică dentară pentru reconstrucția esteticii și funcționalității danturii. Lucrările sunt planificate personalizat, cu flux digital și materiale biocompatibile."
       />
 
       <ServiceQuickFacts

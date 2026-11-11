@@ -35,7 +35,7 @@ const prepAndRecovery = [
 const advantages = [
   {
     title: "Experiență multidisciplinară",
-    text: "Cazurile sunt analizate integrat de specialiști pentru soluții sigure și predictibile.",
+    text: "Cazurile sunt analizate integrat de specialiști, într-un plan comun de tratament.",
   },
   {
     title: "Tehnologii moderne",
@@ -110,14 +110,14 @@ export default function ChirurgieDentaraPageClient() {
         chip="Intervenții eficiente și sigure"
         kicker="Chirurgie orală și maxilo-facială"
         title="Chirurgie dentară"
-        intro="Serviciile de chirurgie dentară Alverna Dental Studio includ proceduri complexe pentru corectarea și repararea structurilor moi și dure ale cavității orale. De la extracții complexe la reconstrucții osoase și intervenții maxilo-faciale, tratamentele sunt realizate la standarde înalte, cu rezultate estetice și funcționale predictibile."
+        intro="Serviciile de chirurgie dentară Alverna Dental Studio includ proceduri complexe pentru corectarea și repararea structurilor moi și dure ale cavității orale. De la extracții complexe la reconstrucții osoase și intervenții maxilo-faciale, tratamentele sunt planificate digital și explicate înainte de intervenție."
       />
 
       <ServiceQuickFacts
         facts={[
           ["Specializare", "Chirurgie dentară"],
           ["Indicații", "Extracții, implantologie, reconstrucții"],
-          ["Abordare", "Minim invazivă și predictibilă"],
+          ["Abordare", "Minim invazivă, planificată digital"],
           ["Obiectiv", "Sănătate, funcționalitate, estetică"],
         ]}
       />

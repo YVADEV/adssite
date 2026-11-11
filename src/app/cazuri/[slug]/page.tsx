@@ -7,7 +7,8 @@ import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
 import { CaseTeamBanner } from "@/components/cazuri/CaseTeamBanner";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
-import { CASE_STUDIES, getCaseStudy } from "@/config/cases";
+import { CaseBackLink } from "@/components/cazuri/CaseBackLink";
+import { CASE_STUDIES, caseDisplayName, getCaseStudy } from "@/config/cases";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
 import { pageMetadata, SITE_URL } from "@/lib/seo";
@@ -52,6 +53,7 @@ export default async function CaseDetailPage({ params }: Props) {
         ])}
       />
       <main className="bg-black pb-20 pt-0 text-white">
+        <CaseBackLink />
         {/* Hero — full-bleed patient photo */}
         <section className="relative h-[min(52svh,420px)] w-full overflow-hidden bg-black md:h-[calc(100vh-40px)] md:min-h-[700px]">
           <Image
@@ -72,15 +74,9 @@ export default async function CaseDetailPage({ params }: Props) {
           />
 
           <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1680px] flex-col px-6 md:px-10 lg:px-12">
-            <Link
-              href="/cazuri/"
-              className="absolute left-4 top-6 inline-flex w-fit items-center gap-2 text-[18px] font-medium text-white transition hover:text-white md:left-10 md:top-8 md:text-[21px] lg:left-12 lg:top-10"
-            >
-              ← Înapoi la cazuri
-            </Link>
             {caz.patientName && (
               <p className="absolute bottom-8 left-4 max-w-[calc(100%-2rem)] text-[32px] font-semibold leading-[0.95] tracking-[-0.02em] text-white sm:text-[40px] md:bottom-36 md:left-10 md:text-[80px] lg:bottom-44 lg:left-12 lg:text-[100px]">
-                {caz.patientName}
+                {caseDisplayName(caz.patientName)}
               </p>
             )}
           </div>
@@ -137,7 +133,9 @@ export default async function CaseDetailPage({ params }: Props) {
             {caz.quickFacts.map((fact) => (
               <div key={fact.label}>
                 <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/50">{fact.label}</p>
-                <p className="mt-2 text-[18px] font-semibold leading-[1.35] text-white md:text-[21px]">{fact.value}</p>
+                <p className="mt-2 text-[18px] font-semibold leading-[1.35] text-white md:text-[21px]">
+                  {fact.label === "Pacient" ? caseDisplayName(fact.value) : fact.value}
+                </p>
               </div>
             ))}
           </div>

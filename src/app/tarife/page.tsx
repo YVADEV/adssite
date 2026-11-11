@@ -14,20 +14,42 @@ export default function TarifePage() {
 
   const activeData = useMemo(() => pricingData.find((category) => category.category === activeCategory) ?? pricingData[0], [activeCategory]);
 
+  function openCategory(category: string) {
+    setActiveCategory(category);
+    setMobileOpen(category);
+    const index = pricingData.findIndex((item) => item.category === category);
+    window.requestAnimationFrame(() => {
+      const panel = index >= 0 ? document.getElementById(`tarife-cat-${index}`) : null;
+      (panel ?? pricesRef.current)?.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  }
+
   const snapshotCards = (
     <>
-      <div className="flex items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[0.04] px-3.5 py-2.5 md:block md:rounded-[16px] md:p-4">
-        <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-white/60 md:text-[21px] md:tracking-[0.1em]">Consultație</p>
-        <p className="shrink-0 text-[15px] font-semibold leading-none text-white md:mt-2 md:text-[21px]">de la 150 RON</p>
-      </div>
-      <div className="flex items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[0.04] px-3.5 py-2.5 md:block md:rounded-[16px] md:p-4">
-        <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-white/60 md:text-[21px] md:tracking-[0.1em]">Implantologie</p>
-        <p className="shrink-0 text-[15px] font-semibold leading-none text-white md:mt-2 md:text-[21px]">de la 400 EURO</p>
-      </div>
-      <div className="flex items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[0.04] px-3.5 py-2.5 md:block md:rounded-[16px] md:p-4">
-        <p className="text-[12px] font-medium uppercase tracking-[0.08em] text-white/60 md:text-[21px] md:tracking-[0.1em]">Alignere</p>
-        <p className="shrink-0 text-[15px] font-semibold leading-none text-white md:mt-2 md:text-[21px]">de la 6000 RON</p>
-      </div>
+      <button
+        type="button"
+        onClick={() => openCategory("Implantologie")}
+        className="flex w-full items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[0.04] px-3.5 py-3 text-left md:block md:rounded-[16px] md:p-4"
+      >
+        <p className="text-[15px] font-semibold leading-[1.25] text-white md:text-[21px]">Implant dentar</p>
+        <p className="shrink-0 text-[13px] text-white/65 md:mt-2 md:text-[18px]">Vezi tarife</p>
+      </button>
+      <button
+        type="button"
+        onClick={() => openCategory("All-on-4 / All-on-6")}
+        className="flex w-full items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[0.04] px-3.5 py-3 text-left md:block md:rounded-[16px] md:p-4"
+      >
+        <p className="text-[15px] font-semibold leading-[1.25] text-white md:text-[21px]">Dinți ficși pe implanturi</p>
+        <p className="shrink-0 text-[13px] text-white/65 md:mt-2 md:text-[18px]">Plan individualizat</p>
+      </button>
+      <button
+        type="button"
+        onClick={() => openCategory("Ortodonție")}
+        className="flex w-full items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[0.04] px-3.5 py-3 text-left md:block md:rounded-[16px] md:p-4"
+      >
+        <p className="text-[15px] font-semibold leading-[1.25] text-white md:text-[21px]">Ortodonție</p>
+        <p className="shrink-0 text-[13px] text-white/65 md:mt-2 md:text-[18px]">Vezi opțiunile disponibile</p>
+      </button>
     </>
   );
 
@@ -53,7 +75,7 @@ export default function TarifePage() {
             <div className="ads-hero-editorial relative z-[2] -mt-9 bg-[#0f1115] px-5 pb-[calc(2rem+env(safe-area-inset-bottom,0px))] pt-6 text-white md:absolute md:inset-0 md:z-auto md:mt-0 md:flex md:flex-col md:items-start md:justify-end md:bg-transparent md:px-8 md:py-8 md:pb-12 lg:px-12 lg:pb-16">
               <div className="max-w-[1680px]">
                 <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-white/80 md:text-[21px]">
-                  Transparență totală
+                  Tarife pe categorii
                 </p>
                 <h1 className="mt-1 text-[clamp(32px,9.4vw,40px)] font-extrabold leading-[0.92] tracking-[-0.05em] text-white md:mt-3 md:text-[60px] md:leading-[1.05] md:tracking-[-0.03em] lg:text-[72px]">
                   Tarife
@@ -172,7 +194,7 @@ export default function TarifePage() {
               </div>
 
               <div className="mt-5 rounded-[16px] border border-[color:var(--ads-accent)]/35 bg-[color:var(--ads-accent)]/8 p-4 md:mt-6">
-                <p className="text-[16px] font-semibold text-white md:text-[21px]">Solicită un plan personalizat</p>
+                <p className="text-[16px] font-semibold text-white md:text-[21px]">Plan personalizat</p>
                 <p className="mt-1 text-[14px] leading-[1.45] text-white/75 md:text-[21px]">Te contactăm rapid pentru o estimare clară și pașii potriviți cazului tău.</p>
                 <a href={CLINIC.formPageHref} className="ads-btn-lit mt-3 inline-flex min-h-[48px] w-full items-center justify-center rounded-full px-4 py-2.5 text-center text-[16px] font-semibold leading-[1.2] transition duration-200 hover:opacity-90 md:w-auto md:px-5 md:text-[21px]">
                   Programează o consultație

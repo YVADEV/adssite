@@ -59,42 +59,9 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="mx-auto w-full max-w-[1680px] px-4 pt-8 md:px-8 md:pt-12 lg:px-12">
-          <p className="max-w-[1050px] text-[18px] leading-[1.65] text-white/75 sm:text-[21px]">
-            Promisiunea noastră față de dumneavoastră este aceea că echipa Alverna Dental Studio își va folosi experiența
-            și pasiunea pentru un plan de tratament explicat, nu doar pentru o lucrare izolată.
-          </p>
-        </section>
+        <BookingSection source="contact-page" />
 
-        <section className="mx-auto mt-8 w-full max-w-[1680px] px-4 md:mt-10 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
-            <article className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:rounded-[18px] md:p-6">
-              <p className="text-[16px] font-semibold tracking-[-0.02em] md:text-[21px]">Suport telefonic și online</p>
-              <p className="mt-2 text-[14px] leading-[1.55] text-[#4a4a4a] md:text-[21px] md:leading-[1.6]">Vă răspundem cu drag la toate întrebările! Contactați-ne acum!</p>
-            </article>
-            <article className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:rounded-[18px] md:p-6">
-              <p className="text-[16px] font-semibold tracking-[-0.02em] md:text-[21px]">Programări</p>
-              <p className="mt-2 text-[14px] leading-[1.55] text-[#4a4a4a] md:text-[21px] md:leading-[1.6]">Doriți o programare la clinica noastră? Completați formularul!</p>
-            </article>
-            <article className="rounded-[16px] bg-white p-4 shadow-[0_8px_24px_rgba(0,0,0,0.06)] md:rounded-[18px] md:p-6">
-              <p className="text-[16px] font-semibold tracking-[-0.02em] md:text-[21px]">Contact</p>
-              <p className="mt-2 text-[14px] leading-[1.55] text-[#4a4a4a] md:text-[21px] md:leading-[1.6]">
-                {CLINIC.name}
-                <br />
-                <a
-                  href={CLINIC.mapsPlaceUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline decoration-[#4a4a4a]/30 underline-offset-4 transition hover:decoration-[#4a4a4a]"
-                >
-                  {CLINIC.addressLine}
-                </a>
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
+        <section className="mx-auto mt-4 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-[32px] font-semibold leading-[0.95] tracking-[-0.03em] text-white md:text-[56px]">
@@ -185,8 +152,6 @@ export default function ContactPage() {
             />
           </div>
         </section>
-
-        <BookingSection source="contact-page" />
       </main>
     </PrototypeFrame>
   );

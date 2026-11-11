@@ -16,7 +16,7 @@ export const CLINIC = {
   whatsappUrl: "https://wa.me/40748085933",
   /** Single schedule string. Schema hours in seo.ts use the same Saturday close (15:00). */
   hoursDisplay: "Luni–Vineri 09:00–21:00 · Sâmbătă 09:00–15:00",
-  mailtoSubject: "Solicită o programare",
+  mailtoSubject: "Programează o consultație",
   mapsPlaceUrl:
     "https://www.google.com/maps/place/Alverna+Dental+Studio/@46.758115,23.6122138,17z/",
   mapsDirectionsUrl:

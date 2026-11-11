@@ -524,7 +524,7 @@ export default function HomePageClient() {
               href={featuredCase.path}
               className="inline-flex min-h-[48px] items-center justify-center self-start rounded-full bg-black px-5 text-center text-[18px] font-semibold text-white transition duration-200 hover:opacity-90 min-[480px]:text-[21px]"
             >
-              Vezi cazul →
+              Vezi cazul
             </Link>
             </div>
 
@@ -567,10 +567,10 @@ export default function HomePageClient() {
             </div>
             <div className="max-w-[520px]">
               <h2 className="text-[28px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[36px]">
-                Clinică stomatologică modernă
+                Clinică stomatologică multidisciplinară
               </h2>
               <p className="mt-4 text-[21px] leading-[1.65] tracking-[-0.64px] text-white">
-                Ne menținem statutul de clinică stomatologică modernă, în cadrul căreia fiecare cabinet stomatologic Cluj este dotat cu aparatură medicală de ultimă generație.
+                Alverna Dental Studio este o clinică stomatologică multidisciplinară din Cluj-Napoca, în care tehnologia digitală, experiența medicală și laboratorul dentar propriu sunt integrate într-un singur flux de tratament.
               </p>
             </div>
           </div>

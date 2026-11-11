@@ -36,33 +36,33 @@ import raresHarmathImage from "@/assets/echipa/rares-harmath.png";
 import heroTeamImage from "@/assets/echipa/hero-team.png";
 
 const specialistTeam = [
-  { name: "Dr. Radu Nichimiș", image: raduImage.src, href: "/echipa/radu-nichimis/" },
-  { name: "Dr. Andreea Pârvu", image: andreeaImage.src, href: "/echipa/andreea-parvu/" },
-  { name: "Dr. Rareș Gorun", image: raresImage.src },
-  { name: "Dr. Laura Grigorean", image: lauraImage.src, href: "/echipa/laura-grigorean/" },
-  { name: "Dr. Corina Holici", image: corinaImage.src, href: "/echipa/corina-holici/", imageClassName: "-scale-x-100" },
-  { name: "Dr. Andreea Ronea", image: andreeaRoneaImage.src },
-  { name: "Dr. Raul Mureșan", image: raulImage.src },
-  { name: "Dr. Valentina Nichimiș", image: valentinaImage.src },
-  { name: "Dr. Bogdan Holici", image: bogdanImage.src },
+  { name: "Dr. Radu Nichimiș", role: "Chirurgie orală și maxilo-facială", image: raduImage.src, href: "/echipa/radu-nichimis/" },
+  { name: "Dr. Andreea Pârvu", role: "Stomatologie generală și protetică", image: andreeaImage.src, href: "/echipa/andreea-parvu/" },
+  { name: "Dr. Rareș Gorun", role: "Medic stomatolog", image: raresImage.src },
+  { name: "Dr. Laura Grigorean", role: "Parodontologie", image: lauraImage.src, href: "/echipa/laura-grigorean/" },
+  { name: "Dr. Corina Holici", role: "Medic stomatolog", image: corinaImage.src, href: "/echipa/corina-holici/", imageClassName: "-scale-x-100" },
+  { name: "Dr. Andreea Ronea", role: "Medic stomatolog", image: andreeaRoneaImage.src },
+  { name: "Dr. Raul Mureșan", role: "Medic stomatolog", image: raulImage.src },
+  { name: "Dr. Valentina Nichimiș", role: "Medic stomatolog", image: valentinaImage.src },
+  { name: "Dr. Bogdan Holici", role: "Medic stomatolog", image: bogdanImage.src },
 ];
 
 const laboratoryTeam = [
-  { name: "Paula Bodocan", image: paulaBodocanImage.src },
-  { name: "Petre Mureșanu", image: petreMuresanuImage.src },
-  { name: "Rareș Telcean", image: raresTelceanImage.src },
-  { name: "Sidonia Stan", image: sidoniaStanImage.src },
+  { name: "Paula Bodocan", role: "Tehnician dentar", image: paulaBodocanImage.src },
+  { name: "Petre Mureșanu", role: "Tehnician dentar", image: petreMuresanuImage.src },
+  { name: "Rareș Telcean", role: "Tehnician dentar", image: raresTelceanImage.src },
+  { name: "Sidonia Stan", role: "Tehnician dentar", image: sidoniaStanImage.src },
+  { name: "Rareș Harmath", role: "Tehnician dentar", image: raresHarmathImage.src },
 ];
 
 const managementTeam = [
   { name: "Ioana Gheorghiță", image: ioanaGheorghitaImage.src },
   { name: "Marta Crina", image: martaCrinaImage.src },
-  { name: "Rareș Harmath", image: raresHarmathImage.src },
 ];
 
 const assistantsTeam = [
-  { name: "Narcisa Moca - asistentă", image: narcisaImage.src },
-  { name: "Alina Crim - asistentă", image: alinaCrimImage.src },
+  { name: "Narcisa Moca", role: "Asistentă", image: narcisaImage.src },
+  { name: "Alina Crim", role: "Asistentă", image: alinaCrimImage.src },
 ];
 
 const teamGroups = [
@@ -220,9 +220,9 @@ export default function EchipaPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.55 }}
               transition={reduceMotion ? {} : { duration: 0.55, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-[420px] whitespace-pre-line text-[32px] font-bold leading-[0.95] tracking-[-1.8px] md:text-[42px]"
+              className="max-w-[520px] whitespace-pre-line text-[32px] font-bold leading-[0.95] tracking-[-1.8px] md:text-[42px]"
             >
-              {"Fă cunoștință\ncu echipa noastră"}
+              {"O echipă construită\nîn jurul tratamentului\nmultidisciplinar"}
             </motion.h1>
 
             <motion.p
@@ -230,14 +230,9 @@ export default function EchipaPage() {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={reduceMotion ? {} : { duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-6 max-w-[420px] text-[18px] leading-[1.6] text-white md:text-[21px] lg:mt-8"
+              className="mt-6 max-w-[520px] text-[18px] leading-[1.6] text-white md:text-[21px] lg:mt-8"
             >
-              Personalul de la Alverna Dental Studio este atent, dedicat și bine pregătit, fiecare membru al echipei fiind specializat pe anumite ramuri ale stomatologiei. Prin servicii stomatologice de calitate, împreună, putem rezolva, în condiții de calitate superioară și de eficiență, orice situație dentară.
-              <br />
-              <br />
-              <span className="font-semibold text-white">Interacțiune de calitate</span>
-              <br />
-              În relația medic-pacient, ne bazăm pe comunicare, empatie și răbdare.
+              Cazurile complexe necesită mai mult decât intervenția unui singur medic. Echipa Alverna Dental Studio reunește specialități complementare – chirurgie orală și maxilo-facială, implantologie, parodontologie, protetică, endodonție, ortodonție și stomatologie generală – care colaborează în cadrul aceluiași plan de tratament.
             </motion.p>
           </div>
 
@@ -273,9 +268,13 @@ export default function EchipaPage() {
               ? `group relative h-[min(72vw,320px)] w-full overflow-hidden rounded-[14px] border border-white/15 bg-[#111] md:h-[360px] ${isLinked ? "" : "cursor-default"}`
               : `group relative h-[383px] w-full min-w-0 overflow-hidden rounded-[14px] border border-white/15 bg-[#111] ${isLinked ? "" : "cursor-default"}`;
 
+            const overlayClassName = isMobileTeamGrid
+              ? "absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] sm:bottom-3 sm:left-3"
+              : "absolute bottom-3 left-3 right-3";
             const nameClassName = isMobileTeamGrid
-              ? "ads-title-white absolute bottom-2 left-2 max-w-[calc(100%-0.75rem)] text-[15px] font-bold leading-[1.15] text-white sm:bottom-3 sm:left-3 sm:text-[18px]"
-              : "ads-title-white absolute bottom-3 left-3 text-[21px] font-bold text-white";
+              ? "ads-title-white text-[15px] font-bold leading-[1.15] text-white sm:text-[18px]"
+              : "ads-title-white text-[21px] font-bold leading-[1.15] text-white";
+            const role = "role" in member && typeof member.role === "string" ? member.role : "";
 
             const desktopCardProps = {
               variants: reduceMotion
@@ -327,17 +326,20 @@ export default function EchipaPage() {
                 />
                 </div>
                 <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.75),transparent_60%)]" />
-                {isMobileTeamGrid ? (
-                  <h3 className={nameClassName}>{member.name}</h3>
-                ) : (
-                  <motion.h3
-                    whileHover={isLinked && !reduceMotion ? { y: -1 } : {}}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                    className={nameClassName}
-                  >
-                    {member.name}
-                  </motion.h3>
-                )}
+                <div className={overlayClassName}>
+                  {isMobileTeamGrid ? (
+                    <h3 className={nameClassName}>{member.name}</h3>
+                  ) : (
+                    <motion.h3
+                      whileHover={isLinked && !reduceMotion ? { y: -1 } : {}}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className={nameClassName}
+                    >
+                      {member.name}
+                    </motion.h3>
+                  )}
+                  {role ? <p className="mt-1 text-[12px] font-medium leading-[1.3] text-white/80 sm:text-[13px] md:text-[14px]">{role}</p> : null}
+                </div>
               </>
             );
 

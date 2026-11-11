@@ -53,7 +53,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
     <PrototypeFrame>
       <ServicePageTemplate
         title={service.title}
-        shortIntro={`Serviciul de ${service.title.toLowerCase()} este realizat în clinică cu protocoale moderne, atenție la detalii și comunicare clară cu pacientul, pentru o experiență predictibilă și confortabilă.`}
+        shortIntro={`Serviciul de ${service.title.toLowerCase()} este realizat în clinică cu atenție la detalii și comunicare clară, într-un plan de tratament explicat pas cu pas.`}
         subLinks={service.children}
       />
     </PrototypeFrame>

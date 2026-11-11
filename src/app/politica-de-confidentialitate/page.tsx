@@ -17,7 +17,7 @@ export default function PrivacyPolicyPage() {
           <h1 className="mt-4 text-[40px] font-extrabold leading-[0.95] tracking-[-0.03em] md:text-[64px]">
             Politica de confidențialitate
           </h1>
-          <p className="mt-4 text-[21px] text-white">Ultima actualizare: 13 mai 2026</p>
+          <p className="mt-4 text-[21px] text-white">Ultima actualizare: 9 noiembrie 2026</p>
 
           <div className="mt-10 space-y-7 text-[21px] leading-[1.75] text-white">
             <section>
@@ -97,6 +97,42 @@ export default function PrivacyPolicyPage() {
               <p className="mt-2">
                 Folosim cookie-uri esențiale (fără de care site-ul nu funcționează) și, cu acordul tău, cookie-uri
                 pentru analize anonime. Poți accepta sau refuza din bannerul afișat la prima vizită.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">9. Aplicația mobilă Alverna Dental Studio</h2>
+              <p className="mt-2">
+                Aplicația pentru iPhone este un portal pentru pacienți. Prelucrăm, în plus față de datele de pe site:
+              </p>
+              <ul className="mt-2 space-y-2 pl-5 [list-style:disc] marker:text-white">
+                <li>
+                  Date de cont: nume, email, telefon, dată de naștere, adresă, alergii și contact de urgență, dacă le
+                  completezi.
+                </li>
+                <li>
+                  Date de sănătate dentară: documente și radiografii pe care le încarci, observații și programări
+                  sincronizate din dosarul clinicii (iStoma), când contul este conectat.
+                </li>
+                <li>
+                  Fotografii: poză de profil (opțional) și imagini Scan AI din cameră sau galerie. Accesul se cere doar
+                  când folosești aceste funcții.
+                </li>
+                <li>
+                  Scan AI: analiza automată a unei fotografii dentare, după consimțământ explicit. Rezultatul este
+                  orientativ, nu diagnostic medical, și nu înlocuiește consultul. Imaginea poate fi salvată în dosar doar
+                  dacă alegi această opțiune.
+                </li>
+                <li>
+                  Notificări push: token-ul dispozitivului (Apple Push Notification service) pentru remindere de
+                  programare, modificări și alerte din aplicație. Poți opri notificările din Setări iPhone.
+                </li>
+              </ul>
+              <p className="mt-2">
+                Furnizori implicați pentru aplicație: autentificare și stocare (Supabase), integrare iStoma (backend-ul
+                clinicii), analiză automată Scan AI, livrare email (cereri de programare) și Apple pentru push. Nu
+                vindem datele. Ștergerea contului din aplicație elimină datele din aplicație; dosarul medical din clinică
+                poate fi păstrat conform obligațiilor legale.
               </p>
             </section>
           </div>

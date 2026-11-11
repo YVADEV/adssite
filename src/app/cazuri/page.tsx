@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { CaseImage } from "@/components/cazuri/CaseImage";
 import { getCaseHrefForImage } from "@/config/cases";
@@ -22,25 +23,32 @@ import gabrielaCardCover from "@/assets/cazuri/gabriela-apati/card-cover.jpg";
 import ioanaPortraitAfter from "@/assets/cazuri/ioana-mosut/portrait-after.jpg";
 import bereczCardCover from "@/assets/cazuri/berecz/card-cover.jpg";
 
+const CASE_FILTERS = ["Toate", "Implantologie", "All-on-X", "Protetică", "Estetică", "Ortodonție", "Parodontologie"] as const;
+
 const caseGallery = [
-  { src: ceciliaPortrait.src, alt: "Caz Cecilia — reabilitare totală All-on-4 Straumann", name: "Cecilia" },
-  { src: danaCardCover.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu", name: "Dana" },
-  { src: carmenPopPortrait.src, alt: "Caz Carmen Pop — fațete dentare estetice", name: "Carmen Pop" },
-  { src: gabrielaCardCover.src, alt: "Caz Gabriela Apati — fațete dentare estetice", name: "Gabriela Apati" },
-  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete", name: "Aurelia" },
-  { src: ioanaPortraitAfter.src, alt: "Caz Ioana Mosut — reabilitare prin fațete dentare", name: "Ioana Mosut" },
-  { src: bereczCardCover.src, alt: "Caz Berecz — reabilitare protetică", name: "Berecz" },
-  { src: cazA7407944.src, alt: "Caz Laszlo — smile design", name: "Laszlo" },
-  { src: cazA7407760.src, alt: "Caz Laura — reabilitare protetică", name: "Laura" },
-  { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final", name: "Elena" },
-  { src: sergiuSmileAfter.src, alt: "Caz Sergiu Wittenberger — fațete dentare estetice", name: "Sergiu Wittenberger" },
-  { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară", name: "Simona" },
-  { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament", name: "Radu" },
-  { src: carmenAfter1.src, alt: "Caz Carmen — rezultat final după tratament", name: "Carmen" },
+  { src: ceciliaPortrait.src, alt: "Caz Cecilia — reabilitare totală All-on-4 Straumann", name: "Cecilia", tags: ["Implantologie", "All-on-X"] },
+  { src: danaCardCover.src, alt: "Caz Dana — reabilitare protetică integrală din zirconiu", name: "Dana", tags: ["Protetică", "Parodontologie"] },
+  { src: carmenPopPortrait.src, alt: "Caz Carmen — fațete dentare estetice", name: "Carmen", tags: ["Estetică"] },
+  { src: gabrielaCardCover.src, alt: "Caz Gabriela — fațete dentare estetice", name: "Gabriela", tags: ["Estetică"] },
+  { src: aureliaHero.src, alt: "Caz Aurelia — estetică dentară și fațete", name: "Aurelia", tags: ["Estetică"] },
+  { src: ioanaPortraitAfter.src, alt: "Caz Ioana — reabilitare prin fațete dentare", name: "Ioana", tags: ["Estetică"] },
+  { src: bereczCardCover.src, alt: "Caz Berecz — reabilitare protetică", name: "Berecz", tags: ["Protetică"] },
+  { src: cazA7407944.src, alt: "Caz Laszlo — smile design", name: "Laszlo", tags: ["Estetică"] },
+  { src: cazA7407760.src, alt: "Caz Laura — reabilitare protetică", name: "Laura", tags: ["Protetică"] },
+  { src: cazA7408160.src, alt: "Caz Elena — reabilitare complexă, rezultat final", name: "Elena", tags: ["Protetică"] },
+  { src: sergiuSmileAfter.src, alt: "Caz Sergiu — fațete dentare estetice", name: "Sergiu", tags: ["Estetică"] },
+  { src: simonaHero.src, alt: "Caz Simona — reabilitare estetică dentară", name: "Simona", tags: ["Estetică"] },
+  { src: raduAfter1.src, alt: "Caz Radu — rezultat final după tratament", name: "Radu", tags: ["Estetică"] },
+  { src: carmenAfter1.src, alt: "Caz Carmen — rezultat final după tratament", name: "Carmen", tags: ["Estetică"] },
 ];
 
 export default function CazuriPage() {
   const reduceMotion = useReducedMotion();
+  const [activeFilter, setActiveFilter] = useState<(typeof CASE_FILTERS)[number]>("Toate");
+  const visibleCases = useMemo(
+    () => (activeFilter === "Toate" ? caseGallery : caseGallery.filter((item) => item.tags.includes(activeFilter))),
+    [activeFilter],
+  );
 
   return (
     <PrototypeFrame darkHeader>
@@ -66,7 +74,7 @@ export default function CazuriPage() {
             <div className="mt-8 grid grid-cols-1 gap-6 md:mt-10 md:grid-cols-[minmax(280px,360px)_1fr] md:gap-10 lg:mt-12 lg:gap-12">
               <motion.div initial={reduceMotion ? false : { opacity: 0, y: 24 }} whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={reduceMotion ? {} : { duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}>
                 <p className="text-[16px] font-semibold text-white md:text-[21px]">Înainte / După</p>
-                <p className="mt-3 text-[16px] leading-[1.5] text-white md:text-[21px] md:leading-[1.4]">Cazuri selectate din tratamente finalizate în clinică, cu plan clar și rezultate predictibile.</p>
+                <p className="mt-3 text-[16px] leading-[1.5] text-white md:text-[21px] md:leading-[1.4]">Cazuri selectate din tratamente realizate în clinică, prezentate de la situația inițială până la rezultatul final.</p>
               </motion.div>
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 24 }}
@@ -81,8 +89,31 @@ export default function CazuriPage() {
           </div>
         </motion.section>
 
-        <section className="mx-auto mt-14 grid w-full max-w-[1680px] grid-cols-1 gap-6 px-4 md:grid-cols-2 md:px-8 lg:mt-[120px] lg:grid-cols-3 lg:gap-[74px] lg:px-12">
-          {caseGallery.map(({ src, alt, name }, i) => (
+        <section className="mx-auto mt-10 w-full max-w-[1680px] px-4 md:px-8 lg:mt-14 lg:px-12">
+          <div className="flex flex-wrap gap-2">
+            {CASE_FILTERS.map((filter) => {
+              const isActive = filter === activeFilter;
+              return (
+                <button
+                  key={filter}
+                  type="button"
+                  onClick={() => setActiveFilter(filter)}
+                  className={`min-h-[44px] rounded-full border px-4 text-[14px] font-semibold md:text-[16px] ${
+                    isActive
+                      ? "border-[color:var(--ads-accent)] bg-[color:var(--ads-accent)] text-black"
+                      : "border-white/20 bg-transparent text-white hover:border-white/40"
+                  }`}
+                >
+                  {filter}
+                </button>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className="mx-auto mt-8 grid w-full max-w-[1680px] grid-cols-1 gap-6 px-4 md:grid-cols-2 md:px-8 lg:mt-12 lg:grid-cols-3 lg:gap-[74px] lg:px-12">
+          {visibleCases.length ? (
+            visibleCases.map(({ src, alt, name }, i) => (
             <CaseImage
               key={src}
               src={src}
@@ -95,7 +126,12 @@ export default function CazuriPage() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.8, delay: i * 0.08, ease: "easeOut" }}
             />
-          ))}
+            ))
+          ) : (
+            <p className="col-span-full text-[16px] leading-[1.5] text-white/70 md:text-[21px]">
+              Nu avem încă un caz documentat în această categorie.
+            </p>
+          )}
         </section>
 
         <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:mt-24 md:px-8 lg:mt-[120px] lg:px-12">

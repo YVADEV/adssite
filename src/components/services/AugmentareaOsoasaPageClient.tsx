@@ -207,7 +207,7 @@ export default function AugmentareaOsoasaPageClient() {
       />
       <ServiceFinalCTA
         title="Programați-vă pentru augmentare osoasă în Cluj"
-        body="Nu lăsați insuficiența osoasă să vă limiteze opțiunile de tratament. Specialiștii Alverna Dental Studio vă oferă planuri personalizate, tehnici moderne și o abordare sigură, predictibilă."
+        body="Nu lăsați insuficiența osoasă să vă limiteze opțiunile de tratament. Specialiștii Alverna Dental Studio vă oferă planuri personalizate și o abordare clară, etapizată."
       />
     </ServicePageShell>
   );

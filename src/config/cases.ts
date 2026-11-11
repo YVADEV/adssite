@@ -77,6 +77,12 @@ import bereczWorkHands from "@/assets/cazuri/berecz/work-hands.jpg";
 import bereczWorkArches from "@/assets/cazuri/berecz/work-arches.jpg";
 import bereczWorkDetail from "@/assets/cazuri/berecz/work-detail.png";
 
+export function caseDisplayName(name?: string) {
+  const trimmed = name?.trim() ?? "";
+  if (!trimmed) return "";
+  return trimmed.split(/\s+/)[0] ?? trimmed;
+}
+
 export type CaseDoctor = {
   name: string;
   role: string;
@@ -144,7 +150,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Pacienta noastră a ajuns la noi cu distrucții dentare severe, o situație care afecta nu doar funcționalitatea, ci și calitatea vieții de zi cu zi.",
     paragraphs: [
       "Pacienta noastră a ajuns la noi cu distrucții dentare severe, o situație care afecta nu doar funcționalitatea, ci și calitatea vieții de zi cu zi. Zâmbetul devenise o sursă de disconfort și nesiguranță.",
-      "Am ales o soluție modernă și predictibilă: reabilitare totală prin sistemul All-on-4 Straumann, recunoscut la nivel internațional pentru stabilitate și rezultate pe termen lung. Într-un timp optim și cu o abordare minim invazivă, am reușit să redăm atât funcția, cât și estetica.",
+      "Am ales o soluție modernă: reabilitare totală prin sistemul All-on-4 Straumann, recunoscut la nivel internațional pentru stabilitate și rezultate pe termen lung. Într-un timp optim și cu o abordare minim invazivă, am reușit să redăm atât funcția, cât și estetica.",
       "Lucrările finale au fost realizate din compozit pe structură de titan, oferind durabilitate, confort și un aspect natural, perfect integrat fizionomiei pacientei.",
     ],
     closingQuote:
@@ -192,7 +198,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Pacientul s-a prezentat cu multiple probleme estetice și funcționale, inclusiv uzură dentară, disproporții gingivale și restaurări vechi neadaptate. În urma unei evaluări clinice și radiologice complete, a fost stabilit un plan de tratament personalizat, orientat către restabilirea armoniei zâmbetului și a funcției masticatorii.",
       "Prima etapă a inclus gingivoplastii realizate la nivelul dinților frontali și laterali, realizate de Dr. Laura Grigoreanu, cu scopul de a remodela conturul gingival și de a crea un cadru estetic ideal pentru viitoarele restaurări. Intervențiile chirurgicale au permis obținerea unor proporții dento-gingivale echilibrate și a unui zâmbet mai armonios.",
       "După vindecarea țesuturilor, s-a trecut la etapa protetică, unde Dr. Andreea Pârvu a conceput reabilitarea totală cu restaurări integral din zirconiu, material ales pentru rezistența sa excepțională, biocompatibilitate și aspectul natural pe care îl oferă. Fiecare lucrare a fost proiectată și personalizată pentru a respecta trăsăturile faciale, ocluzia și cerințele estetice ale pacientului.",
-      "Un avantaj important al acestui caz a fost colaborarea directă dintre medic și tehnicianul dentar, toate restaurările fiind realizate în laboratorul propriu Alverna Dental Studio, sub directa îndrumare a lui Rares Harmath, technician dentar cu o vastă experiență internațională, ceea ce a permis un control riguros asupra fiecărei etape de lucru și obținerea unui rezultat predictibil.",
+      "Un avantaj important al acestui caz a fost colaborarea directă dintre medic și tehnicianul dentar, toate restaurările fiind realizate în laboratorul propriu Alverna Dental Studio, sub directa îndrumare a lui Rares Harmath, technician dentar cu o vastă experiență internațională, ceea ce a permis un control riguros asupra fiecărei etape de lucru.",
       "Rezultatul final este un zâmbet complet reabilitat, cu o estetică naturală, funcționalitate optimă și integrare armonioasă a restaurărilor în contextul facial al pacientului. Acest caz evidențiază importanța unei abordări interdisciplinare, în care chirurgia parodontală și protetica modernă lucrează împreună pentru a oferi rezultate durabile și personalizate.",
     ],
     closingQuote:
@@ -220,7 +226,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       {
         label: "Laborator propriu",
         detail:
-          "Lucrări realizate în laboratorul Alverna Dental Studio, sub îndrumarea lui Rares Harmath, pentru control riguros și rezultat predictibil.",
+          "Lucrări realizate în laboratorul Alverna Dental Studio, sub îndrumarea lui Rares Harmath, cu control riguros al fiecărei etape.",
       },
     ],
     quickFacts: [
@@ -302,7 +308,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     paragraphs: [
       "Acest caz de smile design a fost abordat în Alverna Dental Studio printr-o planificare estetică detaliată, orientată către un zâmbet echilibrat, funcțional și natural.",
       "Pacientul a solicitat îmbunătățirea aspectului zâmbetului, cu focus pe simetrie, proporții dento-gingivale și expresie facială. Evaluarea inițială a inclus analiza profilului, a liniei zâmbetului și a raportului dintre dinți și gingie.",
-      "Planul de tratament a fost construit etapizat, combinând intervenții estetice și protetice pentru a obține un rezultat predictibil. Proporțiile au fost validate înainte de etapa finală, pentru a asigura coerența vizuală a zâmbetului.",
+      "Planul de tratament a fost construit etapizat, combinând intervenții estetice și protetice. Proporțiile au fost validate înainte de etapa finală, pentru a asigura coerența vizuală a zâmbetului.",
       "Restaurările finale au fost realizate cu materiale premium, personalizate în laboratorul propriu, sub coordonarea directă a echipei medicale și tehnice.",
       "Rezultatul este un zâmbet reconstruit armonios, cu integrare naturală în trăsăturile pacientului și îmbunătățire clară a încrederii în apariție.",
     ],
@@ -314,7 +320,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     treatmentSteps: [
       { label: "Analiză facială", detail: "Evaluare a proporțiilor, simetriei și liniei zâmbetului în contextul trăsăturilor faciale." },
-      { label: "Design digital", detail: "Planificare estetică a formei, dimensiunii și poziției dinților pentru un rezultat predictibil." },
+      { label: "Design digital", detail: "Planificare estetică a formei, dimensiunii și poziției dinților, validată înainte de etapa finală." },
       { label: "Etape clinice", detail: "Intervenții coordonate pentru preparare, gingie și restaurări, cu verificări intermediare." },
       { label: "Finalizare", detail: "Lucrări protetice personalizate, ajustate pentru funcție, confort și estetică de lungă durată." },
     ],
@@ -346,9 +352,9 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       { image: lauraSmileAfter, label: "După", alt: "Laura — rezultat final", objectPosition: "center center" },
     ],
     intro:
-      "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată și predictibilă.",
+      "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată.",
     paragraphs: [
-      "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată și predictibilă.",
+      "Acest caz de reabilitare protetică a fost realizat în Alverna Dental Studio, cu obiectivul de a restabili funcția masticatorie și estetica zâmbetului într-o abordare coordonată.",
       "Pacientul s-a prezentat cu pierderi dentare și restaurări vechi care compromiteau atât estetica, cât și confortul la masticație. Evaluarea clinică și radiologică a permis stabilirea unui plan etapizat, orientat spre stabilitate și durabilitate.",
       "Tratamentul a inclus pregătirea structurilor dentare, selecția materialelor potrivite și realizarea lucrărilor protetice cu atenție la ocluzie și integrare gingivală.",
       "Colaborarea directă între medic și tehnicianul dentar, în laboratorul propriu, a asigurat control constant asupra fiecărei etape și un rezultat final coerent.",
@@ -369,7 +375,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     quickFacts: [
       { label: "Tip caz", value: "Reabilitare protetică" },
       { label: "Obiectiv", value: "Funcție și estetică" },
-      { label: "Abordare", value: "Etapizată, predictibilă" },
+      { label: "Abordare", value: "Etapizată" }
       { label: "Laborator", value: "Alverna Dental Studio" },
     ],
     doctor: DEFAULT_CASE_DOCTOR,
@@ -402,7 +408,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       "Elena s-a prezentat cu multiple compromitere dentară, afectând atât aspectul zâmbetului, cât și funcția zilnică. După evaluarea completă, echipa medicală a construit un plan personalizat, cu etape clare și obiective măsurabile.",
       "Tratamentul a inclus intervenții clinice coordonate, cu atenție la proporții, ocluzie și confortul pacientei pe parcursul întregului proces.",
       "Lucrările finale au fost realizate în laboratorul propriu, cu personalizare atentă pentru fiecare detaliu estetic și funcțional.",
-      "Rezultatul documentat reflectă o transformare completă: zâmbet reabilitat, funcție îmbunătățită și o experiență clinică orientată spre siguranță și predictibilitate.",
+      "Rezultatul documentat reflectă o transformare completă: zâmbet reabilitat, funcție îmbunătățită și o experiență clinică orientată spre siguranță și claritate."
     ],
     closingQuote:
       "Un caz complex transformat în rezultat clar, stabil și natural — prin planificare riguroasă și execuție atentă.",

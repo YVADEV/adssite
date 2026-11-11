@@ -64,13 +64,8 @@ export default function SiteFooter() {
       <div className="mx-auto grid w-full max-w-[1720px] flex-1 grid-cols-1 gap-12 border-t border-white/8 pt-12 lg:grid-cols-[1.35fr_0.9fr_1fr_1fr] lg:gap-16">
         <section>
           <h3 className="text-[21px] font-semibold tracking-[-0.03em] text-white">Alverna Dental Studio</h3>
-          {/* SEO365: bloc vechi de copy — nu rescrie/șterge până nu validează rolul SEO și termenii de păstrat. */}
           <p className="mt-4 max-w-[560px] text-[16px] leading-[1.65] text-white/80 md:text-[21px] md:leading-[1.7]">
-            Clinica stomatologică Alverna Dental Studio include cabinete stomatologice modern amenajate și echipate cu
-            aparatură de ultimă generație. Astfel, serviciile pe care le oferim sunt de o calitate superioară, iar
-            pacienții noștri se simt mereu bine primiți. Fiecare cabinet stomatologic este pregătit să vă asigure un
-            confort sporit, iar experiența și profesionalismul medicilor noștri sunt puse în slujba asigurării unei
-            sănătăți dentare excelente!
+            Alverna Dental Studio este o clinică stomatologică multidisciplinară din Cluj-Napoca, cu laborator dentar propriu și flux digital integrat. Abordăm fiecare caz printr-un plan individualizat, construit prin colaborarea dintre specialitățile implicate.
           </p>
           <div className="mt-8 flex flex-col text-[16px] leading-[1.55] text-white md:text-[21px] md:leading-[1.6]">
             <a href={CLINIC.mapsPlaceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center transition-transform duration-200 hover:underline md:hover:translate-x-[3px]">

@@ -31,7 +31,7 @@ const strengths = [
   },
   {
     title: "Tehnologie modernă",
-    text: "Aparatură de ultimă generație pentru tratamente precise și eficiente.",
+    text: "Flux digital și investigații imagistice pentru un plan de tratament clar.",
   },
   {
     title: "Comunicare clară",

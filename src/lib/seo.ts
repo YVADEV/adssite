@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = "https://alvernadental.com";
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://alvernadental.com"
+).replace(/\/$/, "");
 
 export function absoluteUrl(path: string) {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;

@@ -107,7 +107,7 @@ export async function POST(request: Request) {
   }
 
   const fields = notificationFields(body);
-  const host = request.headers.get("x-forwarded-host") || request.headers.get("host") || "quiet-daffodil-0aeb6a.netlify.app";
+  const host = request.headers.get("x-forwarded-host") || request.headers.get("host") || "alvernadental.netlify.app";
   const proto = host.includes("localhost") || host.startsWith("127.") ? "http" : "https";
   const origin = `${proto}://${host}`;
 

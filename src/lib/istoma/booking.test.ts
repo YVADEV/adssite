@@ -50,7 +50,7 @@ const sampleInput = {
   preferredDate: "2026-11-25",
   consent: true,
   source: "home-page",
-  origin: "https://quiet-daffodil-0aeb6a.netlify.app",
+  origin: "https://alvernadental.netlify.app",
 };
 
 test("maps a request to AddAppointmentRequest and preserves the preferred date in Notes", () => {

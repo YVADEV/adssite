@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, error: BOOKING_PUBLIC.duplicate }, { status: 409 });
   }
 
-  const host = request.headers.get("x-forwarded-host") || request.headers.get("host") || "quiet-daffodil-0aeb6a.netlify.app";
+  const host = request.headers.get("x-forwarded-host") || request.headers.get("host") || "alvernadental.netlify.app";
   const proto = host.includes("localhost") || host.startsWith("127.") ? "http" : "https";
   body.origin = `${proto}://${host}`;
 

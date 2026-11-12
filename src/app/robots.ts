@@ -9,6 +9,8 @@ const AI_CRAWLERS = [
   "ChatGPT-User",
   "OAI-SearchBot",
   "ClaudeBot",
+  "Claude-User",
+  "Claude-SearchBot",
   "anthropic-ai",
   "Claude-Web",
   "PerplexityBot",
@@ -25,12 +27,23 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
   const host = (await headers()).get("host") ?? "";
   const onNetlifyPreview = host.endsWith(".netlify.app");
 
+  const claudeAgents = [
+    "ClaudeBot",
+    "Claude-User",
+    "Claude-SearchBot",
+    "anthropic-ai",
+    "Claude-Web",
+  ];
+
   if (onNetlifyPreview) {
     return {
-      rules: {
-        userAgent: "*",
-        disallow: "/",
-      },
+      rules: [
+        { userAgent: "*", disallow: "/" },
+        ...claudeAgents.map((userAgent) => ({
+          userAgent,
+          allow: "/",
+        })),
+      ],
     };
   }
 

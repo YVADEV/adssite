@@ -3,55 +3,26 @@ import { headers } from "next/headers";
 
 import { SITE_URL } from "@/lib/seo";
 
-const AI_CRAWLERS = [
-  "*",
-  "GPTBot",
-  "ChatGPT-User",
-  "OAI-SearchBot",
-  "ClaudeBot",
-  "Claude-User",
-  "Claude-SearchBot",
-  "anthropic-ai",
-  "Claude-Web",
-  "PerplexityBot",
-  "Google-Extended",
-  "Applebot-Extended",
-  "Bytespider",
-  "CCBot",
-  "meta-externalagent",
-] as const;
-
 export const dynamic = "force-dynamic";
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
   const host = (await headers()).get("host") ?? "";
-  const onNetlifyPreview = host.endsWith(".netlify.app");
+  const onNetlifyHost = host.endsWith(".netlify.app");
 
-  const claudeAgents = [
-    "ClaudeBot",
-    "Claude-User",
-    "Claude-SearchBot",
-    "anthropic-ai",
-    "Claude-Web",
-  ];
-
-  if (onNetlifyPreview) {
+  if (onNetlifyHost) {
     return {
-      rules: [
-        { userAgent: "*", disallow: "/" },
-        ...claudeAgents.map((userAgent) => ({
-          userAgent,
-          allow: "/",
-        })),
-      ],
+      rules: {
+        userAgent: "*",
+        allow: "/",
+      },
     };
   }
 
   return {
-    rules: AI_CRAWLERS.map((userAgent) => ({
-      userAgent,
+    rules: {
+      userAgent: "*",
       allow: "/",
-    })),
+    },
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,
   };

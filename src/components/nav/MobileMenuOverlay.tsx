@@ -16,6 +16,7 @@ type MobileMenuOverlayProps = {
   onServicesBack: () => void;
   openSubmenuSlug: string | null;
   setOpenSubmenuSlug: Dispatch<SetStateAction<string | null>>;
+  hideChrome?: boolean;
   children: ReactNode;
 };
 
@@ -28,6 +29,7 @@ export function MobileMenuOverlay({
   onServicesBack,
   openSubmenuSlug,
   setOpenSubmenuSlug,
+  hideChrome = false,
   children,
 }: MobileMenuOverlayProps) {
   const servicesBackRef = useRef<HTMLButtonElement>(null);
@@ -64,7 +66,14 @@ export function MobileMenuOverlay({
         menuVisible ? "ads-menu-overlay-open" : "invisible pointer-events-none opacity-0"
       }`}
     >
-      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[480px] flex-col overflow-hidden px-5 pb-[max(1rem,env(safe-area-inset-bottom))] pt-[max(0.75rem,env(safe-area-inset-top))]">
+      <div
+        className={`relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[480px] flex-col overflow-hidden px-5 pb-[max(1rem,env(safe-area-inset-bottom))] ${
+          hideChrome
+            ? "pt-[calc(var(--ads-header-height,72px)+env(safe-area-inset-top,0px))]"
+            : "pt-[max(0.75rem,env(safe-area-inset-top))]"
+        }`}
+      >
+        {hideChrome ? null : (
         <div className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 pb-3">
           <SiteLogo />
           <button
@@ -77,6 +86,7 @@ export function MobileMenuOverlay({
             <span className="absolute h-[2px] w-4 -rotate-45 bg-[#ffffff]" />
           </button>
         </div>
+        )}
         <div className="relative min-h-0 flex-1">
           <div
             className={`ads-menu-pane ads-menu-pane-main absolute inset-0 flex min-h-0 flex-col ${

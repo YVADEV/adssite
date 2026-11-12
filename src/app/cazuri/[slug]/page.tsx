@@ -104,7 +104,7 @@ export default async function CaseDetailPage({ params }: Props) {
               {caz.storyImages.map((item, i) => (
                 <figure
                   key={`story-${item.label}-${i}`}
-                  className={`relative w-full overflow-hidden rounded-[20px] border border-white/10 bg-black ${caz.galleryAspectClass ?? "aspect-[4/3]"}`}
+                  className={`relative w-full overflow-hidden rounded-[20px] border border-white/10 bg-black ${item.aspectClass ?? caz.galleryAspectClass ?? "aspect-[4/3]"}`}
                 >
                   <img
                     src={item.image.src}

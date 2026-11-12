@@ -3,16 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { useReducedMotion } from "motion/react";
-import ServicesDropdown from "@/components/nav/ServicesDropdown";
-import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
-import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
-import { useMobileMenu } from "@/hooks/useMobileMenu";
-import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
-import { FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
-import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
 import SiteFooter from "@/components/layout/SiteFooter";
-import SiteLogo from "@/components/nav/SiteLogo";
+import SiteHeader from "@/components/nav/SiteHeader";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
 import raduImage from "@/assets/echipa/radu-nichimis.png";
@@ -75,31 +67,7 @@ const teamGroups = [
 export default function EchipaPage() {
   const reduceMotion = useReducedMotion();
   const pageContentRef = useRef<HTMLDivElement>(null);
-  const menuOverlayRef = useRef<HTMLDivElement>(null);
-  const menuTopLineRef = useRef<HTMLSpanElement>(null);
-  const menuMidLineRef = useRef<HTMLSpanElement>(null);
-  const menuBottomLineRef = useRef<HTMLSpanElement>(null);
-  const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const [isMobileTeamGrid, setIsMobileTeamGrid] = useState(false);
-  const scrolled = useStickyHeaderScroll();
-
-  const {
-    menuOpen,
-    menuVisible,
-    mobileServicesOpen,
-    setMobileServicesOpen,
-    openSubmenuSlug,
-    setOpenSubmenuSlug,
-    closeMenu,
-    toggleMenu,
-  } = useMobileMenu({
-    overlayRef: menuOverlayRef,
-    pageRef: pageContentRef,
-    topLineRef: menuTopLineRef,
-    midLineRef: menuMidLineRef,
-    bottomLineRef: menuBottomLineRef,
-    menuTriggerRef,
-  });
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 1023px)");
@@ -111,99 +79,8 @@ export default function EchipaPage() {
 
   return (
     <div className="min-h-screen min-w-0 bg-black text-white">
-      <MobileMenuOverlay
-        id="echipa-mobile-menu"
-        overlayRef={menuOverlayRef}
-        menuVisible={menuVisible}
-        onClose={closeMenu}
-        servicesOpen={mobileServicesOpen}
-        onServicesBack={() => {
-          setOpenSubmenuSlug(null);
-          setMobileServicesOpen(false);
-        }}
-        openSubmenuSlug={openSubmenuSlug}
-        setOpenSubmenuSlug={setOpenSubmenuSlug}
-      >
-        {[
-          { href: "/", label: "Acasă" },
-          { href: "/echipa", label: "Echipa" },
-          { href: "/cazuri", label: "Cazuri" },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
-        ].map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            data-menu-item
-            onClick={closeMenu}
-            className={mobileMenuClassForLabel(item.label)}
-            aria-current={item.href === "/echipa" ? "page" : undefined}
-          >
-            <span>{item.label}</span>
-          </a>
-        ))}
-        <MobileMenuNavServices
-          panelId="echipa-mobile-menu-services"
-          mobileServicesOpen={mobileServicesOpen}
-          setMobileServicesOpen={setMobileServicesOpen}
-          setOpenSubmenuSlug={setOpenSubmenuSlug}
-        />
-        {[
-          { href: "/tarife", label: "Tarife" },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
-          { href: "/contact", label: "Contact" },
-        ].map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            data-menu-item
-            onClick={closeMenu}
-            className={mobileMenuClassForLabel(item.label)}
-          >
-            <span>{item.label}</span>
-          </a>
-        ))}
-      </MobileMenuOverlay>
-
       <div ref={pageContentRef} id="main" tabIndex={-1} className="outline-none">
-        <header
-          className={`ads-site-header w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out ${
-            scrolled
-              ? "bg-[#0f1115]/95 shadow-[0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md"
-              : "bg-[#0f1115]"
-          }`}
-        >
-          <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
-          <SiteLogo />
-          <nav className="hidden items-center gap-8 text-[15px] text-white lg:flex xl:gap-[80px]">
-            <a href="/">Acasă</a>
-            <a href="/echipa" className="text-white">
-              Echipă
-            </a>
-            <a href="/cazuri">Cazuri</a>
-            <a href={FIXED_TEETH_HREF} className="ads-nav-green-glow">{FIXED_TEETH_NAV_LABEL}</a>
-            <ServicesDropdown isDark />
-            <a href="/tarife">Tarife</a>
-            <a href="/contact">Contact</a>
-          </nav>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <EmergencyHeaderButton />
-            <button
-            ref={menuTriggerRef}
-            type="button"
-            aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
-            aria-expanded={menuOpen}
-            aria-controls="echipa-mobile-menu"
-            aria-haspopup="dialog"
-            onClick={toggleMenu}
-            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--ads-accent)] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
-          >
-            <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-[#ffffff]" />
-            <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-[#ffffff]" />
-            <span ref={menuBottomLineRef} className="ads-menu-line ads-menu-line-bottom h-[2px] w-full bg-[#ffffff]" />
-          </button>
-          </div>
-          </div>
-        </header>
+        <SiteHeader pageContentRef={pageContentRef} menuId="echipa-mobile-menu" />
 
       <main className="pb-24 md:pb-32 lg:pb-[180px]">
         <motion.section

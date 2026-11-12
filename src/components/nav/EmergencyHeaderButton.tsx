@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { EMERGENCY_HREF, EMERGENCY_NAV_LABEL } from "@/config/services";
 
+/** Direct emergency page link. Header chrome uses EmergencyNav instead. */
 export function EmergencyHeaderButton() {
   return (
     <Link

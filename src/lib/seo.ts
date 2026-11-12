@@ -117,6 +117,7 @@ export const STATIC_ROUTES = [
   "/echipa/laura-grigorean/",
   "/echipa/andreea-parvu/",
   "/echipa/corina-holici/",
+  "/blog/",
   "/cazuri/",
   "/tarife/",
   "/testimoniale/",

@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-/** Returns true after the page has scrolled past a small threshold. */
-export function useStickyHeaderScroll(threshold = 4) {
+/**
+ * Compact island after scroll, with hysteresis so the bar does not flicker
+ * around a single threshold.
+ */
+export function useStickyHeaderScroll(enter = 56, exit = 16) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -12,14 +15,19 @@ export function useStickyHeaderScroll(threshold = 4) {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(() => {
-        setScrolled(window.scrollY > threshold);
+        const y = window.scrollY;
+        setScrolled((prev) => {
+          if (y > enter) return true;
+          if (y < exit) return false;
+          return prev;
+        });
         ticking = false;
       });
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [threshold]);
+  }, [enter, exit]);
 
   return scrolled;
 }

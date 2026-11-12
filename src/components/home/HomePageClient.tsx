@@ -3,20 +3,13 @@
 import { useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import ServicesDropdown from "@/components/nav/ServicesDropdown";
-import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
-import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
 import SiteFooter from "@/components/layout/SiteFooter";
-import SiteLogo from "@/components/nav/SiteLogo";
-import { useMobileMenu } from "@/hooks/useMobileMenu";
-import { useStickyHeaderScroll } from "@/hooks/useStickyHeaderScroll";
+import SiteHeader from "@/components/nav/SiteHeader";
 import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
 import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { HeroIntroVideo } from "@/components/media/HeroIntroVideo";
 import { LazyVideo } from "@/components/media/LazyVideo";
-import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/config/services";
-import { EmergencyHeaderButton } from "@/components/nav/EmergencyHeaderButton";
-import { mobileMenuClassForLabel } from "@/components/nav/mobileMenuStyles";
+import { EMERGENCY_HREF, FIXED_TEETH_HREF } from "@/config/services";
 import { pricingData } from "@/config/pricing";
 import { useIdleMedia } from "@/hooks/useIdleMedia";
 import vdScaun from "@/assets/VDscaun.jpg";
@@ -316,132 +309,13 @@ function TeamBentoBanner({
 export default function HomePageClient() {
   const rootRef = useRef<HTMLDivElement>(null);
   const pageContentRef = useRef<HTMLDivElement>(null);
-  const menuOverlayRef = useRef<HTMLDivElement>(null);
-  const menuTopLineRef = useRef<HTMLSpanElement>(null);
-  const menuMidLineRef = useRef<HTMLSpanElement>(null);
-  const menuBottomLineRef = useRef<HTMLSpanElement>(null);
-  const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const contactSectionRef = useRef<HTMLDivElement>(null);
-  const scrolled = useStickyHeaderScroll();
   const belowFoldMedia = useIdleMedia();
-
-  const {
-    menuOpen,
-    menuVisible,
-    mobileServicesOpen,
-    setMobileServicesOpen,
-    openSubmenuSlug,
-    setOpenSubmenuSlug,
-    closeMenu,
-    toggleMenu,
-  } = useMobileMenu({
-    overlayRef: menuOverlayRef,
-    pageRef: pageContentRef,
-    topLineRef: menuTopLineRef,
-    midLineRef: menuMidLineRef,
-    bottomLineRef: menuBottomLineRef,
-    menuTriggerRef,
-  });
 
   return (
     <div ref={rootRef} className="ads-page min-w-0 bg-[#0f1115] text-white [scroll-behavior:smooth]">
-      <MobileMenuOverlay
-        id="home-mobile-menu"
-        overlayRef={menuOverlayRef}
-        menuVisible={menuVisible}
-        onClose={closeMenu}
-        servicesOpen={mobileServicesOpen}
-        onServicesBack={() => {
-          setOpenSubmenuSlug(null);
-          setMobileServicesOpen(false);
-        }}
-        openSubmenuSlug={openSubmenuSlug}
-        setOpenSubmenuSlug={setOpenSubmenuSlug}
-      >
-        {[
-          { href: "/", label: "Acasă" },
-          { href: "/echipa", label: "Echipa" },
-          { href: "/cazuri", label: "Cazuri" },
-          { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
-        ].map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            prefetch={false}
-            data-menu-item
-            onClick={closeMenu}
-            className={mobileMenuClassForLabel(item.label)}
-            aria-current={item.href === "/" ? "page" : undefined}
-          >
-            <span>{item.label}</span>
-          </Link>
-        ))}
-        <MobileMenuNavServices
-          panelId="home-mobile-menu-services"
-          mobileServicesOpen={mobileServicesOpen}
-          setMobileServicesOpen={setMobileServicesOpen}
-          setOpenSubmenuSlug={setOpenSubmenuSlug}
-        />
-        {[
-          { href: "/tarife", label: "Tarife" },
-          { href: "/urgente-stomatologice-cluj/", label: "Urgențe" },
-          { href: "/contact", label: "Contact" },
-        ].map((item) => (
-          <Link
-            key={item.label}
-            href={item.href}
-            prefetch={false}
-            data-menu-item
-            onClick={closeMenu}
-            className={mobileMenuClassForLabel(item.label)}
-          >
-            <span>{item.label}</span>
-          </Link>
-        ))}
-      </MobileMenuOverlay>
-
       <div ref={pageContentRef}>
-      <header
-        data-intro="nav"
-        className={`ads-site-header w-full text-white transition-[background-color,box-shadow,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled
-            ? "bg-[#0f1115]/92 shadow-[0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md"
-            : "bg-[#0f1115]"
-        }`}
-      >
-        <div className="ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
-          <SiteLogo />
-          <nav
-            className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"
-            style={{ columnGap: "clamp(24px, 4.5vw, 100px)" }}
-          >
-            <Link className="pointer-events-auto underline decoration-2 underline-offset-[10px] transition-opacity duration-200 hover:opacity-75" href="/" prefetch={false} aria-current="page">Acasă</Link>
-            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/echipa" prefetch={false}>Echipa</Link>
-            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/cazuri" prefetch={false}>Cazuri</Link>
-            <Link className="pointer-events-auto ads-nav-green-glow whitespace-nowrap opacity-90 transition-opacity duration-200 hover:opacity-100" href={FIXED_TEETH_HREF} prefetch={false}>{FIXED_TEETH_NAV_LABEL}</Link>
-            <span className="pointer-events-auto"><ServicesDropdown isDark /></span>
-            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/tarife" prefetch={false}>Tarife</Link>
-            <Link className="pointer-events-auto opacity-90 transition-opacity duration-200 hover:opacity-100" href="/contact" prefetch={false}>Contact</Link>
-          </nav>
-          <div className="flex items-center gap-2 sm:gap-3">
-            <EmergencyHeaderButton />
-            <button
-            ref={menuTriggerRef}
-            type="button"
-            aria-label={menuOpen ? "Închide meniul" : "Deschide meniul"}
-            aria-expanded={menuOpen}
-            aria-controls="home-mobile-menu"
-            aria-haspopup="dialog"
-            onClick={toggleMenu}
-            className={`relative z-10 flex h-11 w-11 shrink-0 flex-col justify-center gap-[6px] rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--ads-accent)] lg:hidden ${menuOpen ? "pointer-events-none" : ""}`}
-          >
-            <span ref={menuTopLineRef} className="ads-menu-line ads-menu-line-top h-[2px] w-full bg-[#ffffff]" />
-            <span ref={menuMidLineRef} className="ads-menu-line ads-menu-line-mid h-[2px] w-full bg-[#ffffff]" />
-            <span ref={menuBottomLineRef} className="ads-menu-line ads-menu-line-bottom h-[2px] w-full bg-[#ffffff]" />
-          </button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader pageContentRef={pageContentRef} introNav menuId="home-mobile-menu" />
 
       <section className="mt-0 w-full">
         <div className="relative md:h-[calc(100dvh-72px)] md:min-h-[560px]">

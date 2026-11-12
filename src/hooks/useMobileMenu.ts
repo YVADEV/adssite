@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 
 type MobileMenuRefs = {
   overlayRef: RefObject<HTMLDivElement | null>;
@@ -102,6 +102,9 @@ export function useMobileMenu(refs: MobileMenuRefs) {
     focusPrevOpenRef.current = menuOpen;
   }, [menuOpen, menuTriggerRef]);
 
+  const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const toggleMenu = useCallback(() => setMenuOpen((prev) => !prev), []);
+
   return {
     menuOpen,
     setMenuOpen,
@@ -110,7 +113,7 @@ export function useMobileMenu(refs: MobileMenuRefs) {
     setMobileServicesOpen,
     openSubmenuSlug,
     setOpenSubmenuSlug,
-    closeMenu: () => setMenuOpen(false),
-    toggleMenu: () => setMenuOpen((prev) => !prev),
+    closeMenu,
+    toggleMenu,
   };
 }

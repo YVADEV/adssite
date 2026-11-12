@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "npx --yes tsx --test src/lib/istoma/*.test.ts src/lib/istoma/**/*.test.ts src/lib/email/*.test.ts"
+    "test": "npx --yes tsx --test src/lib/istoma/*.test.ts src/lib/istoma/**/*.test.ts src/lib/email/*.test.ts src/lib/contact.test.ts"
   },
   "dependencies": {
     "gsap": "^3.15.0",

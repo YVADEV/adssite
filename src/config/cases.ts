@@ -100,6 +100,7 @@ export type CaseStoryImage = {
   label: string;
   alt: string;
   objectPosition?: string;
+  aspectClass?: string;
   scale?: number;
 };
 
@@ -782,7 +783,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     heroObjectPosition: "center 18%",
     thumbnailSrc: bereczSmileAfter.src,
     storyImages: [
-      { image: bereczPortraitBefore, label: "Înainte", alt: "Berecz — situație inițială", objectPosition: "center 18%" },
+      { image: bereczPortraitBefore, label: "Înainte", alt: "Berecz — situație inițială", objectPosition: "center 82%", aspectClass: "aspect-[3/4]" },
       { image: bereczWorkFront, label: "Lucrare", alt: "Berecz — lucrarea protetică", objectPosition: "center 70%" },
       { image: bereczWorkDetail, label: "Lucrare", alt: "Berecz — detaliu lucrare protetică", objectPosition: "center 78%" },
       { image: bereczWorkHands, label: "Lucrare", alt: "Berecz — lucrare protetică, vedere de aproape", objectPosition: "center 70%" },

@@ -26,3 +26,22 @@ export const CLINIC = {
   /** Full path for pages without an inline form (tarife, testimoniale). */
   formPageHref: "/contact#contact",
 } as const;
+
+export const WHATSAPP_EMERGENCY_MESSAGE =
+  "Bună ziua, am o urgență stomatologică și aș dori să discut cu echipa Alverna Dental.";
+
+export function whatsappEmergencyUrl() {
+  return `${CLINIC.whatsappUrl}?text=${encodeURIComponent(WHATSAPP_EMERGENCY_MESSAGE)}`;
+}
+
+/** Booking form on this route, otherwise the contact page form. */
+export function bookingHrefForPath(pathname: string) {
+  const path = pathname.replace(/\/$/, "") || "/";
+  const hasInlineForm =
+    path === "/" ||
+    path === "/contact" ||
+    path.startsWith("/servicii") ||
+    path.startsWith("/urgente-stomatologice-cluj") ||
+    /^\/echipa\/.+/.test(path);
+  return hasInlineForm ? CLINIC.formAnchor : CLINIC.formPageHref;
+}

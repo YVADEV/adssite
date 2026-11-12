@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "slug": "administrator",
+    "name": "Alverna",
+    "description": "",
+    "sourceUrl": "https://alvernadental.com/author/administrator/",
+    "photo": "/blog/authors/b50149689f.jpg",
+    "photoSource": "https://alvernadental.com/wp-content/litespeed/avatar/2bdb8f2bb2183d21a1da8224241862f6.jpg?ver=1794487938"
+  },
+  {
+    "id": 2,
+    "slug": "alverna",
+    "name": "Alverna",
+    "description": "",
+    "sourceUrl": "https://alvernadental.com/author/alverna/",
+    "photo": "/blog/authors/16314f43a6.jpg",
+    "photoSource": "https://alvernadental.com/wp-content/litespeed/avatar/a3fd66dca4b3fca916cdbd0cd06160b6.jpg?ver=1794484997"
+  },
+  {
+    "id": 8,
+    "slug": "cristina",
+    "name": "cristina",
+    "description": "",
+    "sourceUrl": "https://alvernadental.com/author/cristina/",
+    "photo": "/blog/authors/d02c32091b.jpg",
+    "photoSource": "https://alvernadental.com/wp-content/litespeed/avatar/dee19db6eb0aea939f1746c404c920ea.jpg?ver=1794487938"
+  },
+  {
+    "id": 9,
+    "slug": "dr-vigh-nicoara-petra",
+    "name": "Dr. Vigh-Nicoara Petra",
+    "description": "A terminat Facultatea de Medicină Dentară din cadrul UMF Cluj-Napoca în anul 2013. Între 2014 și 2016, a urmat masterul de Medicină Dentară Judiciară din cadrul UMF Cluj-Napoca. În anul 2022, a obținut titlul de medic specialist în Protetică Dentară. A participat la numeroase cursuri și conferințe în domeniul medicinei stomatologice. Este membru în Colegiul Medicilor Stomatologi Cluj-Napoca.",
+    "sourceUrl": "https://alvernadental.com/author/dr-vigh-nicoara-petra/",
+    "photo": "/blog/authors/ef9a6324f5.jpg",
+    "photoSource": "https://alvernadental.com/wp-content/uploads/2024/10/dr.-vigh-nicoara-petra_avatar-96x96.jpg"
+  }
+]

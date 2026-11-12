@@ -1,25 +1,38 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { services, type ServiceItem } from "@/config/services";
 
 type ServicesDropdownProps = {
   isDark?: boolean;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 };
 
 const ITEM_CLASS =
   "ads-btn-green-glow-sm inline-flex h-11 w-full shrink-0 items-center rounded-full px-4 text-[15px] font-medium leading-none tracking-[-0.02em] text-white";
 
-export default function ServicesDropdown({ isDark = false }: ServicesDropdownProps) {
+export default function ServicesDropdown({ isDark = false, open: openProp, onOpenChange }: ServicesDropdownProps) {
   const pathname = usePathname();
   const isServicesActive = pathname.startsWith("/servicii");
   const rootRef = useRef<HTMLDivElement>(null);
   const closeTimerRef = useRef<number | null>(null);
   const accordionTimerRef = useRef<number | null>(null);
-  const [open, setOpen] = useState(false);
+  const [uncontrolledOpen, setUncontrolledOpen] = useState(false);
   const [accordionSlug, setAccordionSlug] = useState<string | null>(null);
+  const hoverArmedRef = useRef(false);
+  const controlled = openProp !== undefined;
+  const open = controlled ? openProp : uncontrolledOpen;
+
+  const setOpen = useCallback(
+    (next: boolean) => {
+      if (!controlled) setUncontrolledOpen(next);
+      onOpenChange?.(next);
+    },
+    [controlled, onOpenChange],
+  );
 
   const serviceMap = Object.fromEntries(services.map((service) => [service.slug, service]));
   const groupedColumns = [
@@ -61,6 +74,11 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
     setOpen(true);
   };
 
+  const handleHoverOpen = () => {
+    hoverArmedRef.current = true;
+    handleOpen();
+  };
+
   const handleCloseWithDelay = () => {
     clearTimer();
     closeTimerRef.current = window.setTimeout(() => {
@@ -92,7 +110,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
       clearTimer();
       clearAccordionTimer();
     };
-  }, []);
+  }, [setOpen]);
 
   function renderItem(item: ServiceItem) {
     const children = item.children ?? [];
@@ -172,13 +190,26 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
   }
 
   return (
-    <div ref={rootRef} className="relative hidden lg:block" onMouseEnter={handleOpen} onMouseLeave={handleCloseWithDelay}>
+    <div ref={rootRef} className="relative hidden lg:block" onMouseEnter={handleHoverOpen} onMouseLeave={handleCloseWithDelay}>
       <button
         type="button"
         aria-label="Deschide meniul Servicii"
         aria-expanded={open}
         aria-haspopup="menu"
         aria-current={isServicesActive ? "page" : undefined}
+        onClick={() => {
+          if (hoverArmedRef.current) {
+            hoverArmedRef.current = false;
+            handleOpen();
+            return;
+          }
+          if (open) {
+            setOpen(false);
+            setAccordionSlug(null);
+            return;
+          }
+          handleOpen();
+        }}
         onFocus={handleOpen}
         className={`text-[15px] font-medium tracking-[-0.01em] transition duration-200 ${
           isServicesActive ? "underline decoration-2 underline-offset-[10px]" : ""
@@ -192,7 +223,7 @@ export default function ServicesDropdown({ isDark = false }: ServicesDropdownPro
         data-open={open ? "true" : "false"}
         aria-hidden={!open}
         inert={!open}
-        className={`ads-services-panel fixed left-1/2 top-[80px] z-[120] w-[920px] max-w-[calc(100vw-64px)] origin-top rounded-[28px] border border-white/[0.08] bg-[rgba(12,14,18,0.88)] p-6 backdrop-blur-2xl transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`ads-services-panel fixed left-1/2 top-[var(--ads-nav-panel-top,80px)] z-[120] w-[920px] max-w-[calc(100vw-64px)] origin-top rounded-[28px] border border-white/[0.08] bg-[rgba(12,14,18,0.88)] p-6 backdrop-blur-2xl transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           open
             ? "pointer-events-auto -translate-x-1/2 translate-y-0 opacity-100"
             : "pointer-events-none -translate-x-1/2 translate-y-2 opacity-0"

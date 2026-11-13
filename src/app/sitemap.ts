@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { CASE_STUDIES } from "@/config/cases";
 import { blogPageCount, getAllPosts } from "@/lib/blog";
 import { SERVICES, SITE_URL, STATIC_ROUTES } from "@/lib/seo";
 
@@ -35,7 +36,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  const merged = [...staticEntries, ...serviceEntries, ...postEntries, ...blogPages];
+  const caseEntries = Object.values(CASE_STUDIES).map((caz) => ({
+    url: `${SITE_URL}${caz.path}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
+  }));
+
+  const merged = [...staticEntries, ...serviceEntries, ...postEntries, ...blogPages, ...caseEntries];
   const seen = new Set<string>();
   return merged.filter((entry) => {
     if (seen.has(entry.url)) return false;

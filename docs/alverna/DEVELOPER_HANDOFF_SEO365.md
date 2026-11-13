@@ -7,7 +7,7 @@ Date: 13 November 2026. No production deploy was made in this pass.
 - Staging vs production indexing is hostname-aware (`src/lib/site.ts`, middleware, layout robots, `robots.ts`).
 - Canonical / Open Graph / sitemap / JSON-LD origin is `https://alvernadental.com` even on Netlify builds.
 - Trailing slashes match WordPress (`trailingSlash: true`).
-- Verified 301s: stomatologie-copii, urgente service path, studii-de-caz, parvu-andreea, gdpr, politica-cookies.
+- Verified 301s: stomatologie-copii, urgente service path, studii-de-caz, parvu-andreea, gdpr, politica-cookies, cookie-policy, category/blog (+ pages 1–5). Full matrix: `docs/alverna/FULL_URL_MIGRATION_MATRIX.csv`.
 - Cookie URL restored with text copied from the existing privacy policy (not a new legal opinion).
 - Footer + cookie-consent still use the existing consent banner.
 - Homepage in-content links to `/turism-dentar/` and `/testimoniale/`.
@@ -19,7 +19,7 @@ Date: 13 November 2026. No production deploy was made in this pass.
 
 - Approved homepage H1 and title (exact local keyword).
 - Approved homepage FAQ / extra SEO body if the WP homepage content must return.
-- Full leftover URL inventory (doctors, categories, attachments).
+- Decisions in `SEO365_URL_APPROVAL_REQUIRED.md` (doctors without profiles, oferte, author archive, `/page/2/`).
 - Decision on `/echipa/raul-muresan/` (no profile page).
 - Legal review of cookie page (wording is excerpted, not newly drafted).
 - Search Console cutover and sitemap submission.

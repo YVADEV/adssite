@@ -20,18 +20,48 @@ async function probe(path, init) {
 }
 
 async function main() {
+  const expected301 = [
+    ["/servicii/stomatologie-copii/", "/servicii/pedodontie/"],
+    ["/servicii/urgente-stomatologice/", "/urgente-stomatologice-cluj/"],
+    ["/studii-de-caz/", "/cazuri/"],
+    ["/echipa/parvu-andreea/", "/echipa/andreea-parvu/"],
+    ["/gdpr/", "/politica-de-confidentialitate/"],
+    ["/politica-cookies/", "/politica-de-cookies/"],
+    ["/cookie-policy/", "/politica-de-cookies/"],
+    ["/category/blog/", "/blog/"],
+    ["/category/blog/page/2/", "/blog/page/2/"],
+  ];
+  const expected200 = ["/", "/politica-de-cookies/", "/servicii/pedodontie/", "/echipa/radu-nichimis/", "/blog/", "/cazuri/"];
+  const expected404 = ["/echipa/raul-muresan/", "/oferte-speciale/"];
+
   checks.push(await probe("/robots.txt"));
   checks.push(await probe("/sitemap.xml"));
-  checks.push(await probe("/"));
-  checks.push(await probe("/servicii/stomatologie-copii/"));
-  checks.push(await probe("/gdpr/"));
-  checks.push(await probe("/politica-de-cookies/"));
-  checks.push(await probe("/echipa/raul-muresan/"));
+  for (const path of expected200) checks.push(await probe(path));
+  for (const [path] of expected301) checks.push(await probe(path));
+  for (const path of expected404) checks.push(await probe(path));
+
   const failed = [];
   for (const row of checks) {
     console.log(row.status, row.robots || "-", row.url, row.location || "");
   }
-  const home = checks.find((row) => row.url.endsWith(origin + "/") || row.url === origin + "/");
+  for (const [path, dest] of expected301) {
+    const row = checks.find((item) => item.url.endsWith(path) || item.url.endsWith(path.replace(/\/$/, "")));
+    if (!row || row.status !== 301) failed.push(`${path} expected 301, got ${row?.status}`);
+    else if (!String(row.location || "").endsWith(dest) && !String(row.location || "").includes(dest)) {
+      failed.push(`${path} Location ${row.location} != ${dest}`);
+    }
+  }
+  for (const path of expected200) {
+    const row = checks.find((item) => item.url === `${origin}${path}` || item.url === `${origin}${path}`.replace(/\/$/, ""));
+    if (row && row.status !== 200 && row.status !== 308 && row.status !== 307) {
+      failed.push(`${path} expected 200, got ${row.status}`);
+    }
+  }
+  for (const path of expected404) {
+    const row = checks.find((item) => item.url.endsWith(path));
+    if (row && row.status === 301) failed.push(`${path} must not 301 (no verified destination)`);
+  }
+  const home = checks.find((row) => row.url === `${origin}/`);
   if (origin.includes("netlify.app") && home && !String(home.robots || "").includes("noindex")) {
     failed.push("staging home missing X-Robots-Tag noindex");
   }

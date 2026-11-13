@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { LEGACY_REDIRECTS } from "../config/legacy-redirects";
-import { pageMetadata, SITE_URL, STATIC_ROUTES } from "./seo";
+import { LEGACY_REDIRECTS, VERIFIED_REDIRECT_PAIRS } from "../config/legacy-redirects";
+import { pageMetadata, SERVICES, SITE_URL, STATIC_ROUTES } from "./seo";
 import { isStagingHost, PRODUCTION_ORIGIN, withTrailingSlash } from "./site";
+import { blogPageCount, getAllPosts } from "./blog";
 
 describe("production SEO origin", () => {
   it("locks SITE_URL to alvernadental.com", () => {
@@ -59,8 +60,34 @@ describe("legacy redirects", () => {
       assert.equal(row.statusCode, 301);
       assert.equal(row.destination.endsWith("/"), true, row.destination);
       assert.equal(row.destination.includes("netlify.app"), false);
-      assert.notEqual(row.source, row.destination);
+      assert.notEqual(row.source.replace(/\/$/, ""), row.destination.replace(/\/$/, ""));
       assert.equal(sources.has(row.destination), false, `destination is also a source: ${row.destination}`);
     }
+  });
+
+  it("only targets real Next routes", () => {
+    const pages = Array.from({ length: Math.max(0, blogPageCount() - 1) }, (_, i) => `/blog/page/${i + 2}/`);
+    const allowed = new Set<string>([
+      ...STATIC_ROUTES,
+      ...SERVICES.map((service) => service.path),
+      ...getAllPosts().map((post) => post.path),
+      ...pages,
+    ]);
+    for (const pair of VERIFIED_REDIRECT_PAIRS) {
+      assert.equal(allowed.has(pair.newPath), true, pair.newPath);
+    }
+  });
+
+  it("maps the WordPress blog category archive", () => {
+    const sources = LEGACY_REDIRECTS.map((row) => row.source);
+    assert.equal(sources.includes("/category/blog"), true);
+    assert.equal(sources.includes("/category/blog/"), true);
+  });
+
+  it("does not send missing doctor profiles to the homepage", () => {
+    const homeHits = LEGACY_REDIRECTS.filter((row) => row.destination === "/");
+    assert.equal(homeHits.length, 0);
+    const raul = LEGACY_REDIRECTS.filter((row) => row.source.includes("raul-muresan"));
+    assert.equal(raul.length, 0);
   });
 });

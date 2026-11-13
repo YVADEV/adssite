@@ -2,21 +2,21 @@ import { EMERGENCY_HREF, FIXED_TEETH_HREF, FIXED_TEETH_NAV_LABEL } from "@/confi
 
 export const PRIMARY_NAV = [
   { href: "/", label: "Acasă" },
-  { href: "/echipa", label: "Echipa" },
-  { href: "/cazuri", label: "Cazuri" },
-  { href: "/blog", label: "Blog" },
+  { href: "/echipa/", label: "Echipa" },
+  { href: "/cazuri/", label: "Cazuri" },
+  { href: "/blog/", label: "Blog" },
   { href: FIXED_TEETH_HREF, label: FIXED_TEETH_NAV_LABEL },
 ] as const;
 
 export const TRAILING_NAV = [
-  { href: "/tarife", label: "Tarife" },
-  { href: "/contact", label: "Contact" },
+  { href: "/tarife/", label: "Tarife" },
+  { href: "/contact/", label: "Contact" },
 ] as const;
 
 export const MOBILE_TRAILING_NAV = [
-  { href: "/tarife", label: "Tarife" },
+  { href: "/tarife/", label: "Tarife" },
   { href: EMERGENCY_HREF, label: "Urgențe" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact/", label: "Contact" },
 ] as const;
 
 export function isNavActive(pathname: string, href: string) {

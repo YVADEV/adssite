@@ -1,0 +1,11 @@
+old_url,new_url,status,http_status,final_status,redirect_hops,priority,notes
+https://alvernadental.com/servicii/stomatologie-copii/,https://alvernadental.com/servicii/pedodontie/,implemented,301,pending_prod,1,P0,Verified equivalent pedodontie page
+https://alvernadental.com/servicii/urgente-stomatologice/,https://alvernadental.com/urgente-stomatologice-cluj/,implemented,301,pending_prod,1,P0,Replaces previous Next redirect without trailing-slash dest
+https://alvernadental.com/studii-de-caz/,https://alvernadental.com/cazuri/,implemented,301,pending_prod,1,P0,Cases listing
+https://alvernadental.com/echipa/parvu-andreea/,https://alvernadental.com/echipa/andreea-parvu/,implemented,301,pending_prod,1,P0,Existing doctor profile
+https://alvernadental.com/echipa/radu-nichimis/,https://alvernadental.com/echipa/radu-nichimis/,preserved,200,pending_prod,0,P0,Same slug already exists
+https://alvernadental.com/echipa/raul-muresan/,https://alvernadental.com/echipa/,blocked,,,P0,Listed on echipa grid only — no profile page. Do not 301 to /echipa without SEO365
+https://alvernadental.com/gdpr/,https://alvernadental.com/politica-de-confidentialitate/,implemented,301,pending_prod,1,P1,Privacy policy is the GDPR document
+https://alvernadental.com/politica-de-cookies/,https://alvernadental.com/politica-de-cookies/,implemented,200,pending_prod,0,P1,New route reuses approved cookie wording from privacy policy
+https://alvernadental.com/politica-cookies/,https://alvernadental.com/politica-de-cookies/,implemented,301,pending_prod,1,P1,Alternate WP slug
+https://www.alvernadental.com/,https://alvernadental.com/,implemented,301,pending_prod,1,P0,Host canonical via middleware

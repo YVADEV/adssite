@@ -1,6 +1,7 @@
 export const ANALYTICS_EVENTS = {
   formStart: "form_start",
   formSubmit: "form_submit",
+  appointmentRequestSuccess: "appointment_request_success",
   phoneClick: "phone_click",
   whatsappClick: "whatsapp_click",
 } as const;

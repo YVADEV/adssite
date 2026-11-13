@@ -42,15 +42,16 @@ function DeferredInstagram() {
 
 const pageLinks = [
   { href: "/", label: "Acasă" },
-  { href: "/turism-dentar", label: "Turism dentar" },
-  { href: "/servicii", label: "Servicii" },
-  { href: "/echipa", label: "Echipa" },
-  { href: "/tarife", label: "Tarife" },
+  { href: "/turism-dentar/", label: "Turism dentar" },
+  { href: "/servicii/", label: "Servicii" },
+  { href: "/echipa/", label: "Echipa" },
+  { href: "/tarife/", label: "Tarife" },
   { href: "/urgente-stomatologice-cluj/", label: "Urgențe 24/7" },
-  { href: "/cazuri", label: "Studii de caz" },
-  { href: "/testimoniale", label: "Testimoniale" },
-  { href: "/contact", label: "Contact" },
-  { href: "/politica-de-confidentialitate", label: "Politica de confidențialitate" },
+  { href: "/cazuri/", label: "Studii de caz" },
+  { href: "/testimoniale/", label: "Testimoniale" },
+  { href: "/contact/", label: "Contact" },
+  { href: "/politica-de-confidentialitate/", label: "Politica de confidențialitate" },
+  { href: "/politica-de-cookies/", label: "Politica de cookies" },
 ];
 
 export default function SiteFooter() {
@@ -79,11 +80,14 @@ export default function SiteFooter() {
             </a>
           </div>
           <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[16px] text-white/55">
-            <Link href="/termeni-si-conditii" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
+            <Link href="/termeni-si-conditii/" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
               Termeni și condiții
             </Link>
-            <Link href="/politica-de-confidentialitate" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
+            <Link href="/politica-de-confidentialitate/" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
               Politică de confidențialitate
+            </Link>
+            <Link href="/politica-de-confidentialitate/" prefetch={false} className="inline-flex min-h-[44px] items-center hover:text-white hover:underline">
+              GDPR
             </Link>
           </div>
         </section>

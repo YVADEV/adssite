@@ -54,10 +54,13 @@ export function MobileMenuFooter({ className = "" }: MobileMenuFooterProps) {
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-end gap-x-4 text-[12px] text-white/50">
-        <a href="/politica-de-confidentialitate" className="inline-flex min-h-9 items-center">
+        <a href="/politica-de-confidentialitate/" className="inline-flex min-h-9 items-center">
           Politica de confidențialitate
         </a>
-        <a href="/termeni-si-conditii" className="inline-flex min-h-9 items-center">
+        <a href="/politica-de-cookies/" className="inline-flex min-h-9 items-center">
+          Politica de cookies
+        </a>
+        <a href="/termeni-si-conditii/" className="inline-flex min-h-9 items-center">
           Termeni și condiții
         </a>
       </div>

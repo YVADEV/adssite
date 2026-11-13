@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://alvernadental.com"
-).replace(/\/$/, "");
+import { PRODUCTION_ORIGIN } from "@/lib/site";
+
+/** Canonical production origin for metadata, sitemap, Open Graph and JSON-LD. */
+export const SITE_URL = PRODUCTION_ORIGIN;
 
 export function absoluteUrl(path: string) {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
@@ -126,5 +127,7 @@ export const STATIC_ROUTES = [
   "/contact/",
   "/turism-dentar/",
   "/politica-de-confidentialitate/",
+  "/politica-de-cookies/",
   "/termeni-si-conditii/",
+  "/urgente-stomatologice-cluj/",
 ] as const;

@@ -6,14 +6,14 @@ Alverna Dental Studio este o clinică stomatologică din Cluj-Napoca (Strada Alv
 
 ## Pagini principale
 
-- [Acasă](https://alvernadental.netlify.app/): prezentare clinică, cazuri și programare
-- [Servicii](https://alvernadental.netlify.app/servicii/): lista completă a tratamentelor
-- [All-on-4 / All-on-6](https://alvernadental.netlify.app/servicii/implant-dentar/all-on-4-all-on-6/): dantură fixă, flux 100% digital
-- [Implant dentar](https://alvernadental.netlify.app/servicii/implant-dentar/): implantologie orală
-- [Echipa](https://alvernadental.netlify.app/echipa/): medici și laborator
-- [Cazuri](https://alvernadental.netlify.app/cazuri/): rezultate înainte și după
-- [Tarife](https://alvernadental.netlify.app/tarife/): prețuri transparente
-- [Contact](https://alvernadental.netlify.app/contact/): programări
+- [Acasă](https://alvernadental.com/): prezentare clinică, cazuri și programare
+- [Servicii](https://alvernadental.com/servicii/): lista completă a tratamentelor
+- [All-on-4 / All-on-6](https://alvernadental.com/servicii/implant-dentar/all-on-4-all-on-6/): dantură fixă, flux 100% digital
+- [Implant dentar](https://alvernadental.com/servicii/implant-dentar/): implantologie orală
+- [Echipa](https://alvernadental.com/echipa/): medici și laborator
+- [Cazuri](https://alvernadental.com/cazuri/): rezultate înainte și după
+- [Tarife](https://alvernadental.com/tarife/): prețuri transparente
+- [Contact](https://alvernadental.com/contact/): programări
 
 ## Contact
 

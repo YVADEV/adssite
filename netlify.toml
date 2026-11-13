@@ -6,7 +6,6 @@
   NODE_VERSION = "20"
   NPM_FLAGS = "--legacy-peer-deps"
   GIT_LFS_ENABLED = "true"
-  NEXT_PUBLIC_SITE_URL = "https://alvernadental.netlify.app"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

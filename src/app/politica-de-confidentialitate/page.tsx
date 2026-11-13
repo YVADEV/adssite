@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </section>
 
-            <section>
+            <section id="cookie-uri">
               <h2 className="text-[22px] font-semibold tracking-[-0.02em] text-white">8. Cookie-uri</h2>
               <p className="mt-2">
                 Folosim cookie-uri esențiale (fără de care site-ul nu funcționează) și, cu acordul tău, cookie-uri

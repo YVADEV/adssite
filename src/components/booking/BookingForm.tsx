@@ -110,6 +110,7 @@ export function BookingForm({ source }: { source: string }) {
         return;
       }
       trackEvent(ANALYTICS_EVENTS.formSubmit, { form_id: "booking", form_source: source });
+      trackEvent(ANALYTICS_EVENTS.appointmentRequestSuccess, { form_id: "booking", form_source: source });
       if (json.message) setSuccessMessage(json.message);
       setStatus("ok");
       form.reset();

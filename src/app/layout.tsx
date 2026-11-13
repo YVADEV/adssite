@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import StickyContactButtons from "@/components/layout/StickyContactButtons";
@@ -7,6 +8,7 @@ import MobileBottomStack from "@/components/layout/MobileBottomStack";
 import { JsonLd, organizationLd, websiteLd } from "@/components/seo/JsonLd";
 import SiteAnalytics from "@/components/seo/SiteAnalytics";
 import { BUSINESS, SITE_URL } from "@/lib/seo";
+import { isStagingHost } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,48 +18,55 @@ const geistSans = Geist({
   adjustFontFallback: true,
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
-    template: `%s | ${BUSINESS.name}`,
-  },
-  description: BUSINESS.description,
-  applicationName: BUSINESS.name,
-  authors: [{ name: BUSINESS.name, url: SITE_URL }],
-  creator: BUSINESS.name,
-  publisher: BUSINESS.name,
-  alternates: {
-    canonical: `${SITE_URL}/`,
-    languages: { "ro-RO": `${SITE_URL}/` },
-  },
-  openGraph: {
-    type: "website",
-    locale: "ro_RO",
-    url: `${SITE_URL}/`,
-    siteName: BUSINESS.name,
-    title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
-    description: BUSINESS.description,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
-    description: BUSINESS.description,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get("x-forwarded-host") || (await headers()).get("host") || "";
+  const staging = isStagingHost(host);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
+      template: `%s | ${BUSINESS.name}`,
     },
-  },
-  category: "health",
-  formatDetection: { telephone: true, address: true, email: true },
-};
+    description: BUSINESS.description,
+    applicationName: BUSINESS.name,
+    authors: [{ name: BUSINESS.name, url: SITE_URL }],
+    creator: BUSINESS.name,
+    publisher: BUSINESS.name,
+    alternates: {
+      canonical: `${SITE_URL}/`,
+      languages: { "ro-RO": `${SITE_URL}/` },
+    },
+    openGraph: {
+      type: "website",
+      locale: "ro_RO",
+      url: `${SITE_URL}/`,
+      siteName: BUSINESS.name,
+      title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
+      description: BUSINESS.description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
+      description: BUSINESS.description,
+    },
+    robots: staging
+      ? { index: false, follow: true }
+      : {
+          index: true,
+          follow: true,
+          googleBot: {
+            index: true,
+            follow: true,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+            "max-video-preview": -1,
+          },
+        },
+    category: "health",
+    formatDetection: { telephone: true, address: true, email: true },
+  };
+}
 
 export const viewport: Viewport = {
   themeColor: "#0f1115",

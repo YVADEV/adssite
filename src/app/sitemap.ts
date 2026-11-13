@@ -35,5 +35,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...staticEntries, ...serviceEntries, ...postEntries, ...blogPages];
+  const merged = [...staticEntries, ...serviceEntries, ...postEntries, ...blogPages];
+  const seen = new Set<string>();
+  return merged.filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }

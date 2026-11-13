@@ -517,6 +517,14 @@ export default function HomePageClient() {
               </article>
             ))}
           </div>
+          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-2 border-t border-white/12 pt-6 text-[16px] md:text-[21px]">
+            <Link href="/turism-dentar/" prefetch={false} className="inline-flex min-h-[44px] items-center text-white/80 underline decoration-white/25 underline-offset-4 hover:text-white">
+              Turism dentar
+            </Link>
+            <Link href="/testimoniale/" prefetch={false} className="inline-flex min-h-[44px] items-center text-white/80 underline decoration-white/25 underline-offset-4 hover:text-white">
+              Testimoniale
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -24,7 +24,7 @@ export const CLINIC = {
   /** Anchor on pages that embed the form (homepage, servicii, contact). */
   formAnchor: "#contact",
   /** Full path for pages without an inline form (tarife, testimoniale). */
-  formPageHref: "/contact#contact",
+  formPageHref: "/contact/#contact",
 } as const;
 
 export const WHATSAPP_EMERGENCY_MESSAGE =

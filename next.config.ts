@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
+import { LEGACY_REDIRECTS } from "./src/config/legacy-redirects";
+
 const cacheImmutable = "public, max-age=31536000, immutable";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  trailingSlash: true,
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1680],
@@ -13,18 +16,7 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["gsap", "motion", "motion/react"],
   },
   async redirects() {
-    return [
-      {
-        source: "/servicii/urgente-stomatologice",
-        destination: "/urgente-stomatologice-cluj",
-        permanent: true,
-      },
-      {
-        source: "/servicii/urgente-stomatologice/",
-        destination: "/urgente-stomatologice-cluj",
-        permanent: true,
-      },
-    ];
+    return LEGACY_REDIRECTS;
   },
   async headers() {
     return [

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import OrtodontiePageClient from "@/components/services/OrtodontiePageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/ortodontie/";
 const NAME = "Ortodonție";
@@ -36,11 +36,13 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Ortodonție Cluj | Aparate dentare și alignere | Alverna Dental Studio",
   description: DESCRIPTION,
   path: PATH,
 });
+}
 
 export default function OrtodontiePage() {
   const url = `${SITE_URL}${PATH}`;

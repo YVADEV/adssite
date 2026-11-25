@@ -3,7 +3,7 @@ import { describe, it } from "node:test";
 
 import { LEGACY_REDIRECTS, VERIFIED_REDIRECT_PAIRS } from "../config/legacy-redirects";
 import { pageMetadata, SERVICES, SITE_URL, STATIC_ROUTES } from "./seo";
-import { isStagingHost, PRODUCTION_ORIGIN, withTrailingSlash } from "./site";
+import { isStagingHost, PRODUCTION_ORIGIN, publicOriginFromHost, withTrailingSlash } from "./site";
 import { blogPageCount, getAllPosts } from "./blog";
 
 describe("production SEO origin", () => {
@@ -39,6 +39,12 @@ describe("staging host detection", () => {
     assert.equal(isStagingHost("6af5edd5a4beca9ad5cd4b31--alvernadental.netlify.app"), true);
     assert.equal(isStagingHost("alvernadental.com"), false);
     assert.equal(isStagingHost("www.alvernadental.com"), false);
+  });
+
+  it("keeps crawler origins on the Netlify host, not WordPress", () => {
+    assert.equal(publicOriginFromHost("alvernadental.netlify.app"), "https://alvernadental.netlify.app");
+    assert.equal(publicOriginFromHost("alvernadental.com"), "https://alvernadental.com");
+    assert.equal(publicOriginFromHost("localhost:3000"), "https://alvernadental.com");
   });
 });
 

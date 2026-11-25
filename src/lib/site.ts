@@ -18,6 +18,23 @@ export function isStagingHost(hostHeader: string) {
   return (STAGING_HOSTS as readonly string[]).includes(host);
 }
 
+/**
+ * Origin advertised in sitemap/canonicals for crawlers.
+ * Netlify staging must self-host these so Ahrefs and Screaming Frog do not jump to WordPress.
+ * Production (and localhost previews) stay on alvernadental.com.
+ */
+export function publicOriginFromHost(hostHeader: string) {
+  const host = hostnameOf(hostHeader);
+  if (host.endsWith(".netlify.app")) return `https://${host}`;
+  return PRODUCTION_ORIGIN;
+}
+
+export async function requestPublicOrigin() {
+  const { headers } = await import("next/headers");
+  const host = (await headers()).get("x-forwarded-host") || (await headers()).get("host") || "";
+  return publicOriginFromHost(host);
+}
+
 export function isProductionHost(hostHeader: string) {
   const host = hostnameOf(hostHeader);
   return host === "alvernadental.com" || host === "www.alvernadental.com";

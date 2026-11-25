@@ -7,7 +7,7 @@ import { BookingSection } from "@/components/booking/BookingSection";
 import { CORINA_ACCREDITATIONS } from "@/config/accreditations";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/corina-holici.png";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/echipa/corina-holici/";
 const PDF = "/acreditari-corina-holici.pdf";
@@ -16,13 +16,15 @@ const ROLE = "Medic stomatolog";
 const DESCRIPTION =
   "Profil Dr. Corina Holici, medic în echipa Alverna Dental Studio. Diplome și certificate de participare la cursuri și congrese de ortodonție.";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: `${NAME} | Alverna Dental Studio`,
   description: DESCRIPTION,
   path: PATH,
   type: "profile",
   images: [portrait.src],
 });
+}
 
 export default function CorinaHoliciPage() {
   const url = `${SITE_URL}${PATH}`;

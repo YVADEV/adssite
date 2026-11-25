@@ -4,13 +4,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { BeforeAfterCompare } from "@/components/cazuri/BeforeAfterCompare";
+import { CaseBackLink } from "@/components/cazuri/CaseBackLink";
 import { CaseTeamBanner } from "@/components/cazuri/CaseTeamBanner";
 import { CazuriVideoStrip } from "@/components/media/LazyVideo";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
 import { CASE_STUDIES, caseDisplayName, getCaseStudy } from "@/config/cases";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { CLINIC } from "@/lib/contact";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const titleLine = caz.title.replace("\n", " ");
 
-  return pageMetadata({
+  return publicPageMetadata({
     title: `${caz.caseNumber} · ${titleLine} | Alverna Dental Studio`,
     description: caz.seoDescription,
     path: caz.path,
@@ -71,7 +72,8 @@ export default async function CaseDetailPage({ params }: Props) {
             }}
           />
 
-          <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1680px] flex-col px-6 md:px-10 lg:px-12">
+          <div className="relative z-[2] mx-auto flex h-full w-full max-w-[1680px] flex-col px-4 pt-4 md:px-10 md:pt-6 lg:px-12">
+            <CaseBackLink className="w-fit" />
             {caz.patientName && (
               <p className="absolute bottom-8 left-4 max-w-[calc(100%-2rem)] text-[32px] font-semibold leading-[0.95] tracking-[-0.02em] text-white sm:text-[40px] md:bottom-36 md:left-10 md:text-[80px] lg:bottom-44 lg:left-12 lg:text-[100px]">
                 {caseDisplayName(caz.patientName)}

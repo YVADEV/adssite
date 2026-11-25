@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
-import { pageMetadata } from "@/lib/seo";
+import { publicPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Politica de cookies",
   description:
     "Cookie-urile folosite pe alvernadental.com: esențiale pentru funcționarea site-ului și, cu acordul tău, analize anonime.",
   path: "/politica-de-cookies/",
 });
+}
 
 export default function CookiePolicyPage() {
   return (

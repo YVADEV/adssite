@@ -4,14 +4,16 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import { BlogPagination } from "@/components/blog/BlogPagination";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { blogPageCount, getPostsPage } from "@/lib/blog";
-import { pageMetadata } from "@/lib/seo";
+import { publicPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Blog",
   description:
     "Specialiștii Alverna Dental Studio vin în întâmpinarea dvs. cu cele mai noi informații despre tratamentele și procedurile stomatologice.",
   path: "/blog/",
 });
+}
 
 export default function BlogIndexPage() {
   const posts = getPostsPage(1);

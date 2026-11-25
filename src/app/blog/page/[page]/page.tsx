@@ -5,7 +5,7 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import { BlogPagination } from "@/components/blog/BlogPagination";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { blogPageCount, getPostsPage } from "@/lib/blog";
-import { pageMetadata } from "@/lib/seo";
+import { publicPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ page: string }> };
 
@@ -17,7 +17,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { page } = await params;
   const current = Number(page);
-  return pageMetadata({
+  return publicPageMetadata({
     title: `Blog — pagina ${current}`,
     description: "Articole stomatologice Alverna Dental Studio.",
     path: `/blog/page/${current}/`,

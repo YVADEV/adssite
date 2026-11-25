@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import CoroanaDentaraPageClient from "@/components/services/CoroanaDentaraPageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/coroana-dentara/";
 const NAME = "Coroană dentară";
@@ -36,11 +36,13 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Coroană dentară Cluj | Restaurări estetice și funcționale | Alverna Dental Studio",
   description: DESCRIPTION,
   path: PATH,
 });
+}
 
 export default function CoroanaDentaraPage() {
   const url = `${SITE_URL}${PATH}`;

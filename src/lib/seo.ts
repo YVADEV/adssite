@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 
-import { PRODUCTION_ORIGIN } from "@/lib/site";
+import { PRODUCTION_ORIGIN, requestPublicOrigin } from "@/lib/site";
 
-/** Canonical production origin for metadata, sitemap, Open Graph and JSON-LD. */
+/** Canonical production origin for JSON-LD and production metadata. */
 export const SITE_URL = PRODUCTION_ORIGIN;
 
-export function absoluteUrl(path: string) {
+export function absoluteUrl(path: string, origin = SITE_URL) {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   const normalized = path.startsWith("/") ? path : `/${path}`;
   const withSlash = normalized === "/" || normalized.endsWith("/") ? normalized : `${normalized}/`;
-  return `${SITE_URL}${withSlash}`;
+  return `${origin}${withSlash}`;
 }
 
 /** Document title, social tags and canonical stay on the same page URL. */
@@ -19,14 +19,16 @@ export function pageMetadata({
   path,
   type = "website",
   images,
+  origin = SITE_URL,
 }: {
   title: string;
   description: string;
   path: string;
   type?: "website" | "article" | "profile";
   images?: string[];
+  origin?: string;
 }): Metadata {
-  const url = absoluteUrl(path);
+  const url = absoluteUrl(path, origin);
   const fullTitle = title.includes(BUSINESS.name) ? title : `${title} | ${BUSINESS.name}`;
   const imageEntries = images?.map((image) => ({ url: image }));
 
@@ -53,6 +55,13 @@ export function pageMetadata({
       ...(imageEntries ? { images } : {}),
     },
   };
+}
+
+/** Same as pageMetadata, but uses the Netlify host on staging so auditors stay on this site. */
+export async function publicPageMetadata(
+  input: Omit<Parameters<typeof pageMetadata>[0], "origin">,
+): Promise<Metadata> {
+  return pageMetadata({ ...input, origin: await requestPublicOrigin() });
 }
 
 export const BUSINESS = {

@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { CaseBackLink } from "@/components/cazuri/CaseBackLink";
 import { EmergencyNav } from "@/components/nav/EmergencyNav";
 import { MobileMenuNavServices } from "@/components/nav/MobileMenuNavServices";
 import { MobileMenuOverlay } from "@/components/nav/MobileMenuOverlay";
@@ -61,7 +60,6 @@ export default function SiteHeader({ pageContentRef, introNav = false, menuId = 
 
   const islandExpanded = emergencyOpen || servicesOpen;
   const compact = scrolled;
-  const isCaseDetail = pathname.replace(/\/$/, "").startsWith("/cazuri/");
 
   const handleEmergencyChange = useCallback(
     (open: boolean) => {
@@ -155,7 +153,6 @@ export default function SiteHeader({ pageContentRef, introNav = false, menuId = 
         <div className="ads-island ads-site-header-bar mx-auto px-4 text-[16px] font-medium sm:px-5 md:px-6 md:text-[15px] lg:px-8">
           <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <SiteLogo />
-            {isCaseDetail ? <CaseBackLink /> : null}
           </div>
           <nav
             className="pointer-events-none absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center tracking-[-0.01em] lg:flex"

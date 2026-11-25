@@ -8,7 +8,7 @@ import MobileBottomStack from "@/components/layout/MobileBottomStack";
 import { JsonLd, organizationLd, websiteLd } from "@/components/seo/JsonLd";
 import SiteAnalytics from "@/components/seo/SiteAnalytics";
 import { BUSINESS, SITE_URL } from "@/lib/seo";
-import { isStagingHost } from "@/lib/site";
+import { isStagingHost, requestPublicOrigin } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,9 +21,10 @@ const geistSans = Geist({
 export async function generateMetadata(): Promise<Metadata> {
   const host = (await headers()).get("x-forwarded-host") || (await headers()).get("host") || "";
   const staging = isStagingHost(host);
+  const origin = await requestPublicOrigin();
 
   return {
-    metadataBase: new URL(SITE_URL),
+    metadataBase: new URL(origin),
     title: {
       default: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
       template: `%s | ${BUSINESS.name}`,
@@ -34,13 +35,13 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: BUSINESS.name,
     publisher: BUSINESS.name,
     alternates: {
-      canonical: `${SITE_URL}/`,
-      languages: { "ro-RO": `${SITE_URL}/` },
+      canonical: `${origin}/`,
+      languages: { "ro-RO": `${origin}/` },
     },
     openGraph: {
       type: "website",
       locale: "ro_RO",
-      url: `${SITE_URL}/`,
+      url: `${origin}/`,
       siteName: BUSINESS.name,
       title: `${BUSINESS.name} | Clinică stomatologică premium în Cluj`,
       description: BUSINESS.description,

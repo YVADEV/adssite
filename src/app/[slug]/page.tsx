@@ -9,7 +9,7 @@ import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
 import { authorInitials, formatBlogDate, getAllPosts, getPostBySlug, relatedPosts } from "@/lib/blog";
 import { CLINIC } from "@/lib/contact";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const images = post.ogImage ? [post.ogImage.startsWith("http") ? post.ogImage : `${SITE_URL}${post.ogImage}`] : undefined;
 
-  return pageMetadata({
+  return publicPageMetadata({
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
     path: post.path,

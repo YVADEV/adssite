@@ -1,4 +1,4 @@
-import { pageMetadata } from "@/lib/seo";
+import { publicPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import alvernaLogo from "@/assets/alverna-logo.png";
@@ -6,11 +6,13 @@ import { BookingSection } from "@/components/booking/BookingSection";
 import { CLINIC } from "@/lib/contact";
 import { GoogleReviews } from "@/components/reviews/GoogleReviewsMobile";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Contact | Alverna Dental Studio Cluj",
   description: "Contactează Alverna Dental Studio pentru programări, suport telefonic și online. Descoperă locația clinicii și trimite rapid o solicitare.",
-  path: "https://alvernadental.com/contact/",
+  path: "/contact/",
 });
+}
 
 const reviews = [
   {

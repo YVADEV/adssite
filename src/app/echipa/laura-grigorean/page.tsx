@@ -7,7 +7,7 @@ import { BookingSection } from "@/components/booking/BookingSection";
 import { LAURA_ACCREDITATIONS } from "@/config/accreditations";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/laura-grigorean.png";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/echipa/laura-grigorean/";
 const PDF = "/acreditari-laura-grigorean.pdf";
@@ -16,13 +16,15 @@ const ROLE = "Medic specialist în Parodontologie";
 const DESCRIPTION =
   "Profil Dr. Laura Grigorean, medic specialist în parodontologie la Alverna Dental Studio. Evaluează gingiile și țesuturile de susținere înainte de implanturi.";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: `${NAME} | ${ROLE} | Alverna Dental Studio`,
   description: DESCRIPTION,
   path: PATH,
   type: "profile",
   images: [portrait.src],
 });
+}
 
 export default function LauraGrigoreanPage() {
   const url = `${SITE_URL}${PATH}`;

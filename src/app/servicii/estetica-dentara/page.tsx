@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import EsteticaDentaraPageClient from "@/components/services/EsteticaDentaraPageClient";
 import { JsonLd, breadcrumbLd, faqLd, serviceLd } from "@/components/seo/JsonLd";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/servicii/estetica-dentara/";
 const NAME = "Estetică dentară";
@@ -28,11 +28,13 @@ const faqItems = [
   },
 ];
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Estetică dentară Cluj | Zâmbet armonios | Alverna Dental Studio",
   description: DESCRIPTION,
   path: PATH,
 });
+}
 
 export default function EsteticaDentaraPage() {
   const url = `${SITE_URL}${PATH}`;

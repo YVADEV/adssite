@@ -1,4 +1,4 @@
-import { pageMetadata } from "@/lib/seo";
+import { publicPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
@@ -6,11 +6,13 @@ const PATH = "/testimoniale/";
 const DESCRIPTION =
   "Păreri și experiențe ale pacienților Alverna Dental Studio Cluj: profesionalism, comunicare clară și tratamente confortabile. Feedback real din România și din străinătate.";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Testimoniale pacienți | Recenzii Alverna Dental Studio Cluj",
   description: DESCRIPTION,
   path: PATH,
 });
+}
 
 export default function TestimonialeLayout({ children }: { children: ReactNode }) {
   return children;

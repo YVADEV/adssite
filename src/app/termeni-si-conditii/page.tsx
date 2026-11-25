@@ -1,13 +1,15 @@
-import { pageMetadata } from "@/lib/seo";
+import { publicPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { CLINIC } from "@/lib/contact";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Termeni și condiții",
   description: "Termenii și condițiile de utilizare ale site-ului alvernadental.com și de programare la Alverna Dental Studio.",
   path: "/termeni-si-conditii/",
 });
+}
 
 export default function TermsPage() {
   return (

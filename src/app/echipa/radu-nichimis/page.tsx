@@ -5,19 +5,21 @@ import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { BookingSection } from "@/components/booking/BookingSection";
 import { RADU_ACCREDITATIONS } from "@/config/accreditations";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/echipa/radu-nichimis/";
 const NAME = "Dr. Radu Nichimiș";
 const DESCRIPTION =
   "Profil profesional Dr. Radu Nichimiș, medic specialist Chirurgie Orală și Maxilo-Facială, cu accent pe planificare digitală, funcționalitate și armonie estetică.";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: "Dr. Radu Nichimiș | Chirurgie Orală și Maxilo-Facială | Alverna Dental Studio",
   description: DESCRIPTION,
   path: PATH,
   type: "profile",
 });
+}
 
 export default function RaduNichimisPage() {
   const url = `${SITE_URL}${PATH}`;

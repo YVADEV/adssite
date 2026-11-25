@@ -5,7 +5,7 @@ import { DoctorReviews } from "@/components/reviews/GoogleReviewsMobile";
 import { BookingSection } from "@/components/booking/BookingSection";
 import { JsonLd, breadcrumbLd, physicianLd } from "@/components/seo/JsonLd";
 import portrait from "@/assets/echipa/andreea-parvu.png";
-import { pageMetadata, SITE_URL } from "@/lib/seo";
+import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
 const PATH = "/echipa/andreea-parvu/";
 const NAME = "Dr. Andreea Pârvu";
@@ -13,13 +13,15 @@ const ROLE = "Stomatologie generală și protetică";
 const DESCRIPTION =
   "Profil Dr. Andreea Pârvu, medic de stomatologie generală și protetică la Alverna Dental Studio. Coordonează planificarea protetică digitală și lucrarea finală în laboratorul propriu.";
 
-export const metadata: Metadata = pageMetadata({
+export async function generateMetadata(): Promise<Metadata> {
+  return publicPageMetadata({
   title: `${NAME} | ${ROLE} | Alverna Dental Studio`,
   description: DESCRIPTION,
   path: PATH,
   type: "profile",
   images: [portrait.src],
 });
+}
 
 export default function AndreeaParvuPage() {
   const url = `${SITE_URL}${PATH}`;

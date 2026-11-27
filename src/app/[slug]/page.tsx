@@ -7,7 +7,7 @@ import { BlogCard } from "@/components/blog/BlogCard";
 import PrototypeFrame from "@/components/prototype/PrototypeFrame";
 import { JsonLd, breadcrumbLd } from "@/components/seo/JsonLd";
 import { ServiceFinalCTA } from "@/components/services/ServicePageParts";
-import { authorInitials, formatBlogDate, getAllPosts, getPostBySlug, relatedPosts } from "@/lib/blog";
+import { authorInitials, formatBlogDate, getAllPosts, getPostBySlug, prepareBlogPost, relatedPosts } from "@/lib/blog";
 import { CLINIC } from "@/lib/contact";
 import { publicPageMetadata, SITE_URL } from "@/lib/seo";
 
@@ -23,18 +23,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!post) return {};
 
   const images = post.ogImage ? [post.ogImage.startsWith("http") ? post.ogImage : `${SITE_URL}${post.ogImage}`] : undefined;
-
-  return publicPageMetadata({
+  const base = await publicPageMetadata({
     title: post.seoTitle || post.title,
     description: post.seoDescription || post.excerpt,
     path: post.path,
     type: "article",
     images,
   });
+
+  return {
+    ...base,
+    openGraph: {
+      ...base.openGraph,
+      type: "article",
+      publishedTime: post.datePublished,
+      modifiedTime: post.dateModified,
+      authors: post.authorName ? [post.authorName] : undefined,
+      tags: post.tags.length ? post.tags : post.categories,
+    },
+  };
 }
 
-function blogPostingLd(post: NonNullable<ReturnType<typeof getPostBySlug>>) {
+function blogPostingLd(post: ReturnType<typeof prepareBlogPost>) {
   const url = `${SITE_URL}${post.path}`;
+  const image = post.ogImage || post.featuredImage;
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -45,7 +57,9 @@ function blogPostingLd(post: NonNullable<ReturnType<typeof getPostBySlug>>) {
     inLanguage: "ro-RO",
     mainEntityOfPage: url,
     url,
-    image: post.ogImage ? `${SITE_URL}${post.ogImage}` : undefined,
+    wordCount: post.wordCount,
+    articleSection: post.categories[0] || "Blog",
+    image: image ? `${SITE_URL}${image}` : undefined,
     author: {
       "@type": "Person",
       name: post.authorName,
@@ -56,12 +70,13 @@ function blogPostingLd(post: NonNullable<ReturnType<typeof getPostBySlug>>) {
 
 export default async function BlogArticlePage({ params }: Props) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
-  if (!post) notFound();
+  const raw = getPostBySlug(slug);
+  if (!raw) notFound();
+  const post = prepareBlogPost(raw);
 
   const url = `${SITE_URL}${post.path}`;
   const related = relatedPosts(post);
-  const showToc = post.headings.length >= 3;
+  const showToc = post.headings.length >= 2;
 
   return (
     <PrototypeFrame darkHeader>
@@ -89,48 +104,80 @@ export default async function BlogArticlePage({ params }: Props) {
                 </Link>
               </li>
               <li aria-hidden>/</li>
-              <li className="text-white/80">{post.categories[0] ?? "Articol"}</li>
+              <li className="max-w-[48ch] truncate text-white/80">{post.title}</li>
             </ol>
           </nav>
 
-          <p className="mt-8 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">
-            {post.categories[0] ?? "Blog"}
-          </p>
-          <h1 className="mt-3 max-w-[18ch] text-[36px] font-extrabold leading-[0.95] tracking-[-0.04em] md:max-w-[22ch] md:text-[56px] md:leading-[1.02]">
-            {post.title}
-          </h1>
-
-          <div className="mt-6 flex items-center gap-3">
-            {post.authorPhoto ? (
-              <Image src={post.authorPhoto} alt="" width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
-            ) : (
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-[13px] font-semibold">
-                {authorInitials(post.authorName)}
-              </span>
-            )}
-            <div>
-              <p className="text-[16px] font-semibold text-white">{post.authorName}</p>
-              <p className="text-[14px] text-white/60">
-                <time dateTime={post.datePublished}>{formatBlogDate(post.datePublished)}</time>
-              </p>
+          <header className="mx-auto mt-10 max-w-[760px]">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">
+              {post.categories[0] ?? "Blog"}
+            </p>
+            <h1 className="mt-3 text-[34px] font-extrabold leading-[1.05] tracking-[-0.04em] text-balance md:text-[52px] md:leading-[1.06]">
+              {post.title}
+            </h1>
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              {post.authorPhoto ? (
+                <Image
+                  src={post.authorPhoto}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="h-12 w-12 rounded-full object-cover"
+                />
+              ) : (
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-[13px] font-semibold">
+                  {authorInitials(post.authorName)}
+                </span>
+              )}
+              <div>
+                <p className="text-[16px] font-semibold text-white">{post.authorName}</p>
+                <p className="text-[14px] text-white/60">
+                  <time dateTime={post.datePublished}>{formatBlogDate(post.datePublished)}</time>
+                  <span aria-hidden> · </span>
+                  <span>{post.readingMinutes} min citire</span>
+                </p>
+              </div>
             </div>
-          </div>
+          </header>
 
           {post.featuredImage ? (
-            <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-[24px] border border-white/10 bg-black">
-              <Image
-                src={post.featuredImage}
-                alt={post.featuredImageAlt || post.title}
-                fill
-                priority
-                sizes="(max-width: 1680px) 100vw, 1680px"
-                className="object-cover"
-              />
-            </div>
+            <figure className="relative mx-auto mt-10 max-w-[1100px] overflow-hidden rounded-[24px] border border-white/10 bg-black">
+              <div className="relative aspect-[16/9] w-full md:aspect-[2/1]">
+                <Image
+                  src={post.featuredImage}
+                  alt={post.featuredImageAlt || post.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1100px) 100vw, 1100px"
+                  className="object-cover"
+                />
+              </div>
+              {post.featuredImageAlt ? (
+                <figcaption className="px-5 py-3 text-[13px] leading-[1.45] text-white/50">{post.featuredImageAlt}</figcaption>
+              ) : null}
+            </figure>
           ) : null}
 
-          <div className={`mt-12 grid grid-cols-1 gap-10 ${showToc ? "lg:grid-cols-[minmax(0,1fr)_280px]" : ""}`}>
-            <div className="ads-blog-prose max-w-[760px]" dangerouslySetInnerHTML={{ __html: post.html }} />
+          {showToc ? (
+            <nav
+              aria-label="Cuprins"
+              className="mx-auto mt-10 max-w-[760px] rounded-[20px] border border-white/10 bg-white/[0.03] p-5 lg:hidden"
+            >
+              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/50">În acest articol</p>
+              <ol className="mt-3 list-decimal space-y-2 pl-5">
+                {post.headings.map((heading) => (
+                  <li key={heading.id}>
+                    <a href={`#${heading.id}`} className="text-[15px] leading-[1.45] text-white/80 hover:text-white">
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          ) : null}
+
+          <div className={`mx-auto mt-12 grid max-w-[1100px] grid-cols-1 gap-12 ${showToc ? "lg:grid-cols-[minmax(0,1fr)_260px]" : ""}`}>
+            <div className="ads-blog-prose mx-auto w-full max-w-[760px]" dangerouslySetInnerHTML={{ __html: post.html }} />
             {showToc ? (
               <aside className="hidden lg:block">
                 <div className="sticky top-28 rounded-[20px] border border-white/10 bg-white/[0.03] p-5">
@@ -151,11 +198,13 @@ export default async function BlogArticlePage({ params }: Props) {
         </article>
 
         {related.length ? (
-          <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12">
-            <h2 className="text-[32px] font-semibold tracking-[-0.03em] md:text-[40px]">Articole asemănătoare</h2>
+          <section className="mx-auto mt-16 w-full max-w-[1680px] px-4 md:px-8 lg:px-12" aria-labelledby="articole-asemanatoare">
+            <h2 id="articole-asemanatoare" className="text-[32px] font-semibold tracking-[-0.03em] md:text-[40px]">
+              Articole asemănătoare
+            </h2>
             <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
-                <BlogCard key={item.slug} post={item} />
+                <BlogCard key={item.slug} post={item} headingLevel="h3" />
               ))}
             </div>
           </section>

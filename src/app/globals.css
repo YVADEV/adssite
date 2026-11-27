@@ -2668,22 +2668,27 @@ a {
 }
 
 .ads-blog-prose h2 {
-  margin: 2.2em 0 0.7em;
+  margin: 2.35em 0 0.75em;
   color: #fff;
   font-size: 1.55em;
   font-weight: 650;
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.18;
   scroll-margin-top: 6rem;
+}
+
+.ads-blog-prose h2:first-child {
+  margin-top: 0;
 }
 
 .ads-blog-prose h3,
 .ads-blog-prose h4 {
-  margin: 1.6em 0 0.55em;
+  margin: 1.7em 0 0.55em;
   color: #fff;
-  font-size: 1.2em;
+  font-size: 1.18em;
   font-weight: 650;
   letter-spacing: -0.02em;
+  line-height: 1.25;
   scroll-margin-top: 6rem;
 }
 
@@ -2692,7 +2697,7 @@ a {
 .ads-blog-prose ol,
 .ads-blog-prose blockquote,
 .ads-blog-prose table {
-  margin: 0 0 1.1em;
+  margin: 0 0 1.15em;
 }
 
 .ads-blog-prose a {
@@ -2705,27 +2710,81 @@ a {
   display: block;
   width: 100%;
   height: auto;
-  margin: 1.4em 0;
+  margin: 0;
   border-radius: 18px;
 }
 
-.ads-blog-prose figure {
-  margin: 1.4em 0;
+.ads-blog-prose figure,
+.ads-blog-prose .ads-blog-figure {
+  margin: 1.7em 0;
 }
 
 .ads-blog-prose figcaption {
-  margin-top: 0.5em;
+  margin-top: 0.55em;
   color: rgba(255, 255, 255, 0.55);
-  font-size: 0.9em;
+  font-size: 0.88em;
+  line-height: 1.4;
+}
+
+.ads-blog-prose img.aligncenter,
+.ads-blog-prose .aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ads-blog-prose img.alignright {
+  float: right;
+  max-width: min(46%, 280px);
+  margin: 0.2em 0 1em 1.1em;
+}
+
+@media (max-width: 767px) {
+  .ads-blog-prose img.alignright {
+    float: none;
+    max-width: 100%;
+    margin: 1.2em 0;
+  }
+}
+
+.ads-blog-prose .gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin: 1.7em 0;
+}
+
+@media (min-width: 640px) {
+  .ads-blog-prose .gallery.gallery-columns-2,
+  .ads-blog-prose .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ads-blog-prose .gallery.gallery-columns-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.ads-blog-prose .gallery-item,
+.ads-blog-prose .gallery-icon {
+  margin: 0;
+}
+
+.ads-blog-prose .gallery img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 16px;
 }
 
 .ads-blog-prose ul,
 .ads-blog-prose ol {
-  padding-left: 1.2em;
+  padding-left: 1.25em;
 }
 
 .ads-blog-prose li {
-  margin: 0.35em 0;
+  margin: 0.4em 0;
 }
 
 .ads-blog-prose blockquote {

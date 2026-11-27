@@ -1,5 +1,6 @@
 import blogFile from "../../content/blog/posts.json";
 import authorsFile from "../../content/blog/authors.json";
+import { formatBlogHtml, readingMinutes, visibleWordCount } from "./blog-html";
 
 export const BLOG_PAGE_SIZE = 9;
 export const BLOG_INDEX_PATH = "/blog/";
@@ -94,3 +95,25 @@ export function authorInitials(name: string): string {
     .map((part) => part[0]?.toUpperCase() ?? "")
     .join("");
 }
+
+export type PreparedBlogPost = BlogPost & {
+  html: string;
+  headings: Array<{ id: string; text: string }>;
+  readingMinutes: number;
+  wordCount: number;
+};
+
+export function prepareBlogPost(post: BlogPost): PreparedBlogPost {
+  const formatted = formatBlogHtml(post.html);
+  return {
+    ...post,
+    html: formatted.html,
+    headings: formatted.headings.map(({ id, text }) => ({ id, text })),
+    readingMinutes: readingMinutes(formatted.html),
+    wordCount: visibleWordCount(formatted.html),
+  };
+}
+
+export const BLOG_INDEX_TITLE = "Blog";
+export const BLOG_INDEX_DESCRIPTION =
+  "Specialiștii Alverna Dental Studio vin în întâmpinarea dvs. cu cele mai noi informații despre tratamentele și procedurile stomatologice.";
